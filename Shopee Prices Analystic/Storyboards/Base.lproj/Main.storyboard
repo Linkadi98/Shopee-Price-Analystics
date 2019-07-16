@@ -131,6 +131,9 @@
                                                 <state key="normal" image="googlelogo">
                                                     <color key="titleColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="loginByGg:" destination="F0e-4b-AO9" eventType="touchUpInside" id="KMm-Ex-jBL"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
