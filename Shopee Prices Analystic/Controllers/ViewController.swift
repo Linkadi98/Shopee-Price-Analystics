@@ -59,11 +59,14 @@ class ViewController: UIViewController {
             })
         })
     }
-    
+
+    @IBAction func loginByFb(_ sender: Any) {
+        
+    }
+
     @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
         
     }
-    
 
     // MARK: - Private modify functions
     

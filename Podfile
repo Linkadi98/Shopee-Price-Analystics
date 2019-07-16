@@ -4,7 +4,12 @@
 target 'Shopee Prices Analystic' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-    pod 'TransitionButton'
+pod 'TransitionButton'
+pod 'FacebookCore'
+pod 'FacebookLogin'
+pod 'FacebookShare'
+pod 'SwiftyJSON', '~> 4.0'
+pod 'GoogleSignIn'
   # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do
