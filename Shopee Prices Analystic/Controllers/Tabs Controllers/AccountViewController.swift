@@ -10,10 +10,14 @@ import UIKit
 
 class AccountViewController: UIViewController {
 
+    // MARK: - Properties
+    
     @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var accountName: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        avatar.layer.cornerRadius = avatar.frame.width / 2
+        avatar.backgroundColor = .red
         // Do any additional setup after loading the view.
     }
     
