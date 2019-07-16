@@ -1,0 +1,6 @@
+framework module Pods_Shopee_Prices_AnalysticTests {
+  umbrella header "Pods-Shopee Prices AnalysticTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

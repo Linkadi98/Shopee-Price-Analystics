@@ -1,0 +1,635 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414701322DAF58C000FB6D5 /* RegisterViewController.swift */; };
+		2484174922D85D800009DF10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484174822D85D800009DF10 /* AppDelegate.swift */; };
+		2484174B22D85D800009DF10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484174A22D85D800009DF10 /* ViewController.swift */; };
+		2484174E22D85D800009DF10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2484174C22D85D800009DF10 /* Main.storyboard */; };
+		2484175022D85D810009DF10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2484174F22D85D810009DF10 /* Assets.xcassets */; };
+		2484175322D85D810009DF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2484175122D85D810009DF10 /* LaunchScreen.storyboard */; };
+		2484175E22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */; };
+		24AC2C5422D874D1001990BE /* SPAScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC2C5322D874D1001990BE /* SPAScreenViewController.swift */; };
+		24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EDDD6022D960C400D62704 /* TransitionButton.framework */; };
+		24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F661D422DC26C100440A7A /* TabsViewController.swift */; };
+		4F20B549B30EBD7B814F6C00 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */; };
+		ECBD5A4F1636A373BD25EE80 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2484175A22D85D810009DF10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2484173D22D85D800009DF10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2484174422D85D800009DF10;
+			remoteInfo = "Shopee Prices Analystic";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		24EDDD6322D960C500D62704 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2414701322DAF58C000FB6D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		2484174522D85D800009DF10 /* Shopee Prices Analystic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopee Prices Analystic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2484174822D85D800009DF10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2484174A22D85D800009DF10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2484174D22D85D800009DF10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2484174F22D85D810009DF10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2484175222D85D810009DF10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2484175422D85D810009DF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2484175922D85D810009DF10 /* Shopee Prices AnalysticTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shopee Prices AnalysticTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopee_Prices_AnalysticTests.swift; sourceTree = "<group>"; };
+		2484175F22D85D810009DF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24AC2C5322D874D1001990BE /* SPAScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPAScreenViewController.swift; sourceTree = "<group>"; };
+		24EDDD6022D960C400D62704 /* TransitionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TransitionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24F661D422DC26C100440A7A /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
+		2E0A52B4363CE4A0AD804F1E /* Pods-Shopee Prices Analystic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.release.xcconfig"; sourceTree = "<group>"; };
+		74E8530B11AE49B116C3BD31 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.release.xcconfig"; sourceTree = "<group>"; };
+		78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_AnalysticTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_Analystic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9B87D52B119D59B20D11F5D /* Pods-Shopee Prices Analystic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.debug.xcconfig"; sourceTree = "<group>"; };
+		FE070870C7935034BC4DBA32 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2484174222D85D800009DF10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F20B549B30EBD7B814F6C00 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */,
+				24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2484175622D85D810009DF10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECBD5A4F1636A373BD25EE80 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2484173C22D85D800009DF10 = {
+			isa = PBXGroup;
+			children = (
+				24EDDD6022D960C400D62704 /* TransitionButton.framework */,
+				2484174722D85D800009DF10 /* Shopee Prices Analystic */,
+				2484175C22D85D810009DF10 /* Shopee Prices AnalysticTests */,
+				2484174622D85D800009DF10 /* Products */,
+				F0231C0A030C3C9F8E4BE00A /* Pods */,
+				A95C31DBC6BF223EA9C18BE5 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2484174622D85D800009DF10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2484174522D85D800009DF10 /* Shopee Prices Analystic.app */,
+				2484175922D85D810009DF10 /* Shopee Prices AnalysticTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2484174722D85D800009DF10 /* Shopee Prices Analystic */ = {
+			isa = PBXGroup;
+			children = (
+				2484174822D85D800009DF10 /* AppDelegate.swift */,
+				24ECAF4722D98900004F2D37 /* Controllers */,
+				24ECAF4622D988E3004F2D37 /* Storyboards */,
+				2484174F22D85D810009DF10 /* Assets.xcassets */,
+				2484175422D85D810009DF10 /* Info.plist */,
+			);
+			path = "Shopee Prices Analystic";
+			sourceTree = "<group>";
+		};
+		2484175C22D85D810009DF10 /* Shopee Prices AnalysticTests */ = {
+			isa = PBXGroup;
+			children = (
+				2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */,
+				2484175F22D85D810009DF10 /* Info.plist */,
+			);
+			path = "Shopee Prices AnalysticTests";
+			sourceTree = "<group>";
+		};
+		24ECAF4622D988E3004F2D37 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2484174C22D85D800009DF10 /* Main.storyboard */,
+				2484175122D85D810009DF10 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		24ECAF4722D98900004F2D37 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				24F661D322DC26A600440A7A /* Tabs Controllers */,
+				2484174A22D85D800009DF10 /* ViewController.swift */,
+				24AC2C5322D874D1001990BE /* SPAScreenViewController.swift */,
+				2414701322DAF58C000FB6D5 /* RegisterViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		24F661D322DC26A600440A7A /* Tabs Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				24F661D422DC26C100440A7A /* TabsViewController.swift */,
+			);
+			path = "Tabs Controllers";
+			sourceTree = "<group>";
+		};
+		A95C31DBC6BF223EA9C18BE5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */,
+				78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F0231C0A030C3C9F8E4BE00A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C9B87D52B119D59B20D11F5D /* Pods-Shopee Prices Analystic.debug.xcconfig */,
+				2E0A52B4363CE4A0AD804F1E /* Pods-Shopee Prices Analystic.release.xcconfig */,
+				FE070870C7935034BC4DBA32 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */,
+				74E8530B11AE49B116C3BD31 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2484174422D85D800009DF10 /* Shopee Prices Analystic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2484176222D85D810009DF10 /* Build configuration list for PBXNativeTarget "Shopee Prices Analystic" */;
+			buildPhases = (
+				94999C146C70D1A17FFF6814 /* [CP] Check Pods Manifest.lock */,
+				2484174122D85D800009DF10 /* Sources */,
+				2484174222D85D800009DF10 /* Frameworks */,
+				2484174322D85D800009DF10 /* Resources */,
+				4544E1A3AA73E3F31B2011E0 /* [CP] Embed Pods Frameworks */,
+				24EDDD6322D960C500D62704 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shopee Prices Analystic";
+			productName = "Shopee Prices Analystic";
+			productReference = 2484174522D85D800009DF10 /* Shopee Prices Analystic.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2484175822D85D810009DF10 /* Shopee Prices AnalysticTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2484176522D85D810009DF10 /* Build configuration list for PBXNativeTarget "Shopee Prices AnalysticTests" */;
+			buildPhases = (
+				11147E31CDF09C0309A9A26B /* [CP] Check Pods Manifest.lock */,
+				2484175522D85D810009DF10 /* Sources */,
+				2484175622D85D810009DF10 /* Frameworks */,
+				2484175722D85D810009DF10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2484175B22D85D810009DF10 /* PBXTargetDependency */,
+			);
+			name = "Shopee Prices AnalysticTests";
+			productName = "Shopee Prices AnalysticTests";
+			productReference = 2484175922D85D810009DF10 /* Shopee Prices AnalysticTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2484173D22D85D800009DF10 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = SAPO;
+				TargetAttributes = {
+					2484174422D85D800009DF10 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					2484175822D85D810009DF10 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 2484174422D85D800009DF10;
+					};
+				};
+			};
+			buildConfigurationList = 2484174022D85D800009DF10 /* Build configuration list for PBXProject "Shopee Prices Analystic" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2484173C22D85D800009DF10;
+			productRefGroup = 2484174622D85D800009DF10 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2484174422D85D800009DF10 /* Shopee Prices Analystic */,
+				2484175822D85D810009DF10 /* Shopee Prices AnalysticTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2484174322D85D800009DF10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2484175322D85D810009DF10 /* LaunchScreen.storyboard in Resources */,
+				2484175022D85D810009DF10 /* Assets.xcassets in Resources */,
+				2484174E22D85D800009DF10 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2484175722D85D810009DF10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11147E31CDF09C0309A9A26B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shopee Prices AnalysticTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4544E1A3AA73E3F31B2011E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94999C146C70D1A17FFF6814 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shopee Prices Analystic-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2484174122D85D800009DF10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
+				2484174922D85D800009DF10 /* AppDelegate.swift in Sources */,
+				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
+				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
+				24AC2C5422D874D1001990BE /* SPAScreenViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2484175522D85D810009DF10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2484175E22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2484175B22D85D810009DF10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2484174422D85D800009DF10 /* Shopee Prices Analystic */;
+			targetProxy = 2484175A22D85D810009DF10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2484174C22D85D800009DF10 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2484174D22D85D800009DF10 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2484175122D85D810009DF10 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2484175222D85D810009DF10 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2484176022D85D810009DF10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2484176122D85D810009DF10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2484176322D85D810009DF10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9B87D52B119D59B20D11F5D /* Pods-Shopee Prices Analystic.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NBAJ2RV8ZK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Shopee Prices Analystic/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sapo.Shopee-Prices-Analystic";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2484176422D85D810009DF10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E0A52B4363CE4A0AD804F1E /* Pods-Shopee Prices Analystic.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NBAJ2RV8ZK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Shopee Prices Analystic/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sapo.Shopee-Prices-Analystic";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2484176622D85D810009DF10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE070870C7935034BC4DBA32 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NBAJ2RV8ZK;
+				INFOPLIST_FILE = "Shopee Prices AnalysticTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sapo.Shopee-Prices-AnalysticTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shopee Prices Analystic.app/Shopee Prices Analystic";
+			};
+			name = Debug;
+		};
+		2484176722D85D810009DF10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74E8530B11AE49B116C3BD31 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NBAJ2RV8ZK;
+				INFOPLIST_FILE = "Shopee Prices AnalysticTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sapo.Shopee-Prices-AnalysticTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shopee Prices Analystic.app/Shopee Prices Analystic";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2484174022D85D800009DF10 /* Build configuration list for PBXProject "Shopee Prices Analystic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2484176022D85D810009DF10 /* Debug */,
+				2484176122D85D810009DF10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2484176222D85D810009DF10 /* Build configuration list for PBXNativeTarget "Shopee Prices Analystic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2484176322D85D810009DF10 /* Debug */,
+				2484176422D85D810009DF10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2484176522D85D810009DF10 /* Build configuration list for PBXNativeTarget "Shopee Prices AnalysticTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2484176622D85D810009DF10 /* Debug */,
+				2484176722D85D810009DF10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2484173D22D85D800009DF10 /* Project object */;
+}
