@@ -119,7 +119,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="loginByFb:" destination="F0e-4b-AO9" eventType="touchUpInside" id="Rpf-E6-FR8"/>
+                                                    <action selector="loginByFb:" destination="F0e-4b-AO9" eventType="touchUpInside" id="0Fh-ed-Luy"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXq-px-oDI">
@@ -188,7 +188,6 @@
                         <outlet property="facebookButton" destination="XSf-zs-UcC" id="lFI-IU-le9"/>
                         <outlet property="googleButton" destination="KXq-px-oDI" id="3hV-I2-shk"/>
                         <outlet property="loginButton" destination="ex8-NX-6dO" id="sZ9-GB-Tlc"/>
-                        <outlet property="loginByFb" destination="yjP-ls-me8" id="Sdt-GD-dO5"/>
                         <outlet property="passwordText" destination="R5t-eC-H1S" id="kLD-dT-9Jm"/>
                         <outlet property="userNameText" destination="D4g-3z-etc" id="sfW-N9-8JP"/>
                     </connections>
