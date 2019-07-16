@@ -12,8 +12,9 @@ import FacebookCore
 import FacebookLogin
 import FBSDKLoginKit
 import SwiftyJSON
+import GoogleSignIn
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 
     // MARK: - Properties
     
@@ -23,17 +24,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
 
-    let fbLoginManager = LoginManager()
+//    let fbLoginManager = LoginManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().signInSilently()
+
         loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#48c6ef"), colorTwo: hexStringToUIColor(hex: "#6f86d6"))
         loginButton.spinnerColor = .white
         loginButton.layer.cornerRadius = 18
-        
-        fbLoginManager.logOut()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,7 +74,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginByFb(_ sender: Any) {
-        fbLoginManager.logIn(permissions: [.publicProfile, .email], viewController: self) { (loginResult) in
+        LoginManager().logIn(permissions: [.publicProfile, .email], viewController: self) { (loginResult) in
             switch loginResult {
             case .failed(let error):
                 print(error)
@@ -86,6 +89,11 @@ class ViewController: UIViewController {
             }
         }
 
+    }
+
+
+    @IBAction func loginByGg(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.signIn()
     }
 
     @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
@@ -139,6 +147,7 @@ extension ViewController {
             let name = fbDictionary["name"] as! String
             let email = fbDictionary["email"] as! String
 
+            // Load Fb cover picture
 //            DispatchQueue(label: "queue").async {
 //                do {
 //                    let data = try Data(contentsOf: URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!)
@@ -155,6 +164,54 @@ extension ViewController {
         connection.start()
     }
 
+}
+
+// MARK: - Google Sign In
+extension ViewController {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+            // Perform any operations on signed in user here.
+            let userId = user.userID                  // For client-side use only!
+            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+            let email = user.profile.email
+
+            // Load Google cover picture
+//            if user.profile.hasImage
+//            {
+//                let pic = user.profile.imageURL(withDimension: 100)
+//
+//                print(pic)
+//
+//                DispatchQueue(label: "loadGgPicture").async {
+//                    do {
+//                        let data = try Data(contentsOf: pic!)
+//                        DispatchQueue.main.async {
+//                            self.imageView.image = UIImage(data: data)
+//                        }
+//                    } catch {
+//                        print("Can't load Gg picture!")
+//                    }
+//                }
+//            }
+
+            print("\(fullName!) đã đăng nhập.")
+            self.getFbUserData()
+            let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
+            self.present(secondVC, animated: true, completion: nil)
+        }
+    }
+
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+        print("\(user.profile.name) has disconnected!")
+    }
 }
 
 extension UITextField {
