@@ -138,30 +138,30 @@ extension ViewController {
     }
 
     func getFbUserData() {
-        let connection = GraphRequestConnection()
-
-        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)) { (connection, result, error) in
-
-            let fbDictionary = result as! [String: AnyObject]
-            let id = fbDictionary["id"] as! String
-            let name = fbDictionary["name"] as! String
-            let email = fbDictionary["email"] as! String
-
-            // Load Fb cover picture
-//            DispatchQueue(label: "queue").async {
-//                do {
-//                    let data = try Data(contentsOf: URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!)
-//                    DispatchQueue.main.async {
-//                        self.imageView.image = UIImage(data: data)
-//                    }
-//                } catch {
-//                    print("Can't load image")
-//                }
-//            }
-
-            print("id = \(id), name = \(name), email = \(email)")
-        }
-        connection.start()
+//        let connection = GraphRequestConnection()
+//
+//        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)) { (connection, result, error) in
+//
+//            let fbDictionary = result as! [String: AnyObject]
+//            let id = fbDictionary["id"] as! String
+//            let name = fbDictionary["name"] as! String
+//            let email = fbDictionary["email"] as! String
+//
+//            // Load Fb cover picture
+////            DispatchQueue(label: "queue").async {
+////                do {
+////                    let data = try Data(contentsOf: URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!)
+////                    DispatchQueue.main.async {
+////                        self.imageView.image = UIImage(data: data)
+////                    }
+////                } catch {
+////                    print("Can't load image")
+////                }
+////            }
+//
+//            print("id = \(id), name = \(name), email = \(email)")
+//        }
+//        connection.start()
     }
 
 }
