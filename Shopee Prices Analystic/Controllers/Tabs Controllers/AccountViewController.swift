@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import GoogleSignIn
 
 class AccountViewController: UIViewController {
 
@@ -33,6 +35,13 @@ class AccountViewController: UIViewController {
     */
 
     @IBAction func logout(_ sender: Any) {
+        // Sign Out
+        if AccessToken.current != nil {
+            LoginManager().logOut()
+        } else {
+            GIDSignIn.sharedInstance()?.signOut()
+        }
+
         // Back to login screen
         let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
         self.present(loginViewController, animated: true, completion: nil)
