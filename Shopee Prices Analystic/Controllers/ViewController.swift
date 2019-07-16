@@ -8,6 +8,11 @@
 
 import UIKit
 import TransitionButton
+import FacebookCore
+import FacebookLogin
+import FBSDKLoginKit
+import SwiftyJSON
+
 class ViewController: UIViewController {
 
     // MARK: - Properties
@@ -17,6 +22,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var loginButton: TransitionButton!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
+
+    let fbLoginManager = LoginManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -61,29 +69,45 @@ class ViewController: UIViewController {
     }
 
     @IBAction func loginByFb(_ sender: Any) {
-        
+        fbLoginManager.logIn(permissions: [.publicProfile, .email], viewController: self) { (loginResult) in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermisson, let accessToken):
+                print("\(accessToken) logged in!")
+                print("\(grantedPermissions)")
+                self.getFbUserData()
+            }
+        }
+
     }
 
     @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
         
     }
+}
 
+// MARK: - Extension
+
+extension ViewController {
     // MARK: - Private modify functions
-    
+
     private func hexStringToUIColor (hex: String) -> UIColor {
         var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-        
+
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
         }
-        
+
         if ((cString.count) != 6) {
             return UIColor.gray
         }
-        
+
         var rgbValue: UInt32 = 0
         Scanner(string: cString).scanHexInt32(&rgbValue)
-        
+
         return UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
             green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
@@ -91,7 +115,7 @@ class ViewController: UIViewController {
             alpha: CGFloat(1.0)
         )
     }
-    
+
     private func configCircularButton(for button: UIButton, with color: UIColor) {
         button.layer.shadowColor = color.cgColor
         button.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
@@ -100,11 +124,34 @@ class ViewController: UIViewController {
         button.layer.shadowOpacity = 0.5
         button.layer.cornerRadius = button.frame.width / 2
     }
-    
+
+    func getFbUserData() {
+        let connection = GraphRequestConnection()
+
+        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)) { (connection, result, error) in
+
+            let fbDictionary = result as! [String: AnyObject]
+            let id = fbDictionary["id"] as! String
+            let name = fbDictionary["name"] as! String
+            let email = fbDictionary["email"] as! String
+
+//            DispatchQueue(label: "queue").async {
+//                do {
+//                    let data = try Data(contentsOf: URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!)
+//                    DispatchQueue.main.async {
+//                        self.imageView.image = UIImage(data: data)
+//                    }
+//                } catch {
+//                    print("Can't load image")
+//                }
+//            }
+
+            print("id = \(id), name = \(name), email = \(email)")
+        }
+        connection.start()
+    }
+
 }
-
-
-// MARK: - Extension
 
 extension UITextField {
     
