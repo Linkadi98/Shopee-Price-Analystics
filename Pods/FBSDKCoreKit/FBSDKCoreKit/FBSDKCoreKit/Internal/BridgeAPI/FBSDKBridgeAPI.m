@@ -44,7 +44,7 @@ typedef void (^FBSDKAuthenticationCompletionHandler)(NSURL *_Nullable callbackUR
 @implementation FBSDKBridgeAPI {
   FBSDKBridgeAPIRequest *_pendingRequest;
   FBSDKBridgeAPIResponseBlock _pendingRequestCompletionBlock;
-  __weak id<FBSDKURLOpening> _pendingURLOpen;
+  id<FBSDKURLOpening> _pendingURLOpen;
   id<FBSDKAuthenticationSession> _authenticationSession NS_AVAILABLE_IOS(11_0);
   FBSDKAuthenticationCompletionHandler _authenticationSessionCompletionHandler NS_AVAILABLE_IOS(11_0);
 
@@ -321,9 +321,13 @@ didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *
     _authenticationSession = [[AuthenticationSessionClass alloc] initWithURL:url
                                                            callbackURLScheme:[FBSDKInternalUtility appURLScheme]
                                                            completionHandler:_authenticationSessionCompletionHandler];
-    if ([_authenticationSession respondsToSelector:@selector(setPresentationContextProvider:)]) {
-      [_authenticationSession setPresentationContextProvider:self];
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 130000
+    if (@available(iOS 13.0, *)) {
+      if ([_authenticationSession respondsToSelector:@selector(setPresentationContextProvider:)]) {
+        [_authenticationSession setPresentationContextProvider:self];
+      }
     }
+#endif
     _isRequestingSFAuthenticationSession = YES;
     [_authenticationSession start];
   }
