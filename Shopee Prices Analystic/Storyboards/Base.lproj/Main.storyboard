@@ -430,10 +430,19 @@
         <!--Tổng quan-->
         <scene sceneID="3bG-CP-dF0">
             <objects>
-                <viewController id="FVA-zW-D8a" customClass="SPAScreenViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FVA-zW-D8a" customClass="OverviewViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MAT-kP-gJe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbc-5Y-ecH">
+                                <rect key="frame" x="20" y="71" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="kCY-t2-FWh"/>
                     </view>
