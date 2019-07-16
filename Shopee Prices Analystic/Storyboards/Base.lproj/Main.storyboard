@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="yg2-V1-cfa">
-                                <rect key="frame" x="40" y="192" width="334" height="165"/>
+                                <rect key="frame" x="40" y="90" width="334" height="165"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSp-iJ-iQ1">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="75"/>
@@ -84,10 +84,10 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="Fbj-yb-epQ">
-                                <rect key="frame" x="121.5" y="54" width="171" height="118"/>
+                                <rect key="frame" x="199" y="54" width="16" height="16"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Vea-3T-DcG">
-                                <rect key="frame" x="40" y="416" width="334" height="136"/>
+                                <rect key="frame" x="40" y="314" width="334" height="136"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-NX-6dO" customClass="TransitionButton" customModule="TransitionButton">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
@@ -163,7 +163,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-b1-iAJ">
-                                <rect key="frame" x="242" y="372" width="132" height="29"/>
+                                <rect key="frame" x="242" y="270" width="132" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Bạn quên mật khẩu?"/>
                             </button>
@@ -494,13 +494,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KxV-Oo-28j">
-                                <rect key="frame" x="87" y="191" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KxV-Oo-28j">
+                                <rect key="frame" x="107" y="134" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="y2T-fY-usZ"/>
+                                    <constraint firstAttribute="width" constant="200" id="zjP-r4-WQp"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5A-8E-Ip0">
-                                <rect key="frame" x="173" y="433" width="70" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên tài khoản" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RM-jD-jsp">
+                                <rect key="frame" x="156" y="374" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5A-8E-Ip0">
+                                <rect key="frame" x="312" y="59" width="87" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Đăng xuất"/>
                                 <connections>
                                     <action selector="logout:" destination="RYx-pb-aBA" eventType="touchUpInside" id="QhH-kV-Rwk"/>
@@ -508,11 +517,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="N5A-8E-Ip0" firstAttribute="top" secondItem="tUM-o6-hRT" secondAttribute="top" constant="15" id="2cN-h0-Zqv"/>
+                            <constraint firstItem="N5A-8E-Ip0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tUM-o6-hRT" secondAttribute="leading" symbolic="YES" id="62E-9O-BbR"/>
+                            <constraint firstItem="KxV-Oo-28j" firstAttribute="centerX" secondItem="kF5-f4-KpA" secondAttribute="centerX" id="EoR-W7-AjK"/>
+                            <constraint firstItem="4RM-jD-jsp" firstAttribute="leading" secondItem="tUM-o6-hRT" secondAttribute="leading" constant="156" id="HJf-0b-AbV"/>
+                            <constraint firstItem="KxV-Oo-28j" firstAttribute="top" secondItem="tUM-o6-hRT" secondAttribute="top" constant="90" id="Oys-g9-VDy"/>
+                            <constraint firstItem="tUM-o6-hRT" firstAttribute="trailing" secondItem="N5A-8E-Ip0" secondAttribute="trailing" constant="15" id="Zwj-AI-g7y"/>
+                            <constraint firstItem="4RM-jD-jsp" firstAttribute="centerX" secondItem="KxV-Oo-28j" secondAttribute="centerX" id="eKJ-JP-EKx"/>
+                            <constraint firstItem="4RM-jD-jsp" firstAttribute="top" secondItem="KxV-Oo-28j" secondAttribute="bottom" constant="40" id="hVx-eS-uFa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tUM-o6-hRT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Tài khoản" image="account" id="Sz1-Le-oKa"/>
                     <connections>
-                        <outlet property="avatar" destination="KxV-Oo-28j" id="h4x-Fh-wmO"/>
+                        <outlet property="accountName" destination="4RM-jD-jsp" id="4b4-MR-pZy"/>
+                        <outlet property="avatar" destination="KxV-Oo-28j" id="Odw-fj-g4m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G1g-Hx-hx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
