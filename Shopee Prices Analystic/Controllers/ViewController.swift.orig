@@ -8,10 +8,13 @@
 
 import UIKit
 import TransitionButton
+<<<<<<< HEAD
+=======
 import FacebookCore
 import FacebookLogin
 import FBSDKLoginKit
 import SwiftyJSON
+>>>>>>> develop
 
 class ViewController: UIViewController {
 
@@ -32,8 +35,6 @@ class ViewController: UIViewController {
         loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#48c6ef"), colorTwo: hexStringToUIColor(hex: "#6f86d6"))
         loginButton.spinnerColor = .white
         loginButton.layer.cornerRadius = 18
-        
-        fbLoginManager.logOut()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,8 +82,6 @@ class ViewController: UIViewController {
                 print("\(accessToken) logged in!")
                 print("\(grantedPermissions)")
                 self.getFbUserData()
-                let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-                self.present(secondVC, animated: true, completion: nil)
             }
         }
 

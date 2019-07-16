@@ -1,25 +1,20 @@
 //
-//  SPAScreenViewController.swift
+//  OverviewViewController.swift
 //  Shopee Prices Analystic
 //
-//  Created by Minh Pham on 7/12/19.
+//  Created by Minh Pham on 7/16/19.
 //  Copyright © 2019 SAPO. All rights reserved.
 //
 
 import UIKit
-import TransitionButton
 
-class SPAScreenViewController: CustomTransitionViewController {
+class OverviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
-    
-    
-    
-    
     
 
     /*
