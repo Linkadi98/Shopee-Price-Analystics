@@ -389,7 +389,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-2h-4ch">
-                                <rect key="frame" x="20" y="64" width="50" height="32"/>
+                                <rect key="frame" x="15" y="64" width="50" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
@@ -399,7 +399,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="YNa-2h-4ch" firstAttribute="leading" secondItem="sBU-X6-bsd" secondAttribute="leading" constant="20" id="4rv-TT-wch"/>
+                            <constraint firstItem="YNa-2h-4ch" firstAttribute="leading" secondItem="sBU-X6-bsd" secondAttribute="leading" constant="15" id="4rv-TT-wch"/>
+                            <constraint firstItem="sBU-X6-bsd" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YNa-2h-4ch" secondAttribute="trailing" symbolic="YES" id="6Jp-CA-Ha0"/>
                             <constraint firstItem="De7-FY-OTb" firstAttribute="height" secondItem="IxE-db-7QY" secondAttribute="height" multiplier="0.45" id="EJx-7F-WDF"/>
                             <constraint firstItem="Hhf-32-nOM" firstAttribute="top" secondItem="rnm-OG-mO4" secondAttribute="bottom" constant="18" id="ILE-Vs-KsF"/>
                             <constraint firstItem="sBU-X6-bsd" firstAttribute="trailing" secondItem="De7-FY-OTb" secondAttribute="trailing" constant="40" id="Jaw-6W-Xso"/>
@@ -503,13 +504,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RM-jD-jsp">
-                                <rect key="frame" x="150.5" y="314" width="113" height="20.5"/>
+                                <rect key="frame" x="150.5" y="289" width="113" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5A-8E-Ip0">
-                                <rect key="frame" x="320" y="64" width="74" height="32"/>
+                                <rect key="frame" x="325" y="64" width="74" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Đăng xuất"/>
                                 <connections>
@@ -524,9 +525,9 @@
                             <constraint firstItem="KxV-Oo-28j" firstAttribute="centerX" secondItem="kF5-f4-KpA" secondAttribute="centerX" id="EoR-W7-AjK"/>
                             <constraint firstItem="KxV-Oo-28j" firstAttribute="top" secondItem="tUM-o6-hRT" secondAttribute="top" constant="80" id="Oys-g9-VDy"/>
                             <constraint firstItem="tUM-o6-hRT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4RM-jD-jsp" secondAttribute="trailing" id="VSZ-kO-UJw"/>
-                            <constraint firstItem="tUM-o6-hRT" firstAttribute="trailing" secondItem="N5A-8E-Ip0" secondAttribute="trailing" constant="20" id="Zwj-AI-g7y"/>
+                            <constraint firstItem="tUM-o6-hRT" firstAttribute="trailing" secondItem="N5A-8E-Ip0" secondAttribute="trailing" constant="15" id="Zwj-AI-g7y"/>
                             <constraint firstItem="4RM-jD-jsp" firstAttribute="centerX" secondItem="KxV-Oo-28j" secondAttribute="centerX" id="eKJ-JP-EKx"/>
-                            <constraint firstItem="4RM-jD-jsp" firstAttribute="top" secondItem="KxV-Oo-28j" secondAttribute="bottom" constant="40" id="hVx-eS-uFa"/>
+                            <constraint firstItem="4RM-jD-jsp" firstAttribute="top" secondItem="KxV-Oo-28j" secondAttribute="bottom" constant="15" id="hVx-eS-uFa"/>
                             <constraint firstItem="4RM-jD-jsp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tUM-o6-hRT" secondAttribute="leading" id="mKJ-H9-WP1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tUM-o6-hRT"/>
