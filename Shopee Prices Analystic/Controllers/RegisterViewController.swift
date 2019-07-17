@@ -10,10 +10,13 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     
-    //MARK: - Properties
-    @IBOutlet var groupTextField: [UITextField]!
+    // MARK: - Properties
     
-
+    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var confirmPassword: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,12 +25,17 @@ class RegisterViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        for textField in groupTextField {
-            textField.createUnderlineTextField()
-        }
-        
+        configInputField(for: userName, icon: #imageLiteral(resourceName: "account"))
+        configInputField(for: email, icon: #imageLiteral(resourceName: "email"))
+        configInputField(for: password, icon: #imageLiteral(resourceName: "password"))
+        configInputField(for: confirmPassword, icon: <#T##UIImage#>)
     }
 
+    // MARK: - Private modification
+    private func configInputField (for textField: UITextField, icon iconImage: UIImage) {
+        textField.createUnderlineTextField()
+        textField.setIcon(iconImage)
+    }
     /*
     // MARK: - Navigation
 

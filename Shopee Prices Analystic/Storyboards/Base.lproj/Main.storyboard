@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="yg2-V1-cfa">
-                                <rect key="frame" x="40" y="90" width="334" height="165"/>
+                                <rect key="frame" x="40" y="192" width="334" height="165"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TSp-iJ-iQ1">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="75"/>
@@ -84,10 +84,10 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="Fbj-yb-epQ">
-                                <rect key="frame" x="199" y="54" width="16" height="16"/>
+                                <rect key="frame" x="121.5" y="54" width="171" height="118"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Vea-3T-DcG">
-                                <rect key="frame" x="40" y="314" width="334" height="136"/>
+                                <rect key="frame" x="40" y="416" width="334" height="136"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-NX-6dO" customClass="TransitionButton" customModule="TransitionButton">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
@@ -163,7 +163,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dc-b1-iAJ">
-                                <rect key="frame" x="242" y="270" width="132" height="29"/>
+                                <rect key="frame" x="242" y="372" width="132" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Bạn quên mật khẩu?"/>
                             </button>
@@ -208,7 +208,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="De7-FY-OTb">
-                                <rect key="frame" x="40" y="219" width="334" height="403"/>
+                                <rect key="frame" x="40" y="209" width="334" height="403"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kl2-nx-wqW">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="101"/>
@@ -327,7 +327,7 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
-                                <rect key="frame" x="132" y="104" width="150" height="100"/>
+                                <rect key="frame" x="132" y="94" width="150" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="8jb-9d-wyC"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="9M2-YZ-3yd"/>
@@ -360,10 +360,10 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rnm-OG-mO4">
-                                <rect key="frame" x="40" y="642" width="334" height="112"/>
+                                <rect key="frame" x="40" y="632" width="334" height="122"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzC-06-4j9" customClass="TransitionButton" customModule="TransitionButton">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="37.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Đăng ký"/>
                                         <state key="selected">
@@ -376,7 +376,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoặc đăng ký bằng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ey-fH-m8Q">
-                                        <rect key="frame" x="108.5" y="57.5" width="117" height="54.5"/>
+                                        <rect key="frame" x="108.5" y="61" width="117" height="61"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -389,7 +389,8 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-2h-4ch">
-                                <rect key="frame" x="40" y="84" width="48" height="30"/>
+                                <rect key="frame" x="20" y="64" width="50" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <segue destination="Mka-zi-JFP" kind="unwind" unwindAction="unWindWithUnWindSegue:" id="6ix-vr-Ih8"/>
@@ -398,17 +399,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="YNa-2h-4ch" firstAttribute="leading" secondItem="sBU-X6-bsd" secondAttribute="leading" constant="40" id="4rv-TT-wch"/>
+                            <constraint firstItem="YNa-2h-4ch" firstAttribute="leading" secondItem="sBU-X6-bsd" secondAttribute="leading" constant="20" id="4rv-TT-wch"/>
                             <constraint firstItem="De7-FY-OTb" firstAttribute="height" secondItem="IxE-db-7QY" secondAttribute="height" multiplier="0.45" id="EJx-7F-WDF"/>
                             <constraint firstItem="Hhf-32-nOM" firstAttribute="top" secondItem="rnm-OG-mO4" secondAttribute="bottom" constant="18" id="ILE-Vs-KsF"/>
                             <constraint firstItem="sBU-X6-bsd" firstAttribute="trailing" secondItem="De7-FY-OTb" secondAttribute="trailing" constant="40" id="Jaw-6W-Xso"/>
-                            <constraint firstItem="eCC-eP-uKi" firstAttribute="top" secondItem="sBU-X6-bsd" secondAttribute="top" constant="60" id="Kl6-9p-ftg"/>
+                            <constraint firstItem="eCC-eP-uKi" firstAttribute="top" secondItem="sBU-X6-bsd" secondAttribute="top" constant="50" id="Kl6-9p-ftg"/>
                             <constraint firstItem="rnm-OG-mO4" firstAttribute="top" secondItem="De7-FY-OTb" secondAttribute="bottom" constant="20" id="QBg-2h-NkW"/>
                             <constraint firstItem="rnm-OG-mO4" firstAttribute="leading" secondItem="sBU-X6-bsd" secondAttribute="leading" constant="40" id="TIs-OQ-B45"/>
                             <constraint firstItem="eCC-eP-uKi" firstAttribute="centerX" secondItem="IxE-db-7QY" secondAttribute="centerX" id="TZl-rQ-WG2"/>
                             <constraint firstItem="sBU-X6-bsd" firstAttribute="bottom" secondItem="Hhf-32-nOM" secondAttribute="bottom" constant="40" id="cqy-lG-yl0"/>
                             <constraint firstItem="De7-FY-OTb" firstAttribute="leading" secondItem="sBU-X6-bsd" secondAttribute="leading" constant="40" id="hq3-yF-md0"/>
-                            <constraint firstItem="YNa-2h-4ch" firstAttribute="top" secondItem="sBU-X6-bsd" secondAttribute="top" constant="40" id="kna-Wj-0Ux"/>
+                            <constraint firstItem="YNa-2h-4ch" firstAttribute="top" secondItem="sBU-X6-bsd" secondAttribute="top" constant="20" id="kna-Wj-0Ux"/>
                             <constraint firstItem="Hhf-32-nOM" firstAttribute="centerX" secondItem="sBU-X6-bsd" secondAttribute="centerX" id="m62-E7-cWH"/>
                             <constraint firstItem="eCC-eP-uKi" firstAttribute="centerX" secondItem="De7-FY-OTb" secondAttribute="centerX" id="rGx-dQ-hEL"/>
                             <constraint firstItem="eCC-eP-uKi" firstAttribute="centerX" secondItem="sBU-X6-bsd" secondAttribute="centerX" id="sCR-N5-bzs"/>
@@ -418,10 +419,10 @@
                         <viewLayoutGuide key="safeArea" id="sBU-X6-bsd"/>
                     </view>
                     <connections>
-                        <outletCollection property="groupTextField" destination="B4Z-GA-gjq" collectionClass="NSMutableArray" id="P6o-UY-NB9"/>
-                        <outletCollection property="groupTextField" destination="kAJ-VH-qef" collectionClass="NSMutableArray" id="uFO-bo-yeh"/>
-                        <outletCollection property="groupTextField" destination="dh7-Id-ffb" collectionClass="NSMutableArray" id="yKm-JZ-bF0"/>
-                        <outletCollection property="groupTextField" destination="Txd-Lr-KYT" collectionClass="NSMutableArray" id="Oru-hq-YWx"/>
+                        <outlet property="confirmPassword" destination="Txd-Lr-KYT" id="Z6m-uM-d0D"/>
+                        <outlet property="email" destination="kAJ-VH-qef" id="amm-PO-Gg5"/>
+                        <outlet property="password" destination="dh7-Id-ffb" id="z2V-Ap-aDG"/>
+                        <outlet property="userName" destination="B4Z-GA-gjq" id="QxZ-kI-kTG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hLJ-je-LOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -432,7 +433,7 @@
         <!--Tổng quan-->
         <scene sceneID="3bG-CP-dF0">
             <objects>
-                <viewController id="FVA-zW-D8a" customClass="OverviewViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OverviewViewController" id="FVA-zW-D8a" customClass="OverviewViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MAT-kP-gJe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -452,7 +453,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzQ-v1-da0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704" y="-1203"/>
+            <point key="canvasLocation" x="702.89855072463774" y="-1203.3482142857142"/>
         </scene>
         <!--Sản phẩm-->
         <scene sceneID="5TE-Sy-Gc7">
@@ -489,27 +490,27 @@
         <!--Tài khoản-->
         <scene sceneID="9zc-z6-JLw">
             <objects>
-                <viewController id="RYx-pb-aBA" customClass="AccountViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountViewController" id="RYx-pb-aBA" customClass="AccountViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kF5-f4-KpA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KxV-Oo-28j">
-                                <rect key="frame" x="107" y="134" width="200" height="200"/>
+                                <rect key="frame" x="132" y="124" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="y2T-fY-usZ"/>
-                                    <constraint firstAttribute="width" constant="200" id="zjP-r4-WQp"/>
+                                    <constraint firstAttribute="height" constant="150" id="y2T-fY-usZ"/>
+                                    <constraint firstAttribute="width" constant="150" id="zjP-r4-WQp"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên tài khoản" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RM-jD-jsp">
-                                <rect key="frame" x="156" y="374" width="102" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RM-jD-jsp">
+                                <rect key="frame" x="207" y="314" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5A-8E-Ip0">
-                                <rect key="frame" x="312" y="59" width="87" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <rect key="frame" x="320" y="64" width="74" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Đăng xuất"/>
                                 <connections>
                                     <action selector="logout:" destination="RYx-pb-aBA" eventType="touchUpInside" id="QhH-kV-Rwk"/>
@@ -518,14 +519,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="N5A-8E-Ip0" firstAttribute="top" secondItem="tUM-o6-hRT" secondAttribute="top" constant="15" id="2cN-h0-Zqv"/>
+                            <constraint firstItem="N5A-8E-Ip0" firstAttribute="top" secondItem="tUM-o6-hRT" secondAttribute="top" constant="20" id="2cN-h0-Zqv"/>
                             <constraint firstItem="N5A-8E-Ip0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tUM-o6-hRT" secondAttribute="leading" symbolic="YES" id="62E-9O-BbR"/>
                             <constraint firstItem="KxV-Oo-28j" firstAttribute="centerX" secondItem="kF5-f4-KpA" secondAttribute="centerX" id="EoR-W7-AjK"/>
-                            <constraint firstItem="4RM-jD-jsp" firstAttribute="leading" secondItem="tUM-o6-hRT" secondAttribute="leading" constant="156" id="HJf-0b-AbV"/>
-                            <constraint firstItem="KxV-Oo-28j" firstAttribute="top" secondItem="tUM-o6-hRT" secondAttribute="top" constant="90" id="Oys-g9-VDy"/>
-                            <constraint firstItem="tUM-o6-hRT" firstAttribute="trailing" secondItem="N5A-8E-Ip0" secondAttribute="trailing" constant="15" id="Zwj-AI-g7y"/>
+                            <constraint firstItem="KxV-Oo-28j" firstAttribute="top" secondItem="tUM-o6-hRT" secondAttribute="top" constant="80" id="Oys-g9-VDy"/>
+                            <constraint firstItem="tUM-o6-hRT" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4RM-jD-jsp" secondAttribute="trailing" id="VSZ-kO-UJw"/>
+                            <constraint firstItem="tUM-o6-hRT" firstAttribute="trailing" secondItem="N5A-8E-Ip0" secondAttribute="trailing" constant="20" id="Zwj-AI-g7y"/>
                             <constraint firstItem="4RM-jD-jsp" firstAttribute="centerX" secondItem="KxV-Oo-28j" secondAttribute="centerX" id="eKJ-JP-EKx"/>
                             <constraint firstItem="4RM-jD-jsp" firstAttribute="top" secondItem="KxV-Oo-28j" secondAttribute="bottom" constant="40" id="hVx-eS-uFa"/>
+                            <constraint firstItem="4RM-jD-jsp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tUM-o6-hRT" secondAttribute="leading" id="mKJ-H9-WP1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tUM-o6-hRT"/>
                     </view>
