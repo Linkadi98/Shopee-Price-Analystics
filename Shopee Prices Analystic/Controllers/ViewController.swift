@@ -83,7 +83,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 print(error)
             case .cancelled:
                 print("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermisson, let accessToken):
+            case .success(let grantedPermissions, _, let accessToken):
                 print("\(accessToken) logged in!")
                 print("\(grantedPermissions)")
                 self.getFbUserData()
