@@ -20,6 +20,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         GIDSignIn.sharedInstance()?.clientID = "807535666611-p6k6qk93nmkg0o5t082em63odlr56s6n.apps.googleusercontent.com"
+
+        // Change initial view controller after successful login
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        var initialViewController: UIViewController
+
+        if UserDefaults.standard.object(forKey: "currentUser") != nil //your condition if user is already logged in or not
+        {
+            // if already logged in then redirect to MainViewController
+
+            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController // 'MainController' is the storyboard id of MainViewController
+        }
+        else
+        {
+            //If not logged in then show LoginViewController
+            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController // 'LoginController' is the storyboard id of LoginViewController
+
+        }
+
+        self.window?.rootViewController = initialViewController
+
+        self.window?.makeKeyAndVisible()
         return true
     }
 

@@ -346,6 +346,9 @@
                                         <state key="normal" image="facebooklogo">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginByFb:" destination="Dwj-j7-TVd" eventType="touchUpInside" id="Gbs-hd-xGl"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnn-dL-NCX">
                                         <rect key="frame" x="52" y="0.0" width="50" height="50"/>
@@ -356,6 +359,9 @@
                                         <state key="normal" image="googlelogo">
                                             <color key="titleColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginByGg:" destination="Dwj-j7-TVd" eventType="touchUpInside" id="QXs-kV-bHX"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
