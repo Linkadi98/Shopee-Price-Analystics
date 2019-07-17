@@ -62,6 +62,7 @@ class AccountViewController: UIViewController {
             GIDSignIn.sharedInstance()?.signOut()
         }
 
+        UserDefaults.standard.removeObject(forKey: "currentUser")
         // Back to login screen
         let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
         self.present(loginViewController, animated: true, completion: nil)

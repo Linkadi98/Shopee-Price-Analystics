@@ -8,7 +8,6 @@
 
 import UIKit
 import TransitionButton
-import FacebookCore
 import FacebookLogin
 import FBSDKLoginKit
 import SwiftyJSON
@@ -24,8 +23,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
 
-//    let fbLoginManager = LoginManager()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,7 +34,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#48c6ef"), colorTwo: hexStringToUIColor(hex: "#6f86d6"))
         loginButton.spinnerColor = .white
         loginButton.layer.cornerRadius = 18
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,7 +92,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 self.present(secondVC, animated: true, completion: nil)
             }
         }
-
     }
 
 
@@ -175,12 +170,12 @@ extension ViewController {
             print("\(error.localizedDescription)")
         } else {
             // Perform any operations on signed in user here.
-            let userId = user.userID                  // For client-side use only!
-            let idToken = user.authentication.idToken // Safe to send to the server
+//            let userId = user.userID                  // For client-side use only!
+//            let idToken = user.authentication.idToken // Safe to send to the server
             let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
-            let email = user.profile.email
+//            let givenName = user.profile.givenName
+//            let familyName = user.profile.familyName
+//            let email = user.profile.email
 
             // Google cover picture
             var pic = ""
@@ -188,17 +183,6 @@ extension ViewController {
             if user.profile.hasImage
             {
                 pic = user.profile.imageURL(withDimension: 150)!.absoluteString
-
-//                DispatchQueue(label: "loadGgPicture").async {
-//                    do {
-//                        let data = try Data(contentsOf: pic!)
-//                        DispatchQueue.main.async {
-//                            self.imageView.image = UIImage(data: data)
-//                        }
-//                    } catch {
-//                        print("Can't load Gg picture!")
-//                    }
-//                }
             }
 
             let currentUser = User(name: fullName!, image: pic)
@@ -207,7 +191,6 @@ extension ViewController {
                 UserDefaults.standard.set(encoded, forKey: "currentUser")
             }
 
-            print("\(fullName!) đã đăng nhập.")
             let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
             self.present(secondVC, animated: true, completion: nil)
         }
@@ -217,7 +200,7 @@ extension ViewController {
               withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
         // ...
-        print("\(user.profile.name) has disconnected!")
+        print("\(user.profile.name!) has disconnected!")
     }
 }
 

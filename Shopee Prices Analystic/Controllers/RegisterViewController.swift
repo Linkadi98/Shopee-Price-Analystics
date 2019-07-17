@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import FacebookLogin
 
 class RegisterViewController: UIViewController {
     
@@ -36,6 +38,29 @@ class RegisterViewController: UIViewController {
         textField.createUnderlineTextField()
         textField.setIcon(iconImage)
     }
+
+    @IBAction func loginByFb(_ sender: Any) {
+        LoginManager().logIn(permissions: [.publicProfile, .email], viewController: self) { (loginResult) in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermisson, let accessToken):
+                print("\(accessToken) logged in!")
+                print("\(grantedPermissions)")
+                ViewController().getFbUserData()
+
+                let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
+                self.present(secondVC, animated: true, completion: nil)
+            }
+        }
+    }
+
+    @IBAction func loginByGg(_ sender: Any) {
+
+    }
+
     /*
     // MARK: - Navigation
 
