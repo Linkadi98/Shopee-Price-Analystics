@@ -20,10 +20,26 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
+            accountName.text = currentUser.name!
+
+            DispatchQueue(label: "loadAvatar").async {
+                do {
+                    let data = try Data(contentsOf:URL(string: currentUser.image!)!)
+                    DispatchQueue.main.async {
+                        self.avatar.image = UIImage(data: data)
+                    }
+                } catch {
+                    print("Can't load Avatar!")
+                }
+            }
+        }
+
         avatar.layer.cornerRadius = avatar.frame.width / 2
         avatar.backgroundColor = .red
         
-        accountName.text = "Pham Ngoc Minh"
+
         // Do any additional setup after loading the view.
     }
     

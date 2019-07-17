@@ -91,6 +91,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 print("\(accessToken) logged in!")
                 print("\(grantedPermissions)")
                 self.getFbUserData()
+
                 let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
                 self.present(secondVC, animated: true, completion: nil)
             }
@@ -145,30 +146,24 @@ extension ViewController {
     }
 
     func getFbUserData() {
-//        let connection = GraphRequestConnection()
-//
-//        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)) { (connection, result, error) in
-//
-//            let fbDictionary = result as! [String: AnyObject]
-//            let id = fbDictionary["id"] as! String
-//            let name = fbDictionary["name"] as! String
-//            let email = fbDictionary["email"] as! String
-//
-//            // Load Fb cover picture
-////            DispatchQueue(label: "queue").async {
-////                do {
-////                    let data = try Data(contentsOf: URL(string: "https://graph.facebook.com/\(id)/picture?type=large")!)
-////                    DispatchQueue.main.async {
-////                        self.imageView.image = UIImage(data: data)
-////                    }
-////                } catch {
-////                    print("Can't load image")
-////                }
-////            }
-//
-//            print("id = \(id), name = \(name), email = \(email)")
-//        }
-//        connection.start()
+        let connection = GraphRequestConnection()
+
+        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)) { (connection, result, error) in
+
+            let fbDictionary = result as! [String: AnyObject]
+            let id = fbDictionary["id"] as! String
+            let name = fbDictionary["name"] as! String
+            let email = fbDictionary["email"] as! String
+
+            let currentUser = User(name: name, image: "https://graph.facebook.com/\(id)/picture?type=large")
+
+            if let encoded = try? JSONEncoder().encode(currentUser) {
+                UserDefaults.standard.set(encoded, forKey: "currentUser")
+            }
+
+            print("id = \(id), name = \(name), email = \(email)")
+        }
+        connection.start()
     }
 
 }
@@ -187,13 +182,13 @@ extension ViewController {
             let familyName = user.profile.familyName
             let email = user.profile.email
 
-            // Load Google cover picture
-//            if user.profile.hasImage
-//            {
-//                let pic = user.profile.imageURL(withDimension: 100)
-//
-//                print(pic)
-//
+            // Google cover picture
+            var pic = ""
+
+            if user.profile.hasImage
+            {
+                pic = user.profile.imageURL(withDimension: 150)!.absoluteString
+
 //                DispatchQueue(label: "loadGgPicture").async {
 //                    do {
 //                        let data = try Data(contentsOf: pic!)
@@ -204,10 +199,15 @@ extension ViewController {
 //                        print("Can't load Gg picture!")
 //                    }
 //                }
-//            }
+            }
+
+            let currentUser = User(name: fullName!, image: pic)
+
+            if let encoded = try? JSONEncoder().encode(currentUser) {
+                UserDefaults.standard.set(encoded, forKey: "currentUser")
+            }
 
             print("\(fullName!) đã đăng nhập.")
-            self.getFbUserData()
             let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
             self.present(secondVC, animated: true, completion: nil)
         }

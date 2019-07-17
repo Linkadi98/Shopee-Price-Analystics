@@ -28,7 +28,7 @@ class RegisterViewController: UIViewController {
         configInputField(for: userName, icon: #imageLiteral(resourceName: "account"))
         configInputField(for: email, icon: #imageLiteral(resourceName: "email"))
         configInputField(for: password, icon: #imageLiteral(resourceName: "password"))
-        configInputField(for: confirmPassword, icon: <#T##UIImage#>)
+//        configInputField(for: confirmPassword, icon: <#T##UIImage#>)
     }
 
     // MARK: - Private modification
