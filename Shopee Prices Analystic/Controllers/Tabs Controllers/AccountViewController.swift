@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import GoogleSignIn
 
 class AccountViewController: UIViewController {
 
@@ -18,10 +20,26 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
+            accountName.text = currentUser.name!
+
+            DispatchQueue(label: "loadAvatar").async {
+                do {
+                    let data = try Data(contentsOf:URL(string: currentUser.image!)!)
+                    DispatchQueue.main.async {
+                        self.avatar.image = UIImage(data: data)
+                    }
+                } catch {
+                    print("Can't load Avatar!")
+                }
+            }
+        }
+
         avatar.layer.cornerRadius = avatar.frame.width / 2
         avatar.backgroundColor = .red
         
-        accountName.text = "Pham Ngoc Minh"
+
         // Do any additional setup after loading the view.
     }
     
@@ -37,6 +55,13 @@ class AccountViewController: UIViewController {
     */
 
     @IBAction func logout(_ sender: Any) {
+        // Sign Out
+        if AccessToken.current != nil {
+            LoginManager().logOut()
+        } else {
+            GIDSignIn.sharedInstance()?.signOut()
+        }
+
         // Back to login screen
         let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
         self.present(loginViewController, animated: true, completion: nil)
