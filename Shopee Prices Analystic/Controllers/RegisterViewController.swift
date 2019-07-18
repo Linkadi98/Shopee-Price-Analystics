@@ -147,23 +147,7 @@ extension RegisterViewController {
         // Perform any operations when the user disconnects from app here.
         // ...
         print("\(user.profile.name!) has disconnected!")
-    }
+        }
 }
 
-    // MARK: - Extension
-
-extension UIViewController {
-    
-    
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-}
 
