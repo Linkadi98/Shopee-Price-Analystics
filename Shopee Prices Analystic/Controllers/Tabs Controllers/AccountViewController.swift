@@ -21,6 +21,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(AccessToken.current)
         if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
             accountName.text = currentUser.name!
 
@@ -39,7 +40,8 @@ class AccountViewController: UIViewController {
         avatar.layer.cornerRadius = avatar.frame.width / 2
         avatar.backgroundColor = .red
         
-
+        print(GIDSignIn.sharedInstance()?.currentUser)
+        print("abc")
         // Do any additional setup after loading the view.
     }
     
@@ -55,10 +57,14 @@ class AccountViewController: UIViewController {
     */
 
     @IBAction func logout(_ sender: Any) {
+        print("singout")
         // Sign Out
         if AccessToken.current != nil {
+            print("fblogout")
             LoginManager().logOut()
         } else {
+            print(GIDSignIn.sharedInstance()?.currentUser)
+            print("gglogout")
             GIDSignIn.sharedInstance()?.signOut()
         }
 

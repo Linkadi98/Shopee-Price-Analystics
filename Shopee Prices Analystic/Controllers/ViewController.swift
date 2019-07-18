@@ -10,7 +10,6 @@ import UIKit
 import TransitionButton
 import FacebookLogin
 import FBSDKLoginKit
-import SwiftyJSON
 import GoogleSignIn
 
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
@@ -29,7 +28,6 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance().signInSilently()
 
         loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#48c6ef"), colorTwo: hexStringToUIColor(hex: "#6f86d6"))
         loginButton.spinnerColor = .white
@@ -77,26 +75,16 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     }
 
     @IBAction func loginByFb(_ sender: Any) {
-        LoginManager().logIn(permissions: [.publicProfile, .email], viewController: self) { (loginResult) in
-            switch loginResult {
-            case .failed(let error):
-                print(error)
-            case .cancelled:
-                print("User cancelled login.")
-            case .success(let grantedPermissions, let declinedPermisson, let accessToken):
-                print("\(accessToken) logged in!")
-                print("\(grantedPermissions)")
-                self.getFbUserData()
-
-                let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-                self.present(secondVC, animated: true, completion: nil)
-            }
-        }
+        ViewController.loginFb(inViewController: self)
     }
 
 
     @IBAction func loginByGg(_ sender: Any) {
-        GIDSignIn.sharedInstance()?.signIn()
+        if GIDSignIn.sharedInstance()?.currentUser != nil {
+            print("Hahaha")
+        } else {
+            print("Lalala")
+        }
     }
 
     @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
@@ -139,28 +127,6 @@ extension ViewController {
         button.layer.shadowOpacity = 0.5
         button.layer.cornerRadius = button.frame.width / 2
     }
-
-    func getFbUserData() {
-        let connection = GraphRequestConnection()
-
-        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)) { (connection, result, error) in
-
-            let fbDictionary = result as! [String: AnyObject]
-            let id = fbDictionary["id"] as! String
-            let name = fbDictionary["name"] as! String
-            let email = fbDictionary["email"] as! String
-
-            let currentUser = User(name: name, image: "https://graph.facebook.com/\(id)/picture?type=large")
-
-            if let encoded = try? JSONEncoder().encode(currentUser) {
-                UserDefaults.standard.set(encoded, forKey: "currentUser")
-            }
-
-            print("id = \(id), name = \(name), email = \(email)")
-        }
-        connection.start()
-    }
-
 }
 
 // MARK: - Google Sign In
@@ -191,8 +157,11 @@ extension ViewController {
                 UserDefaults.standard.set(encoded, forKey: "currentUser")
             }
 
-            let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-            self.present(secondVC, animated: true, completion: nil)
+            print("Login Google in VC.")
+
+//            let secondVC = (self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController"))!
+//            self.present(secondVC, animated: true, completion: nil)
+            ViewController.move(viewController: self, toViewControllerHasId: "TabsViewController")
         }
     }
 
@@ -201,6 +170,54 @@ extension ViewController {
         // Perform any operations when the user disconnects from app here.
         // ...
         print("\(user.profile.name!) has disconnected!")
+    }
+}
+
+// Chuyển màn hình
+extension ViewController {
+    static func move(viewController: UIViewController, toViewControllerHasId idVC: String) {
+        let secondVC = (viewController.storyboard?.instantiateViewController(withIdentifier: idVC))!
+        viewController.present(secondVC, animated: true, completion: nil)
+    }
+}
+
+// Đăng nhập bằng fb + gg
+extension ViewController {
+    // Đăng nhập bb và lưu dữ liệu tài khoản fb
+    // Chỉ được gọi khi đăng nhập mới, ko được gọi nếu nhớ tài khoản
+    static func loginFb(inViewController viewController: UIViewController) {
+        LoginManager().logIn(permissions: [.publicProfile, .email], viewController: viewController) { (loginResult) in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, let declinedPermisson, let accessToken):
+                ViewController.getFbUserData()
+                ViewController.move(viewController: viewController, toViewControllerHasId: "TabsViewController")
+            }
+        }
+    }
+
+    // Lấy dữ liệu tài khoản fb hiện tại và lưu trong UserDefaults
+    static func getFbUserData() {
+        let connection = GraphRequestConnection()
+
+        connection.add(GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email, picture"], tokenString: AccessToken.current?.tokenString, version: nil, httpMethod: .get)) { (connection, result, error) in
+
+            let fbDictionary = result as! [String: AnyObject]
+            let id = fbDictionary["id"] as! String
+            let name = fbDictionary["name"] as! String
+//            let email = fbDictionary["email"] as! String
+
+            let currentUser = User(name: name, image: "https://graph.facebook.com/\(id)/picture?type=large")
+
+            // lưu currentUser trong UserDefaults
+            if let encoded = try? JSONEncoder().encode(currentUser) {
+                UserDefaults.standard.set(encoded, forKey: "currentUser")
+            }
+        }
+        connection.start()
     }
 }
 
