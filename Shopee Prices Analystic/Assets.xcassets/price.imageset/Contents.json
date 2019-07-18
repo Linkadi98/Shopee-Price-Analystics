@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-price_tag_usd.png",
+      "filename" : "icons8-price_tag_usd_filled.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-price_tag_usd-1.png",
+      "filename" : "icons8-price_tag_usd_filled-1.png",
       "scale" : "3x"
     }
   ],
