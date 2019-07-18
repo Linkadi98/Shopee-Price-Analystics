@@ -17,6 +17,7 @@
 		2484175022D85D810009DF10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2484174F22D85D810009DF10 /* Assets.xcassets */; };
 		2484175322D85D810009DF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2484175122D85D810009DF10 /* LaunchScreen.storyboard */; };
 		2484175E22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */; };
+		24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */; };
 		24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EDDD6022D960C400D62704 /* TransitionButton.framework */; };
 		24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F661D422DC26C100440A7A /* TabsViewController.swift */; };
 		4F20B549B30EBD7B814F6C00 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */; };
@@ -61,6 +62,7 @@
 		2484175922D85D810009DF10 /* Shopee Prices AnalysticTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shopee Prices AnalysticTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopee_Prices_AnalysticTests.swift; sourceTree = "<group>"; };
 		2484175F22D85D810009DF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTabBar.swift; sourceTree = "<group>"; };
 		24EDDD6022D960C400D62704 /* TransitionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TransitionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F661D422DC26C100440A7A /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		2E0A52B4363CE4A0AD804F1E /* Pods-Shopee Prices Analystic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,14 @@
 			path = "Shopee Prices AnalysticTests";
 			sourceTree = "<group>";
 		};
+		24EAE55222DEF80700EB53F2 /* Custom Animations */ = {
+			isa = PBXGroup;
+			children = (
+				24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */,
+			);
+			path = "Custom Animations";
+			sourceTree = "<group>";
+		};
 		24ECAF4622D988E3004F2D37 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +164,7 @@
 		24ECAF4722D98900004F2D37 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				24EAE55222DEF80700EB53F2 /* Custom Animations */,
 				2478C65522DDD4C900DA6D8E /* Models */,
 				24F661D322DC26A600440A7A /* Tabs Controllers */,
 				2484174A22D85D800009DF10 /* ViewController.swift */,
@@ -379,6 +390,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
 				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
 				2484174922D85D800009DF10 /* AppDelegate.swift in Sources */,
 				2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */,
