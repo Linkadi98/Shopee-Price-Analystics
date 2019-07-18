@@ -399,6 +399,9 @@
                                                         <state key="normal" image="googlelogo">
                                                             <color key="titleColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="loginByGg:" destination="adN-Ya-644" eventType="touchUpInside" id="B2N-sV-bbG"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>

@@ -80,11 +80,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 
 
     @IBAction func loginByGg(_ sender: Any) {
-        if GIDSignIn.sharedInstance()?.currentUser != nil {
-            print("Hahaha")
-        } else {
-            print("Lalala")
-        }
+        GIDSignIn.sharedInstance()?.signIn()
     }
 
     @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
