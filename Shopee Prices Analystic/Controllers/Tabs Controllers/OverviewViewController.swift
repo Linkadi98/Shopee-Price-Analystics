@@ -10,28 +10,18 @@ import UIKit
 
 class OverviewViewController: UIViewController {
 
-    
-    @IBOutlet weak var time: UILabel!
-    @IBOutlet weak var welcome: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        time.center.x = view.center.x
-        time.center.x -= view.bounds.width
-        animationText()
     }
     
     // MARK: - Animation
     
-    private func animationText() {
-        UIView.animate(withDuration: 1, delay: 0.2, options: .curveEaseOut, animations: {
-            self.time.center.x  += self.view.bounds.width - 10
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
+    
+    
 
     /*
     // MARK: - Navigation

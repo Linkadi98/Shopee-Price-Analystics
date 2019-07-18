@@ -40,11 +40,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        configIconTextField(for: userName, icon: #imageLiteral(resourceName: "user"))
+        configIconTextField(for: email, icon: #imageLiteral(resourceName: "email"))
+        configIconTextField(for: password, icon: #imageLiteral(resourceName: "password"))
+        configIconTextField(for: confirmPassword, icon: #imageLiteral(resourceName: "password"))
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        configInputField(for: userName, icon: #imageLiteral(resourceName: "account"))
-        configInputField(for: email, icon: #imageLiteral(resourceName: "email"))
-        configInputField(for: password, icon: #imageLiteral(resourceName: "password"))
-        configInputField(for: confirmPassword, icon: #imageLiteral(resourceName: "password"))
+        drawUnderline(for: userName, email, password, confirmPassword)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -74,9 +78,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     
     // MARK: - Private modification
-    private func configInputField (for textField: UITextField, icon iconImage: UIImage) {
-        textField.createUnderlineTextField()
-        textField.setIcon(iconImage)
+    private func configIconTextField(for textfield: UITextField, icon iconImage: UIImage) {
+        textfield.setIcon(iconImage)
+    }
+    
+    private func drawUnderline(for textfields: UITextField...) {
+        for textfield in textfields {
+            textfield.createUnderlineTextField()
+        }
     }
     
     private func hideKeyBoard(_ textFields: UITextField...) {
@@ -115,7 +124,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
 }
 
-// MARK: - Extension
+    // MARK: - Extension
 
 extension UIViewController {
     
