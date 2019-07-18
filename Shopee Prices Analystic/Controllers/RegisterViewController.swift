@@ -11,7 +11,7 @@ import FBSDKLoginKit
 import FacebookLogin
 import GoogleSignIn
 
-class RegisterViewController: UIViewController, UITextFieldDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
     
     // MARK: - Properties
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
@@ -26,7 +26,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     var keyboardHeight  = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+
         confirmPassword.delegate = self
         self.hideKeyboardWhenTappedAround()
         self.registerKeyboardForNotification()
@@ -71,11 +74,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func loginByGg(_ sender: Any) {
-
+        GIDSignIn.sharedInstance()?.signIn()
     }
-    
-    
-    
     
     // MARK: - Private modification
     private func configIconTextField(for textfield: UITextField, icon iconImage: UIImage) {
@@ -122,6 +122,32 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         scrollView.scrollIndicatorInsets = contentInsets
     }
 
+}
+
+// Login Google
+// Đăng nhập Google ở VC nào thì phải implement 2 hàm sign ở đó, còn với Facebook có thể gọi static func loginFb trong ViewController (trong button loginByFb ở trên)
+extension RegisterViewController {
+    // must implement (gọi static func trong AppDelegate) để rút gọn code???
+    // Đăng nhập gg và lưu dữ liệu tài khoản gg
+    // Được gọi cả khi đăng nhập mới và nhớ tài khoản
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+            AppDelegate.sign(didSignInFor: user, withError: error)
+            print("Login Google in RegisterVC.")
+            // Screen movement
+            ViewController.move(viewController: self, toViewControllerHasId: "TabsViewController")
+        }
+    }
+
+    // must implement
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+        print("\(user.profile.name!) has disconnected!")
+    }
 }
 
     // MARK: - Extension

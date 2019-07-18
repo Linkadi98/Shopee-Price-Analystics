@@ -21,7 +21,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(AccessToken.current)
+        // Load username and avatar
         if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
             accountName.text = currentUser.name!
 
@@ -39,9 +39,6 @@ class AccountViewController: UIViewController {
 
         avatar.layer.cornerRadius = avatar.frame.width / 2
         avatar.backgroundColor = .red
-        
-        print(GIDSignIn.sharedInstance()?.currentUser)
-        print("abc")
         // Do any additional setup after loading the view.
     }
     
@@ -57,20 +54,19 @@ class AccountViewController: UIViewController {
     */
 
     @IBAction func logout(_ sender: Any) {
-        print("singout")
-        // Sign Out
         if AccessToken.current != nil {
-            print("fblogout")
+            // Logout Fb
+            print("AccessToken \(AccessToken.current) fblogout")
             LoginManager().logOut()
         } else {
-            print(GIDSignIn.sharedInstance()?.currentUser)
-            print("gglogout")
+            // Logout Gg
+            print("\(GIDSignIn.sharedInstance()?.currentUser) gglogout")
             GIDSignIn.sharedInstance()?.signOut()
         }
 
+        // Delete user data in UserDefaults
         UserDefaults.standard.removeObject(forKey: "currentUser")
         // Back to login screen
-        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
-        self.present(loginViewController, animated: true, completion: nil)
+        ViewController.move(viewController: self, toViewControllerHasId: "LoginViewController")
     }
 }

@@ -22,13 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         GIDSignIn.sharedInstance()?.clientID = "807535666611-p6k6qk93nmkg0o5t082em63odlr56s6n.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.signInSilently()
+        GIDSignIn.sharedInstance()?.signInSilently() // Remember Google account
 
         // Change initial view controller after successful login
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         var initialViewController: UIViewController
-        print("ngu lol")
+        print("Change initial view controller after successful login")
 
         if UserDefaults.standard.object(forKey: "currentUser") != nil //your condition if user is already logged in or not
         {
@@ -77,47 +77,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
 }
 
 extension AppDelegate {
+    // must implement (gọi static func ở ngay dưới) để rút gọn code???
+    // Đăng nhập gg và lưu dữ liệu tài khoản gg
+    // Được gọi cả khi đăng nhập mới và nhớ tài khoản
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print("\(error.localizedDescription)")
         } else {
-            // Perform any operations on signed in user here.
-            //            let userId = user.userID                  // For client-side use only!
-            //            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            //            let givenName = user.profile.givenName
-            //            let familyName = user.profile.familyName
-            //            let email = user.profile.email
-
-            // Google cover picture
-            var pic = ""
-
-            if user.profile.hasImage
-            {
-                pic = user.profile.imageURL(withDimension: 150)!.absoluteString
-            }
-
-            let currentUser = User(name: fullName!, image: pic)
-
-            if let encoded = try? JSONEncoder().encode(currentUser) {
-                UserDefaults.standard.set(encoded, forKey: "currentUser")
-            }
-
-            print("Login Google in AppDele.")
-
-            if self is UIViewController {
-//                let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-//                self.present(secondVC, animated: true, completion: nil)
-                print(self)
-            }
+            AppDelegate.sign(didSignInFor: user, withError: error)
+            print("Login Google in AppDelegate.")
         }
     }
 
+    // must implement
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
               withError error: Error!) {
         // Perform any operations when the user disconnects from app here.
         // ...
         print("\(user.profile.name!) has disconnected!")
+    }
+
+    static func sign(didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations on signed in user here.
+        //            let userId = user.userID                  // For client-side use only!
+        //            let idToken = user.authentication.idToken // Safe to send to the server
+        let fullName = user.profile.name
+        //            let givenName = user.profile.givenName
+        //            let familyName = user.profile.familyName
+        //            let email = user.profile.email
+
+        // Google cover picture
+        var pic = ""
+        if user.profile.hasImage
+        {
+            pic = user.profile.imageURL(withDimension: 150)!.absoluteString
+        }
+
+        let currentUser = User(name: fullName!, image: pic)
+
+        if let encoded = try? JSONEncoder().encode(currentUser) {
+            UserDefaults.standard.set(encoded, forKey: "currentUser")
+        }
     }
 }
 

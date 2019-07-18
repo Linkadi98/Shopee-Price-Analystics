@@ -80,11 +80,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 
 
     @IBAction func loginByGg(_ sender: Any) {
-        if GIDSignIn.sharedInstance()?.currentUser != nil {
-            print("Hahaha")
-        } else {
-            print("Lalala")
-        }
+        GIDSignIn.sharedInstance()?.signIn()
     }
 
     @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
@@ -129,51 +125,8 @@ extension ViewController {
     }
 }
 
-// MARK: - Google Sign In
-extension ViewController {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
-        } else {
-            // Perform any operations on signed in user here.
-//            let userId = user.userID                  // For client-side use only!
-//            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-//            let givenName = user.profile.givenName
-//            let familyName = user.profile.familyName
-//            let email = user.profile.email
-
-            // Google cover picture
-            var pic = ""
-
-            if user.profile.hasImage
-            {
-                pic = user.profile.imageURL(withDimension: 150)!.absoluteString
-            }
-
-            let currentUser = User(name: fullName!, image: pic)
-
-            if let encoded = try? JSONEncoder().encode(currentUser) {
-                UserDefaults.standard.set(encoded, forKey: "currentUser")
-            }
-
-            print("Login Google in VC.")
-
-//            let secondVC = (self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController"))!
-//            self.present(secondVC, animated: true, completion: nil)
-            ViewController.move(viewController: self, toViewControllerHasId: "TabsViewController")
-        }
-    }
-
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-              withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-        print("\(user.profile.name!) has disconnected!")
-    }
-}
-
-// Chuyển màn hình
+// Screen movement
+// static func -> can be called in every VC
 extension ViewController {
     static func move(viewController: UIViewController, toViewControllerHasId idVC: String) {
         let secondVC = (viewController.storyboard?.instantiateViewController(withIdentifier: idVC))!
@@ -181,9 +134,10 @@ extension ViewController {
     }
 }
 
-// Đăng nhập bằng fb + gg
+// Login Google and Facebook
+// Đăng nhập Google ở VC nào thì phải implement 2 hàm sign ở đó, còn với Facebook có thể gọi static func loginFb trong ViewController
 extension ViewController {
-    // Đăng nhập bb và lưu dữ liệu tài khoản fb
+    // Đăng nhập fb và lưu dữ liệu tài khoản fb
     // Chỉ được gọi khi đăng nhập mới, ko được gọi nếu nhớ tài khoản
     static func loginFb(inViewController viewController: UIViewController) {
         LoginManager().logIn(permissions: [.publicProfile, .email], viewController: viewController) { (loginResult) in
@@ -193,7 +147,8 @@ extension ViewController {
             case .cancelled:
                 print("User cancelled login.")
             case .success(let grantedPermissions, let declinedPermisson, let accessToken):
-                ViewController.getFbUserData()
+                ViewController.getFbUserData() // Hàm bên dưới
+                // Screen movement
                 ViewController.move(viewController: viewController, toViewControllerHasId: "TabsViewController")
             }
         }
@@ -218,6 +173,28 @@ extension ViewController {
             }
         }
         connection.start()
+    }
+
+    // must implement (gọi static func trong AppDelegate) để rút gọn code???
+    // Đăng nhập gg và lưu dữ liệu tài khoản gg
+    // Được gọi cả khi đăng nhập mới và nhớ tài khoản
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+            AppDelegate.sign(didSignInFor: user, withError: error)
+            print("Login Google in VC.")
+            // Screen movement
+            ViewController.move(viewController: self, toViewControllerHasId: "TabsViewController")
+        }
+    }
+
+    // must implement
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+        print("\(user.profile.name!) has disconnected!")
     }
 }
 
