@@ -75,7 +75,25 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     }
 
     @IBAction func loginByFb(_ sender: Any) {
+<<<<<<< HEAD
         ViewController.loginFb(inViewController: self)
+=======
+        LoginManager().logIn(permissions: [.publicProfile, .email], viewController: self) { (loginResult) in
+            switch loginResult {
+            case .failed(let error):
+                print(error)
+            case .cancelled:
+                print("User cancelled login.")
+            case .success(let grantedPermissions, _, let accessToken):
+                print("\(accessToken) logged in!")
+                print("\(grantedPermissions)")
+                self.getFbUserData()
+
+                let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
+                self.present(secondVC, animated: true, completion: nil)
+            }
+        }
+>>>>>>> develop
     }
 
 
