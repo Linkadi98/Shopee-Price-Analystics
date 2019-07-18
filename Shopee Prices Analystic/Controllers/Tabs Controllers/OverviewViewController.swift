@@ -10,27 +10,25 @@ import UIKit
 
 class OverviewViewController: UIViewController {
 
+    // MARK: - Properties
+    
+    @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        subView.layer.cornerRadius = 10
     }
     
     override func viewDidAppear(_ animated: Bool) {
     }
     
-    // MARK: - Animation
+    // MARK: - Actions
     
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func displayListOfShop(_ sender: Any) {
+        print("Shopee list")
     }
-    */
+    
+    
 
 }

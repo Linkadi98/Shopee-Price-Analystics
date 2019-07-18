@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */; };
+		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
+		24120F4022E074B6000FA0B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* Extensions.swift */; };
 		2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414701322DAF58C000FB6D5 /* RegisterViewController.swift */; };
 		2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */; };
 		2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65322DDC29200DA6D8E /* AccountViewController.swift */; };
@@ -48,6 +51,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopsTableViewController.swift; sourceTree = "<group>"; };
+		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		24120F3F22E074B6000FA0B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2414701322DAF58C000FB6D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		2478C65322DDC29200DA6D8E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -94,10 +100,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24120F3E22E07491000FA0B7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				24120F3F22E074B6000FA0B7 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2478C65522DDD4C900DA6D8E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				2478C65622DDD50D00DA6D8E /* User.swift */,
+				24120F3C22E05F41000FA0B7 /* Shop.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +141,7 @@
 		2484174722D85D800009DF10 /* Shopee Prices Analystic */ = {
 			isa = PBXGroup;
 			children = (
+				24120F3E22E07491000FA0B7 /* Extensions */,
 				2484174822D85D800009DF10 /* AppDelegate.swift */,
 				24ECAF4722D98900004F2D37 /* Controllers */,
 				24ECAF4622D988E3004F2D37 /* Storyboards */,
@@ -179,6 +195,7 @@
 				24F661D422DC26C100440A7A /* TabsViewController.swift */,
 				2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */,
 				2478C65322DDC29200DA6D8E /* AccountViewController.swift */,
+				24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */,
 			);
 			path = "Tabs Controllers";
 			sourceTree = "<group>";
@@ -393,8 +410,11 @@
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
 				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
 				2484174922D85D800009DF10 /* AppDelegate.swift in Sources */,
+				24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */,
 				2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */,
+				24120F4022E074B6000FA0B7 /* Extensions.swift in Sources */,
 				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
+				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
