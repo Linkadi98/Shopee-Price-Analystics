@@ -15,46 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
 
     var window: UIWindow?
 
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
-        } else {
-            // Perform any operations on signed in user here.
-            //            let userId = user.userID                  // For client-side use only!
-            //            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            //            let givenName = user.profile.givenName
-            //            let familyName = user.profile.familyName
-            //            let email = user.profile.email
-
-            // Google cover picture
-            var pic = ""
-
-            if user.profile.hasImage
-            {
-                pic = user.profile.imageURL(withDimension: 150)!.absoluteString
-            }
-
-            let currentUser = User(name: fullName!, image: pic)
-
-            if let encoded = try? JSONEncoder().encode(currentUser) {
-                UserDefaults.standard.set(encoded, forKey: "currentUser")
-            }
-
-            print("Login Google in AppDele.")
-
-//            let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-//            self.present(secondVC, animated: true, completion: nil)
-        }
-    }
-
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-              withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-        print("\(user.profile.name!) has disconnected!")
-    }
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
@@ -114,7 +74,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+}
 
+extension AppDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+        } else {
+            // Perform any operations on signed in user here.
+            //            let userId = user.userID                  // For client-side use only!
+            //            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            //            let givenName = user.profile.givenName
+            //            let familyName = user.profile.familyName
+            //            let email = user.profile.email
 
+            // Google cover picture
+            var pic = ""
+
+            if user.profile.hasImage
+            {
+                pic = user.profile.imageURL(withDimension: 150)!.absoluteString
+            }
+
+            let currentUser = User(name: fullName!, image: pic)
+
+            if let encoded = try? JSONEncoder().encode(currentUser) {
+                UserDefaults.standard.set(encoded, forKey: "currentUser")
+            }
+
+            print("Login Google in AppDele.")
+
+            if self is UIViewController {
+//                let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
+//                self.present(secondVC, animated: true, completion: nil)
+                print(self)
+            }
+        }
+    }
+
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+        print("\(user.profile.name!) has disconnected!")
+    }
 }
 
