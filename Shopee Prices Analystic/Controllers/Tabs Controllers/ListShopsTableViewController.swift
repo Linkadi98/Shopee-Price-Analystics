@@ -109,10 +109,15 @@ class ListShopsTableViewController: UITableViewController {
         alertController.addAction(cancelAction)
         alertController.addAction(switchToChosenShop)
         alertController.popoverPresentationController?.sourceView = cell
-        present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: {
+            // sau khi popup hiện lên thì có thể thực hiện làm gì đó
+            print("Popup hiện lên")
+        })
     }
 
     // MARK: - Private Modification
+    
+    // đưa thông tin của shop từ api vào đây
     private func prepareShopInformation() -> [Shop] {
         var list: [Shop] = []
         for _ in 0...10 {
