@@ -26,9 +26,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#48c6ef"), colorTwo: hexStringToUIColor(hex: "#6f86d6"))
-        loginButton.spinnerColor = .white
-        loginButton.layer.cornerRadius = 18
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +35,10 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#48c6ef"), colorTwo: hexStringToUIColor(hex: "#6f86d6"))
+        loginButton.spinnerColor = .white
+        loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
+        
         userNameText.createUnderlineTextField()
         passwordText.createUnderlineTextField()
         
@@ -49,7 +51,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
         // Signed in Fb
         if AccessToken.current != nil {
             let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-            self.present(secondVC, animated: true, completion: nil)
+            self.present(secondVC, animated: false, completion: nil)
         }
     }
     
