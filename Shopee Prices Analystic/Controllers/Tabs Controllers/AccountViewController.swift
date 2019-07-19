@@ -37,6 +37,10 @@ class AccountViewController: UIViewController {
             }
         }
 
+        print(GIDSignIn.sharedInstance()?.currentUser)
+        print(AccessToken.current)
+        print("AccountVC")
+
         avatar.layer.cornerRadius = avatar.frame.width / 2
         avatar.backgroundColor = .red
         // Do any additional setup after loading the view.
