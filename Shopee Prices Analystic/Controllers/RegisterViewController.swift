@@ -27,16 +27,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
-
         confirmPassword.delegate = self
         self.hideKeyboardWhenTappedAround()
         self.registerKeyboardForNotification()
         
         // Do any additional setup after loading the view.
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
@@ -44,6 +41,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
+        
         configIconTextField(for: userName, icon: #imageLiteral(resourceName: "user"))
         configIconTextField(for: email, icon: #imageLiteral(resourceName: "email"))
         configIconTextField(for: password, icon: #imageLiteral(resourceName: "password"))
