@@ -91,7 +91,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex8-NX-6dO" customClass="TransitionButton" customModule="TransitionButton">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="34"/>
-                                        <color key="backgroundColor" red="0.9965941309928894" green="0.84441351890563965" blue="0.17095911502838135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                         <state key="normal" title="Đăng nhập">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -139,8 +138,7 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="ex8-NX-6dO" secondAttribute="trailing" id="CXD-Wv-21g"/>
-                                    <constraint firstItem="ex8-NX-6dO" firstAttribute="leading" secondItem="Vea-3T-DcG" secondAttribute="leading" id="RWE-mA-aOp"/>
+                                    <constraint firstItem="ex8-NX-6dO" firstAttribute="width" secondItem="Vea-3T-DcG" secondAttribute="width" id="XzA-MD-Exs"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hf9-ez-awB">
@@ -222,13 +220,13 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
-                                                <rect key="frame" x="120" y="35" width="135" height="118"/>
+                                                <rect key="frame" x="120" y="35" width="135" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="135" id="8jb-9d-wyC"/>
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="De7-FY-OTb">
-                                                <rect key="frame" x="40" y="158" width="295" height="291"/>
+                                                <rect key="frame" x="40" y="56" width="295" height="291"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kl2-nx-wqW">
                                                         <rect key="frame" x="0.0" y="0.0" width="295" height="73"/>
@@ -347,7 +345,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lXZ-Ug-jdB">
-                                                <rect key="frame" x="40" y="479" width="295" height="72"/>
+                                                <rect key="frame" x="40" y="377" width="295" height="72"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GzC-06-4j9" customClass="TransitionButton" customModule="TransitionButton">
                                                         <rect key="frame" x="0.0" y="0.0" width="295" height="36"/>
@@ -375,7 +373,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Hhf-32-nOM">
-                                                <rect key="frame" x="146.5" y="566" width="82" height="40"/>
+                                                <rect key="frame" x="146.5" y="464" width="82" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3L-si-NKt">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -508,7 +506,7 @@
                                                 </constraints>
                                             </view>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-zk-Lgr">
-                                                <rect key="frame" x="8" y="260" width="359" height="310"/>
+                                                <rect key="frame" x="8" y="253" width="359" height="310"/>
                                                 <connections>
                                                     <segue destination="Wt5-HU-IS6" kind="embed" id="BgZ-gu-0xk"/>
                                                 </connections>
