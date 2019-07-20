@@ -11,4 +11,5 @@ ${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework
 ${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
+${BUILT_PRODUCTS_DIR}/SwipeableTabBarController/SwipeableTabBarController.framework
 ${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework

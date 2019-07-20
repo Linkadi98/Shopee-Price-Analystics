@@ -11,6 +11,9 @@
 		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
 		24120F4022E074B6000FA0B7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* Extensions.swift */; };
 		2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414701322DAF58C000FB6D5 /* RegisterViewController.swift */; };
+		2416494622E1768900B80DBC /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494522E1768900B80DBC /* CategoryTableViewController.swift */; };
+		2416494822E1770E00B80DBC /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494722E1770E00B80DBC /* Product.swift */; };
+		2416494A22E19F5600B80DBC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494922E19F5600B80DBC /* Animator.swift */; };
 		2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */; };
 		2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65322DDC29200DA6D8E /* AccountViewController.swift */; };
 		2478C65722DDD50D00DA6D8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65622DDD50D00DA6D8E /* User.swift */; };
@@ -55,6 +58,9 @@
 		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		24120F3F22E074B6000FA0B7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2414701322DAF58C000FB6D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		2416494522E1768900B80DBC /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		2416494722E1770E00B80DBC /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		2416494922E19F5600B80DBC /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		2478C65322DDC29200DA6D8E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		2478C65622DDD50D00DA6D8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -113,6 +119,7 @@
 			children = (
 				2478C65622DDD50D00DA6D8E /* User.swift */,
 				24120F3C22E05F41000FA0B7 /* Shop.swift */,
+				2416494722E1770E00B80DBC /* Product.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -164,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */,
+				2416494922E19F5600B80DBC /* Animator.swift */,
 			);
 			path = "Custom Animations";
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 				2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */,
 				2478C65322DDC29200DA6D8E /* AccountViewController.swift */,
 				24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */,
+				2416494522E1768900B80DBC /* CategoryTableViewController.swift */,
 			);
 			path = "Tabs Controllers";
 			sourceTree = "<group>";
@@ -418,6 +427,9 @@
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
+				2416494622E1768900B80DBC /* CategoryTableViewController.swift in Sources */,
+				2416494A22E19F5600B80DBC /* Animator.swift in Sources */,
+				2416494822E1770E00B80DBC /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

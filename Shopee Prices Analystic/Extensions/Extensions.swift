@@ -178,7 +178,7 @@ extension UIButton {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
         gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
-        gradientLayer.locations = [0.0, 2.0]
+        gradientLayer.locations = [0.0, 1.0]
         gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
         layer.insertSublayer(gradientLayer, at: 0)
@@ -205,3 +205,25 @@ extension UIButton {
     }
 }
 
+
+extension UIView {
+    
+    func setShadow() {
+        layer.cornerRadius = 10
+        layer.shadowColor = UIColor.gray.cgColor
+        layer.shadowOffset = .zero
+        layer.shadowOpacity = 0.6
+        layer.shadowRadius = 10
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shouldRasterize = false
+    }
+    
+    func setBlurEffect() {
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
+        self.sendSubviewToBack(blurEffectView)
+    }
+}

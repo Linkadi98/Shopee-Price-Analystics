@@ -11,6 +11,7 @@ pod 'FacebookShare'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'GoogleSignIn'
 pod 'NotificationBannerSwift'
+pod 'SwipeableTabBarController'
   # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do
