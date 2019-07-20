@@ -22,7 +22,7 @@ class OverviewViewController: UIViewController {
         // Do any additional setup after loading the view.
         subView.layer.cornerRadius = 10
         subView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "shoppingImage"))
-        subView.sen
+        
         subView.setShadow()
         
         
