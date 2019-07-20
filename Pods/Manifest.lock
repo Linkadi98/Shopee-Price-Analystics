@@ -33,11 +33,12 @@ PODS:
   - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
   - GTMSessionFetcher/Core (1.2.2)
   - MarqueeLabel (4.0.0)
-  - NotificationBannerSwift (2.4.1):
+  - NotificationBannerSwift (2.5.0):
     - MarqueeLabel (~> 4.0.0)
     - SnapKit (~> 5.0.0)
   - SnapKit (5.0.0)
   - SwiftyJSON (4.3.0)
+  - SwipeableTabBarController (2.1.1)
   - TransitionButton (0.5.2)
 
 DEPENDENCIES:
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - NotificationBannerSwift
   - SwiftyJSON (~> 4.0)
+  - SwipeableTabBarController
   - TransitionButton
 
 SPEC REPOS:
@@ -64,6 +66,7 @@ SPEC REPOS:
     - NotificationBannerSwift
     - SnapKit
     - SwiftyJSON
+    - SwipeableTabBarController
     - TransitionButton
 
 SPEC CHECKSUMS:
@@ -77,11 +80,12 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
-  NotificationBannerSwift: 1e914a69fe5adbf1d39231a3605a9203fdc9c674
+  NotificationBannerSwift: 684966fa934c48b70eff8bbec93fccf8db603365
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: efb3fa050658106b6449c525912ddba4a61404b4
+PODFILE CHECKSUM: a96ffeb1836c46d6c5a14cd029658cd8ced5bf0e
 
 COCOAPODS: 1.7.4
