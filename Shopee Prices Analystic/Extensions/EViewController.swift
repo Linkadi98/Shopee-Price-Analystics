@@ -1,8 +1,8 @@
 //
-//  UITextFieldExtension.swift
+//  ViewController.swift
 //  Shopee Prices Analystic
 //
-//  Created by Minh Pham on 7/18/19.
+//  Created by Minh Pham on 7/20/19.
 //  Copyright © 2019 SAPO. All rights reserved.
 //
 
@@ -11,18 +11,6 @@ import FacebookLogin
 import FBSDKLoginKit
 import GoogleSignIn
 
-extension UIViewController {
-    // MARK: - Hide keyboard when user tap on screen
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
 
 extension ViewController {
     
@@ -58,8 +46,8 @@ extension ViewController {
         button.layer.shadowOpacity = 0.5
         button.layer.cornerRadius = button.frame.width / 2
     }
-
-
+    
+    
     // MARK: - Google Sign In
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -102,12 +90,12 @@ extension ViewController {
         // ...
         print("\(user.profile.name!) has disconnected!")
     }
-
+    
     static func move(viewController: UIViewController, toViewControllerHasId idVC: String) {
         let secondVC = (viewController.storyboard?.instantiateViewController(withIdentifier: idVC))!
         viewController.present(secondVC, animated: true, completion: nil)
     }
-
+    
     // Đăng nhập bằng fb + gg
     
     // Đăng nhập bb và lưu dữ liệu tài khoản fb
@@ -145,85 +133,5 @@ extension ViewController {
             }
         }
         connection.start()
-    }
-}
-
-extension UITextField {
-    
-    open func createUnderlineTextField() {
-        print(layer.frame.width)
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0, y: frame.height + 10, width: frame.width, height: 1)
-        bottomLine.backgroundColor = UIColor.lightGray.cgColor
-        
-        layer.addSublayer(bottomLine)
-    }
-    
-    open func setIcon(_ image: UIImage) {
-        let iconView = UIImageView(frame:
-            CGRect(x: 5, y: 5, width: 20, height: 20))
-        iconView.image = image
-        let iconContainerView: UIView = UIView(frame:
-            CGRect(x: 20, y: 0, width: 30, height: 30))
-        iconContainerView.addSubview(iconView)
-        leftView = iconContainerView
-        leftViewMode = .always
-    }
-}
-
-
-extension UIButton {
-    
-    open func setGrandientColor(colorOne: UIColor, colorTwo: UIColor) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
-        layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    open func setGrandientColor(colorOne: UIColor, colorTwo: UIColor, colorThree: UIColor, colorFour: UIColor) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor, colorThree.cgColor, colorFour.cgColor]
-        gradientLayer.locations = [0.0, 0.0]
-        gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
-        layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    open func setGrandientColor(colorOne: UIColor, colorTwo: UIColor, colorThree: UIColor) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = bounds
-        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor, colorThree.cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
-        layer.insertSublayer(gradientLayer, at: 0)
-    }
-}
-
-
-extension UIView {
-    
-    func setShadow() {
-        layer.cornerRadius = 10
-        layer.shadowColor = UIColor.gray.cgColor
-        layer.shadowOffset = .zero
-        layer.shadowOpacity = 0.6
-        layer.shadowRadius = 10
-        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        layer.shouldRasterize = false
-    }
-    
-    func setBlurEffect() {
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.addSubview(blurEffectView)
-        self.sendSubviewToBack(blurEffectView)
     }
 }

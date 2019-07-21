@@ -468,14 +468,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THỨ 5 NGÀY 18 THÁNG 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQA-p7-TyM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THỨ 5 NGÀY 18 THÁNG 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQA-p7-TyM" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                 <rect key="frame" x="15" y="40" width="150" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="zLR-rF-Giq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="holdScrolling" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="labelize" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="scrollRate">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hôm nay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stT-mY-WoH">
                                 <rect key="frame" x="15" y="63" width="89" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="WmZ-1v-6Mh"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                 <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -489,6 +506,9 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DJO-9n-C32">
                                                 <rect key="frame" x="8" y="10" width="359" height="227"/>
                                                 <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shoppingImage" translatesAutoresizingMaskIntoConstraints="NO" id="d9v-O5-B8K">
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="227"/>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên cửa hàng hiện tại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39D-Dx-UDy">
                                                         <rect key="frame" x="8" y="8" width="203" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
@@ -504,9 +524,13 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstItem="d9v-O5-B8K" firstAttribute="centerX" secondItem="DJO-9n-C32" secondAttribute="centerX" id="015-hr-uDE"/>
                                                     <constraint firstItem="39D-Dx-UDy" firstAttribute="leading" secondItem="DJO-9n-C32" secondAttribute="leading" constant="8" id="5tL-ur-JBR"/>
                                                     <constraint firstItem="iEH-8u-CtL" firstAttribute="leading" secondItem="DJO-9n-C32" secondAttribute="leading" constant="8" id="8ob-hN-6vu"/>
+                                                    <constraint firstAttribute="bottom" secondItem="d9v-O5-B8K" secondAttribute="bottom" id="Fdg-qY-O4e"/>
                                                     <constraint firstItem="iEH-8u-CtL" firstAttribute="top" secondItem="39D-Dx-UDy" secondAttribute="bottom" constant="8" id="TZW-y7-FR4"/>
+                                                    <constraint firstItem="d9v-O5-B8K" firstAttribute="width" secondItem="DJO-9n-C32" secondAttribute="width" id="k94-aZ-fv0"/>
+                                                    <constraint firstItem="d9v-O5-B8K" firstAttribute="top" secondItem="DJO-9n-C32" secondAttribute="top" id="uE2-nf-xU4"/>
                                                     <constraint firstItem="39D-Dx-UDy" firstAttribute="top" secondItem="DJO-9n-C32" secondAttribute="top" constant="8" id="zKi-vS-GSi"/>
                                                 </constraints>
                                             </view>
@@ -517,7 +541,7 @@
                                                 </connections>
                                             </containerView>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="DJO-9n-C32" firstAttribute="top" secondItem="FbN-uv-2eG" secondAttribute="top" constant="10" id="BKj-dC-dWj"/>
                                             <constraint firstItem="ikb-zk-Lgr" firstAttribute="leading" secondItem="FbN-uv-2eG" secondAttribute="leading" constant="8" id="M0q-tu-DtD"/>
@@ -551,7 +575,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.9435734160958904" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.94357341610000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="s74-fV-cmK" firstAttribute="top" secondItem="MAT-kP-gJe" secondAttribute="top" constant="40" id="0Ap-GT-W83"/>
                             <constraint firstItem="kCY-t2-FWh" firstAttribute="trailing" secondItem="8NM-vr-skt" secondAttribute="trailing" id="7t7-Hf-nf9"/>
@@ -573,11 +597,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Tổng quan" image="overview" id="PPb-dR-3Ts"/>
                     <connections>
+                        <outlet property="backgroundImage" destination="d9v-O5-B8K" id="FzV-g1-x80"/>
                         <outlet property="containTableView" destination="ikb-zk-Lgr" id="EZV-2e-h6V"/>
                         <outlet property="parentView" destination="FbN-uv-2eG" id="4Mp-qC-0d2"/>
                         <outlet property="scrollView" destination="8NM-vr-skt" id="bme-48-lCh"/>
                         <outlet property="subView" destination="DJO-9n-C32" id="p0s-E8-u8q"/>
                         <outlet property="superParentView" destination="MAT-kP-gJe" id="Es3-W1-E6P"/>
+                        <outlet property="timeLabel" destination="QQA-p7-TyM" id="cWM-hE-T4l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzQ-v1-da0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -587,7 +613,7 @@
         <!--Sản phẩm-->
         <scene sceneID="5TE-Sy-Gc7">
             <objects>
-                <viewController id="hBw-87-zRH" sceneMemberID="viewController">
+                <viewController id="hBw-87-zRH" customClass="ProductViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r90-pH-DX3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -599,24 +625,27 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dV7-Pu-h26">
-                                <rect key="frame" x="15" y="87" width="345" height="531"/>
+                                <rect key="frame" x="8" y="87" width="359" height="531"/>
                                 <connections>
                                     <segue destination="7hj-hS-QoR" kind="embed" id="p30-12-0Z3"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="0.94076412671232879" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5pV-pb-JuN" firstAttribute="top" secondItem="zlm-SG-fE9" secondAttribute="top" constant="20" id="1Fc-Sr-D47"/>
                             <constraint firstItem="dV7-Pu-h26" firstAttribute="top" secondItem="5pV-pb-JuN" secondAttribute="bottom" constant="20" id="EIL-VN-8Cb"/>
                             <constraint firstItem="zlm-SG-fE9" firstAttribute="bottom" secondItem="dV7-Pu-h26" secondAttribute="bottom" id="EZv-a0-baO"/>
-                            <constraint firstItem="dV7-Pu-h26" firstAttribute="trailing" secondItem="zlm-SG-fE9" secondAttribute="trailing" constant="-15" id="NBD-VV-jiE"/>
+                            <constraint firstItem="dV7-Pu-h26" firstAttribute="trailing" secondItem="zlm-SG-fE9" secondAttribute="trailing" constant="-8" id="NBD-VV-jiE"/>
                             <constraint firstItem="5pV-pb-JuN" firstAttribute="leading" secondItem="zlm-SG-fE9" secondAttribute="leading" constant="15" id="Nqe-S4-ebf"/>
-                            <constraint firstItem="dV7-Pu-h26" firstAttribute="leading" secondItem="zlm-SG-fE9" secondAttribute="leading" constant="15" id="quo-aE-r4o"/>
+                            <constraint firstItem="dV7-Pu-h26" firstAttribute="leading" secondItem="zlm-SG-fE9" secondAttribute="leading" constant="8" id="quo-aE-r4o"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zlm-SG-fE9"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sản phẩm" image="product" id="T7z-Id-Kaz"/>
+                    <connections>
+                        <outlet property="ContainerTableView" destination="dV7-Pu-h26" id="Hhb-rN-yep"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="45L-VS-Jed" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -627,7 +656,7 @@
             <objects>
                 <tableViewController id="7hj-hS-QoR" customClass="CategoryTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="HmU-cw-zQe">
-                        <rect key="frame" x="0.0" y="0.0" width="345" height="531"/>
+                        <rect key="frame" x="0.0" y="0.0" width="359" height="531"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
@@ -828,5 +857,6 @@
         <image name="product" width="26" height="26"/>
         <image name="rival" width="25" height="25"/>
         <image name="shopeelogo" width="25" height="35"/>
+        <image name="shoppingImage" width="1440" height="1169"/>
     </resources>
 </document>
