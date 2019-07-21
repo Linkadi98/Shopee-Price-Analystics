@@ -51,7 +51,7 @@ enum AnimationFactory {
             UIView.animate(
                 withDuration: duration,
                 delay: delayFactor * Double(indexPath.row),
-                options: [.curveEaseInOut],
+                options: .curveEaseInOut,
                 animations: {
                     cell.transform = CGAffineTransform(translationX: 0, y: 0)
                     cell.alpha = 1

@@ -23,7 +23,7 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "logo80px.png",
+      "filename" : "logo80px2.png",
       "scale" : "2x"
     },
     {
@@ -34,7 +34,7 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "logoiphone.png",
+      "filename" : "logo120px.png",
       "scale" : "2x"
     },
     {

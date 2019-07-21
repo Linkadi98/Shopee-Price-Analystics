@@ -11,6 +11,7 @@ import TransitionButton
 import FacebookLogin
 import FBSDKLoginKit
 import GoogleSignIn
+import NotificationBannerSwift
 
 class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
 
@@ -35,7 +36,8 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#48c6ef"), colorTwo: hexStringToUIColor(hex: "#6f86d6"))
+        
+        loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#ffc400"), colorTwo: hexStringToUIColor(hex: "#FF5700"))
         loginButton.spinnerColor = .white
         loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
         
@@ -72,7 +74,7 @@ class ViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
                 // .normal
                 sender.stopAnimation(animationStyle: .expand, completion: {
                     let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-                    self.present(secondVC, animated: true, completion: nil)
+                    self.present(secondVC, animated: false, completion: nil)
                 })
             })
         })
