@@ -29,6 +29,22 @@ extension UITextField {
         leftView = iconContainerView
         leftViewMode = .always
     }
+    
+    func isValidUserName() -> Bool {
+        guard let userName = self.text else {
+            return false
+        }
+        
+        if userName.count > 5 && userName.contains("@") && userName.contains("gmail") {
+            return true
+        }
+        else {
+            return false
+        }
+        
+    }
+    
+    
 }
 
 

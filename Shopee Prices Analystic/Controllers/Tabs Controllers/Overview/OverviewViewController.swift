@@ -45,7 +45,7 @@ class OverviewViewController: UIViewController {
         // Xử lý thông báo trước khi thông báo hiện ra bằng cách check cửa hàng đã kết nối từ api trả về
         // Xem phần định nghĩa hàm trong file EUIViewController.swift
         notification(title: "Bạn chưa kết nối đến cửa hàng nào", style: .warning) {
-            self.statusNotification(title: "Kết nối thành công")
+            self.statusNotification(title: "Kết nối thành công", style: .success)
         }
     }
     

@@ -38,8 +38,8 @@ extension UIViewController {
     }
     
     // sửa hàm này khi đã có api trả về trạng thái thành công/không thành công bằng 1 closure
-    func statusNotification(title: String) {
-        let banner = StatusBarNotificationBanner(title: title, style: .success)
+    func statusNotification(title: String, style: BannerStyle) {
+        let banner = StatusBarNotificationBanner(title: title, style: style)
         banner.show(queuePosition: .back, bannerPosition: .top)
     }
 }
