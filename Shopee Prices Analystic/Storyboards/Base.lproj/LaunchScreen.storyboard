@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="hR2-bi-NFJ">
-                                <rect key="frame" x="107" y="353" width="200" height="200"/>
+                                <rect key="frame" x="57" y="303" width="300" height="300"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="2z9-Il-Frf"/>
-                                    <constraint firstAttribute="height" constant="200" id="rNz-Uk-9QH"/>
+                                    <constraint firstAttribute="width" constant="300" id="2z9-Il-Frf"/>
+                                    <constraint firstAttribute="height" constant="300" id="rNz-Uk-9QH"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.1831708550453186" green="0.84555190801620483" blue="0.98944693803787231" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hR2-bi-NFJ" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="JPo-uh-svv"/>
                             <constraint firstItem="hR2-bi-NFJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bY3-AS-vsJ"/>
@@ -40,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="newlogo" width="171" height="118"/>
+        <image name="newlogo" width="322" height="46"/>
     </resources>
 </document>
