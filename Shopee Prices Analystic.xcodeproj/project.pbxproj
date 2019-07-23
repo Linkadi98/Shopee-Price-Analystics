@@ -11,6 +11,7 @@
 		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
 		24120F4022E074B6000FA0B7 /* EUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* EUITextField.swift */; };
 		2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414701322DAF58C000FB6D5 /* RegisterViewController.swift */; };
+		2414C38822E69EE300B21DBA /* ChangeShopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */; };
 		2416494622E1768900B80DBC /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494522E1768900B80DBC /* CategoryTableViewController.swift */; };
 		2416494822E1770E00B80DBC /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494722E1770E00B80DBC /* Product.swift */; };
 		2416494A22E19F5600B80DBC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494922E19F5600B80DBC /* Animator.swift */; };
@@ -66,6 +67,7 @@
 		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		24120F3F22E074B6000FA0B7 /* EUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUITextField.swift; sourceTree = "<group>"; };
 		2414701322DAF58C000FB6D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeShopTableViewController.swift; sourceTree = "<group>"; };
 		2416494522E1768900B80DBC /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		2416494722E1770E00B80DBC /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		2416494922E19F5600B80DBC /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				2478C65322DDC29200DA6D8E /* AccountViewController.swift */,
 				24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */,
+				2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
 				2459136222E2F01600D51A4B /* EViewController.swift in Sources */,
 				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
+				2414C38822E69EE300B21DBA /* ChangeShopTableViewController.swift in Sources */,
 				2484174922D85D800009DF10 /* AppDelegate.swift in Sources */,
 				2459135C22E2EF4D00D51A4B /* EUIButton.swift in Sources */,
 				2459135A22E2C07900D51A4B /* ProductViewController.swift in Sources */,
