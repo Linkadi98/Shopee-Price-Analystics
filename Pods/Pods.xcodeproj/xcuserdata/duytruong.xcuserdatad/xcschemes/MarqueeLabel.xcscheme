@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CEFB57B8B9F7E4907C920069751BC2E0"
-               BuildableName = "TransitionButton.framework"
-               BlueprintName = "TransitionButton"
+               BlueprintIdentifier = "93560C05B87988775E43AA3CEBFCA82A"
+               BuildableName = "MarqueeLabel.framework"
+               BlueprintName = "MarqueeLabel"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

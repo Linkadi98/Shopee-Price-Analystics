@@ -1,4 +1,5 @@
 PODS:
+  - Cosmos (19.0.3)
   - FacebookCore (0.7.0):
     - FBSDKCoreKit (~> 5.0)
   - FacebookLogin (0.7.0):
@@ -33,7 +34,7 @@ PODS:
   - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
   - GTMSessionFetcher/Core (1.2.2)
   - MarqueeLabel (4.0.0)
-  - NotificationBannerSwift (2.5.0):
+  - NotificationBannerSwift (2.5.1):
     - MarqueeLabel (~> 4.0.0)
     - SnapKit (~> 5.0.0)
   - SnapKit (5.0.0)
@@ -42,6 +43,7 @@ PODS:
   - TransitionButton (0.5.2)
 
 DEPENDENCIES:
+  - Cosmos (~> 19.0)
   - FacebookCore
   - FacebookLogin
   - FacebookShare
@@ -53,6 +55,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Cosmos
     - FacebookCore
     - FacebookLogin
     - FacebookShare
@@ -70,6 +73,7 @@ SPEC REPOS:
     - TransitionButton
 
 SPEC CHECKSUMS:
+  Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
   FacebookLogin: 94cdad6850e86a2b04704dedfe7674a7af8148eb
   FacebookShare: dd4954712db61e078aea483bdf89e1b2ae3574b5
@@ -80,12 +84,12 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
-  NotificationBannerSwift: 684966fa934c48b70eff8bbec93fccf8db603365
+  NotificationBannerSwift: e55dd801b0d78f1a7bacb10d722a935ec95f94a3
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: a96ffeb1836c46d6c5a14cd029658cd8ced5bf0e
+PODFILE CHECKSUM: 98aac7a27c52c3e509215f3c1dc1d40a2276edd5
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.6.1

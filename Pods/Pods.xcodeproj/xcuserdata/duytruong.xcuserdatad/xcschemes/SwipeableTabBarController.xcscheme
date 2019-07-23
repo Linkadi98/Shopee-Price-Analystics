@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CEFB57B8B9F7E4907C920069751BC2E0"
-               BuildableName = "TransitionButton.framework"
-               BlueprintName = "TransitionButton"
+               BlueprintIdentifier = "E09D013FEB5998048A862EBEC90A30E5"
+               BuildableName = "SwipeableTabBarController.framework"
+               BlueprintName = "SwipeableTabBarController"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

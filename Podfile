@@ -12,6 +12,7 @@ pod 'SwiftyJSON', '~> 4.0'
 pod 'GoogleSignIn'
 pod 'NotificationBannerSwift'
 pod 'SwipeableTabBarController'
+pod 'Cosmos', '~> 19.0'
   # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do

@@ -8,19 +8,17 @@
 
 import UIKit
 
-class CategoryTableViewController: UITableViewController {
+class ProductsTableViewController: UITableViewController {
     
     // MARK: - Properties
-    
-    @IBOutlet var myTableView: UITableView!
-    var category: [Product] = []
+
+    var products: [Product] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        category = prepareCategory()
-    
-        myTableView.register(UITableViewCell.self, forCellReuseIdentifier: "categoryCell")
+        products = prepareProducts()
+
         
         
         
@@ -41,20 +39,21 @@ class CategoryTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print(category.count)
-        return category.count
+        print(products.count)
+        return products.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
         
-        let product: Product = category[indexPath.row]
+        let product: Product = products[indexPath.row]
 //        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "categoryCell")
-        cell.textLabel?.text = "\(product.name!)\(indexPath.row)"
-        cell.detailTextLabel?.text = product.description
+        cell.productNameLabel.text = "\(product.name!)\(indexPath.row)"
+        cell.productDescLabel.text = product.description
         // Configure the cell...
-        
+
+        cell.cosmos.rating = 4.0
         print("\(product.name!)\(indexPath.row)")
         return cell
     }
@@ -118,7 +117,7 @@ class CategoryTableViewController: UITableViewController {
 
     // MARK: - Private modifications
     
-    private func prepareCategory() -> [Product] {
+    private func prepareProducts() -> [Product] {
         var list: [Product] = []
         for _ in 0...20 {
             list.append(Product(name: "Giày", description: "Giày adidas superfake"))
