@@ -14,7 +14,7 @@ import GoogleSignIn
 class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
     
     // MARK: - Properties
-    @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
+    
     
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -23,13 +23,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
     @IBOutlet weak var scrollView: UIScrollView!
     
     
-    var keyboardHeight  = 0
+    @IBOutlet weak var userNameHint: UILabel!
+    @IBOutlet weak var emailHint: UILabel!
+    @IBOutlet weak var passwordHint: UILabel!
+    @IBOutlet weak var confirmPasswordHint: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        confirmPassword.delegate = self
-        self.hideKeyboardWhenTappedAround()
-        self.registerKeyboardForNotification()
+        
+        hideKeyboardWhenTappedAround()
+        registerKeyboardForNotification()
+        
+        configLabelHint(hints: passwordHint, confirmPasswordHint, emailHint, userNameHint)
         
         // Do any additional setup after loading the view.
     }
@@ -54,21 +60,52 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
         drawUnderline(for: userName, email, password, confirmPassword)
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("text is editting")
-        return true
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyBoard(userName, email, password, confirmPassword)
         return true
     }
-
-// Log in using facebook account
+    
+    // MARK: - Text Configs
+    @IBAction func userNameEditingChanged(_ sender: Any) {
+        if !userName.isValidUserNameRegister() {
+            userNameHint.text = "Tên đăng nhập phải có ít nhất 5 kí tự"
+        }
+        else {
+            userNameHint.text = nil
+        }
+    }
+    
+    @IBAction func emailEditingChanged(_ sender: Any) {
+        print(email.text!)
+        if !email.isValidEmail() {
+            emailHint.text = "Vui lòng nhập đúng email"
+        }
+        else {
+            emailHint.text = nil
+        }
+    }
+    
+    @IBAction func passwordEditingChanged(_ sender: Any) {
+        print(password.text!)
+        if !password.isValidPassword() {
+            passwordHint.text = "Mật khẩu phải có ít nhất 6 kí tự"
+        }
+        else {
+            passwordHint.text = nil
+        }
+    }
+    
+    @IBAction func confirmEditingChanged(_ sender: Any) {
+        if !confirmPassword.confirmPassword(to: password.text!) {
+            confirmPasswordHint.text = "Mật khẩu xác nhận chưa đúng"
+        }
+        else {
+            confirmPasswordHint.text = nil
+        }
+    }
+    
+    // Log in using facebook account
     @IBAction func loginByFb(_ sender: Any) {
         ViewController.loginFb(inViewController: self)
     }
@@ -94,6 +131,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
         }
     }
     
+    private func configLabelHint(hints: UILabel...) {
+        for hint in hints {
+            hint.text = nil
+            hint.textColor = UIColor.red
+        }
+    }
+    
+    // MARK: - Keyboard issues
     func registerKeyboardForNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         
