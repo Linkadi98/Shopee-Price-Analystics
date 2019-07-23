@@ -35,13 +35,61 @@ extension UITextField {
             return false
         }
         
-        if userName.count > 5 && userName.contains("@") && userName.contains("gmail") {
+        if userName.count > 5 && userName.contains("@") && userName.contains("gmail.com") {
             return true
         }
         else {
             return false
         }
         
+    }
+    
+    func isValidUserNameRegister() -> Bool {
+        guard let userName = self.text else {
+            return false
+        }
+        
+        if userName.count >= 5 {
+            return true
+        }
+        
+        return false 
+    }
+    
+    func isValidEmail() -> Bool {
+        guard let email = self.text else {
+            return false
+        }
+        
+        if email.contains("@") && email.contains("gmail.com") {
+            return true
+        }
+        
+        return false
+    }
+    
+    func isValidPassword() -> Bool {
+        guard let pass = self.text else {
+            return false
+        }
+        
+        if pass.count >= 5 {
+            return true
+        }
+
+        return false
+    }
+    
+    func confirmPassword(to password: String) -> Bool {
+        guard let confirmPassword = self.text else {
+            return false
+        }
+        
+        if confirmPassword.contains(password) {
+            return true
+        }
+        
+        return false
     }
     
     
