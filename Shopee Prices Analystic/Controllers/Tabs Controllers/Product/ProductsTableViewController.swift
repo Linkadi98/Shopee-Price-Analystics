@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductsTableViewController: UITableViewController {
+class ProductsTableViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Properties
 
@@ -19,7 +19,11 @@ class ProductsTableViewController: UITableViewController {
         
         products = prepareProducts()
 
-        
+        let searchController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchController
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hideKeyboardWhenTappedAround()
+        searchController.
         
         
 
@@ -43,10 +47,6 @@ class ProductsTableViewController: UITableViewController {
         return products.count
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Danh sách sản phẩm"
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
         
@@ -65,11 +65,6 @@ class ProductsTableViewController: UITableViewController {
         let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(30)
     }
  
 
@@ -108,15 +103,12 @@ class ProductsTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+    
+    // MARK: - Search bar
+    
+    // khai báo các hàm của search bar ở đây để xử lý dữ liệu của table view
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+ 
 
     // MARK: - Private modifications
     
