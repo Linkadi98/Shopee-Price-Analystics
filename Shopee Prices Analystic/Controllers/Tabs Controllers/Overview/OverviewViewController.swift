@@ -26,6 +26,9 @@ class OverviewViewController: UIViewController {
     @IBOutlet var parentView: UIView!
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
+
+    @IBOutlet weak var viewAccount: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

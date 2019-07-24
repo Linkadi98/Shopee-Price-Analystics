@@ -30,6 +30,7 @@ extension UIViewController {
                                                 style: .warning)
         banner.onTap = {
             status()
+            self.tabBarController?.selectedIndex = 4
         }
         
         banner.show(queuePosition: .back,
