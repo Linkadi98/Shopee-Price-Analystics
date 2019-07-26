@@ -7,23 +7,32 @@
 //
 
 import UIKit
+import FBSDKLoginKit
+import GoogleSignIn
 
 class AccountTableViewController: UITableViewController {
     
+    // MARK: - Properties
+    
+    var data: (UIImage?, String?, String?, String?, String?)
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = nil
+        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(40)
+        return CGFloat(0)
     }
     
     @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
         
     }
+    
+    // MARK: - Actions
+    
+    
 }

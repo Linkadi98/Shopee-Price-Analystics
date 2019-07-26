@@ -16,6 +16,7 @@
 		2416494822E1770E00B80DBC /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494722E1770E00B80DBC /* Product.swift */; };
 		2416494A22E19F5600B80DBC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494922E19F5600B80DBC /* Animator.swift */; };
 		241D5A7322E57A8C00CBA60C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5A7222E57A8C00CBA60C /* Account.swift */; };
+		2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */; };
 		2459135C22E2EF4D00D51A4B /* EUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135B22E2EF4D00D51A4B /* EUIButton.swift */; };
 		2459135E22E2EF5B00D51A4B /* EUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135D22E2EF5B00D51A4B /* EUITableView.swift */; };
 		2459136022E2EF6600D51A4B /* EUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135F22E2EF6600D51A4B /* EUIView.swift */; };
@@ -72,6 +73,7 @@
 		2416494722E1770E00B80DBC /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		2416494922E19F5600B80DBC /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		241D5A7222E57A8C00CBA60C /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
 		2459135B22E2EF4D00D51A4B /* EUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUIButton.swift; sourceTree = "<group>"; };
 		2459135D22E2EF5B00D51A4B /* EUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUITableView.swift; sourceTree = "<group>"; };
 		2459135F22E2EF6600D51A4B /* EUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUIView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				2478C65322DDC29200DA6D8E /* AccountViewController.swift */,
 				24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */,
 				2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */,
+				2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
+				2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */,
 				2459136222E2F01600D51A4B /* EViewController.swift in Sources */,
 				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
 				2414C38822E69EE300B21DBA /* ChangeShopTableViewController.swift in Sources */,

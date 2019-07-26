@@ -58,19 +58,6 @@ class AccountViewController: UIViewController {
     */
 
     @IBAction func logout(_ sender: Any) {
-        if AccessToken.current != nil {
-            // Logout Fb
-            print("AccessToken \(AccessToken.current) fblogout")
-            LoginManager().logOut()
-        } else {
-            // Logout Gg
-            print("\(GIDSignIn.sharedInstance()?.currentUser) gglogout")
-            GIDSignIn.sharedInstance()?.signOut()
-        }
-
-        // Delete user data in UserDefaults
-        UserDefaults.standard.removeObject(forKey: "currentUser")
-        // Back to login screen
-        ViewController.move(viewController: self, toViewControllerHasId: "LoginViewController")
+        
     }
 }
