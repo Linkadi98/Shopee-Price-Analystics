@@ -8,26 +8,23 @@
 
 import UIKit
 
-class ProductsTableViewController: UITableViewController {
+class ProductsTableViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: - Properties
-
+   
+    
     var products: [Product] = []
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         products = prepareProducts()
-
         
+        let searchBarController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchBarController
+        navigationItem.hidesSearchBarWhenScrolling = false
         
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
@@ -43,20 +40,16 @@ class ProductsTableViewController: UITableViewController {
         return products.count
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Danh sách sản phẩm"
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
         
         let product: Product = products[indexPath.row]
 //        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "categoryCell")
         cell.productNameLabel.text = "\(product.name!)\(indexPath.row)"
-        cell.productDescLabel.text = product.description
+//        cell.productDescLabel.text = product.description
         // Configure the cell...
 
-        cell.cosmos.rating = 4.0
+        cell.cosmos.rating = 5.0
         print("\(product.name!)\(indexPath.row)")
         return cell
     }
@@ -66,64 +59,31 @@ class ProductsTableViewController: UITableViewController {
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
     }
-    
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return CGFloat(30)
-    }
  
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? ProductTableViewCell else {
+            return
+        }
+        
+        print(indexPath.row)
+        let subView = UIView()
+        subView.alpha = 0
+        UIView.animate(withDuration: 0.35, animations: {
+            subView.alpha = 1
+            self.view.addSubview(subView)
+        })
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    // MARK: - Acctions
+    
+    
     // MARK: - Private modifications
     
     private func prepareProducts() -> [Product] {
         var list: [Product] = []
         for _ in 0...20 {
-            list.append(Product(name: "Giày", description: "Giày adidas superfake"))
+            list.append(Product(name: "Giày", description: "Giày adidas superfake", price: 130000, rating: 5))
         }
         return list
     }
