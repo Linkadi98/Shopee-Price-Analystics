@@ -230,15 +230,15 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-2h-4ch">
-                                                <rect key="frame" x="15" y="20" width="58" height="32"/>
+                                                <rect key="frame" x="15" y="20" width="50" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Quay lại"/>
+                                                <state key="normal" title="Cancel"/>
                                                 <connections>
                                                     <segue destination="vuP-2t-24k" kind="unwind" unwindAction="unWindWithUnWindSegue:" id="awg-TA-YQD"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
-                                                <rect key="frame" x="112" y="35" width="190" height="80"/>
+                                                <rect key="frame" x="112" y="35" width="190.00000000000006" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="8jb-9d-wyC"/>
                                                     <constraint firstAttribute="height" constant="80" id="tGW-H3-9Uh"/>
@@ -434,9 +434,6 @@
                                                                 <real key="value" value="2"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="register:" destination="adN-Ya-644" eventType="touchUpInside" id="UiU-VC-BKq"/>
-                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoặc đăng ký bằng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ey-fH-m8Q">
                                                         <rect key="frame" x="108.5" y="56" width="117" height="16"/>
@@ -526,7 +523,6 @@
                         <outlet property="emailHint" destination="skj-0b-OGL" id="arI-G9-lEP"/>
                         <outlet property="password" destination="dh7-Id-ffb" id="YoI-pr-TRh"/>
                         <outlet property="passwordHint" destination="Dem-cY-nUB" id="mHe-xG-I6V"/>
-                        <outlet property="registerButton" destination="GzC-06-4j9" id="j6R-7a-1Th"/>
                         <outlet property="scrollView" destination="H3g-YU-4AL" id="ju0-Dm-ClW"/>
                         <outlet property="userName" destination="B4Z-GA-gjq" id="LvO-tJ-QLy"/>
                         <outlet property="userNameHint" destination="VRG-Nb-8ak" id="fxf-Fl-DOW"/>
@@ -1148,7 +1144,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="aCc-p4-pmT">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="aCc-p4-pmT">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>

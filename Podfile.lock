@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.8.2)
   - Cosmos (19.0.3)
   - FacebookCore (0.7.0):
     - FBSDKCoreKit (~> 5.0)
@@ -38,23 +39,23 @@ PODS:
     - MarqueeLabel (~> 4.0.0)
     - SnapKit (~> 5.0.0)
   - SnapKit (5.0.0)
-  - SwiftyJSON (4.3.0)
   - SwipeableTabBarController (2.1.1)
   - TransitionButton (0.5.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - Cosmos (~> 19.0)
   - FacebookCore
   - FacebookLogin
   - FacebookShare
   - GoogleSignIn
   - NotificationBannerSwift
-  - SwiftyJSON (~> 4.0)
   - SwipeableTabBarController
   - TransitionButton
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - Cosmos
     - FacebookCore
     - FacebookLogin
@@ -68,11 +69,11 @@ SPEC REPOS:
     - MarqueeLabel
     - NotificationBannerSwift
     - SnapKit
-    - SwiftyJSON
     - SwipeableTabBarController
     - TransitionButton
 
 SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
   FacebookLogin: 94cdad6850e86a2b04704dedfe7674a7af8148eb
@@ -86,10 +87,9 @@ SPEC CHECKSUMS:
   MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
   NotificationBannerSwift: e55dd801b0d78f1a7bacb10d722a935ec95f94a3
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
-  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 98aac7a27c52c3e509215f3c1dc1d40a2276edd5
+PODFILE CHECKSUM: 5d40b329e9c74ef255970be89d614ba568e0441f
 
 COCOAPODS: 1.6.1

@@ -35,7 +35,7 @@ extension UITextField {
             return false
         }
         
-        if userName.count > 5 && userName.contains("@") && userName.contains("gmail.com") {
+        if userName.count > 5 {
             return true
         }
         else {
@@ -49,7 +49,7 @@ extension UITextField {
             return false
         }
         
-        if userName.count >= 5 {
+        if userName.count > 5 {
             return true
         }
         
@@ -61,7 +61,7 @@ extension UITextField {
             return false
         }
         
-        if email.contains("@") && email.contains("gmail.com") {
+        if email.contains("@") && email.contains(".com") {
             return true
         }
         
@@ -73,7 +73,7 @@ extension UITextField {
             return false
         }
         
-        if pass.count >= 5 {
+        if pass.count > 5 {
             return true
         }
 
@@ -85,7 +85,7 @@ extension UITextField {
             return false
         }
         
-        if confirmPassword.contains(password) {
+        if confirmPassword == password {
             return true
         }
         
