@@ -10,6 +10,8 @@ import UIKit
 import FBSDKLoginKit
 import FacebookLogin
 import GoogleSignIn
+import TransitionButton
+import Alamofire
 
 class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
     
@@ -28,9 +30,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
     @IBOutlet weak var passwordHint: UILabel!
     @IBOutlet weak var confirmPasswordHint: UILabel!
     
+    @IBOutlet weak var registerButton: TransitionButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        registerButton.isEnabled = false
+        registerButton.backgroundColor = .gray
         
         hideKeyboardWhenTappedAround()
         registerKeyboardForNotification()
@@ -69,11 +75,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
     // MARK: - Text Configs
     @IBAction func userNameEditingChanged(_ sender: Any) {
         if !userName.isValidUserNameRegister() {
-            userNameHint.text = "Tên đăng nhập phải có ít nhất 5 kí tự"
+            userNameHint.text = "Tên đăng nhập phải có ít nhất 6 kí tự"
         }
         else {
             userNameHint.text = nil
         }
+
+        changeRegisterButtonColor()
     }
     
     @IBAction func emailEditingChanged(_ sender: Any) {
@@ -84,6 +92,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
         else {
             emailHint.text = nil
         }
+
+        changeRegisterButtonColor()
     }
     
     @IBAction func passwordEditingChanged(_ sender: Any) {
@@ -94,6 +104,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
         else {
             passwordHint.text = nil
         }
+
+        changeRegisterButtonColor()
     }
     
     @IBAction func confirmEditingChanged(_ sender: Any) {
@@ -103,8 +115,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
         else {
             confirmPasswordHint.text = nil
         }
+
+        changeRegisterButtonColor()
     }
-    
+
+    // Register SPA account
+    @IBAction func register(_ sender: Any) {
+        register(name: userName.text!, email: email.text!, username: userName.text!, password: password.text!)
+    }
     // Log in using facebook account
     @IBAction func loginByFb(_ sender: Any) {
         ViewController.loginFb(inViewController: self)
@@ -169,6 +187,33 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
 
 }
 
+// Register
+extension RegisterViewController {
+    func register(name: String, email: String, username: String, password: String) {
+        let convention = Convention()
+        let url = URL(string: convention.baseUrlString + convention.registerPathString)!
+        let parameters: Parameters = [
+            "name": name,
+            "email": email,
+            "username" : username,
+            "password" : password
+        ]
+
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: convention.headers).responseJSON { (response) in
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                return
+            }
+
+            let responseValue = response.result.value! as! [String: Any]
+            if let token = responseValue["token"] as? String {
+                print(token)
+                convention.saveToken(token: token)
+            }
+        }
+    }
+
+}
 // Login Google
 // Đăng nhập Google ở VC nào thì phải implement 2 hàm sign ở đó, còn với Facebook có thể gọi static func loginFb trong ViewController (trong button loginByFb ở trên)
 extension RegisterViewController {
@@ -192,7 +237,28 @@ extension RegisterViewController {
         // Perform any operations when the user disconnects from app here.
         // ...
         print("\(user.profile.name!) has disconnected!")
+    }
+}
+
+// Check registering
+extension RegisterViewController {
+    func isValidRegister() -> Bool {
+        if userName.isValidUserNameRegister() && email.isValidEmail() && password.isValidPassword() && confirmPassword.confirmPassword(to: password.text!) {
+            return true
         }
+
+        return false
+    }
+
+    func changeRegisterButtonColor() {
+        if isValidRegister() {
+            registerButton.isEnabled = true
+            registerButton.backgroundColor = .blue
+        } else {
+            registerButton.isEnabled = false
+            registerButton.backgroundColor = .gray
+        }
+    }
 }
 
 
