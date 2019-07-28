@@ -77,14 +77,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
 }
 
 extension AppDelegate {
-    // must implement (gọi static func ở ngay dưới) để rút gọn code???
-    // Đăng nhập gg và lưu dữ liệu tài khoản gg
-    // Được gọi cả khi đăng nhập mới và nhớ tài khoản
+    // must implement
+    // Được gọi khi nhớ tài khoản
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print("\(error.localizedDescription)")
         } else {
-            AppDelegate.sign(didSignInFor: user, withError: error)
+            getGgUserData(of: user)
+
             print("Login Google in AppDelegate.")
         }
     }
@@ -97,7 +97,8 @@ extension AppDelegate {
         print("\(user.profile.name!) has disconnected!")
     }
 
-    static func sign(didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    // Lấy dữ liệu tài khoản Google và lưu vào UserDefaults
+    func getGgUserData(of user: GIDGoogleUser!) {
         // Perform any operations on signed in user here.
         //            let userId = user.userID                  // For client-side use only!
         //            let idToken = user.authentication.idToken // Safe to send to the server
