@@ -8,12 +8,10 @@
 
 import UIKit
 import TransitionButton
-import FacebookLogin
-import FBSDKLoginKit
 import GoogleSignIn
 import NotificationBannerSwift
 
-class ViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
     
@@ -56,12 +54,6 @@ class ViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate
         
         userNameText.setIcon(#imageLiteral(resourceName: "user"))
         passwordText.setIcon(#imageLiteral(resourceName: "password"))
-
-        // Signed in Fb
-        if AccessToken.current != nil {
-            let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-            self.present(secondVC, animated: false, completion: nil)
-        }
     }
     
     // MARK: - Actions
@@ -83,7 +75,7 @@ class ViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate
     }
 
     @IBAction func loginByFb(_ sender: Any) {
-        ViewController.loginFb(inViewController: self)
+        self.loginFb()
     }
 
 
@@ -131,6 +123,4 @@ class ViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate
         }
         
     }
-    
-    
 }

@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import FBSDKLoginKit
-import FacebookLogin
 import GoogleSignIn
 import TransitionButton
 import Alamofire
 
-class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
     
@@ -75,7 +73,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
     // MARK: - Text Configs
     @IBAction func userNameEditingChanged(_ sender: Any) {
         if !userName.isValidUserNameRegister() {
-            userNameHint.text = "Tên đăng nhập phải có ít nhất 6 kí tự"
+            userNameHint.text = "Tên đăng nhập phải có ít nhất 6 kí tự, không chứa dấu cách"
         }
         else {
             userNameHint.text = nil
@@ -122,10 +120,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, GIDSignInUI
     // Register SPA account
     @IBAction func register(_ sender: Any) {
         register(name: userName.text!, email: email.text!, username: userName.text!, password: password.text!)
+
+        self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
     }
     // Log in using facebook account
     @IBAction func loginByFb(_ sender: Any) {
-        ViewController.loginFb(inViewController: self)
+        self.loginFb()
     }
 
     @IBAction func loginByGg(_ sender: Any) {
@@ -213,31 +213,6 @@ extension RegisterViewController {
         }
     }
 
-}
-// Login Google
-// Đăng nhập Google ở VC nào thì phải implement 2 hàm sign ở đó, còn với Facebook có thể gọi static func loginFb trong ViewController (trong button loginByFb ở trên)
-extension RegisterViewController {
-    // must implement (gọi static func trong AppDelegate) để rút gọn code???
-    // Đăng nhập gg và lưu dữ liệu tài khoản gg
-    // Được gọi cả khi đăng nhập mới và nhớ tài khoản
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("\(error.localizedDescription)")
-        } else {
-            AppDelegate.sign(didSignInFor: user, withError: error)
-            print("Login Google in RegisterVC.")
-            // Screen movement
-            ViewController.move(viewController: self, toViewControllerHasId: "TabsViewController")
-        }
-    }
-
-    // must implement
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
-              withError error: Error!) {
-        // Perform any operations when the user disconnects from app here.
-        // ...
-        print("\(user.profile.name!) has disconnected!")
-    }
 }
 
 // Check registering
