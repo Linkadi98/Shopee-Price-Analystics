@@ -11,13 +11,16 @@ import SwipeableTabBarController
 
 class TabsViewController: SwipeableTabBarController {
 
+    // MARK: - Properties
+    private var cachedSafeAreaInsets = UIEdgeInsets.zero
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        
+        
         // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation

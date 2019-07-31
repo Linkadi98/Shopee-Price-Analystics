@@ -184,23 +184,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Vea-3T-DcG" firstAttribute="leading" secondItem="uvo-8s-8t0" secondAttribute="leading" constant="40" id="77V-gS-poZ"/>
-                            <constraint firstItem="yg2-V1-cfa" firstAttribute="leading" secondItem="uvo-8s-8t0" secondAttribute="leading" constant="40" id="8c8-8s-o6M"/>
+                            <constraint firstItem="Vea-3T-DcG" firstAttribute="leading" secondItem="GV8-og-aD2" secondAttribute="leading" constant="40" id="77V-gS-poZ"/>
+                            <constraint firstItem="yg2-V1-cfa" firstAttribute="leading" secondItem="GV8-og-aD2" secondAttribute="leading" constant="40" id="8c8-8s-o6M"/>
                             <constraint firstItem="yg2-V1-cfa" firstAttribute="top" secondItem="Fbj-yb-epQ" secondAttribute="bottom" constant="15" id="Dc1-nT-MTU"/>
                             <constraint firstItem="Fbj-yb-epQ" firstAttribute="centerX" secondItem="yg2-V1-cfa" secondAttribute="centerX" id="O3S-B5-2Ea"/>
-                            <constraint firstItem="Fbj-yb-epQ" firstAttribute="top" secondItem="uvo-8s-8t0" secondAttribute="top" constant="30" id="OQp-Ni-mgd"/>
-                            <constraint firstItem="hf9-ez-awB" firstAttribute="centerX" secondItem="GQ2-Ui-ATh" secondAttribute="centerX" id="Oob-lg-GX4"/>
+                            <constraint firstItem="Fbj-yb-epQ" firstAttribute="top" secondItem="GV8-og-aD2" secondAttribute="top" constant="30" id="OQp-Ni-mgd"/>
+                            <constraint firstItem="hf9-ez-awB" firstAttribute="centerX" secondItem="GV8-og-aD2" secondAttribute="centerX" id="Oob-lg-GX4"/>
                             <constraint firstItem="Vea-3T-DcG" firstAttribute="top" secondItem="8dc-b1-iAJ" secondAttribute="bottom" constant="15" id="SAT-aB-FRH"/>
-                            <constraint firstItem="hf9-ez-awB" firstAttribute="bottom" secondItem="uvo-8s-8t0" secondAttribute="bottom" constant="-10" id="V6N-pg-7WD"/>
+                            <constraint firstItem="hf9-ez-awB" firstAttribute="bottom" secondItem="GV8-og-aD2" secondAttribute="bottom" constant="-10" id="V6N-pg-7WD"/>
                             <constraint firstItem="Vea-3T-DcG" firstAttribute="trailing" secondItem="8dc-b1-iAJ" secondAttribute="trailing" id="WbC-f8-lUu"/>
-                            <constraint firstItem="uvo-8s-8t0" firstAttribute="trailing" secondItem="yg2-V1-cfa" secondAttribute="trailing" constant="40" id="ZNl-rD-Fp1"/>
-                            <constraint firstItem="Vea-3T-DcG" firstAttribute="centerX" secondItem="GQ2-Ui-ATh" secondAttribute="centerX" id="aJ2-EZ-qeO"/>
-                            <constraint firstItem="uvo-8s-8t0" firstAttribute="trailing" secondItem="Vea-3T-DcG" secondAttribute="trailing" constant="40" id="oyW-pT-WR5"/>
-                            <constraint firstItem="8dc-b1-iAJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uvo-8s-8t0" secondAttribute="leading" symbolic="YES" id="qoH-Ix-rj8"/>
-                            <constraint firstItem="Fbj-yb-epQ" firstAttribute="leading" secondItem="uvo-8s-8t0" secondAttribute="leading" constant="75" id="t0W-QD-6LO"/>
+                            <constraint firstItem="GV8-og-aD2" firstAttribute="trailing" secondItem="yg2-V1-cfa" secondAttribute="trailing" constant="40" id="ZNl-rD-Fp1"/>
+                            <constraint firstItem="Vea-3T-DcG" firstAttribute="centerX" secondItem="GV8-og-aD2" secondAttribute="centerX" id="aJ2-EZ-qeO"/>
+                            <constraint firstItem="GV8-og-aD2" firstAttribute="trailing" secondItem="Vea-3T-DcG" secondAttribute="trailing" constant="40" id="oyW-pT-WR5"/>
+                            <constraint firstItem="8dc-b1-iAJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GV8-og-aD2" secondAttribute="leading" symbolic="YES" id="qoH-Ix-rj8"/>
+                            <constraint firstItem="Fbj-yb-epQ" firstAttribute="leading" secondItem="GV8-og-aD2" secondAttribute="leading" constant="75" id="t0W-QD-6LO"/>
                             <constraint firstItem="8dc-b1-iAJ" firstAttribute="top" secondItem="yg2-V1-cfa" secondAttribute="bottom" constant="15" id="xeb-Rh-rdv"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="uvo-8s-8t0"/>
+                        <viewLayoutGuide key="safeArea" id="GV8-og-aD2"/>
                     </view>
                     <connections>
                         <outlet property="facebookButton" destination="XSf-zs-UcC" id="lFI-IU-le9"/>
@@ -213,7 +213,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HFM-Zg-tRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1104.8" y="-474.51274362818594"/>
+            <point key="canvasLocation" x="-365" y="-1286"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="kKr-W2-hsL">
@@ -238,7 +238,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
-                                                <rect key="frame" x="112" y="35" width="190" height="80"/>
+                                                <rect key="frame" x="112" y="35" width="190.00000000000006" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="8jb-9d-wyC"/>
                                                     <constraint firstAttribute="height" constant="80" id="tGW-H3-9Uh"/>
@@ -512,12 +512,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="H3g-YU-4AL" firstAttribute="trailing" secondItem="UxZ-rk-Sne" secondAttribute="trailing" id="W7j-uf-3uS"/>
-                            <constraint firstItem="H3g-YU-4AL" firstAttribute="top" secondItem="UxZ-rk-Sne" secondAttribute="top" id="WmL-36-OVv"/>
+                            <constraint firstItem="H3g-YU-4AL" firstAttribute="trailing" secondItem="VJa-rc-tYT" secondAttribute="trailing" id="W7j-uf-3uS"/>
+                            <constraint firstItem="H3g-YU-4AL" firstAttribute="top" secondItem="VJa-rc-tYT" secondAttribute="top" id="WmL-36-OVv"/>
                             <constraint firstAttribute="bottom" secondItem="H3g-YU-4AL" secondAttribute="bottom" id="s1S-mn-zcQ"/>
-                            <constraint firstItem="H3g-YU-4AL" firstAttribute="leading" secondItem="UxZ-rk-Sne" secondAttribute="leading" id="vLb-cF-sFf"/>
+                            <constraint firstItem="H3g-YU-4AL" firstAttribute="leading" secondItem="VJa-rc-tYT" secondAttribute="leading" id="vLb-cF-sFf"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="UxZ-rk-Sne"/>
+                        <viewLayoutGuide key="safeArea" id="VJa-rc-tYT"/>
                     </view>
                     <connections>
                         <outlet property="confirmPassword" destination="Txd-Lr-KYT" id="PBp-0i-MIx"/>
@@ -535,7 +535,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20P-iP-2dE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vuP-2t-24k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1104.8" y="262.21889055472263"/>
+            <point key="canvasLocation" x="523" y="-1286"/>
         </scene>
         <!--Tổng quan-->
         <scene sceneID="3bG-CP-dF0">
@@ -654,22 +654,22 @@
                         </subviews>
                         <color key="backgroundColor" white="0.94357341610000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="kCY-t2-FWh" firstAttribute="trailing" secondItem="8NM-vr-skt" secondAttribute="trailing" id="7t7-Hf-nf9"/>
-                            <constraint firstItem="QQA-p7-TyM" firstAttribute="top" secondItem="kCY-t2-FWh" secondAttribute="top" constant="20" id="8SL-Oz-8oY"/>
+                            <constraint firstItem="GNI-CC-jgi" firstAttribute="trailing" secondItem="8NM-vr-skt" secondAttribute="trailing" id="7t7-Hf-nf9"/>
+                            <constraint firstItem="QQA-p7-TyM" firstAttribute="top" secondItem="GNI-CC-jgi" secondAttribute="top" constant="20" id="8SL-Oz-8oY"/>
                             <constraint firstItem="8NM-vr-skt" firstAttribute="top" secondItem="stT-mY-WoH" secondAttribute="bottom" constant="8" id="8Ta-sw-7wI"/>
-                            <constraint firstItem="s74-fV-cmK" firstAttribute="top" secondItem="kCY-t2-FWh" secondAttribute="top" constant="20" id="BIr-te-1E7"/>
+                            <constraint firstItem="s74-fV-cmK" firstAttribute="top" secondItem="GNI-CC-jgi" secondAttribute="top" constant="20" id="BIr-te-1E7"/>
                             <constraint firstItem="s74-fV-cmK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iEH-8u-CtL" secondAttribute="trailing" constant="8" symbolic="YES" id="Drg-7O-Gqm"/>
                             <constraint firstItem="stT-mY-WoH" firstAttribute="top" secondItem="QQA-p7-TyM" secondAttribute="bottom" constant="8" id="MS5-Ow-E9Z"/>
-                            <constraint firstItem="QQA-p7-TyM" firstAttribute="leading" secondItem="kCY-t2-FWh" secondAttribute="leading" constant="15" id="Q0E-OU-nmu"/>
-                            <constraint firstItem="stT-mY-WoH" firstAttribute="leading" secondItem="kCY-t2-FWh" secondAttribute="leading" constant="15" id="bCU-jQ-bdA"/>
-                            <constraint firstItem="kCY-t2-FWh" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="stT-mY-WoH" secondAttribute="trailing" symbolic="YES" id="eZc-cO-D2m"/>
-                            <constraint firstItem="8NM-vr-skt" firstAttribute="leading" secondItem="kCY-t2-FWh" secondAttribute="leading" id="jcP-uU-6pq"/>
-                            <constraint firstItem="kCY-t2-FWh" firstAttribute="bottom" secondItem="8NM-vr-skt" secondAttribute="bottom" constant="-49" id="ooj-ak-rZj"/>
+                            <constraint firstItem="QQA-p7-TyM" firstAttribute="leading" secondItem="GNI-CC-jgi" secondAttribute="leading" constant="15" id="Q0E-OU-nmu"/>
+                            <constraint firstItem="stT-mY-WoH" firstAttribute="leading" secondItem="GNI-CC-jgi" secondAttribute="leading" constant="15" id="bCU-jQ-bdA"/>
+                            <constraint firstItem="GNI-CC-jgi" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="stT-mY-WoH" secondAttribute="trailing" symbolic="YES" id="eZc-cO-D2m"/>
+                            <constraint firstItem="8NM-vr-skt" firstAttribute="leading" secondItem="GNI-CC-jgi" secondAttribute="leading" id="jcP-uU-6pq"/>
+                            <constraint firstItem="GNI-CC-jgi" firstAttribute="bottom" secondItem="8NM-vr-skt" secondAttribute="bottom" constant="-49" id="ooj-ak-rZj"/>
                             <constraint firstItem="s74-fV-cmK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="39D-Dx-UDy" secondAttribute="trailing" constant="8" symbolic="YES" id="pDo-Tb-eZV"/>
-                            <constraint firstItem="kCY-t2-FWh" firstAttribute="trailing" secondItem="s74-fV-cmK" secondAttribute="trailing" constant="15" id="pw5-Vh-sIz"/>
-                            <constraint firstItem="kCY-t2-FWh" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QQA-p7-TyM" secondAttribute="trailing" symbolic="YES" id="wLy-lp-kIR"/>
+                            <constraint firstItem="GNI-CC-jgi" firstAttribute="trailing" secondItem="s74-fV-cmK" secondAttribute="trailing" constant="15" id="pw5-Vh-sIz"/>
+                            <constraint firstItem="GNI-CC-jgi" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QQA-p7-TyM" secondAttribute="trailing" symbolic="YES" id="wLy-lp-kIR"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="kCY-t2-FWh"/>
+                        <viewLayoutGuide key="safeArea" id="GNI-CC-jgi"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Tổng quan" image="overview" id="PPb-dR-3Ts"/>
                     <connections>
@@ -684,7 +684,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzQ-v1-da0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="701.44927536231887" y="-1204.6875"/>
+            <point key="canvasLocation" x="-2486" y="467"/>
         </scene>
         <!--Danh sách sản phẩm-->
         <scene sceneID="ez0-KY-TX2">
@@ -791,17 +791,18 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1404.3478260869567" y="-475.44642857142856"/>
+            <point key="canvasLocation" x="-1477" y="1231"/>
         </scene>
         <!--Sản phẩm-->
         <scene sceneID="GKr-aw-0ho">
             <objects>
                 <navigationController id="snz-Cl-snA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sản phẩm" image="product" id="tG0-bl-JDz"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UAa-Q2-IvD">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="0.0" height="30"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="UAa-Q2-IvD">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                         </textAttributes>
@@ -815,7 +816,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bUZ-cJ-i2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="701" y="-474"/>
+            <point key="canvasLocation" x="-1477" y="467"/>
         </scene>
         <!--Giá-->
         <scene sceneID="HYv-8A-mdX">
@@ -825,13 +826,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="GvT-6q-7P2"/>
+                        <viewLayoutGuide key="safeArea" id="JXD-7O-rda"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Giá" image="price" id="ori-Gv-6r2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N5M-Xg-LRH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="703" y="236"/>
+            <point key="canvasLocation" x="-365" y="467"/>
         </scene>
         <!--Tài khoản-->
         <scene sceneID="Rvg-cO-BAS">
@@ -929,10 +930,11 @@
                     <navigationItem key="navigationItem" title="Tài khoản" id="gFJ-hg-fh4">
                         <barButtonItem key="backBarButtonItem" title="Quay lại" id="g31-hl-bLX"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o58-pK-mra" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3193" y="-26"/>
+            <point key="canvasLocation" x="1558" y="1231"/>
         </scene>
         <!--Tài khoản-->
         <scene sceneID="L6i-bq-sgm">
@@ -1120,17 +1122,17 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4w-de-KG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3995.652173913044" y="-659.59821428571422"/>
+            <point key="canvasLocation" x="2491" y="2013"/>
         </scene>
         <!--Tài khoản-->
         <scene sceneID="QtI-20-WVp">
             <objects>
                 <navigationController id="hhq-HJ-xJM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Tài khoản" image="account" id="6Fm-bP-jdI"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7fk-Pt-SAX">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="7fk-Pt-SAX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <connections>
                         <segue destination="LNA-Ef-y9u" kind="relationship" relationship="rootViewController" id="lMs-Du-eyv"/>
@@ -1138,7 +1140,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OD1-s8-gHU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2219" y="236"/>
+            <point key="canvasLocation" x="1558" y="467"/>
         </scene>
         <!--Change Shop Table View Controller-->
         <scene sceneID="Z7D-za-ktB">
@@ -1148,7 +1150,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="aCc-p4-pmT">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="aCc-p4-pmT">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -1263,7 +1265,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQn-Q1-9C2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gIQ-FV-VWY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3996" y="696"/>
+            <point key="canvasLocation" x="1558" y="2013"/>
         </scene>
         <!--Đối thủ-->
         <scene sceneID="oyW-sd-fqD">
@@ -1273,20 +1275,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Xwg-nP-V3l"/>
+                        <viewLayoutGuide key="safeArea" id="VY7-mb-YVT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Đối thủ" image="rival" id="HNG-FU-Iku"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2JF-ec-cG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="703" y="944"/>
+            <point key="canvasLocation" x="606" y="467"/>
         </scene>
         <!--Tabs View Controller-->
         <scene sceneID="BzK-je-y6B">
             <objects>
-                <tabBarController storyboardIdentifier="TabsViewController" automaticallyAdjustsScrollViewInsets="NO" id="U3l-gh-EVd" customClass="TabsViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabsViewController" id="U3l-gh-EVd" customClass="TabsViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backgroundImage="clear" id="VgH-vt-KJH" customClass="TransparentTabBar" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+                    <tabBar key="tabBar" clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" backgroundImage="clear" id="VgH-vt-KJH" customClass="TransparentTabBar" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1302,7 +1304,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CHn-ym-Ohu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-130" y="-474"/>
+            <point key="canvasLocation" x="-365" y="-474"/>
         </scene>
         <!--List Shops Table View Controller-->
         <scene sceneID="mt4-h4-AFC">
@@ -1350,7 +1352,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mql-7z-att" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="-1204"/>
+            <point key="canvasLocation" x="-2487" y="1035"/>
         </scene>
     </scenes>
     <resources>

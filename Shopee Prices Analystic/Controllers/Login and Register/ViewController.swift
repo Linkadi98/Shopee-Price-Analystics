@@ -77,8 +77,7 @@ class ViewController: UIViewController, UITextFieldDelegate, GIDSignInUIDelegate
             // tạo một hàm để kết nối đến api check username password, trả về Bool
             
             DispatchQueue.main.async(execute: { () -> Void in
-                
-//
+                self.showMainAppicationAfterSuccessfulLogin(sender)
             })
         })
     }
