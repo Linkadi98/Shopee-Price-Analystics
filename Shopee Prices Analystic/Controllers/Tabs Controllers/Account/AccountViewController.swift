@@ -25,16 +25,7 @@ class AccountViewController: UIViewController {
         if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
             accountName.text = currentUser.name!
 
-            DispatchQueue(label: "loadAvatar").async {
-                do {
-                    let data = try Data(contentsOf:URL(string: currentUser.image!)!)
-                    DispatchQueue.main.async {
-                        self.avatar.image = UIImage(data: data)
-                    }
-                } catch {
-                    print("Can't load Avatar!")
-                }
-            }
+            loadOnlineImage(from: URL(string: currentUser.image!)!, to: self.avatar)
         }
 
         print(GIDSignIn.sharedInstance()?.currentUser)

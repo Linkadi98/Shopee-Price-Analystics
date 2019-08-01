@@ -26,7 +26,7 @@ class AccountDetailTableViewController: UITableViewController {
     
     
     override func viewDidLoad() {
-         super.viewDidLoad()
+        super.viewDidLoad()
         
         getInfoOfAccount()
     }
@@ -35,10 +35,16 @@ class AccountDetailTableViewController: UITableViewController {
     
     @IBAction func logout(_ sender: Any) {
         print("logout")
-        if AccessToken.current != nil {
+        if UserDefaults.standard.string(forKey: "token") != nil {
+            // Delete token
+            UserDefaults.standard.removeObject(forKey: "token")
+            Configuration.HEADERS["Authorization"] = nil
+        }
+        else if AccessToken.current != nil {
             // Logout Fb
             LoginManager().logOut()
-        } else {
+        }
+        else {
             // Logout Gg
             GIDSignIn.sharedInstance()?.signOut()
         }
@@ -51,26 +57,10 @@ class AccountDetailTableViewController: UITableViewController {
     
     // MARK: - Private modifications
     private func getInfoOfAccount() {
-        var avatar: UIImage?
-        var userName: String?
-        var email: String?
-        var phoneNum: String?
-        var password: String?
-        
         if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
-            userName = currentUser.name!
+            userName.text = currentUser.name!
             
-            DispatchQueue(label: "loadAvatar").async {
-                do {
-                    let data = try Data(contentsOf:URL(string: currentUser.image!)!)
-                    avatar = UIImage(data: data)
-                    DispatchQueue.main.async {
-                        self.avatar.image = avatar
-                    }
-                } catch {
-                    print("Can't load Avatar!")
-                }
-            }
+            loadOnlineImage(from: URL(string: currentUser.image!)!, to: self.avatar)
         }
     }
     

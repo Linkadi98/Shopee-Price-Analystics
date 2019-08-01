@@ -36,7 +36,7 @@
 		24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EDDD6022D960C400D62704 /* TransitionButton.framework */; };
 		24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F661D422DC26C100440A7A /* TabsViewController.swift */; };
 		4F20B549B30EBD7B814F6C00 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */; };
-		BC43A5C322EAB2BB0008AD2C /* Convention.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC43A5C222EAB2BB0008AD2C /* Convention.swift */; };
+		BC43A5C322EAB2BB0008AD2C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC43A5C222EAB2BB0008AD2C /* Configuration.swift */; };
 		BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */; };
 		ECBD5A4F1636A373BD25EE80 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */; };
 /* End PBXBuildFile section */
@@ -101,7 +101,7 @@
 		74E8530B11AE49B116C3BD31 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.release.xcconfig"; sourceTree = "<group>"; };
 		78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_AnalysticTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_Analystic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC43A5C222EAB2BB0008AD2C /* Convention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convention.swift; sourceTree = "<group>"; };
+		BC43A5C222EAB2BB0008AD2C /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		C9B87D52B119D59B20D11F5D /* Pods-Shopee Prices Analystic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.debug.xcconfig"; sourceTree = "<group>"; };
 		FE070870C7935034BC4DBA32 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,7 +137,6 @@
 				2459135F22E2EF6600D51A4B /* EUIView.swift */,
 				2459136122E2F01600D51A4B /* EViewController.swift */,
 				2459136322E2F0FF00D51A4B /* EUIViewController.swift */,
-				BC43A5C222EAB2BB0008AD2C /* Convention.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +237,7 @@
 		2484174722D85D800009DF10 /* Shopee Prices Analystic */ = {
 			isa = PBXGroup;
 			children = (
+				BC0EB04022F1F14A00945580 /* Configuration */,
 				BC8D7D0222E6FAA800D224EC /* Cells */,
 				2484175422D85D810009DF10 /* Info.plist */,
 				24EAE55222DEF80700EB53F2 /* Custom Animations */,
@@ -305,6 +305,14 @@
 				78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC0EB04022F1F14A00945580 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				BC43A5C222EAB2BB0008AD2C /* Configuration.swift */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		BC8D7D0222E6FAA800D224EC /* Cells */ = {
@@ -560,7 +568,7 @@
 				2459136222E2F01600D51A4B /* EViewController.swift in Sources */,
 				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
 				2414C38822E69EE300B21DBA /* ChangeShopTableViewController.swift in Sources */,
-				BC43A5C322EAB2BB0008AD2C /* Convention.swift in Sources */,
+				BC43A5C322EAB2BB0008AD2C /* Configuration.swift in Sources */,
 				2484174922D85D800009DF10 /* AppDelegate.swift in Sources */,
 				2459135C22E2EF4D00D51A4B /* EUIButton.swift in Sources */,
 				241D5A7322E57A8C00CBA60C /* Account.swift in Sources */,

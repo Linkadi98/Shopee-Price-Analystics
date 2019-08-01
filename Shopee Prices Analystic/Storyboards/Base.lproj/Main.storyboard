@@ -914,9 +914,6 @@
                                                 <constraint firstItem="Oao-c0-uG3" firstAttribute="top" secondItem="8SJ-Zz-3ju" secondAttribute="top" constant="10" id="w63-b1-FvE"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="Xrc-51-9K3" kind="show" id="FIm-SB-BaM"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
