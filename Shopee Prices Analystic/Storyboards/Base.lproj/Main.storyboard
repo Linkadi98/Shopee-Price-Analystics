@@ -1200,128 +1200,41 @@
             </objects>
             <point key="canvasLocation" x="2500" y="466.99507389162562"/>
         </scene>
-        <!--Change Shop Table View Controller-->
+        <!--Cửa hàng-->
         <scene sceneID="Z7D-za-ktB">
             <objects>
                 <tableViewController id="Xrc-51-9K3" customClass="ChangeShopTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="5bN-IA-jI5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="5bN-IA-jI5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="aCc-p4-pmT">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3g-6I-sU4">
-                                    <rect key="frame" x="15" y="8" width="31" height="33"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <state key="normal" title="Huỷ"/>
-                                    <connections>
-                                        <segue destination="gIQ-FV-VWY" kind="unwind" unwindAction="unWindWithUnWindSegue:" id="vF4-ru-bVe"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="46s-0L-xHB">
-                                    <rect key="frame" x="346" y="8" width="53" height="33"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <state key="normal" title="Kết nối"/>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="x3g-6I-sU4" firstAttribute="leading" secondItem="aCc-p4-pmT" secondAttribute="leading" constant="15" id="Ctn-gJ-Ow8"/>
-                                <constraint firstAttribute="trailing" secondItem="46s-0L-xHB" secondAttribute="trailing" constant="15" id="DMI-js-3XQ"/>
-                                <constraint firstItem="x3g-6I-sU4" firstAttribute="top" secondItem="46s-0L-xHB" secondAttribute="top" id="XdC-gF-wC6"/>
-                                <constraint firstItem="46s-0L-xHB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="x3g-6I-sU4" secondAttribute="trailing" constant="8" symbolic="YES" id="d1g-ug-cNj"/>
-                                <constraint firstItem="x3g-6I-sU4" firstAttribute="top" secondItem="aCc-p4-pmT" secondAttribute="top" constant="8" id="u7u-7x-JFL"/>
-                            </constraints>
-                        </view>
-                        <sections>
-                            <tableViewSection footerTitle="Ngắt kết nối Shop hiện tại và chuyển sang Shop mới" id="9Sg-X1-EqE">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="ipl-ek-F1z">
-                                        <rect key="frame" x="0.0" y="44" width="414" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ipl-ek-F1z" id="uvv-B2-g5b">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopeelogo" translatesAutoresizingMaskIntoConstraints="NO" id="Hgn-3z-1GU">
-                                                    <rect key="frame" x="15" y="10" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="3cD-MN-Vah"/>
-                                                        <constraint firstAttribute="height" constant="30" id="hDu-DT-R43"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập tên Shop của bạn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZYP-Uj-Xd2">
-                                                    <rect key="frame" x="53" y="10" width="346" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="Kyz-ji-dBX"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="continue" textContentType="username"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ZYP-Uj-Xd2" secondAttribute="trailing" constant="15" id="Fai-oW-EaV"/>
-                                                <constraint firstItem="ZYP-Uj-Xd2" firstAttribute="leading" secondItem="Hgn-3z-1GU" secondAttribute="trailing" constant="8" id="JRO-4J-Ckj"/>
-                                                <constraint firstAttribute="bottom" secondItem="ZYP-Uj-Xd2" secondAttribute="bottom" constant="5" id="KdI-Mn-Aa0"/>
-                                                <constraint firstItem="Hgn-3z-1GU" firstAttribute="top" secondItem="uvv-B2-g5b" secondAttribute="top" constant="10" id="dke-eG-T9b"/>
-                                                <constraint firstItem="ZYP-Uj-Xd2" firstAttribute="top" secondItem="uvv-B2-g5b" secondAttribute="top" constant="10" id="fGD-mw-dVb"/>
-                                                <constraint firstAttribute="bottom" secondItem="Hgn-3z-1GU" secondAttribute="bottom" constant="5" id="hnP-Id-gdJ"/>
-                                                <constraint firstItem="Hgn-3z-1GU" firstAttribute="leading" secondItem="uvv-B2-g5b" secondAttribute="leading" constant="15" id="lYu-hv-gen"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="2jW-4O-iYA">
-                                        <rect key="frame" x="0.0" y="94" width="414" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2jW-4O-iYA" id="UL7-1j-xH7">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.666666666666664"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="pfN-2R-1Zd">
-                                                    <rect key="frame" x="15" y="10" width="30" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="O0r-4X-vS8"/>
-                                                        <constraint firstAttribute="height" constant="30" id="z4D-08-dzS"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập mật khẩu" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xVC-v9-yIi">
-                                                    <rect key="frame" x="53" y="10" width="346" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="ZD2-Xe-A2e"/>
-                                                    </constraints>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="xVC-v9-yIi" secondAttribute="trailing" constant="15" id="AZa-R5-vcb"/>
-                                                <constraint firstItem="xVC-v9-yIi" firstAttribute="leading" secondItem="pfN-2R-1Zd" secondAttribute="trailing" constant="8" id="Jit-Ir-ijP"/>
-                                                <constraint firstAttribute="bottom" secondItem="pfN-2R-1Zd" secondAttribute="bottom" constant="5" id="NaP-WG-b7j"/>
-                                                <constraint firstItem="pfN-2R-1Zd" firstAttribute="top" secondItem="UL7-1j-xH7" secondAttribute="top" constant="10" id="NxP-Wl-amX"/>
-                                                <constraint firstAttribute="bottom" secondItem="xVC-v9-yIi" secondAttribute="bottom" constant="5" id="Zze-IY-YGL"/>
-                                                <constraint firstItem="pfN-2R-1Zd" firstAttribute="leading" secondItem="UL7-1j-xH7" secondAttribute="leading" constant="15" id="cXd-Pz-tEF"/>
-                                                <constraint firstItem="xVC-v9-yIi" firstAttribute="top" secondItem="UL7-1j-xH7" secondAttribute="top" constant="10" id="uqV-Rt-6Wb"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="zB2-Re-PY0">
+                                <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zB2-Re-PY0" id="qyl-Te-rb9">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="Xrc-51-9K3" id="IN4-o7-SyU"/>
                             <outlet property="delegate" destination="Xrc-51-9K3" id="4lM-4D-F9a"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="password" destination="xVC-v9-yIi" id="y8f-OP-mMU"/>
-                        <outlet property="shopName" destination="ZYP-Uj-Xd2" id="YbT-im-dzN"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Cửa hàng" largeTitleDisplayMode="never" id="FGo-VG-H5N">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="wce-ix-maN">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SG1-29-cFk">
+                                <rect key="frame" x="369" y="9.6666666666666643" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="shopeelogo"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQn-Q1-9C2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="gIQ-FV-VWY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1514" y="2013"/>
         </scene>
@@ -1340,22 +1253,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2JF-ec-cG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1548" y="466.99507389162562"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="FdX-8O-8ex">
-            <objects>
-                <viewController id="Nks-3E-qF0" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fte-Gj-Md8">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.96654671430000005" green="0.25885298849999999" blue="0.14455756550000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="Ksj-zG-Vuz"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="recents" id="rPP-Ug-FfH"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ShD-I8-lLY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-904.79999999999995" y="-1261.3300492610838"/>
         </scene>
         <!--List Shops Table View Controller-->
         <scene sceneID="mt4-h4-AFC">
@@ -1403,7 +1300,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mql-7z-att" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2487" y="1035"/>
+            <point key="canvasLocation" x="-1545" y="1045"/>
         </scene>
         <!--Sản phẩm-->
         <scene sceneID="1DR-kv-JMn">
@@ -1422,29 +1319,13 @@
             </objects>
             <point key="canvasLocation" x="-526" y="467"/>
         </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="6bo-ZO-UAf">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="LsE-lN-mgQ" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IUp-04-ens">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="Nks-3E-qF0" kind="relationship" relationship="viewControllers" id="cJT-9B-QzX"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Njj-pn-kGJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1847.2" y="-1261.3300492610838"/>
-        </scene>
         <!--Tabs View Controller-->
         <scene sceneID="qrV-mN-kb1">
             <objects>
                 <tabBarController storyboardIdentifier="TabsViewController" automaticallyAdjustsScrollViewInsets="NO" id="96h-N9-J5v" customClass="TabsViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LlP-wz-Tao">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -1473,7 +1354,7 @@
         <image name="price" width="16.666666030883789" height="16.666666030883789"/>
         <image name="product" width="17.333333969116211" height="17.333333969116211"/>
         <image name="rival" width="16.666666030883789" height="16.666666030883789"/>
-        <image name="shopeelogo" width="16.666666030883789" height="23.333333969116211"/>
+        <image name="shopeelogo" width="16.666666030883789" height="16.666666030883789"/>
         <image name="shoppingImage" width="1440" height="1169"/>
         <image name="username" width="16.666666030883789" height="16.666666030883789"/>
     </resources>
