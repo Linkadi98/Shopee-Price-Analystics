@@ -10,6 +10,7 @@ import UIKit
 import NotificationBannerSwift
 import FBSDKLoginKit
 import GoogleSignIn
+import FacebookLogin
 
 extension UIViewController {
     
@@ -68,7 +69,7 @@ extension UIViewController {
     // Đăng nhập fb và lưu dữ liệu tài khoản fb
     // Chỉ được gọi khi đăng nhập mới, ko được gọi nếu nhớ tài khoản
     func loginFb() {
-        LoginManager().logIn(permissions: [.publicProfile, .email], viewController: self) { (loginResult) in
+        LoginManager().logIn(permissions: [.publicProfile, .email], viewController: self) { loginResult in
             switch loginResult {
             case .failed(let error):
                 print(error)
