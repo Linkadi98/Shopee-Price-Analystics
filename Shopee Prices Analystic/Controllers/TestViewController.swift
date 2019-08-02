@@ -1,23 +1,22 @@
 //
-//  TabsViewController.swift
+//  TestViewController.swift
 //  Shopee Prices Analystic
 //
-//  Created by Minh Pham on 7/15/19.
+//  Created by Minh Pham on 8/2/19.
 //  Copyright © 2019 SAPO. All rights reserved.
 //
 
 import UIKit
-import SwipeableTabBarController
 
-class TabsViewController: SwipeableTabBarController {
+class TestViewController: UIViewController {
 
-    // MARK: - Properties
-    
+    @IBOutlet weak var container: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        container.bottomAnchor.constraint(equalTo: (tabBarController?.tabBar.bottomAnchor)!).isActive = true
         // Do any additional setup after loading the view.
-        
     }
+    
 
     /*
     // MARK: - Navigation

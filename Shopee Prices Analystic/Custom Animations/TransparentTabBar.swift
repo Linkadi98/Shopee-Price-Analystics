@@ -17,6 +17,7 @@ class TransparentTabBar: UITabBar {
         frost.autoresizingMask = .flexibleWidth
         insertSubview(frost, at: 0)
     }
+
     
     /*
     // Only override draw() if you perform custom drawing.

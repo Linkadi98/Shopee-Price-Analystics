@@ -25,6 +25,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate {
         self.navigationItem.searchController = searchBarController
         navigationItem.hidesSearchBarWhenScrolling = false
         
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tabBarController?.tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
     // MARK: - Table view data source
