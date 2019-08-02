@@ -10,6 +10,7 @@
 		24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */; };
 		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
 		24120F4022E074B6000FA0B7 /* EUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* EUITextField.swift */; };
+		2412CB4622F3F16F0067BE46 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412CB4522F3F16F0067BE46 /* TestViewController.swift */; };
 		2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414701322DAF58C000FB6D5 /* RegisterViewController.swift */; };
 		2414C38822E69EE300B21DBA /* ChangeShopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */; };
 		2416494622E1768900B80DBC /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494522E1768900B80DBC /* ProductsTableViewController.swift */; };
@@ -68,6 +69,7 @@
 		24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopsTableViewController.swift; sourceTree = "<group>"; };
 		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		24120F3F22E074B6000FA0B7 /* EUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUITextField.swift; sourceTree = "<group>"; };
+		2412CB4522F3F16F0067BE46 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		2414701322DAF58C000FB6D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeShopTableViewController.swift; sourceTree = "<group>"; };
 		2416494522E1768900B80DBC /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 			children = (
 				2459135622E2BFF300D51A4B /* Login and Register */,
 				24F661D322DC26A600440A7A /* Tabs Controllers */,
+				2412CB4522F3F16F0067BE46 /* TestViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				2459135E22E2EF5B00D51A4B /* EUITableView.swift in Sources */,
 				24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
+				2412CB4622F3F16F0067BE46 /* TestViewController.swift in Sources */,
 				BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
 				2416494622E1768900B80DBC /* ProductsTableViewController.swift in Sources */,

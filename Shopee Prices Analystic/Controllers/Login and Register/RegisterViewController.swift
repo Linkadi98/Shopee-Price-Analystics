@@ -73,7 +73,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Text Configs
     @IBAction func userNameEditingChanged(_ sender: Any) {
         if !userName.isValidUserNameRegister() {
-            userNameHint.text = "Tên đăng nhập phải có ít nhất 6 kí tự, không chứa dấu cách"
+            userNameHint.text = "Tên đăng nhập viết liền không dấu, ít nhất 6 ký tự"
         }
         else {
             userNameHint.text = nil
