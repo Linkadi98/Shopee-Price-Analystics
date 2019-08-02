@@ -611,28 +611,35 @@
                                                     <constraint firstItem="39D-Dx-UDy" firstAttribute="top" secondItem="DJO-9n-C32" secondAttribute="top" constant="8" id="zKi-vS-GSi"/>
                                                 </constraints>
                                             </view>
-                                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-zk-Lgr">
-                                                <rect key="frame" x="8" y="424" width="398" height="310"/>
-                                                <connections>
-                                                    <segue destination="Wt5-HU-IS6" kind="embed" id="BgZ-gu-0xk"/>
-                                                </connections>
-                                            </containerView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCu-wm-Gvs">
+                                                <rect key="frame" x="8" y="416" width="398" height="275"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mô tả: Đây là cửa hàng tên Shop123" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9TA-tu-MEj">
+                                                        <rect key="frame" x="8" y="8" width="275" height="21"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="DJO-9n-C32" firstAttribute="top" secondItem="FbN-uv-2eG" secondAttribute="top" constant="10" id="BKj-dC-dWj"/>
-                                            <constraint firstItem="ikb-zk-Lgr" firstAttribute="leading" secondItem="FbN-uv-2eG" secondAttribute="leading" constant="8" id="M0q-tu-DtD"/>
-                                            <constraint firstAttribute="trailing" secondItem="ikb-zk-Lgr" secondAttribute="trailing" constant="8" id="OXY-Uy-frl"/>
+                                            <constraint firstAttribute="bottom" secondItem="pCu-wm-Gvs" secondAttribute="bottom" id="I0h-GD-Oh8"/>
+                                            <constraint firstItem="pCu-wm-Gvs" firstAttribute="leading" secondItem="FbN-uv-2eG" secondAttribute="leading" constant="8" id="die-3i-Eal"/>
                                             <constraint firstItem="DJO-9n-C32" firstAttribute="leading" secondItem="FbN-uv-2eG" secondAttribute="leading" constant="8" id="gkS-09-rbN"/>
                                             <constraint firstAttribute="trailing" secondItem="DJO-9n-C32" secondAttribute="trailing" constant="8" id="hKD-qb-vVD"/>
                                             <constraint firstAttribute="bottom" secondItem="DJO-9n-C32" secondAttribute="bottom" constant="283" id="kDZ-Zu-et4"/>
-                                            <constraint firstItem="ikb-zk-Lgr" firstAttribute="top" secondItem="DJO-9n-C32" secondAttribute="bottom" constant="16" id="xhE-8J-peB"/>
+                                            <constraint firstAttribute="trailing" secondItem="pCu-wm-Gvs" secondAttribute="trailing" constant="8" id="oQw-SZ-SjH"/>
+                                            <constraint firstItem="pCu-wm-Gvs" firstAttribute="top" secondItem="DJO-9n-C32" secondAttribute="bottom" constant="8" id="xSR-eq-Fms"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="FbN-uv-2eG" secondAttribute="trailing" id="3pT-4Q-qVN"/>
-                                    <constraint firstAttribute="bottom" secondItem="ikb-zk-Lgr" secondAttribute="bottom" constant="6" id="M4n-BW-jas"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="FbN-uv-2eG" secondAttribute="bottom" constant="-8" id="Oni-8W-zxc"/>
                                     <constraint firstItem="FbN-uv-2eG" firstAttribute="centerX" secondItem="8NM-vr-skt" secondAttribute="centerX" id="RM4-d2-VSx"/>
                                     <constraint firstItem="FbN-uv-2eG" firstAttribute="leading" secondItem="8NM-vr-skt" secondAttribute="leading" id="T7V-8v-VIk"/>
@@ -640,33 +647,18 @@
                                     <constraint firstItem="FbN-uv-2eG" firstAttribute="top" secondItem="8NM-vr-skt" secondAttribute="top" id="teR-Rp-7b4"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s74-fV-cmK">
-                                <rect key="frame" x="359" y="64" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="LIB-8S-RKU"/>
-                                    <constraint firstAttribute="height" constant="40" id="fOW-U1-VHW"/>
-                                </constraints>
-                                <state key="normal" image="shopeelogo"/>
-                                <connections>
-                                    <action selector="displayListOfShop:" destination="FVA-zW-D8a" eventType="touchUpInside" id="NUg-dA-glL"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.94357341610000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="GNI-CC-jgi" firstAttribute="trailing" secondItem="8NM-vr-skt" secondAttribute="trailing" id="7t7-Hf-nf9"/>
                             <constraint firstItem="QQA-p7-TyM" firstAttribute="top" secondItem="GNI-CC-jgi" secondAttribute="top" constant="20" id="8SL-Oz-8oY"/>
                             <constraint firstItem="8NM-vr-skt" firstAttribute="top" secondItem="stT-mY-WoH" secondAttribute="bottom" constant="8" id="8Ta-sw-7wI"/>
-                            <constraint firstItem="s74-fV-cmK" firstAttribute="top" secondItem="GNI-CC-jgi" secondAttribute="top" constant="20" id="BIr-te-1E7"/>
-                            <constraint firstItem="s74-fV-cmK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iEH-8u-CtL" secondAttribute="trailing" constant="8" symbolic="YES" id="Drg-7O-Gqm"/>
                             <constraint firstItem="stT-mY-WoH" firstAttribute="top" secondItem="QQA-p7-TyM" secondAttribute="bottom" constant="8" id="MS5-Ow-E9Z"/>
                             <constraint firstItem="QQA-p7-TyM" firstAttribute="leading" secondItem="GNI-CC-jgi" secondAttribute="leading" constant="15" id="Q0E-OU-nmu"/>
                             <constraint firstItem="stT-mY-WoH" firstAttribute="leading" secondItem="GNI-CC-jgi" secondAttribute="leading" constant="15" id="bCU-jQ-bdA"/>
                             <constraint firstItem="GNI-CC-jgi" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="stT-mY-WoH" secondAttribute="trailing" symbolic="YES" id="eZc-cO-D2m"/>
                             <constraint firstItem="8NM-vr-skt" firstAttribute="leading" secondItem="GNI-CC-jgi" secondAttribute="leading" id="jcP-uU-6pq"/>
                             <constraint firstItem="GNI-CC-jgi" firstAttribute="bottom" secondItem="8NM-vr-skt" secondAttribute="bottom" constant="-49" id="ooj-ak-rZj"/>
-                            <constraint firstItem="s74-fV-cmK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="39D-Dx-UDy" secondAttribute="trailing" constant="8" symbolic="YES" id="pDo-Tb-eZV"/>
-                            <constraint firstItem="GNI-CC-jgi" firstAttribute="trailing" secondItem="s74-fV-cmK" secondAttribute="trailing" constant="15" id="pw5-Vh-sIz"/>
                             <constraint firstItem="GNI-CC-jgi" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QQA-p7-TyM" secondAttribute="trailing" symbolic="YES" id="wLy-lp-kIR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GNI-CC-jgi"/>
@@ -674,9 +666,10 @@
                     <tabBarItem key="tabBarItem" title="Tổng quan" image="overview" id="PPb-dR-3Ts"/>
                     <connections>
                         <outlet property="backgroundImage" destination="d9v-O5-B8K" id="FzV-g1-x80"/>
-                        <outlet property="containTableView" destination="ikb-zk-Lgr" id="EZV-2e-h6V"/>
                         <outlet property="parentView" destination="FbN-uv-2eG" id="4Mp-qC-0d2"/>
                         <outlet property="scrollView" destination="8NM-vr-skt" id="bme-48-lCh"/>
+                        <outlet property="shopId" destination="iEH-8u-CtL" id="bNd-cI-6XU"/>
+                        <outlet property="shopName" destination="39D-Dx-UDy" id="z8z-Ac-NOA"/>
                         <outlet property="subView" destination="DJO-9n-C32" id="p0s-E8-u8q"/>
                         <outlet property="superParentView" destination="MAT-kP-gJe" id="Es3-W1-E6P"/>
                         <outlet property="timeLabel" destination="QQA-p7-TyM" id="cWM-hE-T4l"/>
@@ -684,7 +677,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YzQ-v1-da0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1544.8" y="466.99507389162562"/>
+            <point key="canvasLocation" x="-1544.9275362318842" y="466.74107142857139"/>
         </scene>
         <!--Danh sách sản phẩm-->
         <scene sceneID="ez0-KY-TX2">
@@ -1262,15 +1255,15 @@
             <objects>
                 <tableViewController id="Wt5-HU-IS6" customClass="ListShopsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="OxA-H4-bSd">
-                        <rect key="frame" x="0.0" y="0.0" width="398" height="310"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="XbF-Eu-pNd" detailTextLabel="w2D-sE-DiN" style="IBUITableViewCellStyleSubtitle" id="Fz1-T0-7M5">
-                                <rect key="frame" x="0.0" y="28" width="398" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fz1-T0-7M5" id="bEl-Dc-yzg">
-                                    <rect key="frame" x="0.0" y="0.0" width="398" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XbF-Eu-pNd">
@@ -1303,7 +1296,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mql-7z-att" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1545" y="1045"/>
+            <point key="canvasLocation" x="-1545" y="1207"/>
         </scene>
         <!--Sản phẩm-->
         <scene sceneID="1DR-kv-JMn">
@@ -1364,4 +1357,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="RkF-o4-BwC"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

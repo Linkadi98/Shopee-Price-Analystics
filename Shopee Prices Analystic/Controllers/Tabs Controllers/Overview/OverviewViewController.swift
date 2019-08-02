@@ -19,25 +19,23 @@ class OverviewViewController: UIViewController {
             backgroundImage.layer.cornerRadius = 10
         }
     }
+    
+    
+    @IBOutlet weak var shopName: UILabel!
+    @IBOutlet weak var shopId: UILabel!
     @IBOutlet weak var timeLabel: MarqueeLabel!
-
-    @IBOutlet weak var containTableView: UIView!
     @IBOutlet var superParentView: UIView!
     @IBOutlet var parentView: UIView!
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
 
-    @IBOutlet weak var viewAccount: UIButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         subView.layer.cornerRadius = 10
         subView.setShadow()
-        
-        
         superParentView.setBlurEffect()
-        containTableView.setShadow()
         
         timeLabel.text = setTime()
         
@@ -54,10 +52,7 @@ class OverviewViewController: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction func displayListOfShop(_ sender: Any) {
-        print("Shopee list")
-    }
-    
+       
     // MARK: - Private modifications
     private func setTime() -> String {
         let date = Date()
