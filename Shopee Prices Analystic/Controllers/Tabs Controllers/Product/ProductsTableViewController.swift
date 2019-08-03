@@ -8,24 +8,24 @@
 
 import UIKit
 
-class ProductsTableViewController: UITableViewController, UISearchBarDelegate {
+class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
     // MARK: - Properties
    
     
     var products: [Product] = []
-    
-
+    var filterProducts =  [Product]()
+    var searchController: UISearchController!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         products = prepareProducts()
         
-        let searchBarController = UISearchController(searchResultsController: nil)
-        self.navigationItem.searchController = searchBarController
+        searchController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        
+        setupSearchController(for: searchController, placeholder: "Nhập tên sản phẩm")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,20 +41,24 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        print(products.count)
+        if isFiltering(searchController) {
+            return filterProducts.count
+        }
         return products.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
+        let product: Product
+        if isFiltering(searchController) {
+            product = filterProducts[indexPath.row]
+        }
+        else {
+            product = products[indexPath.row]
+        }
         
-        let product: Product = products[indexPath.row]
-//        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "categoryCell")
-        cell.productNameLabel.text = "\(product.name!)\(indexPath.row)"
-//        cell.productDescLabel.text = product.description
-        // Configure the cell...
-
-        cell.cosmos.rating = 5.0
+        cell.productNameLabel.text = "\(product.name!)"
+        cell.cosmos.rating = product.rating!
         print("\(product.name!)\(indexPath.row)")
         return cell
     }
@@ -67,9 +71,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate {
  
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ProductTableViewCell else {
-            return
-        }
         
         print(indexPath.row)
         let subView = UIView()
@@ -80,15 +81,25 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate {
         })
     }
 
-    // MARK: - Acctions
-    
+    // MARK: - Search Actions
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
+            filterProducts = products.filter({(product: Product) -> Bool in
+                return product.name!.lowercased().contains(searchText.lowercased())
+            })
+        }
+    }
     
     // MARK: - Private modifications
     
     private func prepareProducts() -> [Product] {
         var list: [Product] = []
-        for _ in 0...20 {
+        for _ in 0...10 {
             list.append(Product(name: "Giày", description: "Giày adidas superfake", price: 130000, rating: 5))
+        }
+        
+        for _ in 0...10 {
+            list.append(Product(name: "Ultra boost", description: "Giày adidas superfake", price: 130000, rating: 4.2))
         }
         return list
     }
