@@ -29,6 +29,7 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
 
+    @IBOutlet weak var descriptionView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,7 @@ class OverviewViewController: UIViewController {
         superParentView.setBlurEffect()
         
         timeLabel.text = setTime()
+        descriptionView.setShadow()
         
     }
     
