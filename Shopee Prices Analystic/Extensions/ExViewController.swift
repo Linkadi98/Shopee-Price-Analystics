@@ -50,13 +50,13 @@ extension ViewController {
 // Login by SPA Account
 extension ViewController {
     func login(username: String, password: String) {
-        let url = URL(string: Configuration.BASE_URL + Configuration.LOGIN_PATH)!
+        let url = URL(string: Config.BASE_URL + Config.LOGIN_PATH)!
         let parameters: Parameters = [
             "username" : username,
             "password" : password
         ]
 
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Configuration.HEADERS).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
                 // TO BE DONE
                 print("Error when fetching data: \(response.result.error)")
@@ -66,7 +66,7 @@ extension ViewController {
             let responseValue = response.result.value! as! [String: Any]
             let token = responseValue["token"] as! String
             UserDefaults.standard.set(token, forKey: "token")
-            Configuration.HEADERS["Authorization"] = token
+            Config.HEADERS["Authorization"] = token
 
             // Screen movement
             self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")        

@@ -38,7 +38,7 @@ class AccountDetailTableViewController: UITableViewController {
         if UserDefaults.standard.string(forKey: "token") != nil {
             // Delete token
             UserDefaults.standard.removeObject(forKey: "token")
-            Configuration.HEADERS["Authorization"] = nil
+            Config.HEADERS["Authorization"] = nil
         }
         else if AccessToken.current != nil {
             // Logout Fb

@@ -51,9 +51,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
-        
         configIconTextField(for: userName, icon: #imageLiteral(resourceName: "user"))
         configIconTextField(for: email, icon: #imageLiteral(resourceName: "email"))
         configIconTextField(for: password, icon: #imageLiteral(resourceName: "password"))
@@ -129,6 +126,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func loginByGg(_ sender: Any) {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.signIn()
     }
     
@@ -190,7 +189,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 // Register
 extension RegisterViewController {
     func register(phone: String, email: String, username: String, password: String) {
-        let url = URL(string: Configuration.BASE_URL + Configuration.REGISTER_PATH)!
+        let url = URL(string: Config.BASE_URL + Config.REGISTER_PATH)!
         let parameters: Parameters = [
             "phone": phone,
             "email": email,
@@ -198,7 +197,7 @@ extension RegisterViewController {
             "password" : password
         ]
 
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Configuration.HEADERS).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
                 // TO BE DONE
                 print("Error when fetching data: \(response.result.error)")
@@ -208,7 +207,7 @@ extension RegisterViewController {
             let responseValue = response.result.value! as! [String: Any]
             let token = responseValue["token"] as! String
             UserDefaults.standard.set(token, forKey: "token")
-            Configuration.HEADERS["Authorization"] = token
+            Config.HEADERS["Authorization"] = token
 
             // Screen movement
             self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")        }
