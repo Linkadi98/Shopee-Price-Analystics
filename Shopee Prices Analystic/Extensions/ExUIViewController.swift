@@ -9,6 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 import FBSDKLoginKit
+import FacebookLogin
 import GoogleSignIn
 import FacebookLogin
 
@@ -93,6 +94,7 @@ extension UIViewController {
             let name = fbDictionary["name"] as! String
             //            let email = fbDictionary["email"] as! String
 
+            print(id)
             let currentUser = User(name: name, image: "https://graph.facebook.com/\(id)/picture?type=large")
 
             // lưu currentUser trong UserDefaults
@@ -114,7 +116,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         } else {
             getGgUserData(of: user) // Lưu dữ liệu tài khoản Gg
             
-            print("Login Google in RegisterVC.")
+            print("Login Google in \(type(of: self)).")
 
             // Screen movement
             self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
@@ -132,7 +134,8 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     // Lấy dữ liệu tài khoản Google và lưu vào UserDefaults
     func getGgUserData(of user: GIDGoogleUser!) {
         // Perform any operations on signed in user here.
-        //            let userId = user.userID                  // For client-side use only!
+        let userId = user.userID                  // For client-side use only!
+        print(userId!)
         //            let idToken = user.authentication.idToken // Safe to send to the server
         let fullName = user.profile.name
         //            let givenName = user.profile.givenName
@@ -150,6 +153,22 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 
         if let encoded = try? JSONEncoder().encode(currentUser) {
             UserDefaults.standard.set(encoded, forKey: "currentUser")
+        }
+    }
+}
+
+// Load online image
+extension UIViewController {
+    func loadOnlineImage(from url: URL, to uiImageView: UIImageView) {
+        DispatchQueue(label: "loadImage").async {
+            do {
+                let data = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    uiImageView.image = UIImage(data: data)
+                }
+            } catch {
+                print("Can't load Image!")
+            }
         }
     }
 }

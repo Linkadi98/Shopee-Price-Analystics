@@ -119,7 +119,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     // Register SPA account
     @IBAction func register(_ sender: Any) {
-        register(name: userName.text!, email: email.text!, username: userName.text!, password: password.text!)
+//        self.register(phone: phone.text!, email: email.text!, username: userName.text!, password: password.text!)
 
         self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
     }
@@ -189,28 +189,29 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
 // Register
 extension RegisterViewController {
-    func register(name: String, email: String, username: String, password: String) {
-        let convention = Convention()
-        let url = URL(string: convention.baseUrlString + convention.registerPathString)!
+    func register(phone: String, email: String, username: String, password: String) {
+        let url = URL(string: Configuration.BASE_URL + Configuration.REGISTER_PATH)!
         let parameters: Parameters = [
-            "name": name,
+            "phone": phone,
             "email": email,
             "username" : username,
             "password" : password
         ]
 
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: convention.headers).responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Configuration.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
+                // TO BE DONE
                 print("Error when fetching data: \(response.result.error)")
                 return
             }
 
             let responseValue = response.result.value! as! [String: Any]
-            if let token = responseValue["token"] as? String {
-                print(token)
-                convention.saveToken(token: token)
-            }
-        }
+            let token = responseValue["token"] as! String
+            UserDefaults.standard.set(token, forKey: "token")
+            Configuration.HEADERS["Authorization"] = token
+
+            // Screen movement
+            self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")        }
     }
 
 }
