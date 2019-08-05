@@ -40,19 +40,4 @@ class AccountTableViewController: UITableViewController {
     
 }
 
-extension AccountTableViewController {
-    func connectShop() {
-        let url = URL(string: " http://192.168.36.28:8081/shopee")!
 
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: Configuration.HEADERS).responseString { (response) in
-            print(response.result)
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                return
-            }
-
-            let redirectUrl = URL(string: response.result.value!)!
-            UIApplication.shared.open(redirectUrl)
-        }
-    }
-}
