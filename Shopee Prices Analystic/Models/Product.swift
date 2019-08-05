@@ -13,4 +13,13 @@ struct Product {
     var description: String?
     var price: Int?
     var rating: Double?
+    
+    func convertPriceToVietnameseCurrency() -> String? {
+        let formatter = NumberFormatter()
+        let priceInVietNam = price as NSNumber?
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "vi_VN")
+        print(formatter.string(from: priceInVietNam!)!)
+        return formatter.string(from: priceInVietNam!)
+    }
 }

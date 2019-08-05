@@ -59,7 +59,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         cell.productNameLabel.text = "\(product.name!)"
         cell.cosmos.rating = product.rating!
-        print("\(product.name!)\(indexPath.row)")
+        cell.productPrice.text = product.convertPriceToVietnameseCurrency()
+        
+        
         return cell
     }
     
@@ -67,18 +69,19 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
+        
     }
  
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print(indexPath.row)
-        let subView = UIView()
-        subView.alpha = 0
-        UIView.animate(withDuration: 0.35, animations: {
-            subView.alpha = 1
-            self.view.addSubview(subView)
-        })
+        let product: Product
+        if isFiltering(searchController) {
+            product = filterProducts[indexPath.row]
+        }
+        else {
+            product = products[indexPath.row]
+        }
+        performSegue(withIdentifier: "DetailSegue", sender: product)
     }
 
     // MARK: - Search Actions
@@ -90,16 +93,33 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
     }
     
+    // MARK: - Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let product = sender as? Product else {
+            return
+        }
+        
+        if segue.identifier == "DetailSegue" {
+            let vc = segue.destination as! ProductDetailViewController
+            print("abc")
+            vc.product = product
+            vc.priceForPassing = product.convertPriceToVietnameseCurrency()
+            vc.ratingForPassing = product.rating
+            vc.ratingInNumberStyleForPassing = "\(product.rating!)/5.0"
+        }
+    }
+    
     // MARK: - Private modifications
     
     private func prepareProducts() -> [Product] {
         var list: [Product] = []
         for _ in 0...10 {
-            list.append(Product(name: "Giày", description: "Giày adidas superfake", price: 130000, rating: 5))
+            list.append(Product(name: "Giày", description: "Giày adidas superfake", price: 140000, rating: 5))
         }
         
         for _ in 0...10 {
-            list.append(Product(name: "Ultra boost", description: "Giày adidas superfake", price: 130000, rating: 4.2))
+            list.append(Product(name: "Ultra boost", description: "Giày adidas superfake", price: 1300000, rating: 4.2))
         }
         return list
     }
