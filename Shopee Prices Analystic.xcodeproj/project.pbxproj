@@ -7,22 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */; };
 		24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */; };
 		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
-		24120F4022E074B6000FA0B7 /* EUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* EUITextField.swift */; };
+		24120F4022E074B6000FA0B7 /* ExUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* ExUITextField.swift */; };
 		2412CB4622F3F16F0067BE46 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412CB4522F3F16F0067BE46 /* TestViewController.swift */; };
 		2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414701322DAF58C000FB6D5 /* RegisterViewController.swift */; };
-		2414C38822E69EE300B21DBA /* ChangeShopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */; };
 		2416494622E1768900B80DBC /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494522E1768900B80DBC /* ProductsTableViewController.swift */; };
 		2416494822E1770E00B80DBC /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494722E1770E00B80DBC /* Product.swift */; };
 		2416494A22E19F5600B80DBC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494922E19F5600B80DBC /* Animator.swift */; };
 		241D5A7322E57A8C00CBA60C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5A7222E57A8C00CBA60C /* Account.swift */; };
+		242C4FA522F577EE007D4903 /* ExUIAlerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C4FA422F577EE007D4903 /* ExUIAlerController.swift */; };
 		2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */; };
-		2459135C22E2EF4D00D51A4B /* EUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135B22E2EF4D00D51A4B /* EUIButton.swift */; };
-		2459135E22E2EF5B00D51A4B /* EUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135D22E2EF5B00D51A4B /* EUITableView.swift */; };
-		2459136022E2EF6600D51A4B /* EUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135F22E2EF6600D51A4B /* EUIView.swift */; };
-		2459136222E2F01600D51A4B /* EViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136122E2F01600D51A4B /* EViewController.swift */; };
-		2459136422E2F0FF00D51A4B /* EUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136322E2F0FF00D51A4B /* EUIViewController.swift */; };
+		2459135C22E2EF4D00D51A4B /* ExUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135B22E2EF4D00D51A4B /* ExUIButton.swift */; };
+		2459135E22E2EF5B00D51A4B /* ExUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135D22E2EF5B00D51A4B /* ExUITableView.swift */; };
+		2459136022E2EF6600D51A4B /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135F22E2EF6600D51A4B /* ExUIView.swift */; };
+		2459136222E2F01600D51A4B /* ExViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136122E2F01600D51A4B /* ExViewController.swift */; };
+		2459136422E2F0FF00D51A4B /* ExUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136322E2F0FF00D51A4B /* ExUIViewController.swift */; };
 		2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */; };
 		2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65322DDC29200DA6D8E /* AccountViewController.swift */; };
 		2478C65722DDD50D00DA6D8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65622DDD50D00DA6D8E /* User.swift */; };
@@ -66,22 +67,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
 		24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopsTableViewController.swift; sourceTree = "<group>"; };
 		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
-		24120F3F22E074B6000FA0B7 /* EUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUITextField.swift; sourceTree = "<group>"; };
+		24120F3F22E074B6000FA0B7 /* ExUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUITextField.swift; sourceTree = "<group>"; };
 		2412CB4522F3F16F0067BE46 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		2414701322DAF58C000FB6D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeShopTableViewController.swift; sourceTree = "<group>"; };
 		2416494522E1768900B80DBC /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		2416494722E1770E00B80DBC /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		2416494922E19F5600B80DBC /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		241D5A7222E57A8C00CBA60C /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		242C4FA422F577EE007D4903 /* ExUIAlerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIAlerController.swift; sourceTree = "<group>"; };
 		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
-		2459135B22E2EF4D00D51A4B /* EUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUIButton.swift; sourceTree = "<group>"; };
-		2459135D22E2EF5B00D51A4B /* EUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUITableView.swift; sourceTree = "<group>"; };
-		2459135F22E2EF6600D51A4B /* EUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUIView.swift; sourceTree = "<group>"; };
-		2459136122E2F01600D51A4B /* EViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EViewController.swift; sourceTree = "<group>"; };
-		2459136322E2F0FF00D51A4B /* EUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EUIViewController.swift; sourceTree = "<group>"; };
+		2459135B22E2EF4D00D51A4B /* ExUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIButton.swift; sourceTree = "<group>"; };
+		2459135D22E2EF5B00D51A4B /* ExUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUITableView.swift; sourceTree = "<group>"; };
+		2459135F22E2EF6600D51A4B /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
+		2459136122E2F01600D51A4B /* ExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExViewController.swift; sourceTree = "<group>"; };
+		2459136322E2F0FF00D51A4B /* ExUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIViewController.swift; sourceTree = "<group>"; };
 		2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		2478C65322DDC29200DA6D8E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		2478C65622DDD50D00DA6D8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -133,21 +135,29 @@
 		24120F3E22E07491000FA0B7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				24120F3F22E074B6000FA0B7 /* EUITextField.swift */,
-				2459135B22E2EF4D00D51A4B /* EUIButton.swift */,
-				2459135D22E2EF5B00D51A4B /* EUITableView.swift */,
-				2459135F22E2EF6600D51A4B /* EUIView.swift */,
-				2459136122E2F01600D51A4B /* EViewController.swift */,
-				2459136322E2F0FF00D51A4B /* EUIViewController.swift */,
+				24120F3F22E074B6000FA0B7 /* ExUITextField.swift */,
+				2459135B22E2EF4D00D51A4B /* ExUIButton.swift */,
+				2459135D22E2EF5B00D51A4B /* ExUITableView.swift */,
+				2459135F22E2EF6600D51A4B /* ExUIView.swift */,
+				2459136122E2F01600D51A4B /* ExViewController.swift */,
+				2459136322E2F0FF00D51A4B /* ExUIViewController.swift */,
+				BC43A5C222EAB2BB0008AD2C /* Convention.swift */,
+				242C4FA422F577EE007D4903 /* ExUIAlerController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		242C4FA622F5786C007D4903 /* Custom components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom components";
 			sourceTree = "<group>";
 		};
 		2459135222E2BF8600D51A4B /* Overview */ = {
 			isa = PBXGroup;
 			children = (
 				2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */,
-				24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -157,8 +167,8 @@
 			children = (
 				2478C65322DDC29200DA6D8E /* AccountViewController.swift */,
 				24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */,
-				2414C38722E69EE300B21DBA /* ChangeShopTableViewController.swift */,
 				2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */,
+				24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -239,7 +249,7 @@
 		2484174722D85D800009DF10 /* Shopee Prices Analystic */ = {
 			isa = PBXGroup;
 			children = (
-				BC0EB04022F1F14A00945580 /* Configuration */,
+				242C4FA622F5786C007D4903 /* Custom components */,
 				BC8D7D0222E6FAA800D224EC /* Cells */,
 				2484175422D85D810009DF10 /* Info.plist */,
 				24EAE55222DEF80700EB53F2 /* Custom Animations */,
@@ -322,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */,
+				2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -568,29 +579,30 @@
 			files = (
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
 				2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */,
-				2459136222E2F01600D51A4B /* EViewController.swift in Sources */,
+				2459136222E2F01600D51A4B /* ExViewController.swift in Sources */,
 				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
-				2414C38822E69EE300B21DBA /* ChangeShopTableViewController.swift in Sources */,
-				BC43A5C322EAB2BB0008AD2C /* Configuration.swift in Sources */,
+				BC43A5C322EAB2BB0008AD2C /* Convention.swift in Sources */,
 				2484174922D85D800009DF10 /* AppDelegate.swift in Sources */,
-				2459135C22E2EF4D00D51A4B /* EUIButton.swift in Sources */,
+				2459135C22E2EF4D00D51A4B /* ExUIButton.swift in Sources */,
 				241D5A7322E57A8C00CBA60C /* Account.swift in Sources */,
 				24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */,
 				2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */,
-				24120F4022E074B6000FA0B7 /* EUITextField.swift in Sources */,
+				24120F4022E074B6000FA0B7 /* ExUITextField.swift in Sources */,
 				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
 				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
-				2459135E22E2EF5B00D51A4B /* EUITableView.swift in Sources */,
+				2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */,
+				2459135E22E2EF5B00D51A4B /* ExUITableView.swift in Sources */,
+				242C4FA522F577EE007D4903 /* ExUIAlerController.swift in Sources */,
 				24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
 				2412CB4622F3F16F0067BE46 /* TestViewController.swift in Sources */,
 				BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
 				2416494622E1768900B80DBC /* ProductsTableViewController.swift in Sources */,
-				2459136422E2F0FF00D51A4B /* EUIViewController.swift in Sources */,
+				2459136422E2F0FF00D51A4B /* ExUIViewController.swift in Sources */,
 				2416494A22E19F5600B80DBC /* Animator.swift in Sources */,
-				2459136022E2EF6600D51A4B /* EUIView.swift in Sources */,
+				2459136022E2EF6600D51A4B /* ExUIView.swift in Sources */,
 				2416494822E1770E00B80DBC /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
