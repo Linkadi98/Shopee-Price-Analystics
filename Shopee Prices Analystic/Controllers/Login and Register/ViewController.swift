@@ -34,11 +34,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
         hideKeyboardWhenTappedAround()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        GIDSignIn.sharedInstance().uiDelegate = self
-        GIDSignIn.sharedInstance().delegate = self
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -82,6 +77,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
 
     @IBAction func loginByGg(_ sender: Any) {
+        GIDSignIn.sharedInstance().uiDelegate = self
+        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.signIn()
     }
 
