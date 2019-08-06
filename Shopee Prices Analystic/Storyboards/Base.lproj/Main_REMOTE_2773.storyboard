@@ -684,12 +684,12 @@
         <scene sceneID="ez0-KY-TX2">
             <objects>
                 <tableViewController id="7hj-hS-QoR" customClass="ProductsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="HmU-cw-zQe">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="HmU-cw-zQe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="productCell" id="dU7-np-Pmb" customClass="ProductTableViewCell" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="productCell" id="dU7-np-Pmb" customClass="ProductTableViewCell" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dU7-np-Pmb" id="S4Z-0S-2X6">
@@ -776,17 +776,8 @@
                             <outlet property="delegate" destination="7hj-hS-QoR" id="Lnr-9x-GCz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Danh sách sản phẩm" id="bSb-MF-L96">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="0eW-OE-i2F">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ip2-jx-kio">
-                                <rect key="frame" x="20" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sửa giá"/>
-                                <connections>
-                                    <action selector="editingMode:" destination="7hj-hS-QoR" eventType="touchUpInside" id="deG-EG-pCT"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Danh sách sản phẩm" leftItemsSupplementBackButton="YES" id="oJo-Oz-CHg">
+                        <barButtonItem key="backBarButtonItem" title="Quay lại" id="qan-ec-fzd"/>
                     </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="xbM-ju-SCR" id="QT1-au-cOR"/>
@@ -1155,9 +1146,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Theo dõi"/>
                             </button>
-                            <connections>
-                                <segue destination="TXZ-Tc-5Jg" kind="show" id="qhz-Zb-HmM"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -1184,51 +1172,6 @@
             </objects>
             <point key="canvasLocation" x="-528" y="1944"/>
         </scene>
-        <!--Danh sách đối thủ-->
-        <scene sceneID="9FS-Bm-iwc">
-            <objects>
-                <tableViewController id="TXZ-Tc-5Jg" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GPO-ck-mYq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="90" id="I0Z-0E-6AQ">
-                                <rect key="frame" x="0.0" y="28" width="414" height="90"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I0Z-0E-6AQ" id="lVI-GA-xqE">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="89.666666666666671"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tên đối thủ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uci-7H-5tz">
-                                            <rect key="frame" x="20" y="11" width="86" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mã đối thủ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c52-XM-6cu">
-                                            <rect key="frame" x="20" y="49" width="81" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="TXZ-Tc-5Jg" id="7XV-xV-6dA"/>
-                            <outlet property="delegate" destination="TXZ-Tc-5Jg" id="Weg-dp-SNy"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Danh sách đối thủ" id="Beg-ph-9W2"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lcX-fL-6uj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-528" y="2692"/>
-        </scene>
         <!--Giá-->
         <scene sceneID="HYv-8A-mdX">
             <objects>
@@ -1243,7 +1186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N5M-Xg-LRH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="575.36231884057975" y="466.74107142857139"/>
+            <point key="canvasLocation" x="576.79999999999995" y="466.99507389162562"/>
         </scene>
         <!--Tài khoản-->
         <scene sceneID="Rvg-cO-BAS">
@@ -1345,7 +1288,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o58-pK-mra" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2474" y="1221"/>
+            <point key="canvasLocation" x="2499" y="1263"/>
         </scene>
         <!--Account Detail Table View Controller-->
         <scene sceneID="L6i-bq-sgm">
@@ -1535,23 +1478,6 @@
             </objects>
             <point key="canvasLocation" x="3658" y="2000"/>
         </scene>
-        <!--Đối thủ-->
-        <scene sceneID="ht9-6c-cbU">
-            <objects>
-                <navigationController id="0zQ-Ni-06U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Đối thủ" image="rival" id="mXc-1c-FBd"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="4BW-Z5-nFr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="NHg-bS-DAb" kind="relationship" relationship="rootViewController" id="UIo-UY-ReJ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9O2-km-3Fh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1525" y="467"/>
-        </scene>
         <!--Tài khoản-->
         <scene sceneID="QtI-20-WVp">
             <objects>
@@ -1573,7 +1499,7 @@
         <!--Xác thực Shopee-->
         <scene sceneID="KTd-th-bMz">
             <objects>
-                <viewController id="PGJ-tK-9Ee" customClass="ShopeeAuthViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PGJ-tK-9Ee" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Av5-oh-8OD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1597,13 +1523,8 @@
                         <viewLayoutGuide key="safeArea" id="KMR-8f-Y2P"/>
                     </view>
                     <navigationItem key="navigationItem" title="Xác thực Shopee" id="mmL-bd-Fy2"/>
-                    <connections>
-                        <outlet property="webView" destination="nCc-1Z-N5K" id="G48-Dm-i3Z"/>
-                        <segue destination="aLU-by-fXw" kind="unwind" identifier="unwindToListShopsTableViewController" unwindAction="unwindToListShopsTableViewControllerWithSegue:" id="L5O-XY-NER"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg0-KQ-Yfi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="aLU-by-fXw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2499" y="2768"/>
         </scene>
@@ -1679,61 +1600,21 @@
             </objects>
             <point key="canvasLocation" x="2499" y="2016"/>
         </scene>
-        <!--Table View Controller-->
-        <scene sceneID="ou8-6I-nQN">
-            <objects>
-                <tableViewController id="NYJ-CL-ptl" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bcn-Tv-qMm">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kyY-SW-0dU">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kyY-SW-0dU" id="kpd-f5-Dr9">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="NYJ-CL-ptl" id="Hi9-O7-8bX"/>
-                            <outlet property="delegate" destination="NYJ-CL-ptl" id="5RV-UK-g7v"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="v01-Kc-XhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1525" y="1928"/>
-        </scene>
-        <!--Theo dõi đối thủ-->
+        <!--Đối thủ-->
         <scene sceneID="oyW-sd-fqD">
             <objects>
                 <viewController id="NHg-bS-DAb" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ibm-ex-Wba">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="VY7-mb-YVT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Đối thủ" image="rival" id="HNG-FU-Iku"/>
-                    <navigationItem key="navigationItem" title="Theo dõi đối thủ" id="rT6-e9-PEt">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="fkw-Fu-clQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a9x-jZ-jx2">
-                                <rect key="frame" x="251" y="7" width="143" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Danh sách sản phẩm"/>
-                                <connections>
-                                    <segue destination="NYJ-CL-ptl" kind="show" id="IzM-gx-Bed"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2JF-ec-cG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1525" y="1221"/>
+            <point key="canvasLocation" x="1548" y="466.99507389162562"/>
         </scene>
         <!--Sản phẩm-->
         <scene sceneID="1DR-kv-JMn">
@@ -1766,7 +1647,7 @@
                         <segue destination="FVA-zW-D8a" kind="relationship" relationship="viewControllers" id="KBV-rI-BdJ"/>
                         <segue destination="R81-OI-raR" kind="relationship" relationship="viewControllers" id="Ndi-Uz-3br"/>
                         <segue destination="Tl0-el-xuV" kind="relationship" relationship="viewControllers" id="tVd-g6-HpU"/>
-                        <segue destination="0zQ-Ni-06U" kind="relationship" relationship="viewControllers" id="Pb5-MI-Bpc"/>
+                        <segue destination="NHg-bS-DAb" kind="relationship" relationship="viewControllers" id="wd2-VI-QrN"/>
                         <segue destination="hhq-HJ-xJM" kind="relationship" relationship="viewControllers" id="LLf-gY-hU8"/>
                     </connections>
                 </tabBarController>

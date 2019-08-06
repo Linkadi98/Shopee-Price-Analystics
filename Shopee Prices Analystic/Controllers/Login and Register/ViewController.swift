@@ -60,12 +60,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         backgroundQueue.async(execute: {
             
             sleep(3) // 3: Do your networking task or background work here.
-
             // TO BE DONE
 
             // tạo một hàm để kết nối đến api check username password, trả về Bool
             
             DispatchQueue.main.async(execute: { () -> Void in
+                self.login(username: self.userNameText.text!, password: self.passwordText.text!)
                 self.showMainAppicationAfterSuccessfulLogin(sender)
             })
         })
