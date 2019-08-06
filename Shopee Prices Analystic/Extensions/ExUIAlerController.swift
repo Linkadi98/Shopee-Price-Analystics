@@ -10,7 +10,7 @@ import UIKit
 
 extension UIAlertController {
     
-    open func createCustomPasswordConfirmAlert() {
+    func createCustomPasswordConfirmAlert() {
         
         
         addTextField(configurationHandler: {(passwordField) in
@@ -26,4 +26,18 @@ extension UIAlertController {
             print("chuyển shop")
         }))
     }
+    
+    func createCustomEditingPriceAlert() {
+        addTextField(configurationHandler: {(priceField) in
+            priceField.placeholder = "Nhập giá cần thay đổi"
+            priceField.borderStyle = .none
+            
+        })
+        
+        addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: nil))
+        addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            
+        }))
+    }
+    
 }

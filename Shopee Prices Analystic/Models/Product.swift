@@ -18,7 +18,8 @@ struct Product {
     var brand: String?
     var soldItem: Int?
     var inventory: Int?
-    var ratingArray = [Int]()
+    var ratingArray = [Int?]()
+    var category = [String?]()
     
     var soldPrice: String?
     var maxPrice: String?

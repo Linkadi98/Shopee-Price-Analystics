@@ -84,6 +84,26 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
         performSegue(withIdentifier: "ProductDetail", sender: product)
     }
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let cellSelected = tableView.cellForRow(at: indexPath)
+        let editPriceButton = UITableViewRowAction(style: .default, title: "Sửa", handler: {(action, indexPath) in
+            
+        })
+        
+        return [editPriceButton]
+    }
+
 
     // MARK: - Search Actions
     func updateSearchResults(for searchController: UISearchController) {
@@ -93,6 +113,18 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             })
         }
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func editingMode(_ sender: Any) {
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true)
+        }
+        else {
+            tableView.setEditing(true, animated: true)
+        }
+    }
+    
     
     // MARK: - Segue
     
