@@ -37,13 +37,13 @@ extension UIViewController {
             status()
             self.tabBarController?.selectedIndex = 4
         }
-        
+
         banner.show(queuePosition: .back,
                     bannerPosition: .top,
                     cornerRadius: 10)
     }
-    
-    // sửa hàm này khi đã có api trả về trạng thái thành công/không thành công bằng 1 closure
+
+//     sửa hàm này khi đã có api trả về trạng thái thành công/không thành công bằng 1 closure
     func statusNotification(title: String, style: BannerStyle) {
         let banner = StatusBarNotificationBanner(title: title, style: style)
         banner.show(queuePosition: .back, bannerPosition: .top)
@@ -160,24 +160,29 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 
 // Get list shop
 extension UIViewController {
-    func getListShop(completion: @escaping ([Shop]) -> Void) {
+    func getListShops(completion: @escaping ([Shop]) -> Void) {
         let url = URL(string: Config.BASE_URL + Config.SHOP_PATH)!
 
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
+
+        alamofireManager.request(url, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
                 // NEED EDITED
+                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
+                banner.show()
+
                 print("Error when fetching data: \(response.result.error)")
                 return
             }
 
-            var listShop: [Shop] = []
+            var listShops: [Shop] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
                 let shopId = String(value["id"] as! Int64)
                 let shopName = value["name"] as! String
-                listShop.append(Shop(shopId: shopId, shopName: shopName))
+                listShops.append(Shop(shopId: shopId, shopName: shopName))
             }
-            completion(listShop)
+            completion(listShops)
         }
     }
 
@@ -188,9 +193,13 @@ extension UIViewController {
             "name": name
         ]
 
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
+
+        alamofireManager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
                 // NEED EDITED
+                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .warning)
+                banner.show()
                 print("Error when fetching data: \(response.result.error)")
                 return
             }
@@ -215,5 +224,7 @@ extension UIViewController {
         }
     }
 }
+
+
 
 

@@ -10,6 +10,7 @@ import UIKit
 import FBSDKLoginKit
 import GoogleSignIn
 import Alamofire
+import NotificationBannerSwift
 
 extension ViewController {
     
@@ -55,10 +56,14 @@ extension ViewController {
             "username" : username,
             "password" : password
         ]
+        
+        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
 
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+        alamofireManager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
                 // TO BE DONE
+                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
+                banner.show()
                 print("Error when fetching data: \(response.result.error)")
                 return
             }

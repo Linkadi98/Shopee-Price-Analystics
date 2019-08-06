@@ -728,13 +728,13 @@
                                             <rect key="frame" x="248" y="21" width="120" height="58"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="130.000đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAE-Dj-bvy">
-                                                    <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="0.0"/>
+                                                    <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBC-qO-C85" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="0.0" y="20" width="120" height="38"/>
+                                                    <rect key="frame" x="0.0" y="38" width="120" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -1525,7 +1525,7 @@
                     <navigationItem key="navigationItem" title="Xác thực Shopee" id="mmL-bd-Fy2"/>
                     <connections>
                         <outlet property="webView" destination="nCc-1Z-N5K" id="G48-Dm-i3Z"/>
-                        <segue destination="aLU-by-fXw" kind="unwind" identifier="backToListShopsTableViewController" unwindAction="backToListShopsTableViewControllerWithSegue:" id="mxm-Qp-W1s"/>
+                        <segue destination="aLU-by-fXw" kind="unwind" identifier="unwindToListShopsTableViewController" unwindAction="unwindToListShopsTableViewControllerWithSegue:" id="L5O-XY-NER"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg0-KQ-Yfi" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,6 +8,7 @@
 
 import UIKit
 import MarqueeLabel
+import NotificationBannerSwift
 
 class OverviewViewController: UIViewController {
 
@@ -58,9 +59,9 @@ class OverviewViewController: UIViewController {
         // Thông báo cho khách hàng biết chưa có kết nối đến cửa hàng nào
         // Xử lý thông báo trước khi thông báo hiện ra bằng cách check cửa hàng đã kết nối từ api trả về
         // Xem phần định nghĩa hàm trong file EUIViewController.swift
-        notification(title: "Bạn chưa kết nối đến cửa hàng nào", style: .warning) {
-            self.statusNotification(title: "Kết nối thành công", style: .success)
-        }
+//        notification(title: "Bạn chưa kết nối đến cửa hàng nào", style: .warning) {
+//            self.statusNotification(title: "Kết nối thành công", style: .success)
+//        }
     }
     
     // MARK: - Actions
@@ -85,15 +86,24 @@ class OverviewViewController: UIViewController {
 
 extension OverviewViewController {
     func loadFirstShop() {
-        self.getListShop { (listShop) in
-            if listShop.isEmpty {
+        self.getListShops { (listShops) in
+            if listShops.isEmpty {
                 UserDefaults.standard.removeObject(forKey: "currentShop")
+                let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
+                                                        subtitle: "Bấm vào đây để kết nối",
+                                                        style: .warning)
+                banner.onTap = {
+                    self.tabBarController?.selectedIndex = 4
+                }
+                banner.show(queuePosition: .back,
+                            bannerPosition: .top,
+                            cornerRadius: 10)
                 // currentShop is nil
             } else {
                 // Case: didn't save currentShop before
                 guard let savedCurrentShopData = UserDefaults.standard.data(forKey: "currentShop") else {
-                    self.currentShop = listShop[0]
-                    if let encoded = try? JSONEncoder().encode(listShop[0]) {
+                    self.currentShop = listShops[0]
+                    if let encoded = try? JSONEncoder().encode(listShops[0]) {
                         UserDefaults.standard.set(encoded, forKey: "currentShop")
                     }
                     return
@@ -105,10 +115,10 @@ extension OverviewViewController {
 
                 // Check if listShop contains savedCurrentShop
                 // if listShop contains savedCurrentShop, currentShop isn't changed
-                if listShop.contains(savedCurrentShop) { return }
+                if listShops.contains(savedCurrentShop) { return }
 
                 // listShop doesn't contain savedCurrentShop
-                for shop in listShop {
+                for shop in listShops {
                     // but maybe shop was changed its name (not deleted)
                     if savedCurrentShop.shopId == shop.shopId {
                         self.currentShop = shop

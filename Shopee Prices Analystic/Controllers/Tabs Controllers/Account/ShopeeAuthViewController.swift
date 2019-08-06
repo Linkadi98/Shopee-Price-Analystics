@@ -32,7 +32,7 @@ class ShopeeAuthViewController: UIViewController, WKNavigationDelegate {
         if webView.url!.absoluteString.hasPrefix(prefix) {
 
             shopId = String(webView.url!.absoluteString.dropFirst(prefix.count))
-            self.performSegue(withIdentifier: "backToListShopsTableViewController", sender: nil)
+            self.performSegue(withIdentifier: "unwindToListShopsTableViewController", sender: nil)
         }
     }
     /*

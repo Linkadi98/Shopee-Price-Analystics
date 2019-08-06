@@ -12,20 +12,25 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
 
     // MARK: - Properties
     
-    var data: [Shop] = []
+    var listShops: [Shop] = []
     var filterShop: [Shop] = []
     var searchController: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        data = prepareShopInformation()
     
         searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
         searchController.hidesNavigationBarDuringPresentation = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         setupSearchController(for: searchController, placeholder: "Nhập tên shop")
         
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        getListShops { (listShops) in
+            self.listShops = listShops
+        }
     }
 
     // MARK: - Table view data source
@@ -39,7 +44,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         if isFiltering(searchController) {
             return filterShop.count
         }
-        return data.count
+        return listShops.count
     }
 
     
@@ -50,7 +55,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
             model = filterShop[indexPath.row]
         }
         else {
-            model = data[indexPath.row]
+            model = listShops[indexPath.row]
         }
         
         cell.shopName.text = model.shopName
@@ -78,7 +83,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
             model = filterShop[indexPath.row]
         }
         else {
-            model = data[indexPath.row]
+            model = listShops[indexPath.row]
         }
         
         let customPasswordConfirmAlert = UIAlertController(title: "Chuyển sang \(model.shopName)", message: "Vui lòng xác nhận trước khi chuyển sang Shop mới", preferredStyle: .alert)
@@ -93,31 +98,25 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) {(searchText) in
-            filterShop = data.filter({(shop: Shop) -> Bool in
+            filterShop = listShops.filter({(shop: Shop) -> Bool in
                 return shop.shopName.lowercased().contains(searchText.lowercased())
             })
         }
     }
-    
-    
 
-    // MARK: - Private Modification
-    
-    // đưa thông tin của shop từ api vào đây
-    private func prepareShopInformation() -> [Shop] {
-        var list: [Shop] = []
-        for _ in 0...10 {
-            list.append(Shop(shopId: "123456789", shopName: "Shop123"))
-        }
-        
-        for _ in 0...5 {
-            list.append(Shop(shopId: "123456789", shopName: "AppleStore"))
-        }
-        return list
-    }
+//    private func prepareShopInformation() -> [Shop] {
+//        var list: [Shop] = []
+//        for _ in 0...10 {
+//            list.append(Shop(shopId: "123456789", shopName: "Shop123"))
+//        }
+//
+//        for _ in 0...5 {
+//            list.append(Shop(shopId: "123456789", shopName: "AppleStore"))
+//        }
+//        return list
+//    }
 
-
-    @IBAction func backToListShopsTableViewController(segue: UIStoryboardSegue) {
+    @IBAction func unwindToListShopsTableViewController(segue: UIStoryboardSegue) {
         if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
             if let shopId = shopeeAuthViewController.shopId {
                 self.addShop(shopId: shopId, name: "Mac dinh")
