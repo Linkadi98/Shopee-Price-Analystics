@@ -65,6 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             // tạo một hàm để kết nối đến api check username password, trả về Bool
             
             DispatchQueue.main.async(execute: { () -> Void in
+                print(69)
                 self.login(username: self.userNameText.text!, password: self.passwordText.text!)
                 self.showMainAppicationAfterSuccessfulLogin(sender)
             })

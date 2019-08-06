@@ -57,9 +57,7 @@ extension ViewController {
             "password" : password
         ]
         
-        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
-
-        alamofireManager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
                 // TO BE DONE
                 let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
@@ -68,6 +66,7 @@ extension ViewController {
                 return
             }
 
+            print()
             let responseValue = response.result.value! as! [String: Any]
             let token = responseValue["token"] as! String
             print(token)

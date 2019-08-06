@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 class Config {
-    static let BASE_URL = "http://192.168.10.124:8081"
+    static let BASE_URL = "http://192.168.136.28:8081"
     static let LOGIN_PATH = "/login"
     static let REGISTER_PATH = "/register"
     static let SHOP_PATH = "/shop"

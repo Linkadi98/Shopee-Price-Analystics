@@ -49,10 +49,14 @@ class OverviewViewController: UIViewController {
         
         timeLabel.text = setTime()
         descriptionView.setShadow()
+
+        UserDefaults.standard.removeObject(forKey: "currentShop")
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        print(69)
         loadFirstShop()
+        print(69)
     }
     
     override func viewDidAppear(_ animated: Bool) {

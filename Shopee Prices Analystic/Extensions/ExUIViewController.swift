@@ -163,9 +163,9 @@ extension UIViewController {
     func getListShops(completion: @escaping ([Shop]) -> Void) {
         let url = URL(string: Config.BASE_URL + Config.SHOP_PATH)!
 
-        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
+//        let alamofireManager = AlamofireManager(timeoutInterval: 1000).manager
 
-        alamofireManager.request(url, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
                 // NEED EDITED
                 let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
@@ -175,8 +175,10 @@ extension UIViewController {
                 return
             }
 
+            print("fetching")
             var listShops: [Shop] = []
             let responseValue = response.result.value! as! [[String: Any]]
+            print(response.result.value!)
             for value in responseValue {
                 let shopId = String(value["id"] as! Int64)
                 let shopName = value["name"] as! String
@@ -193,9 +195,9 @@ extension UIViewController {
             "name": name
         ]
 
-        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
+        let alamofireManager = AlamofireManager(timeoutInterval: 1000).manager
 
-        alamofireManager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
             guard response.result.isSuccess else {
                 // NEED EDITED
                 let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .warning)
