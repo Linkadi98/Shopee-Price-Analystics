@@ -20,7 +20,6 @@ class OverviewViewController: UIViewController {
         }
     }
     
-    
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopId: UILabel!
     @IBOutlet weak var timeLabel: MarqueeLabel!
@@ -30,17 +29,29 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
 
     @IBOutlet weak var descriptionView: UIView!
+
+    var currentShop: Shop! {
+        didSet {
+            if currentShop != nil {
+                shopId.text = currentShop.shopId
+                shopName.text = currentShop.shopName
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         subView.layer.cornerRadius = 10
         subView.setShadow()
         superParentView.setBlurEffect()
         
         timeLabel.text = setTime()
         descriptionView.setShadow()
-        
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        loadFirstShop()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,4 +81,41 @@ class OverviewViewController: UIViewController {
         return "THỨ \(dayOfWeek) NGÀY \(day) THÁNG \(month)"
     }
 
+}
+
+extension OverviewViewController {
+    func loadFirstShop() {
+        self.getListShop { (listShop) in
+            if listShop.isEmpty {
+                UserDefaults.standard.removeObject(forKey: "currentShop")
+                // currentShop is nil
+            } else {
+                // Case: didn't save currentShop before
+                guard let savedCurrentShopData = UserDefaults.standard.data(forKey: "currentShop") else {
+                    self.currentShop = listShop[0]
+                    if let encoded = try? JSONEncoder().encode(listShop[0]) {
+                        UserDefaults.standard.set(encoded, forKey: "currentShop")
+                    }
+                    return
+                }
+
+                // Case: save currentShop before
+                // Decode
+                let savedCurrentShop = try! JSONDecoder().decode(Shop.self, from: savedCurrentShopData)
+
+                // Check if listShop contains savedCurrentShop
+                // if listShop contains savedCurrentShop, currentShop isn't changed
+                if listShop.contains(savedCurrentShop) { return }
+
+                // listShop doesn't contain savedCurrentShop
+                for shop in listShop {
+                    // but maybe shop was changed its name (not deleted)
+                    if savedCurrentShop.shopId == shop.shopId {
+                        self.currentShop = shop
+                        return
+                    }
+                }
+            }
+        }
+    }
 }

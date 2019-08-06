@@ -8,7 +8,15 @@
 
 import Foundation
 
-struct Shop {
-    var shopName: String?
-    var shopId: String?
+struct Shop: Codable, Equatable {
+    var shopId: String
+    var shopName: String
+
+//    public static func == (shop1: Shop, shop2: Shop) -> Bool {
+//        return
+//            shop1.shopId == shop2.shopId &&
+//            shop1.shopName == shop2.shopName
+//    }
+
 }
+

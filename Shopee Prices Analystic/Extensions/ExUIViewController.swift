@@ -12,6 +12,7 @@ import FBSDKLoginKit
 import FacebookLogin
 import GoogleSignIn
 import FacebookLogin
+import Alamofire
 
 extension UIViewController {
     
@@ -157,6 +158,48 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     }
 }
 
+// Get list shop
+extension UIViewController {
+    func getListShop(completion: @escaping ([Shop]) -> Void) {
+        let url = URL(string: Config.BASE_URL + Config.SHOP_PATH)!
+
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+            guard response.result.isSuccess else {
+                // NEED EDITED
+                print("Error when fetching data: \(response.result.error)")
+                return
+            }
+
+            var listShop: [Shop] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let shopId = String(value["id"] as! Int64)
+                let shopName = value["name"] as! String
+                listShop.append(Shop(shopId: shopId, shopName: shopName))
+            }
+            completion(listShop)
+        }
+    }
+
+    func addShop(shopId: String, name: String) {
+        let url = URL(string: Config.BASE_URL + Config.SHOP_PATH)!
+        let parameters: Parameters = [
+            "id": shopId,
+            "name": name
+        ]
+
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+            guard response.result.isSuccess else {
+                // NEED EDITED
+                print("Error when fetching data: \(response.result.error)")
+                return
+            }
+
+            print(response.result.value! as! [String: Any])
+        }
+    }
+}
+
 // Load online image
 extension UIViewController {
     func loadOnlineImage(from url: URL, to uiImageView: UIImageView) {
@@ -172,3 +215,5 @@ extension UIViewController {
         }
     }
 }
+
+

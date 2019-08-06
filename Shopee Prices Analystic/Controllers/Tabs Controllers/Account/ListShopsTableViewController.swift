@@ -81,7 +81,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
             model = data[indexPath.row]
         }
         
-        let customPasswordConfirmAlert = UIAlertController(title: "Chuyển sang \(model.shopName!)", message: "Vui lòng xác nhận trước khi chuyển sang Shop mới", preferredStyle: .alert)
+        let customPasswordConfirmAlert = UIAlertController(title: "Chuyển sang \(model.shopName)", message: "Vui lòng xác nhận trước khi chuyển sang Shop mới", preferredStyle: .alert)
         customPasswordConfirmAlert.createCustomPasswordConfirmAlert()
         present(customPasswordConfirmAlert, animated: true, completion: {
             // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
@@ -94,7 +94,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) {(searchText) in
             filterShop = data.filter({(shop: Shop) -> Bool in
-                return shop.shopName!.lowercased().contains(searchText.lowercased())
+                return shop.shopName.lowercased().contains(searchText.lowercased())
             })
         }
     }
@@ -107,14 +107,22 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     private func prepareShopInformation() -> [Shop] {
         var list: [Shop] = []
         for _ in 0...10 {
-            list.append(Shop(shopName: "Shop123", shopId: "123456789"))
+            list.append(Shop(shopId: "123456789", shopName: "Shop123"))
         }
         
         for _ in 0...5 {
-            list.append(Shop(shopName: "AppleStore", shopId: "123456789"))
+            list.append(Shop(shopId: "123456789", shopName: "AppleStore"))
         }
         return list
     }
-    
-    
+
+
+    @IBAction func backToListShopsTableViewController(segue: UIStoryboardSegue) {
+        if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
+            if let shopId = shopeeAuthViewController.shopId {
+                self.addShop(shopId: shopId, name: "Mac dinh")
+            }
+        }
+    }
 }
+

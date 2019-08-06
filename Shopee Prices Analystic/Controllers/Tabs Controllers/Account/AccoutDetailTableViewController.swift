@@ -51,6 +51,7 @@ class AccountDetailTableViewController: UITableViewController {
         
         // Delete user data in UserDefaults
         UserDefaults.standard.removeObject(forKey: "currentUser")
+        UserDefaults.standard.removeObject(forKey: "currentShopId")
         // Back to login screen
         self.moveVC(viewController: self, toViewControllerHasId: "LoginViewController")
     }

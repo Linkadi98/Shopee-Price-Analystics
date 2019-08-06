@@ -13,6 +13,7 @@ class Config {
     static let BASE_URL = "http://192.168.10.124:8081"
     static let LOGIN_PATH = "/login"
     static let REGISTER_PATH = "/register"
+    static let SHOP_PATH = "/shop"
     static var HEADERS: HTTPHeaders = [
         "Content-Type": "application/json"
     ]
