@@ -57,9 +57,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             product = products[indexPath.row]
         }
         
-        cell.productNameLabel.text = "\(product.name!)"
+        cell.productName.text = "\(product.name!)"
         cell.cosmos.rating = product.rating!
         cell.productPrice.text = product.convertPriceToVietnameseCurrency()
+        cell.productCode.text = product.code!
         
         
         return cell
@@ -81,14 +82,14 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         else {
             product = products[indexPath.row]
         }
-        performSegue(withIdentifier: "DetailSegue", sender: product)
+        performSegue(withIdentifier: "ProductDetail", sender: product)
     }
 
     // MARK: - Search Actions
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
             filterProducts = products.filter({(product: Product) -> Bool in
-                return product.name!.lowercased().contains(searchText.lowercased())
+                return product.name!.lowercased().contains(searchText.lowercased()) || product.code!.lowercased().contains(searchText.lowercased())
             })
         }
     }
@@ -100,13 +101,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             return
         }
         
-        if segue.identifier == "DetailSegue" {
-            let vc = segue.destination as! ProductDetailViewController
+        if segue.identifier == "ProductDetail" {
+            let vc = segue.destination as! ProductDetailTableViewController
             print("abc")
-            vc.product = product
-            vc.priceForPassing = product.convertPriceToVietnameseCurrency()
-            vc.ratingForPassing = product.rating
-            vc.ratingInNumberStyleForPassing = "\(product.rating!)/5.0"
         }
     }
     
@@ -115,11 +112,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     private func prepareProducts() -> [Product] {
         var list: [Product] = []
         for _ in 0...10 {
-            list.append(Product(name: "Giày", description: "Giày adidas superfake", price: 140000, rating: 5))
+            list.append(Product(name: "Giày", code: "DAC1000256", price: 140000, rating: 5))
         }
         
         for _ in 0...10 {
-            list.append(Product(name: "Ultra boost", description: "Giày adidas superfake", price: 1300000, rating: 4.2))
+            list.append(Product(name: "Ultra boost", code: "DAC2031564", price: 1300000, rating: 4.2))
         }
         return list
     }
