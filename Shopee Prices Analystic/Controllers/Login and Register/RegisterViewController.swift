@@ -34,9 +34,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        registerButton.isEnabled = false
-        registerButton.backgroundColor = .gray
-        
+        changeRegisterButtonColor()
+//        registerButton.isEnabled = false
+//        registerButton.backgroundColor = .gray
+
         hideKeyboardWhenTappedAround()
         registerKeyboardForNotification()
         
@@ -117,9 +118,21 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     // Register SPA account
     @IBAction func register(_ sender: Any) {
-//        self.register(phone: "696969", email: email.text!, username: userName.text!, password: password.text!) // NEED EDITED
 
-        self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
+        UIApplication.shared.beginIgnoringInteractionEvents()
+//        SVProgressHUD.setForegroundColor(.orange)
+//        SVProgressHUD.show(withStatus: "Đang tải")
+        let activityIndicator = initActivityIndicator()
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        self.register(phone: "696969", email: email.text!, username: userName.text!, password: password.text!) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                activityIndicator.stopAnimating()
+                if activityIndicator.isAnimating == false {
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
+            }
+        }// NEED EDITED
     }
     // Log in using facebook account
     @IBAction func loginByFb(_ sender: Any) {
@@ -189,7 +202,57 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
 // Register
 extension RegisterViewController {
-//    func register(phone: String, email: String, username: String, password: String) {
+    func register(phone: String?, email: String, username: String, password: String, completion: @escaping () -> Void) {
+        
+
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.register_path)!
+        var parameters: Parameters = [
+            "username" : username,
+            "password" : password,
+            "email": email
+        ]
+        if let phone = phone {
+            parameters["phone"] = phone
+        }
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                // Failed request
+                guard response.result.isSuccess else {
+                    print("Error when fetching data: \(response.result.error)")
+                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                    completion()
+                    return
+                }
+
+                // Successful request
+                let responseValue = response.result.value! as! [String: Any]
+                print(responseValue)
+                guard let token = responseValue["token"] as? String else {
+                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
+                    completion()
+                    return
+                }
+
+                // Save token
+                print(token)
+                UserDefaults.standard.set(token, forKey: "token")
+                sharedNetwork.headers["Authorization"] = token
+
+                // Lưu currentUser trong UserDefaults
+                let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
+                if let encoded = try? JSONEncoder().encode(currentUser) {
+                    UserDefaults.standard.set(encoded, forKey: "currentUser")
+                }
+
+                completion()
+
+                // Screen movement
+                self.performSegue(withIdentifier: "RegisterVCToTabsVC", sender: nil)
+            }
+        }
+    }
 //        let url = URL(string: Config.BASE_URL + Config.REGISTER_PATH)!
 //        let parameters: Parameters = [
 //            "phone": phone,
