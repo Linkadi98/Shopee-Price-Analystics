@@ -51,7 +51,7 @@ extension ViewController {
 
 // Login by SPA Account
 extension ViewController {
-    func login(username: String, password: String, _ sender: TransitionButton) {
+    func login(username: String, password: String, completion: @escaping () -> Void) {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
         let parameters: Parameters = [
@@ -60,10 +60,13 @@ extension ViewController {
         ]
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            sleep(3)
+            
             // Failed request
             guard response.result.isSuccess else {
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
                 print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion()
                 return
             }
 
@@ -71,22 +74,25 @@ extension ViewController {
             let responseValue = response.result.value! as! [String: Any]
             print(responseValue)
             guard let token = responseValue["token"] as? String else {
-                self.showInvalidMessage(sender)
+                completion()
+                self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
                 return
             }
             print(token)
             UserDefaults.standard.set(token, forKey: "token")
             sharedNetwork.headers["Authorization"] = token
 
-            let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
-
             // lưu currentUser trong UserDefaults
+            let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
             if let encoded = try? JSONEncoder().encode(currentUser) {
                 UserDefaults.standard.set(encoded, forKey: "currentUser")
             }
 
+            completion()
+
             // Screen movement
-            self.performSegue(withIdentifier: "VCToTabsVC", sender: nil)        }
+            self.performSegue(withIdentifier: "VCToTabsVC", sender: nil)
+        }
         
 //        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
 //            guard response.result.isSuccess else {

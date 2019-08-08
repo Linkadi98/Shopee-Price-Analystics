@@ -54,24 +54,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Actions
     
-    @IBAction func loginSPA(_ sender: TransitionButton) {
-        sender.startAnimation()
-        let qualityOfServiceClass = DispatchQoS.QoSClass.background
-        let backgroundQueue = DispatchQueue.global(qos: qualityOfServiceClass)
-        backgroundQueue.async(execute: {
-            
-            sleep(3) // 3: Do your networking task or background work here.
-            // TO BE DONE
-
-            // tạo một hàm để kết nối đến api check username password, trả về Bool
-            
-            DispatchQueue.main.async(execute: { () -> Void in
-                print(69)
-                sender.stopAnimation()
-                self.login(username: self.userNameText.text!, password: self.passwordText.text!, sender)
-//                self.showMainAppicationAfterSuccessfulLogin(sender)
+    @IBAction func loginSPA(_ sender: Any) {
+        loginButton.startAnimation()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        self.login(username: userNameText.text!, password: passwordText.text!) {
+            self.loginButton.stopAnimation(animationStyle: .normal, revertAfterDelay: 0, completion: {
+                self.loginButton.setGrandientColor(colorOne: self.hexStringToUIColor(hex: "#ffc400"), colorTwo: self.hexStringToUIColor(hex: "#FF5700"))
+                self.loginButton.spinnerColor = .white
+                self.loginButton.layer.cornerRadius = self.loginButton.frame.size.height / 2
+                UIApplication.shared.endIgnoringInteractionEvents()
             })
-        })
+        }
     }
 
     @IBAction func loginByFb(_ sender: Any) {

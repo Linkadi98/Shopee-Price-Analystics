@@ -52,9 +52,9 @@ class AccountDetailTableViewController: UITableViewController {
         // Delete user data in UserDefaults
         UserDefaults.standard.removeObject(forKey: "currentUser")
         UserDefaults.standard.removeObject(forKey: "currentShop")
+
         // Back to login screen
-//        self.moveVC(viewController: self, toViewControllerHasId: "LoginViewController")
-        self.performSegue(withIdentifier: "AccountDetailTVCUnwindToVC", sender: nil)
+        self.moveVC(viewController: self, toViewControllerHasId: "LoginViewController")
     }
     
     // MARK: - Private modifications

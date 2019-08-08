@@ -227,6 +227,17 @@ extension UIViewController {
     }
 }
 
+// Present a alert
+extension UIViewController {
+    func presentAlert(title: String = "Lỗi", message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okButton)
+
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
 
 
 
