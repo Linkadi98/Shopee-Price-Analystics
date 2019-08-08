@@ -56,7 +56,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginSPA(_ sender: Any) {
         loginButton.startAnimation()
-        UIApplication.shared.beginIgnoringInteractionEvents()
+
         self.login(username: userNameText.text!, password: passwordText.text!) {
             self.loginButton.stopAnimation(animationStyle: .normal, revertAfterDelay: 0, completion: {
                 self.loginButton.setGrandientColor(colorOne: self.hexStringToUIColor(hex: "#ffc400"), colorTwo: self.hexStringToUIColor(hex: "#FF5700"))

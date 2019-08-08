@@ -238,6 +238,19 @@ extension UIViewController {
     }
 }
 
+// Init an activity indicator
+extension UIViewController {
+    func initActivityIndicator() -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.center = self.view.center
+        activityIndicator.style = .whiteLarge
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = .orange
+
+        return activityIndicator
+    }
+}
+
 
 
 
