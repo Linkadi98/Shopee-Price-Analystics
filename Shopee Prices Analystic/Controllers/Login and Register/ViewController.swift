@@ -30,13 +30,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
 
+        // test
+        userNameText.text = "thanhduy"
+        passwordText.text = "123456"
         hideKeyboardWhenTappedAround()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
+    override func viewWillAppear(_ animated: Bool) {
         loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#ffc400"), colorTwo: hexStringToUIColor(hex: "#FF5700"))
         loginButton.spinnerColor = .white
         loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
@@ -66,8 +67,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             DispatchQueue.main.async(execute: { () -> Void in
                 print(69)
-                self.login(username: self.userNameText.text!, password: self.passwordText.text!)
-                self.showMainAppicationAfterSuccessfulLogin(sender)
+                sender.stopAnimation()
+                self.login(username: self.userNameText.text!, password: self.passwordText.text!, sender)
+//                self.showMainAppicationAfterSuccessfulLogin(sender)
             })
         })
     }
@@ -82,10 +84,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.signIn()
     }
-
-    @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
-        
-    }
     
     @IBAction func userNameEdittingDidChange(_ sender: Any) {
         if !userNameText.isValidUserName() {
@@ -98,7 +96,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Private Modifications
     
-    private func showInvalidMessage(with status: Bool = false, _ sender: TransitionButton) {
+    func showInvalidMessage(with status: Bool = false, _ sender: TransitionButton) {
         if !status {
             sender.stopAnimation(animationStyle: .normal, revertAfterDelay: 1, completion: {
                 self.loginButton.layer.cornerRadius = self.loginButton.frame.height / 2
@@ -121,6 +119,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.present(secondVC, animated: false, completion: nil)
             })
         }
-        
+    }
+
+    @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
+
     }
 }

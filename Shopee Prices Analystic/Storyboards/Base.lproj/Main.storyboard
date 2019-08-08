@@ -209,6 +209,7 @@
                         <outlet property="loginButton" destination="ex8-NX-6dO" id="sZ9-GB-Tlc"/>
                         <outlet property="passwordText" destination="R5t-eC-H1S" id="kLD-dT-9Jm"/>
                         <outlet property="userNameText" destination="D4g-3z-etc" id="sfW-N9-8JP"/>
+                        <segue destination="96h-N9-J5v" kind="show" identifier="VCToTabsVC" id="nRK-fH-6Ae"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HFM-Zg-tRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -234,7 +235,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Quay lại"/>
                                                 <connections>
-                                                    <segue destination="vuP-2t-24k" kind="unwind" unwindAction="unWindWithUnWindSegue:" id="awg-TA-YQD"/>
+                                                    <segue destination="vuP-2t-24k" kind="unwind" unwindAction="unwindToViewControllerWithSegue:" id="sLL-Xl-XmH"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
@@ -1472,9 +1473,11 @@
                         <outlet property="password" destination="SpM-DX-sEZ" id="QQI-b8-4za"/>
                         <outlet property="phoneNumber" destination="ab8-3b-chJ" id="alI-XD-FCV"/>
                         <outlet property="userName" destination="Grw-nc-dDK" id="Du3-rD-IHm"/>
+                        <segue destination="GnU-2F-nAe" kind="unwind" identifier="AccountDetailTVCUnwindToVC" unwindAction="unwindToViewControllerWithSegue:" id="sLB-dY-oju"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4w-de-KG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="GnU-2F-nAe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3658" y="2000"/>
         </scene>
@@ -1525,7 +1528,7 @@
                     <navigationItem key="navigationItem" title="Xác thực Shopee" id="mmL-bd-Fy2"/>
                     <connections>
                         <outlet property="webView" destination="nCc-1Z-N5K" id="G48-Dm-i3Z"/>
-                        <segue destination="aLU-by-fXw" kind="unwind" identifier="unwindToListShopsTableViewController" unwindAction="unwindToListShopsTableViewControllerWithSegue:" id="L5O-XY-NER"/>
+                        <segue destination="aLU-by-fXw" kind="unwind" identifier="ShopeeAuthVCUnwindToListShopsTVC" unwindAction="unwindToListShopsTableViewControllerWithSegue:" id="L5O-XY-NER"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vg0-KQ-Yfi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1643,6 +1646,7 @@
             <objects>
                 <tabBarController storyboardIdentifier="TabsViewController" automaticallyAdjustsScrollViewInsets="NO" id="96h-N9-J5v" customClass="TabsViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="wHL-rx-Ai3"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LlP-wz-Tao">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1658,7 +1662,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pgP-FB-4re" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="-749"/>
+            <point key="canvasLocation" x="122" y="-1014"/>
         </scene>
     </scenes>
     <resources>

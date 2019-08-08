@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
             // if already logged in then redirect to MainViewController
             // save token to HEADERS
             if let token = UserDefaults.standard.string(forKey: "token") {
-                Config.HEADERS["Authorization"] = token
+                Network.shared.headers["Authorization"] = token
             }
             initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController // 'MainController' is the storyboard id of MainViewController
         }

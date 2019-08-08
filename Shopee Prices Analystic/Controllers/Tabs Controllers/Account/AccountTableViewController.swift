@@ -30,14 +30,7 @@ class AccountTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(0)
     }
-
-    @IBAction func unWind(unWindSegue: UIStoryboardSegue) {
-        
-    }
-    
     // MARK: - Actions
-    
-    
 }
 
 

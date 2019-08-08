@@ -11,6 +11,7 @@ import FBSDKLoginKit
 import GoogleSignIn
 import Alamofire
 import NotificationBannerSwift
+import TransitionButton
 
 extension ViewController {
     
@@ -50,28 +51,32 @@ extension ViewController {
 
 // Login by SPA Account
 extension ViewController {
-    func login(username: String, password: String) {
-        let url = URL(string: Config.BASE_URL + Config.LOGIN_PATH)!
+    func login(username: String, password: String, _ sender: TransitionButton) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
         let parameters: Parameters = [
             "username" : username,
             "password" : password
         ]
-        
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            // Failed request
             guard response.result.isSuccess else {
-                // TO BE DONE
-                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
-                banner.show()
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
                 print("Error when fetching data: \(response.result.error)")
                 return
             }
 
-            print()
+            //Successful request
             let responseValue = response.result.value! as! [String: Any]
-            let token = responseValue["token"] as! String
+            print(responseValue)
+            guard let token = responseValue["token"] as? String else {
+                self.showInvalidMessage(sender)
+                return
+            }
             print(token)
             UserDefaults.standard.set(token, forKey: "token")
-            Config.HEADERS["Authorization"] = token
+            sharedNetwork.headers["Authorization"] = token
 
             let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
 
@@ -81,7 +86,31 @@ extension ViewController {
             }
 
             // Screen movement
-            self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")        
-        }
+            self.performSegue(withIdentifier: "VCToTabsVC", sender: nil)        }
+        
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+//            guard response.result.isSuccess else {
+//                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
+//                banner.show()
+//                print("Error when fetching data: \(response.result.error)")
+//                return
+//            }
+//
+//            let responseValue = response.result.value! as! [String: Any]
+//            let token = responseValue["token"] as! String
+//            print(token)
+//            UserDefaults.standard.set(token, forKey: "token")
+//            Config.HEADERS["Authorization"] = token
+//
+//            let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
+//
+//            // lưu currentUser trong UserDefaults
+//            if let encoded = try? JSONEncoder().encode(currentUser) {
+//                UserDefaults.standard.set(encoded, forKey: "currentUser")
+//            }
+//
+//            // Screen movement
+//            self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
+//        }
     }
 }
