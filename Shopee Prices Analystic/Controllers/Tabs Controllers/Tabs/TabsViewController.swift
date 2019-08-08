@@ -16,6 +16,13 @@ class TabsViewController: SwipeableTabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        isSwipeEnabled = false
+    }
+    
+    func test() {
+        if isSwipeEnabled {
+            print("Da goi dc tab")
+        }
         
     }
 

@@ -123,11 +123,12 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         let tabVC = storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
-            tabVC.isSwipeEnabled = true
+            
         }
         else {
             tableView.setEditing(true, animated: true)
             tabVC.isSwipeEnabled = false
+            tabVC.test()
         }
     }
     
