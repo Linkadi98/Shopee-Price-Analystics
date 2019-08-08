@@ -117,7 +117,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     // Register SPA account
     @IBAction func register(_ sender: Any) {
-        self.register(phone: "696969", email: email.text!, username: userName.text!, password: password.text!) // NEED EDITED
+//        self.register(phone: "696969", email: email.text!, username: userName.text!, password: password.text!) // NEED EDITED
 
         self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
     }
@@ -189,43 +189,43 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
 // Register
 extension RegisterViewController {
-    func register(phone: String, email: String, username: String, password: String) {
-        let url = URL(string: Config.BASE_URL + Config.REGISTER_PATH)!
-        let parameters: Parameters = [
-            "phone": phone,
-            "email": email,
-            "username" : username,
-            "password" : password
-        ]
-
-        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
-
-        alamofireManager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
-            guard response.result.isSuccess else {
-                // TO BE DONE
-                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
-                banner.show()
-                print("Error when fetching data: \(response.result.error)")
-                return
-            }
-
-            let responseValue = response.result.value! as! [String: Any]
-            let token = responseValue["token"] as! String
-            print(token)
-            UserDefaults.standard.set(token, forKey: "token")
-            Config.HEADERS["Authorization"] = token
-
-            let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
-
-            // lưu currentUser trong UserDefaults
-            if let encoded = try? JSONEncoder().encode(currentUser) {
-                UserDefaults.standard.set(encoded, forKey: "currentUser")
-            }
-
-            // Screen movement
-            self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
-        }
-    }
+//    func register(phone: String, email: String, username: String, password: String) {
+//        let url = URL(string: Config.BASE_URL + Config.REGISTER_PATH)!
+//        let parameters: Parameters = [
+//            "phone": phone,
+//            "email": email,
+//            "username" : username,
+//            "password" : password
+//        ]
+//
+//        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
+//
+//        alamofireManager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
+//            guard response.result.isSuccess else {
+//                // TO BE DONE
+//                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
+//                banner.show()
+//                print("Error when fetching data: \(response.result.error)")
+//                return
+//            }
+//
+//            let responseValue = response.result.value! as! [String: Any]
+//            let token = responseValue["token"] as! String
+//            print(token)
+//            UserDefaults.standard.set(token, forKey: "token")
+//            Config.HEADERS["Authorization"] = token
+//
+//            let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
+//
+//            // lưu currentUser trong UserDefaults
+//            if let encoded = try? JSONEncoder().encode(currentUser) {
+//                UserDefaults.standard.set(encoded, forKey: "currentUser")
+//            }
+//
+//            // Screen movement
+//            self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
+//        }
+//    }
 }
 
 // Check registering

@@ -28,9 +28,11 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        getListShops { (listShops) in
-            self.listShops = listShops
-        }
+//        getListShops { (listShops) in
+//            self.listShops = listShops
+//            self.tableView.reloadData()
+//            print(self.listShops)
+//        }
     }
 
     // MARK: - Table view data source
@@ -61,6 +63,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         cell.shopName.text = model.shopName
         cell.shopId.text = model.shopId
 
+        print("cell")
         return cell
     }
     
@@ -104,24 +107,24 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         }
     }
 
-//    private func prepareShopInformation() -> [Shop] {
-//        var list: [Shop] = []
-//        for _ in 0...10 {
-//            list.append(Shop(shopId: "123456789", shopName: "Shop123"))
-//        }
-//
-//        for _ in 0...5 {
-//            list.append(Shop(shopId: "123456789", shopName: "AppleStore"))
-//        }
-//        return list
-//    }
+    private func prepareShopInformation() -> [Shop] {
+        var list: [Shop] = []
+        for _ in 0...10 {
+            list.append(Shop(shopId: "123456789", shopName: "Shop123"))
+        }
+
+        for _ in 0...5 {
+            list.append(Shop(shopId: "123456789", shopName: "AppleStore"))
+        }
+        return list
+    }
 
     @IBAction func unwindToListShopsTableViewController(segue: UIStoryboardSegue) {
-        if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
-            if let shopId = shopeeAuthViewController.shopId {
-                self.addShop(shopId: shopId, name: "Mac dinh")
-            }
-        }
+//        if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
+//            if let shopId = shopeeAuthViewController.shopId {
+//                self.addShop(shopId: shopId, name: "Mac dinh")
+//            }
+//        }
     }
 }
 

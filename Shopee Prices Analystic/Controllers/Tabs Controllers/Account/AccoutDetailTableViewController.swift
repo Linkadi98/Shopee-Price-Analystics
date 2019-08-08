@@ -34,11 +34,11 @@ class AccountDetailTableViewController: UITableViewController {
     // MARK: - Actions
     
     @IBAction func logout(_ sender: Any) {
-        print("logout")
+        print("logout6969")
         if UserDefaults.standard.string(forKey: "token") != nil {
             // Delete token
             UserDefaults.standard.removeObject(forKey: "token")
-            Config.HEADERS["Authorization"] = nil
+            Network.shared.headers["Authorization"] = nil
         }
         else if AccessToken.current != nil {
             // Logout Fb
@@ -51,9 +51,10 @@ class AccountDetailTableViewController: UITableViewController {
         
         // Delete user data in UserDefaults
         UserDefaults.standard.removeObject(forKey: "currentUser")
-        UserDefaults.standard.removeObject(forKey: "currentShopId")
+        UserDefaults.standard.removeObject(forKey: "currentShop")
         // Back to login screen
-        self.moveVC(viewController: self, toViewControllerHasId: "LoginViewController")
+//        self.moveVC(viewController: self, toViewControllerHasId: "LoginViewController")
+        self.performSegue(withIdentifier: "AccountDetailTVCUnwindToVC", sender: nil)
     }
     
     // MARK: - Private modifications

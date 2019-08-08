@@ -43,10 +43,9 @@
 		24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */; };
 		24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EDDD6022D960C400D62704 /* TransitionButton.framework */; };
 		24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F661D422DC26C100440A7A /* TabsViewController.swift */; };
-		7586647CF3962BBB30FC4A94 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADD437F49AF60A9D2B55860 /* Pods_Shopee_Prices_Analystic.framework */; };
-		BC0FB3A322F7C02C00968E68 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0FB3A222F7C02C00968E68 /* Config.swift */; };
+		4F20B549B30EBD7B814F6C00 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */; };
+		BC0FB3A322F7C02C00968E68 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0FB3A222F7C02C00968E68 /* Network.swift */; };
 		BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */; };
-		BC741E8822F9356E00656689 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC741E8722F9356E00656689 /* AlamofireManager.swift */; };
 		BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */; };
 		E93805F1D912FEDBBDDFF1C7 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */; };
 /* End PBXBuildFile section */
@@ -116,12 +115,12 @@
 		24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTabBar.swift; sourceTree = "<group>"; };
 		24EDDD6022D960C400D62704 /* TransitionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TransitionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F661D422DC26C100440A7A /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
-		2D0F8805A33D800EB8B9543A /* Pods-Shopee Prices Analystic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.release.xcconfig"; sourceTree = "<group>"; };
-		6A082DB0C0453692F2A662C6 /* Pods-Shopee Prices Analystic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.debug.xcconfig"; sourceTree = "<group>"; };
-		9ADD437F49AF60A9D2B55860 /* Pods_Shopee_Prices_Analystic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_Analystic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC0FB3A222F7C02C00968E68 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2E0A52B4363CE4A0AD804F1E /* Pods-Shopee Prices Analystic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.release.xcconfig"; sourceTree = "<group>"; };
+		74E8530B11AE49B116C3BD31 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.release.xcconfig"; sourceTree = "<group>"; };
+		78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_AnalysticTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_Analystic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC0FB3A222F7C02C00968E68 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopeeAuthViewController.swift; sourceTree = "<group>"; };
-		BC741E8722F9356E00656689 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		D9AEDCCD4F6597E107217347 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE1BE34F51B52E35B3555748 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -287,7 +286,7 @@
 		2484174722D85D800009DF10 /* Shopee Prices Analystic */ = {
 			isa = PBXGroup;
 			children = (
-				BC0FB3A122F7BFF900968E68 /* Configurations */,
+				BC0FB3A122F7BFF900968E68 /* Network */,
 				242C4FA622F5786C007D4903 /* Custom components */,
 				BC8D7D0222E6FAA800D224EC /* Cells */,
 				2484175422D85D810009DF10 /* Info.plist */,
@@ -351,13 +350,21 @@
 			path = "Tabs Controllers";
 			sourceTree = "<group>";
 		};
-		BC0FB3A122F7BFF900968E68 /* Configurations */ = {
+		A95C31DBC6BF223EA9C18BE5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BC0FB3A222F7C02C00968E68 /* Config.swift */,
-				BC741E8722F9356E00656689 /* AlamofireManager.swift */,
+				87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */,
+				78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */,
 			);
-			path = Configurations;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC0FB3A122F7BFF900968E68 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BC0FB3A222F7C02C00968E68 /* Network.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		BC8D7D0222E6FAA800D224EC /* Cells */ = {
@@ -569,7 +576,7 @@
 			files = (
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
 				2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */,
-				BC0FB3A322F7C02C00968E68 /* Config.swift in Sources */,
+				BC0FB3A322F7C02C00968E68 /* Network.swift in Sources */,
 				2459136222E2F01600D51A4B /* ExViewController.swift in Sources */,
 				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
 				2433DB6B22F6C48A00AB0498 /* ExUILabel.swift in Sources */,
@@ -577,7 +584,6 @@
 				2459135C22E2EF4D00D51A4B /* ExUIButton.swift in Sources */,
 				241D5A7322E57A8C00CBA60C /* Account.swift in Sources */,
 				24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */,
-				BC741E8822F9356E00656689 /* AlamofireManager.swift in Sources */,
 				2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */,
 				24120F4022E074B6000FA0B7 /* ExUITextField.swift in Sources */,
 				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
