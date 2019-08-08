@@ -728,13 +728,13 @@
                                             <rect key="frame" x="248" y="21" width="120" height="58"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="130.000đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAE-Dj-bvy">
-                                                    <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="0.0"/>
+                                                    <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBC-qO-C85" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="0.0" y="20" width="120" height="38"/>
+                                                    <rect key="frame" x="0.0" y="38" width="120" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -908,11 +908,12 @@
                                         <rect key="frame" x="0.0" y="393" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gN9-31-5rM" id="DuY-X5-Pmm">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="435.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="XiN-jb-Pvg">
-                                                    <rect key="frame" x="20.000000000000007" y="20.999999999999986" width="96.666666666666686" height="241.66666666666663"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="XiN-jb-Pvg">
+                                                    <rect key="frame" x="20" y="21" width="96.666666666666671" height="241.66666666666666"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danh mục" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rld-f6-2CT">
                                                             <rect key="frame" x="0.0" y="0.0" width="77.666666666666671" height="20.333333333333332"/>
@@ -927,7 +928,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đã bán" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="paa-yH-Gga">
-                                                            <rect key="frame" x="0.0" y="110.66666666666666" width="54" height="20.333333333333343"/>
+                                                            <rect key="frame" x="0.0" y="110.66666666666667" width="54" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -946,8 +947,9 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="CEm-Rc-EC1">
-                                                    <rect key="frame" x="297.33333333333331" y="21" width="96.666666666666686" height="186.33333333333334"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="CEm-Rc-EC1">
+                                                    <rect key="frame" x="297.33333333333326" y="21" width="96.666666666666671" height="186.33333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danh mục" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yut-yQ-POQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="77.666666666666671" height="20.333333333333332"/>
@@ -962,7 +964,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đã bán" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gq-k9-yDx">
-                                                            <rect key="frame" x="0.0" y="110.66666666666666" width="54" height="20.333333333333343"/>
+                                                            <rect key="frame" x="0.0" y="110.66666666666667" width="54" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -975,17 +977,19 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="3.4/5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpc-7J-AFZ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3.4/5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpc-7J-AFZ">
                                                     <rect key="frame" x="139.33333333333337" y="320" width="98.666666666666657" height="36"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="s5p-gs-1Pb">
-                                                    <rect key="frame" x="258" y="247.66666666666663" width="136" height="326"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="s5p-gs-1Pb">
+                                                    <rect key="frame" x="258" y="247.66666666666663" width="136" height="177.33333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmg-jq-yx7" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="0.0" width="136" height="50"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmg-jq-yx7" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="0.0" width="136" height="20.666666666666668"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="text" value="3"/>
@@ -997,8 +1001,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eg1-A7-4lL" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="69" width="136" height="50"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eg1-A7-4lL" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="39.666666666666664" width="136" height="20.666666666666664"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="text" value="3"/>
@@ -1010,8 +1014,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9tm-jZ-K42" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="138" width="136" height="50"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tm-jZ-K42" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="79.333333333333329" width="136" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -1022,8 +1026,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gd4-iJ-tdu" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="207" width="136" height="50"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gd4-iJ-tdu" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="118.33333333333331" width="136" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -1034,8 +1038,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rbm-fY-cUC" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="276" width="136" height="50"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbm-fY-cUC" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="157.33333333333334" width="136" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -1048,7 +1052,7 @@
                                                         </view>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đánh giá" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hle-hh-Ws2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Đánh giá" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hle-hh-Ws2">
                                                     <rect key="frame" x="20" y="14.999999999999998" width="67.666666666666671" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1056,14 +1060,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Hle-hh-Ws2" firstAttribute="leading" secondItem="1YJ-ZW-1gC" secondAttribute="leading" constant="20" id="3bP-2K-Hgc"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Wp9-jg-XIh" secondAttribute="bottom" constant="69" id="FgW-sB-u2A"/>
-                                                <constraint firstItem="btH-uw-MJR" firstAttribute="trailing" secondItem="1YJ-ZW-1gC" secondAttribute="trailingMargin" id="OLn-cp-Hjt"/>
-                                                <constraint firstItem="btH-uw-MJR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hle-hh-Ws2" secondAttribute="trailing" constant="8" symbolic="YES" id="PlA-QJ-2VM"/>
-                                                <constraint firstItem="Wp9-jg-XIh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1YJ-ZW-1gC" secondAttribute="leading" constant="20" symbolic="YES" id="WHz-qp-69x"/>
-                                                <constraint firstItem="btH-uw-MJR" firstAttribute="leading" secondItem="Wp9-jg-XIh" secondAttribute="trailing" constant="20" id="aNs-iX-83b"/>
-                                                <constraint firstItem="Hle-hh-Ws2" firstAttribute="top" secondItem="1YJ-ZW-1gC" secondAttribute="top" constant="15" id="gKU-NQ-GQ4"/>
-                                                <constraint firstItem="btH-uw-MJR" firstAttribute="bottom" secondItem="1YJ-ZW-1gC" secondAttribute="bottomMargin" id="pjk-3l-AHN"/>
+                                                <constraint firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hle-hh-Ws2" secondAttribute="trailing" constant="8" symbolic="YES" id="PlA-QJ-2VM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1072,7 +1069,7 @@
                             <tableViewSection headerTitle="Thông tin giá (VNĐ)" id="iet-Ml-k1j">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="sUX-zv-j6d">
-                                        <rect key="frame" x="0.0" y="893" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="503" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sUX-zv-j6d" id="Myr-jf-fS9">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
@@ -1103,7 +1100,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="kZa-6e-fNO">
-                                        <rect key="frame" x="0.0" y="953" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="563" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kZa-6e-fNO" id="Go0-78-0nM">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
@@ -1134,7 +1131,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="W99-f0-SNQ">
-                                        <rect key="frame" x="0.0" y="1013" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="623" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W99-f0-SNQ" id="7lX-LB-bYm">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
@@ -1165,7 +1162,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Osu-2V-E7c">
-                                        <rect key="frame" x="0.0" y="1073" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="683" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Osu-2V-E7c" id="4mf-KC-WTb">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
@@ -1923,6 +1920,7 @@
                         </connections>
                     </tableView>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="JGD-lx-e9I">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="Tải lại">
