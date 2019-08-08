@@ -36,7 +36,8 @@ class ProductDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.allowsMultipleSelection = false
+        tableView.allowsSelection = false
     }
     
     func update() {
