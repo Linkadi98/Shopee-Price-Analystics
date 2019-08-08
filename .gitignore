@@ -69,3 +69,5 @@ Shopee Prices Analystic.xcworkspace/xcuserdata/minhpham.xcuserdatad/UserInterfac
 Shopee Prices Analystic.xcodeproj/xcuserdata/minhpham.xcuserdatad/xcschemes/xcschememanagement.plist
 Pods/Pods.xcodeproj/xcuserdata/minhpham.xcuserdatad/xcschemes/xcschememanagement.plist
 *.xcuserstate
+Pods/FBSDKCoreKit/.DS_Store
+Pods/FBSDKCoreKit/FBSDKCoreKit/.DS_Store
