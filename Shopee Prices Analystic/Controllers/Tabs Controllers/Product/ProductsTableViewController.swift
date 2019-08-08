@@ -86,7 +86,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     }
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return false
+        return true
     }
     
     
@@ -94,12 +94,15 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         return .none
     }
     
+    
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let cellSelected = tableView.cellForRow(at: indexPath)
         let editPriceButton = UITableViewRowAction(style: .default, title: "Sửa", handler: {(action, indexPath) in
             
         })
+        
+        editPriceButton.backgroundColor = .blue
         
         return [editPriceButton]
     }
@@ -117,11 +120,14 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Actions
     
     @IBAction func editingMode(_ sender: Any) {
+        let tabVC = storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
+            tabVC.isSwipeEnabled = true
         }
         else {
             tableView.setEditing(true, animated: true)
+            tabVC.isSwipeEnabled = false
         }
     }
     

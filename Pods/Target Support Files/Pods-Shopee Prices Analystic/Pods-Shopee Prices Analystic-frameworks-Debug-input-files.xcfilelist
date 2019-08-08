@@ -1,4 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework
@@ -9,7 +11,7 @@ ${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework
 ${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework
 ${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework
 ${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework
+${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
-${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
 ${BUILT_PRODUCTS_DIR}/SwipeableTabBarController/SwipeableTabBarController.framework
 ${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework

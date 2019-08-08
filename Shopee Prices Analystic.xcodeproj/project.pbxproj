@@ -18,6 +18,10 @@
 		2416494A22E19F5600B80DBC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494922E19F5600B80DBC /* Animator.swift */; };
 		241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */; };
 		241D5A7322E57A8C00CBA60C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5A7222E57A8C00CBA60C /* Account.swift */; };
+		242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361D822FAA6A300EFC57A /* RivalPageViewController.swift */; };
+		242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */; };
+		242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */; };
+		242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */; };
 		242C4FA522F577EE007D4903 /* ExUIAlerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C4FA422F577EE007D4903 /* ExUIAlerController.swift */; };
 		2433DB6B22F6C48A00AB0498 /* ExUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433DB6A22F6C48A00AB0498 /* ExUILabel.swift */; };
 		2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */; };
@@ -39,12 +43,12 @@
 		24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */; };
 		24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EDDD6022D960C400D62704 /* TransitionButton.framework */; };
 		24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F661D422DC26C100440A7A /* TabsViewController.swift */; };
-		4F20B549B30EBD7B814F6C00 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */; };
+		7586647CF3962BBB30FC4A94 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADD437F49AF60A9D2B55860 /* Pods_Shopee_Prices_Analystic.framework */; };
 		BC0FB3A322F7C02C00968E68 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0FB3A222F7C02C00968E68 /* Config.swift */; };
 		BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */; };
 		BC741E8822F9356E00656689 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC741E8722F9356E00656689 /* AlamofireManager.swift */; };
 		BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */; };
-		ECBD5A4F1636A373BD25EE80 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */; };
+		E93805F1D912FEDBBDDFF1C7 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_AnalysticTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
 		24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopsTableViewController.swift; sourceTree = "<group>"; };
 		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -82,6 +87,10 @@
 		2416494922E19F5600B80DBC /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailTableViewController.swift; sourceTree = "<group>"; };
 		241D5A7222E57A8C00CBA60C /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		242361D822FAA6A300EFC57A /* RivalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalPageViewController.swift; sourceTree = "<group>"; };
+		242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalInfoViewController.swift; sourceTree = "<group>"; };
+		242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductTableViewController.swift; sourceTree = "<group>"; };
+		242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductLineChartViewController.swift; sourceTree = "<group>"; };
 		242C4FA422F577EE007D4903 /* ExUIAlerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIAlerController.swift; sourceTree = "<group>"; };
 		2433DB6A22F6C48A00AB0498 /* ExUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUILabel.swift; sourceTree = "<group>"; };
 		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -107,16 +116,15 @@
 		24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTabBar.swift; sourceTree = "<group>"; };
 		24EDDD6022D960C400D62704 /* TransitionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TransitionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F661D422DC26C100440A7A /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
-		2E0A52B4363CE4A0AD804F1E /* Pods-Shopee Prices Analystic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.release.xcconfig"; sourceTree = "<group>"; };
-		74E8530B11AE49B116C3BD31 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.release.xcconfig"; sourceTree = "<group>"; };
-		78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_AnalysticTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_Analystic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D0F8805A33D800EB8B9543A /* Pods-Shopee Prices Analystic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.release.xcconfig"; sourceTree = "<group>"; };
+		6A082DB0C0453692F2A662C6 /* Pods-Shopee Prices Analystic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.debug.xcconfig"; sourceTree = "<group>"; };
+		9ADD437F49AF60A9D2B55860 /* Pods_Shopee_Prices_Analystic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_Analystic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC0FB3A222F7C02C00968E68 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopeeAuthViewController.swift; sourceTree = "<group>"; };
 		BC741E8722F9356E00656689 /* AlamofireManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
-		C9B87D52B119D59B20D11F5D /* Pods-Shopee Prices Analystic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.debug.xcconfig"; sourceTree = "<group>"; };
-		FE070870C7935034BC4DBA32 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D9AEDCCD4F6597E107217347 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EE1BE34F51B52E35B3555748 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,8 +132,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F20B549B30EBD7B814F6C00 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */,
 				24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */,
+				7586647CF3962BBB30FC4A94 /* Pods_Shopee_Prices_Analystic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,13 +141,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECBD5A4F1636A373BD25EE80 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */,
+				E93805F1D912FEDBBDDFF1C7 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21154D23279D7F5A61230F7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9ADD437F49AF60A9D2B55860 /* Pods_Shopee_Prices_Analystic.framework */,
+				1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		24120F3E22E07491000FA0B7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +170,17 @@
 				2433DB6A22F6C48A00AB0498 /* ExUILabel.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		242361D722FAA66300EFC57A /* Rival */ = {
+			isa = PBXGroup;
+			children = (
+				242361D822FAA6A300EFC57A /* RivalPageViewController.swift */,
+				242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */,
+				242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */,
+				242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */,
+			);
+			path = Rival;
 			sourceTree = "<group>";
 		};
 		242C4FA622F5786C007D4903 /* Custom components */ = {
@@ -243,7 +271,7 @@
 				2484175C22D85D810009DF10 /* Shopee Prices AnalysticTests */,
 				2484174622D85D800009DF10 /* Products */,
 				F0231C0A030C3C9F8E4BE00A /* Pods */,
-				A95C31DBC6BF223EA9C18BE5 /* Frameworks */,
+				21154D23279D7F5A61230F7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -314,21 +342,13 @@
 		24F661D322DC26A600440A7A /* Tabs Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				242361D722FAA66300EFC57A /* Rival */,
 				2459135522E2BFDA00D51A4B /* Tabs */,
 				2459135422E2BFAF00D51A4B /* Product */,
 				2459135322E2BF9C00D51A4B /* Account */,
 				2459135222E2BF8600D51A4B /* Overview */,
 			);
 			path = "Tabs Controllers";
-			sourceTree = "<group>";
-		};
-		A95C31DBC6BF223EA9C18BE5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				87982867B9FDDD413B90276B /* Pods_Shopee_Prices_Analystic.framework */,
-				78436B2E536F369725251BD7 /* Pods_Shopee_Prices_AnalysticTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BC0FB3A122F7BFF900968E68 /* Configurations */ = {
@@ -352,10 +372,10 @@
 		F0231C0A030C3C9F8E4BE00A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C9B87D52B119D59B20D11F5D /* Pods-Shopee Prices Analystic.debug.xcconfig */,
-				2E0A52B4363CE4A0AD804F1E /* Pods-Shopee Prices Analystic.release.xcconfig */,
-				FE070870C7935034BC4DBA32 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */,
-				74E8530B11AE49B116C3BD31 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */,
+				6A082DB0C0453692F2A662C6 /* Pods-Shopee Prices Analystic.debug.xcconfig */,
+				2D0F8805A33D800EB8B9543A /* Pods-Shopee Prices Analystic.release.xcconfig */,
+				D9AEDCCD4F6597E107217347 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */,
+				EE1BE34F51B52E35B3555748 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -367,13 +387,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2484176222D85D810009DF10 /* Build configuration list for PBXNativeTarget "Shopee Prices Analystic" */;
 			buildPhases = (
-				94999C146C70D1A17FFF6814 /* [CP] Check Pods Manifest.lock */,
+				7E9DA6D756C3DEE314982BA2 /* [CP] Check Pods Manifest.lock */,
 				2484174122D85D800009DF10 /* Sources */,
 				2484174222D85D800009DF10 /* Frameworks */,
 				2484174322D85D800009DF10 /* Resources */,
-				4544E1A3AA73E3F31B2011E0 /* [CP] Embed Pods Frameworks */,
 				24EDDD6322D960C500D62704 /* Embed Frameworks */,
-				937E95169BC6353E73813EE7 /* [CP] Copy Pods Resources */,
+				F3D8A83EC55A7A9EB828E4F0 /* [CP] Embed Pods Frameworks */,
+				952FCD69AE59DBEA6657A6EA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -388,7 +408,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2484176522D85D810009DF10 /* Build configuration list for PBXNativeTarget "Shopee Prices AnalysticTests" */;
 			buildPhases = (
-				11147E31CDF09C0309A9A26B /* [CP] Check Pods Manifest.lock */,
+				96722EF1F7B5D63F727254B8 /* [CP] Check Pods Manifest.lock */,
 				2484175522D85D810009DF10 /* Sources */,
 				2484175622D85D810009DF10 /* Frameworks */,
 				2484175722D85D810009DF10 /* Resources */,
@@ -462,7 +482,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11147E31CDF09C0309A9A26B /* [CP] Check Pods Manifest.lock */ = {
+		7E9DA6D756C3DEE314982BA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shopee Prices Analystic-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		952FCD69AE59DBEA6657A6EA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96722EF1F7B5D63F727254B8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -484,7 +543,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4544E1A3AA73E3F31B2011E0 /* [CP] Embed Pods Frameworks */ = {
+		F3D8A83EC55A7A9EB828E4F0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -492,94 +551,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwipeableTabBarController/SwipeableTabBarController.framework",
-				"${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework",
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeableTabBarController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionButton.framework",
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		937E95169BC6353E73813EE7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		94999C146C70D1A17FFF6814 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Shopee Prices Analystic-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -607,19 +585,23 @@
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
 				2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */,
 				2459135E22E2EF5B00D51A4B /* ExUITableView.swift in Sources */,
+				242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */,
 				242C4FA522F577EE007D4903 /* ExUIAlerController.swift in Sources */,
 				24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
+				242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */,
 				241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */,
 				2412CB4622F3F16F0067BE46 /* TestViewController.swift in Sources */,
 				BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
 				2416494622E1768900B80DBC /* ProductsTableViewController.swift in Sources */,
 				2459136422E2F0FF00D51A4B /* ExUIViewController.swift in Sources */,
+				242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */,
 				2416494A22E19F5600B80DBC /* Animator.swift in Sources */,
 				2459136022E2EF6600D51A4B /* ExUIView.swift in Sources */,
 				BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */,
 				2416494822E1770E00B80DBC /* Product.swift in Sources */,
+				242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,7 +761,7 @@
 		};
 		2484176322D85D810009DF10 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9B87D52B119D59B20D11F5D /* Pods-Shopee Prices Analystic.debug.xcconfig */;
+			baseConfigurationReference = 6A082DB0C0453692F2A662C6 /* Pods-Shopee Prices Analystic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -802,7 +784,7 @@
 		};
 		2484176422D85D810009DF10 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E0A52B4363CE4A0AD804F1E /* Pods-Shopee Prices Analystic.release.xcconfig */;
+			baseConfigurationReference = 2D0F8805A33D800EB8B9543A /* Pods-Shopee Prices Analystic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -825,7 +807,7 @@
 		};
 		2484176622D85D810009DF10 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE070870C7935034BC4DBA32 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */;
+			baseConfigurationReference = D9AEDCCD4F6597E107217347 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -847,7 +829,7 @@
 		};
 		2484176722D85D810009DF10 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 74E8530B11AE49B116C3BD31 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */;
+			baseConfigurationReference = EE1BE34F51B52E35B3555748 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
