@@ -182,8 +182,53 @@ extension UIViewController {
                 let shopName = value["name"] as! String
                 listShops.append(Shop(shopId: shopId, shopName: shopName))
             }
-            completion(listShops)
 
+            if listShops.isEmpty {
+                UserDefaults.standard.removeObject(forKey: "currentShop")
+                let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
+                                                        subtitle: "Bấm vào đây để kết nối",
+                                                        style: .warning)
+                banner.onTap = {
+                    self.tabBarController?.selectedIndex = 4
+                }
+                banner.show(queuePosition: .back,
+                            bannerPosition: .top,
+                            cornerRadius: 10)
+            } else {
+                // Case: didn't save currentShop before, save first shop in list shops
+                guard let savedCurrentShopData = UserDefaults.standard.data(forKey: "currentShop") else {
+                    if let encoded = try? JSONEncoder().encode(listShops[0]) {
+                        UserDefaults.standard.set(encoded, forKey: "currentShop")
+                    }
+                    completion(listShops)
+                    return
+                }
+
+                // Case: save currentShop before
+                // Decode
+                var savedCurrentShop = try! JSONDecoder().decode(Shop.self, from: savedCurrentShopData)
+
+                // Check if listShop contains savedCurrentShop
+                // if listShop contains savedCurrentShop, currentShop isn't changed
+                if listShops.contains(savedCurrentShop) {
+                    completion(listShops)
+                    return
+                }
+
+                // listShop doesn't contain savedCurrentShop
+                for shop in listShops {
+                    // but maybe shop was changed its name (not deleted)
+                    if savedCurrentShop.shopId == shop.shopId {
+                        savedCurrentShop = shop
+                        if let encoded = try? JSONEncoder().encode(savedCurrentShop) {
+                            UserDefaults.standard.set(encoded, forKey: "currentShop")
+                        }
+                        completion(listShops)
+                        return
+                    }
+                }
+            }
+            completion(listShops)
         }
     }
 

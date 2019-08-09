@@ -50,7 +50,7 @@ class OverviewViewController: UIViewController {
         timeLabel.text = setTime()
         descriptionView.setShadow()
 
-        UserDefaults.standard.removeObject(forKey: "currentShop")
+//        UserDefaults.standard.removeObject(forKey: "currentShop")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +60,14 @@ class OverviewViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        getListShops { _ in
+            if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
+                print(currentShopData)
+                if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+                    self.currentShop = currentShop
+                }
+            }
+        }
         // Thông báo cho khách hàng biết chưa có kết nối đến cửa hàng nào
         // Xử lý thông báo trước khi thông báo hiện ra bằng cách check cửa hàng đã kết nối từ api trả về
         // Xem phần định nghĩa hàm trong file EUIViewController.swift
@@ -89,7 +97,7 @@ class OverviewViewController: UIViewController {
 }
 
 extension OverviewViewController {
-//    func loadFirstShop() {
+//    func loadCurrentShop() {
 //        self.getListShops { (listShops) in
 //            if listShops.isEmpty {
 //                UserDefaults.standard.removeObject(forKey: "currentShop")
