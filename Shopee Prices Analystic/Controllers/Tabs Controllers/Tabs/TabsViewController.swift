@@ -11,6 +11,7 @@ import SwipeableTabBarController
 
 class TabsViewController: SwipeableTabBarController {
 
+    var a = 1
     // MARK: - Properties
     
     override func viewDidLoad() {

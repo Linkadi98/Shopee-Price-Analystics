@@ -210,6 +210,33 @@ extension UIViewController {
             completion("success")
         }
     }
+
+//    func getListProducts(completion: @escaping ([Product]?) -> Void) {
+//        let sharedNetwork = Network.shared
+//        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+//        let url = URL(string: sharedNetwork.base_url + sharedNetwork.product_path)!
+//        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: [:]).responseJSON { (response) in
+//            // Failed request
+//            guard response.result.isSuccess else {
+//                print("Error when fetching data: \(response.result.error)")
+//                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+//                completion(nil)
+//                return
+//            }
+//
+//            //Successful request
+//            var listProducts: [Product] = []
+//            let responseValue = response.result.value! as! [[String: Any]]
+//            print(responseValue)
+//            for value in responseValue {
+//                let shopId = String(value["id"] as! Int64)
+//                let shopName = value["name"] as! String
+//                listShops.append(Shop(shopId: shopId, shopName: shopName))
+//            }
+//            completion(listShops)
+//
+//        }
+//    }
 }
 
 // Load online image

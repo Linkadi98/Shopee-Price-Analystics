@@ -15,6 +15,7 @@ class Network {
     let login_path = "/login"
     let register_path = "/register"
     let shop_path = "/shop"
+    let product_path = "/item"
     var headers: HTTPHeaders = [
         "Content-Type": "application/json"
     ]
