@@ -149,7 +149,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
             if let result = shopeeAuthViewController.result {
                 if result == "failed" {
-                    self.presentAlert(message: "Thêm cửa hàng thành công")
+                    self.presentAlert(message: "Thêm cửa hàng thất bại")
                 }
             }
         }
