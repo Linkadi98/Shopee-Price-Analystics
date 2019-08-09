@@ -11,10 +11,11 @@ import UIKit
 class ListShopsTableViewController: UITableViewController, UISearchResultsUpdating {
 
     // MARK: - Properties
-    
+    var searchController: UISearchController!
+
     var listShops: [Shop] = []
     var filterShop: [Shop] = []
-    var searchController: UISearchController!
+    var addedShopId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +28,36 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-//        getListShops { (listShops) in
-//            self.listShops = listShops
-//            self.tableView.reloadData()
-//            print(self.listShops)
-//        }
+    override func viewDidAppear(_ animated: Bool) {
+        print("didAppear")
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
+        let activityIndicator = initActivityIndicator()
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+
+        getListShops { (listShops) in
+            guard let listShops = listShops else {
+                print("Khong co shop nao")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                    activityIndicator.stopAnimating()
+                    if activityIndicator.isAnimating == false {
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                }
+                return
+            }
+
+            self.listShops = listShops
+            self.tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                activityIndicator.stopAnimating()
+                if activityIndicator.isAnimating == false {
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
+            }
+        }
+        return
     }
 
     // MARK: - Table view data source
@@ -120,11 +145,14 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     }
 
     @IBAction func unwindToListShopsTableViewController(segue: UIStoryboardSegue) {
-//        if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
-//            if let shopId = shopeeAuthViewController.shopId {
-//                self.addShop(shopId: shopId, name: "Mac dinh")
-//            }
-//        }
+        print("unwind")
+        if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
+            if let result = shopeeAuthViewController.result {
+                if result == "failed" {
+                    self.presentAlert(message: "Thêm cửa hàng thành công")
+                }
+            }
+        }
     }
 }
 
