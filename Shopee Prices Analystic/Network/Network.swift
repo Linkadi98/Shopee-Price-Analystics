@@ -11,7 +11,7 @@ import Alamofire
 
 class Network {
     static let shared = Network()
-    let base_url = "http://192.168.10.8:8081"
+    let base_url = "http://192.168.100.7:8081"
     let login_path = "/login"
     let register_path = "/register"
     let shop_path = "/shop"
@@ -20,17 +20,19 @@ class Network {
         "Content-Type": "application/json"
     ]
 
-    func alamofireDataRequest(url: URL, httpMethod: HTTPMethod, parameters: Parameters,timeoutInterval: TimeInterval = 15) -> DataRequest {
+    func alamofireDataRequest(url: URL, httpMethod: HTTPMethod, parameters: Parameters?,timeoutInterval: TimeInterval = 15) -> DataRequest {
         // Configure request
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         for (key, value) in self.headers {
             request.setValue(value, forHTTPHeaderField: key)
         }
-        request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
+        if let parameters = parameters {
+            request.httpBody = try! JSONSerialization.data(withJSONObject: parameters, options: [])
+        }
         request.timeoutInterval = timeoutInterval
         // Request
-        return Alamofire.request(request as! URLRequestConvertible)
+        return Alamofire.request(request as URLRequestConvertible)
     }
 }
 

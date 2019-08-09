@@ -60,11 +60,24 @@ class OverviewViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
+        let activityIndicator = initActivityIndicator()
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
         getListShops { _ in
             if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
                 print(currentShopData)
                 if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                     self.currentShop = currentShop
+                }
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                activityIndicator.stopAnimating()
+                if activityIndicator.isAnimating == false {
+                    UIApplication.shared.endIgnoringInteractionEvents()
                 }
             }
         }
@@ -94,50 +107,4 @@ class OverviewViewController: UIViewController {
         return "THỨ \(dayOfWeek) NGÀY \(day) THÁNG \(month)"
     }
 
-}
-
-extension OverviewViewController {
-//    func loadCurrentShop() {
-//        self.getListShops { (listShops) in
-//            if listShops.isEmpty {
-//                UserDefaults.standard.removeObject(forKey: "currentShop")
-//                let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
-//                                                        subtitle: "Bấm vào đây để kết nối",
-//                                                        style: .warning)
-//                banner.onTap = {
-//                    self.tabBarController?.selectedIndex = 4
-//                }
-//                banner.show(queuePosition: .back,
-//                            bannerPosition: .top,
-//                            cornerRadius: 10)
-//                // currentShop is nil
-//            } else {
-//                // Case: didn't save currentShop before
-//                guard let savedCurrentShopData = UserDefaults.standard.data(forKey: "currentShop") else {
-//                    self.currentShop = listShops[0]
-//                    if let encoded = try? JSONEncoder().encode(listShops[0]) {
-//                        UserDefaults.standard.set(encoded, forKey: "currentShop")
-//                    }
-//                    return
-//                }
-//
-//                // Case: save currentShop before
-//                // Decode
-//                let savedCurrentShop = try! JSONDecoder().decode(Shop.self, from: savedCurrentShopData)
-//
-//                // Check if listShop contains savedCurrentShop
-//                // if listShop contains savedCurrentShop, currentShop isn't changed
-//                if listShops.contains(savedCurrentShop) { return }
-//
-//                // listShop doesn't contain savedCurrentShop
-//                for shop in listShops {
-//                    // but maybe shop was changed its name (not deleted)
-//                    if savedCurrentShop.shopId == shop.shopId {
-//                        self.currentShop = shop
-//                        return
-//                    }
-//                }
-//            }
-//        }
-//    }
 }

@@ -29,7 +29,6 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        print("didAppear")
         UIApplication.shared.beginIgnoringInteractionEvents()
 
         let activityIndicator = initActivityIndicator()
@@ -146,10 +145,12 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
 
     @IBAction func unwindToListShopsTableViewController(segue: UIStoryboardSegue) {
         print("unwind")
-        if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
-            if let result = shopeeAuthViewController.result {
-                if result == "failed" {
-                    self.presentAlert(message: "Thêm cửa hàng thất bại")
+        if segue.identifier == "ShopeeAuthVCUnwindToListShopsTVC" {
+            if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
+                if let result = shopeeAuthViewController.result {
+                    if result == "failed" {
+                        self.presentAlert(message: "Thêm cửa hàng thất bại")
+                    }
                 }
             }
         }

@@ -164,7 +164,8 @@ extension UIViewController {
         let sharedNetwork = Network.shared
 //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: [:]).responseJSON { (response) in
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
