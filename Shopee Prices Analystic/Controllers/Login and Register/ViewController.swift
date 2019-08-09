@@ -55,8 +55,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
     
     @IBAction func loginSPA(_ sender: Any) {
-        loginButton.startAnimation()
+        UIApplication.shared.beginIgnoringInteractionEvents()
 
+        loginButton.startAnimation()
+        
         self.login(username: userNameText.text!, password: passwordText.text!) {
             self.loginButton.stopAnimation(animationStyle: .normal, revertAfterDelay: 0, completion: {
                 self.loginButton.setGrandientColor(colorOne: self.hexStringToUIColor(hex: "#ffc400"), colorTwo: self.hexStringToUIColor(hex: "#FF5700"))
@@ -103,15 +105,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             })
         }
             
-    }
-    
-    private func showMainAppicationAfterSuccessfulLogin(with status: Bool = true, _ sender: TransitionButton) {
-        if status {
-            sender.stopAnimation(animationStyle: .expand, completion: {
-            let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-            self.present(secondVC, animated: false, completion: nil)
-            })
-        }
     }
 
     @IBAction func unwindToViewController(segue: UIStoryboardSegue) {

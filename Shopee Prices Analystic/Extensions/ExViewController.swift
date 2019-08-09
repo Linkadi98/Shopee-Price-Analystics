@@ -52,8 +52,6 @@ extension ViewController {
 // Login by SPA Account
 extension ViewController {
     func login(username: String, password: String, completion: @escaping () -> Void) {
-        UIApplication.shared.beginIgnoringInteractionEvents()
-        
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
         let parameters: Parameters = [

@@ -118,13 +118,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     // Register SPA account
     @IBAction func register(_ sender: Any) {
-
         UIApplication.shared.beginIgnoringInteractionEvents()
-//        SVProgressHUD.setForegroundColor(.orange)
-//        SVProgressHUD.show(withStatus: "Đang tải")
+
         let activityIndicator = initActivityIndicator()
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        
         self.register(phone: "696969", email: email.text!, username: userName.text!, password: password.text!) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                 activityIndicator.stopAnimating()
@@ -132,7 +131,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     UIApplication.shared.endIgnoringInteractionEvents()
                 }
             }
-        }// NEED EDITED
+        }
     }
     // Log in using facebook account
     @IBAction func loginByFb(_ sender: Any) {
@@ -203,8 +202,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 // Register
 extension RegisterViewController {
     func register(phone: String?, email: String, username: String, password: String, completion: @escaping () -> Void) {
-        
-
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.register_path)!
         var parameters: Parameters = [

@@ -730,13 +730,13 @@
                                             <rect key="frame" x="248" y="21" width="120" height="58"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="130.000đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAE-Dj-bvy">
-                                                    <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="18"/>
+                                                    <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBC-qO-C85" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="0.0" y="38" width="120" height="20"/>
+                                                    <rect key="frame" x="0.0" y="20" width="120" height="38"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -987,11 +987,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="s5p-gs-1Pb">
-                                                    <rect key="frame" x="258" y="247.66666666666663" width="136" height="177.33333333333334"/>
+                                                    <rect key="frame" x="258" y="247.66666666666663" width="136" height="326"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmg-jq-yx7" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="0.0" width="136" height="20.666666666666668"/>
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dmg-jq-yx7" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="0.0" width="136" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="text" value="3"/>
@@ -1003,8 +1003,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eg1-A7-4lL" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="39.666666666666664" width="136" height="20.666666666666664"/>
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eg1-A7-4lL" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="69" width="136" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="string" keyPath="text" value="3"/>
@@ -1016,8 +1016,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tm-jZ-K42" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="79.333333333333329" width="136" height="20"/>
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9tm-jZ-K42" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="138" width="136" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -1028,8 +1028,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gd4-iJ-tdu" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="118.33333333333331" width="136" height="20"/>
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gd4-iJ-tdu" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="207" width="136" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -1040,8 +1040,8 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbm-fY-cUC" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="157.33333333333334" width="136" height="20"/>
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rbm-fY-cUC" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="276" width="136" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">

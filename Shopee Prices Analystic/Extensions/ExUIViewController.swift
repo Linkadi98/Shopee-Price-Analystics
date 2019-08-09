@@ -160,55 +160,56 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 
 // Get list shop
 extension UIViewController {
-//    func getListShops(completion: @escaping ([Shop]) -> Void) {
-//        let url = URL(string: Config.BASE_URL + Config.SHOP_PATH)!
-//
-////        let alamofireManager = AlamofireManager(timeoutInterval: 1000).manager
-//
-//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
-//            guard response.result.isSuccess else {
-//                // NEED EDITED
-//                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
-//                banner.show()
-//
-//                print("Error when fetching data: \(response.result.error)")
-//                return
-//            }
-//
-//            print("fetching")
-//            var listShops: [Shop] = []
-//            let responseValue = response.result.value! as! [[String: Any]]
-//            print(response.result.value!)
-//            for value in responseValue {
-//                let shopId = String(value["id"] as! Int64)
-//                let shopName = value["name"] as! String
-//                listShops.append(Shop(shopId: shopId, shopName: shopName))
-//            }
-//            completion(listShops)
-//        }
-//    }
-//
-//    func addShop(shopId: String, name: String) {
-//        let url = URL(string: Config.BASE_URL + Config.SHOP_PATH)!
-//        let parameters: Parameters = [
-//            "id": shopId,
-//            "name": name
-//        ]
-//
-//        let alamofireManager = AlamofireManager(timeoutInterval: 1000).manager
-//
-//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
-//            guard response.result.isSuccess else {
-//                // NEED EDITED
-//                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .warning)
-//                banner.show()
-//                print("Error when fetching data: \(response.result.error)")
-//                return
-//            }
-//
-//            print(response.result.value! as! [String: Any])
-//        }
-//    }
+    func getListShops(completion: @escaping ([Shop]?) -> Void) {
+        let sharedNetwork = Network.shared
+//        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: [:]).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion(nil)
+                return
+            }
+
+            //Successful request
+            var listShops: [Shop] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            print(responseValue)
+            for value in responseValue {
+                let shopId = String(value["id"] as! Int64)
+                let shopName = value["name"] as! String
+                listShops.append(Shop(shopId: shopId, shopName: shopName))
+            }
+            completion(listShops)
+
+        }
+    }
+
+    func addShop(shopId: String, shopName: String, completion: @escaping (String) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
+        let parameters: Parameters = [
+            "id": shopId,
+            "name": shopName
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion("failed")
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value!
+            print(responseValue)
+            completion("success")
+        }
+    }
 }
 
 // Load online image
