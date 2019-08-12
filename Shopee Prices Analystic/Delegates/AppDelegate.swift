@@ -27,23 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         // Change initial view controller after successful login
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        var initialViewController: UIViewController
-        print("Change initial view controller after successful login")
+        var initialViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController // start in login VC
 
-        if UserDefaults.standard.object(forKey: "currentUser") != nil //your condition if user is already logged in or not
-        {
-            // if already logged in then redirect to MainViewController
-            // save token to HEADERS
+        if UserDefaults.standard.object(forKey: "currentUser") != nil {
+            // already logged in
             if let token = UserDefaults.standard.string(forKey: "token") {
-                Network.shared.headers["Authorization"] = token
+                if let expiredTimeOfToken = UserDefaults.standard.object(forKey: "expiredTimeOfToken") as? Date {
+                    if Date() <= expiredTimeOfToken {
+                        // token's not expired -> no need to login
+                        Network.shared.headers["Authorization"] = token
+                        initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
+                        print("App starts in TabsViewController")
+                    }
+                }
             }
-            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController // 'MainController' is the storyboard id of MainViewController
-        }
-        else
-        {
-            //If not logged in then show LoginViewController
-            initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController // 'LoginController' is the storyboard id of LoginViewController
-
         }
 
         self.window?.rootViewController = initialViewController

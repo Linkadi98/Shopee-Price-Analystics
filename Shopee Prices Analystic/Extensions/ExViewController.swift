@@ -78,9 +78,10 @@ extension ViewController {
                     return
                 }
 
-                // Save token
+                // Save token and its expired time
                 print(token)
                 UserDefaults.standard.set(token, forKey: "token")
+                UserDefaults.standard.set(Date(timeIntervalSinceNow: 21600), forKey: "expiredTimeOfToken")
                 sharedNetwork.headers["Authorization"] = token
 
                 // Lưu currentUser trong UserDefaults
