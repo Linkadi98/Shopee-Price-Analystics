@@ -10,7 +10,7 @@
 		2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */; };
 		24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */; };
 		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
-		24120F4022E074B6000FA0B7 /* ExUITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* ExUITextField.swift */; };
+		24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */; };
 		2412CB4622F3F16F0067BE46 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412CB4522F3F16F0067BE46 /* TestViewController.swift */; };
 		2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414701322DAF58C000FB6D5 /* RegisterViewController.swift */; };
 		2416494622E1768900B80DBC /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494522E1768900B80DBC /* ProductsTableViewController.swift */; };
@@ -18,18 +18,21 @@
 		2416494A22E19F5600B80DBC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494922E19F5600B80DBC /* Animator.swift */; };
 		241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */; };
 		241D5A7322E57A8C00CBA60C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5A7222E57A8C00CBA60C /* Account.swift */; };
+		2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */; };
+		2421730B22FD602800541024 /* RivalTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421730A22FD602800541024 /* RivalTableCell.swift */; };
 		242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361D822FAA6A300EFC57A /* RivalPageViewController.swift */; };
 		242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */; };
 		242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */; };
 		242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */; };
-		242C4FA522F577EE007D4903 /* ExUIAlerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C4FA422F577EE007D4903 /* ExUIAlerController.swift */; };
-		2433DB6B22F6C48A00AB0498 /* ExUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433DB6A22F6C48A00AB0498 /* ExUILabel.swift */; };
+		242C4FA522F577EE007D4903 /* UIAlerController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C4FA422F577EE007D4903 /* UIAlerController+Extension.swift */; };
+		242F519122FE811D00A0E980 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F519022FE811D00A0E980 /* ContainerViewController.swift */; };
+		2433DB6B22F6C48A00AB0498 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */; };
 		2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */; };
-		2459135C22E2EF4D00D51A4B /* ExUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135B22E2EF4D00D51A4B /* ExUIButton.swift */; };
-		2459135E22E2EF5B00D51A4B /* ExUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135D22E2EF5B00D51A4B /* ExUITableView.swift */; };
-		2459136022E2EF6600D51A4B /* ExUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135F22E2EF6600D51A4B /* ExUIView.swift */; };
-		2459136222E2F01600D51A4B /* ExViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136122E2F01600D51A4B /* ExViewController.swift */; };
-		2459136422E2F0FF00D51A4B /* ExUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136322E2F0FF00D51A4B /* ExUIViewController.swift */; };
+		2459135C22E2EF4D00D51A4B /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135B22E2EF4D00D51A4B /* UIButton+Extension.swift */; };
+		2459135E22E2EF5B00D51A4B /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135D22E2EF5B00D51A4B /* UITableView+Extension.swift */; };
+		2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135F22E2EF6600D51A4B /* UIView+Extension.swift */; };
+		2459136222E2F01600D51A4B /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136122E2F01600D51A4B /* ViewController+Extension.swift */; };
+		2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */; };
 		2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */; };
 		2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65322DDC29200DA6D8E /* AccountViewController.swift */; };
 		2478C65722DDD50D00DA6D8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65622DDD50D00DA6D8E /* User.swift */; };
@@ -78,7 +81,7 @@
 		2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
 		24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopsTableViewController.swift; sourceTree = "<group>"; };
 		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
-		24120F3F22E074B6000FA0B7 /* ExUITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUITextField.swift; sourceTree = "<group>"; };
+		24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		2412CB4522F3F16F0067BE46 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		2414701322DAF58C000FB6D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2416494522E1768900B80DBC /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
@@ -86,18 +89,21 @@
 		2416494922E19F5600B80DBC /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailTableViewController.swift; sourceTree = "<group>"; };
 		241D5A7222E57A8C00CBA60C /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRivalsTableViewController.swift; sourceTree = "<group>"; };
+		2421730A22FD602800541024 /* RivalTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalTableCell.swift; sourceTree = "<group>"; };
 		242361D822FAA6A300EFC57A /* RivalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalPageViewController.swift; sourceTree = "<group>"; };
 		242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalInfoViewController.swift; sourceTree = "<group>"; };
 		242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductTableViewController.swift; sourceTree = "<group>"; };
 		242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductLineChartViewController.swift; sourceTree = "<group>"; };
-		242C4FA422F577EE007D4903 /* ExUIAlerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIAlerController.swift; sourceTree = "<group>"; };
-		2433DB6A22F6C48A00AB0498 /* ExUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUILabel.swift; sourceTree = "<group>"; };
+		242C4FA422F577EE007D4903 /* UIAlerController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlerController+Extension.swift"; sourceTree = "<group>"; };
+		242F519022FE811D00A0E980 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
-		2459135B22E2EF4D00D51A4B /* ExUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIButton.swift; sourceTree = "<group>"; };
-		2459135D22E2EF5B00D51A4B /* ExUITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUITableView.swift; sourceTree = "<group>"; };
-		2459135F22E2EF6600D51A4B /* ExUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIView.swift; sourceTree = "<group>"; };
-		2459136122E2F01600D51A4B /* ExViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExViewController.swift; sourceTree = "<group>"; };
-		2459136322E2F0FF00D51A4B /* ExUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExUIViewController.swift; sourceTree = "<group>"; };
+		2459135B22E2EF4D00D51A4B /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		2459135D22E2EF5B00D51A4B /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		2459135F22E2EF6600D51A4B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		2459136122E2F01600D51A4B /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
+		2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		2478C65322DDC29200DA6D8E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		2478C65622DDD50D00DA6D8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -158,14 +164,14 @@
 		24120F3E22E07491000FA0B7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				24120F3F22E074B6000FA0B7 /* ExUITextField.swift */,
-				2459135B22E2EF4D00D51A4B /* ExUIButton.swift */,
-				2459135D22E2EF5B00D51A4B /* ExUITableView.swift */,
-				2459135F22E2EF6600D51A4B /* ExUIView.swift */,
-				2459136122E2F01600D51A4B /* ExViewController.swift */,
-				2459136322E2F0FF00D51A4B /* ExUIViewController.swift */,
-				242C4FA422F577EE007D4903 /* ExUIAlerController.swift */,
-				2433DB6A22F6C48A00AB0498 /* ExUILabel.swift */,
+				24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */,
+				2459135B22E2EF4D00D51A4B /* UIButton+Extension.swift */,
+				2459135D22E2EF5B00D51A4B /* UITableView+Extension.swift */,
+				2459135F22E2EF6600D51A4B /* UIView+Extension.swift */,
+				2459136122E2F01600D51A4B /* ViewController+Extension.swift */,
+				2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */,
+				242C4FA422F577EE007D4903 /* UIAlerController+Extension.swift */,
+				2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -177,6 +183,7 @@
 				242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */,
 				242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */,
 				242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */,
+				2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */,
 			);
 			path = Rival;
 			sourceTree = "<group>";
@@ -192,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */,
+				242F519022FE811D00A0E980 /* ContainerViewController.swift */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -362,6 +370,7 @@
 			children = (
 				BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */,
 				2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */,
+				2421730A22FD602800541024 /* RivalTableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -509,16 +518,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -555,48 +557,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwipeableTabBarController/SwipeableTabBarController.framework",
-				"${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework",
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parchment.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeableTabBarController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionButton.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -613,34 +576,37 @@
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
 				2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */,
 				BC0FB3A322F7C02C00968E68 /* Network.swift in Sources */,
-				2459136222E2F01600D51A4B /* ExViewController.swift in Sources */,
+				2459136222E2F01600D51A4B /* ViewController+Extension.swift in Sources */,
 				2484174B22D85D800009DF10 /* ViewController.swift in Sources */,
-				2433DB6B22F6C48A00AB0498 /* ExUILabel.swift in Sources */,
+				2433DB6B22F6C48A00AB0498 /* UILabel+Extension.swift in Sources */,
 				2484174922D85D800009DF10 /* AppDelegate.swift in Sources */,
-				2459135C22E2EF4D00D51A4B /* ExUIButton.swift in Sources */,
+				242F519122FE811D00A0E980 /* ContainerViewController.swift in Sources */,
+				2459135C22E2EF4D00D51A4B /* UIButton+Extension.swift in Sources */,
 				241D5A7322E57A8C00CBA60C /* Account.swift in Sources */,
 				24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */,
 				2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */,
-				24120F4022E074B6000FA0B7 /* ExUITextField.swift in Sources */,
+				24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */,
 				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
 				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
 				2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */,
-				2459135E22E2EF5B00D51A4B /* ExUITableView.swift in Sources */,
+				2459135E22E2EF5B00D51A4B /* UITableView+Extension.swift in Sources */,
+				2421730B22FD602800541024 /* RivalTableCell.swift in Sources */,
 				242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */,
-				242C4FA522F577EE007D4903 /* ExUIAlerController.swift in Sources */,
+				242C4FA522F577EE007D4903 /* UIAlerController+Extension.swift in Sources */,
 				24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
 				242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */,
 				241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */,
 				2412CB4622F3F16F0067BE46 /* TestViewController.swift in Sources */,
+				2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */,
 				BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
 				2416494622E1768900B80DBC /* ProductsTableViewController.swift in Sources */,
-				2459136422E2F0FF00D51A4B /* ExUIViewController.swift in Sources */,
+				2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */,
 				242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */,
 				2416494A22E19F5600B80DBC /* Animator.swift in Sources */,
-				2459136022E2EF6600D51A4B /* ExUIView.swift in Sources */,
+				2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */,
 				BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */,
 				2416494822E1770E00B80DBC /* Product.swift in Sources */,
 				242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */,

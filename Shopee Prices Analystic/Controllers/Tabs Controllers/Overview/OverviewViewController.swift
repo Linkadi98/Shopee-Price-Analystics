@@ -16,19 +16,28 @@ class OverviewViewController: UIViewController {
     
     @IBOutlet weak var backgroundImage: UIImageView! {
         didSet {
-            backgroundImage.image = #imageLiteral(resourceName: "shoppingImage")
-            backgroundImage.layer.cornerRadius = 10
+            backgroundImage.image = #imageLiteral(resourceName: "backgroundImage")
         }
     }
     
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopId: UILabel!
-    @IBOutlet weak var timeLabel: MarqueeLabel!
-    @IBOutlet var superParentView: UIView!
-    @IBOutlet var parentView: UIView!
     @IBOutlet weak var subView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-
+    
+    
+    @IBOutlet weak var codeLb: UILabel! {
+        didSet {
+            codeLb.addImage(#imageLiteral(resourceName: "connector-0"), "Mã số cửa hàng:", offsetY: -15, x: -3)
+        }
+    }
+    @IBOutlet weak var averageLb: UILabel! {
+        didSet {
+            averageLb.addImage(#imageLiteral(resourceName: "connector-r"), "Đánh giá trung bình", offsetY: -5, x: -2)
+        }
+    }
+    
     @IBOutlet weak var descriptionView: UIView!
 
     var currentShop: Shop! {
@@ -42,40 +51,31 @@ class OverviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        subView.layer.cornerRadius = 10
-        subView.setShadow()
-        superParentView.setBlurEffect()
         
-        timeLabel.text = setTime()
+//        subView.backgroundColor = .clear
+//
+        subView.setShadow()
+//        subView.setBlurEffect()
+        subView.layer.cornerRadius = 10
         descriptionView.setShadow()
-
+        timeLabel.text = setTime()
+        
         UserDefaults.standard.removeObject(forKey: "currentShop")
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
-//        print(69)
-//        loadFirstShop()
-//        print(69)
+//        subView.translucent()
     }
+
+    // MARK: - Configuration
     
-    override func viewDidAppear(_ animated: Bool) {
-        // Thông báo cho khách hàng biết chưa có kết nối đến cửa hàng nào
-        // Xử lý thông báo trước khi thông báo hiện ra bằng cách check cửa hàng đã kết nối từ api trả về
-        // Xem phần định nghĩa hàm trong file EUIViewController.swift
-//        notification(title: "Bạn chưa kết nối đến cửa hàng nào", style: .warning) {
-//            self.statusNotification(title: "Kết nối thành công", style: .success)
-//        }
-    }
     
-    // MARK: - Actions
     
-       
     // MARK: - Private modifications
     private func setTime() -> String {
         let date = Date()
         let calendar = Calendar.current
-    
+        
         let month = calendar.component(.month, from: date)
         let day = calendar.component(.day, from: date)
         let dayOfWeek = calendar.component(.weekday, from: date)
@@ -85,6 +85,7 @@ class OverviewViewController: UIViewController {
         
         return "THỨ \(dayOfWeek) NGÀY \(day) THÁNG \(month)"
     }
+    
 
 }
 

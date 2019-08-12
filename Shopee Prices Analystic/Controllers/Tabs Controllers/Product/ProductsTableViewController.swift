@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SkeletonView
 
-class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SkeletonTableViewDataSource {
     
     // MARK: - Properties
    
@@ -16,6 +17,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     var products: [Product] = []
     var filterProducts =  [Product]()
     var searchController: UISearchController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,10 +28,33 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         navigationItem.hidesSearchBarWhenScrolling = false
         
         setupSearchController(for: searchController, placeholder: "Nhập tên sản phẩm")
+        
+        // Need set up Skeleton view here right below
+        
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        tabBarController?.tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        print("did appear")
+        view.hideSkeleton()
+        
+        view.showAnimatedSkeleton()
+        
+        if view.isSkeletonable {
+            tableView.allowsSelection = false
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("did disappear")
+        view.stopSkeletonAnimation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("willapprear")
+        view.startSkeletonAnimation()
+        
     }
 
     // MARK: - Table view data source
@@ -62,15 +87,17 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         cell.productPrice.text = product.convertPriceToVietnameseCurrency()
         cell.productCode.text = product.code!
         
+        cell.contentView.backgroundColor = UIColor.clear
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
-        let animator = Animator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
-        
+        if !view.isSkeletonable || !view.isSkeletonActive {
+            let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
+            let animator = Animator(animation: animation)
+            animator.animate(cell: cell, at: indexPath, in: tableView)
+        }
     }
  
 
@@ -106,6 +133,16 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         return [editPriceButton]
     }
+    
+    // MARK: - Skeleton data source
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "productTableCell"
+    }
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
+    }
 
 
     // MARK: - Search Actions
@@ -129,6 +166,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             tableView.setEditing(true, animated: true)
             tabVC.isSwipeEnabled = false
             tabVC.test()
+            view.hideSkeleton()
         }
     }
     
