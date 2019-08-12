@@ -258,32 +258,46 @@ extension UIViewController {
         }
     }
 
-//    func getListProducts(completion: @escaping ([Product]?) -> Void) {
-//        let sharedNetwork = Network.shared
-//        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-//        let url = URL(string: sharedNetwork.base_url + sharedNetwork.product_path)!
-//        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: [:]).responseJSON { (response) in
-//            // Failed request
-//            guard response.result.isSuccess else {
-//                print("Error when fetching data: \(response.result.error)")
-//                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-//                completion(nil)
-//                return
-//            }
-//
-//            //Successful request
-//            var listProducts: [Product] = []
-//            let responseValue = response.result.value! as! [[String: Any]]
-//            print(responseValue)
-//            for value in responseValue {
-//                let shopId = String(value["id"] as! Int64)
-//                let shopName = value["name"] as! String
-//                listShops.append(Shop(shopId: shopId, shopName: shopName))
-//            }
-//            completion(listShops)
-//
-//        }
-//    }
+}
+
+extension UIViewController {
+    // get list products from DB
+    func getListProducts(completion: @escaping ([Product]?) -> Void) {
+        let sharedNetwork = Network.shared
+        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+        var url = URL(string: "https://google.com")!
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
+            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+                url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
+            }
+        } else {
+            print("Chua co san pham vi chua ket noi cua hang")
+            return
+        }
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion(nil)
+                return
+            }
+
+            //Successful request
+            var listProducts: [Product] = []
+            print(response.result.value)
+            let responseValue = response.result.value! as! [[String: Any]]
+            print(responseValue)
+            for value in responseValue {
+                let id = String(value["item_id"] as! Int)
+                let name = value["name"] as! String
+                let price = Int(value["price"] as! Double)
+                listProducts.append(Product(id: id, name: name, price: price, rating: 3.0))
+            }
+            completion(listProducts)
+        }
+    }
 }
 
 // Load online image

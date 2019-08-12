@@ -13,13 +13,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Properties
    
     
-    var products: [Product] = []
+    var listProducts: [Product] = []
     var filterProducts =  [Product]()
     var searchController: UISearchController!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        products = prepareProducts()
         
         searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
@@ -30,6 +28,34 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     override func viewDidAppear(_ animated: Bool) {
         tabBarController?.tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
+        let activityIndicator = initActivityIndicator()
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+
+        getListProducts { (listProducts) in
+            guard let listProducts = listProducts else {
+                print("Khong co shop nao")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                    activityIndicator.stopAnimating()
+                    if activityIndicator.isAnimating == false {
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                }
+                return
+            }
+
+            self.listProducts = listProducts
+            self.tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                activityIndicator.stopAnimating()
+                if activityIndicator.isAnimating == false {
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
+            }
+        }
+        return
     }
 
     // MARK: - Table view data source
@@ -44,7 +70,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         if isFiltering(searchController) {
             return filterProducts.count
         }
-        return products.count
+        return listProducts.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,13 +80,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             product = filterProducts[indexPath.row]
         }
         else {
-            product = products[indexPath.row]
+            product = listProducts[indexPath.row]
         }
         
         cell.productName.text = "\(product.name!)"
         cell.cosmos.rating = product.rating!
         cell.productPrice.text = product.convertPriceToVietnameseCurrency()
-        cell.productCode.text = product.code!
+        cell.productCode.text = product.id!
         
         
         return cell
@@ -80,7 +106,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             product = filterProducts[indexPath.row]
         }
         else {
-            product = products[indexPath.row]
+            product = listProducts[indexPath.row]
         }
         performSegue(withIdentifier: "ProductDetail", sender: product)
     }
@@ -111,8 +137,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Search Actions
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
-            filterProducts = products.filter({(product: Product) -> Bool in
-                return product.name!.lowercased().contains(searchText.lowercased()) || product.code!.lowercased().contains(searchText.lowercased())
+            filterProducts = listProducts.filter({(product: Product) -> Bool in
+                return product.name!.lowercased().contains(searchText.lowercased()) || product.id!.lowercased().contains(searchText.lowercased())
             })
         }
     }
@@ -151,11 +177,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     private func prepareProducts() -> [Product] {
         var list: [Product] = []
         for _ in 0...10 {
-            list.append(Product(name: "Giày", code: "DAC1000256", price: 140000, rating: 5))
+            list.append(Product(id: "DAC1000256", name: "Giày", price: 140000, rating: 5))
         }
         
         for _ in 0...10 {
-            list.append(Product(name: "Ultra boost", code: "DAC2031564", price: 1300000, rating: 4.2))
+            list.append(Product(id: "DAC2031564", name: "Ultra boost", price: 1300000, rating: 4.2))
         }
         return list
     }

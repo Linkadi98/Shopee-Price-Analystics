@@ -9,8 +9,8 @@
 import Foundation
 
 struct Product {
+    let id: String?
     var name: String?
-    var code: String?
     var price: Int?
     var rating: Double?
     var shopName: String?
@@ -36,9 +36,9 @@ struct Product {
         return formatter.string(from: priceInVietNam!)
     }
     
-    init(name: String, code: String, price: Int, rating: Double) {
+    init(id: String, name: String, price: Int, rating: Double) {
         self.name = name
-        self.code = code
+        self.id = id
         self.rating = rating
         self.price = price
     }
