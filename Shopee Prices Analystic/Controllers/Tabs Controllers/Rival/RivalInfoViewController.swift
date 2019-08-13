@@ -22,7 +22,19 @@ class RivalInfoViewController: UIViewController {
     
     
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var secondContainerView: UIView!
+    @IBOutlet weak var secondContainerView: UIView! 
+    
+    @IBOutlet weak var productImage: UIImageView! {
+        didSet {
+            productImage.layer.cornerRadius = 10
+            productImage.layer.borderColor = UIColor.gray.cgColor
+            productImage.layer.borderWidth = 1
+        }
+    }
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productSellPrice: UILabel!
+    @IBOutlet weak var numOfSold: UILabel!
+    @IBOutlet weak var rating: CosmosView!
     
     
     override func viewDidLoad() {
@@ -31,6 +43,9 @@ class RivalInfoViewController: UIViewController {
         setImageForLabels()
         containerView.setShadow()
         secondContainerView.setShadow()
+        
+        containerView.setCornerLogo()
+        secondContainerView.setCornerLogo()
         
     }
     
@@ -43,5 +58,7 @@ class RivalInfoViewController: UIViewController {
         badRating.addImage(#imageLiteral(resourceName: "bad rating"), "Đánh giá xấu")
         rivalCode.addImage(#imageLiteral(resourceName: "code"), "Mã số")
     }
+    
+    
 
 }

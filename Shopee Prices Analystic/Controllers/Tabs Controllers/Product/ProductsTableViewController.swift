@@ -13,7 +13,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     // MARK: - Properties
    
-    
     var products: [Product] = []
     var filterProducts =  [Product]()
     var searchController: UISearchController!

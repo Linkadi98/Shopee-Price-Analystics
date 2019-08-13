@@ -7,15 +7,19 @@
 //
 
 import UIKit
+import SkeletonView
 
-class ListShopsTableViewController: UITableViewController, UISearchResultsUpdating {
+class ListShopsTableViewController: UITableViewController, SkeletonTableViewDataSource, UISearchResultsUpdating {
 
     // MARK: - Properties
     var searchController: UISearchController!
 
-    var listShops: [Shop] = []
-    var filterShop: [Shop] = []
+    var listShops: [Shop]?
+    var filterShop: [Shop]?
     var addedShopId: String?
+    
+    // Flag for regconizing tableview is appeared or not in order to display no data message
+    var isFirstAppear = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,69 +30,94 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         navigationItem.hidesSearchBarWhenScrolling = false
         setupSearchController(for: searchController, placeholder: "Nhập tên shop")
         
+        
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        view.startSkeletonAnimation()
+        
+        print("will appear")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        view.stopSkeletonAnimation()
+        print("did disapear")
+        isFirstAppear = true
+    }
+    
 
     override func viewDidAppear(_ animated: Bool) {
         print("didAppear")
         UIApplication.shared.beginIgnoringInteractionEvents()
 
-        let activityIndicator = initActivityIndicator()
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
+        
+        view.hideSkeleton()
+        view.showAnimatedSkeleton()
 
         getListShops { (listShops) in
             guard let listShops = listShops else {
                 print("Khong co shop nao")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                    activityIndicator.stopAnimating()
-                    if activityIndicator.isAnimating == false {
-                        UIApplication.shared.endIgnoringInteractionEvents()
-                    }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
+                    self.displayNoDataNotification()
+                    self.isFirstAppear = false
+                    self.tableView.reloadData()
                 }
                 return
             }
 
             self.listShops = listShops
             self.tableView.reloadData()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                activityIndicator.stopAnimating()
-                if activityIndicator.isAnimating == false {
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
+                self.view.hideSkeleton()
+                self.view.stopSkeletonAnimation()
+                UIApplication.shared.endIgnoringInteractionEvents()
             }
+            return
         }
-        return
     }
+    
+    
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
+        if isFirstAppear {
+            print("section")
+        }
+        
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        print("row sections")
         if isFiltering(searchController) {
-            return filterShop.count
+            return isFirstAppear ? filterShop?.count ?? 10 : 0
         }
-        return listShops.count
+        
+        return isFirstAppear ? listShops?.count ?? 10 : 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("cell for row")
         let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath) as! ShopTableViewCell
-        var model: Shop
-        if isFiltering(searchController) {
-            model = filterShop[indexPath.row]
-        }
-        else {
-            model = listShops[indexPath.row]
+        if listShops != nil {
+            var model: Shop
+            
+            if isFiltering(searchController) {
+                model = filterShop![indexPath.row]
+            }
+            else {
+                model = listShops![indexPath.row]
+            }
+            
+            cell.shopName.text = model.shopName
+            cell.shopId.text = model.shopId
         }
         
-        cell.shopName.text = model.shopName
-        cell.shopId.text = model.shopId
 
-        print("cell")
         return cell
     }
     
@@ -99,14 +128,20 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("will display")
         let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
+        isFirstAppear = true
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var model: Shop
 
+        guard let listShops = listShops, let filterShop = filterShop else {
+            return
+        }
+        
         if isFiltering(searchController) {
             model = filterShop[indexPath.row]
         }
@@ -122,11 +157,19 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         })
     }
     
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "shopCell"
+    }
+    
     // MARK: - Search Actions
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) {(searchText) in
-            filterShop = listShops.filter({(shop: Shop) -> Bool in
+            filterShop = listShops?.filter({(shop: Shop) -> Bool in
                 return shop.shopName.lowercased().contains(searchText.lowercased())
             })
         }
