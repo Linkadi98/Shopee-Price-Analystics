@@ -13,7 +13,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     // MARK: - Properties
    
-    var products: [Product] = []
+    var listProducts: [Product] = []
     var filterProducts =  [Product]()
     var searchController: UISearchController!
     
@@ -35,12 +35,42 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     override func viewDidAppear(_ animated: Bool) {
 
         print("did appear")
+
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
         view.hideSkeleton()
-        
         view.showAnimatedSkeleton()
-        
+
         if view.isSkeletonable {
             tableView.allowsSelection = false
+        }
+
+        getListProducts { (listProducts) in
+            guard let listProducts = listProducts else {
+                print("Khong co san pham nao vi chua ket noi")
+                UIApplication.shared.endIgnoringInteractionEvents()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    self.displayNoDataNotification()
+//                    self.isFirstAppear = false
+//                    self.tableView.reloadData()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                }
+                return
+            }
+
+            if !listProducts.isEmpty {
+                self.listProducts = listProducts
+                print("List Products: \(listProducts.count)")
+                self.tableView.reloadData()
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
+                self.view.hideSkeleton()
+                self.view.stopSkeletonAnimation()
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
+            return
         }
     }
     
@@ -67,6 +97,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         if isFiltering(searchController) {
             return filterProducts.count
         }
+        print("Number of rows: \(listProducts.count)")
         return listProducts.count
     }
 
