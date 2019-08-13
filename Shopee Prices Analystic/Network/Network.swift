@@ -11,7 +11,8 @@ import Alamofire
 
 class Network {
     static let shared = Network()
-    let base_url = "http://192.168.1.38:8081"
+    let base_url = "http://192.168.10.8:8081"
+//    let base_url = "http://192.168.1.38:8081"
     let login_path = "/login"
     let register_path = "/register"
     let shop_path = "/shop"

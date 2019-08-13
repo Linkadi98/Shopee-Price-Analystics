@@ -16,6 +16,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     var listProducts: [Product] = []
     var filterProducts =  [Product]()
     var searchController: UISearchController!
+    var height: CGFloat {
+        let heightTop = UIApplication.shared.statusBarFrame.height + (
+            (self.navigationController?.navigationBar.intrinsicContentSize.height) ?? 0)
+        let heightBottom  = self.tabBarController?.tabBar.frame.height ?? 0
+        return  UIScreen.main.bounds.height + (heightTop+heightBottom)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,8 +53,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 return
             }
 
-            self.listProducts = listProducts
-            self.tableView.reloadData()
+            if !listProducts.isEmpty {
+                self.listProducts = listProducts
+                self.tableView.reloadData()
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                 activityIndicator.stopAnimating()
                 if activityIndicator.isAnimating == false {
@@ -87,8 +96,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         cell.cosmos.rating = product.rating!
         cell.productPrice.text = product.convertPriceToVietnameseCurrency()
         cell.productCode.text = product.id!
-        
-        
+        loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
+
         return cell
     }
     
@@ -162,27 +171,34 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let product = sender as? Product else {
-            return
-        }
-        
         if segue.identifier == "ProductDetail" {
             let vc = segue.destination as! ProductDetailTableViewController
-            print("abc")
+            vc.product = sender as! Product
         }
     }
     
     // MARK: - Private modifications
     
-    private func prepareProducts() -> [Product] {
-        var list: [Product] = []
-        for _ in 0...10 {
-            list.append(Product(id: "DAC1000256", name: "Giày", price: 140000, rating: 5))
-        }
-        
-        for _ in 0...10 {
-            list.append(Product(id: "DAC2031564", name: "Ultra boost", price: 1300000, rating: 4.2))
-        }
-        return list
+//    private func prepareProducts() -> [Product] {
+//        var list: [Product] = []
+//        for _ in 0...10 {
+//            list.append(Product(id: "DAC1000256", name: "Giày", price: 140000, rating: 5))
+//        }
+//        
+//        for _ in 0...10 {
+//            list.append(Product(id: "DAC2031564", name: "Ultra boost", price: 1300000, rating: 4.2))
+//        }
+//        return list
+//    }
+}
+
+extension UIView {
+
+    func centerInContainingWindow() {
+        guard let window = self.window else { return }
+
+        let windowCenter = CGPoint(x: window.frame.midX, y: window.frame.midY)
+        self.center = self.superview!.convert(windowCenter, from: nil)
     }
+
 }

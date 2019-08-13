@@ -293,7 +293,8 @@ extension UIViewController {
                 let id = String(value["item_id"] as! Int)
                 let name = value["name"] as! String
                 let price = Int(value["price"] as! Double)
-                listProducts.append(Product(id: id, name: name, price: price, rating: 3.0))
+                let image = (value["images"] as! [String])[0]
+                listProducts.append(Product(id: id, name: name, price: price, rating: 3.0, image: image))
             }
             completion(listProducts)
         }

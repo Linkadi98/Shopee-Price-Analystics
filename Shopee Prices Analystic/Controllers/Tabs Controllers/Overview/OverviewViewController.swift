@@ -68,7 +68,6 @@ class OverviewViewController: UIViewController {
         
         getListShops { _ in
             if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-                print(currentShopData)
                 if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                     self.currentShop = currentShop
                 }

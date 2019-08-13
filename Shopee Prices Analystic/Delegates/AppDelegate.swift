@@ -38,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
                         Network.shared.headers["Authorization"] = token
                         initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
                         print("App starts in TabsViewController")
+                    } else {
+                        UserDefaults.standard.removeObject(forKey: "currentUser")
+                        UserDefaults.standard.removeObject(forKey: "token")
+                        UserDefaults.standard.removeObject(forKey: "expiredTimeOfToken")
                     }
                 }
             }

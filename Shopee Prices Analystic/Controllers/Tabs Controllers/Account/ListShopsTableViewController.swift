@@ -37,7 +37,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
 
         getListShops { (listShops) in
             guard let listShops = listShops else {
-                print("Khong co shop nao")
+                print("Khong co shop nao vi chua ket noi")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                     activityIndicator.stopAnimating()
                     if activityIndicator.isAnimating == false {
@@ -47,8 +47,10 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
                 return
             }
 
-            self.listShops = listShops
-            self.tableView.reloadData()
+            if !listShops.isEmpty {
+                self.listShops = listShops
+                self.tableView.reloadData()
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                 activityIndicator.stopAnimating()
                 if activityIndicator.isAnimating == false {

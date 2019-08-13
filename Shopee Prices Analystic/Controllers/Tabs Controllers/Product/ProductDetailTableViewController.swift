@@ -12,7 +12,8 @@ import Cosmos
 class ProductDetailTableViewController: UITableViewController {
 
     // MARK: - Properties
-    
+    var product: Product!
+
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productName: UILabel!
@@ -64,8 +65,6 @@ class ProductDetailTableViewController: UITableViewController {
     @IBOutlet weak var inventoryCell: UITableViewCell!
     @IBOutlet weak var ratingCell: UITableViewCell!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelection = false
@@ -78,9 +77,34 @@ class ProductDetailTableViewController: UITableViewController {
         configCellContentView(for: inventoryCell, firstItem: "Tồn kho", secondItem: inventoryItem)
         configRatingCell()
     }
-    
-    func update() {
+
+    override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
+        let activityIndicator = initActivityIndicator()
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         
+        update()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+            activityIndicator.stopAnimating()
+            if activityIndicator.isAnimating == false {
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
+        }
+    }
+
+    func update() {
+        productName.text = product.name!
+        productCode.text = String(product.id!)
+        soldPrice.text! = String(product.price!)
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
+            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+                shopName.text = currentShop.shopId
+            }
+        }
+        loadOnlineImage(from: URL(string: product.image!)!, to: productImage)
     }
 
     // MARK: - Config cell content view

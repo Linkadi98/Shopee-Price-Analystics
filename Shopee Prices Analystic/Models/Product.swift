@@ -13,6 +13,7 @@ struct Product {
     var name: String?
     var price: Int?
     var rating: Double?
+    var image: String?
     var shopName: String?
     
     var brand: String?
@@ -36,10 +37,11 @@ struct Product {
         return formatter.string(from: priceInVietNam!)
     }
     
-    init(id: String, name: String, price: Int, rating: Double) {
+    init(id: String, name: String, price: Int, rating: Double, image: String) {
         self.name = name
         self.id = id
         self.rating = rating
         self.price = price
+        self.image = image
     }
 }

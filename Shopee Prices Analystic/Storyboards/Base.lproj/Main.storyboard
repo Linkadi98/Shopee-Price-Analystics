@@ -768,6 +768,7 @@
                                 <connections>
                                     <outlet property="cosmos" destination="tBC-qO-C85" id="rvk-5B-De0"/>
                                     <outlet property="productCode" destination="IBv-Zg-da0" id="HTc-1I-ZcD"/>
+                                    <outlet property="productImage" destination="nvi-wa-s3C" id="xCV-hn-q35"/>
                                     <outlet property="productName" destination="Q6t-i3-J2Y" id="DKa-jX-Zw7"/>
                                     <outlet property="productPrice" destination="mAE-Dj-bvy" id="1Fd-FU-bhx"/>
                                 </connections>

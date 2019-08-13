@@ -15,7 +15,8 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var cosmos: CosmosView!
-
+    @IBOutlet weak var productImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
