@@ -268,7 +268,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 
             //Successful request
             var listProducts: [Product] = []
-            print(response.result.value)
             let responseValue = response.result.value! as! [[String: Any]]
             print(responseValue)
             for value in responseValue {
@@ -277,6 +276,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
                 let price = Int(value["price"] as! Double)
                 let image = (value["images"] as! [String])[0]
                 listProducts.append(Product(id: id, name: name, price: price, rating: 3.0, image: image))
+                print("So san pham: \(listProducts.count)")
             }
             completion(listProducts)
         }

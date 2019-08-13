@@ -33,6 +33,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     }
     
     override func viewDidAppear(_ animated: Bool) {
+
         fetchingDataFromServer()
     }
     

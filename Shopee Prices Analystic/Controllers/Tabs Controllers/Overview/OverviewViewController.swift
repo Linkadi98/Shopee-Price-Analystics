@@ -59,8 +59,6 @@ class OverviewViewController: UIViewController {
         subView.layer.cornerRadius = 10
         descriptionView.setShadow()
         timeLabel.text = setTime()
-        
-        UserDefaults.standard.removeObject(forKey: "currentShop")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,5 +83,24 @@ class OverviewViewController: UIViewController {
         return "THỨ \(dayOfWeek) NGÀY \(day) THÁNG \(month)"
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        UIApplication.shared.beginIgnoringInteractionEvents()
 
+        view.hideSkeleton()
+        view.showAnimatedSkeleton()
+
+        getListShops { (listShops) in
+            if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
+                if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+                    self.currentShop = currentShop
+                }
+            } 
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
+                self.view.hideSkeleton()
+                self.view.stopSkeletonAnimation()
+                UIApplication.shared.endIgnoringInteractionEvents()
+            }
+        }
+    }
 }
