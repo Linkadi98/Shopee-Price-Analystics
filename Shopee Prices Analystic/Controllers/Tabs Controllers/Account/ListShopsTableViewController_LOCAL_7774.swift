@@ -50,27 +50,24 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     override func viewDidAppear(_ animated: Bool) {
         UIApplication.shared.beginIgnoringInteractionEvents()
 
+        
         view.hideSkeleton()
         view.showAnimatedSkeleton()
 
         getListShops { (listShops) in
             guard let listShops = listShops else {
-                print("Khong co shop nao vi chua ket noi")
+                print("Khong co shop nao")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
                     self.displayNoDataNotification()
                     self.isFirstAppear = false
                     self.tableView.reloadData()
                     self.isFirstAppear = true
-
                 }
                 return
             }
 
-            if !listShops.isEmpty {
-                self.listShops = listShops
-                self.tableView.reloadData()
-            }
-
+            self.listShops = listShops
+            self.tableView.reloadData()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
                 self.view.hideSkeleton()
                 self.view.stopSkeletonAnimation()
@@ -97,9 +94,10 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         
         print("row sections")
         if isFiltering(searchController) {
-            return isFirstAppear ? filterShop.count ?? 10 : 0
+            return isFirstAppear ? filterShop?.count ?? 10 : 0
         }
-        return isFirstAppear ? listShops.count ?? 10 : 0
+        
+        return isFirstAppear ? filterShop?.count ?? 10 : 0
     }
 
     
@@ -110,10 +108,10 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             var model: Shop
             
             if isFiltering(searchController) {
-                model = filterShop[indexPath.row]
+                model = filterShop![indexPath.row]
             }
             else {
-                model = listShops[indexPath.row]
+                model = listShops![indexPath.row]
             }
             
             cell.shopName.text = model.shopName
@@ -140,6 +138,10 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var model: Shop
+
+        guard let listShops = listShops, let filterShop = filterShop else {
+            return
+        }
         
         if isFiltering(searchController) {
             model = filterShop[indexPath.row]
@@ -168,7 +170,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) {(searchText) in
-            filterShop = listShops.filter({(shop: Shop) -> Bool in
+            filterShop = listShops?.filter({(shop: Shop) -> Bool in
                 return shop.shopName.lowercased().contains(searchText.lowercased())
             })
         }

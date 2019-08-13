@@ -38,6 +38,7 @@ class AccountDetailTableViewController: UITableViewController {
         if UserDefaults.standard.string(forKey: "token") != nil {
             // Delete token
             UserDefaults.standard.removeObject(forKey: "token")
+             UserDefaults.standard.removeObject(forKey: "expiredTimeOfToken")
             Network.shared.headers["Authorization"] = nil
         }
         else if AccessToken.current != nil {

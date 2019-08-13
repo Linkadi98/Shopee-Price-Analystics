@@ -14,8 +14,8 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     // MARK: - Properties
     var searchController: UISearchController!
 
-    var listShops: [Shop]?
-    var filterShop: [Shop]?
+    var listShops: [Shop] = []
+    var filterShop: [Shop] = []
     var addedShopId: String?
     
     // Flag for regconizing tableview is appeared or not in order to display no data message
@@ -43,7 +43,6 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         view.stopSkeletonAnimation()
         print("did disapear")
         isFirstAppear = true
-        tableView.reloadData()
     }
     
 
@@ -59,9 +58,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
                     self.displayNoDataNotification()
                     self.isFirstAppear = false
-                    self.tableView.reloadData()
-                    self.isFirstAppear = true
-
+                    UIApplication.shared.endIgnoringInteractionEvents()
                 }
                 return
             }
@@ -99,6 +96,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         if isFiltering(searchController) {
             return isFirstAppear ? filterShop.count ?? 10 : 0
         }
+        
         return isFirstAppear ? listShops.count ?? 10 : 0
     }
 
