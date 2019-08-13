@@ -281,9 +281,35 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             completion(listProducts)
         }
     }
+
+    // update price
+    func updatePrice(shopId: String, productId: String, newPrice: Int, completion: @escaping () -> Void) {
+        let sharedNetwork = Network.shared
+        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+        var url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion()
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value! as! [String: Any]
+            print(responseValue)
+            if Int(responseValue["price"] as! String)! == newPrice {
+                StatusBarNotificationBanner(title: "Sửa giá thành công", style: .success).show()
+            } else {
+                self.presentAlert(message: "Sửa giá thất bại, vui lòng thử lại sau")
+            }
+            completion()
+        }
+    }
     
     // Load online image
-
     func loadOnlineImage(from url: URL, to uiImageView: UIImageView) {
         DispatchQueue(label: "loadImage").async {
             do {
