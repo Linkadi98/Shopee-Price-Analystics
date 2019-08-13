@@ -14,6 +14,7 @@ class RivalProductTableViewController: UITableViewController {
         super.viewDidLoad()
         
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl?.tintColor = UIColor.orange
     }
 
     // MARK: - Table view data source

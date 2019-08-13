@@ -39,6 +39,7 @@ PODS:
     - MarqueeLabel (~> 4.0.0)
     - SnapKit (~> 5.0.0)
   - Parchment (1.6.0)
+  - SkeletonView (1.7)
   - SnapKit (5.0.1)
   - SVProgressHUD (2.2.5)
   - SwipeableTabBarController (2.1.1)
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - NotificationBannerSwift
   - Parchment
+  - SkeletonView
   - SVProgressHUD (~> 2.2)
   - SwipeableTabBarController
   - TransitionButton
@@ -73,6 +75,7 @@ SPEC REPOS:
     - MarqueeLabel
     - NotificationBannerSwift
     - Parchment
+    - SkeletonView
     - SnapKit
     - SVProgressHUD
     - SwipeableTabBarController
@@ -93,11 +96,12 @@ SPEC CHECKSUMS:
   MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
   NotificationBannerSwift: e55dd801b0d78f1a7bacb10d722a935ec95f94a3
   Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
+  SkeletonView: 7d7378731b708f8a6e6b1ffefb68cc3903f10a03
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 3701c3dcc183aa2177ff09bb6e5f71a11a6186cb
+PODFILE CHECKSUM: 9223202157c5b15d07b681aca9ddb566b2e07c70
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.5

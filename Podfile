@@ -15,6 +15,7 @@ pod 'SwipeableTabBarController'
 pod 'Cosmos', '~> 19.0'
 pod 'Parchment'
 pod 'SVProgressHUD', '~> 2.2'
+pod "SkeletonView"
   # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do

@@ -16,19 +16,28 @@ class OverviewViewController: UIViewController {
     
     @IBOutlet weak var backgroundImage: UIImageView! {
         didSet {
-            backgroundImage.image = #imageLiteral(resourceName: "shoppingImage")
-            backgroundImage.layer.cornerRadius = 10
+            backgroundImage.image = #imageLiteral(resourceName: "backgroundImage")
         }
     }
     
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopId: UILabel!
-    @IBOutlet weak var timeLabel: MarqueeLabel!
-    @IBOutlet var superParentView: UIView!
-    @IBOutlet var parentView: UIView!
     @IBOutlet weak var subView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
-
+    
+    
+    @IBOutlet weak var codeLb: UILabel! {
+        didSet {
+            codeLb.addImage(#imageLiteral(resourceName: "connector-0"), "Mã số cửa hàng:", offsetY: -15, x: -3)
+        }
+    }
+    @IBOutlet weak var averageLb: UILabel! {
+        didSet {
+            averageLb.addImage(#imageLiteral(resourceName: "connector-r"), "Đánh giá trung bình", offsetY: -5, x: -2)
+        }
+    }
+    
     @IBOutlet weak var descriptionView: UIView!
 
     var currentShop: Shop! {
@@ -42,60 +51,30 @@ class OverviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        subView.layer.cornerRadius = 10
+        
+//        subView.backgroundColor = .clear
+//
         subView.setShadow()
-        superParentView.setBlurEffect()
-        
-        timeLabel.text = setTime()
+//        subView.setBlurEffect()
+        subView.layer.cornerRadius = 10
         descriptionView.setShadow()
-
-//        UserDefaults.standard.removeObject(forKey: "currentShop")
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-//        print(69)
-//        loadFirstShop()
-//        print(69)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        UIApplication.shared.beginIgnoringInteractionEvents()
-
-        let activityIndicator = initActivityIndicator()
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
+        timeLabel.text = setTime()
         
-        getListShops { _ in
-            if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-                if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-                    self.currentShop = currentShop
-                }
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                activityIndicator.stopAnimating()
-                if activityIndicator.isAnimating == false {
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                }
-            }
-        }
-        // Thông báo cho khách hàng biết chưa có kết nối đến cửa hàng nào
-        // Xử lý thông báo trước khi thông báo hiện ra bằng cách check cửa hàng đã kết nối từ api trả về
-        // Xem phần định nghĩa hàm trong file EUIViewController.swift
-//        notification(title: "Bạn chưa kết nối đến cửa hàng nào", style: .warning) {
-//            self.statusNotification(title: "Kết nối thành công", style: .success)
-//        }
+        UserDefaults.standard.removeObject(forKey: "currentShop")
     }
     
-    // MARK: - Actions
+    override func viewWillAppear(_ animated: Bool) {
+//        subView.translucent()
+    }
+
+    // MARK: - Configuration
     
-       
+    
     // MARK: - Private modifications
     private func setTime() -> String {
         let date = Date()
         let calendar = Calendar.current
-    
+        
         let month = calendar.component(.month, from: date)
         let day = calendar.component(.day, from: date)
         let dayOfWeek = calendar.component(.weekday, from: date)
@@ -105,5 +84,6 @@ class OverviewViewController: UIViewController {
         
         return "THỨ \(dayOfWeek) NGÀY \(day) THÁNG \(month)"
     }
+    
 
 }

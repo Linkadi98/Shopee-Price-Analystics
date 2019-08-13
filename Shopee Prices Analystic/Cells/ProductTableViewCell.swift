@@ -8,15 +8,18 @@
 
 import UIKit
 import Cosmos
+import SkeletonView
 
 class ProductTableViewCell: UITableViewCell {
 
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productPrice: UILabel!
-    @IBOutlet weak var cosmos: CosmosView!
-    @IBOutlet weak var productImage: UIImageView!
-    
+    @IBOutlet weak var cosmos: CosmosView! {
+        didSet {
+            cosmos.layer.cornerRadius = cosmos.frame.height / 2
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

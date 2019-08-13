@@ -24,6 +24,7 @@ class RivalPageViewController: UIViewController {
         view.addSubview((pageViewController?.view)!)
         pageViewController?.didMove(toParent: self)
         
+        
         pageViewController?.view.snp.makeConstraints({(make) in
             make.edges.equalToSuperview()
         })
@@ -42,6 +43,17 @@ class RivalPageViewController: UIViewController {
         rivalProductLineChartViewController?.title = "Biểu đồ thay đổi giá"
         
         pageViewController = FixedPagingViewController(viewControllers: [rivalInfoViewController!, rivalProductTableViewController!, rivalProductLineChartViewController!])
+        
+        pageViewController?.indicatorOptions = .visible(height: 3, zIndex: 1, spacing: .zero, insets: .zero)
+        
+        pageViewController?.indicatorColor = .orange
+        
+        pageViewController?.textColor = .gray
+        pageViewController?.selectedTextColor = .orange
+        pageViewController?.menuBackgroundColor = .white
+        
+        
+        
     }
 }
 

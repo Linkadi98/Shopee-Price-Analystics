@@ -15,6 +15,8 @@ class ShopTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        shopName.showAnimatedSkeleton()
+        shopId.showAnimatedSkeleton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,5 +24,7 @@ class ShopTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

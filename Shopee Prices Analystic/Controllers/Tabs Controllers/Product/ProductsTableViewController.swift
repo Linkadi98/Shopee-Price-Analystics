@@ -7,22 +7,16 @@
 //
 
 import UIKit
+import SkeletonView
 
-class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
+class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SkeletonTableViewDataSource {
     
     // MARK: - Properties
    
-    
-    var listProducts: [Product] = []
+    var products: [Product] = []
     var filterProducts =  [Product]()
     var searchController: UISearchController!
-    var height: CGFloat {
-        let heightTop = UIApplication.shared.statusBarFrame.height + (
-            (self.navigationController?.navigationBar.intrinsicContentSize.height) ?? 0)
-        let heightBottom  = self.tabBarController?.tabBar.frame.height ?? 0
-        return  UIScreen.main.bounds.height + (heightTop+heightBottom)
-    }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,40 +25,34 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         navigationItem.hidesSearchBarWhenScrolling = false
         
         setupSearchController(for: searchController, placeholder: "Nhập tên sản phẩm")
+        
+        // Need set up Skeleton view here right below
+        
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        tabBarController?.tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        UIApplication.shared.beginIgnoringInteractionEvents()
 
-        let activityIndicator = initActivityIndicator()
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-
-        getListProducts { (listProducts) in
-            guard let listProducts = listProducts else {
-                print("Khong co shop nao")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                    activityIndicator.stopAnimating()
-                    if activityIndicator.isAnimating == false {
-                        UIApplication.shared.endIgnoringInteractionEvents()
-                    }
-                }
-                return
-            }
-
-            if !listProducts.isEmpty {
-                self.listProducts = listProducts
-                self.tableView.reloadData()
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                activityIndicator.stopAnimating()
-                if activityIndicator.isAnimating == false {
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                }
-            }
+        print("did appear")
+        view.hideSkeleton()
+        
+        view.showAnimatedSkeleton()
+        
+        if view.isSkeletonable {
+            tableView.allowsSelection = false
         }
-        return
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("did disappear")
+        view.stopSkeletonAnimation()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("willapprear")
+        view.startSkeletonAnimation()
+        
     }
 
     // MARK: - Table view data source
@@ -102,10 +90,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
-        let animator = Animator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
-        
+        if !view.isSkeletonable || !view.isSkeletonActive {
+            let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
+            let animator = Animator(animation: animation)
+            animator.animate(cell: cell, at: indexPath, in: tableView)
+        }
     }
  
 
@@ -141,6 +130,16 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         return [editPriceButton]
     }
+    
+    // MARK: - Skeleton data source
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "productTableCell"
+    }
+    
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 1
+    }
 
 
     // MARK: - Search Actions
@@ -164,6 +163,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             tableView.setEditing(true, animated: true)
             tabVC.isSwipeEnabled = false
             tabVC.test()
+            view.hideSkeleton()
         }
     }
     

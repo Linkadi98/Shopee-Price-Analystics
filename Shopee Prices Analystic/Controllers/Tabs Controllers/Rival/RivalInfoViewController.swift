@@ -7,23 +7,58 @@
 //
 
 import UIKit
+import Cosmos
 
 class RivalInfoViewController: UIViewController {
 
+    //MARK: - Properties
+    @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var rivalCode: UILabel!
+    @IBOutlet weak var rivalAddress: UILabel!
+    @IBOutlet weak var goodRating: UILabel!
+    @IBOutlet weak var badRating: UILabel!
+    @IBOutlet weak var averageRating: UILabel!
+    @IBOutlet weak var averageRatingStar: CosmosView!
+    
+    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var secondContainerView: UIView! 
+    
+    @IBOutlet weak var productImage: UIImageView! {
+        didSet {
+            productImage.layer.cornerRadius = 10
+            productImage.layer.borderColor = UIColor.gray.cgColor
+            productImage.layer.borderWidth = 1
+        }
+    }
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productSellPrice: UILabel!
+    @IBOutlet weak var numOfSold: UILabel!
+    @IBOutlet weak var rating: CosmosView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        setImageForLabels()
+        containerView.setShadow()
+        secondContainerView.setShadow()
+        
+        containerView.setCornerLogo()
+        secondContainerView.setCornerLogo()
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - Private Modifications
+    
+    private func setImageForLabels() {
+        averageRating.addImage(#imageLiteral(resourceName: "average rating"), "Đánh giá trung bình")
+        rivalAddress.addImage(#imageLiteral(resourceName: "address"), "Địa chỉ")
+        goodRating.addImage(#imageLiteral(resourceName: "good rating"), "Đánh giá tốt")
+        badRating.addImage(#imageLiteral(resourceName: "bad rating"), "Đánh giá xấu")
+        rivalCode.addImage(#imageLiteral(resourceName: "code"), "Mã số")
     }
-    */
+    
+    
 
 }
