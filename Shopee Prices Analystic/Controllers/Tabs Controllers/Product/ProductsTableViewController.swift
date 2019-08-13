@@ -18,6 +18,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     var searchController: UISearchController!
     
     var isFirstAppear = true
+    var hasData = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     override func viewDidDisappear(_ animated: Bool) {
         
         view.stopSkeletonAnimation()
-        tableView.reloadData()
+        if listProducts == nil {
+            tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,17 +84,18 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             cell.productPrice.text = product.convertPriceToVietnameseCurrency()
             cell.productCode.text = product.id!
             loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
+            
+            cell.hideSkeletonAnimation()
         }
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if !view.isSkeletonable || !view.isSkeletonActive {
-            let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
-            let animator = Animator(animation: animation)
-            animator.animate(cell: cell, at: indexPath, in: tableView)
-        }
+        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
+        let animator = Animator(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
+        
     }
  
 
@@ -106,6 +110,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 product = listProducts![indexPath.row]
             }
             performSegue(withIdentifier: "ProductDetail", sender: product)
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
@@ -192,17 +197,19 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         tableView.allowsSelection = false
         
-        getListProducts { (listProducts) in
+        getListProducts { [unowned self] (listProducts) in
             guard let listProducts = listProducts else {
                 self.displayNoDataNotification()
                 self.isFirstAppear = false
+                self.hasData = false
                 self.tableView.reloadData()
                 self.isFirstAppear = true
                 return
             }
             
-            if !listProducts.isEmpty {
+            if !listProducts.isEmpty && !self.hasData {
                 self.listProducts = listProducts
+                self.hasData = true
                 self.tableView.reloadData()
             }
             self.view.hideSkeleton()

@@ -98,7 +98,7 @@ class ProductDetailTableViewController: UITableViewController {
     func update() {
         productName.text = product.name!
         productCode.text = String(product.id!)
-        soldPrice.text! = String(product.price!)
+        soldPrice.text! = String(product.convertPriceToVietnameseCurrency()!)
         if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
             if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                 shopName.text = currentShop.shopId

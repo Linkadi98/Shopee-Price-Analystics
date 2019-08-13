@@ -36,5 +36,13 @@ class ProductTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func hideSkeletonAnimation() {
+        productPrice.hideSkeleton()
+        productName.hideSkeleton()
+        productImage.hideSkeleton()
+        productCode.hideSkeleton()
+        cosmos.hideSkeleton()
+    }
 
 }
