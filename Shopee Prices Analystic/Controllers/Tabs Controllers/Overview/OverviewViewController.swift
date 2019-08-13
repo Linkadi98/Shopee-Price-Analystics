@@ -25,6 +25,7 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopId: UILabel!
     @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var status: UILabel!
     
     
     @IBOutlet weak var codeLb: UILabel! {
@@ -37,8 +38,6 @@ class OverviewViewController: UIViewController {
             averageLb.addImage(#imageLiteral(resourceName: "connector-r"), "Đánh giá trung bình", offsetY: -5, x: -2)
         }
     }
-    
-    @IBOutlet weak var descriptionView: UIView!
 
     var currentShop: Shop! {
         didSet {
@@ -57,12 +56,11 @@ class OverviewViewController: UIViewController {
         subView.setShadow()
 //        subView.setBlurEffect()
         subView.layer.cornerRadius = 10
-        descriptionView.setShadow()
         timeLabel.text = setTime()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        subView.translucent()
+        view.startSkeletonAnimation()
     }
 
     // MARK: - Configuration
@@ -84,23 +82,26 @@ class OverviewViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        UIApplication.shared.beginIgnoringInteractionEvents()
-
         view.hideSkeleton()
         view.showAnimatedSkeleton()
 
-        getListShops { (listShops) in
+        getListShops { [unowned self] (listShops) in
+            
+            guard let _ = listShops else {
+                self.status.addImage(#imageLiteral(resourceName: "deactive"), "Không hoạt động", offsetY: -0.5)
+                self.view.hideSkeleton()
+                self.view.stopSkeletonAnimation()
+                return
+            }
             if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
                 if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                     self.currentShop = currentShop
+                    self.status.addImage(#imageLiteral(resourceName: "active"), "Đang hoạt động", offsetY: -0.5)
                 }
-            } 
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
-                self.view.hideSkeleton()
-                self.view.stopSkeletonAnimation()
-                UIApplication.shared.endIgnoringInteractionEvents()
             }
+            
+            self.view.hideSkeleton()
+            self.view.stopSkeletonAnimation()
         }
     }
 }

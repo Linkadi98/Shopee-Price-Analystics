@@ -34,12 +34,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
+        if listProducts != nil {
+            return
+        }
         fetchingDataFromServer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        
         view.stopSkeletonAnimation()
         if listProducts == nil {
             tableView.reloadData()
@@ -48,7 +49,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
-        
     }
 
     // MARK: - Table view data source
@@ -68,9 +68,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
-        let product: Product
         
         if listProducts != nil {
+            let product: Product
             
             if isFiltering(searchController) {
                 product = filterProducts![indexPath.row]
@@ -95,7 +95,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
-        
+        isFirstAppear = true
     }
  
 
@@ -108,6 +108,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
             else {
                 product = listProducts![indexPath.row]
+    
             }
             performSegue(withIdentifier: "ProductDetail", sender: product)
             tableView.deselectRow(at: indexPath, animated: true)
@@ -149,6 +150,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     // MARK: - Search Actions
     func updateSearchResults(for searchController: UISearchController) {
+        
         filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
             filterProducts = listProducts?.filter({(product: Product) -> Bool in
                 return product.name!.lowercased().contains(searchText.lowercased()) || product.id!.lowercased().contains(searchText.lowercased())
@@ -192,6 +194,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Private loading data for this class
     
     private func fetchingDataFromServer() {
+        tableView.reloadData()
+        
         view.hideSkeleton()
         view.showAnimatedSkeleton()
         
@@ -199,7 +203,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         getListProducts { [unowned self] (listProducts) in
             guard let listProducts = listProducts else {
-                self.displayNoDataNotification()
+                self.displayNoDataNotification(text: "Sản phẩm của bạn sẽ hiện tại dây")
                 self.isFirstAppear = false
                 self.hasData = false
                 self.tableView.reloadData()
@@ -214,6 +218,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
+            self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
         }
     }

@@ -77,22 +77,13 @@ class ProductDetailTableViewController: UITableViewController {
         configCellContentView(for: inventoryCell, firstItem: "Tồn kho", secondItem: inventoryItem)
         configRatingCell()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        update()
+    }
 
     override func viewDidAppear(_ animated: Bool) {
-        UIApplication.shared.beginIgnoringInteractionEvents()
-
-        let activityIndicator = initActivityIndicator()
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
         
-        update()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-            activityIndicator.stopAnimating()
-            if activityIndicator.isAnimating == false {
-                UIApplication.shared.endIgnoringInteractionEvents()
-            }
-        }
     }
 
     func update() {

@@ -29,15 +29,31 @@ extension UITableViewController {
         return searchController.isActive && !isEmptySearchBar(searchController)
     }
     
-    public func displayNoDataNotification() {
+    public func displayNoDataNotification(text: String) {
         self.view.hideSkeleton()
         self.view.stopSkeletonAnimation()
         let noData = UILabel()
+        let description = UILabel()
+        let view = UIView()
         noData.text = "Không có dữ liệu, kiểm tra lại kết nối"
         noData.textAlignment = .center
-        self.tableView.separatorStyle = .none
-        self.tableView.backgroundView = noData
-        UIApplication.shared.endIgnoringInteractionEvents()
+        description.text = text
+        description.textAlignment = .center
+        description.textColor = .lightGray
         
+        let stackView = UIStackView()
+        stackView.addArrangedSubview(noData)
+        stackView.addArrangedSubview(description)
+        
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        view.addSubview(stackView)
+        
+        stackView.snp.makeConstraints({ make in
+            make.center.equalToSuperview()
+        })
+        
+        self.tableView.separatorStyle = .none
+        self.tableView.backgroundView = view
     }
 }

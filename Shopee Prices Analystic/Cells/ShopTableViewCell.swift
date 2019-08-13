@@ -25,6 +25,10 @@ class ShopTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func hideSkeletonAnimation() {
+        shopName.hideSkeleton()
+        shopId.hideSkeleton()
+    }
     
 
 }

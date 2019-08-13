@@ -26,8 +26,8 @@ class RivalInfoViewController: UIViewController {
     
     @IBOutlet weak var productImage: UIImageView! {
         didSet {
-            productImage.layer.cornerRadius = 10
-            productImage.layer.borderColor = UIColor.gray.cgColor
+            productImage.layer.cornerRadius = productImage.frame.height / 2
+            productImage.layer.borderColor = UIColor.lightGray.cgColor
             productImage.layer.borderWidth = 1
         }
     }

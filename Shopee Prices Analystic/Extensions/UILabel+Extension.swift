@@ -9,27 +9,8 @@
 import UIKit
 
 extension UILabel {
-    func addImage(_ image: UIImage, _ text: String) {
-        //Create Attachment
-        let imageAttachment =  NSTextAttachment()
-        imageAttachment.image = image
-        //Set bound to reposition
-        let imageOffsetY:CGFloat = -5.0;
-        imageAttachment.bounds = CGRect(x: -2, y: imageOffsetY, width: imageAttachment.image!.size.width, height: imageAttachment.image!.size.height)
-        //Create string with attachment
-        let attachmentString = NSAttributedString(attachment: imageAttachment)
-        //Initialize mutable string
-        let completeText = NSMutableAttributedString(string: "")
-        //Add image to mutable string
-        completeText.append(attachmentString)
-        //Add your text to mutable string
-        let  textAfterIcon = NSMutableAttributedString(string: text)
-        completeText.append(textAfterIcon)
-        self.textAlignment = .center;
-        self.attributedText = completeText;
-    }
     
-    func addImage(_ image: UIImage, _ text: String, offsetY: CGFloat, x: CGFloat) {
+    func addImage(_ image: UIImage, _ text: String, offsetY: CGFloat = -5.0, x: CGFloat = -2) {
         //Create Attachment
         let imageAttachment =  NSTextAttachment()
         imageAttachment.image = image

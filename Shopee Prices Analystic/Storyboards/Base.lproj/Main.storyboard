@@ -1665,16 +1665,16 @@
                                                         <rect key="frame" x="8" y="331" width="398" height="355"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1MA-pb-yPE">
-                                                                <rect key="frame" x="162" y="20.000000000000004" width="160.66666666666663" height="46.333333333333343"/>
+                                                                <rect key="frame" x="115.99999999999999" y="20.000000000000004" width="206.66666666666663" height="46.333333333333343"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohq-Z0-u06">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="160.66666666666666" height="20.333333333333332"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="206.66666666666666" height="20.333333333333332"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ô tô đồ chơi thế hệ mới" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-wv-ssk">
-                                                                        <rect key="frame" x="0.0" y="28.333333333333371" width="160.66666666666666" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="28.333333333333371" width="206.66666666666666" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -1682,43 +1682,43 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oto đồ chơi" translatesAutoresizingMaskIntoConstraints="NO" id="Pnz-mS-bKe">
-                                                                <rect key="frame" x="8" y="8" width="146" height="103"/>
+                                                                <rect key="frame" x="8" y="8" width="100" height="100"/>
                                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="146" id="2Lm-IW-CvD"/>
-                                                                    <constraint firstAttribute="height" constant="103" id="VXx-Uq-DTU"/>
+                                                                    <constraint firstAttribute="width" constant="100" id="2Lm-IW-CvD"/>
+                                                                    <constraint firstAttribute="height" constant="100" id="VXx-Uq-DTU"/>
                                                                 </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đã bán" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idb-ra-o90">
-                                                                <rect key="frame" x="336" y="141" width="54" height="20.333333333333343"/>
+                                                                <rect key="frame" x="336" y="138" width="54" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số lượng đã bán" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdE-50-eaU">
-                                                                <rect key="frame" x="265.33333333333331" y="181.33333333333337" width="124.66666666666669" height="20.333333333333343"/>
+                                                                <rect key="frame" x="265.33333333333331" y="178.33333333333337" width="124.66666666666669" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G39-7m-NCY" customClass="CosmosView" customModule="Cosmos">
-                                                                <rect key="frame" x="270" y="221.66666666666663" width="120" height="20"/>
+                                                                <rect key="frame" x="270" y="218.66666666666663" width="120" height="20"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đã bán" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRF-x1-eJP">
-                                                                <rect key="frame" x="8" y="141" width="54" height="20.333333333333343"/>
+                                                                <rect key="frame" x="8" y="138" width="54" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số lượng đã bán" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mnr-Hy-JFr">
-                                                                <rect key="frame" x="8.0000000000000071" y="181.33333333333337" width="124.66666666666669" height="20.333333333333343"/>
+                                                                <rect key="frame" x="8.0000000000000071" y="178.33333333333337" width="124.66666666666669" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đánh giá sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-et-6Ii">
-                                                                <rect key="frame" x="8" y="221.66666666666663" width="146.33333333333334" height="20.333333333333343"/>
+                                                                <rect key="frame" x="8" y="218.66666666666663" width="146.33333333333334" height="20.333333333333343"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -2085,18 +2085,21 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w5f-Lv-nJR" userLabel="ContainerView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="904"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="4vn-gL-12X">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="4vn-gL-12X">
                                                 <rect key="frame" x="0.0" y="44" width="414" height="148"/>
                                                 <viewLayoutGuide key="safeArea" id="8Qa-So-BUi"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTD-Mx-kVE" userLabel="Content">
                                                 <rect key="frame" x="0.0" y="200" width="414" height="696"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PB-sJ-OwO">
-                                                        <rect key="frame" x="8" y="8" width="398" height="260"/>
+                                                        <rect key="frame" x="8" y="100" width="398" height="268"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="STM-9G-YZ8">
-                                                                <rect key="frame" x="20" y="29.999999999999993" width="358" height="70.333333333333314"/>
+                                                                <rect key="frame" x="20" y="29.999999999999996" width="358" height="40.666666666666657"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGf-pa-9vV">
                                                                         <rect key="frame" x="0.0" y="0.0" width="358" height="20.333333333333332"/>
@@ -2106,29 +2109,42 @@
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SID12345" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R16-1V-F2S">
                                                                                 <rect key="frame" x="51" y="0.0" width="307" height="20.333333333333332"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                         </subviews>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="83" translatesAutoresizingMaskIntoConstraints="NO" id="pvg-fz-sHl">
-                                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="358" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="358" height="20.333333333333329"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đánh giá trung bình:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynD-RJ-KQu">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="155" height="50"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="155" height="20.333333333333332"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                                </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKB-oS-Awf" customClass="CosmosView" customModule="Cosmos">
-                                                                                <rect key="frame" x="238" y="0.0" width="120" height="50"/>
+                                                                                <rect key="frame" x="238" y="0.0" width="120" height="20.333333333333332"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
+                                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </view>
                                                                         </subviews>
@@ -2138,24 +2154,36 @@
                                                                             <constraint firstAttribute="bottomMargin" secondItem="ynD-RJ-KQu" secondAttribute="bottom" id="Iag-9L-MfV"/>
                                                                             <constraint firstItem="ynD-RJ-KQu" firstAttribute="top" secondItem="pvg-fz-sHl" secondAttribute="topMargin" id="v8i-8g-nW1"/>
                                                                         </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </stackView>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstItem="DGf-pa-9vV" firstAttribute="width" secondItem="STM-9G-YZ8" secondAttribute="width" id="nzN-gq-V1U"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </stackView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="overview" translatesAutoresizingMaskIntoConstraints="NO" id="kjB-c1-ahR">
-                                                                <rect key="frame" x="368" y="230" width="20" height="20"/>
+                                                                <rect key="frame" x="368" y="238" width="20" height="20"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="20" id="G9Y-8f-h68"/>
                                                                     <constraint firstAttribute="height" constant="20" id="wan-Gq-ba2"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NGÀY 15 THÁNG 7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDT-fp-VnZ">
-                                                                <rect key="frame" x="10" y="236.66666666666669" width="100" height="13.333333333333343"/>
+                                                                <rect key="frame" x="10" y="244.66666666666663" width="100" height="13.333333333333314"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
                                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2169,48 +2197,59 @@
                                                             <constraint firstAttribute="trailing" secondItem="STM-9G-YZ8" secondAttribute="trailing" constant="20" id="hWC-Y2-FcL"/>
                                                             <constraint firstAttribute="bottom" secondItem="kjB-c1-ahR" secondAttribute="bottom" constant="10" id="pE9-hW-4no"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ps-k6-8an">
-                                                        <rect key="frame" x="8" y="298" width="398" height="368"/>
-                                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </view>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="7PB-sJ-OwO" firstAttribute="leading" secondItem="3fh-d6-MYU" secondAttribute="leading" constant="8" id="3oQ-Hw-dU3"/>
-                                                    <constraint firstItem="3fh-d6-MYU" firstAttribute="bottom" secondItem="7PB-sJ-OwO" secondAttribute="bottom" constant="428" id="9hQ-cS-OQk"/>
-                                                    <constraint firstItem="3fh-d6-MYU" firstAttribute="trailing" secondItem="9Ps-k6-8an" secondAttribute="trailing" constant="8" id="H52-eD-gQD"/>
-                                                    <constraint firstItem="9Ps-k6-8an" firstAttribute="top" secondItem="7PB-sJ-OwO" secondAttribute="bottom" constant="30" id="HTb-aO-0lO"/>
-                                                    <constraint firstItem="7PB-sJ-OwO" firstAttribute="top" secondItem="3fh-d6-MYU" secondAttribute="top" constant="8" id="ZOs-zE-Bbw"/>
-                                                    <constraint firstItem="3fh-d6-MYU" firstAttribute="trailing" secondItem="7PB-sJ-OwO" secondAttribute="trailing" constant="8" id="m0K-pI-sVp"/>
-                                                    <constraint firstItem="9Ps-k6-8an" firstAttribute="leading" secondItem="3fh-d6-MYU" secondAttribute="leading" constant="8" id="tZ1-Vu-oqc"/>
-                                                    <constraint firstItem="3fh-d6-MYU" firstAttribute="bottom" secondItem="9Ps-k6-8an" secondAttribute="bottom" constant="30" id="wtm-h5-Mak"/>
-                                                </constraints>
-                                                <viewLayoutGuide key="safeArea" id="3fh-d6-MYU"/>
-                                            </view>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="overview" translatesAutoresizingMaskIntoConstraints="NO" id="zVw-FL-lOT">
-                                                <rect key="frame" x="15" y="122" width="70" height="70"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="70" id="kkI-gi-lMZ"/>
-                                                    <constraint firstAttribute="width" constant="70" id="qn5-4j-oPB"/>
-                                                </constraints>
-                                            </imageView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S2F-Tg-4SV">
-                                                <rect key="frame" x="93.000000000000014" y="128.66666666666666" width="139.33333333333337" height="52.333333333333343"/>
-                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="overview" translatesAutoresizingMaskIntoConstraints="NO" id="zVw-FL-lOT">
+                                                        <rect key="frame" x="10" y="0.0" width="70" height="70"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="70" id="kkI-gi-lMZ"/>
+                                                            <constraint firstAttribute="width" constant="70" id="qn5-4j-oPB"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ApiShopTest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaQ-tA-40p">
-                                                        <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="24"/>
+                                                        <rect key="frame" x="88" y="8" width="114.66666666666669" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lượt theo dõi: 124" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ip7-hw-tIe">
-                                                        <rect key="frame" x="0.0" y="32" width="139.33333333333334" height="20.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="88" y="40" width="125" height="18"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                            </stackView>
+                                                <constraints>
+                                                    <constraint firstItem="7PB-sJ-OwO" firstAttribute="leading" secondItem="3fh-d6-MYU" secondAttribute="leading" constant="8" id="3oQ-Hw-dU3"/>
+                                                    <constraint firstItem="3fh-d6-MYU" firstAttribute="bottom" secondItem="7PB-sJ-OwO" secondAttribute="bottom" constant="328" id="9hQ-cS-OQk"/>
+                                                    <constraint firstItem="zVw-FL-lOT" firstAttribute="leading" secondItem="jTD-Mx-kVE" secondAttribute="leading" constant="10" id="BH5-17-dfi"/>
+                                                    <constraint firstItem="3fh-d6-MYU" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AaQ-tA-40p" secondAttribute="trailing" symbolic="YES" id="DtS-Bt-HhZ"/>
+                                                    <constraint firstItem="Ip7-hw-tIe" firstAttribute="top" secondItem="AaQ-tA-40p" secondAttribute="bottom" constant="8" id="QfD-ih-aQ4"/>
+                                                    <constraint firstAttribute="top" secondItem="zVw-FL-lOT" secondAttribute="bottom" constant="-70" id="R3y-ov-kyL"/>
+                                                    <constraint firstItem="AaQ-tA-40p" firstAttribute="top" secondItem="3fh-d6-MYU" secondAttribute="top" constant="8" id="SAQ-ix-GJp"/>
+                                                    <constraint firstItem="Ip7-hw-tIe" firstAttribute="leading" secondItem="zVw-FL-lOT" secondAttribute="trailing" constant="8" id="Xr5-Mt-dck"/>
+                                                    <constraint firstItem="7PB-sJ-OwO" firstAttribute="top" secondItem="3fh-d6-MYU" secondAttribute="top" constant="100" id="ZOs-zE-Bbw"/>
+                                                    <constraint firstItem="Ip7-hw-tIe" firstAttribute="top" secondItem="AaQ-tA-40p" secondAttribute="bottom" constant="8" id="cUh-Rb-R1c"/>
+                                                    <constraint firstItem="AaQ-tA-40p" firstAttribute="leading" secondItem="zVw-FL-lOT" secondAttribute="trailing" constant="8" id="hQP-ro-Ul4"/>
+                                                    <constraint firstItem="3fh-d6-MYU" firstAttribute="trailing" secondItem="7PB-sJ-OwO" secondAttribute="trailing" constant="8" id="m0K-pI-sVp"/>
+                                                    <constraint firstItem="3fh-d6-MYU" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ip7-hw-tIe" secondAttribute="trailing" symbolic="YES" id="sVV-6V-mNS"/>
+                                                </constraints>
+                                                <viewLayoutGuide key="safeArea" id="3fh-d6-MYU"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -2218,15 +2257,14 @@
                                             <constraint firstItem="jTD-Mx-kVE" firstAttribute="bottom" secondItem="w5f-Lv-nJR" secondAttribute="bottomMargin" id="7ec-Fj-LRu"/>
                                             <constraint firstAttribute="trailing" secondItem="4vn-gL-12X" secondAttribute="trailing" id="Ac3-p7-d8o"/>
                                             <constraint firstItem="jTD-Mx-kVE" firstAttribute="leading" secondItem="w5f-Lv-nJR" secondAttribute="leading" id="B1w-iG-ygo" userLabel="View.leading = leading"/>
-                                            <constraint firstItem="S2F-Tg-4SV" firstAttribute="leading" secondItem="zVw-FL-lOT" secondAttribute="trailing" constant="8" symbolic="YES" id="Dno-s8-xWF"/>
                                             <constraint firstItem="jTD-Mx-kVE" firstAttribute="top" secondItem="w5f-Lv-nJR" secondAttribute="top" constant="200" id="NAL-TB-elt"/>
                                             <constraint firstAttribute="trailing" secondItem="jTD-Mx-kVE" secondAttribute="trailing" id="S7d-g4-iZs"/>
-                                            <constraint firstItem="zVw-FL-lOT" firstAttribute="leading" secondItem="w5f-Lv-nJR" secondAttribute="leading" constant="15" id="TwM-TM-oCF"/>
                                             <constraint firstItem="4vn-gL-12X" firstAttribute="leading" secondItem="w5f-Lv-nJR" secondAttribute="leading" id="cJY-Dn-Ocg"/>
-                                            <constraint firstItem="jTD-Mx-kVE" firstAttribute="top" secondItem="zVw-FL-lOT" secondAttribute="bottom" constant="8" symbolic="YES" id="gq6-UL-0C3"/>
                                             <constraint firstAttribute="height" constant="904" id="nCy-iL-rNn"/>
-                                            <constraint firstItem="jTD-Mx-kVE" firstAttribute="top" secondItem="S2F-Tg-4SV" secondAttribute="bottom" constant="19" id="xFt-jA-Djf"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -2236,6 +2274,9 @@
                                     <constraint firstAttribute="trailing" secondItem="w5f-Lv-nJR" secondAttribute="trailing" id="af1-e5-gQi"/>
                                     <constraint firstItem="w5f-Lv-nJR" firstAttribute="top" secondItem="G6S-Yn-M80" secondAttribute="top" id="slI-Wt-5Ad"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2247,6 +2288,9 @@
                             <constraint firstItem="G6S-Yn-M80" firstAttribute="leading" secondItem="vQL-cy-Kob" secondAttribute="leading" id="daB-GJ-zzo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AU6-gy-sfR"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" title="Tổng quan" id="xkX-H0-2hq"/>
                     <connections>
@@ -2254,16 +2298,16 @@
                         <outlet property="backgroundImage" destination="4vn-gL-12X" id="4FM-g7-Jqm"/>
                         <outlet property="codeLb" destination="5Z2-NQ-zje" id="PEb-zu-1od"/>
                         <outlet property="containerView" destination="w5f-Lv-nJR" id="cAN-fM-2Zz"/>
-                        <outlet property="descriptionView" destination="9Ps-k6-8an" id="gIL-Ns-1uB"/>
                         <outlet property="shopId" destination="R16-1V-F2S" id="smY-NW-daW"/>
                         <outlet property="shopName" destination="AaQ-tA-40p" id="aSJ-Y6-nvd"/>
+                        <outlet property="status" destination="Ip7-hw-tIe" id="PZj-yu-hEz"/>
                         <outlet property="subView" destination="7PB-sJ-OwO" id="Pq2-b3-D12"/>
                         <outlet property="timeLabel" destination="MDT-fp-VnZ" id="vbN-xM-yWe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3uj-mw-t4Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2049.275362318841" y="1234.4866071428571"/>
+            <point key="canvasLocation" x="-2050.7246376811595" y="1234.4866071428571"/>
         </scene>
         <!--Tổng quan-->
         <scene sceneID="zrn-St-091">

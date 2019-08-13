@@ -20,6 +20,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     
     // Flag for regconizing tableview is appeared or not in order to display no data message
     var isFirstAppear = true
+    var hasData = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,49 +36,21 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
-        
-        print("will appear")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         view.stopSkeletonAnimation()
-        print("did disapear")
-        isFirstAppear = true
-        tableView.reloadData()
+        if listShops == nil {
+            tableView.reloadData()
+        }
     }
     
 
     override func viewDidAppear(_ animated: Bool) {
-        UIApplication.shared.beginIgnoringInteractionEvents()
-
-        view.hideSkeleton()
-        view.showAnimatedSkeleton()
-
-        getListShops { (listShops) in
-            guard let listShops = listShops else {
-                print("Khong co shop nao vi chua ket noi")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
-                    self.displayNoDataNotification()
-                    self.isFirstAppear = false
-                    self.tableView.reloadData()
-                    self.isFirstAppear = true
-
-                }
-                return
-            }
-
-            if !listShops.isEmpty {
-                self.listShops = listShops
-                self.tableView.reloadData()
-            }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
-                self.view.hideSkeleton()
-                self.view.stopSkeletonAnimation()
-                UIApplication.shared.endIgnoringInteractionEvents()
-            }
+        if listShops != nil {
             return
         }
+        fetchingDataFromServer()
     }
     
     
@@ -86,16 +59,10 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        if isFirstAppear {
-            print("section")
-        }
-        
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        print("row sections")
         if isFiltering(searchController) {
             return isFirstAppear ? filterShop?.count ?? 10 : 0
         }
@@ -104,7 +71,6 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cell for row")
         let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath) as! ShopTableViewCell
         if listShops != nil {
             var model: Shop
@@ -118,6 +84,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             
             cell.shopName.text = model.shopName
             cell.shopId.text = model.shopId
+            cell.hideSkeletonAnimation()
         }
         
 
@@ -174,16 +141,40 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         }
     }
 
-    private func prepareShopInformation() -> [Shop] {
-        var list: [Shop] = []
-        for _ in 0...10 {
-            list.append(Shop(shopId: "123456789", shopName: "Shop123"))
+    // MARK: - Fetching data from server
+    
+    private func fetchingDataFromServer() {
+        tableView.reloadData()
+        
+        view.hideSkeleton()
+        view.showAnimatedSkeleton()
+        
+        tableView.allowsSelection = false
+        
+        getListShops { [unowned self] (listShops) in
+            guard let listShops = listShops else {
+                print("Khong co shop nao vi chua ket noi")
+                
+                self.displayNoDataNotification(text: "Shop của bạn sẽ hiện tại đây")
+                self.isFirstAppear = false
+                self.hasData = false
+                self.tableView.reloadData()
+                self.isFirstAppear = true
+                return
+            }
+            
+            if !listShops.isEmpty && !self.hasData {
+                self.listShops = listShops
+                self.tableView.reloadData()
+            }
+            
+            self.view.hideSkeleton()
+            self.view.stopSkeletonAnimation()
+            self.tableView.backgroundView = nil
+            
+            self.tableView.allowsSelection = false
+            return
         }
-
-        for _ in 0...5 {
-            list.append(Shop(shopId: "123456789", shopName: "AppleStore"))
-        }
-        return list
     }
 
     @IBAction func unwindToListShopsTableViewController(segue: UIStoryboardSegue) {
