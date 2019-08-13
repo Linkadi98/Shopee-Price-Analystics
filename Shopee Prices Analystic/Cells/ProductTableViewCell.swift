@@ -12,6 +12,7 @@ import SkeletonView
 
 class ProductTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productPrice: UILabel!
@@ -23,6 +24,11 @@ class ProductTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        productPrice.showAnimatedSkeleton()
+        productName.showAnimatedSkeleton()
+        productImage.showAnimatedSkeleton()
+        productCode.showAnimatedSkeleton()
+        cosmos.showAnimatedSkeleton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

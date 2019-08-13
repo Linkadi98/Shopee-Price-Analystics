@@ -14,8 +14,7 @@ import GoogleSignIn
 import FacebookLogin
 import Alamofire
 
-extension UIViewController {
-    
+extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     
     // MARK: - Hide keyboard when user tap on screen
     func hideKeyboardWhenTappedAround() {
@@ -43,31 +42,20 @@ extension UIViewController {
                     cornerRadius: 10)
     }
 
-//     sửa hàm này khi đã có api trả về trạng thái thành công/không thành công bằng 1 closure
+
     func statusNotification(title: String, style: BannerStyle) {
         let banner = StatusBarNotificationBanner(title: title, style: style)
         banner.show(queuePosition: .back, bannerPosition: .top)
     }
-}
 
-private class BannerStatusColor: BannerColorsProtocol {
-    func color(for style: BannerStyle) -> UIColor {
-        let color = UIColor.green
-        return color
-    }
-}
-
-// Move View Controller
-extension UIViewController {
+    // Move View Controller
+    
     func moveVC(viewController: UIViewController, toViewControllerHasId idVC: String) {
         let secondVC = (viewController.storyboard?.instantiateViewController(withIdentifier: idVC))!
         viewController.present(secondVC, animated: true, completion: nil)
     }
-}
 
-// Đăng nhập bằng Fb
-extension UIViewController {
-
+    // Đăng nhập bằng Fb
     // Đăng nhập fb và lưu dữ liệu tài khoản fb
     // Chỉ được gọi khi đăng nhập mới, ko được gọi nếu nhớ tài khoản
     func loginFb() {
@@ -105,10 +93,8 @@ extension UIViewController {
         }
         connection.start()
     }
-}
 
-// Login Google
-extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
+    // Login Google
     // must implement
     // Được gọi cả khi đăng nhập mới (ko phải nhớ tài khoản)
     public func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -156,13 +142,13 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             UserDefaults.standard.set(encoded, forKey: "currentUser")
         }
     }
-}
 
-// Get list shop
-extension UIViewController {
+
+    // Get list shop
+
     func getListShops(completion: @escaping ([Shop]?) -> Void) {
         let sharedNetwork = Network.shared
-//        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+        // let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
@@ -258,9 +244,6 @@ extension UIViewController {
         }
     }
 
-}
-
-extension UIViewController {
     // get list products from DB
     func getListProducts(completion: @escaping ([Product]?) -> Void) {
         let sharedNetwork = Network.shared
@@ -272,7 +255,6 @@ extension UIViewController {
             }
         } else {
             print("Chua co san pham vi chua ket noi cua hang")
-            return
         }
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
@@ -299,10 +281,9 @@ extension UIViewController {
             completion(listProducts)
         }
     }
-}
+    
+    // Load online image
 
-// Load online image
-extension UIViewController {
     func loadOnlineImage(from url: URL, to uiImageView: UIImageView) {
         DispatchQueue(label: "loadImage").async {
             do {
@@ -315,10 +296,10 @@ extension UIViewController {
             }
         }
     }
-}
 
-// Present a alert
-extension UIViewController {
+
+    // Present a alert
+
     func presentAlert(title: String = "Lỗi", message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -326,10 +307,8 @@ extension UIViewController {
 
         self.present(alert, animated: true, completion: nil)
     }
-}
 
-// Init an activity indicator
-extension UIViewController {
+    // Init an activity indicator
     func initActivityIndicator() -> UIActivityIndicatorView {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.center = self.view.center

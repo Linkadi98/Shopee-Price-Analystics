@@ -24,7 +24,7 @@
 		242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */; };
 		242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */; };
 		242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */; };
-		242C4FA522F577EE007D4903 /* UIAlerController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C4FA422F577EE007D4903 /* UIAlerController+Extension.swift */; };
+		242C4FA522F577EE007D4903 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */; };
 		242F519122FE811D00A0E980 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F519022FE811D00A0E980 /* ContainerViewController.swift */; };
 		2433DB6B22F6C48A00AB0498 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */; };
 		2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */; };
@@ -95,7 +95,7 @@
 		242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalInfoViewController.swift; sourceTree = "<group>"; };
 		242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductTableViewController.swift; sourceTree = "<group>"; };
 		242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductLineChartViewController.swift; sourceTree = "<group>"; };
-		242C4FA422F577EE007D4903 /* UIAlerController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlerController+Extension.swift"; sourceTree = "<group>"; };
+		242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		242F519022FE811D00A0E980 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				2459135F22E2EF6600D51A4B /* UIView+Extension.swift */,
 				2459136122E2F01600D51A4B /* ViewController+Extension.swift */,
 				2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */,
-				242C4FA422F577EE007D4903 /* UIAlerController+Extension.swift */,
+				242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */,
 				2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */,
 			);
 			path = Extensions;
@@ -593,7 +593,7 @@
 				2459135E22E2EF5B00D51A4B /* UITableView+Extension.swift in Sources */,
 				2421730B22FD602800541024 /* RivalTableCell.swift in Sources */,
 				242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */,
-				242C4FA522F577EE007D4903 /* UIAlerController+Extension.swift in Sources */,
+				242C4FA522F577EE007D4903 /* UIAlertController+Extension.swift in Sources */,
 				24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
 				242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */,

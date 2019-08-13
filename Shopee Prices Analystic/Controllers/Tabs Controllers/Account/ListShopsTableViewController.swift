@@ -43,6 +43,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         view.stopSkeletonAnimation()
         print("did disapear")
         isFirstAppear = true
+        tableView.reloadData()
     }
     
 
@@ -60,6 +61,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                     self.displayNoDataNotification()
                     self.isFirstAppear = false
                     self.tableView.reloadData()
+                    self.isFirstAppear = true
                 }
                 return
             }
@@ -95,7 +97,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             return isFirstAppear ? filterShop?.count ?? 10 : 0
         }
         
-        return isFirstAppear ? listShops?.count ?? 10 : 0
+        return isFirstAppear ? filterShop?.count ?? 10 : 0
     }
 
     

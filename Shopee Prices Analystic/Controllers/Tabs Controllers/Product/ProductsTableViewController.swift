@@ -13,9 +13,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     // MARK: - Properties
    
-    var products: [Product] = []
-    var filterProducts =  [Product]()
+    var listProducts: [Product]?
+    var filterProducts: [Product]?
     var searchController: UISearchController!
+    
+    var isFirstAppear = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,31 +28,21 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         setupSearchController(for: searchController, placeholder: "Nhập tên sản phẩm")
         
-        // Need set up Skeleton view here right below
-        
-        
-        
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl?.tintColor = UIColor.orange
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
-        print("did appear")
-        view.hideSkeleton()
-        
-        view.showAnimatedSkeleton()
-        
-        if view.isSkeletonable {
-            tableView.allowsSelection = false
-        }
+        fetchingDataFromServer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        print("did disappear")
+        
         view.stopSkeletonAnimation()
+        tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("willapprear")
         view.startSkeletonAnimation()
         
     }
@@ -65,26 +57,30 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if isFiltering(searchController) {
-            return filterProducts.count
+            return isFirstAppear ? filterProducts?.count ?? 10 : 0
         }
-        return listProducts.count
+        return isFirstAppear ? listProducts?.count ?? 10 : 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
         let product: Product
-        if isFiltering(searchController) {
-            product = filterProducts[indexPath.row]
-        }
-        else {
-            product = listProducts[indexPath.row]
-        }
         
-        cell.productName.text = "\(product.name!)"
-        cell.cosmos.rating = product.rating!
-        cell.productPrice.text = product.convertPriceToVietnameseCurrency()
-        cell.productCode.text = product.id!
-        loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
+        if listProducts != nil {
+            
+            if isFiltering(searchController) {
+                product = filterProducts![indexPath.row]
+            }
+            else {
+                product = listProducts![indexPath.row]
+            }
+            
+            cell.productName.text = "\(product.name!)"
+            cell.cosmos.rating = product.rating!
+            cell.productPrice.text = product.convertPriceToVietnameseCurrency()
+            cell.productCode.text = product.id!
+            loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
+        }
 
         return cell
     }
@@ -100,13 +96,16 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let product: Product
-        if isFiltering(searchController) {
-            product = filterProducts[indexPath.row]
+        
+        if listProducts != nil {
+            if isFiltering(searchController) {
+                product = filterProducts![indexPath.row]
+            }
+            else {
+                product = listProducts![indexPath.row]
+            }
+            performSegue(withIdentifier: "ProductDetail", sender: product)
         }
-        else {
-            product = listProducts[indexPath.row]
-        }
-        performSegue(withIdentifier: "ProductDetail", sender: product)
     }
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
@@ -121,7 +120,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
-        let cellSelected = tableView.cellForRow(at: indexPath)
+        
         let editPriceButton = UITableViewRowAction(style: .default, title: "Sửa", handler: {(action, indexPath) in
             
         })
@@ -145,7 +144,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Search Actions
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
-            filterProducts = listProducts.filter({(product: Product) -> Bool in
+            filterProducts = listProducts?.filter({(product: Product) -> Bool in
                 return product.name!.lowercased().contains(searchText.lowercased()) || product.id!.lowercased().contains(searchText.lowercased())
             })
         }
@@ -173,23 +172,47 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ProductDetail" {
             let vc = segue.destination as! ProductDetailTableViewController
-            vc.product = sender as! Product
+            vc.product = (sender as! Product)
         }
     }
     
-    // MARK: - Private modifications
+    // MARK: - Refesh data
     
-//    private func prepareProducts() -> [Product] {
-//        var list: [Product] = []
-//        for _ in 0...10 {
-//            list.append(Product(id: "DAC1000256", name: "Giày", price: 140000, rating: 5))
-//        }
-//        
-//        for _ in 0...10 {
-//            list.append(Product(id: "DAC2031564", name: "Ultra boost", price: 1300000, rating: 4.2))
-//        }
-//        return list
-//    }
+    @objc func refresh() {
+        fetchingDataFromServer()
+        tableView.refreshControl?.endRefreshing()
+    }
+    
+    // MARK: - Private loading data for this class
+    
+    private func fetchingDataFromServer() {
+        view.hideSkeleton()
+        view.showAnimatedSkeleton()
+        
+        tableView.allowsSelection = false
+        
+        getListProducts { (listProducts) in
+            guard let listProducts = listProducts else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
+                    self.displayNoDataNotification()
+                    self.isFirstAppear = false
+                    self.tableView.reloadData()
+                    self.isFirstAppear = true
+                }
+                return
+            }
+            
+            self.listProducts = listProducts
+            self.tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
+                self.view.hideSkeleton()
+                self.view.stopSkeletonAnimation()
+                self.tableView.allowsSelection = true
+            }
+            return
+        }
+    }
+    
 }
 
 extension UIView {
