@@ -194,23 +194,20 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         getListProducts { (listProducts) in
             guard let listProducts = listProducts else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
-                    self.displayNoDataNotification()
-                    self.isFirstAppear = false
-                    self.tableView.reloadData()
-                    self.isFirstAppear = true
-                }
+                self.displayNoDataNotification()
+                self.isFirstAppear = false
+                self.tableView.reloadData()
+                self.isFirstAppear = true
                 return
             }
             
-            self.listProducts = listProducts
-            self.tableView.reloadData()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) { [unowned self] in
-                self.view.hideSkeleton()
-                self.view.stopSkeletonAnimation()
-                self.tableView.allowsSelection = true
+            if !listProducts.isEmpty {
+                self.listProducts = listProducts
+                self.tableView.reloadData()
             }
-            return
+            self.view.hideSkeleton()
+            self.view.stopSkeletonAnimation()
+            self.tableView.allowsSelection = true
         }
     }
     
