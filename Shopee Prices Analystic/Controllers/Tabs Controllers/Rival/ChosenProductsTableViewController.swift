@@ -9,7 +9,11 @@
 import UIKit
 
 class ChosenProductsTableViewController: UITableViewController {
-
+    
+    // MARK: - Properties
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +28,7 @@ class ChosenProductsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
     

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
+  - BadgeSwift (8.0.0)
   - Cosmos (19.0.3)
   - FacebookCore (0.8.0):
     - FBSDKCoreKit (~> 5.0)
@@ -47,6 +48,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - BadgeSwift (~> 8.0)
   - Cosmos (~> 19.0)
   - FacebookCore
   - FacebookLogin
@@ -62,6 +64,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BadgeSwift
     - Cosmos
     - FacebookCore
     - FacebookLogin
@@ -83,6 +86,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  BadgeSwift: a81547ffde1f462bb5fc02e3fa3fdcbc1b888354
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   FacebookCore: 563bb4cbcd7dd86cf89f3729252140bf256aacaa
   FacebookLogin: 8b966ae661e95e7dba837d7cc49cc464ce003dba
@@ -102,6 +106,6 @@ SPEC CHECKSUMS:
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 9223202157c5b15d07b681aca9ddb566b2e07c70
+PODFILE CHECKSUM: ed0f23926354e6c28ad3d8920594c0ecd6c01386
 
 COCOAPODS: 1.7.5

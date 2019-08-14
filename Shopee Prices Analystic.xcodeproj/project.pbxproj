@@ -17,6 +17,7 @@
 		2416494822E1770E00B80DBC /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494722E1770E00B80DBC /* Product.swift */; };
 		2416494A22E19F5600B80DBC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494922E19F5600B80DBC /* Animator.swift */; };
 		241BC1452303B0140097AB59 /* ChosenProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */; };
+		241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */; };
 		241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */; };
 		241D5A7322E57A8C00CBA60C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5A7222E57A8C00CBA60C /* Account.swift */; };
 		2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */; };
@@ -89,6 +90,7 @@
 		2416494722E1770E00B80DBC /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		2416494922E19F5600B80DBC /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductsTableViewController.swift; sourceTree = "<group>"; };
+		241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductTableViewCell.swift; sourceTree = "<group>"; };
 		241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailTableViewController.swift; sourceTree = "<group>"; };
 		241D5A7222E57A8C00CBA60C /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRivalsTableViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */,
 				2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */,
 				2421730A22FD602800541024 /* RivalTableCell.swift */,
+				241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				2416494A22E19F5600B80DBC /* Animator.swift in Sources */,
 				2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */,
 				BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */,
+				241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */,
 				2416494822E1770E00B80DBC /* Product.swift in Sources */,
 				242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */,
 			);

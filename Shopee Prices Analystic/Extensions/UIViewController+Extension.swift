@@ -162,7 +162,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 
             //Successful request
             var listShops: [Shop] = []
-            print(response.result.value)
+//            print(response.result.value)
             let responseValue = response.result.value! as! [[String: Any]]
             print(responseValue)
             for value in responseValue {

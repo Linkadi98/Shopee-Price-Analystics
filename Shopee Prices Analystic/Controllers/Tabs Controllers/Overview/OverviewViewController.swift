@@ -62,13 +62,14 @@ class OverviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
+        if currentShop == nil {
+            fetchingDataFromServer()
+        }
     }
 
 
     override func viewDidAppear(_ animated: Bool) {
-        if currentShop == nil {
-            fetchingDataFromServer()
-        }
+        
     }
     // MARK: - Configuration
     

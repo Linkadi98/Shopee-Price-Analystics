@@ -16,6 +16,7 @@ pod 'Cosmos', '~> 19.0'
 pod 'Parchment'
 pod 'SVProgressHUD', '~> 2.2'
 pod "SkeletonView"
+pod 'BadgeSwift', '~> 8.0'
   # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do
