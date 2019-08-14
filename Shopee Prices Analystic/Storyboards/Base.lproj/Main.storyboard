@@ -174,6 +174,9 @@
                                 <rect key="frame" x="242" y="349" width="132" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Bạn quên mật khẩu?"/>
+                                <connections>
+                                    <action selector="forgetAccount:" destination="F0e-4b-AO9" eventType="touchUpInside" id="Rec-ka-xeN"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="Fbj-yb-epQ">
                                 <rect key="frame" x="75" y="74" width="264" height="80"/>
@@ -2366,7 +2369,7 @@
         <image name="username" width="16.666666030883789" height="16.666666030883789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RtS-Aj-Aye"/>
+        <segue reference="nSc-HQ-CrF"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

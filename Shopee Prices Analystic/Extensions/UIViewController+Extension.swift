@@ -250,6 +250,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         if let encoded = try? JSONEncoder().encode(newShop) {
             UserDefaults.standard.set(encoded, forKey: "currentShop")
         }
+        print("Changrsjsj: \(newShop)")
     }
 
     // get list products from DB
@@ -297,7 +298,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
         var url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")

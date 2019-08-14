@@ -217,6 +217,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 self.hasData = true
                 self.tableView.reloadData()
             }
+
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
