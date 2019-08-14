@@ -8,6 +8,8 @@
 
 import UIKit
 import SkeletonView
+import Alamofire
+import NotificationBannerSwift
 
 class ListShopsTableViewController: UITableViewController, SkeletonTableViewDataSource, UISearchResultsUpdating {
 
@@ -85,7 +87,12 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             
             cell.shopName.text = model.shopName
             cell.shopId.text = model.shopId
-            cell.status.addImage(#imageLiteral(resourceName: "active"), "")
+            if (indexPath.row == 0) {
+                cell.status.addImage(#imageLiteral(resourceName: "active"), "", x: -1)
+                cell.selectionStyle = .none
+            } else {
+                cell.status.isHidden = true
+            }
             cell.hideSkeletonAnimation()
         }
         
@@ -100,7 +107,6 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("will display")
         let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
@@ -117,12 +123,16 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             model = listShops![indexPath.row]
         }
         
-        let customPasswordConfirmAlert = UIAlertController(title: "Chuyển sang \(model.shopName)", message: "Vui lòng xác nhận trước khi chuyển sang Shop mới", preferredStyle: .alert)
-        customPasswordConfirmAlert.createCustomPasswordConfirmAlert()
-        present(customPasswordConfirmAlert, animated: true, completion: {
-            // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
-            tableView.deselectRow(at: indexPath, animated: true)
-        })
+        if indexPath.row != 0 {
+            let customPasswordConfirmAlert = UIAlertController(title: "Chuyển sang \(model.shopName)", message: "Vui lòng xác nhận trước khi chuyển sang Shop mới", preferredStyle: .alert)
+            if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
+                customPasswordConfirmAlert.createCustomPasswordConfirmAlert(viewController: self, username: currentUser.name!, shop: model)
+                present(customPasswordConfirmAlert, animated: true, completion: {
+                    // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
+                    tableView.deselectRow(at: indexPath, animated: true)
+                })
+            }
+        }
     }
     
     func numSections(in collectionSkeletonView: UITableView) -> Int {
@@ -145,7 +155,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     // MARK: - Fetching data from server
     
-    private func fetchingDataFromServer() {
+    func fetchingDataFromServer() {
         tableView.reloadData()
         
         view.hideSkeleton()
@@ -154,7 +164,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         tableView.allowsSelection = false
         
         getListShops { [unowned self] (listShops) in
-            guard let listShops = listShops else {
+            guard var listShops = listShops else {
                 print("Khong co shop nao vi chua ket noi")
                 
                 self.displayNoDataNotification(text: "Shop của bạn sẽ hiện tại đây")
@@ -166,6 +176,10 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             }
             
             if !listShops.isEmpty && !self.hasData {
+                if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+                    let currentShopIndex = listShops.firstIndex(of: currentShop)!
+                    listShops.swapAt(0, currentShopIndex)
+                }
                 self.listShops = listShops
                 self.tableView.reloadData()
             }
@@ -193,3 +207,35 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     }
 }
 
+extension ListShopsTableViewController {
+    func checkAccount(username: String, password: String, completion: @escaping (Bool) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
+        let parameters: Parameters = [
+            "username" : username,
+            "password" : password
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                // Failed request
+                guard response.result.isSuccess else {
+                    print("Error when fetching data: \(response.result.error)")
+                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                    completion(false)
+                    return
+                }
+
+                //Successful request
+                let responseValue = response.result.value! as! [String: Any]
+                guard let _ = responseValue["token"] as? String else {
+                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
+                    completion(false)
+                    return
+                }
+
+                completion(true)
+            }
+        }
+    }
+}

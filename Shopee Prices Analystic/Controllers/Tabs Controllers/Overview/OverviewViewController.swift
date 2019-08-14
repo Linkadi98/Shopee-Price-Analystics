@@ -102,11 +102,9 @@ class OverviewViewController: UIViewController {
                 return
             }
 
-            if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-                if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                     self.currentShop = currentShop
                     self.status.addImage(#imageLiteral(resourceName: "active"), "Đang hoạt động", offsetY: -0.5)
-                }
             }
 
             self.view.hideSkeleton()

@@ -220,6 +220,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
+    // Add s shop
     func addShop(shopId: String, shopName: String, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
@@ -244,6 +245,13 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
+    // Change currentShop
+    func changeCurrentShop(newShop: Shop) {
+        if let encoded = try? JSONEncoder().encode(newShop) {
+            UserDefaults.standard.set(encoded, forKey: "currentShop")
+        }
+    }
+
     // get list products from DB
     func getListProducts(completion: @escaping ([Product]?) -> Void) {
         let sharedNetwork = Network.shared
@@ -252,6 +260,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
             if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                 url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
+                print("6969: \(currentShop.shopId)")
             }
         } else {
             print("Chua co san pham vi chua ket noi cua hang")
