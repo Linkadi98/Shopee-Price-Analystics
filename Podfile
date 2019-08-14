@@ -17,6 +17,7 @@ pod 'Parchment'
 pod 'SVProgressHUD', '~> 2.2'
 pod "SkeletonView"
 pod 'BadgeSwift', '~> 8.0'
+pod 'RangeSeekSlider'
   # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do

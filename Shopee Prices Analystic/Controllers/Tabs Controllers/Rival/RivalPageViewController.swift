@@ -17,6 +17,8 @@ class RivalPageViewController: UIViewController {
     
     weak var chosenProductsTableViewController: ChosenProductsTableViewController?
     
+    weak var autoChangePriceTableViewController: AutoChangePriceTableViewController?
+    
     var pageViewController: FixedPagingViewController?
     
     override func viewDidLoad() {
@@ -35,18 +37,20 @@ class RivalPageViewController: UIViewController {
     }
     
     func setUpViewController() {
+        
+        autoChangePriceTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: AutoChangePriceTableViewController.self)) as? AutoChangePriceTableViewController
         chosenProductsTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: ChosenProductsTableViewController.self)) as? ChosenProductsTableViewController
-//        rivalInfoViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalInfoViewController.self)) as? RivalInfoViewController
+        rivalInfoViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalInfoViewController.self)) as? RivalInfoViewController
         rivalProductLineChartViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalProductLineChartViewController.self)) as? RivalProductLineChartViewController
         
         rivalProductTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalProductTableViewController.self)) as? RivalProductTableViewController
         
         chosenProductsTableViewController?.title = "Sản phẩm đã chọn"
-//        rivalInfoViewController?.title = "Thông tin đối thủ"
+        rivalInfoViewController?.title = "Thông tin đối thủ"
         rivalProductTableViewController?.title = "Lịch sử thay đổi giá"
         rivalProductLineChartViewController?.title = "Biểu đồ thay đổi giá"
-        
-        pageViewController = FixedPagingViewController(viewControllers: [chosenProductsTableViewController!, rivalProductTableViewController!, rivalProductLineChartViewController!])
+        autoChangePriceTableViewController?.title = "Chỉnh giá tự động"
+        pageViewController = FixedPagingViewController(viewControllers: [chosenProductsTableViewController!,rivalInfoViewController!, rivalProductTableViewController!, rivalProductLineChartViewController!, autoChangePriceTableViewController!])
         
         pageViewController?.indicatorOptions = .visible(height: 3, zIndex: 1, spacing: .zero, insets: .zero)
         

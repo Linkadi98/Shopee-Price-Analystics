@@ -14,6 +14,7 @@ class ChosenProductsTableViewController: UITableViewController {
     
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,7 +34,7 @@ class ChosenProductsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chosenProductCell", for: indexPath)
 
         // Configure the cell...
 
