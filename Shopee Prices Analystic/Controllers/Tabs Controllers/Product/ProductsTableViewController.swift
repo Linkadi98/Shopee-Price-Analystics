@@ -32,7 +32,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.refreshControl?.tintColor = UIColor.orange
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         if listProducts != nil {
             return

@@ -57,12 +57,19 @@ class OverviewViewController: UIViewController {
 //        subView.setBlurEffect()
         subView.layer.cornerRadius = 10
         timeLabel.text = setTime()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
     }
 
+
+    override func viewDidAppear(_ animated: Bool) {
+        if currentShop == nil {
+            fetchingDataFromServer()
+        }
+    }
     // MARK: - Configuration
     
     
@@ -81,25 +88,26 @@ class OverviewViewController: UIViewController {
         return "THỨ \(dayOfWeek) NGÀY \(day) THÁNG \(month)"
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    func fetchingDataFromServer() {
         view.hideSkeleton()
         view.showAnimatedSkeleton()
 
         getListShops { [unowned self] (listShops) in
-            
+
             guard let _ = listShops else {
                 self.status.addImage(#imageLiteral(resourceName: "deactive"), "Không hoạt động", offsetY: -0.5)
                 self.view.hideSkeleton()
                 self.view.stopSkeletonAnimation()
                 return
             }
+
             if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
                 if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                     self.currentShop = currentShop
                     self.status.addImage(#imageLiteral(resourceName: "active"), "Đang hoạt động", offsetY: -0.5)
                 }
             }
-            
+
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
         }

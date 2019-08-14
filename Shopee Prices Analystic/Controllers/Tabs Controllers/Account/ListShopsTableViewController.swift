@@ -24,14 +24,13 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
+        print("Danh sach xyz: \(listShops)")
         searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
         searchController.hidesNavigationBarDuringPresentation = true
         navigationItem.hidesSearchBarWhenScrolling = false
         setupSearchController(for: searchController, placeholder: "Nhập tên shop")
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +50,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             return
         }
         fetchingDataFromServer()
+        print("Danh sach abc: \(listShops)")
     }
     
     
