@@ -1483,7 +1483,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Os4-sZ-X04">
-                                            <rect key="frame" x="15" y="8" width="70.333333333333329" height="58.666666666666657"/>
+                                            <rect key="frame" x="15" y="7.9999999999999964" width="70.333333333333329" height="58.666666666666657"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên shop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4j-pu-PFL">
                                                     <rect key="frame" x="0.0" y="0.0" width="70.333333333333329" height="33"/>
@@ -1511,8 +1511,21 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đang hoạt động" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2f-QC-yy2">
+                                            <rect key="frame" x="271" y="29" width="97" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="w2f-QC-yy2" secondAttribute="bottom" constant="18" id="3ra-I9-iuO"/>
+                                        <constraint firstItem="w2f-QC-yy2" firstAttribute="trailing" secondItem="qyl-Te-rb9" secondAttribute="trailingMargin" id="5mz-jB-tOx"/>
+                                        <constraint firstItem="w2f-QC-yy2" firstAttribute="top" secondItem="qyl-Te-rb9" secondAttribute="topMargin" constant="18" id="V2X-0r-mV4"/>
+                                        <constraint firstItem="w2f-QC-yy2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Os4-sZ-X04" secondAttribute="trailing" constant="8" symbolic="YES" id="Zfd-xQ-hFB"/>
                                         <constraint firstItem="Os4-sZ-X04" firstAttribute="top" secondItem="qyl-Te-rb9" secondAttribute="top" constant="8" id="cwm-jH-UBd"/>
                                         <constraint firstItem="Os4-sZ-X04" firstAttribute="leading" secondItem="qyl-Te-rb9" secondAttribute="leading" constant="15" id="rrR-sg-z6w"/>
                                         <constraint firstAttribute="bottom" secondItem="Os4-sZ-X04" secondAttribute="bottom" constant="8" id="xSS-Zl-09L"/>
@@ -1524,6 +1537,7 @@
                                 <connections>
                                     <outlet property="shopId" destination="fj1-zg-t0k" id="Ar0-7m-xL1"/>
                                     <outlet property="shopName" destination="e4j-pu-PFL" id="d4E-gf-h7u"/>
+                                    <outlet property="status" destination="w2f-QC-yy2" id="k7o-N6-RGU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1552,10 +1566,10 @@
             </objects>
             <point key="canvasLocation" x="6155" y="2006"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Chosen Products Table View Controller-->
         <scene sceneID="ou8-6I-nQN">
             <objects>
-                <tableViewController id="NYJ-CL-ptl" sceneMemberID="viewController">
+                <tableViewController id="NYJ-CL-ptl" customClass="ChosenProductsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bcn-Tv-qMm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1579,7 +1593,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v01-Kc-XhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3704" y="1251"/>
+            <point key="canvasLocation" x="1100" y="2546"/>
         </scene>
         <!--Rival Info View Controller-->
         <scene sceneID="IhV-bu-8NG">
@@ -1770,7 +1784,7 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="COs-O0-Wih">
-                                                <rect key="frame" x="93.000000000000014" y="129" width="139.33333333333334" height="52.333333333333336"/>
+                                                <rect key="frame" x="93" y="129" width="139.33333333333334" height="52.333333333333336"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ApiShopTest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QN3-eL-3XY">
@@ -1999,18 +2013,7 @@
                         <viewLayoutGuide key="safeArea" id="VY7-mb-YVT"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Đối thủ" image="rival" id="HNG-FU-Iku"/>
-                    <navigationItem key="navigationItem" title="Theo dõi đối thủ" id="rT6-e9-PEt">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="fkw-Fu-clQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a9x-jZ-jx2">
-                                <rect key="frame" x="251" y="7" width="143" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Danh sách sản phẩm"/>
-                                <connections>
-                                    <segue destination="NYJ-CL-ptl" kind="show" id="IzM-gx-Bed"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Theo dõi đối thủ" id="rT6-e9-PEt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2JF-ec-cG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2099,7 +2102,7 @@
                                                         <rect key="frame" x="8" y="100" width="398" height="268"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="STM-9G-YZ8">
-                                                                <rect key="frame" x="20" y="29.999999999999996" width="358" height="40.666666666666657"/>
+                                                                <rect key="frame" x="20" y="29.999999999999993" width="358" height="70.333333333333314"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGf-pa-9vV">
                                                                         <rect key="frame" x="0.0" y="0.0" width="358" height="20.333333333333332"/>
@@ -2128,10 +2131,10 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="83" translatesAutoresizingMaskIntoConstraints="NO" id="pvg-fz-sHl">
-                                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="358" height="20.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="20.333333333333314" width="358" height="50"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đánh giá trung bình:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynD-RJ-KQu">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="155" height="20.333333333333332"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="155" height="50"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -2140,7 +2143,7 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </label>
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKB-oS-Awf" customClass="CosmosView" customModule="Cosmos">
-                                                                                <rect key="frame" x="238" y="0.0" width="120" height="20.333333333333332"/>
+                                                                                <rect key="frame" x="238" y="0.0" width="120" height="50"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>

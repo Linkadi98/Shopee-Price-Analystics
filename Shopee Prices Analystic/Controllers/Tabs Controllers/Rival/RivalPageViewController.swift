@@ -15,6 +15,8 @@ class RivalPageViewController: UIViewController {
     weak var rivalProductTableViewController: RivalProductTableViewController?
     weak var rivalProductLineChartViewController: RivalProductLineChartViewController?
     
+    weak var chosenProductsTableViewController: ChosenProductsTableViewController?
+    
     var pageViewController: FixedPagingViewController?
     
     override func viewDidLoad() {
@@ -33,16 +35,18 @@ class RivalPageViewController: UIViewController {
     }
     
     func setUpViewController() {
-        rivalInfoViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalInfoViewController.self)) as? RivalInfoViewController
+        chosenProductsTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: ChosenProductsTableViewController.self)) as? ChosenProductsTableViewController
+//        rivalInfoViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalInfoViewController.self)) as? RivalInfoViewController
         rivalProductLineChartViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalProductLineChartViewController.self)) as? RivalProductLineChartViewController
         
         rivalProductTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalProductTableViewController.self)) as? RivalProductTableViewController
         
-        rivalInfoViewController?.title = "Thông tin đối thủ"
+        chosenProductsTableViewController?.title = "Sản phẩm đã chọn"
+//        rivalInfoViewController?.title = "Thông tin đối thủ"
         rivalProductTableViewController?.title = "Lịch sử thay đổi giá"
         rivalProductLineChartViewController?.title = "Biểu đồ thay đổi giá"
         
-        pageViewController = FixedPagingViewController(viewControllers: [rivalInfoViewController!, rivalProductTableViewController!, rivalProductLineChartViewController!])
+        pageViewController = FixedPagingViewController(viewControllers: [chosenProductsTableViewController!, rivalProductTableViewController!, rivalProductLineChartViewController!])
         
         pageViewController?.indicatorOptions = .visible(height: 3, zIndex: 1, spacing: .zero, insets: .zero)
         

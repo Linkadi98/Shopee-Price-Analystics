@@ -12,6 +12,7 @@ import SkeletonView
 class ListShopsTableViewController: UITableViewController, SkeletonTableViewDataSource, UISearchResultsUpdating {
 
     // MARK: - Properties
+  
     var searchController: UISearchController!
 
     var listShops: [Shop]?
@@ -84,6 +85,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             
             cell.shopName.text = model.shopName
             cell.shopId.text = model.shopId
+            cell.status.addImage(#imageLiteral(resourceName: "active"), "")
             cell.hideSkeletonAnimation()
         }
         
@@ -172,7 +174,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
             
-            self.tableView.allowsSelection = false
+            self.tableView.allowsSelection = true
             return
         }
     }
