@@ -12,11 +12,13 @@ class ShopTableViewCell: UITableViewCell {
 
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopId: UILabel!
+    @IBOutlet weak var status: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         shopName.showAnimatedSkeleton()
         shopId.showAnimatedSkeleton()
+        status.showAnimatedSkeleton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,6 +30,7 @@ class ShopTableViewCell: UITableViewCell {
     func hideSkeletonAnimation() {
         shopName.hideSkeleton()
         shopId.hideSkeleton()
+        status.hideSkeleton()
     }
     
 
