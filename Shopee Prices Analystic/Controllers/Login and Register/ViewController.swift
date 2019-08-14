@@ -79,7 +79,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance()?.signIn()
     }
-    
+
+    @IBAction func forgetAccount(_ sender: Any) {
+        let alert = UIAlertController(title: "Thông báo", message: "Hãy nhập mail:", preferredStyle: .alert)
+        alert.addTextField { (textfield) in
+            textfield.placeholder = "example@abcxyz.com"
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            UIApplication.shared.beginIgnoringInteractionEvents()
+
+            let activityIndicator = self.initActivityIndicator()
+            self.view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+            self.forget(email: alert.textFields![0].text!, completion: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                    activityIndicator.stopAnimating()
+                    if activityIndicator.isAnimating == false {
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                }
+            })
+        }))
+        self.present(alert, animated: true, completion: nil)
+
+
+
+//        self.register(phone: "696969", email: email.text!, username: userName.text!, password: password.text!) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+//                activityIndicator.stopAnimating()
+//                if activityIndicator.isAnimating == false {
+//                    UIApplication.shared.endIgnoringInteractionEvents()
+//                }
+//            }
+//        }
+    }
+
     @IBAction func userNameEdittingDidChange(_ sender: Any) {
         if !userNameText.isValidUserName() {
             invalidUserName.text = "Vui lòng nhập tên đăng nhập hoặc email hợp lệ"

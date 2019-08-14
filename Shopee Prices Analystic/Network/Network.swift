@@ -16,6 +16,7 @@ class Network {
 //    let base_url = "http://192.168.10.8:8081"
     let login_path = "/login"
     let register_path = "/register"
+    let forget_path = "/forget"
     let shop_path = "/shop"
     let items_path = "/items"
     let price_path = "/item/price"

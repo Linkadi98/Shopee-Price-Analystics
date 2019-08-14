@@ -97,4 +97,31 @@ extension ViewController {
             }
         }
     }
+
+    func forget(email: String, completion: @escaping () -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.forget_path)!
+        let parameters: Parameters = [
+            "email" : email
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).responseString { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion()
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value! as! String
+            if responseValue == "mail lỗi" {
+                self.presentAlert(message: "Mail không chính xác")
+            } else if responseValue == "Đề nghị check mail" {
+                self.presentAlert(message: "Mở mail để nhận mật khẩu mới")
+            }
+            completion()
+        }
+    }
 }
