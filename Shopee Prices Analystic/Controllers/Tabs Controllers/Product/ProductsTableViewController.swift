@@ -212,6 +212,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
             
             if !listProducts.isEmpty && !self.hasData {
+                print("Danh sach cc: \(listProducts)")
                 self.listProducts = listProducts
                 self.hasData = true
                 self.tableView.reloadData()
