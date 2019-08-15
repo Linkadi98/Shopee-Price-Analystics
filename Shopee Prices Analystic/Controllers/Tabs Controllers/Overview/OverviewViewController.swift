@@ -28,19 +28,15 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
     
     @IBOutlet weak var buttonContainer: UIView!
+    @IBOutlet weak var numOfFollowedProductAndRivalContainer: UIView!
     
+    @IBOutlet weak var numberOfFollowedProducts: UILabel!
+    @IBOutlet weak var numberOfFollowedRivals: UILabel!
     var tabsVC: UITabBarController?
-    
-    
     
     @IBOutlet weak var codeLb: UILabel! {
         didSet {
             codeLb.addImage(#imageLiteral(resourceName: "connector-0"), "Mã số cửa hàng:", offsetY: -15, x: -3)
-        }
-    }
-    @IBOutlet weak var averageLb: UILabel! {
-        didSet {
-            averageLb.addImage(#imageLiteral(resourceName: "connector-r"), "Đánh giá trung bình", offsetY: -5, x: -2)
         }
     }
 
@@ -58,12 +54,17 @@ class OverviewViewController: UIViewController {
         
         subView.setShadow()
         buttonContainer.setShadow()
+        numOfFollowedProductAndRivalContainer.setShadow()
         
-        subView.layer.cornerRadius = 10
         timeLabel.text = setTime()
         
         tabsVC = storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as? TabsViewController
 
+        containerView.setCornerLogo()
+        buttonContainer.setCornerLogo()
+        subView.setCornerLogo()
+        numOfFollowedProductAndRivalContainer.setCornerLogo()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -37,6 +37,13 @@ class RivalInfoViewController: UIViewController {
     @IBOutlet weak var rating: CosmosView!
     
     
+    @IBOutlet weak var changeRivalButton: UIButton! {
+        didSet {
+            changeRivalButton.layer.cornerRadius = 5
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -59,6 +66,8 @@ class RivalInfoViewController: UIViewController {
         rivalCode.addImage(#imageLiteral(resourceName: "code"), "Mã số")
     }
     
+    @IBAction func changRival(_ sender: Any) {
+    }
     
 
 }

@@ -31,6 +31,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.refreshControl?.tintColor = UIColor.orange
+        
+        tableView.separatorStyle = .none
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -67,7 +67,7 @@ extension UIView {
         
         imageView.snp.makeConstraints({ make in
             make.trailing.equalToSuperview().inset(6)
-            make.bottom.equalToSuperview().inset(6)
+            make.top.equalToSuperview().inset(6)
             
             make.width.equalTo(20)
             make.height.equalTo(20)
