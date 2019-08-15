@@ -27,6 +27,11 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var status: UILabel!
     
+    @IBOutlet weak var buttonContainer: UIView!
+    
+    var tabsVC: UITabBarController?
+    
+    
     
     @IBOutlet weak var codeLb: UILabel! {
         didSet {
@@ -51,12 +56,13 @@ class OverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        subView.backgroundColor = .clear
-//
         subView.setShadow()
-//        subView.setBlurEffect()
+        buttonContainer.setShadow()
+        
         subView.layer.cornerRadius = 10
         timeLabel.text = setTime()
+        
+        tabsVC = storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as? TabsViewController
 
     }
     
@@ -110,5 +116,22 @@ class OverviewViewController: UIViewController {
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
         }
+    }
+    
+    // MARK: - Group button actions
+    
+    @IBAction func switchToProductTab(_ sender: Any) {
+        tabBarController?.selectedIndex = 1
+        print("button pressed")
+    }
+    @IBAction func switchToPriceTab(_ sender: Any) {
+        tabBarController?.selectedIndex = 2
+    }
+    @IBAction func switchToRivalTab(_ sender: Any) {
+        tabBarController?.selectedIndex = 3
+    }
+    @IBAction func switchToListShop(_ sender: Any) {
+        // switch to list shop view controller - not solved
+        
     }
 }
