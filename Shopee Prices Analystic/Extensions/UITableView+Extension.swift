@@ -29,15 +29,15 @@ extension UITableViewController {
         return searchController.isActive && !isEmptySearchBar(searchController)
     }
     
-    public func displayNoDataNotification(text: String) {
+    public func displayNoDataNotification(title: String, message: String) {
         self.view.hideSkeleton()
         self.view.stopSkeletonAnimation()
         let noData = UILabel()
         let description = UILabel()
         let view = UIView()
-        noData.text = "Không có dữ liệu, kiểm tra lại kết nối"
+        noData.text = title
         noData.textAlignment = .center
-        description.text = text
+        description.text = message
         description.textAlignment = .center
         description.textColor = .lightGray
         

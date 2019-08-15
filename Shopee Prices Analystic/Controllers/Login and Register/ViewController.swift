@@ -85,7 +85,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         alert.addTextField { (textfield) in
             textfield.placeholder = "example@abcxyz.com"
         }
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
             UIApplication.shared.beginIgnoringInteractionEvents()
 
             let activityIndicator = self.initActivityIndicator()

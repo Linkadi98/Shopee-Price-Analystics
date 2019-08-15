@@ -203,15 +203,24 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         getListProducts { [unowned self] (listProducts) in
             guard let listProducts = listProducts else {
-                self.displayNoDataNotification(text: "Sản phẩm của bạn sẽ hiện tại dây")
+                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
                 self.isFirstAppear = false
                 self.hasData = false
                 self.tableView.reloadData()
                 self.isFirstAppear = true
                 return
             }
-            
-            if !listProducts.isEmpty && !self.hasData {
+
+            guard !listProducts.isEmpty else {
+                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để kết nối")
+                self.isFirstAppear = false
+                self.hasData = false
+                self.tableView.reloadData()
+                self.isFirstAppear = true
+                return
+            }
+
+            if !self.hasData {
                 print("Danh sach cc: \(listProducts)")
                 self.listProducts = listProducts
                 self.hasData = true

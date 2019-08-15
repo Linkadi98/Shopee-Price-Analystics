@@ -165,9 +165,16 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         
         getListShops { [unowned self] (listShops) in
             guard var listShops = listShops else {
-                print("Khong co shop nao vi chua ket noi")
-                
-                self.displayNoDataNotification(text: "Shop của bạn sẽ hiện tại đây")
+                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
+                self.isFirstAppear = false
+                self.hasData = false
+                self.tableView.reloadData()
+                self.isFirstAppear = true
+                return
+            }
+
+            guard !listShops.isEmpty else {
+                self.displayNoDataNotification(title: "Tài khoản chưa có cửa hàng nào", message: "Ấn vào biểu tượng để kết nối")
                 self.isFirstAppear = false
                 self.hasData = false
                 self.tableView.reloadData()
@@ -175,7 +182,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                 return
             }
             
-            if !listShops.isEmpty && !self.hasData {
+            if !self.hasData {
                 if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                     let currentShopIndex = listShops.firstIndex(of: currentShop)!
                     listShops.swapAt(0, currentShopIndex)
