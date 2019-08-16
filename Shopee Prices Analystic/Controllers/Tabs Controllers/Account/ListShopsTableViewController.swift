@@ -155,7 +155,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     // MARK: - Fetching data from server
     
-    func fetchingDataFromServer() {
+    func fetchingDataFromServer(completion: (() -> Void)?) {
         tableView.reloadData()
         
         view.hideSkeleton()
@@ -165,6 +165,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         
         getListShops { [unowned self] (listShops) in
             guard var listShops = listShops else {
+                print("1a")
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
                 self.isFirstAppear = false
                 self.hasData = false
@@ -188,9 +189,10 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                     listShops.swapAt(0, currentShopIndex)
                 }
                 self.listShops = listShops
+                self.hasData = true
                 self.tableView.reloadData()
             }
-            
+
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
@@ -206,7 +208,18 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
                 if let result = shopeeAuthViewController.result {
                     if result == "failed" {
-                        self.presentAlert(message: "Thêm cửa hàng thất bại")
+                        presentAlert(message: "Thêm cửa hàng thất bại")
+                    } else if result == "success" {
+                        self.hasData = false
+                        let currentNumberOfRows = tableView.numberOfRows(inSection: 0)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                            self.fetchingDataFromServer()
+                            print("DMDM: \(self.tableView.numberOfRows(inSection: 0))")
+                            if self.tableView.numberOfRows(inSection: 0) > currentNumberOfRows {
+                                self.presentAlert(title: "Thông báo", message: "Đã thêm thành công")
+                            }
+                        }
+
                     }
                 }
             }
