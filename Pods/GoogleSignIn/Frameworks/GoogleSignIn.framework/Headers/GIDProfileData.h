@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 
 // This class represents the basic profile information of a GIDGoogleUser.
-@interface GIDProfileData : NSObject <NSCopying, NSSecureCoding>
+@interface GIDProfileData : NSObject <NSCoding>
 
 // The Google user's email.
 @property(nonatomic, readonly) NSString *email;

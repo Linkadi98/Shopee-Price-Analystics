@@ -1,10 +1,5 @@
 PODS:
   - Alamofire (4.8.2)
-  - AppAuth (1.1.0):
-    - AppAuth/Core (= 1.1.0)
-    - AppAuth/ExternalUserAgent (= 1.1.0)
-  - AppAuth/Core (1.1.0)
-  - AppAuth/ExternalUserAgent (1.1.0)
   - BadgeSwift (8.0.0)
   - Cosmos (19.0.3)
   - FacebookCore (0.8.0):
@@ -27,18 +22,19 @@ PODS:
     - FBSDKCoreKit (~> 5.0)
   - FBSDKShareKit (5.4.0):
     - FBSDKCoreKit (~> 5.0)
-  - GoogleSignIn (5.0.0):
-    - AppAuth (~> 1.1)
-    - GTMAppAuth (~> 1.0)
+  - GoogleSignIn (4.4.0):
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
-  - GTMAppAuth (1.0.0):
-    - AppAuth/Core (~> 1.0)
-    - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.2.2):
-    - GTMSessionFetcher/Full (= 1.2.2)
+  - GoogleToolboxForMac/DebugUtils (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
   - GTMSessionFetcher/Core (1.2.2)
-  - GTMSessionFetcher/Full (1.2.2):
-    - GTMSessionFetcher/Core (= 1.2.2)
   - MarqueeLabel (4.0.0)
   - NotificationBannerSwift (2.5.1):
     - MarqueeLabel (~> 4.0.0)
@@ -57,7 +53,7 @@ DEPENDENCIES:
   - FacebookCore (~> 0.8)
   - FacebookLogin (~> 0.8)
   - FacebookShare (~> 0.8)
-  - GoogleSignIn
+  - GoogleSignIn (~> 4.4)
   - NotificationBannerSwift
   - Parchment
   - SkeletonView
@@ -68,7 +64,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
-    - AppAuth
     - BadgeSwift
     - Cosmos
     - FacebookCore
@@ -78,7 +73,7 @@ SPEC REPOS:
     - FBSDKLoginKit
     - FBSDKShareKit
     - GoogleSignIn
-    - GTMAppAuth
+    - GoogleToolboxForMac
     - GTMSessionFetcher
     - MarqueeLabel
     - NotificationBannerSwift
@@ -91,7 +86,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AppAuth: a08c77b389d259e1dd343010352dde2c0c5df689
   BadgeSwift: a81547ffde1f462bb5fc02e3fa3fdcbc1b888354
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   FacebookCore: 563bb4cbcd7dd86cf89f3729252140bf256aacaa
@@ -100,8 +94,8 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 026e56cf2c2cebc656cf2aec5c6898b8c4f33930
   FBSDKLoginKit: f5064bb8f20c065ee1ea5987cbe0475b713edf9b
   FBSDKShareKit: 49e5cd98c7dfe09f8c536a773574e370bd523fbc
-  GoogleSignIn: a62edd0516721d2a3db1259a5681b91f9b41c06a
-  GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
+  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
   NotificationBannerSwift: e55dd801b0d78f1a7bacb10d722a935ec95f94a3
@@ -112,6 +106,6 @@ SPEC CHECKSUMS:
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 6b9e8cdf7d6d09018e0eedafaec5850d47ec3077
+PODFILE CHECKSUM: 8d963b4c3ffdea80dd188f22b0de3f39f104c7b0
 
 COCOAPODS: 1.6.1
