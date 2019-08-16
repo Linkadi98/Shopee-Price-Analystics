@@ -12,12 +12,10 @@ extension UIView {
     
     func setShadow() {
         layer.cornerRadius = 10
-        layer.shadowColor = UIColor.gray.cgColor
-        layer.shadowOffset = .zero
         layer.shadowOpacity = 0.5
-        layer.shadowRadius = 10
-        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        layer.shouldRasterize = false
+        layer.shadowRadius = 2
+        
+        layer.shadowOffset = CGSize(width: 0, height: 1)
     }
     
     func setBlurEffect() {

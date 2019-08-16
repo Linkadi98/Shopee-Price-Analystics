@@ -32,6 +32,8 @@ class ProductTableViewCell: UITableViewCell {
         containerView.setShadow()
         
         selectionStyle = .none
+        
+        backgroundColor = .white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
