@@ -15,6 +15,9 @@ class ListRivalsTableViewController: UITableViewController {
         
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.refreshControl?.tintColor = UIColor.orange
+        
+        tableView.separatorStyle = .none
+        
     }
 
     // MARK: - Table view data source
@@ -37,6 +40,10 @@ class ListRivalsTableViewController: UITableViewController {
         cell.setUnfollowStatus()
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 188.0
     }
     
     override func viewWillAppear(_ animated: Bool) {
