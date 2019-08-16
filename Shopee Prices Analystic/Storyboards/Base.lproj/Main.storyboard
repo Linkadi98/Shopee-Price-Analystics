@@ -560,13 +560,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUq-9T-gFQ">
-                                            <rect key="frame" x="8" y="4" width="398" height="116.33333333333333"/>
+                                            <rect key="frame" x="8" y="4" width="398" height="86.333333333333329"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-1Z-59B">
-                                                    <rect key="frame" x="76" y="13" width="150" height="90.333333333333329"/>
+                                                    <rect key="frame" x="76" y="13.000000000000004" width="150" height="60.333333333333343"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6t-i3-J2Y">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="53.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="23.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -578,7 +578,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z4T-kl-Fdd">
-                                                            <rect key="frame" x="0.0" y="73.333333333333329" width="150" height="17"/>
+                                                            <rect key="frame" x="0.0" y="43.333333333333329" width="150" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRl-I8-n2r">
                                                                     <rect key="frame" x="0.0" y="0.0" width="23.666666666666668" height="17"/>
@@ -623,7 +623,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GGl-QT-33u">
-                                                    <rect key="frame" x="270" y="13" width="120" height="90.333333333333329"/>
+                                                    <rect key="frame" x="270" y="13.000000000000004" width="120" height="60.333333333333343"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="130.000đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAE-Dj-bvy">
                                                             <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="20.333333333333332"/>
@@ -638,7 +638,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBC-qO-C85" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="40.333333333333343" width="120" height="50"/>
+                                                            <rect key="frame" x="0.0" y="40.333333333333329" width="120" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -2565,6 +2565,9 @@
                                                             <constraint firstAttribute="bottom" secondItem="596-HZ-Ow4" secondAttribute="bottom" constant="25" id="CuD-K2-bDG"/>
                                                             <constraint firstItem="596-HZ-Ow4" firstAttribute="top" secondItem="IUg-1O-IG8" secondAttribute="top" constant="25" id="SXq-d8-fQO"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zVI-tD-A19">
                                                         <rect key="frame" x="10" y="456" width="394" height="140"/>
@@ -2609,6 +2612,9 @@
                                                             <constraint firstItem="zNK-x0-dAZ" firstAttribute="top" secondItem="zVI-tD-A19" secondAttribute="top" constant="40" id="hH2-aF-d9Q"/>
                                                             <constraint firstItem="20J-xV-TRe" firstAttribute="top" secondItem="F3a-Li-gqi" secondAttribute="bottom" constant="20" id="kIU-de-qSN"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -2689,6 +2695,7 @@
                         <outlet property="numOfFollowedProductAndRivalContainer" destination="zVI-tD-A19" id="BOs-hl-7Jq"/>
                         <outlet property="numberOfFollowedProducts" destination="zNK-x0-dAZ" id="oh7-Da-7kV"/>
                         <outlet property="numberOfFollowedRivals" destination="6t8-Tk-0qn" id="6MR-Og-87b"/>
+                        <outlet property="scrollView" destination="G6S-Yn-M80" id="nTU-Om-3RH"/>
                         <outlet property="shopId" destination="R16-1V-F2S" id="smY-NW-daW"/>
                         <outlet property="shopName" destination="AaQ-tA-40p" id="aSJ-Y6-nvd"/>
                         <outlet property="status" destination="Ip7-hw-tIe" id="PZj-yu-hEz"/>
