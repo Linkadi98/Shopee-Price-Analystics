@@ -16,21 +16,45 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "FBSDKURLSessionTask.h"
 
-NS_ASSUME_NONNULL_BEGIN
+@implementation FBSDKURLSessionTask
 
-@interface FBSDKRestrictiveDataFilterManager : NSObject
+- (instancetype)init
+{
+  if ((self = [super init])) {
+    _requestStartDate = [NSDate date];
+  }
+  return self;
+}
 
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
+- (instancetype)initWithRequest:(NSURLRequest *)request
+                    fromSession:(NSURLSession *)session
+              completionHandler:(FBSDKURLSessionTaskBlock)handler
+{
+  if ((self = [self init])) {
+    self.requestStartTime = (uint64_t)([self.requestStartDate timeIntervalSince1970] * 1000);
+    self.task = [session dataTaskWithRequest:request completionHandler:handler];
+  }
+  return self;
+}
 
-+ (void)updateFilters:(nullable NSDictionary<NSString *, id> *)restrictiveParams;
+- (NSURLSessionTaskState)state
+{
+  return self.task.state;
+}
 
-+ (void)processEvents:(NSMutableArray<NSDictionary<NSString *, id> *> *)events;
-+ (nullable NSDictionary<NSString *, id> *)processParameters:(nullable NSDictionary<NSString *, id> *)parameters
-                                                   eventName:(NSString *)eventName;
+#pragma mark - Task State
+
+- (void)start
+{
+  [self.task resume];
+}
+
+- (void)cancel
+{
+  [self.task cancel];
+  self.handler = nil;
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

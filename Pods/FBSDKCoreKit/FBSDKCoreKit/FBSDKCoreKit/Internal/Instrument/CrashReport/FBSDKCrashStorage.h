@@ -20,16 +20,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FBSDKRestrictiveDataFilterManager : NSObject
+@interface FBSDKCrashStorage : NSObject
 
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
++ (void)saveException:(NSException *)exception;
++ (void)saveSignal:(int)signal
+     withCallStack:(NSArray<NSString *> *)callStack;
++ (NSArray<NSDictionary<NSString *, id> *> *)getProcessedCrashLogs;
 
-+ (void)updateFilters:(nullable NSDictionary<NSString *, id> *)restrictiveParams;
-
-+ (void)processEvents:(NSMutableArray<NSDictionary<NSString *, id> *> *)events;
-+ (nullable NSDictionary<NSString *, id> *)processParameters:(nullable NSDictionary<NSString *, id> *)parameters
-                                                   eventName:(NSString *)eventName;
++ (void)generateMethodMapping;
++ (NSDictionary<NSString *, id> *)loadLibData:(NSDictionary<NSString *, id> *)crashLog;
++ (void)clearCrashReportFiles:(nullable NSString*)timestamp;
 
 @end
 

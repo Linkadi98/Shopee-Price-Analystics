@@ -20,16 +20,52 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FBSDKRestrictiveDataFilterManager : NSObject
+/**
+ FBSDKFeature enum
+ Defines features in SDK
 
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
+ Sample:
+ FBSDKFeatureAppEvents = 0x000100,
+                            ^ ^ ^
+                            | | |
+                          kit | |
+                        feature |
+                      sub-feature
+ 1st byte: kit
+ 2nd byte: feature
+ 3rd byte: sub-feature
+ */
+typedef NS_ENUM(NSUInteger, FBSDKFeature)
+{
+  // Features in CoreKit
+  /** Essential of CoreKit */
+  FBSDKFeatureCore = 0x000000,
 
-+ (void)updateFilters:(nullable NSDictionary<NSString *, id> *)restrictiveParams;
+  FBSDKFeatureAppEvents = 0x000100,
+  FBSDKFeatureCodelessEvents,
+  FBSDKFeatureRestrictiveDataFiltering,
+  FBSDKFeatureInstrument = 0x000200,
+  FBSDKFeatureCrashReport,
+  FBSDKFeatureErrorReport,
 
-+ (void)processEvents:(NSMutableArray<NSDictionary<NSString *, id> *> *)events;
-+ (nullable NSDictionary<NSString *, id> *)processParameters:(nullable NSDictionary<NSString *, id> *)parameters
-                                                   eventName:(NSString *)eventName;
+
+  // Features in LoginKit
+  /** Essential of LoginKit */
+  FBSDKFeatureLogin = 0x010000,
+
+  // Features in ShareKit
+  /** Essential of ShareKit */
+  FBDSDKFeatureShare = 0x020000,
+
+  // Features in PlacesKit
+  /** Essential of PlacesKit */
+  FBSDKFeaturePlaces = 0x030000,
+
+} NS_SWIFT_NAME(SDKFeature);
+
+@interface FBSDKFeatureManager : NSObject
+
++ (BOOL)isEnabled:(FBSDKFeature)feature;
 
 @end
 

@@ -46,7 +46,6 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
             maxPriceRange.text = ""
             minPriceRange.text = ""
         }
-
     }
     
     

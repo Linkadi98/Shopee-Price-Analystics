@@ -20,16 +20,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FBSDKRestrictiveDataFilterManager : NSObject
+@interface FBSDKErrorReport : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
 
-+ (void)updateFilters:(nullable NSDictionary<NSString *, id> *)restrictiveParams;
-
-+ (void)processEvents:(NSMutableArray<NSDictionary<NSString *, id> *> *)events;
-+ (nullable NSDictionary<NSString *, id> *)processParameters:(nullable NSDictionary<NSString *, id> *)parameters
-                                                   eventName:(NSString *)eventName;
++ (void)enable;
++ (void)saveError:(NSInteger)errorCode
+      errorDomain:(NSErrorDomain)errorDomain
+          message:(nullable NSString *)message;
 
 @end
 

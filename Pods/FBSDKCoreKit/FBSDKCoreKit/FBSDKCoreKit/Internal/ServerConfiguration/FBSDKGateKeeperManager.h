@@ -25,12 +25,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// typedef for FBSDKAppEventUserDataType
 typedef NSString *const FBSDKGateKeeperKey NS_TYPED_EXTENSIBLE_ENUM NS_SWIFT_NAME(GateKeeperManager.GateKeeperKey);
 
-/** Parameter key used to specify if auto log subscription. */
-FOUNDATION_EXPORT FBSDKGateKeeperKey FBSDKGateKeeperAppEventsIfAutoLogSubs;
-
-/** Parameter key used to specify if kill-switch is enabled. */
-FOUNDATION_EXPORT FBSDKGateKeeperKey FBSDKGateKeeperAppEventsKillSwitch;
-
 @interface FBSDKGateKeeperManager : NSObject
 - (instancetype)init NS_UNAVAILABLE;
 + (instancetype)new NS_UNAVAILABLE;
@@ -38,9 +32,7 @@ FOUNDATION_EXPORT FBSDKGateKeeperKey FBSDKGateKeeperAppEventsKillSwitch;
 /**
  Returns the locally cached configuration.
  */
-+ (BOOL)boolForKey:(NSString *)key
-             appID:(NSString *)appID
-      defaultValue:(BOOL)defaultValue;
++ (BOOL)boolForKey:(NSString *)key defaultValue:(BOOL)defaultValue;
 
 /**
  Load the gate keeper configurations from server

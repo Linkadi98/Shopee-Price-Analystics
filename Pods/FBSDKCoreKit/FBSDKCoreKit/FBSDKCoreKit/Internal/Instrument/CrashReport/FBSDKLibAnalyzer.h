@@ -18,19 +18,10 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@interface FBSDKLibAnalyzer : NSObject
 
-@interface FBSDKRestrictiveDataFilterManager : NSObject
-
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
-
-+ (void)updateFilters:(nullable NSDictionary<NSString *, id> *)restrictiveParams;
-
-+ (void)processEvents:(NSMutableArray<NSDictionary<NSString *, id> *> *)events;
-+ (nullable NSDictionary<NSString *, id> *)processParameters:(nullable NSDictionary<NSString *, id> *)parameters
-                                                   eventName:(NSString *)eventName;
++ (NSDictionary<NSString *, NSString *> *)getMethodsTable;
++ (NSArray<NSString *> *)symbolicateCallstack:(NSArray<NSString *> *)callstack
+                                methodMapping:(NSDictionary<NSString *,id> *)methodMapping;
 
 @end
-
-NS_ASSUME_NONNULL_END

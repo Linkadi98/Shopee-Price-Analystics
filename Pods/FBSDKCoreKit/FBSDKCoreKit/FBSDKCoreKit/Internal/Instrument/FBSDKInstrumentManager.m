@@ -16,21 +16,27 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "FBSDKInstrumentManager.h"
 
-NS_ASSUME_NONNULL_BEGIN
+#import "FBSDKCrashHandler.h"
+#import "FBSDKErrorReport.h"
+#import "FBSDKFeatureManager.h"
+#import "FBSDKSettings.h"
 
-@interface FBSDKRestrictiveDataFilterManager : NSObject
+@implementation FBSDKInstrumentManager
 
-- (instancetype)init NS_UNAVAILABLE;
-+ (instancetype)new NS_UNAVAILABLE;
++ (void)enable
+{
+  if (![FBSDKSettings isAutoLogAppEventsEnabled]) {
+    return;
+  }
 
-+ (void)updateFilters:(nullable NSDictionary<NSString *, id> *)restrictiveParams;
-
-+ (void)processEvents:(NSMutableArray<NSDictionary<NSString *, id> *> *)events;
-+ (nullable NSDictionary<NSString *, id> *)processParameters:(nullable NSDictionary<NSString *, id> *)parameters
-                                                   eventName:(NSString *)eventName;
+  if ([FBSDKFeatureManager isEnabled:FBSDKFeatureCrashReport]) {
+    [FBSDKCrashHandler enable];
+  }
+  if ([FBSDKFeatureManager isEnabled:FBSDKFeatureErrorReport]) {
+    [FBSDKErrorReport enable];
+  }
+}
 
 @end
-
-NS_ASSUME_NONNULL_END

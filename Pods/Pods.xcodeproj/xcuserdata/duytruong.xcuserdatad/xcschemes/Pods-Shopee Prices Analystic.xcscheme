@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0EBCEED3611897353C189F1EE96209CC"
+               BlueprintIdentifier = "B8FBF31CF6070C23675E026646173E25"
                BuildableName = "Pods_Shopee_Prices_Analystic.framework"
                BlueprintName = "Pods-Shopee Prices Analystic"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0EBCEED3611897353C189F1EE96209CC"
+            BlueprintIdentifier = "B8FBF31CF6070C23675E026646173E25"
             BuildableName = "Pods_Shopee_Prices_Analystic.framework"
             BlueprintName = "Pods-Shopee Prices Analystic"
             ReferencedContainer = "container:Pods.xcodeproj">
