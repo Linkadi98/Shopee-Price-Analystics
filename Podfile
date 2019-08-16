@@ -5,9 +5,9 @@ target 'Shopee Prices Analystic' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 pod 'TransitionButton'
-pod 'FacebookCore', '~> 5.3'
-pod 'FacebookLogin', '~> 5.3'
-pod 'FacebookShare', '~> 5.3'
+pod 'FacebookCore', '~> 0.8'
+pod 'FacebookLogin', '~> 0.8'
+pod 'FacebookShare', '~> 0.8'
 pod 'Alamofire', '~> 4.7'
 pod 'GoogleSignIn'
 pod 'NotificationBannerSwift'
@@ -17,7 +17,6 @@ pod 'Parchment'
 pod 'SVProgressHUD', '~> 2.2'
 pod "SkeletonView"
 pod 'BadgeSwift', '~> 8.0'
-pod 'RangeSeekSlider', '~> 2.9'
   # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do
