@@ -155,7 +155,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     // MARK: - Fetching data from server
     
-    func fetchingDataFromServer(completion: (() -> Void)?) {
+    func fetchingDataFromServer() {
         tableView.reloadData()
         
         view.hideSkeleton()
