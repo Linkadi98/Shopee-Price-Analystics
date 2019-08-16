@@ -11,15 +11,24 @@ import Cosmos
 
 class RivalTableCell: UITableViewCell {
     
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var rivalName: UILabel!
     @IBOutlet weak var rivalCode: UILabel!
     @IBOutlet weak var rivalRating: CosmosView!
     @IBOutlet weak var followStatus: UILabel!
     
+    @IBOutlet weak var productName: UILabel!
+    @IBOutlet weak var productPrice: UILabel!
     
     override func awakeFromNib() {
         followStatus.layer.masksToBounds = true
         followStatus.layer.cornerRadius = 4
+        
+        containerView.setShadow()
+        
+        selectionStyle = .none
+        
     }
     
     func setUnfollowStatus() {
