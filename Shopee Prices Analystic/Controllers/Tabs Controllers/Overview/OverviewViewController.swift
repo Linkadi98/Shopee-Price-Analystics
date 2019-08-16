@@ -27,15 +27,16 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var status: UILabel!
     
+    @IBOutlet weak var buttonContainer: UIView!
+    @IBOutlet weak var numOfFollowedProductAndRivalContainer: UIView!
+    
+    @IBOutlet weak var numberOfFollowedProducts: UILabel!
+    @IBOutlet weak var numberOfFollowedRivals: UILabel!
+    var tabsVC: UITabBarController?
     
     @IBOutlet weak var codeLb: UILabel! {
         didSet {
             codeLb.addImage(#imageLiteral(resourceName: "connector-0"), "Mã số cửa hàng:", offsetY: -15, x: -3)
-        }
-    }
-    @IBOutlet weak var averageLb: UILabel! {
-        didSet {
-            averageLb.addImage(#imageLiteral(resourceName: "connector-r"), "Đánh giá trung bình", offsetY: -5, x: -2)
         }
     }
 
@@ -51,13 +52,19 @@ class OverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        subView.backgroundColor = .clear
-//
         subView.setShadow()
-//        subView.setBlurEffect()
-        subView.layer.cornerRadius = 10
+        buttonContainer.setShadow()
+        numOfFollowedProductAndRivalContainer.setShadow()
+        
         timeLabel.text = setTime()
+        
+        tabsVC = storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as? TabsViewController
 
+        containerView.setCornerLogo()
+        buttonContainer.setCornerLogo()
+        subView.setCornerLogo()
+        numOfFollowedProductAndRivalContainer.setCornerLogo()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,5 +117,22 @@ class OverviewViewController: UIViewController {
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
         }
+    }
+    
+    // MARK: - Group button actions
+    
+    @IBAction func switchToProductTab(_ sender: Any) {
+        tabBarController?.selectedIndex = 1
+        print("button pressed")
+    }
+    @IBAction func switchToPriceTab(_ sender: Any) {
+        tabBarController?.selectedIndex = 2
+    }
+    @IBAction func switchToRivalTab(_ sender: Any) {
+        tabBarController?.selectedIndex = 3
+    }
+    @IBAction func switchToListShop(_ sender: Any) {
+        // switch to list shop view controller - not solved
+        
     }
 }

@@ -12,15 +12,13 @@ import SkeletonView
 
 class ProductTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productPrice: UILabel!
-    @IBOutlet weak var cosmos: CosmosView! {
-        didSet {
-            cosmos.layer.cornerRadius = cosmos.frame.height / 2
-        }
-    }
+    @IBOutlet weak var cosmos: CosmosView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,6 +27,11 @@ class ProductTableViewCell: UITableViewCell {
         productImage.showAnimatedSkeleton()
         productCode.showAnimatedSkeleton()
         cosmos.showAnimatedSkeleton()
+        
+        cosmos.layer.cornerRadius = 4
+        containerView.setShadow()
+        
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
