@@ -32,6 +32,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.refreshControl?.tintColor = UIColor.orange
         
+        tableView.separatorColor = .none
         tableView.separatorStyle = .none
         
     }
