@@ -154,11 +154,12 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     // MARK: - Search Actions
     func updateSearchResults(for searchController: UISearchController) {
-        
-        filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
-            filterProducts = listProducts?.filter({(product: Product) -> Bool in
-                return product.name!.lowercased().contains(searchText.lowercased()) || product.id!.lowercased().contains(searchText.lowercased())
-            })
+        if hasData {
+            filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
+                filterProducts = listProducts?.filter({(product: Product) -> Bool in
+                    return product.name!.lowercased().contains(searchText.lowercased()) || product.id!.lowercased().contains(searchText.lowercased())
+                })
+            }
         }
     }
     

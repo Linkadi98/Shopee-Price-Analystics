@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         self.window?.rootViewController = initialViewController
 
         self.window?.makeKeyAndVisible()
+        
         return true
     }
 
