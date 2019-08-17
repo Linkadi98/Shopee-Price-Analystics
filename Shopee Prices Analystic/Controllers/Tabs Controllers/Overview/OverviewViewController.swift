@@ -20,6 +20,7 @@ class OverviewViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var shopName: UILabel!
@@ -33,6 +34,7 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var numberOfFollowedProducts: UILabel!
     @IBOutlet weak var numberOfFollowedRivals: UILabel!
     var tabsVC: UITabBarController?
+    let refresher = UIRefreshControl()
     
     @IBOutlet weak var codeLb: UILabel! {
         didSet {
@@ -64,13 +66,19 @@ class OverviewViewController: UIViewController {
         buttonContainer.setCornerLogo()
         subView.setCornerLogo()
         numOfFollowedProductAndRivalContainer.setCornerLogo()
-        
+
+        refresher.attributedTitle = NSAttributedString(string: "Tải lại dữ liệu")
+        refresher.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refresher.tintColor = UIColor.orange
+        scrollView.addSubview(refresher)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
-        if currentShop == nil {
-            fetchingDataFromServer()
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            if self.currentShop != currentShop {
+                fetchingDataFromServer()
+            }
         }
     }
 
@@ -101,11 +109,10 @@ class OverviewViewController: UIViewController {
         view.showAnimatedSkeleton()
 
         getListShops { [unowned self] (listShops) in
-
             guard let _ = listShops else {
-                self.status.addImage(#imageLiteral(resourceName: "deactive"), "Không hoạt động", offsetY: -0.5)
-                self.view.hideSkeleton()
-                self.view.stopSkeletonAnimation()
+//                self.status.addImage(#imageLiteral(resourceName: "deactive"), "Không hoạt động", offsetY: -0.5)
+//                self.view.hideSkeleton()
+//                self.view.stopSkeletonAnimation()
                 return
             }
 
@@ -134,5 +141,10 @@ class OverviewViewController: UIViewController {
     @IBAction func switchToListShop(_ sender: Any) {
         // switch to list shop view controller - not solved
         
+    }
+
+    @objc func refresh() {
+        fetchingDataFromServer()
+        refresher.endRefreshing()
     }
 }
