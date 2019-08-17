@@ -125,13 +125,52 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         
         if indexPath.row != 0 {
             let customPasswordConfirmAlert = UIAlertController(title: "Chuyển sang \(model.shopName)", message: "Vui lòng xác nhận trước khi chuyển sang Shop mới", preferredStyle: .alert)
-            if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
-                customPasswordConfirmAlert.createCustomPasswordConfirmAlert(viewController: self, username: currentUser.name!, shop: model)
-                present(customPasswordConfirmAlert, animated: true, completion: {
-                    // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
-                    tableView.deselectRow(at: indexPath, animated: true)
-                })
-            }
+            customPasswordConfirmAlert.addTextField(configurationHandler: {(passwordField) in
+                passwordField.placeholder = "Nhập mật khẩu của shop"
+                passwordField.isSecureTextEntry = true
+
+                passwordField.borderStyle = .none
+
+            })
+            customPasswordConfirmAlert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: { _ in
+                print("Đã huỷ")
+            }))
+            customPasswordConfirmAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+                UIApplication.shared.beginIgnoringInteractionEvents()
+                
+                let activityIndicator = self.initActivityIndicator()
+                self.view.addSubview(activityIndicator)
+                activityIndicator.startAnimating()
+
+                if let currentUserData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: currentUserData) {
+                    self.checkAccount(username: currentUser.name!, password: customPasswordConfirmAlert.textFields![0].text!, completion: { result in
+                        if result == "success" {
+                            self.changeCurrentShop(newShop: model)
+                            self.hasData = false
+                            self.fetchingDataFromServer() {
+                                self.tabBarController?.selectedIndex = 0
+                            }
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                            activityIndicator.stopAnimating()
+                            if activityIndicator.isAnimating == false {
+                                UIApplication.shared.endIgnoringInteractionEvents()
+                            }
+                        }
+                    })
+                }
+            }))
+            present(customPasswordConfirmAlert, animated: true, completion: {
+                // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
+                tableView.deselectRow(at: indexPath, animated: true)
+            })
+//            if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
+//                customPasswordConfirmAlert.createCustomPasswordConfirmAlert(viewController: self, username: currentUser.name!, shop: model)
+//                present(customPasswordConfirmAlert, animated: true, completion: {
+//                    // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
+//                    tableView.deselectRow(at: indexPath, animated: true)
+//                })
+//            }
         }
     }
     
@@ -155,7 +194,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     // MARK: - Fetching data from server
     
-    func fetchingDataFromServer() {
+    private func fetchingDataFromServer(completionAfterChangeShop completion: (() -> Void)? = nil) {
         tableView.reloadData()
         
         view.hideSkeleton()
@@ -191,6 +230,9 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                 self.listShops = listShops
                 self.hasData = true
                 self.tableView.reloadData()
+                if completion != nil {
+                    completion!()
+                }
             }
 
             self.view.hideSkeleton()
@@ -228,7 +270,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 }
 
 extension ListShopsTableViewController {
-    func checkAccount(username: String, password: String, completion: @escaping (Bool) -> Void) {
+    func checkAccount(username: String, password: String, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
         let parameters: Parameters = [
@@ -242,7 +284,7 @@ extension ListShopsTableViewController {
                 guard response.result.isSuccess else {
                     print("Error when fetching data: \(response.result.error)")
                     StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                    completion(false)
+                    completion("failed")
                     return
                 }
 
@@ -250,11 +292,11 @@ extension ListShopsTableViewController {
                 let responseValue = response.result.value! as! [String: Any]
                 guard let _ = responseValue["token"] as? String else {
                     self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
-                    completion(false)
+                    completion("wrong")
                     return
                 }
 
-                completion(true)
+                completion("success")
             }
         }
     }

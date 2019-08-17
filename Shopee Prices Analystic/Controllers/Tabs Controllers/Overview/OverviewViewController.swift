@@ -75,8 +75,10 @@ class OverviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
-        if currentShop == nil {
-            fetchingDataFromServer()
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            if self.currentShop != currentShop {
+                fetchingDataFromServer()
+            }
         }
     }
 
@@ -107,7 +109,6 @@ class OverviewViewController: UIViewController {
         view.showAnimatedSkeleton()
 
         getListShops { [unowned self] (listShops) in
-
             guard let _ = listShops else {
 //                self.status.addImage(#imageLiteral(resourceName: "deactive"), "Không hoạt động", offsetY: -0.5)
 //                self.view.hideSkeleton()
