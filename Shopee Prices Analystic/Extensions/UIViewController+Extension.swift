@@ -166,7 +166,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             let responseValue = response.result.value! as! [[String: Any]]
             print(responseValue)
             for value in responseValue {
-                let shopId = String(value["id"] as! Int64)
+                let shopId = String(value["shopid"] as! Int64)
                 let shopName = value["name"] as! String
                 listShops.append(Shop(shopId: shopId, shopName: shopName))
             }
@@ -220,16 +220,12 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    // Add s shop
-    func addShop(shopId: String, shopName: String, completion: @escaping (String) -> Void) {
+    // Add shop
+    func addShop(shopId: String, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
-        let parameters: Parameters = [
-            "id": shopId,
-            "name": shopName
-        ]
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path + "/\(shopId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -265,6 +261,8 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             }
         } else {
             print("Chua co san pham vi chua ket noi cua hang")
+            completion([])
+            return
         }
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
@@ -281,11 +279,12 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             let responseValue = response.result.value! as! [[String: Any]]
             print(responseValue)
             for value in responseValue {
-                let id = String(value["item_id"] as! Int)
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
                 let name = value["name"] as! String
                 let price = Int(value["price"] as! Double)
                 let image = (value["images"] as! [String])[0]
-                listProducts.append(Product(id: id, name: name, price: price, rating: 3.0, image: image))
+                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
                 print("So san pham: \(listProducts.count)")
             }
             completion(listProducts)

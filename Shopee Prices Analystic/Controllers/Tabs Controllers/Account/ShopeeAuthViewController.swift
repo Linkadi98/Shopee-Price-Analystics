@@ -37,7 +37,7 @@ class ShopeeAuthViewController: UIViewController, WKNavigationDelegate {
             view.addSubview(activityIndicator)
             activityIndicator.startAnimating()
 
-            self.addShop(shopId: shopId!, shopName: "Shop uat") { result in
+            self.addShop(shopId: shopId!) { result in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                     self.result = result
                     activityIndicator.stopAnimating()
