@@ -46,4 +46,10 @@ class ChosenProductsTableViewController: UITableViewController {
         animator.animate(cell: cell, at: indexPath, in: tableView)
     }
 
+    @IBAction func changeRival(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: ListRivalsTableViewController.self)) as? ListRivalsTableViewController {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
 }

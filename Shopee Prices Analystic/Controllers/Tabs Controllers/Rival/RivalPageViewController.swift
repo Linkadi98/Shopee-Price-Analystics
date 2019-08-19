@@ -33,7 +33,8 @@ class RivalPageViewController: UIViewController {
             make.edges.equalToSuperview()
         })
         
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.barTintColor = .white
+        
     }
     
     func setUpViewController() {
@@ -57,11 +58,12 @@ class RivalPageViewController: UIViewController {
         pageViewController?.indicatorColor = .orange
         
         pageViewController?.textColor = .gray
-        pageViewController?.selectedTextColor = .orange
+        pageViewController?.selectedTextColor = .black
         pageViewController?.menuBackgroundColor = .white
-        
-        
-        
+        pageViewController?.selectedFont = UIFont.boldSystemFont(ofSize: 16)
+        pageViewController?.font = UIFont.systemFont(ofSize: 16)
+        pageViewController?.menuItemSize = .sizeToFit(minWidth: 180, height: 40)
+        pageViewController?.menuTransition = .scrollAlongside
     }
 }
 

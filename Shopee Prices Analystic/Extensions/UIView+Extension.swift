@@ -12,10 +12,11 @@ extension UIView {
     
     func setShadow() {
         layer.cornerRadius = 10
-        layer.shadowOpacity = 0.5
-        layer.shadowRadius = 2
+        layer.shadowOpacity = 0.2
+        layer.shadowRadius = 5
         
-        layer.shadowOffset = CGSize(width: 0, height: 1)
+        
+        layer.shadowOffset = CGSize(width: 0, height: 0.5)
     }
     
     func setBlurEffect() {

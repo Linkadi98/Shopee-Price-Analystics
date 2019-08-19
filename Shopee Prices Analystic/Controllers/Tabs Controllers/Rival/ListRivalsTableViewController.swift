@@ -49,7 +49,16 @@ class ListRivalsTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! RivalTableCell
+        cell.setFollowStatus()
+        tabBarController?.selectedIndex = 3
+        if let vc = tabBarController?.selectedViewController as? RivalPageViewController {
+            vc.pageViewController?.select(index: 2)
+        }
+        
+    }
 
     @objc func refresh() {
         

@@ -36,9 +36,13 @@
 		2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135F22E2EF6600D51A4B /* UIView+Extension.swift */; };
 		2459136222E2F01600D51A4B /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136122E2F01600D51A4B /* ViewController+Extension.swift */; };
 		2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */; };
+		2469B6F32307CD1400C77F3A /* PriceOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F22307CD1400C77F3A /* PriceOnboardingViewController.swift */; };
+		2469B6F52307CEC500C77F3A /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F42307CEC500C77F3A /* Transition.swift */; };
+		2469B6F72307E0B700C77F3A /* NavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */; };
 		2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */; };
 		2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65322DDC29200DA6D8E /* AccountViewController.swift */; };
 		2478C65722DDD50D00DA6D8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65622DDD50D00DA6D8E /* User.swift */; };
+		247C5E9E2306AE170072B0E3 /* NavigationContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C5E9D2306AE170072B0E3 /* NavigationContainerViewController.swift */; };
 		2484174922D85D800009DF10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484174822D85D800009DF10 /* AppDelegate.swift */; };
 		2484174B22D85D800009DF10 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484174A22D85D800009DF10 /* ViewController.swift */; };
 		2484174E22D85D800009DF10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2484174C22D85D800009DF10 /* Main.storyboard */; };
@@ -110,9 +114,13 @@
 		2459135F22E2EF6600D51A4B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		2459136122E2F01600D51A4B /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		2469B6F22307CD1400C77F3A /* PriceOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceOnboardingViewController.swift; sourceTree = "<group>"; };
+		2469B6F42307CEC500C77F3A /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
+		2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		2478C65322DDC29200DA6D8E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		2478C65622DDD50D00DA6D8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		247C5E9D2306AE170072B0E3 /* NavigationContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationContainerViewController.swift; sourceTree = "<group>"; };
 		2484174522D85D800009DF10 /* Shopee Prices Analystic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopee Prices Analystic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2484174822D85D800009DF10 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2484174A22D85D800009DF10 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +186,7 @@
 				2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */,
 				242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */,
 				2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */,
+				2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -192,6 +201,7 @@
 				2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */,
 				241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */,
 				241BC1482303F0100097AB59 /* AutoChangePriceTableViewController.swift */,
+				247C5E9D2306AE170072B0E3 /* NavigationContainerViewController.swift */,
 			);
 			path = Rival;
 			sourceTree = "<group>";
@@ -266,6 +276,14 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		2469B6F12307B6D100C77F3A /* Onboarding Screen */ = {
+			isa = PBXGroup;
+			children = (
+				2469B6F22307CD1400C77F3A /* PriceOnboardingViewController.swift */,
+			);
+			path = "Onboarding Screen";
+			sourceTree = "<group>";
+		};
 		2478C65522DDD4C900DA6D8E /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +319,7 @@
 		2484174722D85D800009DF10 /* Shopee Prices Analystic */ = {
 			isa = PBXGroup;
 			children = (
+				2469B6F12307B6D100C77F3A /* Onboarding Screen */,
 				BC0FB3A122F7BFF900968E68 /* Network */,
 				242C4FA622F5786C007D4903 /* Custom components */,
 				BC8D7D0222E6FAA800D224EC /* Cells */,
@@ -330,6 +349,7 @@
 			children = (
 				24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */,
 				2416494922E19F5600B80DBC /* Animator.swift */,
+				2469B6F42307CEC500C77F3A /* Transition.swift */,
 			);
 			path = "Custom Animations";
 			sourceTree = "<group>";
@@ -645,12 +665,15 @@
 				24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */,
 				2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */,
 				241BC1492303F0100097AB59 /* AutoChangePriceTableViewController.swift in Sources */,
+				2469B6F32307CD1400C77F3A /* PriceOnboardingViewController.swift in Sources */,
 				24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */,
 				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
 				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
+				247C5E9E2306AE170072B0E3 /* NavigationContainerViewController.swift in Sources */,
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
 				2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */,
 				2459135E22E2EF5B00D51A4B /* UITableView+Extension.swift in Sources */,
+				2469B6F72307E0B700C77F3A /* NavigationBar+Extension.swift in Sources */,
 				2421730B22FD602800541024 /* RivalTableCell.swift in Sources */,
 				241BC1452303B0140097AB59 /* ChosenProductsTableViewController.swift in Sources */,
 				242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */,
@@ -667,6 +690,7 @@
 				2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */,
 				242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */,
 				2416494A22E19F5600B80DBC /* Animator.swift in Sources */,
+				2469B6F52307CEC500C77F3A /* Transition.swift in Sources */,
 				2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */,
 				BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */,
 				241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */,
