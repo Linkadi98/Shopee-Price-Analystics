@@ -81,10 +81,10 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             let fbDictionary = result as! [String: AnyObject]
             let id = fbDictionary["id"] as! String
             let name = fbDictionary["name"] as! String
-            //            let email = fbDictionary["email"] as! String
+            let email = fbDictionary["email"] as! String
 
             print(id)
-            let currentUser = User(name: name, image: "https://graph.facebook.com/\(id)/picture?type=large")
+            let currentUser = User(name: name, image: "https://graph.facebook.com/\(id)/picture?type=large", email: email, phone: nil)
 
             // lưu currentUser trong UserDefaults
             if let encoded = try? JSONEncoder().encode(currentUser) {
@@ -127,7 +127,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         let fullName = user.profile.name
         //            let givenName = user.profile.givenName
         //            let familyName = user.profile.familyName
-        //            let email = user.profile.email
+        let email = user.profile.email
 
         // Google cover picture
         var pic = ""
@@ -136,13 +136,99 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             pic = user.profile.imageURL(withDimension: 150)!.absoluteString
         }
 
-        let currentUser = User(name: fullName!, image: pic)
+        let currentUser = User(name: fullName!, image: pic, email: email, phone: nil)
 
         if let encoded = try? JSONEncoder().encode(currentUser) {
             UserDefaults.standard.set(encoded, forKey: "currentUser")
         }
     }
 
+    func getInfo(username: String, completion: @escaping () -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.info_path)!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion()
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value! as! [String: Any]
+            let phone = responseValue["phone"] as? String
+            if let email = responseValue["email"] as? String {
+                // Lưu currentUser trong UserDefaults
+                let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", email: email, phone: phone) // NEED EDITED
+                if let encoded = try? JSONEncoder().encode(currentUser) {
+                    UserDefaults.standard.set(encoded, forKey: "currentUser")
+                }
+            }
+            completion()
+        }
+    }
+
+    func updateInfo(phone: String, password: String, completion: @escaping (String) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.updateInfo_path)!
+        var parameters: Parameters = [
+            "phone": phone,
+            "password": password
+        ]
+        if phone == "" {
+            parameters["phone"] = nil
+        }
+
+        if password == "" {
+            parameters["password"] = nil
+        }
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion("failed")
+                return
+            }
+
+            //Successful request
+            completion("success")
+        }
+    }
+
+    func checkAccount(username: String, password: String, completion: @escaping (String) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
+        let parameters: Parameters = [
+            "username" : username,
+            "password" : password
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                // Failed request
+                guard response.result.isSuccess else {
+                    print("Error when fetching data: \(response.result.error)")
+                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                    completion("failed")
+                    return
+                }
+
+                //Successful request
+                let responseValue = response.result.value! as! [String: Any]
+                guard let _ = responseValue["token"] as? String else {
+                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
+                    completion("wrong")
+                    return
+                }
+                
+                completion("success")
+            }
+        }
+    }
 
     // Get list shop
 
@@ -166,7 +252,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             let responseValue = response.result.value! as! [[String: Any]]
             print(responseValue)
             for value in responseValue {
-                let shopId = String(value["id"] as! Int64)
+                let shopId = String(value["shopid"] as! Int64)
                 let shopName = value["name"] as! String
                 listShops.append(Shop(shopId: shopId, shopName: shopName))
             }
@@ -220,16 +306,12 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    // Add s shop
-    func addShop(shopId: String, shopName: String, completion: @escaping (String) -> Void) {
+    // Add shop
+    func addShop(shopId: String, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
-        let parameters: Parameters = [
-            "id": shopId,
-            "name": shopName
-        ]
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path + "/\(shopId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -265,6 +347,8 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             }
         } else {
             print("Chua co san pham vi chua ket noi cua hang")
+            completion([])
+            return
         }
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
@@ -281,11 +365,12 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             let responseValue = response.result.value! as! [[String: Any]]
             print(responseValue)
             for value in responseValue {
-                let id = String(value["item_id"] as! Int)
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
                 let name = value["name"] as! String
                 let price = Int(value["price"] as! Double)
                 let image = (value["images"] as! [String])[0]
-                listProducts.append(Product(id: id, name: name, price: price, rating: 3.0, image: image))
+                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
                 print("So san pham: \(listProducts.count)")
             }
             completion(listProducts)

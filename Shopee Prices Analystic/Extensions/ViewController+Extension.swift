@@ -84,14 +84,10 @@ extension ViewController {
                 UserDefaults.standard.set(Date(timeIntervalSinceNow: 21600), forKey: "expiredTimeOfToken")
                 sharedNetwork.headers["Authorization"] = token
 
-                // Lưu currentUser trong UserDefaults
-                let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
-                if let encoded = try? JSONEncoder().encode(currentUser) {
-                    UserDefaults.standard.set(encoded, forKey: "currentUser")
+                self.getInfo(username: username) {
+                    completion()
                 }
-
-                completion()
-
+                
                 // Screen movement
                 self.performSegue(withIdentifier: "VCToTabsVC", sender: nil)
             }
@@ -115,11 +111,11 @@ extension ViewController {
             }
 
             //Successful request
-            let responseValue = response.result.value! as! String
+            let responseValue = response.result.value!
             if responseValue == "mail lỗi" {
                 self.presentAlert(message: "Mail không chính xác")
             } else if responseValue == "Đề nghị check mail" {
-                self.presentAlert(message: "Mở mail để nhận mật khẩu mới")
+                self.presentAlert(title: "Thông báo", message: "Mở mail để nhận mật khẩu mới")
             }
             completion()
         }

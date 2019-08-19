@@ -17,9 +17,14 @@ class Network {
     let login_path = "/login"
     let register_path = "/register"
     let forget_path = "/forget"
-    let shop_path = "/shop"
-    let items_path = "/items"
-    let price_path = "/item/price"
+    let info_path = "/infor"
+    let updateInfo_path = "/updateInfor"
+    let shop_path = "/shop" // add shop + get shops from DB
+    let items_path = "/getItems" // update items from shopee + get items from DB
+    let item_path = "/item" // get item from DB
+    let price_path = "/updatePrice" // change price
+    let rival_path = "/getRivals" // get rivals
+    let shopRival_path = "/shopRival" // get rivals' shop
     var headers: HTTPHeaders = [
         "Content-Type": "application/json"
     ]

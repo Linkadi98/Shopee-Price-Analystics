@@ -75,8 +75,16 @@ class OverviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
+
+        // currentShop is nil
+        guard self.currentShop != nil else {
+            fetchingDataFromServer()
+            return
+        }
+
+        // currentShop has changed
         if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-            if self.currentShop != currentShop {
+            if self.currentShop != currentShop  {
                 fetchingDataFromServer()
             }
         }
@@ -84,7 +92,7 @@ class OverviewViewController: UIViewController {
 
 
     override func viewDidAppear(_ animated: Bool) {
-        
+
     }
     // MARK: - Configuration
     
@@ -109,12 +117,14 @@ class OverviewViewController: UIViewController {
         view.showAnimatedSkeleton()
 
         getListShops { [unowned self] (listShops) in
-            guard let _ = listShops else {
+            guard let listShops = listShops, !listShops.isEmpty else {
 //                self.status.addImage(#imageLiteral(resourceName: "deactive"), "Không hoạt động", offsetY: -0.5)
 //                self.view.hideSkeleton()
 //                self.view.stopSkeletonAnimation()
                 return
             }
+
+            print("Ds shop 69: \(listShops)")
 
             if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                     self.currentShop = currentShop

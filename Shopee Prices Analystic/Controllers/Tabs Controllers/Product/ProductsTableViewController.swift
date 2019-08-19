@@ -8,6 +8,7 @@
 
 import UIKit
 import SkeletonView
+import NotificationBannerSwift
 
 class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SkeletonTableViewDataSource {
     
@@ -220,7 +221,22 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             guard !listProducts.isEmpty else {
-                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để kết nối")
+                if let _ = UserDefaults.standard.data(forKey: "currentShop") {
+                    self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm")
+                } else {
+                    let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
+                                                            subtitle: "Bấm vào đây để kết nối",
+                                                            style: .warning)
+                    banner.onTap = {
+                        self.tabBarController?.selectedIndex = 4
+                    }
+                    banner.show(queuePosition: .back,
+                                bannerPosition: .top,
+                                cornerRadius: 10)
+                    self.displayNoDataNotification(title: "Chưa kết nối cửa hàng nào", message: "Hãy kết nối cửa hàng ở mục Tài khoản")
+
+                }
+
                 self.isFirstAppear = false
                 self.hasData = false
                 self.tableView.reloadData()
