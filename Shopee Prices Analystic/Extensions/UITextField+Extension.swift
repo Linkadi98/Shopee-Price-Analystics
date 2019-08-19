@@ -8,6 +8,8 @@
 
 import UIKit
 
+import CHIPageControl
+
 extension UITextField {
     
     open func createUnderlineTextField() {
