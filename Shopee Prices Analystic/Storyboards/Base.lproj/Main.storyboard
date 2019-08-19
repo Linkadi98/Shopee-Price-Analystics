@@ -1177,6 +1177,9 @@
                                         <constraint firstAttribute="bottom" secondItem="0Sn-J6-3J9" secondAttribute="bottom" constant="4" id="xgc-Qs-2nP"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="containerView" destination="0Sn-J6-3J9" id="V6Q-XY-CGE"/>
                                     <outlet property="followStatus" destination="JaF-Z0-URs" id="Ee9-QU-SB3"/>
@@ -1189,6 +1192,9 @@
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="TXZ-Tc-5Jg" id="7XV-xV-6dA"/>
                             <outlet property="delegate" destination="TXZ-Tc-5Jg" id="Weg-dp-SNy"/>

@@ -144,7 +144,9 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
                 if let currentUserData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: currentUserData) {
                     self.checkAccount(username: currentUser.name!, password: customPasswordConfirmAlert.textFields![0].text!, completion: { result in
-                        if result == "success" {
+                        if result == "wrong" {
+                            self.presentAlert(message: "Sai mật khẩu")
+                        } else if result == "success" {
                             self.changeCurrentShop(newShop: model)
                             self.hasData = false
                             self.fetchingDataFromServer() {
@@ -270,34 +272,5 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 }
 
 extension ListShopsTableViewController {
-    func checkAccount(username: String, password: String, completion: @escaping (String) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
-        let parameters: Parameters = [
-            "username" : username,
-            "password" : password
-        ]
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                // Failed request
-                guard response.result.isSuccess else {
-                    print("Error when fetching data: \(response.result.error)")
-                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                    completion("failed")
-                    return
-                }
-
-                //Successful request
-                let responseValue = response.result.value! as! [String: Any]
-                guard let _ = responseValue["token"] as? String else {
-                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
-                    completion("wrong")
-                    return
-                }
-
-                completion("success")
-            }
-        }
-    }
+    
 }

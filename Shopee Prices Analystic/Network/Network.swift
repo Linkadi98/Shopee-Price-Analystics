@@ -14,16 +14,18 @@ class Network {
 //    let base_url = "http://192.168.1.3:8081"
 
 
-    let base_url = "http://192.168.1.38:8081"
+    let base_url = "http://192.168.1.34:8081"
     let login_path = "/login"
     let register_path = "/register"
     let forget_path = "/forget"
+    let info_path = "/infor"
+    let updateInfo_path = "/updateInfor"
     let shop_path = "/shop" // add shop + get shops from DB
     let items_path = "/getItems" // update items from shopee + get items from DB
     let item_path = "/item" // get item from DB
     let price_path = "/updatePrice" // change price
-    let rival = "/getRivals" // get rivals
-    let shopRival = "/shopRival" // get rivals' shop
+    let rival_path = "/getRivals" // get rivals
+    let shopRival_path = "/shopRival" // get rivals' shop
     var headers: HTTPHeaders = [
         "Content-Type": "application/json"
     ]

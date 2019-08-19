@@ -239,7 +239,7 @@ extension RegisterViewController {
                 sharedNetwork.headers["Authorization"] = token
 
                 // Lưu currentUser trong UserDefaults
-                let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
+                let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", email: email, phone: phone) // NEED EDITED
                 if let encoded = try? JSONEncoder().encode(currentUser) {
                     UserDefaults.standard.set(encoded, forKey: "currentUser")
                 }

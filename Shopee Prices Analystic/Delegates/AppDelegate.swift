@@ -109,7 +109,7 @@ extension AppDelegate {
         let fullName = user.profile.name
         //            let givenName = user.profile.givenName
         //            let familyName = user.profile.familyName
-        //            let email = user.profile.email
+        let email = user.profile.email
 
         // Google cover picture
         var pic = ""
@@ -118,7 +118,7 @@ extension AppDelegate {
             pic = user.profile.imageURL(withDimension: 150)!.absoluteString
         }
 
-        let currentUser = User(name: fullName!, image: pic)
+        let currentUser = User(name: fullName!, image: pic, email: email, phone: nil)
 
         if let encoded = try? JSONEncoder().encode(currentUser) {
             UserDefaults.standard.set(encoded, forKey: "currentUser")

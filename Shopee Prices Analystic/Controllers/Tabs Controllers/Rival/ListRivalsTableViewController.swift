@@ -56,7 +56,4 @@ class ListRivalsTableViewController: UITableViewController {
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
     }
-    
-    
-
 }

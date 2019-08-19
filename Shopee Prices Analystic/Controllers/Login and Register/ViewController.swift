@@ -81,11 +81,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func forgetAccount(_ sender: Any) {
-        let alert = UIAlertController(title: "Thông báo", message: "Hãy nhập mail:", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Lấy lại mật khẩu", message: "Hãy nhập mail:", preferredStyle: .alert)
         alert.addTextField { (textfield) in
             textfield.placeholder = "example@abcxyz.com"
         }
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
             UIApplication.shared.beginIgnoringInteractionEvents()
 
             let activityIndicator = self.initActivityIndicator()
