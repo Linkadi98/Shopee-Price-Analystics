@@ -502,6 +502,34 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             }
         }
     }
+
+    // choose rival
+    func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, completion: @escaping (String) -> Void) {
+        let sharedNetwork = Network.shared
+        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+        let url = URL(string: Network.shared.base_url + Network.shared.rivalChoice_path)!
+        let parameters: Parameters = [
+            "itemid": myProductId,
+            "shopid": myShopId,
+            "opponent": rivalShopId,
+            "rival": rivalProductId
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion("failed")
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value! as! [String: Any]
+            print(responseValue)
+            completion("success")
+        }
+    }
     
     // Load online image
     func loadOnlineImage(from url: URL, to uiImageView: UIImageView) {

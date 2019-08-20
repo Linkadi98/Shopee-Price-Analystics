@@ -50,7 +50,6 @@ class ListRivalsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RivalCell", for: indexPath) as! RivalTableCell
         guard listRivals != nil, listRivalsShops != nil else {
-            
             return cell
         }
 
@@ -74,6 +73,12 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! RivalTableCell
+        let rival = listRivals![indexPath.row]
+        chooseRival(myProductId: (product?.id)!, myShopId: (product?.shopId)!, rivalProductId: rival.id!, rivalShopId: rival.shopId!) { (result) in
+            if result == "success" {
+                print("Choose rival OK")
+            }
+        }
         cell.setFollowStatus()
         tabBarController?.selectedIndex = 3
         if let vc = tabBarController?.selectedViewController as? RivalPageViewController {

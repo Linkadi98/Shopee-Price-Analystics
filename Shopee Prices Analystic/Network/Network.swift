@@ -23,6 +23,7 @@ class Network {
     let items_path = "/getItems" // update items from shopee + get items from DB
     let item_path = "/item" // get item from DB
     let price_path = "/updatePrice" // change price
+    let rivalChoice_path = "/rival" // choose rival
     let rivals_path = "/getRivals" // get rivals
     let rivalsShops_path = "/shopRival" // get rivals' shop
     var headers: HTTPHeaders = [
