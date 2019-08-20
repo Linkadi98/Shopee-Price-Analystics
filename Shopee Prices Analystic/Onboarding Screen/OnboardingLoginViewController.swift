@@ -16,8 +16,8 @@ class OnboardingLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        registerButton.setShadow()
-        loginButton.setShadow()
+        registerButton.setShadowForButtonOnboarding()
+        loginButton.setShadowForButtonOnboarding()
         // Do any additional setup after loading the view.
     }
     
