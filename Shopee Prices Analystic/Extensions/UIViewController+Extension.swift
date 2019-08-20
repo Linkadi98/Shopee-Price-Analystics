@@ -231,7 +231,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     }
 
     // Get list shop
-
     func getListShops(completion: @escaping ([Shop]?) -> Void) {
         let sharedNetwork = Network.shared
         // let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
@@ -337,6 +336,47 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         print("Changrsjsj: \(newShop)")
     }
 
+    // put list products from DB
+    func putListProducts(completion: @escaping ([Product]?) -> Void) {
+        let sharedNetwork = Network.shared
+        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+        var url = URL(string: "https://google.com")!
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
+            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+                url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
+                print("6969: \(currentShop.shopId)")
+            }
+        } else {
+            print("Chua co san pham vi chua ket noi cua hang")
+            completion([])
+            return
+        }
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).validate().responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion(nil)
+                return
+            }
+
+            //Successful request
+            var listProducts: [Product] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
+                let name = value["name"] as! String
+                let price = Int(value["price"] as! Double)
+                let image = (value["images"] as! [String])[0]
+                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
+                print("So san pham: \(listProducts.count)")
+            }
+            completion(listProducts)
+        }
+    }
+
     // get list products from DB
     func getListProducts(completion: @escaping ([Product]?) -> Void) {
         let sharedNetwork = Network.shared
@@ -436,29 +476,30 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     }
 
     // update price
-    func updatePrice(shopId: String, productId: String, newPrice: Int, completion: @escaping () -> Void) {
+    func updatePrice(shopId: String, productId: String, newPrice: Int, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
         //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-        var url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
+        let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
                 StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion()
+                completion("failed")
                 return
             }
 
             //Successful request
             let responseValue = response.result.value! as! [String: Any]
             print(responseValue)
-            if Int(responseValue["price"] as! String)! == newPrice {
-                StatusBarNotificationBanner(title: "Sửa giá thành công", style: .success).show()
+            if responseValue["price"] as! Int == newPrice {
+//                StatusBarNotificationBanner(title: "Sửa giá thành công", style: .success).show()
+                completion("success")
             } else {
-                self.presentAlert(message: "Sửa giá thất bại, vui lòng thử lại sau")
+//                self.presentAlert(message: "Sửa giá thất bại, vui lòng thử lại sau")
+                completion("error")
             }
-            completion()
         }
     }
     

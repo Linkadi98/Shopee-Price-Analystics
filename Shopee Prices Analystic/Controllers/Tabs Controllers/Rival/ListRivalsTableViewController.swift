@@ -89,64 +89,62 @@ class ListRivalsTableViewController: UITableViewController {
         var doneloadingRivals = false
         var doneloadingRivalsShops = false
         tableView.allowsSelection = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-            self.getListRivals(myShopId: (self.product?.shopId)!, myProductId: (self.product?.id)!) { (listRivals) in
-                guard let listRivals = listRivals else {
-                    self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
-                    self.tableView.reloadData()
-                    return
-                }
-
-                guard !listRivals.isEmpty else {
-                    self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Rất tiếc, sản phẩm của bạn không tìm thấy đối thủ")
-                    self.tableView.reloadData()
-                    return
-                }
-
-                self.listRivals = listRivals
-                doneloadingRivals = true
-                if doneloadingRivals, doneloadingRivalsShops {
-                    doneloadingRivals = false
-                    doneloadingRivalsShops = false
-
-                    self.tableView.reloadData()
-
-                    self.view.hideSkeleton()
-                    self.view.stopSkeletonAnimation()
-
-                    self.tableView.backgroundView = nil
-                    self.tableView.allowsSelection = true
-                }
+        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { (listRivals) in
+            guard let listRivals = listRivals else {
+                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
+                self.tableView.reloadData()
+                return
             }
 
-            self.getListRivalsShops(myShopId: (self.product?.shopId)!, myProductId: (self.product?.id)!) { (listRivalsShops) in
-                guard let listRivalsShops = listRivalsShops else {
-                    self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
-                    self.tableView.reloadData()
-                    return
-                }
+            guard !listRivals.isEmpty else {
+                self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Rất tiếc, sản phẩm của bạn không tìm thấy đối thủ")
+                self.tableView.reloadData()
+                return
+            }
 
-                guard !listRivalsShops.isEmpty else {
-                    self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Rất tiếc, sản phẩm của bạn không tìm thấy đối thủ")
-                    self.tableView.reloadData()
-                    return
-                }
+            self.listRivals = listRivals
+            doneloadingRivals = true
+            if doneloadingRivals, doneloadingRivalsShops {
+                doneloadingRivals = false
+                doneloadingRivalsShops = false
 
-                self.listRivalsShops = listRivalsShops
-                doneloadingRivalsShops = true
-                if doneloadingRivals, doneloadingRivalsShops {
+                self.tableView.reloadData()
 
-                    doneloadingRivals = false
-                    doneloadingRivalsShops = false
+                self.view.hideSkeleton()
+                self.view.stopSkeletonAnimation()
 
-                    self.tableView.reloadData()
+                self.tableView.backgroundView = nil
+                self.tableView.allowsSelection = true
+            }
+        }
 
-                    self.view.hideSkeleton()
-                    self.view.stopSkeletonAnimation()
+        getListRivalsShops(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { (listRivalsShops) in
+            guard let listRivalsShops = listRivalsShops else {
+                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
+                self.tableView.reloadData()
+                return
+            }
 
-                    self.tableView.backgroundView = nil
-                    self.tableView.allowsSelection = true
-                }
+            guard !listRivalsShops.isEmpty else {
+                self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Rất tiếc, sản phẩm của bạn không tìm thấy đối thủ")
+                self.tableView.reloadData()
+                return
+            }
+
+            self.listRivalsShops = listRivalsShops
+            doneloadingRivalsShops = true
+            if doneloadingRivals, doneloadingRivalsShops {
+
+                doneloadingRivals = false
+                doneloadingRivalsShops = false
+
+                self.tableView.reloadData()
+
+                self.view.hideSkeleton()
+                self.view.stopSkeletonAnimation()
+
+                self.tableView.backgroundView = nil
+                self.tableView.allowsSelection = true
             }
         }
     }
