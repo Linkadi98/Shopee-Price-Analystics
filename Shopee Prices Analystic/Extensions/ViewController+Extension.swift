@@ -59,7 +59,7 @@ extension ViewController {
             "password" : password
         ]
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 // Failed request
                 guard response.result.isSuccess else {
@@ -101,7 +101,7 @@ extension ViewController {
             "email" : email
         ]
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).responseString { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).validate().responseString { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")

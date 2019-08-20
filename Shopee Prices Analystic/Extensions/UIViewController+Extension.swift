@@ -147,7 +147,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.info_path)!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -185,7 +185,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             parameters["password"] = nil
         }
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -207,7 +207,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             "password" : password
         ]
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 // Failed request
                 guard response.result.isSuccess else {
@@ -237,7 +237,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         // let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -311,7 +311,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path + "/\(shopId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -351,7 +351,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             return
         }
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -363,7 +363,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             //Successful request
             var listProducts: [Product] = []
             let responseValue = response.result.value! as! [[String: Any]]
-            print(responseValue)
             for value in responseValue {
                 let id = String(value["itemid"] as! Int)
                 let shopId = String(value["shopid"] as! Int)
@@ -377,13 +376,42 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
+    func getListRivals(shopId: String, productId: String, completion: @escaping ([Product]?) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(shopId)/\(productId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion(nil)
+                return
+            }
+
+            //Successful request
+            var listRivals: [Product] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
+                let name = value["name"] as! String
+                let price = Int(value["price"] as! Double)
+                let image = (value["images"] as! [String])[0]
+                listRivals.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
+                print("So doi thu: \(listRivals.count)")
+            }
+            completion(listRivals)
+        }
+    }
+
     // update price
     func updatePrice(shopId: String, productId: String, newPrice: Int, completion: @escaping () -> Void) {
         let sharedNetwork = Network.shared
         //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
         var url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")

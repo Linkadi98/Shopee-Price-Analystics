@@ -270,7 +270,3 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         }
     }
 }
-
-extension ListShopsTableViewController {
-    
-}

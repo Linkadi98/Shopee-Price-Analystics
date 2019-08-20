@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ListRivalsTableViewController: UITableViewController {
+
+    var product: Product?
+    var listRivals: [Product]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +33,24 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        guard listRivals != nil else {
+            return 4
+        }
+        return self.listRivals!.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RivalCell", for: indexPath) as! RivalTableCell
-        
+        guard listRivals != nil else {
+            cell.setUnfollowStatus()
+            return cell
+        }
+
+        let rival = listRivals![indexPath.row]
+        cell.productName.text = rival.name!
+        cell.productPrice.text = String(rival.price!)
+        loadOnlineImage(from: URL(string: rival.image!)!, to: cell.productImage)
 
         cell.setUnfollowStatus()
         
@@ -47,7 +62,7 @@ class ListRivalsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        fetchDataFromServer()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -58,6 +73,13 @@ class ListRivalsTableViewController: UITableViewController {
             vc.pageViewController?.select(index: 2)
         }
         
+    }
+
+    func fetchDataFromServer() {
+        getListRivals(shopId: (product?.shopId)!, productId: (product?.id)!) { (listRivals) in
+            self.listRivals = listRivals!
+            self.tableView.reloadData()
+        }
     }
 
     @objc func refresh() {

@@ -12,7 +12,7 @@ import Cosmos
 class ProductDetailTableViewController: UITableViewController {
 
     // MARK: - Properties
-    var product: Product!
+    var product: Product?
 
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productCode: UILabel!
@@ -82,20 +82,18 @@ class ProductDetailTableViewController: UITableViewController {
         update()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-
     func update() {
-        productName.text = product.name!
-        productCode.text = String(product.id!)
-        soldPrice.text! = String(product.convertPriceToVietnameseCurrency()!)
-        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-                shopName.text = currentShop.shopId
+        if let product = product {
+            productName.text = product.name!
+            productCode.text = String(product.id!)
+            soldPrice.text! = String(product.convertPriceToVietnameseCurrency()!)
+            if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
+                if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+                    shopName.text = currentShop.shopId
+                }
             }
+            loadOnlineImage(from: URL(string: product.image!)!, to: productImage)
         }
-        loadOnlineImage(from: URL(string: product.image!)!, to: productImage)
     }
 
     // MARK: - Config cell content view
@@ -175,6 +173,14 @@ class ProductDetailTableViewController: UITableViewController {
             make.leading.greaterThanOrEqualToSuperview().inset(100)
         })
         
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProductDetailTVCToListRivalsTVC" {
+            if let listRivalsTableViewController = segue.destination as? ListRivalsTableViewController {
+                listRivalsTableViewController.product = product
+            }
+        }
     }
 }
 

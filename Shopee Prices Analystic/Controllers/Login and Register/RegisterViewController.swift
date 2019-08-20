@@ -213,7 +213,7 @@ extension RegisterViewController {
             parameters["phone"] = phone
         }
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 // Failed request
                 guard response.result.isSuccess else {

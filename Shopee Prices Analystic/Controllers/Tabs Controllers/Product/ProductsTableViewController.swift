@@ -42,7 +42,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         if listProducts != nil {
             return
         }
-        fetchingDataFromServer()
+        fetchDataFromServer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -193,13 +193,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Refesh data
     
     @objc func refresh() {
-        fetchingDataFromServer()
+        fetchDataFromServer()
         tableView.refreshControl?.endRefreshing()
     }
     
     // MARK: - Private loading data for this class
     
-    private func fetchingDataFromServer() {
+    private func fetchDataFromServer() {
         tableView.reloadData()
         
         view.hideSkeleton()
