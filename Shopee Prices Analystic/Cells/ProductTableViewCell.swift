@@ -18,6 +18,7 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var cosmos: CosmosView!
+    @IBOutlet weak var editingPen: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +35,7 @@ class ProductTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         backgroundColor = .white
+        editingPen.alpha = 0
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -16,10 +16,10 @@ extension UIView {
         })
     }
     
-    static func animatedButton(with button: UIButton, x: CGFloat = 0, y: CGFloat = 0, alphaBefore: CGFloat = 0, alphaAfter: CGFloat = 1, duration: Double = 0.5, nextAnimation: (() -> Void)? = nil){
+    static func animatedButton(with button: UIButton, delay: TimeInterval = 0.0, x: CGFloat = 0, y: CGFloat = 0, alphaBefore: CGFloat = 0, alphaAfter: CGFloat = 1, duration: Double = 0.5, nextAnimation: (() -> Void)? = nil){
         button.alpha = alphaBefore
         
-        UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: duration, delay: delay, options: .curveEaseIn, animations: {
             button.alpha = alphaAfter
             button.transform = CGAffineTransform(translationX: x, y: y)
             
@@ -40,11 +40,13 @@ extension UIView {
         })
     }
     
-    static func zoomInImage(with image: UIImageView, nextAnimation: @escaping () -> Void) {
+    static func zoomOutImage(with image: UIImageView, nextAnimation: @escaping () -> Void) {
         image.isHidden = false
-        image.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
-        UIView.animate(withDuration: 1.5, animations: {
-            image.transform = CGAffineTransform(scaleX: 1, y: 1)
+        image.alpha = 0
+        image.transform = CGAffineTransform(scaleX: 2, y: 2)
+        UIView.animate(withDuration: 1,delay: 0.0, options: .curveEaseIn, animations: {
+            image.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            image.alpha = 1
         }, completion: { _ in
             nextAnimation()
         })
@@ -59,7 +61,7 @@ extension UIView {
     static func translateX(view: UIView, nextAnimation: (() -> Void)? = nil) {
         view.transform = CGAffineTransform(translationX: -20, y: 0)
         view.alpha = 0
-        UIView.animate(withDuration: 1.2, delay: 0.05, animations: {
+        UIView.animate(withDuration: 1, delay: 0.05, animations: {
             view.transform = .identity
             view.alpha = 1
         }, completion: { _ in
@@ -88,6 +90,27 @@ extension UIView {
             }, completion: nil)
         })
     }
+    
+    static func translateImage(with imageView: UIImageView,to image: UIImage, direction: Direction) {
+        let factor: CGFloat
+        switch direction {
+        case .left:
+            factor = -1
+        default:
+            factor = 1
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            imageView.transform = CGAffineTransform(translationX: factor * 500, y: 0)
+        }, completion: { _ in
+            imageView.transform = CGAffineTransform(translationX:  -factor * 500, y: 0)
+            imageView.image = image
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseIn, animations: {
+                imageView.transform = .identity
+            }, completion: nil)
+        })
+    }
+    
 }
 
 enum Direction: CGFloat {
