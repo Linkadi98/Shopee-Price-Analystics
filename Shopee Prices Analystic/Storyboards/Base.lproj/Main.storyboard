@@ -76,7 +76,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <state key="normal" title="Đăng ký">
-                                    <color key="titleColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <segue destination="adN-Ya-644" kind="presentation" id="wpp-97-1km"/>
@@ -85,7 +85,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5r-Je-3YG">
                                 <rect key="frame" x="107" y="798" width="200" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                 <state key="normal" title="Đăng nhập">
                                     <color key="titleColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -148,6 +148,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="DZy-Ck-5ci" id="x4B-Ne-APV"/>
+                        <outlet property="backgroundImage" destination="wIL-3a-rIa" id="9RJ-2d-V1G"/>
                         <outlet property="descriptionOnboarding" destination="0Pd-gK-fdW" id="AIJ-aw-1En"/>
                         <outlet property="imageView" destination="QuY-SX-lM9" id="nDm-tl-et0"/>
                         <outlet property="loginButton" destination="W5r-Je-3YG" id="Phk-6Q-wpO"/>
@@ -162,10 +163,10 @@
             </objects>
             <point key="canvasLocation" x="1911.594202898551" y="-2706.0267857142858"/>
         </scene>
-        <!--View Controller-->
+        <!--Onboarding Login View Controller-->
         <scene sceneID="jLn-mR-6Bt">
             <objects>
-                <viewController id="UZA-0J-qDw" sceneMemberID="viewController">
+                <viewController id="UZA-0J-qDw" customClass="OnboardingLoginViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WPp-oA-0QP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,7 +186,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                         <state key="normal" title="Đăng ký">
-                                            <color key="titleColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <segue destination="adN-Ya-644" kind="presentation" id="j37-8J-dzg"/>
@@ -219,6 +220,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="t9y-gA-gWU"/>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="Yuw-3J-miL" id="6TI-Np-5zq"/>
+                        <outlet property="registerButton" destination="Ggh-7S-7qT" id="auc-aq-K4e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awn-l9-E9D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3093,8 +3098,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RtS-Aj-Aye"/>
-        <segue reference="wpp-97-1km"/>
-        <segue reference="Rf2-hR-1tB"/>
+        <segue reference="j37-8J-dzg"/>
+        <segue reference="A4b-i5-Cik"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

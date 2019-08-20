@@ -51,13 +51,14 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var skipButton: UIButton!
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configPositionAtBegining()
         
-        UIView.zoomInImage(with: imageView, nextAnimation: {
+        UIView.zoomOutImage(with: imageView, nextAnimation: {
             UIView.animate(withDuration: 0.9, animations: {
                 self.titleOnboarding.alpha = 1
                 self.titleOnboarding.transform = .identity
@@ -94,22 +95,24 @@ class OnboardingViewController: UIViewController {
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THEO DÕI ĐỐI THỦ"]!, direction: .left)
             
             showLeftArrow()
-            UIView.changeImage(with: imageView, to: UIImage(imageLiteralResourceName: "rival"))
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "rival"), direction: .left)
+            
+            
         case 2:
             UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THỐNG KÊ TRỰC QUAN", direction: .left)
             
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THỐNG KÊ TRỰC QUAN"]!, direction: .left)
-            UIView.changeImage(with: imageView, to: UIImage(imageLiteralResourceName: "chart"))
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "chart"), direction: .left)
         case 3:
             UIView.translateAndChangeLabelText(with: titleOnboarding, text: "QUẢN LÝ SẢN PHẨM", direction: .left)
             
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["QUẢN LÝ SẢN PHẨM"]!, direction: .left)
-            UIView.changeImage(with: imageView, to: UIImage(imageLiteralResourceName: "product image"))
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "product image"), direction: .left)
         default:
             UIView.translateAndChangeLabelText(with: titleOnboarding, text: "BẮT KỊP ĐỐI THỦ CỦA BẠN", direction: .left)
             
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["BẮT KỊP ĐỐI THỦ CỦA BẠN"]!, direction: .left)
-            UIView.changeImage(with: imageView, to: UIImage(imageLiteralResourceName: "shop image"))
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "shop image"), direction: .left)
             
             hideRightArrow()
         }
@@ -124,24 +127,24 @@ class OnboardingViewController: UIViewController {
             UIView.translateAndChangeLabelText(with: titleOnboarding, text: "QUẢN LÝ SẢN PHẨM", direction: .right)
             
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["QUẢN LÝ SẢN PHẨM"]!, direction: .right)
-            UIView.changeImage(with: imageView, to: UIImage(imageLiteralResourceName: "product image"))
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "product image"), direction: .right)
             showRightArrow()
         case 2:
             UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THỐNG KÊ TRỰC QUAN", direction: .right)
             
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THỐNG KÊ TRỰC QUAN"]!, direction: .right)
-            UIView.changeImage(with: imageView, to: UIImage(imageLiteralResourceName: "chart"))
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "chart"), direction: .right)
         case 1:
             UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THEO DÕI ĐỐI THỦ", direction: .right)
             
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THEO DÕI ĐỐI THỦ"]!, direction: .right)
-            UIView.changeImage(with: imageView, to: UIImage(imageLiteralResourceName: "rival"))
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "rival"), direction: .right)
             
         default:
             UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THEO DÕI GIÁ", direction: .right)
             
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THEO DÕI GIÁ"]!, direction: .right)
-            UIView.changeImage(with: imageView, to: UIImage(imageLiteralResourceName: "price follow"))
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "price follow"), direction: .right)
             hideLeftArrow()
         }
     }
@@ -168,8 +171,8 @@ class OnboardingViewController: UIViewController {
     }
     
     private func hideRightArrow() {
-        UIView.animatedButton(with: registerButton, x: 0, y: 0, alphaBefore: 0, alphaAfter: 1, duration: 0.3)
-        UIView.animatedButton(with: loginButton, x: 0, y: 0, alphaBefore: 0, alphaAfter: 1, duration: 0.3)
+        UIView.animatedButton(with: registerButton, delay: 0.3, x: 0, y: 0, alphaBefore: 0, alphaAfter: 1, duration: 0.5)
+        UIView.animatedButton(with: loginButton, delay: 0.3, x: 0, y: 0, alphaBefore: 0, alphaAfter: 1, duration: 0.5)
         
         UIView.animatedButton(with: nextButton, x: 20, y: 0, alphaBefore: 1, alphaAfter: 0, duration: 0.4) {
             self.nextButton.transform = CGAffineTransform(translationX: -20, y: 0)
@@ -184,7 +187,7 @@ class OnboardingViewController: UIViewController {
     
     private func showRightArrow() {
         UIView.animatedButton(with: registerButton, x: 0, y: 50, alphaBefore: 1, alphaAfter: 0, duration: 0.3)
-        UIView.animatedButton(with: loginButton, x: 0, y: 50, alphaBefore: 1, alphaAfter: 0, duration: 0.3)
+        UIView.animatedButton(with: loginButton,x: 0, y: 50, alphaBefore: 1, alphaAfter: 0, duration: 0.3)
         UIView.animatedButton(with: nextButton, x: 0, y: 0, alphaBefore: 0, alphaAfter: 1, duration: 0.4)
     }
     
