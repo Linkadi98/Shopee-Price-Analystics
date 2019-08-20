@@ -17,6 +17,8 @@ pod 'Parchment'
 pod 'SVProgressHUD', '~> 2.2'
 pod "SkeletonView"
 pod 'BadgeSwift', '~> 8.0'
+pod 'CHIPageControl/Aleppo'
+pod 'CHIPageControl', '~> 0.1.3'
   # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do

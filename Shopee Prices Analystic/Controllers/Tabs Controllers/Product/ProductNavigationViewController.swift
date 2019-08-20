@@ -1,23 +1,20 @@
 //
-//  PriceOnboardingViewController.swift
+//  ProductNavigationViewController.swift
 //  Shopee Prices Analystic
 //
-//  Created by Minh Pham on 8/17/19.
+//  Created by Minh Pham on 8/18/19.
 //  Copyright © 2019 SAPO. All rights reserved.
 //
 
 import UIKit
 
-class PriceOnboardingViewController: UIViewController {
+class ProductNavigationViewController: UINavigationController {
 
-    // MARK: - Properties
-    
-    @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        imageView.setShadow()
-        
+        let img = UIImage()
+        navigationController?.navigationBar.shadowImage = img
         // Do any additional setup after loading the view.
     }
     

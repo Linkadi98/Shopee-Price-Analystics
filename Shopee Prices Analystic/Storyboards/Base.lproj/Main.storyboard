@@ -10,93 +10,219 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="Ssc-Se-RQz">
-            <objects>
-                <navigationController id="5GW-b5-oXX" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xj5-mZ-0Aa">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="2dv-1O-LZT" kind="relationship" relationship="rootViewController" id="3T2-lb-8ru"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ip3-Oc-G4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1254" y="-3395"/>
-        </scene>
-        <!--Title-->
-        <scene sceneID="tcP-wC-l9L">
-            <objects>
-                <viewController id="2dv-1O-LZT" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Imu-ng-DRe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="uEN-Li-q60"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Title" id="rs0-PF-fKz">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="sQt-ca-C8Q">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5FD-cj-1J8">
-                                <rect key="frame" x="302" y="7" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Bỏ qua"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hdt-EU-HXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-223" y="-3395"/>
-        </scene>
-        <!--Price Onboarding View Controller-->
+        <!--Onboarding View Controller-->
         <scene sceneID="ixZ-tg-2TZ">
             <objects>
-                <viewController id="1tN-Pw-lW8" customClass="PriceOnboardingViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingViewController" id="1tN-Pw-lW8" customClass="OnboardingViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iK7-HI-xdM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="analystic" translatesAutoresizingMaskIntoConstraints="NO" id="QuY-SX-lM9">
-                                <rect key="frame" x="82" y="144" width="250" height="250"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="wIL-3a-rIa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="296"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="geU-5B-3Nt"/>
-                                    <constraint firstAttribute="width" constant="250" id="kJ4-4Q-I9i"/>
+                                    <constraint firstAttribute="height" constant="295.99999999999994" id="jnj-81-5We"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="price follow" translatesAutoresizingMaskIntoConstraints="NO" id="QuY-SX-lM9">
+                                <rect key="frame" x="132" y="74" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="geU-5B-3Nt"/>
+                                    <constraint firstAttribute="width" constant="150" id="kJ4-4Q-I9i"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trợ giúp theo dõi giá sản phẩm trên sàn Thương mại điện tử Shopee" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pd-gK-fdW">
-                                <rect key="frame" x="8" y="501.33333333333331" width="398" height="45.666666666666686"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <rect key="frame" x="8" y="381" width="398" height="40.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THEO DÕI GIÁ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkb-rs-cB4">
-                                <rect key="frame" x="117.66666666666667" y="444" width="178.66666666666663" height="32.333333333333314"/>
+                                <rect key="frame" x="117.66666666666669" y="324" width="179" height="32"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                                 <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZy-Ck-5ci">
+                                <rect key="frame" x="329" y="658" width="25" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="lSU-2X-wvw"/>
+                                </constraints>
+                                <state key="normal" image="back arrow">
+                                    <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBackPreviousView:" destination="1tN-Pw-lW8" eventType="touchUpInside" id="HfU-vZ-1dt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAp-cs-qQZ">
+                                <rect key="frame" x="369" y="658" width="25" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="Q37-3f-ZTH"/>
+                                </constraints>
+                                <state key="normal" image="arrow-1">
+                                    <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToNextView:" destination="1tN-Pw-lW8" eventType="touchUpInside" id="puk-Bk-DOt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbl-Ih-IqO">
+                                <rect key="frame" x="107" y="750" width="200" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.71372549019999998" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="mfo-4f-1rC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="t7P-TN-Kum"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <state key="normal" title="Đăng ký">
+                                    <color key="titleColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="adN-Ya-644" kind="presentation" id="wpp-97-1km"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W5r-Je-3YG">
+                                <rect key="frame" x="107" y="798" width="200" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <state key="normal" title="Đăng nhập">
+                                    <color key="titleColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="F0e-4b-AO9" kind="presentation" id="Rf2-hR-1tB"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="lA3-jG-zvV">
+                                <rect key="frame" x="167" y="658" width="80" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="YEr-HN-NOG"/>
+                                    <constraint firstAttribute="width" constant="80" id="qZG-1C-R6M"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" red="0.96654671430000005" green="0.25885298849999999" blue="0.14455756550000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYU-nm-3gz">
+                                <rect key="frame" x="20" y="653" width="71" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="BỎ QUA">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="UZA-0J-qDw" kind="showDetail" id="UIp-ez-1iW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="QuY-SX-lM9" firstAttribute="top" secondItem="j6V-eQ-Ixn" secondAttribute="top" constant="100" id="2bW-p3-xhh"/>
+                            <constraint firstItem="dbl-Ih-IqO" firstAttribute="centerX" secondItem="iK7-HI-xdM" secondAttribute="centerX" id="2TU-Qh-B6n"/>
+                            <constraint firstItem="QuY-SX-lM9" firstAttribute="top" secondItem="j6V-eQ-Ixn" secondAttribute="top" constant="30" id="2bW-p3-xhh"/>
+                            <constraint firstItem="dbl-Ih-IqO" firstAttribute="top" secondItem="lA3-jG-zvV" secondAttribute="bottom" constant="72" id="7CL-Ux-Nx0"/>
                             <constraint firstItem="rkb-rs-cB4" firstAttribute="centerX" secondItem="iK7-HI-xdM" secondAttribute="centerX" id="Cb0-VJ-5Jo"/>
-                            <constraint firstItem="rkb-rs-cB4" firstAttribute="top" secondItem="QuY-SX-lM9" secondAttribute="bottom" constant="50" id="g3C-td-fOA"/>
+                            <constraint firstItem="j6V-eQ-Ixn" firstAttribute="bottom" secondItem="VYU-nm-3gz" secondAttribute="bottom" constant="179" id="FDH-5S-7K5"/>
+                            <constraint firstItem="j6V-eQ-Ixn" firstAttribute="trailing" secondItem="oAp-cs-qQZ" secondAttribute="trailing" constant="20" id="G64-fM-a1g"/>
+                            <constraint firstItem="lA3-jG-zvV" firstAttribute="centerX" secondItem="iK7-HI-xdM" secondAttribute="centerX" id="IBa-pw-zd9"/>
+                            <constraint firstItem="oAp-cs-qQZ" firstAttribute="leading" secondItem="DZy-Ck-5ci" secondAttribute="trailing" constant="15" id="Jpt-Yy-8tp"/>
+                            <constraint firstItem="W5r-Je-3YG" firstAttribute="height" secondItem="dbl-Ih-IqO" secondAttribute="height" id="LEO-nt-ZCq"/>
+                            <constraint firstItem="oAp-cs-qQZ" firstAttribute="leading" secondItem="DZy-Ck-5ci" secondAttribute="trailing" constant="15" id="Mo8-43-9va"/>
+                            <constraint firstItem="lA3-jG-zvV" firstAttribute="centerX" secondItem="iK7-HI-xdM" secondAttribute="centerX" id="NUh-AL-od9"/>
+                            <constraint firstItem="lA3-jG-zvV" firstAttribute="leading" relation="lessThanOrEqual" secondItem="VYU-nm-3gz" secondAttribute="trailing" constant="76" id="Ql6-BN-H0i"/>
+                            <constraint firstItem="W5r-Je-3YG" firstAttribute="top" secondItem="dbl-Ih-IqO" secondAttribute="bottom" constant="8" id="VIS-P3-IYv"/>
+                            <constraint firstItem="j6V-eQ-Ixn" firstAttribute="bottom" secondItem="W5r-Je-3YG" secondAttribute="bottom" constant="24" id="ZXK-L4-VTG"/>
+                            <constraint firstItem="wIL-3a-rIa" firstAttribute="trailing" secondItem="j6V-eQ-Ixn" secondAttribute="trailing" id="aD3-Da-l7V"/>
+                            <constraint firstItem="DZy-Ck-5ci" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lA3-jG-zvV" secondAttribute="trailing" constant="82" id="d5e-xe-wiz"/>
+                            <constraint firstItem="rkb-rs-cB4" firstAttribute="top" secondItem="QuY-SX-lM9" secondAttribute="bottom" constant="100" id="g3C-td-fOA"/>
+                            <constraint firstItem="W5r-Je-3YG" firstAttribute="width" secondItem="dbl-Ih-IqO" secondAttribute="width" id="hbb-Ho-uq8"/>
                             <constraint firstItem="QuY-SX-lM9" firstAttribute="centerX" secondItem="iK7-HI-xdM" secondAttribute="centerX" id="i7q-l9-oKC"/>
-                            <constraint firstItem="0Pd-gK-fdW" firstAttribute="top" secondItem="rkb-rs-cB4" secondAttribute="bottom" constant="25" id="rMc-Li-S8J"/>
+                            <constraint firstItem="0Pd-gK-fdW" firstAttribute="top" secondItem="rkb-rs-cB4" secondAttribute="bottom" constant="25" id="kiD-3q-KNO"/>
+                            <constraint firstItem="W5r-Je-3YG" firstAttribute="centerX" secondItem="iK7-HI-xdM" secondAttribute="centerX" id="l6p-Tz-45j"/>
+                            <constraint firstItem="VYU-nm-3gz" firstAttribute="leading" secondItem="j6V-eQ-Ixn" secondAttribute="leading" constant="20" id="l8s-6r-n4T"/>
+                            <constraint firstItem="j6V-eQ-Ixn" firstAttribute="bottom" secondItem="oAp-cs-qQZ" secondAttribute="bottom" constant="182" id="mhg-nH-gVX"/>
+                            <constraint firstItem="wIL-3a-rIa" firstAttribute="top" secondItem="iK7-HI-xdM" secondAttribute="top" id="rmf-Pn-5Tb"/>
                             <constraint firstAttribute="trailing" secondItem="0Pd-gK-fdW" secondAttribute="trailing" constant="8" id="wKU-X6-fFc"/>
+                            <constraint firstItem="wIL-3a-rIa" firstAttribute="leading" secondItem="j6V-eQ-Ixn" secondAttribute="leading" id="xTp-3Y-Qgd"/>
                             <constraint firstItem="0Pd-gK-fdW" firstAttribute="leading" secondItem="j6V-eQ-Ixn" secondAttribute="leading" constant="8" id="yM0-JI-1pV"/>
+                            <constraint firstItem="j6V-eQ-Ixn" firstAttribute="bottom" secondItem="DZy-Ck-5ci" secondAttribute="bottom" constant="182" id="zDP-bl-Okp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="j6V-eQ-Ixn"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="QuY-SX-lM9" id="Eio-6M-oOx"/>
+                        <outlet property="backButton" destination="DZy-Ck-5ci" id="x4B-Ne-APV"/>
+                        <outlet property="descriptionOnboarding" destination="0Pd-gK-fdW" id="AIJ-aw-1En"/>
+                        <outlet property="imageView" destination="QuY-SX-lM9" id="nDm-tl-et0"/>
+                        <outlet property="loginButton" destination="W5r-Je-3YG" id="Phk-6Q-wpO"/>
+                        <outlet property="nextButton" destination="oAp-cs-qQZ" id="wzl-Dr-0J6"/>
+                        <outlet property="pageControl" destination="lA3-jG-zvV" id="7GK-Re-oKn"/>
+                        <outlet property="registerButton" destination="dbl-Ih-IqO" id="uWC-4d-oqm"/>
+                        <outlet property="skipButton" destination="VYU-nm-3gz" id="TUq-in-ihw"/>
+                        <outlet property="titleOnboarding" destination="rkb-rs-cB4" id="9DH-sv-5uV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gd-1t-7Ml" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="627.536231884058" y="-3395.0892857142858"/>
+            <point key="canvasLocation" x="1911.594202898551" y="-2706.0267857142858"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="jLn-mR-6Bt">
+            <objects>
+                <viewController id="UZA-0J-qDw" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WPp-oA-0QP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="iAY-bM-X7b">
+                                <rect key="frame" x="70" y="194" width="274" height="16"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hN2-99-xXl">
+                                <rect key="frame" x="107" y="402" width="200" height="92"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggh-7S-7qT">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="40"/>
+                                        <color key="backgroundColor" red="1" green="0.71372549019999998" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="rfh-aa-zNo"/>
+                                            <constraint firstAttribute="height" constant="40" id="xWT-jH-uIF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                        <state key="normal" title="Đăng ký">
+                                            <color key="titleColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="adN-Ya-644" kind="presentation" id="j37-8J-dzg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yuw-3J-miL">
+                                        <rect key="frame" x="0.0" y="52" width="200" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Hn6-zD-Rbp"/>
+                                            <constraint firstAttribute="width" constant="200" id="YSy-w2-rXn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                        <state key="normal" title="Đăng nhập">
+                                            <color key="titleColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="F0e-4b-AO9" kind="presentation" id="A4b-i5-Cik"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hN2-99-xXl" firstAttribute="centerY" secondItem="WPp-oA-0QP" secondAttribute="centerY" id="Ebe-WK-wyP"/>
+                            <constraint firstItem="iAY-bM-X7b" firstAttribute="top" secondItem="t9y-gA-gWU" secondAttribute="top" constant="150" id="M8U-cY-1x0"/>
+                            <constraint firstItem="hN2-99-xXl" firstAttribute="centerX" secondItem="WPp-oA-0QP" secondAttribute="centerX" id="Zhq-HT-yt1"/>
+                            <constraint firstItem="t9y-gA-gWU" firstAttribute="trailing" secondItem="iAY-bM-X7b" secondAttribute="trailing" constant="70" id="gQi-m4-AVs"/>
+                            <constraint firstItem="iAY-bM-X7b" firstAttribute="leading" secondItem="t9y-gA-gWU" secondAttribute="leading" constant="70" id="jJr-zz-Xnr"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="t9y-gA-gWU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="awn-l9-E9D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2800" y="-2706"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ZPk-xF-BVW">
@@ -798,7 +924,7 @@
                     <navigationItem key="navigationItem" title="DANH SÁCH SẢN PHẨM" id="bSb-MF-L96">
                         <barButtonItem key="backBarButtonItem" title="Quay lại" id="TLj-Ti-0z0"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="0eW-OE-i2F">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ip2-jx-kio">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ip2-jx-kio">
                                 <rect key="frame" x="20" y="5.6666666666666679" width="92" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -865,7 +991,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1ci-wM-k5Q">
-                                                    <rect key="frame" x="160" y="85.333333333333329" width="170" height="46.333333333333329"/>
+                                                    <rect key="frame" x="160" y="85.333333333333329" width="219" height="46.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên sản phẩm:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtR-Bn-7gk">
                                                             <rect key="frame" x="0.0" y="0.0" width="111.66666666666667" height="20.333333333333332"/>
@@ -899,16 +1025,16 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dbQ-oc-6PQ">
-                                                    <rect key="frame" x="20" y="175.66666666666666" width="189.66666666666666" height="20.333333333333343"/>
+                                                    <rect key="frame" x="20" y="175.66666666666666" width="215" height="20.333333333333343"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cửa hàng:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvI-8n-19A">
-                                                            <rect key="frame" x="0.0" y="0.0" width="78.333333333333329" height="20.333333333333332"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã cửa hàng:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvI-8n-19A">
+                                                            <rect key="frame" x="0.0" y="0.0" width="103.66666666666667" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên cửa hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PnX-eH-jfj">
-                                                            <rect key="frame" x="86.333333333333343" y="0.0" width="103.33333333333334" height="20.333333333333332"/>
+                                                            <rect key="frame" x="111.66666666666666" y="0.0" width="103.33333333333334" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                                             <nil key="highlightedColor"/>
@@ -925,6 +1051,7 @@
                                                 <constraint firstItem="QrG-EE-bFX" firstAttribute="leading" secondItem="PlV-q9-xG8" secondAttribute="trailing" constant="15" id="dHZ-e4-6fg"/>
                                                 <constraint firstItem="1ci-wM-k5Q" firstAttribute="top" secondItem="QrG-EE-bFX" secondAttribute="bottom" constant="20" id="dxw-j4-3Gf"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="dbQ-oc-6PQ" secondAttribute="bottom" id="hfj-1A-Sm9"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1ci-wM-k5Q" secondAttribute="trailing" constant="15" id="mgU-8R-yoU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1624,7 +1751,7 @@
         <scene sceneID="ht9-6c-cbU">
             <objects>
                 <navigationController id="0zQ-Ni-06U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Đối thủ" image="rival" id="mXc-1c-FBd"/>
+                    <tabBarItem key="tabBarItem" title="Đối thủ" image="rivals" id="mXc-1c-FBd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="4BW-Z5-nFr">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2465,7 +2592,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VY7-mb-YVT"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Đối thủ" image="rival" id="HNG-FU-Iku"/>
+                    <tabBarItem key="tabBarItem" title="Đối thủ" image="rivals" id="HNG-FU-Iku"/>
                     <navigationItem key="navigationItem" title="THEO DÕI ĐỐI THỦ" id="Tlu-9I-YfP">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="5NV-VE-mDb">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZNX-Y8-D73">
@@ -2501,7 +2628,7 @@
         <!--Sản phẩm-->
         <scene sceneID="1DR-kv-JMn">
             <objects>
-                <navigationController id="R81-OI-raR" sceneMemberID="viewController">
+                <navigationController id="R81-OI-raR" customClass="ProductNavigationViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Sản phẩm" image="product" id="NFQ-sv-qb6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="JWV-m1-YPy">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -2945,26 +3072,29 @@
     </scenes>
     <resources>
         <image name="account" width="16.666666030883789" height="16.666666030883789"/>
-        <image name="analystic" width="125" height="125"/>
         <image name="arrow" width="12.5" height="12.5"/>
-        <image name="arrow-1" width="12.5" height="12.5"/>
-        <image name="backgroundImage" width="512" height="512"/>
+        <image name="arrow-1" width="25" height="25"/>
+        <image name="back arrow" width="25" height="25"/>
+        <image name="backgroundImage" width="289.5" height="214"/>
         <image name="email_red" width="16.666666030883789" height="16.666666030883789"/>
         <image name="facebooklogo" width="96" height="96"/>
         <image name="googlelogo" width="96" height="96"/>
-        <image name="newlogo" width="214.66667175292969" height="30.666666030883789"/>
+        <image name="newlogo" width="328" height="53.5"/>
         <image name="oto đồ chơi" width="250" height="167.5"/>
         <image name="overview" width="32" height="32"/>
         <image name="password" width="16" height="16"/>
         <image name="phoneNumber" width="16.666666030883789" height="16.666666030883789"/>
         <image name="price" width="16.666666030883789" height="16.666666030883789"/>
+        <image name="price follow" width="50" height="50"/>
         <image name="product" width="17.333333969116211" height="17.333333969116211"/>
-        <image name="rival" width="16.666666030883789" height="16.666666030883789"/>
+        <image name="rivals" width="16.666666030883789" height="16.666666030883789"/>
         <image name="shopeelogo" width="16.666666030883789" height="16.666666030883789"/>
         <image name="username" width="16.666666030883789" height="16.666666030883789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nSc-HQ-CrF"/>
+        <segue reference="RtS-Aj-Aye"/>
+        <segue reference="wpp-97-1km"/>
+        <segue reference="Rf2-hR-1tB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -13,6 +13,9 @@ class NavigationContainerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let img = UIImage()
+        navigationController?.navigationBar.shadowImage = img
+//        navigationController?.navigationBar.setBackgroundImage(img, for: .default)
         // Do any additional setup after loading the view.
     }
     

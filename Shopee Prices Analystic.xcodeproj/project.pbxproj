@@ -29,6 +29,7 @@
 		242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */; };
 		242C4FA522F577EE007D4903 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */; };
 		242F519122FE811D00A0E980 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F519022FE811D00A0E980 /* ContainerViewController.swift */; };
+		2431282A230995EC00A02BED /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24312829230995EC00A02BED /* Onboarding.swift */; };
 		2433DB6B22F6C48A00AB0498 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */; };
 		2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */; };
 		2459135C22E2EF4D00D51A4B /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135B22E2EF4D00D51A4B /* UIButton+Extension.swift */; };
@@ -36,9 +37,10 @@
 		2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135F22E2EF6600D51A4B /* UIView+Extension.swift */; };
 		2459136222E2F01600D51A4B /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136122E2F01600D51A4B /* ViewController+Extension.swift */; };
 		2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */; };
-		2469B6F32307CD1400C77F3A /* PriceOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F22307CD1400C77F3A /* PriceOnboardingViewController.swift */; };
+		2469B6F32307CD1400C77F3A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F22307CD1400C77F3A /* OnboardingViewController.swift */; };
 		2469B6F52307CEC500C77F3A /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F42307CEC500C77F3A /* Transition.swift */; };
 		2469B6F72307E0B700C77F3A /* NavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */; };
+		2478557723086A2100EBA0E3 /* ProductNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */; };
 		2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */; };
 		2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65322DDC29200DA6D8E /* AccountViewController.swift */; };
 		2478C65722DDD50D00DA6D8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65622DDD50D00DA6D8E /* User.swift */; };
@@ -107,6 +109,7 @@
 		242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductLineChartViewController.swift; sourceTree = "<group>"; };
 		242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		242F519022FE811D00A0E980 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		24312829230995EC00A02BED /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
 		2459135B22E2EF4D00D51A4B /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -114,9 +117,10 @@
 		2459135F22E2EF6600D51A4B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		2459136122E2F01600D51A4B /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		2469B6F22307CD1400C77F3A /* PriceOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceOnboardingViewController.swift; sourceTree = "<group>"; };
+		2469B6F22307CD1400C77F3A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		2469B6F42307CEC500C77F3A /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Extension.swift"; sourceTree = "<group>"; };
+		2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNavigationViewController.swift; sourceTree = "<group>"; };
 		2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		2478C65322DDC29200DA6D8E /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		2478C65622DDD50D00DA6D8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -239,6 +243,7 @@
 			children = (
 				2416494522E1768900B80DBC /* ProductsTableViewController.swift */,
 				241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */,
+				2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -279,7 +284,7 @@
 		2469B6F12307B6D100C77F3A /* Onboarding Screen */ = {
 			isa = PBXGroup;
 			children = (
-				2469B6F22307CD1400C77F3A /* PriceOnboardingViewController.swift */,
+				2469B6F22307CD1400C77F3A /* OnboardingViewController.swift */,
 			);
 			path = "Onboarding Screen";
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */,
 				2416494922E19F5600B80DBC /* Animator.swift */,
 				2469B6F42307CEC500C77F3A /* Transition.swift */,
+				24312829230995EC00A02BED /* Onboarding.swift */,
 			);
 			path = "Custom Animations";
 			sourceTree = "<group>";
@@ -547,16 +553,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources.sh",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -593,52 +592,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BadgeSwift/BadgeSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
-				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
-				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwipeableTabBarController/SwipeableTabBarController.framework",
-				"${BUILT_PRODUCTS_DIR}/TransitionButton/TransitionButton.framework",
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BadgeSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parchment.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeableTabBarController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionButton.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -652,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2478557723086A2100EBA0E3 /* ProductNavigationViewController.swift in Sources */,
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
 				2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */,
 				BC0FB3A322F7C02C00968E68 /* Network.swift in Sources */,
@@ -665,7 +622,7 @@
 				24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */,
 				2478C65422DDC29200DA6D8E /* AccountViewController.swift in Sources */,
 				241BC1492303F0100097AB59 /* AutoChangePriceTableViewController.swift in Sources */,
-				2469B6F32307CD1400C77F3A /* PriceOnboardingViewController.swift in Sources */,
+				2469B6F32307CD1400C77F3A /* OnboardingViewController.swift in Sources */,
 				24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */,
 				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
 				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
@@ -693,6 +650,7 @@
 				2469B6F52307CEC500C77F3A /* Transition.swift in Sources */,
 				2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */,
 				BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */,
+				2431282A230995EC00A02BED /* Onboarding.swift in Sources */,
 				241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */,
 				2416494822E1770E00B80DBC /* Product.swift in Sources */,
 				242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */,

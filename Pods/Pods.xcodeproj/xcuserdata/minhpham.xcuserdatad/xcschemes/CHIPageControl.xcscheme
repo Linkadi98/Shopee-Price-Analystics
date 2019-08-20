@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4AFB864B337D1F74C1D79F4FC8F6C67F"
-               BuildableName = "RangeSeekSlider.framework"
-               BlueprintName = "RangeSeekSlider"
+               BlueprintIdentifier = "58A7AC722D45BA5EF49F00D98C86978B"
+               BuildableName = "CHIPageControl.framework"
+               BlueprintName = "CHIPageControl"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -35,6 +35,7 @@ class RivalPageViewController: UIViewController {
         
         navigationController?.navigationBar.barTintColor = .white
         
+        
     }
     
     func setUpViewController() {

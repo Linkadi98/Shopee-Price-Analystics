@@ -27,6 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         // Change initial view controller after successful login
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        // begin now when user opens app for the first time, after Launch Screen disapearing, Onboarding Screen will be shown instead of login screen like before
+        // we provide 2 options for user: 1. skip onboarding and go ahead to login screen 2. user can have a walkthough our app depend on Onboarding Screen
+        let onboardingViewController = mainStoryboard.instantiateViewController(withIdentifier: String(describing: OnboardingViewController.self)) as! OnboardingViewController
+        
+        
         var initialViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController // start in login VC
 
         if UserDefaults.standard.object(forKey: "currentUser") != nil {
@@ -46,8 +52,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
                 }
             }
         }
+        
+        // replace by onboarding screen which is above
 
-        self.window?.rootViewController = initialViewController
+//        self.window?.rootViewController = initialViewController
+        
+        self.window?.rootViewController = onboardingViewController
 
         self.window?.makeKeyAndVisible()
         
