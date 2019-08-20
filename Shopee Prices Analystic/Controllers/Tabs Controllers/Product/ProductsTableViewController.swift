@@ -14,7 +14,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     // MARK: - Properties
     @IBOutlet weak var editingButton: UIButton!
-    
+
+    var currentShop: Shop?
     var listProducts: [Product]?
     var filterProducts: [Product]?
     var searchController: UISearchController!
@@ -37,13 +38,30 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
+
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            self.currentShop = currentShop
+        }
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        view.startSkeletonAnimation()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        if listProducts != nil {
-            return
+        if listProducts == nil {
+            isFirstAppear = true
+            hasData = false
+            fetchDataFromServer()
         }
-        fetchDataFromServer()
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            isFirstAppear = true
+            hasData = false
+            if self.currentShop != currentShop {
+                fetchDataFromServer()
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -51,10 +69,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         if listProducts == nil {
             tableView.reloadData()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        view.startSkeletonAnimation()
     }
 
     // MARK: - Table view data source

@@ -60,7 +60,4 @@ class RivalProductTableViewController: UITableViewController {
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
     }
-    
-   
-
 }

@@ -422,7 +422,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -451,7 +451,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShops_path + "/\(myShopId)/\(myProductId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -493,7 +493,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             //Successful request
             let responseValue = response.result.value! as! [String: Any]
             print(responseValue)
-            if responseValue["price"] as! Int == newPrice {
+            if let _ = responseValue["price"] as? Int {
 //                StatusBarNotificationBanner(title: "Sửa giá thành công", style: .success).show()
                 completion("success")
             } else {
