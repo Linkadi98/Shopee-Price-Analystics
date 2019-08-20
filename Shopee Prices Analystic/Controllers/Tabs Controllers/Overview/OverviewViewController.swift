@@ -112,7 +112,7 @@ class OverviewViewController: UIViewController {
         return "THỨ \(dayOfWeek) NGÀY \(day) THÁNG \(month)"
     }
     
-    func fetchingDataFromServer() {
+    private func fetchingDataFromServer() {
         view.hideSkeleton()
         view.showAnimatedSkeleton()
 

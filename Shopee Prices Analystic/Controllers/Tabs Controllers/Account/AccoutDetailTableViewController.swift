@@ -176,6 +176,26 @@ class AccountDetailTableViewController: UITableViewController {
         UserDefaults.standard.removeObject(forKey: "currentUser")
         UserDefaults.standard.removeObject(forKey: "currentShop")
     }
+
+    static func forceloggingout() {
+        print("logout6969")
+        if UserDefaults.standard.string(forKey: "token") != nil {
+            // Delete token
+            UserDefaults.standard.removeObject(forKey: "token")
+            UserDefaults.standard.removeObject(forKey: "expiredTimeOfToken")
+            Network.shared.headers["Authorization"] = nil
+        } else if AccessToken.current != nil {
+            // Logout Fb
+            LoginManager().logOut()
+        } else {
+            // Logout Gg
+            GIDSignIn.sharedInstance()?.signOut()
+        }
+
+        // Delete user data in UserDefaults
+        UserDefaults.standard.removeObject(forKey: "currentUser")
+        UserDefaults.standard.removeObject(forKey: "currentShop")
+    }
     
     // MARK: - Prepare data
     

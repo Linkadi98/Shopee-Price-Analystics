@@ -257,7 +257,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             self.tableView.allowsSelection = true
         }
     }
-    
 }
 
 extension UIView {

@@ -11,12 +11,13 @@ import Foundation
 struct Shop: Codable, Equatable {
     var shopId: String
     var shopName: String
+    var followersCount: Int64
+    var rating: Double
 
 //    public static func == (shop1: Shop, shop2: Shop) -> Bool {
 //        return
 //            shop1.shopId == shop2.shopId &&
 //            shop1.shopName == shop2.shopName
 //    }
-
 }
 

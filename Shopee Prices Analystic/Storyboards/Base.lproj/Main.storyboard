@@ -774,13 +774,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUq-9T-gFQ">
-                                            <rect key="frame" x="15" y="10.000000000000007" width="384" height="116.66666666666669"/>
+                                            <rect key="frame" x="15" y="10" width="384" height="86.333333333333329"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-1Z-59B">
-                                                    <rect key="frame" x="76" y="13.333333333333336" width="150" height="90.333333333333314"/>
+                                                    <rect key="frame" x="76" y="12.999999999999996" width="150" height="60.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6t-i3-J2Y">
-                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="53.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="23.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -792,7 +792,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z4T-kl-Fdd">
-                                                            <rect key="frame" x="0.0" y="73.333333333333343" width="150" height="17"/>
+                                                            <rect key="frame" x="0.0" y="43.333333333333343" width="150" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRl-I8-n2r">
                                                                     <rect key="frame" x="0.0" y="0.0" width="23.666666666666668" height="17"/>
@@ -829,7 +829,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nvi-wa-s3C">
-                                                    <rect key="frame" x="8" y="12.333333333333329" width="60" height="60"/>
+                                                    <rect key="frame" x="8" y="12" width="60" height="60"/>
                                                     <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="8IZ-xc-ALD"/>
@@ -840,7 +840,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GGl-QT-33u">
-                                                    <rect key="frame" x="256" y="13.333333333333336" width="120" height="90.333333333333314"/>
+                                                    <rect key="frame" x="256" y="12.999999999999996" width="120" height="60.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="130.000đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAE-Dj-bvy">
                                                             <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="20.333333333333332"/>
@@ -855,7 +855,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBC-qO-C85" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="40.333333333333329" width="120" height="50"/>
+                                                            <rect key="frame" x="0.0" y="40.333333333333329" width="120" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -1284,7 +1284,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.66666666666666"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaF-Z0-URs">
-                                                    <rect key="frame" x="153" y="109.66666666666667" width="103.66666666666669" height="25.000000000000014"/>
+                                                    <rect key="frame" x="153" y="109.66666666666667" width="120" height="25.000000000000014"/>
                                                     <color key="backgroundColor" red="0.0" green="0.51764705882352935" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="QpI-Ms-LC9"/>
@@ -1292,10 +1292,16 @@
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-rF-7xe" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="153" y="79" width="103.66666666666669" height="20"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-rF-7xe" customClass="CosmosView" customModule="Cosmos">
+                                                    <rect key="frame" x="153" y="79" width="120" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6hr-BK-EVl">
                                                     <rect key="frame" x="153" y="8" width="147.66666666666663" height="59"/>
@@ -1327,6 +1333,9 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kfn-UU-auZ">
                                                     <rect key="frame" x="8" y="8" width="130" height="110"/>
@@ -1335,12 +1344,18 @@
                                                         <constraint firstAttribute="width" constant="130" id="9Bn-af-bgm"/>
                                                         <constraint firstAttribute="height" constant="110" id="YsG-tt-kKJ"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DH-bO-h0b">
                                                     <rect key="frame" x="8" y="126.00000000000001" width="130" height="8.6666666666666714"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="q6x-p4-aaf">
                                                     <rect key="frame" x="8" y="137.66666666666666" width="130" height="15.666666666666657"/>
@@ -1358,6 +1373,9 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-1" translatesAutoresizingMaskIntoConstraints="NO" id="KNN-MO-FPk">
                                                     <rect key="frame" x="362" y="69" width="17" height="25"/>
@@ -1391,6 +1409,9 @@
                                                 <constraint firstItem="Kfn-UU-auZ" firstAttribute="top" secondItem="6hr-BK-EVl" secondAttribute="top" id="tPM-jW-Ou0"/>
                                                 <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="6hr-BK-EVl" secondAttribute="trailing" constant="94.329999999999998" id="vl1-gy-vJ0"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -1399,6 +1420,9 @@
                                         <constraint firstItem="0Sn-J6-3J9" firstAttribute="leading" secondItem="lVI-GA-xqE" secondAttribute="leading" constant="15" id="m9F-7e-eaR"/>
                                         <constraint firstAttribute="bottom" secondItem="0Sn-J6-3J9" secondAttribute="bottom" constant="8" id="xgc-Qs-2nP"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                 </tableViewCellContentView>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -1406,6 +1430,7 @@
                                 <connections>
                                     <outlet property="containerView" destination="0Sn-J6-3J9" id="V6Q-XY-CGE"/>
                                     <outlet property="followStatus" destination="JaF-Z0-URs" id="Ee9-QU-SB3"/>
+                                    <outlet property="followersCount" destination="bmi-bf-nhh" id="mMA-vL-tvV"/>
                                     <outlet property="productImage" destination="Kfn-UU-auZ" id="hMy-2R-1v5"/>
                                     <outlet property="productName" destination="1DH-bO-h0b" id="2Lr-3S-Mtv"/>
                                     <outlet property="productPrice" destination="MoR-Lw-p2g" id="FtZ-Pi-x88"/>

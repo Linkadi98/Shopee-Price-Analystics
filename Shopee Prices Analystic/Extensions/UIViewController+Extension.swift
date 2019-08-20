@@ -254,7 +254,9 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             for value in responseValue {
                 let shopId = String(value["shopid"] as! Int64)
                 let shopName = value["name"] as! String
-                listShops.append(Shop(shopId: shopId, shopName: shopName))
+                let followersCount = value["follower_count"] as! Int64
+                let rating = value["rating_star"] as! Double
+                listShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating))
             }
 
             if listShops.isEmpty {
@@ -376,9 +378,9 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    func getListRivals(shopId: String, productId: String, completion: @escaping ([Product]?) -> Void) {
+    func getListRivals(myShopId: String, myProductId: String, completion: @escaping ([Product]?) -> Void) {
         let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(shopId)/\(productId)")!
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
             // Failed request
@@ -402,6 +404,34 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
                 print("So doi thu: \(listRivals.count)")
             }
             completion(listRivals)
+        }
+    }
+
+    func getListRivalsShops(myShopId: String, myProductId: String, completion: @escaping ([Shop]?) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShops_path + "/\(myShopId)/\(myProductId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion(nil)
+                return
+            }
+
+            //Successful request
+            var listRivalsShops: [Shop] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let shopId = String(value["shopid"] as! Int64)
+                let shopName = value["name"] as! String
+                let followersCount = value["follower_count"] as! Int64
+                let rating = value["rating_star"] as! Double
+                listRivalsShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating))
+                print("So shop doi thu: \(listRivalsShops.count)")
+            }
+            completion(listRivalsShops)
         }
     }
 
