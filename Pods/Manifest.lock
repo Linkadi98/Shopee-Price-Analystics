@@ -1,23 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
   - BadgeSwift (8.0.0)
-  - CHIPageControl (0.1.8):
-    - CHIPageControl/Aji (= 0.1.8)
-    - CHIPageControl/Aleppo (= 0.1.8)
-    - CHIPageControl/Chimayo (= 0.1.8)
-    - CHIPageControl/Fresno (= 0.1.8)
-    - CHIPageControl/Jalapeno (= 0.1.8)
-    - CHIPageControl/Jaloro (= 0.1.8)
-    - CHIPageControl/Paprika (= 0.1.8)
-    - CHIPageControl/Puya (= 0.1.8)
-  - CHIPageControl/Aji (0.1.8)
-  - CHIPageControl/Aleppo (0.1.8)
-  - CHIPageControl/Chimayo (0.1.8)
-  - CHIPageControl/Fresno (0.1.8)
-  - CHIPageControl/Jalapeno (0.1.8)
-  - CHIPageControl/Jaloro (0.1.8)
-  - CHIPageControl/Paprika (0.1.8)
-  - CHIPageControl/Puya (0.1.8)
   - Cosmos (19.0.3)
   - FacebookCore (0.8.0):
     - FBSDKCoreKit (~> 5.0)
@@ -66,8 +49,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - BadgeSwift (~> 8.0)
-  - CHIPageControl (~> 0.1.3)
-  - CHIPageControl/Aleppo
   - Cosmos (~> 19.0)
   - FacebookCore (~> 0.8)
   - FacebookLogin (~> 0.8)
@@ -84,7 +65,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - BadgeSwift
-    - CHIPageControl
     - Cosmos
     - FacebookCore
     - FacebookLogin
@@ -107,7 +87,6 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   BadgeSwift: a81547ffde1f462bb5fc02e3fa3fdcbc1b888354
-  CHIPageControl: 76b35c8309d8dd155e869c109cc6ffc0aaa465ff
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   FacebookCore: 563bb4cbcd7dd86cf89f3729252140bf256aacaa
   FacebookLogin: 8b966ae661e95e7dba837d7cc49cc464ce003dba
@@ -127,6 +106,6 @@ SPEC CHECKSUMS:
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 6acb15aa9937630341b118b7402eb8e9409833cd
+PODFILE CHECKSUM: 8d963b4c3ffdea80dd188f22b0de3f39f104c7b0
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.6.1
