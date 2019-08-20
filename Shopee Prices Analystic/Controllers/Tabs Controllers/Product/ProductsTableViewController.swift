@@ -94,6 +94,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
             
             cell.hideSkeletonAnimation()
+            
+            if tableView.isEditing {
+                showEditingPen(at: cell)
+            }
+            else {
+                hideEditingPen(at: cell)
+            }
         }
 
         return cell
@@ -108,6 +115,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
  
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let product: Product
         
         if listProducts != nil {
@@ -118,13 +126,21 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 product = listProducts![indexPath.row]
     
             }
-            performSegue(withIdentifier: "ProductDetail", sender: product)
-            tableView.deselectRow(at: indexPath, animated: true)
+            
+            if tableView.isEditing {
+                presentChangePriceAlert(for: product)
+                print("Cell is selected")
+            }
+            else {
+                performSegue(withIdentifier: "ProductDetail", sender: product)
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+            
         }
     }
     
     override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return false
     }
     
     
@@ -132,18 +148,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         return .none
     }
     
-    
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        
-        let editPriceButton = UITableViewRowAction(style: .default, title: "Sửa", handler: {(action, indexPath) in
-            
-        })
-        
-        editPriceButton.backgroundColor = .blue
-        
-        return [editPriceButton]
-    }
     
     // MARK: - Skeleton data source
     
@@ -170,24 +174,34 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Actions
     
     @IBAction func editingMode(_ sender: Any) {
-        let tabVC = storyboard?.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
             
+            for cell in tableView.visibleCells {
+                let indexPath = tableView.indexPath(for: cell)!
+                hideEditingPen(at: tableView.cellForRow(at: indexPath)!)
+            }
         }
         else {
             tableView.setEditing(true, animated: true)
-            tabVC.isSwipeEnabled = false
-            tabVC.test()
-            view.hideSkeleton()
+            tableView.allowsSelection = true
+            for cell in tableView.visibleCells {
+                let indexPath: IndexPath = tableView.indexPath(for: cell)!
+                showEditingPen(at: tableView.cellForRow(at: indexPath)!)
+            }
+            
+            
+            print("Reloaded")
         }
+        
+        
     }
     
     
     // MARK: - Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ProductDetail" {
+        if segue.identifier == "ProductDetail" && !tableView.isEditing {
             let vc = segue.destination as! ProductDetailTableViewController
             vc.product = (sender as! Product)
         }
@@ -198,6 +212,42 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     @objc func refresh() {
         fetchDataFromServer()
         tableView.refreshControl?.endRefreshing()
+    }
+    
+    // MARK: - Editing mode
+    
+    private func showEditingPen(at cell: UITableViewCell) {
+        UIView.animate(withDuration: 0.3, animations: {
+            let editingCell = cell as! ProductTableViewCell
+            editingCell.editingPen.alpha = 1
+        })
+    }
+    
+    private func hideEditingPen(at cell: UITableViewCell) {
+        UIView.animate(withDuration: 0.3, animations: {
+            let editingCell = cell as! ProductTableViewCell
+            editingCell.editingPen.alpha = 0
+        })
+    }
+    
+    private func presentChangePriceAlert(for product: Product) {
+        let alert = UIAlertController(title: "Sản phẩm \(product.name!)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { textfield in
+            textfield.borderStyle = .none
+            
+        })
+        
+        let cancel = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { _ in
+            // đối giá tại đây
+        })
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     // MARK: - Private loading data for this class
@@ -224,6 +274,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 if let _ = UserDefaults.standard.data(forKey: "currentShop") {
                     self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm")
                 } else {
+                    
                     let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
                                                             subtitle: "Bấm vào đây để kết nối",
                                                             style: .warning)

@@ -50,7 +50,7 @@ class ListRivalsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RivalCell", for: indexPath) as! RivalTableCell
         guard listRivals != nil, listRivalsShops != nil else {
-            cell.setUnfollowStatus()
+            
             return cell
         }
 
@@ -61,10 +61,9 @@ class ListRivalsTableViewController: UITableViewController {
         loadOnlineImage(from: URL(string: rival.image!)!, to: cell.productImage)
         cell.rivalName.text = rivalShop.shopName
         cell.rivalRating.rating = rivalShop.rating
-        cell.rivalCode.text = rivalShop.shopId
-        cell.followersCount.text = "Theo dõi: \(String(rivalShop.followersCount))"
+        cell.followersCount.text = "\(String(rivalShop.followersCount))"
 
-        cell.setUnfollowStatus()
+        cell.hideSkeletonAnimation()
         
         return cell
     }

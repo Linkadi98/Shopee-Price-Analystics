@@ -14,7 +14,6 @@ class RivalTableCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var rivalName: UILabel!
-    @IBOutlet weak var rivalCode: UILabel!
     @IBOutlet weak var rivalRating: CosmosView!
     @IBOutlet weak var followStatus: UILabel!
     @IBOutlet weak var followersCount: UILabel!
@@ -25,6 +24,8 @@ class RivalTableCell: UITableViewCell {
     override func awakeFromNib() {
         followStatus.layer.masksToBounds = true
         followStatus.layer.cornerRadius = 4
+        
+        setUnfollowStatus()
         
         containerView.setShadow()
         
@@ -42,5 +43,15 @@ class RivalTableCell: UITableViewCell {
         followStatus.backgroundColor = UIColor(red: 0/255, green: 132/255, blue: 255/255, alpha: 1)
         followStatus.text = "Đang theo dõi"
         followStatus.isSkeletonable = true
+    }
+    
+    func hideSkeletonAnimation() {
+        containerView.hideSkeleton()
+        productName.hideSkeleton()
+        rivalName.hideSkeleton()
+        rivalRating.hideSkeleton()
+        followStatus.hideSkeleton()
+        followersCount.hideSkeleton()
+        productPrice.hideSkeleton()
     }
 }
