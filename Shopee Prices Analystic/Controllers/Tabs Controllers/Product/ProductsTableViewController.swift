@@ -36,9 +36,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
-        
-        
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -124,11 +121,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
             else {
                 product = listProducts![indexPath.row]
-    
             }
             
             if tableView.isEditing {
-                presentChangePriceAlert(for: product)
+                presentChangePriceAlert(productIndex: indexPath.row)
                 print("Cell is selected")
             }
             else {
@@ -230,17 +226,50 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         })
     }
     
-    private func presentChangePriceAlert(for product: Product) {
+    private func presentChangePriceAlert(productIndex: Int) {
+        let product = listProducts![productIndex]
         let alert = UIAlertController(title: "Sản phẩm \(product.name!)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textfield in
             textfield.borderStyle = .none
-            
+            textfield.text = String(product.price!)
         })
         
-        let cancel = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { _ in
+        let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
+        let ok = UIAlertAction(title: "OK", style: .default) { _ in
+            guard let newPrice = Int(alert.textFields![0].text!) else {
+                self.presentAlert(message: "Xin mời nhập đúng giá")
+                return
+            }
+
+            guard newPrice != product.price! else {
+                self.presentAlert(title: "Thông báo", message: "Giá không thay đổi")
+                return
+            }
+
+            UIApplication.shared.beginIgnoringInteractionEvents()
+
+            let activityIndicator = self.initActivityIndicator()
+            self.view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
             // đối giá tại đây
-        })
+            self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { result in
+                if result == "failed" {
+                    self.presentAlert(title: "Lỗi kết nối", message: "Kiểm tra kết nối else ")
+                } else if result == "wrong" {
+                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+                } else if result == "success" {
+                    self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
+                    self.listProducts![productIndex].price = newPrice
+                    self.tableView.reloadData()
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+                    activityIndicator.stopAnimating()
+                    if activityIndicator.isAnimating == false {
+                        UIApplication.shared.endIgnoringInteractionEvents()
+                    }
+                }
+            }
+        }
         
         alert.addAction(cancel)
         alert.addAction(ok)
@@ -260,7 +289,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         tableView.allowsSelection = false
         
-        getListProducts { [unowned self] (listProducts) in
+        putListProducts { [unowned self] (listProducts) in
             guard let listProducts = listProducts else {
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
                 self.isFirstAppear = false
