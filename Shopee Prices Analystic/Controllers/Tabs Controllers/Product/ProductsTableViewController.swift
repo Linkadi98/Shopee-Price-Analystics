@@ -13,7 +13,8 @@ import NotificationBannerSwift
 class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SkeletonTableViewDataSource {
     
     // MARK: - Properties
-   
+    @IBOutlet weak var editingButton: UIButton!
+    
     var listProducts: [Product]?
     var filterProducts: [Product]?
     var searchController: UISearchController!
@@ -177,6 +178,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
             
+            changeTextOfEditingButton(text: "Sửa giá")
+            
             for cell in tableView.visibleCells {
                 let indexPath = tableView.indexPath(for: cell)!
                 hideEditingPen(at: tableView.cellForRow(at: indexPath)!)
@@ -184,6 +187,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
         else {
             tableView.setEditing(true, animated: true)
+            changeTextOfEditingButton(text: "Xong")
             tableView.allowsSelection = true
             for cell in tableView.visibleCells {
                 let indexPath: IndexPath = tableView.indexPath(for: cell)!
@@ -248,6 +252,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             self.present(alert, animated: true, completion: nil)
         }
         
+    }
+    
+    private func changeTextOfEditingButton(text: String) {
+        editingButton.setTitle(text, for: .normal)
     }
     
     // MARK: - Private loading data for this class
