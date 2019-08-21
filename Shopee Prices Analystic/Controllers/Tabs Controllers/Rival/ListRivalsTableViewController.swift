@@ -57,7 +57,7 @@ class ListRivalsTableViewController: UITableViewController {
         let rival = listRivals![indexPath.row]
         let rivalShop = listRivalsShops![indexPath.row]
         cell.productName.text = rival.name!
-        cell.productPrice.text = String(rival.price!)
+        cell.productPrice.text = rival.convertPriceToVietnameseCurrency()
         loadOnlineImage(from: URL(string: rival.image!)!, to: cell.productImage)
         cell.rivalName.text = rivalShop.shopName
         cell.rivalRating.rating = rivalShop.rating
@@ -150,7 +150,7 @@ class ListRivalsTableViewController: UITableViewController {
     }
 
     @objc func refresh() {
-        
+        fetchDataFromServer()
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
     }

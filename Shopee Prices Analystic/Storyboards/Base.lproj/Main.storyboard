@@ -779,13 +779,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lUq-9T-gFQ">
-                                            <rect key="frame" x="15" y="10.000000000000007" width="384" height="116.66666666666669"/>
+                                            <rect key="frame" x="15" y="10" width="384" height="86.333333333333329"/>
                                             <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit pen" translatesAutoresizingMaskIntoConstraints="NO" id="2Ym-QZ-8AK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="37" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="37" id="pZh-Hy-PTz"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-1Z-59B">
-                                                    <rect key="frame" x="78" y="13.333333333333336" width="140" height="90.333333333333314"/>
+                                                    <rect key="frame" x="78" y="12.999999999999996" width="140" height="60.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ProductName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6t-i3-J2Y">
-                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="53.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="23.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -797,7 +803,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z4T-kl-Fdd">
-                                                            <rect key="frame" x="0.0" y="73.333333333333343" width="140" height="17"/>
+                                                            <rect key="frame" x="0.0" y="43.333333333333343" width="140" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mã:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRl-I8-n2r">
                                                                     <rect key="frame" x="0.0" y="0.0" width="23.666666666666668" height="17"/>
@@ -840,7 +846,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nvi-wa-s3C">
-                                                    <rect key="frame" x="10" y="15.333333333333336" width="60" height="60.000000000000007"/>
+                                                    <rect key="frame" x="10" y="15" width="60" height="60"/>
                                                     <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="8IZ-xc-ALD"/>
@@ -851,7 +857,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GGl-QT-33u">
-                                                    <rect key="frame" x="256" y="13.333333333333336" width="120" height="90.333333333333314"/>
+                                                    <rect key="frame" x="256" y="12.999999999999996" width="120" height="60.333333333333329"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="130.000đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAE-Dj-bvy">
                                                             <rect key="frame" x="47.333333333333321" y="0.0" width="72.666666666666686" height="20.333333333333332"/>
@@ -866,7 +872,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBC-qO-C85" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="40.333333333333329" width="120" height="50"/>
+                                                            <rect key="frame" x="0.0" y="40.333333333333329" width="120" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -890,12 +896,6 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </stackView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit pen" translatesAutoresizingMaskIntoConstraints="NO" id="2Ym-QZ-8AK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="26" height="12.333333333333334"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="26" id="pZh-Hy-PTz"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -906,7 +906,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="GGl-QT-33u" secondAttribute="trailing" constant="8" id="Qzm-F4-SNs"/>
                                                 <constraint firstItem="l6n-1Z-59B" firstAttribute="leading" secondItem="nvi-wa-s3C" secondAttribute="trailing" constant="8" symbolic="YES" id="Y6h-cj-fgu"/>
                                                 <constraint firstAttribute="bottom" secondItem="l6n-1Z-59B" secondAttribute="bottom" constant="13" id="ZR2-Ob-lqa"/>
-                                                <constraint firstItem="nvi-wa-s3C" firstAttribute="top" secondItem="2Ym-QZ-8AK" secondAttribute="bottom" constant="2.6699999999999999" id="cgR-Hh-JV1"/>
+                                                <constraint firstItem="nvi-wa-s3C" firstAttribute="top" secondItem="2Ym-QZ-8AK" secondAttribute="bottom" constant="-11" id="cgR-Hh-JV1"/>
                                                 <constraint firstItem="2Ym-QZ-8AK" firstAttribute="leading" secondItem="lUq-9T-gFQ" secondAttribute="leading" id="dEZ-42-BJB"/>
                                                 <constraint firstItem="GGl-QT-33u" firstAttribute="top" secondItem="lUq-9T-gFQ" secondAttribute="top" constant="13" id="ipv-9o-4Lz"/>
                                                 <constraint firstAttribute="bottom" secondItem="GGl-QT-33u" secondAttribute="bottom" constant="13" id="kpL-XJ-vpK"/>
@@ -1309,7 +1309,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.66666666666666"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaF-Z0-URs">
-                                                    <rect key="frame" x="153" y="118" width="103.66666666666669" height="25"/>
+                                                    <rect key="frame" x="153" y="118" width="120" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.51764705882352935" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="QpI-Ms-LC9"/>
@@ -1325,7 +1325,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-rF-7xe" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="153" y="79" width="103.66666666666669" height="28.333333333333329"/>
+                                                    <rect key="frame" x="153" y="79" width="120" height="28.333333333333329"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -3146,7 +3146,7 @@
         <image name="arrow-1" width="25" height="25"/>
         <image name="back arrow" width="25" height="25"/>
         <image name="backgroundImage" width="289.5" height="214"/>
-        <image name="edit pen" width="30" height="17"/>
+        <image name="edit pen" width="38" height="27"/>
         <image name="email_red" width="16.666666030883789" height="16.666666030883789"/>
         <image name="facebooklogo" width="96" height="96"/>
         <image name="googlelogo" width="96" height="96"/>

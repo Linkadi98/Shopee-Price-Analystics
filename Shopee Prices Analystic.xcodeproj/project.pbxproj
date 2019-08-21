@@ -51,6 +51,7 @@
 		2484175322D85D810009DF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2484175122D85D810009DF10 /* LaunchScreen.storyboard */; };
 		2484175E22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */; };
 		24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */; };
+		24E56166230D2DB500914506 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E56165230D2DB500914506 /* Int+Extension.swift */; };
 		24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */; };
 		24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EDDD6022D960C400D62704 /* TransitionButton.framework */; };
 		24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F661D422DC26C100440A7A /* TabsViewController.swift */; };
@@ -135,6 +136,7 @@
 		2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopee_Prices_AnalysticTests.swift; sourceTree = "<group>"; };
 		2484175F22D85D810009DF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		24E56165230D2DB500914506 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTabBar.swift; sourceTree = "<group>"; };
 		24EDDD6022D960C400D62704 /* TransitionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TransitionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24F661D422DC26C100440A7A /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */,
 				2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */,
 				2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */,
+				24E56165230D2DB500914506 /* Int+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 				2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */,
 				242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */,
 				2416494A22E19F5600B80DBC /* Animator.swift in Sources */,
+				24E56166230D2DB500914506 /* Int+Extension.swift in Sources */,
 				2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */,
 				BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */,
 				2431282A230995EC00A02BED /* Onboarding.swift in Sources */,
