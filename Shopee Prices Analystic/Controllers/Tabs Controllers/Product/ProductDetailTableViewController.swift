@@ -77,8 +77,13 @@ class ProductDetailTableViewController: UITableViewController {
         configCellContentView(for: inventoryCell, firstItem: "Tồn kho", secondItem: inventoryItem)
         configRatingCell()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            if product?.shopId != currentShop.shopId {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
         update()
     }
 

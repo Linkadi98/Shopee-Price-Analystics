@@ -16,6 +16,8 @@ class ListRivalsTableViewController: UITableViewController {
     var listRivals: [Product]?
     var listRivalsShops: [Shop]?
 
+    var isFirstAppear = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +30,18 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
-        fetchDataFromServer()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            if product?.shopId != currentShop.shopId {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+
+        if isFirstAppear {
+            fetchDataFromServer()
+        }
     }
 
     // MARK: - Table view data source
@@ -112,6 +125,8 @@ class ListRivalsTableViewController: UITableViewController {
             if doneloadingRivals, doneloadingRivalsShops {
                 doneloadingRivals = false
                 doneloadingRivalsShops = false
+
+                self.isFirstAppear = false
 
                 self.tableView.reloadData()
 

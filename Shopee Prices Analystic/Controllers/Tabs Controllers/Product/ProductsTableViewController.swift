@@ -42,6 +42,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
             self.currentShop = currentShop
         }
+        print("ProductTVC did load")
     }
 
 
@@ -51,14 +52,17 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     override func viewDidAppear(_ animated: Bool) {
         if listProducts == nil {
+            print("listProducts is nil")
             isFirstAppear = true
             hasData = false
             fetchDataFromServer()
-        }
-        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-            isFirstAppear = true
-            hasData = false
+        } else if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            print("old shop: \(self.currentShop!)")
+            print("new shop: \(currentShop)")
             if self.currentShop != currentShop {
+                self.currentShop = currentShop
+                isFirstAppear = true
+                hasData = false
                 fetchDataFromServer()
             }
         }
@@ -66,9 +70,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     override func viewDidDisappear(_ animated: Bool) {
         view.stopSkeletonAnimation()
-        if listProducts == nil {
-            tableView.reloadData()
-        }
+//        if listProducts == nil {
+//            tableView.reloadData()
+//        }
     }
 
     // MARK: - Table view data source
@@ -272,7 +276,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             // đối giá tại đây
             self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { result in
                 if result == "failed" {
-                    self.presentAlert(title: "Lỗi kết nối", message: "Kiểm tra kết nối else ")
+                    self.presentAlert(title: "Lỗi kết nối", message: "Kiểm tra kết nối")
                 } else if result == "wrong" {
                     self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
                 } else if result == "success" {
@@ -347,7 +351,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             if !self.hasData {
-                print("Danh sach cc: \(listProducts)")
+                print("So san pham la: \(listProducts.count)")
                 self.listProducts = listProducts
                 self.hasData = true
                 self.tableView.reloadData()

@@ -17,6 +17,11 @@ class ProductNavigationViewController: UINavigationController {
         navigationController?.navigationBar.shadowImage = img
         // Do any additional setup after loading the view.
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        print("Product NVC")
+        print(navigationController?.viewControllers.count)
+    }
     
 
     /*
