@@ -13,7 +13,12 @@ import NotificationBannerSwift
 class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SkeletonTableViewDataSource {
     
     // MARK: - Properties
-    @IBOutlet weak var editingButton: UIButton!
+    @IBOutlet weak var editingButton: UIButton! {
+        didSet {
+            editingButton.layer.cornerRadius = 8
+            editingButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
+        }
+    }
     
     var listProducts: [Product]?
     var filterProducts: [Product]?

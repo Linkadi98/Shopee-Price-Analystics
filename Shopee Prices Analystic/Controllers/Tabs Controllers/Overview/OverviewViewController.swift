@@ -71,6 +71,8 @@ class OverviewViewController: UIViewController {
         refresher.addTarget(self, action: #selector(refresh), for: .valueChanged)
         refresher.tintColor = UIColor.orange
         scrollView.addSubview(refresher)
+        
+        // perform tutorial view if user has not connected to any shop, redirect them to account tab
     }
     
     override func viewWillAppear(_ animated: Bool) {
