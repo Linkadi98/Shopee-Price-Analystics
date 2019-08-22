@@ -46,14 +46,13 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             tableView.reloadData()
         }
     }
-    
 
     override func viewDidAppear(_ animated: Bool) {
         if listShops != nil {
             return
         }
-        fetchingDataFromServer()
-        print("Danh sach abc: \(listShops)")
+        fetchDataFromServer()
+        print("Danh sach shop: \(listShops)")
     }
     
     
@@ -149,7 +148,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                         } else if result == "success" {
                             self.changeCurrentShop(newShop: model)
                             self.hasData = false
-                            self.fetchingDataFromServer() {
+                            self.fetchDataFromServer() {
                                 self.tabBarController?.selectedIndex = 0
                             }
                         }
@@ -196,7 +195,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     // MARK: - Fetching data from server
     
-    private func fetchingDataFromServer(completionAfterChangeShop completion: (() -> Void)? = nil) {
+    private func fetchDataFromServer(completionAfterChangeShop completion: (() -> Void)? = nil) {
         tableView.reloadData()
         
         view.hideSkeleton()
@@ -257,8 +256,8 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                         self.hasData = false
                         let currentNumberOfRows = tableView.numberOfRows(inSection: 0)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                            self.fetchingDataFromServer()
-                            print("DMDM: \(self.tableView.numberOfRows(inSection: 0))")
+                            self.fetchDataFromServer()
+                            print("Số hàng: \(self.tableView.numberOfRows(inSection: 0))")
                             if self.tableView.numberOfRows(inSection: 0) > currentNumberOfRows {
                                 self.presentAlert(title: "Thông báo", message: "Đã thêm thành công")
                             }

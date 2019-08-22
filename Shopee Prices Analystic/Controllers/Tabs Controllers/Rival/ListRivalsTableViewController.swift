@@ -16,6 +16,8 @@ class ListRivalsTableViewController: UITableViewController {
     var listRivals: [Product]?
     var listRivalsShops: [Shop]?
 
+    var isFirstAppear = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +30,18 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
-        fetchDataFromServer()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            if product?.shopId != currentShop.shopId {
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
+
+        if isFirstAppear {
+            fetchDataFromServer()
+        }
     }
 
     // MARK: - Table view data source
@@ -50,7 +63,6 @@ class ListRivalsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RivalCell", for: indexPath) as! RivalTableCell
         guard listRivals != nil, listRivalsShops != nil else {
-            
             return cell
         }
 
@@ -74,6 +86,12 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! RivalTableCell
+        let rival = listRivals![indexPath.row]
+        chooseRival(myProductId: (product?.id)!, myShopId: (product?.shopId)!, rivalProductId: rival.id!, rivalShopId: rival.shopId!) { (result) in
+            if result == "success" {
+                print("Choose rival OK")
+            }
+        }
         cell.setFollowStatus()
         tabBarController?.selectedIndex = 3
         if let vc = tabBarController?.selectedViewController as? RivalPageViewController {
@@ -107,6 +125,8 @@ class ListRivalsTableViewController: UITableViewController {
             if doneloadingRivals, doneloadingRivalsShops {
                 doneloadingRivals = false
                 doneloadingRivalsShops = false
+
+                self.isFirstAppear = false
 
                 self.tableView.reloadData()
 

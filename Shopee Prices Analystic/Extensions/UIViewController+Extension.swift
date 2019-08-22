@@ -333,7 +333,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         if let encoded = try? JSONEncoder().encode(newShop) {
             UserDefaults.standard.set(encoded, forKey: "currentShop")
         }
-        print("Changrsjsj: \(newShop)")
+        print("Change to: \(newShop)")
     }
 
     // put list products from DB
@@ -344,7 +344,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
             if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                 url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
-                print("6969: \(currentShop.shopId)")
+                print("Đang lấy sản phẩm của shop: \(currentShop.shopName) \(currentShop.shopId)")
             }
         } else {
             print("Chua co san pham vi chua ket noi cua hang")
@@ -371,7 +371,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
                 let price = Int(value["price"] as! Double)
                 let image = (value["images"] as! [String])[0]
                 listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
-                print("So san pham: \(listProducts.count)")
             }
             completion(listProducts)
         }
@@ -385,7 +384,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
             if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                 url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
-                print("6969: \(currentShop.shopId)")
+                print("Đang lấy sản phẩm của shop: \(currentShop.shopName) \(currentShop.shopId)")
             }
         } else {
             print("Chua co san pham vi chua ket noi cua hang")
@@ -412,7 +411,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
                 let price = Int(value["price"] as! Double)
                 let image = (value["images"] as! [String])[0]
                 listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
-                print("So san pham: \(listProducts.count)")
             }
             completion(listProducts)
         }
@@ -422,7 +420,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -451,7 +449,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShops_path + "/\(myShopId)/\(myProductId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).validate().responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 print("Error when fetching data: \(response.result.error)")
@@ -493,13 +491,42 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             //Successful request
             let responseValue = response.result.value! as! [String: Any]
             print(responseValue)
-            if responseValue["price"] as! Int == newPrice {
-//                StatusBarNotificationBanner(title: "Sửa giá thành công", style: .success).show()
+            if let _ = responseValue["price"] as? Int {
                 completion("success")
             } else {
-//                self.presentAlert(message: "Sửa giá thất bại, vui lòng thử lại sau")
                 completion("error")
             }
+        }
+    }
+
+    // choose rival
+    func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, completion: @escaping (String) -> Void) {
+        let sharedNetwork = Network.shared
+        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+        let url = URL(string: Network.shared.base_url + Network.shared.rivalChoice_path)!
+        let parameters: Parameters = [
+            "itemid": myProductId,
+            "shopid": myShopId,
+            "rivalShopid": rivalShopId,
+            "rivalItemid": rivalProductId
+        ]
+
+        print(url)
+        print(parameters)
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion("failed")
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value! as! [String: Any]
+            print(responseValue)
+            completion("success")
         }
     }
     

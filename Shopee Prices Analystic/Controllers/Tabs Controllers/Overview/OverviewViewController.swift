@@ -91,14 +91,7 @@ class OverviewViewController: UIViewController {
             }
         }
     }
-
-
-    override func viewDidAppear(_ animated: Bool) {
-
-    }
-    // MARK: - Configuration
-    
-    
+  
     // MARK: - Private modifications
     private func setTime() -> String {
         let date = Date()
@@ -126,7 +119,7 @@ class OverviewViewController: UIViewController {
                 return
             }
 
-            print("Ds shop 69: \(listShops)")
+            print("Ds shop: \(listShops)")
 
             if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
                     self.currentShop = currentShop

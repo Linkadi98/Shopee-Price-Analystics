@@ -19,7 +19,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             editingButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
         }
     }
-    
+
+    var currentShop: Shop?
     var listProducts: [Product]?
     var filterProducts: [Product]?
     var searchController: UISearchController!
@@ -42,24 +43,41 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
+
+        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            self.currentShop = currentShop
+        }
+        print("ProductTVC did load")
+    }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        view.startSkeletonAnimation()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        if listProducts != nil {
-            return
+        if listProducts == nil {
+            print("listProducts is nil")
+            isFirstAppear = true
+            hasData = false
+            fetchDataFromServer()
+        } else if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+            print("old shop: \(self.currentShop!)")
+            print("new shop: \(currentShop)")
+            if self.currentShop != currentShop {
+                self.currentShop = currentShop
+                isFirstAppear = true
+                hasData = false
+                fetchDataFromServer()
+            }
         }
-        fetchDataFromServer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         view.stopSkeletonAnimation()
-        if listProducts == nil {
-            tableView.reloadData()
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        view.startSkeletonAnimation()
+//        if listProducts == nil {
+//            tableView.reloadData()
+//        }
     }
 
     // MARK: - Table view data source
@@ -257,13 +275,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             // đối giá tại đây
             self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { result in
                 if result == "failed" {
-                    self.presentAlert(title: "Lỗi kết nối", message: "Kiểm tra kết nối else ")
+                    self.presentAlert(title: "Lỗi kết nối", message: "Kiểm tra kết nối")
                 } else if result == "wrong" {
                     self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
                 } else if result == "success" {
                     self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
                     self.listProducts![productIndex].price = newPrice
-                    self.tableView.reloadData()
+                    self.tableView.reloadRows(at: [IndexPath(row: productIndex, section: 0)], with: .automatic)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                     activityIndicator.stopAnimating()
@@ -331,7 +349,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             if !self.hasData {
-                print("Danh sach cc: \(listProducts)")
+                print("So san pham la: \(listProducts.count)")
                 self.listProducts = listProducts
                 self.hasData = true
                 self.tableView.reloadData()
