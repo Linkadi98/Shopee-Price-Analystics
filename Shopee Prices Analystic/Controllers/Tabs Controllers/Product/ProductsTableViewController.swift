@@ -194,14 +194,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 let indexPath: IndexPath = tableView.indexPath(for: cell)!
                 showEditingPen(at: tableView.cellForRow(at: indexPath)!)
             }
-            
-            
-            print("Reloaded")
         }
-        
-        
     }
-    
     
     // MARK: - Segue
     
@@ -285,7 +279,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
-        
     }
     
     private func changeTextOfEditingButton(text: String) {

@@ -12,7 +12,12 @@ import Cosmos
 class RivalTableCell: UITableViewCell {
     
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var productImage: UIImageView!
+    @IBOutlet weak var productImage: UIImageView! {
+        didSet {
+            productImage.layer.cornerRadius = 8
+            productImage.layer.maskedCorners = [.layerMinXMinYCorner]
+        }
+    }
     @IBOutlet weak var rivalName: UILabel!
     @IBOutlet weak var rivalRating: CosmosView!
     @IBOutlet weak var followStatus: UILabel!

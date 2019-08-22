@@ -13,7 +13,7 @@ class Network {
     static let shared = Network()
 //    let base_url = "http://192.168.1.3:8081"
 
-    let base_url = "http://172.20.10.3:8081"
+    let base_url = "https://24e9c45c.ngrok.io"
     let login_path = "/login"
     let register_path = "/register"
     let forget_path = "/forget"

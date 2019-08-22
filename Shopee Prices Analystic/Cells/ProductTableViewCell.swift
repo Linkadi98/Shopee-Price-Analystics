@@ -13,7 +13,12 @@ import SkeletonView
 class ProductTableViewCell: UITableViewCell {
 
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var productImage: UIImageView!
+    @IBOutlet weak var productImage: UIImageView! {
+        didSet {
+            productImage.layer.cornerRadius = 8
+            productImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        }
+    }
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productPrice: UILabel!
