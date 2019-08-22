@@ -168,6 +168,14 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         return .none
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let searchForRivals = UITableViewRowAction(style: .normal, title: "Tìm đối thủ", handler: { (action, indexPath) in
+            
+        })
+        
+        searchForRivals.
+    }
+    
     
     // MARK: - Skeleton data source
     

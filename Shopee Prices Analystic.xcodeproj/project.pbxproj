@@ -23,6 +23,8 @@
 		241D5A7322E57A8C00CBA60C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5A7222E57A8C00CBA60C /* Account.swift */; };
 		2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */; };
 		2421730B22FD602800541024 /* RivalTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421730A22FD602800541024 /* RivalTableCell.swift */; };
+		2422105B230E910800E8FBCC /* ChosenRivalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422105A230E910800E8FBCC /* ChosenRivalsTableViewController.swift */; };
+		2422105D230E91DA00E8FBCC /* ChosenRivalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422105C230E91DA00E8FBCC /* ChosenRivalCell.swift */; };
 		242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361D822FAA6A300EFC57A /* RivalPageViewController.swift */; };
 		242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */; };
 		242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */; };
@@ -104,6 +106,8 @@
 		241D5A7222E57A8C00CBA60C /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRivalsTableViewController.swift; sourceTree = "<group>"; };
 		2421730A22FD602800541024 /* RivalTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalTableCell.swift; sourceTree = "<group>"; };
+		2422105A230E910800E8FBCC /* ChosenRivalsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenRivalsTableViewController.swift; sourceTree = "<group>"; };
+		2422105C230E91DA00E8FBCC /* ChosenRivalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenRivalCell.swift; sourceTree = "<group>"; };
 		242361D822FAA6A300EFC57A /* RivalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalPageViewController.swift; sourceTree = "<group>"; };
 		242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalInfoViewController.swift; sourceTree = "<group>"; };
 		242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductTableViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +213,7 @@
 				241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */,
 				241BC1482303F0100097AB59 /* AutoChangePriceTableViewController.swift */,
 				247C5E9D2306AE170072B0E3 /* NavigationContainerViewController.swift */,
+				2422105A230E910800E8FBCC /* ChosenRivalsTableViewController.swift */,
 			);
 			path = Rival;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */,
 				2421730A22FD602800541024 /* RivalTableCell.swift */,
 				241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */,
+				2422105C230E91DA00E8FBCC /* ChosenRivalCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -685,6 +691,7 @@
 				2459135E22E2EF5B00D51A4B /* UITableView+Extension.swift in Sources */,
 				2469B6F72307E0B700C77F3A /* NavigationBar+Extension.swift in Sources */,
 				2421730B22FD602800541024 /* RivalTableCell.swift in Sources */,
+				2422105B230E910800E8FBCC /* ChosenRivalsTableViewController.swift in Sources */,
 				241BC1452303B0140097AB59 /* ChosenProductsTableViewController.swift in Sources */,
 				242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */,
 				242C4FA522F577EE007D4903 /* UIAlertController+Extension.swift in Sources */,
@@ -706,6 +713,7 @@
 				2431282A230995EC00A02BED /* Onboarding.swift in Sources */,
 				241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */,
 				2416494822E1770E00B80DBC /* Product.swift in Sources */,
+				2422105D230E91DA00E8FBCC /* ChosenRivalCell.swift in Sources */,
 				24F842EB230B95360050C2A0 /* OnboardingLoginViewController.swift in Sources */,
 				242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */,
 			);
@@ -871,7 +879,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6F7N7GM7FK;
+				DEVELOPMENT_TEAM = NBAJ2RV8ZK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -881,7 +889,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sapo.Shopee-Prices-Analystics";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sapo.Shopee-Prices-Analystic";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -894,7 +902,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6F7N7GM7FK;
+				DEVELOPMENT_TEAM = NBAJ2RV8ZK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -904,7 +912,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sapo.Shopee-Prices-Analystics";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sapo.Shopee-Prices-Analystic";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
