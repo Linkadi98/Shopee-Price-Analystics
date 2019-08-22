@@ -282,7 +282,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 } else if result == "success" {
                     self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
                     self.listProducts![productIndex].price = newPrice
-                    self.tableView.reloadData()
+                    self.tableView.reloadRows(at: [IndexPath(row: productIndex, section: 0)], with: .automatic)
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                     activityIndicator.stopAnimating()
