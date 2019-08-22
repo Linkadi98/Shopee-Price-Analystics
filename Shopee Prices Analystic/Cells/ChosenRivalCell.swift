@@ -20,7 +20,12 @@ class ChosenRivalCell: UITableViewCell {
     @IBOutlet weak var follower: UILabel!
     @IBOutlet weak var rivalShopRating: CosmosView!
     @IBOutlet weak var followStatus: UILabel!
-    @IBOutlet weak var autoStatus: UIImageView!
+    @IBOutlet weak var autoStatus: UIImageView! {
+        didSet {
+            autoStatus.layer.cornerRadius = 8
+            autoStatus.layer.maskedCorners = [.layerMinXMaxYCorner]
+        }
+    }
     
     var off = #imageLiteral(resourceName: "auto off")
     var on = #imageLiteral(resourceName: "auto")
