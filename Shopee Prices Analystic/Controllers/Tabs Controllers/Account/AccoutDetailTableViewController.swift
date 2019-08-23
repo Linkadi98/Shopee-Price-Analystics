@@ -108,7 +108,7 @@ class AccountDetailTableViewController: UITableViewController {
                 activityIndicator.startAnimating()
 
                 if let currentUserData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: currentUserData) {
-                    self.checkAccount(username: currentUser.name!, password: alert.textFields![0].text!, completion: { result in
+                    self.checkAccount(username: currentUser.name, password: alert.textFields![0].text!, completion: { result in
                         if result == "wrong" {
                             self.presentAlert(message: "Sai mật khẩu")
                         } else if result == "success" {
@@ -149,11 +149,11 @@ class AccountDetailTableViewController: UITableViewController {
     // MARK: - Private modifications
     private func getInfoOfAccount() {
         if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
-            userName.text = currentUser.name!
-            email.text = currentUser.email!
+            userName.text = currentUser.name
+            email.text = currentUser.email
             phoneNumber.text = currentUser.phone!
             
-            loadOnlineImage(from: URL(string: currentUser.image!)!, to: self.avatar)
+            loadOnlineImage(from: URL(string: currentUser.image)!, to: self.avatar)
         }
     }
 

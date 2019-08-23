@@ -9,7 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import GoogleSignIn
-
+//Bỏ
 class AccountViewController: UIViewController {
 
     // MARK: - Properties
@@ -23,9 +23,9 @@ class AccountViewController: UIViewController {
 
         // Load username and avatar
         if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
-            accountName.text = currentUser.name!
+            accountName.text = currentUser.name
 
-            loadOnlineImage(from: URL(string: currentUser.image!)!, to: self.avatar)
+            loadOnlineImage(from: URL(string: currentUser.image)!, to: self.avatar)
         }
 
         print(GIDSignIn.sharedInstance()?.currentUser)

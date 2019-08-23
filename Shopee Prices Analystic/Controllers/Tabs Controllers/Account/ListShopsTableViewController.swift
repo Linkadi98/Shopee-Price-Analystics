@@ -142,7 +142,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                 activityIndicator.startAnimating()
 
                 if let currentUserData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: currentUserData) {
-                    self.checkAccount(username: currentUser.name!, password: customPasswordConfirmAlert.textFields![0].text!, completion: { result in
+                    self.checkAccount(username: currentUser.name, password: customPasswordConfirmAlert.textFields![0].text!, completion: { result in
                         if result == "wrong" {
                             self.presentAlert(message: "Sai mật khẩu")
                         } else if result == "success" {

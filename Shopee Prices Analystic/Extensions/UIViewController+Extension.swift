@@ -84,7 +84,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             let email = fbDictionary["email"] as! String
 
             print(id)
-            let currentUser = User(name: name, image: "https://graph.facebook.com/\(id)/picture?type=large", email: email, phone: nil)
+            let currentUser = User(userName: nil, email: email, name: name, image: "https://graph.facebook.com/\(id)/picture?type=large", phone: nil)
 
             // lưu currentUser trong UserDefaults
             if let encoded = try? JSONEncoder().encode(currentUser) {
@@ -136,7 +136,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             pic = user.profile.imageURL(withDimension: 150)!.absoluteString
         }
 
-        let currentUser = User(name: fullName!, image: pic, email: email, phone: nil)
+        let currentUser = User(userName: nil, email: email!, name: fullName!, image: pic, phone: nil)
 
         if let encoded = try? JSONEncoder().encode(currentUser) {
             UserDefaults.standard.set(encoded, forKey: "currentUser")
@@ -159,12 +159,12 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
             //Successful request
             let responseValue = response.result.value! as! [String: Any]
             let phone = responseValue["phone"] as? String
-            if let email = responseValue["email"] as? String {
-                // Lưu currentUser trong UserDefaults
-                let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", email: email, phone: phone) // NEED EDITED
-                if let encoded = try? JSONEncoder().encode(currentUser) {
-                    UserDefaults.standard.set(encoded, forKey: "currentUser")
-                }
+            let email = responseValue["email"] as! String
+            let name = responseValue["name"] as! String
+
+            let currentUser = User(userName: username, email: email, name: name, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", phone: phone)
+            if let encoded = try? JSONEncoder().encode(currentUser) {
+                UserDefaults.standard.set(encoded, forKey: "currentUser")
             }
             completion()
         }
@@ -566,6 +566,102 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         return activityIndicator
     }
 }
+
+
+// Network activities
+extension UIViewController {
+    // Check if connection was failed
+    func checkSuccessConnection(_ response: DataResponse<Any>) -> Bool {
+        guard response.result.isSuccess else {
+            // Show errors
+            if let error = response.result.error {
+                print("Error when fetching data: \(error).")
+            } else {
+                print("Unknown error when fetching data.")
+            }
+
+            // Notify users
+            StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+            return false
+        }
+
+        return true
+    }
+
+    func saveTokenAndCurrentUser(token: String, currentUser: User) {
+        UserDefaults.standard.set(token, forKey: "token")
+        UserDefaults.standard.set(Date(timeIntervalSinceNow: 21600), forKey: "expiredTimeOfToken")
+        Network.shared.headers["Authorization"] = token
+        saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
+    }
+
+    func saveObjectInUserDefaults(object: AnyObject, forKey key: String) {
+        switch key {
+        case "currentUser":
+            let currentUser = object as! User
+            if let encoded = try? JSONEncoder().encode(currentUser) {
+                UserDefaults.standard.set(encoded, forKey: "currentUser")
+            }
+        default: break
+        }
+    }
+
+    func getObjectInUserDefaults(forKey key: String) -> AnyObject? {
+        if let data = UserDefaults.standard.data(forKey: key) {
+            switch key {
+            case "currentUser":
+                if let currentUser = try? JSONDecoder().decode(User.self, from: data) {
+                    return currentUser as AnyObject
+                }
+            default: break
+            }
+        }
+        return nil
+    }
+}
+
+// Register
+extension UIViewController {
+    func register(name: String, phone: String?, email: String, username: String, password: String, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.register_path)!
+        var parameters: Parameters = [
+            "username" : username,
+            "password" : password,
+            "email": email,
+            "name": name
+        ]
+        if let phone = phone {
+            parameters["phone"] = phone
+        }
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                // Failed request
+                guard self.checkSuccessConnection(response) else {
+                    completion(.failed)
+                    return
+                }
+
+                // Successful request
+                let responseValue = response.result.value! as! [String: Any]
+                guard let token = responseValue["token"] as? String else {
+                    completion(.error)
+                    return
+                }
+
+                // Save token
+                print(token)
+                let currentUser = User(userName: username, email: email, name: name, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", phone: phone)
+                self.saveTokenAndCurrentUser(token: token, currentUser: currentUser)
+                
+                completion(.success)
+            }
+        }
+    }
+}
+
+
 
 
 

@@ -11,9 +11,9 @@ import Alamofire
 
 class Network {
     static let shared = Network()
-//    let base_url = "http://192.168.1.3:8081"
+//    let base_url = "http://192.168.100.16:8081"
 
-    let base_url = "https://24e9c45c.ngrok.io"
+    let base_url = "http://192.168.100.16:8081"
     let login_path = "/login"
     let register_path = "/register"
     let forget_path = "/forget"
@@ -44,5 +44,11 @@ class Network {
         // Request
         return Alamofire.request(request as URLRequestConvertible)
     }
+}
+
+enum ConnectionResults {
+    case failed
+    case error
+    case success
 }
 

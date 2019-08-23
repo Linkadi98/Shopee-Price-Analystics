@@ -123,8 +123,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let activityIndicator = initActivityIndicator()
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-        
-        self.register(phone: "696969", email: email.text!, username: userName.text!, password: password.text!) {
+
+        self.register(name: "Thanh Duy Truong", phone: nil, email: email.text!, username: userName.text!, password: password.text!) { (result) in
+            switch result {
+            case .error:
+                self.presentAlert(message: "Email hoặc tài khoản đã tồn tại")
+            case .success:
+                // Screen movement
+                self.performSegue(withIdentifier: "RegisterVCToTabsVC", sender: nil)
+            default: break
+            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                 activityIndicator.stopAnimating()
                 if activityIndicator.isAnimating == false {
@@ -197,96 +205,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         scrollView.scrollIndicatorInsets = contentInsets
     }
 
-}
-
-// Register
-extension RegisterViewController {
-    func register(phone: String?, email: String, username: String, password: String, completion: @escaping () -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.register_path)!
-        var parameters: Parameters = [
-            "username" : username,
-            "password" : password,
-            "email": email
-        ]
-        if let phone = phone {
-            parameters["phone"] = phone
-        }
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                // Failed request
-                guard response.result.isSuccess else {
-                    print("Error when fetching data: \(response.result.error)")
-                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                    completion()
-                    return
-                }
-
-                // Successful request
-                let responseValue = response.result.value! as! [String: Any]
-                print(responseValue)
-                guard let token = responseValue["token"] as? String else {
-                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
-                    completion()
-                    return
-                }
-
-                // Save token
-                print(token)
-                UserDefaults.standard.set(token, forKey: "token")
-                UserDefaults.standard.set(Date(timeIntervalSinceNow: 21600), forKey: "expiredTimeOfToken")
-                sharedNetwork.headers["Authorization"] = token
-
-                // Lưu currentUser trong UserDefaults
-                let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", email: email, phone: phone) // NEED EDITED
-                if let encoded = try? JSONEncoder().encode(currentUser) {
-                    UserDefaults.standard.set(encoded, forKey: "currentUser")
-                }
-
-                completion()
-
-                // Screen movement
-                self.performSegue(withIdentifier: "RegisterVCToTabsVC", sender: nil)
-            }
-        }
-    }
-//        let url = URL(string: Config.BASE_URL + Config.REGISTER_PATH)!
-//        let parameters: Parameters = [
-//            "phone": phone,
-//            "email": email,
-//            "username" : username,
-//            "password" : password
-//        ]
-//
-//        let alamofireManager = AlamofireManager(timeoutInterval: 10).manager
-//
-//        alamofireManager.request(url, method: .post, parameters: parameters, encoding: JSONEncoding(options: []), headers: Config.HEADERS).validate().responseJSON { (response) in
-//            guard response.result.isSuccess else {
-//                // TO BE DONE
-//                let banner = StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger)
-//                banner.show()
-//                print("Error when fetching data: \(response.result.error)")
-//                return
-//            }
-//
-//            let responseValue = response.result.value! as! [String: Any]
-//            let token = responseValue["token"] as! String
-//            print(token)
-//            UserDefaults.standard.set(token, forKey: "token")
-//            Config.HEADERS["Authorization"] = token
-//
-//            let currentUser = User(name: username, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42") // NEED EDITED
-//
-//            // lưu currentUser trong UserDefaults
-//            if let encoded = try? JSONEncoder().encode(currentUser) {
-//                UserDefaults.standard.set(encoded, forKey: "currentUser")
-//            }
-//
-//            // Screen movement
-//            self.moveVC(viewController: self, toViewControllerHasId: "TabsViewController")
-//        }
-//    }
 }
 
 // Check registering

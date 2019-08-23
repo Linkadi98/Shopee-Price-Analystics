@@ -129,7 +129,7 @@ extension AppDelegate {
             pic = user.profile.imageURL(withDimension: 150)!.absoluteString
         }
 
-        let currentUser = User(name: fullName!, image: pic, email: email, phone: nil)
+        let currentUser = User(userName: nil, email: email!, name: fullName!, image: pic, phone: nil)
 
         if let encoded = try? JSONEncoder().encode(currentUser) {
             UserDefaults.standard.set(encoded, forKey: "currentUser")
