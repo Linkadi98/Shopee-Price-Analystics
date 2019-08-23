@@ -538,27 +538,42 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 
         return activityIndicator
     }
+
+    func startLoading() -> UIActivityIndicatorView {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
+        let activityIndicator = self.initActivityIndicator()
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }
+
+    func endLoading(_ activityIndicator: UIActivityIndicatorView) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+//            activityIndicator.stopAnimating()
+//            if activityIndicator.isAnimating == false {
+//                UIApplication.shared.endIgnoringInteractionEvents()
+//            }
+//        }
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
 }
 
 
 // Network activities
 extension UIViewController {
     // Check if connection was failed
-    func checkSuccessConnection(_ response: DataResponse<Any>) -> Bool {
-        guard response.result.isSuccess else {
-            // Show errors
-            if let error = response.result.error {
-                print("Error when fetching data: \(error).")
-            } else {
-                print("Unknown error when fetching data.")
-            }
-
-            // Notify users
-            StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-            return false
+    func notifyFailedConnection(error: Error?) {
+        // Show errors
+        if let error = error {
+            print("Error when fetching data: \(error).")
+        } else {
+            print("Unknown error when fetching data.")
         }
-
-        return true
+        
+        // Notify users
+        StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
     }
 
     func saveToken(token: String) {
@@ -592,7 +607,7 @@ extension UIViewController {
     }
 }
 
-// Register
+// Users API
 extension UIViewController {
     func register(name: String, phone: String?, email: String, username: String, password: String, completion: @escaping (ConnectionResults) -> Void) {
         let sharedNetwork = Network.shared
@@ -610,7 +625,8 @@ extension UIViewController {
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 // Failed request
-                guard self.checkSuccessConnection(response) else {
+                guard response.result.isSuccess else {
+                    self.notifyFailedConnection(error: response.result.error)
                     completion(.failed)
                     return
                 }
@@ -644,7 +660,8 @@ extension UIViewController {
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 // Failed request
-                guard self.checkSuccessConnection(response) else {
+                guard response.result.isSuccess else {
+                    self.notifyFailedConnection(error: response.result.error)
                     completion(.failed)
                     return
                 }
@@ -679,8 +696,8 @@ extension UIViewController {
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
             // Failed request
-            // Failed request
-            guard self.checkSuccessConnection(response) else {
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
                 completion(.failed)
                 return
             }
@@ -695,6 +712,31 @@ extension UIViewController {
             self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
 
             completion(.success)
+        }
+    }
+
+    func forget(email: String, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.forget_path)!
+        let parameters: Parameters = [
+            "email" : email
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters, timeoutInterval: 120).validate().responseString { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value!
+            if responseValue == "mail lỗi" {
+                completion(.error)
+            } else if responseValue == "Đề nghị check mail" {        
+                completion(.success)
+            }
         }
     }
 }

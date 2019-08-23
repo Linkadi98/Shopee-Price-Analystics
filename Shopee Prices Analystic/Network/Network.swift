@@ -44,6 +44,9 @@ class Network {
         // Request
         return Alamofire.request(request as URLRequestConvertible)
     }
+
+    // Default timeoutInterval is 15 seconds, except:
+    // Forget account (120 seconds)
 }
 
 enum ConnectionResults {

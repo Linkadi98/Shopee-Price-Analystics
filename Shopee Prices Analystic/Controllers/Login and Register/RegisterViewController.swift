@@ -118,13 +118,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     // Register SPA account
     @IBAction func register(_ sender: Any) {
-        UIApplication.shared.beginIgnoringInteractionEvents()
+        let activityIndicator = startLoading()
 
-        let activityIndicator = initActivityIndicator()
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-
-        self.register(name: "Thanh Duy Truong", phone: nil, email: email.text!, username: userName.text!, password: password.text!) { (result) in
+        register(name: "Thanh Duy Truong", phone: nil, email: email.text!, username: userName.text!, password: password.text!) { (result) in
             switch result {
             case .error:
                 self.presentAlert(message: "Email hoặc tài khoản đã tồn tại")
@@ -134,12 +130,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             default:
                 break
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                activityIndicator.stopAnimating()
-                if activityIndicator.isAnimating == false {
-                    UIApplication.shared.endIgnoringInteractionEvents()
-                }
-            }
+            
+            self.endLoading(activityIndicator)
         }
     }
     // Log in using facebook account
