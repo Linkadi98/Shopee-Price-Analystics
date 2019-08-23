@@ -51,48 +51,7 @@ extension ViewController {
 
 // Login by SPA Account
 extension ViewController {
-    func login(username: String, password: String, completion: @escaping () -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
-        let parameters: Parameters = [
-            "username" : username,
-            "password" : password
-        ]
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                // Failed request
-                guard response.result.isSuccess else {
-                    print("Error when fetching data: \(response.result.error)")
-                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                    completion()
-                    return
-                }
-
-                //Successful request
-                let responseValue = response.result.value! as! [String: Any]
-                print(responseValue)
-                guard let token = responseValue["token"] as? String else {
-                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
-                    completion()
-                    return
-                }
-
-                // Save token and its expired time
-                print(token)
-                UserDefaults.standard.set(token, forKey: "token")
-                UserDefaults.standard.set(Date(timeIntervalSinceNow: 21600), forKey: "expiredTimeOfToken")
-                sharedNetwork.headers["Authorization"] = token
-
-                self.getInfo(username: username) {
-                    completion()
-                }
-                
-                // Screen movement
-                self.performSegue(withIdentifier: "VCToTabsVC", sender: nil)
-            }
-        }
-    }
+    
 
     func forget(email: String, completion: @escaping () -> Void) {
         let sharedNetwork = Network.shared

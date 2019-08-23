@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZy-Ck-5ci">
-                                <rect key="frame" x="329" y="655" width="25" height="25"/>
+                                <rect key="frame" x="329" y="658" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="lSU-2X-wvw"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAp-cs-qQZ">
-                                <rect key="frame" x="369" y="655" width="25" height="25"/>
+                                <rect key="frame" x="369" y="658" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="Q37-3f-ZTH"/>
                                 </constraints>
@@ -162,7 +162,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="iAY-bM-X7b">
-                                <rect key="frame" x="70" y="194" width="274" height="53.666666666666671"/>
+                                <rect key="frame" x="70" y="194" width="274" height="16"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hN2-99-xXl">
                                 <rect key="frame" x="107" y="402" width="200" height="92"/>
@@ -389,7 +389,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="Fbj-yb-epQ">
-                                <rect key="frame" x="75" y="74" width="264" height="80.000000000000014"/>
+                                <rect key="frame" x="75" y="74" width="264" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="3kz-Up-PUP"/>
                                 </constraints>
@@ -452,7 +452,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
-                                                <rect key="frame" x="112" y="34.999999999999993" width="190" height="80"/>
+                                                <rect key="frame" x="112" y="35" width="190" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="8jb-9d-wyC"/>
                                                     <constraint firstAttribute="height" constant="80" id="tGW-H3-9Uh"/>
@@ -2130,7 +2130,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="904"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.56000000000000005" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="fkg-Cc-wBE">
-                                                <rect key="frame" x="0.0" y="44" width="414" height="148.00000000000006"/>
+                                                <rect key="frame" x="0.0" y="44" width="414" height="148"/>
                                                 <viewLayoutGuide key="safeArea" id="cC1-Cy-l0H"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWT-BK-TVQ">
@@ -2705,7 +2705,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="904"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="4vn-gL-12X">
-                                                <rect key="frame" x="0.0" y="44" width="414" height="148.00000000000006"/>
+                                                <rect key="frame" x="0.0" y="44" width="414" height="148"/>
                                                 <viewLayoutGuide key="safeArea" id="8Qa-So-BUi"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -3078,7 +3078,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="Ns2-gU-kbj">
-                                <rect key="frame" x="0.0" y="0.0" width="289.66666666666669" height="296.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="16" height="296"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="295.99999999999994" id="ez6-pD-Tsa"/>
                                 </constraints>
@@ -3148,7 +3148,7 @@
         <!--ĐỐI THỦ ĐÃ CHỌN-->
         <scene sceneID="Gj6-C9-S0f">
             <objects>
-                <tableViewController storyboardIdentifier="ListRivalsTableViewController" id="Hox-X3-Ilj" customClass="ChosenRivalsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChosenRivalsTableViewController" id="Hox-X3-Ilj" customClass="ChosenRivalsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kvu-oX-3d3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3165,7 +3165,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.66666666666666"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDY-RL-r3R">
-                                                    <rect key="frame" x="145" y="110" width="120" height="25"/>
+                                                    <rect key="frame" x="145" y="110" width="107" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.51764705879999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Zhg-mv-eEP"/>
@@ -3181,7 +3181,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6a5-7J-iNs" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="145" y="79" width="120" height="20.333333333333329"/>
+                                                    <rect key="frame" x="145" y="79" width="107" height="20.333333333333329"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>

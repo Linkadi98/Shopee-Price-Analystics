@@ -143,33 +143,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    func getInfo(username: String, completion: @escaping () -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.info_path)!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion()
-                return
-            }
-
-            //Successful request
-            let responseValue = response.result.value! as! [String: Any]
-            let phone = responseValue["phone"] as? String
-            let email = responseValue["email"] as! String
-            let name = responseValue["name"] as! String
-
-            let currentUser = User(userName: username, email: email, name: name, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", phone: phone)
-            if let encoded = try? JSONEncoder().encode(currentUser) {
-                UserDefaults.standard.set(encoded, forKey: "currentUser")
-            }
-            completion()
-        }
-    }
-
     func updateInfo(phone: String, password: String, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.updateInfo_path)!
@@ -588,11 +561,10 @@ extension UIViewController {
         return true
     }
 
-    func saveTokenAndCurrentUser(token: String, currentUser: User) {
+    func saveToken(token: String) {
         UserDefaults.standard.set(token, forKey: "token")
         UserDefaults.standard.set(Date(timeIntervalSinceNow: 21600), forKey: "expiredTimeOfToken")
         Network.shared.headers["Authorization"] = token
-        saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
     }
 
     func saveObjectInUserDefaults(object: AnyObject, forKey key: String) {
@@ -653,10 +625,76 @@ extension UIViewController {
                 // Save token
                 print(token)
                 let currentUser = User(userName: username, email: email, name: name, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", phone: phone)
-                self.saveTokenAndCurrentUser(token: token, currentUser: currentUser)
+                self.saveToken(token: token)
+                self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
                 
                 completion(.success)
             }
+        }
+    }
+
+    func login(username: String, password: String, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
+        let parameters: Parameters = [
+            "username" : username,
+            "password" : password
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                // Failed request
+                guard self.checkSuccessConnection(response) else {
+                    completion(.failed)
+                    return
+                }
+
+                //Successful request
+                let responseValue = response.result.value! as! [String: Any]
+                guard let token = responseValue["token"] as? String else {
+                    completion(.error)
+                    return
+                }
+
+                // Save token and its expired time
+                print(token)
+                self.saveToken(token: token)
+
+                self.getInfo(username: username) { result in
+                    switch result {
+                    case .success:
+                        completion(.success)
+                    default:
+                        completion(.failed)
+                        return
+                    }
+                }
+            }
+        }
+    }
+
+    func getInfo(username: String, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.info_path)!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            // Failed request
+            guard self.checkSuccessConnection(response) else {
+                completion(.failed)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value! as! [String: Any]
+            let phone = responseValue["phone"] as? String
+            let email = responseValue["email"] as! String
+            let name = responseValue["name"] as! String
+
+            let currentUser = User(userName: username, email: email, name: name, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", phone: phone)
+            self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
+
+            completion(.success)
         }
     }
 }

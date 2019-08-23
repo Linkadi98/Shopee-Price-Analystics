@@ -131,7 +131,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             case .success:
                 // Screen movement
                 self.performSegue(withIdentifier: "RegisterVCToTabsVC", sender: nil)
-            default: break
+            default:
+                break
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
                 activityIndicator.stopAnimating()

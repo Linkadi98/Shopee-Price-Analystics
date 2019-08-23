@@ -58,14 +58,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         UIApplication.shared.beginIgnoringInteractionEvents()
 
         loginButton.startAnimation()
-        
-        self.login(username: userNameText.text!, password: passwordText.text!) {
-            self.loginButton.stopAnimation(animationStyle: .normal, revertAfterDelay: 0, completion: {
+        self.login(username: userNameText.text!, password: passwordText.text!) { result in
+            self.loginButton.stopAnimation(animationStyle: .normal, revertAfterDelay: 0) {
                 self.loginButton.setGrandientColor(colorOne: self.hexStringToUIColor(hex: "#ffc400"), colorTwo: self.hexStringToUIColor(hex: "#FF5700"))
                 self.loginButton.spinnerColor = .white
                 self.loginButton.layer.cornerRadius = self.loginButton.frame.size.height / 2
                 UIApplication.shared.endIgnoringInteractionEvents()
-            })
+            }
+
+            switch result {
+            case .error:
+                self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
+            case .success:
+                // Screen movement
+                self.performSegue(withIdentifier: "VCToTabsVC", sender: nil)
+            default:
+                break
+            }
         }
     }
 
@@ -102,17 +111,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             })
         }))
         self.present(alert, animated: true, completion: nil)
-
-
-
-//        self.register(phone: "696969", email: email.text!, username: userName.text!, password: password.text!) {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-//                activityIndicator.stopAnimating()
-//                if activityIndicator.isAnimating == false {
-//                    UIApplication.shared.endIgnoringInteractionEvents()
-//                }
-//            }
-//        }
     }
 
     @IBAction func userNameEdittingDidChange(_ sender: Any) {
