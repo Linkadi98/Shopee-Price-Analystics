@@ -143,35 +143,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    func updateInfo(phone: String, password: String, completion: @escaping (String) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.updateInfo_path)!
-        var parameters: Parameters = [
-            "phone": phone,
-            "password": password
-        ]
-        if phone == "" {
-            parameters["phone"] = nil
-        }
-
-        if password == "" {
-            parameters["password"] = nil
-        }
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion("failed")
-                return
-            }
-
-            //Successful request
-            completion("success")
-        }
-    }
-
     func checkAccount(username: String, password: String, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
@@ -722,7 +693,7 @@ extension UIViewController {
             "email" : email
         ]
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters, timeoutInterval: 120).validate().responseString { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters, timeoutInterval: 120).responseString { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
@@ -732,10 +703,46 @@ extension UIViewController {
 
             //Successful request
             let responseValue = response.result.value!
-            if responseValue == "mail lỗi" {
+            switch responseValue {
+            case "mail lỗi":
                 completion(.error)
-            } else if responseValue == "Đề nghị check mail" {        
+            case "Đề nghị check mail":
                 completion(.success)
+            default:
+                completion(.failed)
+                break
+            }
+        }
+    }
+
+    func updateInfo(currentPassword: String?, newPassword: String?, name: String?, phone: String?, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.updateInfo_path)!
+        var parameters: Parameters = [:]
+
+        parameters["passwordConfirm"] = currentPassword
+        parameters["password"] = newPassword
+        parameters["name"] = name
+        parameters["phone"] = phone
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).responseString { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value!
+            switch responseValue {
+            case "update không thành công":
+                completion(.error)
+            case "update thành công":
+                completion(.success)
+            default:
+                completion(.failed)
+                break
             }
         }
     }
