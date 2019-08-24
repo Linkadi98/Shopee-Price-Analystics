@@ -17,6 +17,7 @@ class ListRivalsTableViewController: UITableViewController {
     var listRivalsShops: [Shop]?
 
     var isFirstAppear = true
+    var hasData = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class ListRivalsTableViewController: UITableViewController {
         self.refreshControl?.tintColor = UIColor.orange
         
         tableView.separatorStyle = .none
+        
     }
 
 
@@ -38,8 +40,13 @@ class ListRivalsTableViewController: UITableViewController {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
+        
+        if listRivals == nil && listRivalsShops == nil {
+            isFirstAppear = true
+            hasData = false
+        }
 
-        if isFirstAppear {
+        if !hasData {
             fetchDataFromServer()
         }
     }
@@ -53,10 +60,8 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        guard listRivals != nil, listRivalsShops != nil else {
-            return 4
-        }
-        return self.listRivals!.count
+        
+        return isFirstAppear ? listRivals?.count ?? 10 : 0
     }
 
     
@@ -93,30 +98,36 @@ class ListRivalsTableViewController: UITableViewController {
             }
         }
         cell.setFollowStatus()
-        tabBarController?.selectedIndex = 3
-        if let vc = tabBarController?.selectedViewController as? RivalPageViewController {
-            vc.pageViewController?.select(index: 2)
-        }
+//        tabBarController?.selectedIndex = 3
+        performSegue(withIdentifier: "listRivalSegue", sender: nil)
         
     }
 
     private func fetchDataFromServer() {
+        tableView.reloadData()
+
         view.hideSkeleton()
         view.showAnimatedSkeleton()
-
+        
         var doneloadingRivals = false
         var doneloadingRivalsShops = false
         tableView.allowsSelection = false
-        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { (listRivals) in
+        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (listRivals) in
             guard let listRivals = listRivals else {
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
+                self.isFirstAppear = false
+                self.hasData = false
                 self.tableView.reloadData()
+                self.isFirstAppear = true
                 return
             }
 
             guard !listRivals.isEmpty else {
                 self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Rất tiếc, sản phẩm của bạn không tìm thấy đối thủ")
+                self.isFirstAppear = false
+                self.hasData = false
                 self.tableView.reloadData()
+                self.isFirstAppear = true
                 return
             }
 
@@ -126,10 +137,8 @@ class ListRivalsTableViewController: UITableViewController {
                 doneloadingRivals = false
                 doneloadingRivalsShops = false
 
-                self.isFirstAppear = false
-
                 self.tableView.reloadData()
-
+                self.hasData = true
                 self.view.hideSkeleton()
                 self.view.stopSkeletonAnimation()
 
@@ -138,16 +147,22 @@ class ListRivalsTableViewController: UITableViewController {
             }
         }
 
-        getListRivalsShops(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { (listRivalsShops) in
+        getListRivalsShops(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (listRivalsShops) in
             guard let listRivalsShops = listRivalsShops else {
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
+                self.isFirstAppear = false
+                self.hasData = false
                 self.tableView.reloadData()
+                self.isFirstAppear = true
                 return
             }
 
             guard !listRivalsShops.isEmpty else {
                 self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Rất tiếc, sản phẩm của bạn không tìm thấy đối thủ")
+                self.isFirstAppear = false
+                self.hasData = false
                 self.tableView.reloadData()
+                self.isFirstAppear = true
                 return
             }
 
@@ -159,7 +174,7 @@ class ListRivalsTableViewController: UITableViewController {
                 doneloadingRivalsShops = false
 
                 self.tableView.reloadData()
-
+                self.hasData = true
                 self.view.hideSkeleton()
                 self.view.stopSkeletonAnimation()
 
@@ -171,7 +186,6 @@ class ListRivalsTableViewController: UITableViewController {
 
     @objc func refresh() {
         fetchDataFromServer()
-        tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
     }
 }

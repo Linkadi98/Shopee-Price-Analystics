@@ -162,7 +162,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="iAY-bM-X7b">
-                                <rect key="frame" x="70" y="194" width="274" height="53.666666666666671"/>
+                                <rect key="frame" x="70" y="194" width="274" height="16"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hN2-99-xXl">
                                 <rect key="frame" x="107" y="402" width="200" height="92"/>
@@ -389,7 +389,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="Fbj-yb-epQ">
-                                <rect key="frame" x="75" y="74" width="264" height="80.000000000000014"/>
+                                <rect key="frame" x="75" y="74" width="264" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="3kz-Up-PUP"/>
                                 </constraints>
@@ -452,7 +452,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
-                                                <rect key="frame" x="112" y="34.999999999999993" width="190" height="80"/>
+                                                <rect key="frame" x="112" y="35" width="190" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="8jb-9d-wyC"/>
                                                     <constraint firstAttribute="height" constant="80" id="tGW-H3-9Uh"/>
@@ -1491,6 +1491,9 @@
                             </fragment>
                         </attributedString>
                     </refreshControl>
+                    <connections>
+                        <segue destination="2jo-Nb-e1E" kind="show" identifier="listRivalSegue" id="kGO-Bt-sPK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcX-fL-6uj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2116,7 +2119,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="904"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.56000000000000005" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="fkg-Cc-wBE">
-                                                <rect key="frame" x="0.0" y="44" width="414" height="148.00000000000006"/>
+                                                <rect key="frame" x="0.0" y="44" width="414" height="148"/>
                                                 <viewLayoutGuide key="safeArea" id="cC1-Cy-l0H"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWT-BK-TVQ">
@@ -2595,35 +2598,34 @@
             </objects>
             <point key="canvasLocation" x="4699" y="2805"/>
         </scene>
-        <!--Thông tin đối thủ-->
-        <scene sceneID="2gr-Qd-7Xx">
+        <!--Container Rival Info View Controller-->
+        <scene sceneID="Zli-jS-bPY">
             <objects>
-                <viewController id="r4c-gw-G9E" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JhD-JY-ueI">
+                <viewController storyboardIdentifier="ContainerRivalInfoViewController" id="2jo-Nb-e1E" customClass="ContainerRivalInfoViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vcr-2r-fWZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="far-Xp-MhT">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqb-z2-8cw">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <connections>
-                                    <segue destination="niu-Pk-ERA" kind="embed" id="mw4-hT-TKO"/>
+                                    <segue destination="niu-Pk-ERA" kind="embed" id="fAi-c3-CwW"/>
                                 </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="far-Xp-MhT" firstAttribute="bottom" secondItem="hVr-mX-V66" secondAttribute="bottom" id="Uo7-Oj-P82"/>
-                            <constraint firstItem="far-Xp-MhT" firstAttribute="leading" secondItem="JhD-JY-ueI" secondAttribute="leading" id="b2J-Ox-9pl"/>
-                            <constraint firstItem="far-Xp-MhT" firstAttribute="top" secondItem="hVr-mX-V66" secondAttribute="top" id="qiM-3b-dvz"/>
-                            <constraint firstAttribute="trailing" secondItem="far-Xp-MhT" secondAttribute="trailing" id="u1F-8c-gJ8"/>
+                            <constraint firstAttribute="trailing" secondItem="Dqb-z2-8cw" secondAttribute="trailing" id="LeZ-ot-Wzq"/>
+                            <constraint firstItem="Dqb-z2-8cw" firstAttribute="leading" secondItem="vcr-2r-fWZ" secondAttribute="leading" id="gHU-lG-cVG"/>
+                            <constraint firstItem="Dqb-z2-8cw" firstAttribute="top" secondItem="ezx-v6-NHn" secondAttribute="top" id="lD3-OG-IR9"/>
+                            <constraint firstItem="Dqb-z2-8cw" firstAttribute="bottom" secondItem="ezx-v6-NHn" secondAttribute="bottom" id="mka-Wb-i5c"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="hVr-mX-V66"/>
+                        <viewLayoutGuide key="safeArea" id="ezx-v6-NHn"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Thông tin đối thủ" largeTitleDisplayMode="never" id="eyX-Va-kAZ"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y6C-yP-Sg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x90-zx-aKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4699" y="2084"/>
+            <point key="canvasLocation" x="6453.6231884057979" y="2059.8214285714284"/>
         </scene>
         <!--Rival Page View Controller-->
         <scene sceneID="TYV-rZ-sGL">
@@ -2638,7 +2640,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwv-Cx-CcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5742" y="2084"/>
+            <point key="canvasLocation" x="5101" y="2060"/>
         </scene>
         <!--Sản phẩm-->
         <scene sceneID="1DR-kv-JMn">
@@ -2704,7 +2706,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="904"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="4vn-gL-12X">
-                                                <rect key="frame" x="0.0" y="44" width="414" height="148.00000000000006"/>
+                                                <rect key="frame" x="0.0" y="44" width="414" height="148"/>
                                                 <viewLayoutGuide key="safeArea" id="8Qa-So-BUi"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -3077,7 +3079,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="Ns2-gU-kbj">
-                                <rect key="frame" x="0.0" y="0.0" width="289.66666666666669" height="296.00000000000006"/>
+                                <rect key="frame" x="0.0" y="0.0" width="16" height="296"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="295.99999999999994" id="ez6-pD-Tsa"/>
                                 </constraints>
@@ -3164,7 +3166,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.66666666666666"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDY-RL-r3R">
-                                                    <rect key="frame" x="145" y="110" width="120" height="25"/>
+                                                    <rect key="frame" x="145" y="110" width="107" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.51764705879999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Zhg-mv-eEP"/>
@@ -3180,7 +3182,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6a5-7J-iNs" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="145" y="79" width="120" height="20.333333333333329"/>
+                                                    <rect key="frame" x="145" y="79" width="107" height="20.333333333333329"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -3377,7 +3379,7 @@
                         </attributedString>
                     </refreshControl>
                     <connections>
-                        <segue destination="r4c-gw-G9E" kind="show" identifier="rivalInfoSegue" id="Pxo-5A-e84"/>
+                        <segue destination="2jo-Nb-e1E" kind="show" identifier="rivalInfoSegue" id="nwJ-IV-GSf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zbz-kF-hEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4379,6 +4381,19 @@
             </objects>
             <point key="canvasLocation" x="2428.985507246377" y="2083.9285714285716"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="SJ4-H6-hRN">
+            <objects>
+                <viewController id="DR6-Ch-kkF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="50O-JW-kyf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cTB-w4-u7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="account" width="16.666666030883789" height="16.666666030883789"/>
@@ -4406,6 +4421,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RtS-Aj-Aye"/>
+        <segue reference="kGO-Bt-sPK"/>
         <segue reference="wpp-97-1km"/>
         <segue reference="Rf2-hR-1tB"/>
     </inferredMetricsTieBreakers>
