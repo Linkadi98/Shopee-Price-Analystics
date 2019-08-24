@@ -174,104 +174,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    // Get list shop
-    func getListShops(completion: @escaping ([Shop]?) -> Void) {
-        let sharedNetwork = Network.shared
-        // let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion(nil)
-                return
-            }
-
-            //Successful request
-            var listShops: [Shop] = []
-//            print(response.result.value)
-            let responseValue = response.result.value! as! [[String: Any]]
-            print(responseValue)
-            for value in responseValue {
-                let shopId = String(value["shopid"] as! Int64)
-                let shopName = value["name"] as! String
-                let followersCount = value["follower_count"] as! Int64
-                let rating = value["rating_star"] as! Double
-                listShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating))
-            }
-
-            if listShops.isEmpty {
-                UserDefaults.standard.removeObject(forKey: "currentShop")
-                let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
-                                                        subtitle: "Bấm vào đây để kết nối",
-                                                        style: .warning)
-                banner.onTap = {
-                    self.tabBarController?.selectedIndex = 4
-                }
-                banner.show(queuePosition: .back,
-                            bannerPosition: .top,
-                            cornerRadius: 10)
-            } else {
-                // Case: didn't save currentShop before, save first shop in list shops
-                guard let savedCurrentShopData = UserDefaults.standard.data(forKey: "currentShop") else {
-                    if let encoded = try? JSONEncoder().encode(listShops[0]) {
-                        UserDefaults.standard.set(encoded, forKey: "currentShop")
-                    }
-                    completion(listShops)
-                    return
-                }
-
-                // Case: save currentShop before
-                // Decode
-                var savedCurrentShop = try! JSONDecoder().decode(Shop.self, from: savedCurrentShopData)
-
-                // Check if listShop contains savedCurrentShop
-                // if listShop contains savedCurrentShop, currentShop isn't changed
-                if listShops.contains(savedCurrentShop) {
-                    completion(listShops)
-                    return
-                }
-
-                // listShop doesn't contain savedCurrentShop
-                for shop in listShops {
-                    // but maybe shop was changed its name (not deleted)
-                    if savedCurrentShop.shopId == shop.shopId {
-                        savedCurrentShop = shop
-                        if let encoded = try? JSONEncoder().encode(savedCurrentShop) {
-                            UserDefaults.standard.set(encoded, forKey: "currentShop")
-                        }
-                        completion(listShops)
-                        return
-                    }
-                }
-            }
-            completion(listShops)
-        }
-    }
-
-    // Add shop
-    func addShop(shopId: String, completion: @escaping (String) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path + "/\(shopId)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion("failed")
-                return
-            }
-
-            //Successful request
-            let responseValue = response.result.value!
-            print(responseValue)
-            completion("success")
-        }
-    }
-
     // Change currentShop
     func changeCurrentShop(newShop: Shop) {
         if let encoded = try? JSONEncoder().encode(newShop) {
@@ -556,9 +458,20 @@ extension UIViewController {
     func saveObjectInUserDefaults(object: AnyObject, forKey key: String) {
         switch key {
         case "currentUser":
-            let currentUser = object as! User
-            if let encoded = try? JSONEncoder().encode(currentUser) {
-                UserDefaults.standard.set(encoded, forKey: "currentUser")
+            if let currentUser = object as? User {
+                if let encoded = try? JSONEncoder().encode(currentUser) {
+                    UserDefaults.standard.set(encoded, forKey: "currentUser")
+                }
+            } else {
+                print("Object didn't match key")
+            }
+        case "currentShop":
+            if let currentShop = object as? Shop {
+                if let encoded = try? JSONEncoder().encode(currentShop) {
+                    UserDefaults.standard.set(encoded, forKey: "currentShop")
+                }
+            } else {
+                print("Object didn't match key")
             }
         default: break
         }
@@ -571,6 +484,10 @@ extension UIViewController {
                 if let currentUser = try? JSONDecoder().decode(User.self, from: data) {
                     return currentUser as AnyObject
                 }
+            case "currentShop":
+                if let currentShop = try? JSONDecoder().decode(Shop.self, from: data) {
+                    return currentShop as AnyObject
+                }
             default: break
             }
         }
@@ -578,7 +495,7 @@ extension UIViewController {
     }
 }
 
-// Users API
+// User APIs
 extension UIViewController {
     func register(name: String, phone: String?, email: String, username: String, password: String, completion: @escaping (ConnectionResults) -> Void) {
         let sharedNetwork = Network.shared
@@ -744,6 +661,109 @@ extension UIViewController {
                 completion(.failed)
                 break
             }
+        }
+    }
+}
+
+// Shop APIs
+extension UIViewController {
+    // Add shop
+    func addShop(shopId: String, completion: @escaping (ConnectionResults, String?) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path + "/\(shopId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).responseString { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value!
+            switch responseValue {
+            case "Shop đã được thêm":
+                completion(.error, "Cửa hàng đã được thêm trước đó")
+            case "Shop đã được thêm cho tài khoản khác":
+                completion(.error, "Cửa hàng đã được thêm cho tài khoản khác")
+            case "Thêm thành công":
+                completion(.success, "Thêm cửa hàng thành công")
+            default:
+                completion(.failed, nil)
+                break
+            }
+        }
+    }
+
+    // Get list shop
+    func getListShops(completion: @escaping (ConnectionResults, [Shop]?) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var listShops: [Shop] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let shopId = String(value["shopid"] as! Int64)
+                let shopName = value["name"] as! String
+                let followersCount = value["follower_count"] as! Int64
+                let rating = value["rating_star"] as! Double
+                let place = value["place"] as! String
+                listShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place))
+            }
+
+            completion(.success, listShops)
+        }
+    }
+
+    // Choose currentShop
+    func chooseCurrentShop(listShops: [Shop]) {
+        if listShops.isEmpty {
+            UserDefaults.standard.removeObject(forKey: "currentShop")
+//            let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
+//                                                    subtitle: "Bấm vào đây để kết nối",
+//                                                    style: .warning)
+//            banner.onTap = {
+//                self.tabBarController?.selectedIndex = 4
+//            }
+//            banner.show(queuePosition: .back,
+//                        bannerPosition: .top,
+//                        cornerRadius: 10)
+        } else {
+            // Case: didn't save currentShop before, save first shop in list shops
+            guard var currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+                saveObjectInUserDefaults(object: listShops[0] as AnyObject, forKey: "currentShop")
+                return
+            }
+
+            // Case: save currentShop before
+            // Check if listShop contains savedCurrentShop
+            // if listShop contains savedCurrentShop, currentShop isn't changed
+            if listShops.contains(currentShop) {
+                return
+            }
+
+            // listShop doesn't contain savedCurrentShop
+            for shop in listShops {
+                // but maybe shop was changed its properties (not deleted)
+                if currentShop.shopId == shop.shopId {
+                    currentShop = shop
+                    saveObjectInUserDefaults(object: currentShop as AnyObject, forKey: "currentShop")
+                    return
+                }
+            }
+            // savedCurrentShop has been deleted, save first shop in list shops
+            saveObjectInUserDefaults(object: listShops[0] as AnyObject, forKey: "currentShop")
+            return
         }
     }
 }
