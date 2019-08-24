@@ -14,21 +14,24 @@ class OverviewViewController: UIViewController {
 
     // MARK: - Properties
     
-    @IBOutlet weak var backgroundImage: UIImageView! {
-        didSet {
-            backgroundImage.image = #imageLiteral(resourceName: "backgroundImage")
-        }
-    }
+    @IBOutlet weak var containerView1: UIView!
+    @IBOutlet weak var containerView2: UIView!
+    @IBOutlet weak var containerView3: UIView!
+    @IBOutlet weak var containerView4: UIView!
+    
+    @IBOutlet weak var productTabButton: UIButton!
+    @IBOutlet weak var priceButton: UIButton!
+    @IBOutlet weak var rivalButton: UIButton!
+    @IBOutlet weak var accountButton: UIButton!
+    
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopId: UILabel!
     @IBOutlet weak var subView: UIView!
     @IBOutlet weak var status: UILabel!
     
-    @IBOutlet weak var buttonContainer: UIView!
     @IBOutlet weak var numOfFollowedProductAndRivalContainer: UIView!
     
     @IBOutlet weak var numberOfFollowedProducts: UILabel!
@@ -55,22 +58,18 @@ class OverviewViewController: UIViewController {
         super.viewDidLoad()
         
         subView.setShadow()
-        buttonContainer.setShadow()
         numOfFollowedProductAndRivalContainer.setShadow()
         
-        timeLabel.text = setTime()
-        
         tabsVC = storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as? TabsViewController
-
-        containerView.setCornerLogo()
-        buttonContainer.setCornerLogo()
-        subView.setCornerLogo()
-        numOfFollowedProductAndRivalContainer.setCornerLogo()
 
         refresher.attributedTitle = NSAttributedString(string: "Tải lại dữ liệu")
         refresher.addTarget(self, action: #selector(refresh), for: .valueChanged)
         refresher.tintColor = UIColor.orange
         scrollView.addSubview(refresher)
+        
+        
+        configSubView(views: containerView1, containerView2, containerView3, containerView4)
+        configButton(buttons: productTabButton, priceButton, rivalButton, accountButton)
         
         // perform tutorial view if user has not connected to any shop, redirect them to account tab
     }
@@ -92,20 +91,6 @@ class OverviewViewController: UIViewController {
         }
     }
   
-    // MARK: - Private modifications
-    private func setTime() -> String {
-        let date = Date()
-        let calendar = Calendar.current
-        
-        let month = calendar.component(.month, from: date)
-        let day = calendar.component(.day, from: date)
-        let dayOfWeek = calendar.component(.weekday, from: date)
-        if(dayOfWeek == 1) {
-            return "CHỦ NHẬT NGÀY \(day) THÁNG \(month)"
-        }
-        
-        return "THỨ \(dayOfWeek) NGÀY \(day) THÁNG \(month)"
-    }
     
     private func fetchingDataFromServer() {
         view.hideSkeleton()
@@ -146,6 +131,19 @@ class OverviewViewController: UIViewController {
     @IBAction func switchToListShop(_ sender: Any) {
         // switch to list shop view controller - not solved
         
+    }
+    
+    private func configSubView(views: UIView...) {
+        for view in views {
+            view.setShadow()
+        }
+    }
+    
+    private func configButton(buttons: UIButton...) {
+        for button in buttons {
+            button.layer.cornerRadius = 8
+            button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        }
     }
 
     @objc func refresh() {
