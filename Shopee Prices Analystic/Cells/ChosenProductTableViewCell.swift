@@ -11,6 +11,12 @@ import UIKit
 class ChosenProductTableViewCell: UITableViewCell {
 
     // MARK: - Properties
+    @IBOutlet weak var productImage: UIImageView! {
+        didSet {
+            productImage.layer.cornerRadius = 8
+            productImage.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        }
+    }
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var productId: UILabel!
     @IBOutlet weak var numberOfRival: UILabel!
@@ -24,6 +30,8 @@ class ChosenProductTableViewCell: UITableViewCell {
         autoChangePriceStatus.layer.masksToBounds = true
         autoChangePriceStatus.layer.cornerRadius = 4
         containerView.setShadow()
+        
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

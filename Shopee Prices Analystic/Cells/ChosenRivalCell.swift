@@ -13,7 +13,13 @@ class ChosenRivalCell: UITableViewCell {
 
     // MARK: - Properties
     
-    @IBOutlet weak var productImage: UIImageView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var productImage: UIImageView! {
+        didSet {
+            productImage.layer.cornerRadius = 8
+            productImage.layer.maskedCorners = [.layerMinXMinYCorner]
+        }
+    }
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var rivalName: UILabel!
@@ -23,7 +29,7 @@ class ChosenRivalCell: UITableViewCell {
     @IBOutlet weak var autoStatus: UIImageView! {
         didSet {
             autoStatus.layer.cornerRadius = 8
-            autoStatus.layer.maskedCorners = [.layerMinXMaxYCorner]
+            autoStatus.layer.maskedCorners = [.layerMaxXMinYCorner]
         }
     }
     
@@ -34,6 +40,9 @@ class ChosenRivalCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setAutoStatusOff()
+        selectionStyle = .none
+        containerView.setShadow()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

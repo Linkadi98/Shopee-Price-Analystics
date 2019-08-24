@@ -24,13 +24,7 @@ class RivalInfoViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var secondContainerView: UIView! 
     
-    @IBOutlet weak var productImage: UIImageView! {
-        didSet {
-            productImage.layer.cornerRadius = productImage.frame.height / 2
-            productImage.layer.borderColor = UIColor.lightGray.cgColor
-            productImage.layer.borderWidth = 1
-        }
-    }
+    @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productSellPrice: UILabel!
     @IBOutlet weak var numOfSold: UILabel!
