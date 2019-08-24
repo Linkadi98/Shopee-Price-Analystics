@@ -16,7 +16,7 @@ class ChosenProductsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+        
     }
 
     // MARK: - Table view data source
@@ -45,11 +45,15 @@ class ChosenProductsTableViewController: UITableViewController {
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
     }
-
-    @IBAction func changeRival(_ sender: Any) {
-        if let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: ListRivalsTableViewController.self)) as? ListRivalsTableViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // thay đổi đối tượng truyền sang view khác bằng sender khác
+        performSegue(withIdentifier: "chosenRivalSegue", sender: nil)
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chosenRivalSegue" {
+        }
+    }
+    
 }
