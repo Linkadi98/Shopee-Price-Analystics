@@ -36,6 +36,7 @@ class RivalTableCell: UITableViewCell {
         
         selectionStyle = .none
         
+        showSkeletionAnimation()
     }
     
     func setUnfollowStatus() {
@@ -48,6 +49,16 @@ class RivalTableCell: UITableViewCell {
         followStatus.backgroundColor = UIColor(red: 0/255, green: 132/255, blue: 255/255, alpha: 1)
         followStatus.text = "Đang theo dõi"
         followStatus.isSkeletonable = true
+    }
+    
+    func showSkeletionAnimation() {
+        containerView.showSkeleton()
+        productName.showSkeleton()
+        rivalName.showSkeleton()
+        rivalRating.showSkeleton()
+        followStatus.showSkeleton()
+        followersCount.showSkeleton()
+        productPrice.showSkeleton()
     }
     
     func hideSkeletonAnimation() {

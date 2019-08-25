@@ -38,18 +38,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#ffc400"), colorTwo: hexStringToUIColor(hex: "#FF5700"))
         loginButton.spinnerColor = .white
         loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
         
-        userNameText.createUnderlineTextField()
-        passwordText.createUnderlineTextField()
+        
         
         configCircularButton(for: facebookButton, with: .blue)
         configCircularButton(for: googleButton, with: .orange)
         
         userNameText.setIcon(#imageLiteral(resourceName: "user"))
         passwordText.setIcon(#imageLiteral(resourceName: "password"))
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        userNameText.createUnderlineTextField()
+        passwordText.createUnderlineTextField()
     }
     
     // MARK: - Actions

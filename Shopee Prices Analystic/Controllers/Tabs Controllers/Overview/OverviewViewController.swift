@@ -25,7 +25,6 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var accountButton: UIButton!
     
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopId: UILabel!
@@ -50,15 +49,15 @@ class OverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        subView.setShadow()
-        numOfFollowedProductAndRivalContainer.setShadow()
+//        subView.setShadow()
+//        numOfFollowedProductAndRivalContainer.setShadow()
         
         tabsVC = storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as? TabsViewController
 
         refresher.attributedTitle = NSAttributedString(string: "Tải lại dữ liệu")
         refresher.addTarget(self, action: #selector(refresh), for: .valueChanged)
         refresher.tintColor = UIColor.orange
-        scrollView.addSubview(refresher)
+//        scrollView.addSubview(refresher)
         
         
         configSubView(views: containerView1, containerView2, containerView3, containerView4)
