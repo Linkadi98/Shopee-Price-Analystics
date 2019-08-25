@@ -56,13 +56,20 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
             pickerVisible = !pickerVisible
             tableView.beginUpdates()
             tableView.endUpdates()
-
         }
         
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.selectionStyle = .none
+        
+        if indexPath.row == 1 {
+            return indexPath
+        }
+        return nil
+        
+    }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.row != 0 && !autoChangePriceSwitch.isOn {
