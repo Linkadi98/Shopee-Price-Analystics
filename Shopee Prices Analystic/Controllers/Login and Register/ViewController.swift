@@ -78,7 +78,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 // Screen movement
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as! TabsViewController
                 
-                tabVC.modalTransitionStyle = .
+                tabVC.modalTransitionStyle = .crossDissolve
                 self.present(tabVC, animated: true, completion: nil)
             default:
                 break
