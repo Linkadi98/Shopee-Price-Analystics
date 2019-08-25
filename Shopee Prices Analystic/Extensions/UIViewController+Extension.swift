@@ -271,32 +271,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    // update price
-    func updatePrice(shopId: String, productId: String, newPrice: Int, completion: @escaping (String) -> Void) {
-        let sharedNetwork = Network.shared
-        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-        let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion("failed")
-                return
-            }
-
-            //Successful request
-            let responseValue = response.result.value! as! [String: Any]
-            print(responseValue)
-            if let _ = responseValue["price"] as? Int {
-                completion("success")
-            } else {
-                completion("error")
-            }
-        }
-    }
-
     // choose rival
     func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
@@ -745,6 +719,29 @@ extension UIViewController {
                 listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
             }
             completion(.success, listProducts)
+        }
+    }
+
+    // update price
+    func updatePrice(shopId: String, productId: String, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).validate().responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value! as! [String: Any]
+            if let _ = responseValue["price"] as? Int {
+                completion(.success)
+            } else {
+                completion(.error)
+            }
         }
     }
 }

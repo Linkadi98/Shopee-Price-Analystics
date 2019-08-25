@@ -55,11 +55,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             return
         }
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-
-    }
-
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -239,40 +235,32 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             guard newPrice != product.price! else {
-                self.presentAlert(title: "Thông báo", message: "Giá không thay đổi")
+                self.presentAlert(message: "Giá không thay đổi")
                 return
             }
 
-            UIApplication.shared.beginIgnoringInteractionEvents()
+            let activityIndicator = self.startLoading()
 
-            let activityIndicator = self.initActivityIndicator()
-            self.view.addSubview(activityIndicator)
-            activityIndicator.startAnimating()
-            // đối giá tại đây
-            self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { result in
-                if result == "failed" {
-                    self.presentAlert(title: "Lỗi kết nối", message: "Kiểm tra kết nối")
-                } else if result == "wrong" {
+            self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { [unowned self] result in
+                switch result {
+                case .error:
                     self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-                } else if result == "success" {
+                case .success:
                     self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
                     self.listProducts![productIndex].price = newPrice
                     self.tableView.reloadRows(at: [IndexPath(row: productIndex, section: 0)], with: .automatic)
+                default:
+                    break
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                    activityIndicator.stopAnimating()
-                    if activityIndicator.isAnimating == false {
-                        UIApplication.shared.endIgnoringInteractionEvents()
-                    }
-                }
+
+                self.endLoading(activityIndicator)
             }
         }
         
         alert.addAction(cancel)
         alert.addAction(ok)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
+
+        present(alert, animated: true, completion: nil)
     }
     
     private func changeTextOfEditingButton(text: String) {

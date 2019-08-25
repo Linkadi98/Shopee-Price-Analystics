@@ -80,7 +80,7 @@ class OverviewViewController: UIViewController {
         view.hideSkeleton()
         view.showAnimatedSkeleton()
 
-        getListShops { (result, listShops) in
+        getListShops { [unowned self] (result, listShops) in
             guard result != .failed, let listShops = listShops else {
                 return
             }
