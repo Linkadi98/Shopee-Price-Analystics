@@ -76,7 +76,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
             case .success:
                 // Screen movement
-                self.performSegue(withIdentifier: "VCToTabsVC", sender: nil)
+                let tabVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as! TabsViewController
+                
+                tabVC.modalTransitionStyle = .
+                self.present(tabVC, animated: true, completion: nil)
             default:
                 break
             }

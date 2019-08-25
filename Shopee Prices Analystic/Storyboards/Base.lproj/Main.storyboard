@@ -422,7 +422,7 @@
                         <outlet property="loginButton" destination="ex8-NX-6dO" id="sZ9-GB-Tlc"/>
                         <outlet property="passwordText" destination="R5t-eC-H1S" id="kLD-dT-9Jm"/>
                         <outlet property="userNameText" destination="D4g-3z-etc" id="sfW-N9-8JP"/>
-                        <segue destination="96h-N9-J5v" kind="show" identifier="VCToTabsVC" id="nSc-HQ-CrF"/>
+                        <segue destination="96h-N9-J5v" kind="presentation" identifier="VCToTabsVC" id="nSc-HQ-CrF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HFM-Zg-tRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1972,7 +1972,7 @@
             </objects>
             <point key="canvasLocation" x="8135" y="2006"/>
         </scene>
-        <!--THEO DÕI ĐỐI THỦ-->
+        <!--SẢN PHẨM ĐÃ CHỌN-->
         <scene sceneID="ou8-6I-nQN">
             <objects>
                 <tableViewController storyboardIdentifier="ChosenProductsTableViewController" id="NYJ-CL-ptl" customClass="ChosenProductsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
@@ -2094,7 +2094,7 @@
                             <outlet property="delegate" destination="NYJ-CL-ptl" id="5RV-UK-g7v"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="THEO DÕI ĐỐI THỦ" id="78g-RM-qAT">
+                    <navigationItem key="navigationItem" title="SẢN PHẨM ĐÃ CHỌN" id="78g-RM-qAT">
                         <barButtonItem key="backBarButtonItem" title="Quay lại" id="Yek-97-Enz"/>
                     </navigationItem>
                     <connections>
