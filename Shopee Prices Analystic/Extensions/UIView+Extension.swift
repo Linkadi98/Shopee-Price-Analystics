@@ -65,18 +65,6 @@ extension UIView {
     }
     
     
-    func setCornerLogo() {
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "overview"))
-        self.addSubview(imageView)
-        
-        imageView.snp.makeConstraints({ make in
-            make.trailing.equalToSuperview().inset(6)
-            make.top.equalToSuperview().inset(6)
-            
-            make.width.equalTo(20)
-            make.height.equalTo(20)
-            
-        })
-    }
+    
     
 }

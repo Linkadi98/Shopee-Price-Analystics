@@ -44,10 +44,7 @@ class RivalInfoViewController: UIViewController {
         setImageForLabels()
         containerView.setShadow()
         secondContainerView.setShadow()
-        
-        containerView.setCornerLogo()
-        secondContainerView.setCornerLogo()
-        
+                
     }
     
     // MARK: - Private Modifications
