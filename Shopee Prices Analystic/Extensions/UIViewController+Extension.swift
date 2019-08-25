@@ -174,46 +174,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    // put list products from DB
-    func putListProducts(completion: @escaping ([Product]?) -> Void) {
-        let sharedNetwork = Network.shared
-        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-        var url = URL(string: "https://google.com")!
-        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-                url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
-                print("Đang lấy sản phẩm của shop: \(currentShop.shopName) \(currentShop.shopId)")
-            }
-        } else {
-            print("Chua co san pham vi chua ket noi cua hang")
-            completion([])
-            return
-        }
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion(nil)
-                return
-            }
-
-            //Successful request
-            var listProducts: [Product] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                let id = String(value["itemid"] as! Int)
-                let shopId = String(value["shopid"] as! Int)
-                let name = value["name"] as! String
-                let price = Int(value["price"] as! Double)
-                let image = (value["images"] as! [String])[0]
-                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
-            }
-            completion(listProducts)
-        }
-    }
-
     // get list products from DB
     func getListProducts(completion: @escaping ([Product]?) -> Void) {
         let sharedNetwork = Network.shared
@@ -751,6 +711,43 @@ extension UIViewController {
     }
 }
 
+// Product APIs
+extension UIViewController {
+    // put list products from DB
+    func putListProducts(completion: @escaping (ConnectionResults, [Product]?) -> Void) {
+        let sharedNetwork = Network.shared
+        var url = URL(string: "https://google.com")!
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            // No products because account doesn't have any shop
+            completion(.error, nil)
+            return
+        }
+
+        url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var listProducts: [Product] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
+                let name = value["name"] as! String
+                let price = Int(value["price"] as! Double)
+                let image = (value["images"] as! [String])[0]
+                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
+            }
+            completion(.success, listProducts)
+        }
+    }
+}
 
 
 

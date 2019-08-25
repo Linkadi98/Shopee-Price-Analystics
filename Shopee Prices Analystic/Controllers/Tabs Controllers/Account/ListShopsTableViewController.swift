@@ -14,53 +14,36 @@ import NotificationBannerSwift
 class ListShopsTableViewController: UITableViewController, SkeletonTableViewDataSource, UISearchResultsUpdating {
 
     // MARK: - Properties
-  
     var searchController: UISearchController!
 
     var listShops: [Shop]?
     var filterShop: [Shop]?
     var addedShopId: String?
     
-    // Flag for regconizing tableview is appeared or not in order to display no data message
-//    var isFirstAppear = true
-//    var hasData = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("Danh sach xyz: \(listShops)")
         searchController = UISearchController(searchResultsController: nil)
         self.navigationItem.searchController = searchController
         searchController.hidesNavigationBarDuringPresentation = true
         navigationItem.hidesSearchBarWhenScrolling = false
         setupSearchController(for: searchController, placeholder: "Nhập tên shop")
+
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.refreshControl?.tintColor = UIColor.orange
     }
     
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
         guard listShops != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, listShops![0] == currentShop else {
-            print("fetch")
             fetchDataFromServer()
             return
-        }
-
-        print(listShops?.count)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        view.stopSkeletonAnimation()
-        if listShops == nil {
-            tableView.reloadData()
         }
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
@@ -76,7 +59,6 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath) as! ShopTableViewCell
 
         guard listShops != nil else {
-            cell.isHidden = true
             return cell
         }
 
@@ -111,7 +93,6 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
-//        isFirstAppear = true
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -149,6 +130,10 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     // MARK: - Fetching data from server
     private func fetchDataFromServer(isChangingShop: Bool = false) {
+        for row in 0...self.tableView.numberOfRows(inSection: 0) {
+            self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
+        }
+        
         view.hideSkeleton()
         view.showAnimatedSkeleton()
         
@@ -232,5 +217,11 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                 }
             }
         }
+    }
+
+    // MARK: - Refesh data
+    @objc func refresh() {
+        fetchDataFromServer()
+        tableView.refreshControl?.endRefreshing()
     }
 }

@@ -75,7 +75,6 @@ class OverviewViewController: UIViewController {
             return
         }
     }
-  
     
     private func fetchDataFromServer() {
         view.hideSkeleton()
