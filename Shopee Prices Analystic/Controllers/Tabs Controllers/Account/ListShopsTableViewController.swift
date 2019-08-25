@@ -22,8 +22,8 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     var addedShopId: String?
     
     // Flag for regconizing tableview is appeared or not in order to display no data message
-    var isFirstAppear = true
-    var hasData = false
+//    var isFirstAppear = true
+//    var hasData = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,23 +39,20 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        view.stopSkeletonAnimation()
-        if listShops == nil {
-            tableView.reloadData()
-        }
-    }
 
     override func viewDidAppear(_ animated: Bool) {
-        if listShops != nil {
+        guard listShops != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, listShops![0] == currentShop else {
+            fetchDataFromServer()
             return
         }
-        fetchDataFromServer()
-        print("Danh sach shop: \(listShops)")
     }
     
-    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        view.stopSkeletonAnimation()
+//        if listShops == nil {
+//            tableView.reloadData()
+//        }
+//    }
 
     // MARK: - Table view data source
 
@@ -66,36 +63,37 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering(searchController) {
-            return isFirstAppear ? filterShop?.count ?? 10 : 0
+            return filterShop?.count ?? 10
         }
-        return isFirstAppear ? listShops?.count ?? 10 : 0
+        return listShops?.count ?? 10
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath) as! ShopTableViewCell
-        if listShops != nil {
-            var model: Shop
-            
-            if isFiltering(searchController) {
-                model = filterShop![indexPath.row]
-            }
-            else {
-                model = listShops![indexPath.row]
-            }
-            
-            cell.shopName.text = model.shopName
-            cell.shopId.text = model.shopId
-            if (indexPath.row == 0) {
-                cell.status.addImage(#imageLiteral(resourceName: "active"), "", x: -1)
-                cell.selectionStyle = .none
-            } else {
-                cell.status.isHidden = true
-            }
-            cell.hideSkeletonAnimation()
-        }
-        
 
+        guard listShops != nil else {
+            return cell
+        }
+
+        var model: Shop
+
+        if isFiltering(searchController) {
+            model = filterShop![indexPath.row]
+        }
+        else {
+            model = listShops![indexPath.row]
+        }
+
+        cell.shopName.text = model.shopName
+        cell.shopId.text = model.shopId
+        if (indexPath.row == 0) {
+            cell.status.addImage(#imageLiteral(resourceName: "active"), "", x: -1)
+            cell.selectionStyle = .none
+        } else {
+            cell.status.isHidden = true
+        }
+        cell.hideSkeletonAnimation()
         return cell
     }
     
@@ -109,7 +107,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
-        isFirstAppear = true
+//        isFirstAppear = true
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -123,55 +121,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         }
         
         if indexPath.row != 0 {
-            let customPasswordConfirmAlert = UIAlertController(title: "Chuyển sang \(model.shopName)", message: "Vui lòng xác nhận trước khi chuyển sang Shop mới", preferredStyle: .alert)
-            customPasswordConfirmAlert.addTextField(configurationHandler: {(passwordField) in
-                passwordField.placeholder = "Nhập mật khẩu của shop"
-                passwordField.isSecureTextEntry = true
-
-                passwordField.borderStyle = .none
-
-            })
-            customPasswordConfirmAlert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: { _ in
-                print("Đã huỷ")
-            }))
-            customPasswordConfirmAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                UIApplication.shared.beginIgnoringInteractionEvents()
-                
-                let activityIndicator = self.initActivityIndicator()
-                self.view.addSubview(activityIndicator)
-                activityIndicator.startAnimating()
-
-                if let currentUserData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: currentUserData) {
-                    self.checkAccount(username: currentUser.name, password: customPasswordConfirmAlert.textFields![0].text!, completion: { result in
-                        if result == "wrong" {
-                            self.presentAlert(message: "Sai mật khẩu")
-                        } else if result == "success" {
-                            self.changeCurrentShop(newShop: model)
-                            self.hasData = false
-                            self.fetchDataFromServer() {
-                                self.tabBarController?.selectedIndex = 0
-                            }
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                            activityIndicator.stopAnimating()
-                            if activityIndicator.isAnimating == false {
-                                UIApplication.shared.endIgnoringInteractionEvents()
-                            }
-                        }
-                    })
-                }
-            }))
-            present(customPasswordConfirmAlert, animated: true, completion: {
-                // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
-                tableView.deselectRow(at: indexPath, animated: true)
-            })
-//            if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
-//                customPasswordConfirmAlert.createCustomPasswordConfirmAlert(viewController: self, username: currentUser.name!, shop: model)
-//                present(customPasswordConfirmAlert, animated: true, completion: {
-//                    // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
-//                    tableView.deselectRow(at: indexPath, animated: true)
-//                })
-//            }
+            changeCurrentShop(shop: model, indexPath: indexPath)
         }
     }
     
@@ -194,76 +144,94 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     }
 
     // MARK: - Fetching data from server
-    
-    private func fetchDataFromServer(completionAfterChangeShop completion: (() -> Void)? = nil) {
-        tableView.reloadData()
-        
+    private func fetchDataFromServer(isChangingShop: Bool = false) {
         view.hideSkeleton()
         view.showAnimatedSkeleton()
         
         tableView.allowsSelection = false
-        
-        getListShops { [unowned self] (listShops) in
-            guard var listShops = listShops else {
-                print("1a")
-                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
-                self.isFirstAppear = false
-                self.hasData = false
+
+        getListShops { (result, listShops) in
+            guard result != .failed, var listShops = listShops else {
                 self.tableView.reloadData()
-                self.isFirstAppear = true
+                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
                 return
             }
 
             guard !listShops.isEmpty else {
-                self.displayNoDataNotification(title: "Tài khoản chưa có cửa hàng nào", message: "Ấn vào biểu tượng để kết nối")
-                self.isFirstAppear = false
-                self.hasData = false
                 self.tableView.reloadData()
-                self.isFirstAppear = true
+                self.displayNoDataNotification(title: "Tài khoản chưa có cửa hàng nào", message: "Ấn vào biểu tượng để kết nối")
                 return
             }
-            
-            if !self.hasData {
-                if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-                    let currentShopIndex = listShops.firstIndex(of: currentShop)!
-                    listShops.swapAt(0, currentShopIndex)
-                }
-                self.listShops = listShops
-                self.hasData = true
+
+            guard let currentShop = self.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
                 self.tableView.reloadData()
-                if completion != nil {
-                    completion!()
-                }
+                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
+                return
+            }
+
+            let currentShopIndex = listShops.firstIndex(of: currentShop)!
+            listShops.swapAt(0, currentShopIndex)
+            self.listShops = listShops
+            self.tableView.reloadData()
+            if isChangingShop {
+                self.tabBarController?.selectedIndex = 0
             }
 
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
-            
+
             self.tableView.allowsSelection = true
             return
         }
     }
 
+    private func changeCurrentShop(shop: Shop, indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Chuyển sang \(shop.shopName)", message: nil, preferredStyle: .alert)
+//        alert.addTextField(configurationHandler: {(passwordField) in
+//            passwordField.placeholder = "Nhập mật khẩu của shop"
+//            passwordField.isSecureTextEntry = true
+//
+//            passwordField.borderStyle = .none
+//
+//        })
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: { _ in
+            print("Đã huỷ")
+        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.saveObjectInUserDefaults(object: shop as AnyObject, forKey: "currentShop")
+            self.fetchDataFromServer(isChangingShop: true)
+        }))
+
+        present(alert, animated: true, completion: {
+            // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
+            self.tableView.deselectRow(at: indexPath, animated: true)
+        })
+
+    }
+
     @IBAction func unwindToListShopsTableViewController(segue: UIStoryboardSegue) {
-        print("unwind")
         if segue.identifier == "ShopeeAuthVCUnwindToListShopsTVC" {
             if let shopeeAuthViewController = segue.source as? ShopeeAuthViewController {
-                if let result = shopeeAuthViewController.result {
-                    if result == "failed" {
-                        presentAlert(message: "Thêm cửa hàng thất bại")
-                    } else if result == "success" {
-                        self.hasData = false
-                        let currentNumberOfRows = tableView.numberOfRows(inSection: 0)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                            self.fetchDataFromServer()
-                            print("Số hàng: \(self.tableView.numberOfRows(inSection: 0))")
-                            if self.tableView.numberOfRows(inSection: 0) > currentNumberOfRows {
-                                self.presentAlert(title: "Thông báo", message: "Đã thêm thành công")
-                            }
-                        }
+                guard let shopId = shopeeAuthViewController.shopId else {
+                    presentAlert(message: "Lỗi xác thực. Vui lòng thử lại sau")
+                    return
+                }
 
+                let activityIndicator = startLoading()
+
+                addShop(shopId: shopId) { (result, message) in
+                    switch result {
+                    case .error:
+                        self.presentAlert(message: message!)
+                    case .success:
+                        self.fetchDataFromServer()
+                        self.presentAlert(title: "Thông báo", message: message!)
+                    default:
+                        break
                     }
+
+                    self.endLoading(activityIndicator)
                 }
             }
         }

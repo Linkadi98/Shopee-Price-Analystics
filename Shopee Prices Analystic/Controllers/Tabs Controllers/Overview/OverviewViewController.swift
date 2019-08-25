@@ -45,14 +45,7 @@ class OverviewViewController: UIViewController {
         }
     }
 
-    var currentShop: Shop! {
-        didSet {
-            if currentShop != nil {
-                shopId.text = currentShop.shopId
-                shopName.text = currentShop.shopName
-            }
-        }
-    }
+    var currentShop: Shop?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,38 +71,46 @@ class OverviewViewController: UIViewController {
         view.startSkeletonAnimation()
 
         // currentShop is nil
-        guard self.currentShop != nil else {
-            fetchingDataFromServer()
+        guard self.currentShop != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, currentShop == self.currentShop else {
+            fetchDataFromServer()
             return
-        }
-
-        // currentShop has changed
-        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-            if self.currentShop != currentShop  {
-                fetchingDataFromServer()
-            }
         }
     }
   
     
-    private func fetchingDataFromServer() {
+    private func fetchDataFromServer() {
         view.hideSkeleton()
         view.showAnimatedSkeleton()
 
-        getListShops { [unowned self] (listShops) in
-            guard let listShops = listShops, !listShops.isEmpty else {
-//                self.status.addImage(#imageLiteral(resourceName: "deactive"), "Không hoạt động", offsetY: -0.5)
-//                self.view.hideSkeleton()
-//                self.view.stopSkeletonAnimation()
+        getListShops { (result, listShops) in
+            guard result != .failed, let listShops = listShops else {
                 return
             }
 
-            print("Ds shop: \(listShops)")
-
-            if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-                    self.currentShop = currentShop
-                    self.status.addImage(#imageLiteral(resourceName: "active"), "Đang hoạt động", offsetY: -0.5)
+            guard !listShops.isEmpty else {
+                let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
+                                                        subtitle: "Bấm vào đây để kết nối",
+                                                        style: .warning)
+                banner.onTap = {
+                    self.tabBarController?.selectedIndex = 4
+                }
+                banner.show(queuePosition: .back,
+                            bannerPosition: .top,
+                            cornerRadius: 10)
+                return
             }
+
+            guard let currentShop = self.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+                self.currentShop = nil
+                return
+            }
+
+            self.currentShop = currentShop
+
+            // Update interface
+            self.shopId.text = currentShop.shopId
+            self.shopName.text = currentShop.shopName
+            self.status.text = "Lượt theo dõi: \(currentShop.followersCount)"
 
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
@@ -147,7 +148,7 @@ class OverviewViewController: UIViewController {
     }
 
     @objc func refresh() {
-        fetchingDataFromServer()
+        fetchDataFromServer()
         refresher.endRefreshing()
     }
 }

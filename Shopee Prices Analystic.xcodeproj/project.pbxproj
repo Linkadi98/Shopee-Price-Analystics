@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2402E2482311061A002EC1C2 /* StatisticalPriceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402E2472311061A002EC1C2 /* StatisticalPriceTableViewController.swift */; };
 		2402E24A2311280A002EC1C2 /* ContainerRivalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402E2492311280A002EC1C2 /* ContainerRivalInfoViewController.swift */; };
 		2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */; };
 		24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */; };
@@ -90,7 +89,6 @@
 
 /* Begin PBXFileReference section */
 		1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_AnalysticTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2402E2472311061A002EC1C2 /* StatisticalPriceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatisticalPriceTableViewController.swift; path = ../../../../../../Price/StatisticalPriceTableViewController.swift; sourceTree = "<group>"; };
 		2402E2492311280A002EC1C2 /* ContainerRivalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerRivalInfoViewController.swift; sourceTree = "<group>"; };
 		2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
 		24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopsTableViewController.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 		2402E24623110600002EC1C2 /* Price */ = {
 			isa = PBXGroup;
 			children = (
-				2402E2472311061A002EC1C2 /* StatisticalPriceTableViewController.swift */,
 			);
 			path = Price;
 			sourceTree = "<group>";
@@ -709,7 +706,6 @@
 				241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */,
 				2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */,
 				BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */,
-				2402E2482311061A002EC1C2 /* StatisticalPriceTableViewController.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
 				2416494622E1768900B80DBC /* ProductsTableViewController.swift in Sources */,
 				2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */,

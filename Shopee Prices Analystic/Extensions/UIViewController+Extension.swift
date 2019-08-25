@@ -174,14 +174,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    // Change currentShop
-    func changeCurrentShop(newShop: Shop) {
-        if let encoded = try? JSONEncoder().encode(newShop) {
-            UserDefaults.standard.set(encoded, forKey: "currentShop")
-        }
-        print("Change to: \(newShop)")
-    }
-
     // put list products from DB
     func putListProducts(completion: @escaping ([Product]?) -> Void) {
         let sharedNetwork = Network.shared
@@ -312,7 +304,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
                 let shopName = value["name"] as! String
                 let followersCount = value["follower_count"] as! Int64
                 let rating = value["rating_star"] as! Double
-                listRivalsShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating))
+                listRivalsShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: "ABC")) // need edited
                 print("So shop doi thu: \(listRivalsShops.count)")
             }
             completion(listRivalsShops)
@@ -720,7 +712,7 @@ extension UIViewController {
                 let place = value["place"] as! String
                 listShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place))
             }
-
+            self.chooseCurrentShop(listShops: listShops)
             completion(.success, listShops)
         }
     }
@@ -729,15 +721,6 @@ extension UIViewController {
     func chooseCurrentShop(listShops: [Shop]) {
         if listShops.isEmpty {
             UserDefaults.standard.removeObject(forKey: "currentShop")
-//            let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
-//                                                    subtitle: "Bấm vào đây để kết nối",
-//                                                    style: .warning)
-//            banner.onTap = {
-//                self.tabBarController?.selectedIndex = 4
-//            }
-//            banner.show(queuePosition: .back,
-//                        bannerPosition: .top,
-//                        cornerRadius: 10)
         } else {
             // Case: didn't save currentShop before, save first shop in list shops
             guard var currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
