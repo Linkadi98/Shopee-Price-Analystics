@@ -19,7 +19,7 @@ class AccountDetailTableViewController: UITableViewController {
             avatar.layer.cornerRadius = avatar.frame.height / 2
         }
     }
-    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var password: UILabel!
@@ -29,112 +29,22 @@ class AccountDetailTableViewController: UITableViewController {
         super.viewDidLoad()
         password.text = "●●●●●●●●"
         
-        getInfoOfAccount()
+        getAccountInfo()
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 2 {
-            let alert = UIAlertController(title: "Đổi số điện thoại", message: "Hãy nhập số điện thoại:", preferredStyle: .alert)
-            alert.addTextField { (textfield) in
-                textfield.text = self.phoneNumber.text!
-            }
-            alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                guard alert.textFields![0].text! != self.phoneNumber.text! else {
-                    self.presentAlert(title: "Thay đổi thất bại", message: "Thông tin không thay đổi")
-                    return
-                }
-
-                guard let _ = Int(alert.textFields![0].text!) else {
-                    self.presentAlert(title: "Thay đổi thất bại", message: "Vui lòng nhập chính xác")
-                    return
-                }
-
-                UIApplication.shared.beginIgnoringInteractionEvents()
-
-                let activityIndicator = self.initActivityIndicator()
-                self.view.addSubview(activityIndicator)
-                activityIndicator.startAnimating()
-                self.updateInfo(phone: alert.textFields![0].text!, password: "", completion: { result in
-                    if result == "success" {
-                        if let userData = UserDefaults.standard.data(forKey: "currentUser"), var currentUser = try? JSONDecoder().decode(User.self, from: userData) {
-                            currentUser.phone = alert.textFields![0].text!
-                            if let encoded = try? JSONEncoder().encode(currentUser) {
-                                UserDefaults.standard.set(encoded, forKey: "currentUser")
-                            }
-                        }
-                        self.phoneNumber.text! = alert.textFields![0].text!
-                        self.presentAlert(title: "Thông báo", message: "Cập nhật số điện thoại thành công")
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                        activityIndicator.stopAnimating()
-                        if activityIndicator.isAnimating == false {
-                            UIApplication.shared.endIgnoringInteractionEvents()
-                        }
-                    }
-                })
-            }))
-            self.present(alert, animated: true, completion: nil)
-        } else if indexPath.row == 3 {
-            let alert = UIAlertController(title: "Đổi mật khẩu", message: "Hãy nhập mật khẩu", preferredStyle: .alert)
-            alert.addTextField { (textfield) in
-                textfield.isSecureTextEntry = true
-                textfield.placeholder = "Mật khẩu"
-            }
-            alert.addTextField { (textfield) in
-                textfield.isSecureTextEntry = true
-                textfield.placeholder = "Mật khẩu mới"
-            }
-            alert.addTextField { (textfield) in
-                textfield.isSecureTextEntry = true
-                textfield.placeholder = "Xác nhận mật khẩu"
-            }
-            alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-                guard alert.textFields![0].text! == alert.textFields![1].text! else {
-                    self.presentAlert(title: "Thay đổi thất bại", message: "Xác nhận mật khẩu không khớp")
-                    return
-                }
-
-                guard alert.textFields![2].text!.count > 5 else {
-                    self.presentAlert(title: "Thay đổi thất bại", message: "Mật khẩu bao gồm tối thiểu 6 ký tự")
-                    return
-                }
-
-                UIApplication.shared.beginIgnoringInteractionEvents()
-
-                let activityIndicator = self.initActivityIndicator()
-                self.view.addSubview(activityIndicator)
-                activityIndicator.startAnimating()
-
-                if let currentUserData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: currentUserData) {
-                    self.checkAccount(username: currentUser.name, password: alert.textFields![0].text!, completion: { result in
-                        if result == "wrong" {
-                            self.presentAlert(message: "Sai mật khẩu")
-                        } else if result == "success" {
-                            self.updateInfo(phone: "", password: alert.textFields![2].text!, completion: { result in
-                                if result == "success" {
-                                    if let userData = UserDefaults.standard.data(forKey: "currentUser"), var currentUser = try? JSONDecoder().decode(User.self, from: userData) {
-                                        currentUser.phone = alert.textFields![0].text!
-                                        if let encoded = try? JSONEncoder().encode(currentUser) {
-                                            UserDefaults.standard.set(encoded, forKey: "currentUser")
-                                        }
-                                    }
-                                    self.presentAlert(title: "Thông báo", message: "Đổi mật khẩu thành công")
-                                }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                                    activityIndicator.stopAnimating()
-                                    if activityIndicator.isAnimating == false {
-                                        UIApplication.shared.endIgnoringInteractionEvents()
-                                    }
-                                }
-                            })
-                        }
-                    })
-                }
-            }))
-            self.present(alert, animated: true, completion: nil)
+        switch indexPath.row {
+        case 0:
+            changeName()
+        case 2:
+            changePhoneNumber()
+        case 3:
+            changePassword()
+        default:
+            break
         }
+
+        tableView.cellForRow(at: indexPath)?.isSelected = false
     }
     
     // MARK: - Actions
@@ -147,17 +57,180 @@ class AccountDetailTableViewController: UITableViewController {
     }
     
     // MARK: - Private modifications
-    private func getInfoOfAccount() {
-        if let userData = UserDefaults.standard.data(forKey: "currentUser"), let currentUser = try? JSONDecoder().decode(User.self, from: userData) {
-            userName.text = currentUser.name
-            email.text = currentUser.email
-            phoneNumber.text = currentUser.phone!
-            
-            loadOnlineImage(from: URL(string: currentUser.image)!, to: self.avatar)
+    private func getAccountInfo() {
+        let currentUser = getObjectInUserDefaults(forKey: "currentUser") as! User
+
+        name.text = currentUser.name
+        email.text = currentUser.email
+        if let phone = currentUser.phone {
+            phoneNumber.text = phone
+        } else {
+            phoneNumber.text = "Chưa có"
         }
+
+        loadOnlineImage(from: URL(string: currentUser.image)!, to: self.avatar)
     }
 
-    func logout() {
+    private func changeName() {
+        // Configure alerts
+        let alert = UIAlertController(title: "Đổi tên", message: "Xác nhận mật khẩu và nhập tên mới:", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.isSecureTextEntry = true
+            textField.placeholder = "Xác nhận mật khẩu"
+        }
+        alert.addTextField { (textField) in
+            textField.placeholder = "Nhập tên mới"
+        }
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            // Handle exceptions
+            let passwordInput = alert.textFields![0].text!
+            let nameInput = alert.textFields![1].text!
+            guard passwordInput.count > 5 else {
+                self.presentAlert(message: "Không đúng mật khẩu")
+                return
+            }
+            guard nameInput != self.name.text! else {
+                self.presentAlert(title: "Thông báo", message: "Thông tin không thay đổi")
+                return
+            }
+
+            guard nameInput != "" else {
+                self.presentAlert(message: "Tên không được để trống")
+                return
+            }
+
+            // Call API
+            let activityIndicator = self.startLoading()
+
+            self.updateInfo(currentPassword: passwordInput, newPassword: nil, name: nameInput, phone: nil, completion: { (result) in
+                switch result {
+                case .error:
+                    self.presentAlert(message: "Mật khẩu không chính xác")
+                case .success:
+                    var currentUser = self.getObjectInUserDefaults(forKey: "currentUser") as! User
+                    currentUser.phone = nameInput
+                    self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
+                    // Change in interface
+                    self.name.text = nameInput
+                    self.presentAlert(title: "Thông báo", message: "Thay đổi thành công")
+                default:
+                    break
+                }
+                self.endLoading(activityIndicator)
+            })
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func changePhoneNumber() {
+        // Configure alerts
+        let alert = UIAlertController(title: "Đổi số điện thoại", message: "Xác nhận mật khẩu và nhập số điện thoại mới:", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.isSecureTextEntry = true
+            textField.placeholder = "Xác nhận mật khẩu"
+        }
+        alert.addTextField { (textField) in
+            textField.keyboardType = .numberPad
+            textField.placeholder = "Nhập số điện thoại mới"
+        }
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            // Handle exceptions
+            let passwordInput = alert.textFields![0].text!
+            let phoneNumberInput = alert.textFields![1].text!
+            guard passwordInput.count > 5 else {
+                self.presentAlert(message: "Không đúng mật khẩu")
+                return
+            }
+            guard phoneNumberInput != self.phoneNumber.text! else {
+                self.presentAlert(title: "Thông báo", message: "Thông tin không thay đổi")
+                return
+            }
+
+            guard let _ = Int(phoneNumberInput), phoneNumberInput.hasPrefix("0"), phoneNumberInput.count == 10 else {
+                self.presentAlert(message: "Vui lòng nhập số điện thoại chính xác")
+                return
+            }
+
+            // Call API
+            let activityIndicator = self.startLoading()
+
+            self.updateInfo(currentPassword: passwordInput, newPassword: nil, name: nil, phone: phoneNumberInput, completion: { (result) in
+                switch result {
+                case .error:
+                    self.presentAlert(message: "Mật khẩu không chính xác")
+                case .success:
+                    var currentUser = self.getObjectInUserDefaults(forKey: "currentUser") as! User
+                    currentUser.phone = phoneNumberInput
+                    self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
+                    // Change in interface
+                    self.phoneNumber.text = phoneNumberInput
+                    self.presentAlert(title: "Thông báo", message: "Thay đổi thành công")
+                default:
+                    break
+                }
+                self.endLoading(activityIndicator)
+            })
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func changePassword() {
+        // Configure alert
+        let alert = UIAlertController(title: "Đổi mật khẩu", message: "Hãy nhập mật khẩu", preferredStyle: .alert)
+        alert.addTextField { (textfield) in
+            textfield.isSecureTextEntry = true
+            textfield.placeholder = "Mật khẩu hiện tại"
+        }
+        alert.addTextField { (textfield) in
+            textfield.isSecureTextEntry = true
+            textfield.placeholder = "Mật khẩu mới"
+        }
+        alert.addTextField { (textfield) in
+            textfield.isSecureTextEntry = true
+            textfield.placeholder = "Xác nhận mật khẩu"
+        }
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            // Handle exceptions
+            let currentPasswordInput = alert.textFields![0].text!
+            let newPasswordInput = alert.textFields![1].text!
+            let rePasswordInput = alert.textFields![2].text!
+            guard newPasswordInput == rePasswordInput else {
+                self.presentAlert(message: "Xác nhận mật khẩu không khớp")
+                return
+            }
+
+            guard newPasswordInput.count > 5 else {
+                self.presentAlert(message: "Mật khẩu bao gồm tối thiểu 6 ký tự")
+                return
+            }
+
+            guard currentPasswordInput.count > 5 else {
+                self.presentAlert(message: "Không đúng mật khẩu hiện tại")
+                return
+            }
+
+            // Call API
+            let activityIndicator = self.startLoading()
+
+            self.updateInfo(currentPassword: currentPasswordInput, newPassword: newPasswordInput, name: nil, phone: nil, completion: { (result) in
+                switch result {
+                case .error:
+                    self.presentAlert(message: "Mật khẩu hiện tại không chính xác")
+                case .success:
+                    self.presentAlert(title: "Thông báo", message: "Đổi mật khẩu thành công")
+                default:
+                    break
+                }
+                self.endLoading(activityIndicator)
+            })
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    private func logout() {
         print("logout6969")
         if UserDefaults.standard.string(forKey: "token") != nil {
             // Delete token
@@ -195,15 +268,5 @@ class AccountDetailTableViewController: UITableViewController {
         // Delete user data in UserDefaults
         UserDefaults.standard.removeObject(forKey: "currentUser")
         UserDefaults.standard.removeObject(forKey: "currentShop")
-    }
-    
-    // MARK: - Prepare data
-    
-    func prepareData(avatar: UIImage?, userName: String?, email: String?, phoneNum: String?, password: String?) {
-        self.avatar.image = avatar
-        self.userName.text = userName
-        self.email.text = email
-        self.password.text = password
-        print("done")
     }
 }

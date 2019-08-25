@@ -30,6 +30,10 @@ extension UITableViewController {
     }
     
     public func displayNoDataNotification(title: String, message: String) {
+        for row in 0...self.tableView.numberOfRows(inSection: 0) {
+            self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = true
+        }
+
         self.view.hideSkeleton()
         self.view.stopSkeletonAnimation()
         let noData = UILabel()

@@ -13,6 +13,7 @@ struct Shop: Codable, Equatable {
     var shopName: String
     var followersCount: Int64
     var rating: Double
+    var place: String
 
 //    public static func == (shop1: Shop, shop2: Shop) -> Bool {
 //        return

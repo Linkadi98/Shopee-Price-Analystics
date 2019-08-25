@@ -104,18 +104,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
-            UIApplication.shared.beginIgnoringInteractionEvents()
+            let activityIndicator = self.startLoading()
 
-            let activityIndicator = self.initActivityIndicator()
-            self.view.addSubview(activityIndicator)
-            activityIndicator.startAnimating()
-            self.forget(email: alert.textFields![0].text!, completion: {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                    activityIndicator.stopAnimating()
-                    if activityIndicator.isAnimating == false {
-                        UIApplication.shared.endIgnoringInteractionEvents()
-                    }
+            self.forget(email: alert.textFields![0].text!, completion: { result in
+                switch result {
+                case .error:
+                    self.presentAlert(message: "Mail không chính xác")
+                case .success:
+                    self.presentAlert(title: "Thông báo", message: "Mở mail để nhận mật khẩu mới")
+                default:
+                    break
                 }
+                
+              self.endLoading(activityIndicator)
             })
         }))
         self.present(alert, animated: true, completion: nil)

@@ -143,35 +143,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    func updateInfo(phone: String, password: String, completion: @escaping (String) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.updateInfo_path)!
-        var parameters: Parameters = [
-            "phone": phone,
-            "password": password
-        ]
-        if phone == "" {
-            parameters["phone"] = nil
-        }
-
-        if password == "" {
-            parameters["password"] = nil
-        }
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion("failed")
-                return
-            }
-
-            //Successful request
-            completion("success")
-        }
-    }
-
     func checkAccount(username: String, password: String, completion: @escaping (String) -> Void) {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
@@ -200,152 +171,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
                 
                 completion("success")
             }
-        }
-    }
-
-    // Get list shop
-    func getListShops(completion: @escaping ([Shop]?) -> Void) {
-        let sharedNetwork = Network.shared
-        // let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion(nil)
-                return
-            }
-
-            //Successful request
-            var listShops: [Shop] = []
-//            print(response.result.value)
-            let responseValue = response.result.value! as! [[String: Any]]
-            print(responseValue)
-            for value in responseValue {
-                let shopId = String(value["shopid"] as! Int64)
-                let shopName = value["name"] as! String
-                let followersCount = value["follower_count"] as! Int64
-                let rating = value["rating_star"] as! Double
-                listShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating))
-            }
-
-            if listShops.isEmpty {
-                UserDefaults.standard.removeObject(forKey: "currentShop")
-                let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
-                                                        subtitle: "Bấm vào đây để kết nối",
-                                                        style: .warning)
-                banner.onTap = {
-                    self.tabBarController?.selectedIndex = 4
-                }
-                banner.show(queuePosition: .back,
-                            bannerPosition: .top,
-                            cornerRadius: 10)
-            } else {
-                // Case: didn't save currentShop before, save first shop in list shops
-                guard let savedCurrentShopData = UserDefaults.standard.data(forKey: "currentShop") else {
-                    if let encoded = try? JSONEncoder().encode(listShops[0]) {
-                        UserDefaults.standard.set(encoded, forKey: "currentShop")
-                    }
-                    completion(listShops)
-                    return
-                }
-
-                // Case: save currentShop before
-                // Decode
-                var savedCurrentShop = try! JSONDecoder().decode(Shop.self, from: savedCurrentShopData)
-
-                // Check if listShop contains savedCurrentShop
-                // if listShop contains savedCurrentShop, currentShop isn't changed
-                if listShops.contains(savedCurrentShop) {
-                    completion(listShops)
-                    return
-                }
-
-                // listShop doesn't contain savedCurrentShop
-                for shop in listShops {
-                    // but maybe shop was changed its name (not deleted)
-                    if savedCurrentShop.shopId == shop.shopId {
-                        savedCurrentShop = shop
-                        if let encoded = try? JSONEncoder().encode(savedCurrentShop) {
-                            UserDefaults.standard.set(encoded, forKey: "currentShop")
-                        }
-                        completion(listShops)
-                        return
-                    }
-                }
-            }
-            completion(listShops)
-        }
-    }
-
-    // Add shop
-    func addShop(shopId: String, completion: @escaping (String) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path + "/\(shopId)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion("failed")
-                return
-            }
-
-            //Successful request
-            let responseValue = response.result.value!
-            print(responseValue)
-            completion("success")
-        }
-    }
-
-    // Change currentShop
-    func changeCurrentShop(newShop: Shop) {
-        if let encoded = try? JSONEncoder().encode(newShop) {
-            UserDefaults.standard.set(encoded, forKey: "currentShop")
-        }
-        print("Change to: \(newShop)")
-    }
-
-    // put list products from DB
-    func putListProducts(completion: @escaping ([Product]?) -> Void) {
-        let sharedNetwork = Network.shared
-        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-        var url = URL(string: "https://google.com")!
-        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-                url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
-                print("Đang lấy sản phẩm của shop: \(currentShop.shopName) \(currentShop.shopId)")
-            }
-        } else {
-            print("Chua co san pham vi chua ket noi cua hang")
-            completion([])
-            return
-        }
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion(nil)
-                return
-            }
-
-            //Successful request
-            var listProducts: [Product] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                let id = String(value["itemid"] as! Int)
-                let shopId = String(value["shopid"] as! Int)
-                let name = value["name"] as! String
-                let price = Int(value["price"] as! Double)
-                let image = (value["images"] as! [String])[0]
-                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
-            }
-            completion(listProducts)
         }
     }
 
@@ -439,7 +264,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
                 let shopName = value["name"] as! String
                 let followersCount = value["follower_count"] as! Int64
                 let rating = value["rating_star"] as! Double
-                listRivalsShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating))
+                listRivalsShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: "ABC")) // need edited
                 print("So shop doi thu: \(listRivalsShops.count)")
             }
             completion(listRivalsShops)
@@ -538,27 +363,42 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 
         return activityIndicator
     }
+
+    func startLoading() -> UIActivityIndicatorView {
+        UIApplication.shared.beginIgnoringInteractionEvents()
+
+        let activityIndicator = self.initActivityIndicator()
+        self.view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        return activityIndicator
+    }
+
+    func endLoading(_ activityIndicator: UIActivityIndicatorView) {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+//            activityIndicator.stopAnimating()
+//            if activityIndicator.isAnimating == false {
+//                UIApplication.shared.endIgnoringInteractionEvents()
+//            }
+//        }
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
 }
 
 
 // Network activities
 extension UIViewController {
     // Check if connection was failed
-    func checkSuccessConnection(_ response: DataResponse<Any>) -> Bool {
-        guard response.result.isSuccess else {
-            // Show errors
-            if let error = response.result.error {
-                print("Error when fetching data: \(error).")
-            } else {
-                print("Unknown error when fetching data.")
-            }
-
-            // Notify users
-            StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-            return false
+    func notifyFailedConnection(error: Error?) {
+        // Show errors
+        if let error = error {
+            print("Error when fetching data: \(error).")
+        } else {
+            print("Unknown error when fetching data.")
         }
-
-        return true
+        
+        // Notify users
+        StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
     }
 
     func saveToken(token: String) {
@@ -570,9 +410,20 @@ extension UIViewController {
     func saveObjectInUserDefaults(object: AnyObject, forKey key: String) {
         switch key {
         case "currentUser":
-            let currentUser = object as! User
-            if let encoded = try? JSONEncoder().encode(currentUser) {
-                UserDefaults.standard.set(encoded, forKey: "currentUser")
+            if let currentUser = object as? User {
+                if let encoded = try? JSONEncoder().encode(currentUser) {
+                    UserDefaults.standard.set(encoded, forKey: "currentUser")
+                }
+            } else {
+                print("Object didn't match key")
+            }
+        case "currentShop":
+            if let currentShop = object as? Shop {
+                if let encoded = try? JSONEncoder().encode(currentShop) {
+                    UserDefaults.standard.set(encoded, forKey: "currentShop")
+                }
+            } else {
+                print("Object didn't match key")
             }
         default: break
         }
@@ -585,6 +436,10 @@ extension UIViewController {
                 if let currentUser = try? JSONDecoder().decode(User.self, from: data) {
                     return currentUser as AnyObject
                 }
+            case "currentShop":
+                if let currentShop = try? JSONDecoder().decode(Shop.self, from: data) {
+                    return currentShop as AnyObject
+                }
             default: break
             }
         }
@@ -592,7 +447,7 @@ extension UIViewController {
     }
 }
 
-// Register
+// User APIs
 extension UIViewController {
     func register(name: String, phone: String?, email: String, username: String, password: String, completion: @escaping (ConnectionResults) -> Void) {
         let sharedNetwork = Network.shared
@@ -610,7 +465,8 @@ extension UIViewController {
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 // Failed request
-                guard self.checkSuccessConnection(response) else {
+                guard response.result.isSuccess else {
+                    self.notifyFailedConnection(error: response.result.error)
                     completion(.failed)
                     return
                 }
@@ -644,7 +500,8 @@ extension UIViewController {
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 // Failed request
-                guard self.checkSuccessConnection(response) else {
+                guard response.result.isSuccess else {
+                    self.notifyFailedConnection(error: response.result.error)
                     completion(.failed)
                     return
                 }
@@ -679,8 +536,8 @@ extension UIViewController {
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
             // Failed request
-            // Failed request
-            guard self.checkSuccessConnection(response) else {
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
                 completion(.failed)
                 return
             }
@@ -697,8 +554,200 @@ extension UIViewController {
             completion(.success)
         }
     }
+
+    func forget(email: String, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.forget_path)!
+        let parameters: Parameters = [
+            "email" : email
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters, timeoutInterval: 120).responseString { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value!
+            switch responseValue {
+            case "mail lỗi":
+                completion(.error)
+            case "Đề nghị check mail":
+                completion(.success)
+            default:
+                completion(.failed)
+                break
+            }
+        }
+    }
+
+    func updateInfo(currentPassword: String?, newPassword: String?, name: String?, phone: String?, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.updateInfo_path)!
+        var parameters: Parameters = [:]
+
+        parameters["passwordConfirm"] = currentPassword
+        parameters["password"] = newPassword
+        parameters["name"] = name
+        parameters["phone"] = phone
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters).responseString { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value!
+            switch responseValue {
+            case "update không thành công":
+                completion(.error)
+            case "update thành công":
+                completion(.success)
+            default:
+                completion(.failed)
+                break
+            }
+        }
+    }
 }
 
+// Shop APIs
+extension UIViewController {
+    // Add shop
+    func addShop(shopId: String, completion: @escaping (ConnectionResults, String?) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path + "/\(shopId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).responseString { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value!
+            switch responseValue {
+            case "Shop đã được thêm":
+                completion(.error, "Cửa hàng đã được thêm trước đó")
+            case "Shop đã được thêm cho tài khoản khác":
+                completion(.error, "Cửa hàng đã được thêm cho tài khoản khác")
+            case "Thêm thành công":
+                completion(.success, "Thêm cửa hàng thành công")
+            default:
+                completion(.failed, nil)
+                break
+            }
+        }
+    }
+
+    // Get list shop
+    func getListShops(completion: @escaping (ConnectionResults, [Shop]?) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var listShops: [Shop] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let shopId = String(value["shopid"] as! Int64)
+                let shopName = value["name"] as! String
+                let followersCount = value["follower_count"] as! Int64
+                let rating = value["rating_star"] as! Double
+                let place = value["place"] as! String
+                listShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place))
+            }
+            self.chooseCurrentShop(listShops: listShops)
+            completion(.success, listShops)
+        }
+    }
+
+    // Choose currentShop
+    func chooseCurrentShop(listShops: [Shop]) {
+        if listShops.isEmpty {
+            UserDefaults.standard.removeObject(forKey: "currentShop")
+        } else {
+            // Case: didn't save currentShop before, save first shop in list shops
+            guard var currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+                saveObjectInUserDefaults(object: listShops[0] as AnyObject, forKey: "currentShop")
+                return
+            }
+
+            // Case: save currentShop before
+            // Check if listShop contains savedCurrentShop
+            // if listShop contains savedCurrentShop, currentShop isn't changed
+            if listShops.contains(currentShop) {
+                return
+            }
+
+            // listShop doesn't contain savedCurrentShop
+            for shop in listShops {
+                // but maybe shop was changed its properties (not deleted)
+                if currentShop.shopId == shop.shopId {
+                    currentShop = shop
+                    saveObjectInUserDefaults(object: currentShop as AnyObject, forKey: "currentShop")
+                    return
+                }
+            }
+            // savedCurrentShop has been deleted, save first shop in list shops
+            saveObjectInUserDefaults(object: listShops[0] as AnyObject, forKey: "currentShop")
+            return
+        }
+    }
+}
+
+// Product APIs
+extension UIViewController {
+    // put list products from DB
+    func putListProducts(completion: @escaping (ConnectionResults, [Product]?) -> Void) {
+        let sharedNetwork = Network.shared
+        var url = URL(string: "https://google.com")!
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            // No products because account doesn't have any shop
+            completion(.error, nil)
+            return
+        }
+
+        url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var listProducts: [Product] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
+                let name = value["name"] as! String
+                let price = Int(value["price"] as! Double)
+                let image = (value["images"] as! [String])[0]
+                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
+            }
+            completion(.success, listProducts)
+        }
+    }
+}
 
 
 
