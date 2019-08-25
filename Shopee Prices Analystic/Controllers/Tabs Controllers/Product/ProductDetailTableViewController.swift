@@ -180,13 +180,34 @@ class ProductDetailTableViewController: UITableViewController {
         
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ProductDetailTVCToListRivalsTVC" {
-            if let listRivalsTableViewController = segue.destination as? ListRivalsTableViewController {
-                listRivalsTableViewController.product = product
-            }
-        }
+    
+    @IBAction func observeOption(_ sender: Any) {
+        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let priceOption = UIAlertAction(title: "Thống kê giá sản phẩm này", style: .default, handler: { (action) in
+            // thống kê giá ở chỗ này, chuyển sang tab theo dõi giá khi có kết quả
+        })
+        
+        let rivalOption = UIAlertAction(title: "Xem đối thủ sản phẩm này", style: .default, handler: { [unowned self] (action) in
+            let listRivalVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: ListRivalsTableViewController.self)) as! ListRivalsTableViewController
+            listRivalVC.product = self.product
+            self.navigationController?.pushViewController(listRivalVC, animated: true)
+        })
+        
+        
+        let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
+        
+        
+        option.addAction(priceOption)
+        option.addAction(rivalOption)
+        option.addAction(cancel)
+        
+        present(option, animated: true, completion: nil)
     }
+    
+    
+    
+    
+    
 }
 
 enum NumberStar: Int {
