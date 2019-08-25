@@ -48,7 +48,7 @@ class RivalInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setImageForLabels()
+//        setImageForLabels()
         containerView.setShadow()
         secondContainerView.setShadow()
                 

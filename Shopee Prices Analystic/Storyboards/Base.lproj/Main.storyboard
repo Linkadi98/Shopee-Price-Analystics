@@ -786,7 +786,7 @@
                                                     <rect key="frame" x="256" y="13" width="120" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="130.000đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAE-Dj-bvy">
-                                                            <rect key="frame" x="47.5" y="0.0" width="72.5" height="20"/>
+                                                            <rect key="frame" x="47.5" y="0.0" width="72.5" height="0.0"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -798,7 +798,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBC-qO-C85" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="40" width="120" height="20"/>
+                                                            <rect key="frame" x="0.0" y="20" width="120" height="40"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -1372,12 +1372,12 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6hr-BK-EVl">
                                                     <rect key="frame" x="145" y="8" width="226" height="59"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên shop đối thủ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uci-7H-5tz">
-                                                            <rect key="frame" x="0.0" y="0.0" width="147.5" height="31"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên shop đối thủ" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uci-7H-5tz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="151" height="31"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="31" id="leY-E3-hS1"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                            <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
@@ -2166,7 +2166,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1u-0v-ken" customClass="CosmosView" customModule="Cosmos">
-                                                                <rect key="frame" x="278" y="192" width="120" height="20"/>
+                                                                <rect key="frame" x="270" y="192" width="120" height="20"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
@@ -2193,17 +2193,16 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="Z1u-0v-ken" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y3G-XR-KLh" secondAttribute="trailing" constant="103" id="2FT-aM-bZh"/>
+                                                            <constraint firstItem="Z1u-0v-ken" firstAttribute="leading" relation="lessThanOrEqual" secondItem="y3G-XR-KLh" secondAttribute="trailing" constant="103" id="2FT-aM-bZh"/>
                                                             <constraint firstItem="2R7-nX-CYx" firstAttribute="leading" secondItem="z9v-07-Ptr" secondAttribute="leading" constant="20" id="2hS-uL-aUL"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Z1u-0v-ken" secondAttribute="trailing" id="3R8-sf-uxC"/>
                                                             <constraint firstItem="gXd-o0-BSx" firstAttribute="top" secondItem="sHs-EZ-WRb" secondAttribute="bottom" constant="19.5" id="3wg-0q-N2M"/>
                                                             <constraint firstItem="xzd-rB-rH5" firstAttribute="leading" secondItem="z9v-07-Ptr" secondAttribute="leading" constant="20" id="40c-ou-omB"/>
-                                                            <constraint firstItem="gXd-o0-BSx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2R7-nX-CYx" secondAttribute="trailing" constant="262.5" id="7yH-cA-EjQ"/>
+                                                            <constraint firstItem="gXd-o0-BSx" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2R7-nX-CYx" secondAttribute="trailing" constant="262.5" id="7yH-cA-EjQ"/>
                                                             <constraint firstItem="sHs-EZ-WRb" firstAttribute="top" secondItem="z9v-07-Ptr" secondAttribute="top" constant="30" id="8cp-1Y-Gwg"/>
-                                                            <constraint firstItem="DGc-ro-36L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JBG-KX-2do" secondAttribute="trailing" constant="215.5" id="91b-jV-NFy"/>
+                                                            <constraint firstItem="DGc-ro-36L" firstAttribute="leading" relation="lessThanOrEqual" secondItem="JBG-KX-2do" secondAttribute="trailing" constant="215.5" id="91b-jV-NFy"/>
                                                             <constraint firstItem="y3G-XR-KLh" firstAttribute="leading" secondItem="z9v-07-Ptr" secondAttribute="leading" constant="20" id="DKc-dx-Ede"/>
                                                             <constraint firstItem="Z1u-0v-ken" firstAttribute="top" secondItem="DGc-ro-36L" secondAttribute="bottom" constant="20.5" id="MO3-f9-mUe"/>
-                                                            <constraint firstItem="Pml-d5-R7m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hNx-2Q-L6r" secondAttribute="trailing" constant="221" id="MTD-HN-FjJ"/>
+                                                            <constraint firstItem="Pml-d5-R7m" firstAttribute="leading" relation="lessThanOrEqual" secondItem="hNx-2Q-L6r" secondAttribute="trailing" constant="221" id="MTD-HN-FjJ"/>
                                                             <constraint firstItem="hNx-2Q-L6r" firstAttribute="leading" secondItem="z9v-07-Ptr" secondAttribute="leading" constant="20" id="QkY-hw-mdR"/>
                                                             <constraint firstItem="y3G-XR-KLh" firstAttribute="top" secondItem="JBG-KX-2do" secondAttribute="bottom" constant="20" id="Qmk-PC-kTE"/>
                                                             <constraint firstItem="xzd-rB-rH5" firstAttribute="top" secondItem="z9v-07-Ptr" secondAttribute="top" constant="30" id="W9a-I0-8gr"/>
@@ -2215,12 +2214,15 @@
                                                             <constraint firstItem="hNx-2Q-L6r" firstAttribute="top" secondItem="2R7-nX-CYx" secondAttribute="bottom" constant="20" id="eR5-hd-6G9"/>
                                                             <constraint firstItem="2R7-nX-CYx" firstAttribute="top" secondItem="xzd-rB-rH5" secondAttribute="bottom" constant="20" id="ika-g3-nW1"/>
                                                             <constraint firstAttribute="trailing" secondItem="sHs-EZ-WRb" secondAttribute="trailing" constant="8" id="mTp-MX-Uwr"/>
+                                                            <constraint firstAttribute="bottom" secondItem="y3G-XR-KLh" secondAttribute="bottom" constant="60.5" id="n0a-Z6-PhV"/>
                                                             <constraint firstItem="JBG-KX-2do" firstAttribute="top" secondItem="hNx-2Q-L6r" secondAttribute="bottom" constant="20" id="nyj-3u-sbC"/>
                                                             <constraint firstItem="y3G-XR-KLh" firstAttribute="top" secondItem="JBG-KX-2do" secondAttribute="bottom" constant="20" id="sYx-Kx-UbS"/>
                                                             <constraint firstAttribute="trailing" secondItem="DGc-ro-36L" secondAttribute="trailing" constant="8" id="tsC-aw-cnh"/>
                                                             <constraint firstItem="DGc-ro-36L" firstAttribute="top" secondItem="Pml-d5-R7m" secondAttribute="bottom" constant="19.5" id="uR0-pW-C4L"/>
                                                             <constraint firstItem="Pml-d5-R7m" firstAttribute="top" secondItem="gXd-o0-BSx" secondAttribute="bottom" constant="20.5" id="vx0-hX-T8c"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Z1u-0v-ken" secondAttribute="trailing" constant="8" id="xJq-Az-bst"/>
                                                             <constraint firstAttribute="trailing" secondItem="gXd-o0-BSx" secondAttribute="trailing" constant="8" id="z11-5j-YIr"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Z1u-0v-ken" secondAttribute="bottom" constant="61" id="zmf-CR-k7O"/>
                                                             <constraint firstItem="JBG-KX-2do" firstAttribute="top" secondItem="hNx-2Q-L6r" secondAttribute="bottom" constant="20" id="zwc-jB-mRh"/>
                                                         </constraints>
                                                     </view>
