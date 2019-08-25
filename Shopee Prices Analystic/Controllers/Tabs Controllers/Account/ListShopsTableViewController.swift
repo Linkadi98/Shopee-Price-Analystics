@@ -42,17 +42,20 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     override func viewDidAppear(_ animated: Bool) {
         guard listShops != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, listShops![0] == currentShop else {
+            print("fetch")
             fetchDataFromServer()
             return
         }
+
+        print(listShops?.count)
     }
     
-//    override func viewDidDisappear(_ animated: Bool) {
-//        view.stopSkeletonAnimation()
-//        if listShops == nil {
-//            tableView.reloadData()
-//        }
-//    }
+    override func viewDidDisappear(_ animated: Bool) {
+        view.stopSkeletonAnimation()
+        if listShops == nil {
+            tableView.reloadData()
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -73,6 +76,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath) as! ShopTableViewCell
 
         guard listShops != nil else {
+            cell.isHidden = true
             return cell
         }
 
@@ -159,7 +163,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
             guard !listShops.isEmpty else {
                 self.tableView.reloadData()
-                self.displayNoDataNotification(title: "Tài khoản chưa có cửa hàng nào", message: "Ấn vào biểu tượng để kết nối")
+                self.displayNoDataNotification(title: "Tài khoản chưa có cửa hàng nào", message: "Nhấn vào biểu tượng để kết nối")
                 return
             }
 
@@ -188,13 +192,6 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     private func changeCurrentShop(shop: Shop, indexPath: IndexPath) {
         let alert = UIAlertController(title: "Chuyển sang \(shop.shopName)", message: nil, preferredStyle: .alert)
-//        alert.addTextField(configurationHandler: {(passwordField) in
-//            passwordField.placeholder = "Nhập mật khẩu của shop"
-//            passwordField.isSecureTextEntry = true
-//
-//            passwordField.borderStyle = .none
-//
-//        })
         alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: { _ in
             print("Đã huỷ")
         }))
