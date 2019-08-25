@@ -12,6 +12,10 @@ import Cosmos
 class RivalInfoViewController: UIViewController {
 
     //MARK: - Properties
+    var rival: Shop?
+    var rivalProduct: Product?
+    
+    
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var rivalCode: UILabel!
     @IBOutlet weak var rivalAddress: UILabel!
@@ -27,15 +31,18 @@ class RivalInfoViewController: UIViewController {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productSellPrice: UILabel!
-    @IBOutlet weak var numOfSold: UILabel!
     @IBOutlet weak var rating: CosmosView!
     
+    @IBOutlet weak var rivalShopID: UILabel!
+    @IBOutlet weak var rivalShopLocation: UILabel!
+    @IBOutlet weak var rivalShopGoodRating: UILabel!
+    @IBOutlet weak var rivalShopBadRating: UILabel!
+    @IBOutlet weak var rivalShopAverageRating: CosmosView!
     
-    @IBOutlet weak var changeRivalButton: UIButton! {
-        didSet {
-            changeRivalButton.layer.cornerRadius = 5
-        }
-    }
+    @IBOutlet weak var follower: UILabel!
+    @IBOutlet weak var rivalShopName: UILabel!
+    
+  
     
     
     override func viewDidLoad() {
@@ -47,6 +54,26 @@ class RivalInfoViewController: UIViewController {
                 
     }
     
+    // MARK: - Fill out information
+
+    func fillOutInfo(avatar: UIImage, follower: Int, id: Int, location: String?, goodRating: Int, badRating: Int, averageRating: Double) {
+        self.avatar.image = avatar
+        self.follower.text = String(follower)
+        self.rivalShopID.text = String(id)
+        self.rivalShopLocation.text = location
+        self.goodRating.text = String(goodRating)
+        self.badRating.text = String(badRating)
+        self.rivalShopAverageRating.rating = averageRating
+        
+    }
+    
+    func fillOutProductInfo(image: UIImage, productName: String, numberOfSoldItems: Int, rating: Double) {
+        self.productImage.image = image
+        self.productName.text = productName
+        self.productSellPrice.text = String(numberOfSoldItems)
+        self.rating.rating = rating
+        
+    }
     // MARK: - Private Modifications
     
     private func setImageForLabels() {
@@ -57,8 +84,7 @@ class RivalInfoViewController: UIViewController {
         rivalCode.addImage(#imageLiteral(resourceName: "code"), "Mã số")
     }
     
-    @IBAction func changRival(_ sender: Any) {
-    }
+    
     
 
 }

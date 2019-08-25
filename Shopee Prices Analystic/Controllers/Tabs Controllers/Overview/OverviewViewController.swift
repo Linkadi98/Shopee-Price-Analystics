@@ -129,8 +129,7 @@ class OverviewViewController: UIViewController {
         tabBarController?.selectedIndex = 3
     }
     @IBAction func switchToListShop(_ sender: Any) {
-        // switch to list shop view controller - not solved
-        
+        tabBarController?.selectedIndex = 4
     }
     
     private func configSubView(views: UIView...) {

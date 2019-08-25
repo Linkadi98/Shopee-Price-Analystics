@@ -62,5 +62,9 @@ class RivalPageViewController: UIViewController {
         pageViewController?.menuItemSize = .sizeToFit(minWidth: 180, height: 40)
         pageViewController?.menuTransition = .scrollAlongside
     }
+    
+    
+    
+    // Tất cả các dữ liệu đến các view này đều phải được setup tại file này      
 }
 
