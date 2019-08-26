@@ -67,6 +67,10 @@ class ChosenProductsTableViewController: UITableViewController {
         cell.productId.text! = "Mã: \(product.0.id)"
         loadOnlineImage(from: URL(string: product.0.image)!, to: cell.productImage)
         cell.numberOfRival.text = "\(product.1)"
+        if product.2 == false {
+            cell.autoChangePriceStatus.backgroundColor = .red
+            cell.autoChangePriceStatus.text = "Tắt"
+        }
 
         return cell
     }

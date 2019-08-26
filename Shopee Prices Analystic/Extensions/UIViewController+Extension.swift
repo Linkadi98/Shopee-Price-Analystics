@@ -260,12 +260,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     }
 
     func endLoading(_ activityIndicator: UIActivityIndicatorView) {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-//            activityIndicator.stopAnimating()
-//            if activityIndicator.isAnimating == false {
-//                UIApplication.shared.endIgnoringInteractionEvents()
-//            }
-//        }
         activityIndicator.stopAnimating()
         UIApplication.shared.endIgnoringInteractionEvents()
     }
@@ -313,6 +307,51 @@ extension UIViewController {
             }
         default: break
         }
+    }
+
+    func decodeProductJson(value: [String: Any]) -> Product {
+        let id = String(value["itemid"] as! Int)
+        let shopId = String(value["shopid"] as! Int)
+        let name = value["name"] as! String
+        let price = Int(value["price"] as! Double)
+        let rating = value["rating_star"] as! Double
+        let image = (value["images"] as! [String])[0]
+        let categoriesData = value["categories"] as! [[String: Any]]
+        var categories: [String] = []
+        for data in categoriesData {
+            categories.append(data["display_name"] as! String)
+        }
+        let brand = value["brand"] as? String
+        let sold = value["historical_sold"] as! Int
+        let stock = value["stock"] as! Int
+        let discount = value["discount"] as? String
+        let maxPrice = Int(value["price_max"] as! Double)
+        let minPrice = Int(value["price_min"] as! Double)
+
+        return Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice)
+    }
+
+    func decodeShopJson(value: [String: Any]) -> Shop {
+        let shopId = String(value["shopid"] as! Int)
+        let shopName = value["name"] as! String
+        let followersCount = value["follower_count"] as! Int64
+        let rating = value["rating_star"] as! Double
+        let place = value["place"] as! String
+
+        return Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place)
+    }
+
+    func decodeObservationJson(value: [String: Any]) -> Observation {
+        let productId = String(value["itemid"] as! Int)
+        let shopId = String(value["shopid"] as! Int)
+        let rivalShopId = String(value["rivalShopid"] as! Int)
+        let rivalProductId = String(value["rivalItemid"] as! Int)
+        let autoUpdate = value["auto"] as! Bool
+        let priceDiff = value["price"] as! Int
+        let minPrice = value["min"] as! Int
+        let maxPrice = value["max"] as! Int
+
+        return Observation(productId: productId, shopId: shopId, rivalShopId: rivalShopId, rivalProductId: rivalProductId, autoUpdate: autoUpdate, priceDiff: priceDiff, maxPrice: maxPrice, minPrice: minPrice)
     }
 
     func getObjectInUserDefaults(forKey key: String) -> AnyObject? {
@@ -556,12 +595,7 @@ extension UIViewController {
             var listShops: [Shop] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
-                let shopId = String(value["shopid"] as! Int64)
-                let shopName = value["name"] as! String
-                let followersCount = value["follower_count"] as! Int64
-                let rating = value["rating_star"] as! Double
-                let place = value["place"] as! String
-                listShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place))
+                listShops.append(self.decodeShopJson(value: value))
             }
             self.chooseCurrentShop(listShops: listShops)
             completion(.success, listShops)
@@ -628,25 +662,7 @@ extension UIViewController {
             var listProducts: [Product] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
-                let id = String(value["itemid"] as! Int)
-                let shopId = String(value["shopid"] as! Int)
-                let name = value["name"] as! String
-                let price = Int(value["price"] as! Double)
-                let rating = value["rating_star"] as! Double
-                let image = (value["images"] as! [String])[0]
-                let categoriesData = value["categories"] as! [[String: Any]]
-                var categories: [String] = []
-                for data in categoriesData {
-                    categories.append(data["display_name"] as! String)
-                }
-                let brand = value["brand"] as? String
-                let sold = value["historical_sold"] as! Int
-                let stock = value["stock"] as! Int
-                let discount = value["discount"] as? String
-                let maxPrice = Int(value["price_max"] as! Double)
-                let minPrice = Int(value["price_min"] as! Double)
-
-                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice))
+                listProducts.append(self.decodeProductJson(value: value))
             }
             completion(.success, listProducts)
         }
@@ -694,26 +710,7 @@ extension UIViewController {
             var listRivals: [Product] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
-                let id = String(value["itemid"] as! Int)
-                let shopId = String(value["shopid"] as! Int)
-                let name = value["name"] as! String
-                let price = Int(value["price"] as! Double)
-                let rating = value["rating_star"] as! Double
-                let image = (value["images"] as! [String])[0]
-                let categoriesData = value["categories"] as! [[String: Any]]
-                var categories: [String] = []
-                for data in categoriesData {
-                    categories.append(data["display_name"] as! String)
-                }
-                let brand = value["brand"] as? String
-                let sold = value["historical_sold"] as! Int
-                let stock = value["stock"] as! Int
-                let discount = value["discount"] as? String
-                let maxPrice = Int(value["price_max"] as! Double)
-                let minPrice = Int(value["price_min"] as! Double)
-
-
-                listRivals.append(Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice))
+                listRivals.append(self.decodeProductJson(value: value))
                 print("So doi thu: \(listRivals.count)")
             }
             completion(.success, listRivals)
@@ -737,11 +734,7 @@ extension UIViewController {
             var listRivalsShops: [Shop] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
-                let shopId = String(value["shopid"] as! Int64)
-                let shopName = value["name"] as! String
-                let followersCount = value["follower_count"] as! Int64
-                let rating = value["rating_star"] as! Double
-                listRivalsShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: "ABC")) // need edited
+                listRivalsShops.append(self.decodeShopJson(value: value)) // need edited
                 print("So shop doi thu: \(listRivalsShops.count)")
             }
             completion(listRivalsShops)
@@ -794,24 +787,7 @@ extension UIViewController {
             var chosenProducts: [(Product, Int, Bool)] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
-                let id = String(value["itemid"] as! Int)
-                let shopId = String(value["shopid"] as! Int)
-                let name = value["name"] as! String
-                let price = Int(value["price"] as! Double)
-                let rating = value["rating_star"] as! Double
-                let image = (value["images"] as! [String])[0]
-                let categoriesData = value["categories"] as! [[String: Any]]
-                var categories: [String] = []
-                for data in categoriesData {
-                    categories.append(data["display_name"] as! String)
-                }
-                let brand = value["brand"] as? String
-                let sold = value["historical_sold"] as! Int
-                let stock = value["stock"] as! Int
-                let discount = value["discount"] as? String
-                let maxPrice = Int(value["price_max"] as! Double)
-                let minPrice = Int(value["price_min"] as! Double)
-                let product = Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice)
+                let product = self.decodeProductJson(value: value)
 
                 let numberOfChosenRivals = value["chosen"] as! Int
                 let autoUpdate = value["auto"] as! Bool
@@ -823,7 +799,7 @@ extension UIViewController {
     }
 
     // Get chosen rivals
-    func getChosenRivals(shopId: String, productId: String, completion: @escaping (ConnectionResults, [(Product, Shop)]?) -> Void) {
+    func getChosenRivals(shopId: String, productId: String, completion: @escaping (ConnectionResults, [(Product, Shop, Observation)]?) -> Void) {
         // shop rivals, product, numberOfChosenRivals, autoUpdate
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.chosenRivals_path + "/\(shopId)/\(productId)")!
@@ -837,39 +813,20 @@ extension UIViewController {
             }
 
             //Successful request
-            var chosenRivals: [(Product, Shop)] = []
-            let responseValues = response.result.value! as! [[String: Any]]
-            let count = responseValues.count
+            var chosenRivals: [(Product, Shop, Observation)] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            let count = responseValue.count
             var i = 0
-            for values in responseValues {
-                let value = values["itemRival"] as! [String: Any]
-                print(value)
-                let id = String(value["itemid"] as! Int)
-                let shopId = String(value["shopid"] as! Int)
-                let name = value["name"] as! String
-                let price = Int(value["price"] as! Double)
-                let rating = value["rating_star"] as! Double
-                let image = (value["images"] as! [String])[0]
-                let categoriesData = value["categories"] as! [[String: Any]]
-                var categories: [String] = []
-                for data in categoriesData {
-                    categories.append(data["display_name"] as! String)
-                }
-                let brand = value["brand"] as? String
-                let sold = value["historical_sold"] as! Int
-                let stock = value["stock"] as! Int
-                let discount = value["discount"] as? String
-                let maxPrice = Int(value["price_max"] as! Double)
-                let minPrice = Int(value["price_min"] as! Double)
-                let rival = Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice)
-
+            for value in responseValue {
+                let itemRivalValue = value["itemRival"] as! [String: Any]
+                let observationValue = value["rival"] as! [String: Any]
                 self.getRivalsShop(shopId: shopId) { (result, rivalsShop) in
                     guard result != .failed, let rivalsShop = rivalsShop else {
                         completion(.failed, nil)
                         return
                     }
 
-                    chosenRivals.append((rival, rivalsShop))
+                    chosenRivals.append((self.decodeProductJson(value: itemRivalValue), rivalsShop, self.decodeObservationJson(value: observationValue)))
                     i += 1
                     if i == count {
                         completion(.success, chosenRivals)
@@ -895,14 +852,7 @@ extension UIViewController {
 
             //Successful request
             let responseValue = response.result.value! as! [String: Any]
-            let shopId = String(responseValue["shopid"] as! Int64)
-            let shopName = responseValue["name"] as! String
-            let followersCount = responseValue["follower_count"] as! Int64
-            let rating = responseValue["rating_star"] as! Double
-            let place = responseValue["place"] as! String
-
-            let rivalsShop = Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place)
-            completion(.success, rivalsShop)
+            completion(.success, self.decodeShopJson(value: responseValue))
         }
     }
 }
