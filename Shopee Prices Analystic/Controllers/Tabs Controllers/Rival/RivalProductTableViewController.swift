@@ -10,6 +10,7 @@ import UIKit
 
 class RivalProductTableViewController: UITableViewController {
 
+    var product: Product?
     var priceObservation: [(Int, String, String)]?
 
     override func viewDidLoad() {
@@ -19,28 +20,38 @@ class RivalProductTableViewController: UITableViewController {
         self.refreshControl?.tintColor = UIColor.orange
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        update(productId: product!.id)
+    }
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return priceObservation?.count ?? 0
+        return priceObservation?.count ?? 10
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rivalProductCell", for: indexPath)
 
         guard let priceObservation = priceObservation else {
-            presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+//            presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau") Vẫn đuợc gọi 1 lần
             return cell
         }
 
         let history = priceObservation[indexPath.row]
+        let price = history.0
+        let date = history.1
+        let time = history.2
+
+        cell.textLabel?.text = time + " " + date
+        cell.detailTextLabel?.text = price.convertPriceToVietnameseCurrency()!
         
 //        cell.
 
@@ -70,7 +81,11 @@ class RivalProductTableViewController: UITableViewController {
         tableView.refreshControl?.endRefreshing()
     }
 
-    func update() {
-
+    func update(productId: String) {
+        priceObservation(productId: productId) { (result, priceObservation) in
+            self.priceObservation = priceObservation!
+//            print("13y12237 \(priceObservation)")
+            self.tableView.reloadData()
+        }
     }
 }

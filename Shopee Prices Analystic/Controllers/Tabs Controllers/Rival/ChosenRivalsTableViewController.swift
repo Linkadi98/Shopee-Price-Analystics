@@ -107,6 +107,7 @@ class ChosenRivalsTableViewController: UITableViewController {
                 print("zzz: \(chosenRival)")
                 if let containerRivalInfoViewController = segue.destination as? ContainerRivalInfoViewController {
                     containerRivalInfoViewController.chosenRival = chosenRival
+                    containerRivalInfoViewController.product = product!
                 }
             }
 

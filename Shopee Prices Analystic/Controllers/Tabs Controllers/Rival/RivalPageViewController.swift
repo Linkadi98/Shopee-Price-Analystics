@@ -11,6 +11,7 @@ import Parchment
 
 class RivalPageViewController: UIViewController {
 
+    var product: Product?
     var chosenRival: (Product, Shop, Observation)?
     
     weak var rivalInfoViewController: RivalInfoViewController?
@@ -80,13 +81,12 @@ class RivalPageViewController: UIViewController {
         let observation = chosenRival.2
 
         // Rival info
-        rivalInfoViewController?.fillOutInfo(avatar: rivalShop.image, follower: rivalShop.followersCount, id: rivalShop.shopId, location: rivalShop.place, goodRating: rivalShop.goodRating, badRating: rivalShop.badRating, averageRating: rivalShop.rating)
+        rivalInfoViewController?.fillOutInfo(avatar: rivalShop.image, follower: rivalShop.followersCount, id: rivalShop.shopId, name: rivalShop.shopName, location: rivalShop.place, goodRating: rivalShop.goodRating, badRating: rivalShop.badRating, averageRating: rivalShop.rating)
 
         rivalInfoViewController?.fillOutProductInfo(image: rival.image, productName: rival.name, numberOfSoldItems: rival.sold, rating: rival.rating)
 
         // Rival product
-        rival
-        
+        rivalProductTableViewController?.product = product!
     }
     
     // Tất cả các dữ liệu đến các view này đều phải được setup tại file này      

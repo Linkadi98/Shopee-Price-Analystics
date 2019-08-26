@@ -10,6 +10,7 @@ import UIKit
 
 class ContainerRivalInfoViewController: UIViewController {
 
+    var product: Product?
     var chosenRival: (Product, Shop, Observation)?
     
     override func viewDidLoad() {
@@ -22,6 +23,7 @@ class ContainerRivalInfoViewController: UIViewController {
         if segue.identifier == "ContainerRivalInfoVCToRivalPageTVC" {
             if let rivalPageViewController = segue.destination as? RivalPageViewController {
                 rivalPageViewController.chosenRival = self.chosenRival
+                rivalPageViewController.product = self.product!
             }
         }
     }

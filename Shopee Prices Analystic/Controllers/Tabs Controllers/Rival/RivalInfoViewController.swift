@@ -41,9 +41,6 @@ class RivalInfoViewController: UIViewController {
     @IBOutlet weak var follower: UILabel!
     @IBOutlet weak var rivalShopName: UILabel!
     
-  
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -55,12 +52,13 @@ class RivalInfoViewController: UIViewController {
     
     // MARK: - Fill out information
 
-    func fillOutInfo(avatar: String?, follower: Int, id: String, location: String?, goodRating: Int, badRating: Int, averageRating: Double) {
+    func fillOutInfo(avatar: String?, follower: Int, id: String, name: String, location: String?, goodRating: Int, badRating: Int, averageRating: Double) {
         if let avatar = avatar {
             loadOnlineImage(from: URL(string: avatar)!, to: self.avatar)
         }
-        self.follower.text = String(follower)
+        self.follower.text = "Lượt theo dõi: " + String(follower)
         self.rivalShopID.text = id
+        self.rivalShopName.text = name
         self.rivalShopLocation.text = location
         self.goodRating.text = String(goodRating)
         self.badRating.text = String(badRating)
