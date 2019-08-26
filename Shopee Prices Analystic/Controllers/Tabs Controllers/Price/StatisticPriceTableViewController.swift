@@ -64,10 +64,8 @@ class StatisticalPriceTableViewController: UITableViewController {
             title = title + tuple.0 + " đến " + tuple.1
             return title
         default:
-            break
+            return "Thống kê giá sản phẩm"
         }
-        
-        return nil
     }
     
     
