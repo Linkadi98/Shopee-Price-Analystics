@@ -18,7 +18,6 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     var listShops: [Shop]?
     var filterShop: [Shop]?
-    var addedShopId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,7 +138,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         
         tableView.allowsSelection = false
 
-        getListShops { (result, listShops) in
+        getListShops { [unowned self] (result, listShops) in
             guard result != .failed, var listShops = listShops else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
@@ -202,7 +201,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
                 let activityIndicator = startLoading()
 
-                addShop(shopId: shopId) { (result, message) in
+                addShop(shopId: shopId) { [unowned self] (result, message) in
                     switch result {
                     case .error:
                         self.presentAlert(message: message!)

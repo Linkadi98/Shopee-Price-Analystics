@@ -41,25 +41,28 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
 
-        if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
-            self.currentShop = currentShop
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            return
         }
+
+        self.currentShop = currentShop
     }
 
 
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
 
-        guard listProducts != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, self.currentShop == currentShop else {
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return
+        }
+
+        guard listProducts != nil, self.currentShop == currentShop else {
             fetchDataFromServer()
             return
         }
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-
-    }
-
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -88,11 +91,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             product = listProducts![indexPath.row]
         }
 
-        cell.productName.text = "\(product.name!)"
-        cell.cosmos.rating = product.rating!
-        cell.productPrice.text = product.convertPriceToVietnameseCurrency()
-        cell.productCode.text = product.id!
-        loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
+        cell.productName.text = "\(product.name)"
+        cell.cosmos.rating = product.rating
+        cell.productPrice.text = product.price.convertPriceToVietnameseCurrency()
+        cell.productCode.text = product.id
+        loadOnlineImage(from: URL(string: product.image)!, to: cell.productImage)
 
         cell.hideSkeletonAnimation()
 
@@ -169,7 +172,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
             filterProducts = listProducts?.filter({(product: Product) -> Bool in
-                return product.name!.lowercased().contains(searchText.lowercased()) || product.id!.lowercased().contains(searchText.lowercased())
+                return product.name.lowercased().contains(searchText.lowercased()) || product.id.lowercased().contains(searchText.lowercased())
             })
         }
     }
@@ -225,10 +228,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     private func presentChangePriceAlert(productIndex: Int) {
         let product = listProducts![productIndex]
-        let alert = UIAlertController(title: "Sản phẩm \(product.name!)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sản phẩm \(product.name)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textfield in
             textfield.borderStyle = .none
-            textfield.text = String(product.price!)
+            textfield.text = String(product.price)
         })
         
         let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
@@ -238,38 +241,32 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 return
             }
 
-            guard newPrice != product.price! else {
-                self.presentAlert(title: "Thông báo", message: "Giá không thay đổi")
+            guard newPrice != product.price else {
+                self.presentAlert(message: "Giá không thay đổi")
                 return
             }
 
-            UIApplication.shared.beginIgnoringInteractionEvents()
+            let activityIndicator = self.startLoading()
 
-            let activityIndicator = self.initActivityIndicator()
-            self.view.addSubview(activityIndicator)
-            activityIndicator.startAnimating()
-            // đối giá tại đây
-            self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { result in
-                if result == "failed" {
-                    self.presentAlert(title: "Lỗi kết nối", message: "Kiểm tra kết nối")
-                } else if result == "wrong" {
+            self.updatePrice(shopId: product.shopId, productId: product.id, newPrice: newPrice) { [unowned self] result in
+                switch result {
+                case .error:
                     self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-                } else if result == "success" {
+                case .success:
                     self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
                     self.listProducts![productIndex].price = newPrice
                     self.tableView.reloadRows(at: [IndexPath(row: productIndex, section: 0)], with: .automatic)
+                default:
+                    break
                 }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-                    activityIndicator.stopAnimating()
-                    if activityIndicator.isAnimating == false {
-                        UIApplication.shared.endIgnoringInteractionEvents()
-                    }
-                }
+
+                self.endLoading(activityIndicator)
             }
         }
         
         alert.addAction(cancel)
         alert.addAction(ok)
+
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
