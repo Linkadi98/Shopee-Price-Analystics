@@ -129,7 +129,7 @@ class ListRivalsTableViewController: UITableViewController {
             }
 
             guard !listRivals.isEmpty else {
-                self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Rất tiếc, sản phẩm của bạn không tìm thấy đối thủ")
+                self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Sản phẩm của bạn không có đối thủ nào cùng bán")
                 self.isFirstAppear = false
                 self.hasData = false
                 self.tableView.reloadData()
@@ -164,7 +164,7 @@ class ListRivalsTableViewController: UITableViewController {
             }
 
             guard !listRivalsShops.isEmpty else {
-                self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Rất tiếc, sản phẩm của bạn không tìm thấy đối thủ")
+                self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Sản phẩm của bạn không có đối thủ nào cùng bán")
                 self.isFirstAppear = false
                 self.hasData = false
                 self.tableView.reloadData()

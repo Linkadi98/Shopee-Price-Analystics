@@ -41,9 +41,11 @@ extension UITableViewController {
         let view = UIView()
         noData.text = title
         noData.textAlignment = .center
+        
         description.text = message
         description.textAlignment = .center
         description.textColor = .lightGray
+        description.numberOfLines = 2
         
         let stackView = UIStackView()
         stackView.addArrangedSubview(noData)
@@ -54,6 +56,8 @@ extension UITableViewController {
         view.addSubview(stackView)
         
         stackView.snp.makeConstraints({ make in
+            make.leading.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(10)
             make.center.equalToSuperview()
         })
         
