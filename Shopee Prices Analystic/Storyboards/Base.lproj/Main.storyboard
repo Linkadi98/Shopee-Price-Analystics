@@ -1991,7 +1991,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAa-aP-TqH">
                                             <rect key="frame" x="15" y="8" width="384" height="101"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ox-bd-dap">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6ox-bd-dap">
                                                     <rect key="frame" x="0.0" y="0.0" width="107" height="101"/>
                                                     <color key="backgroundColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -2166,7 +2166,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1u-0v-ken" customClass="CosmosView" customModule="Cosmos">
-                                                                <rect key="frame" x="278" y="192" width="120" height="20"/>
+                                                                <rect key="frame" x="270" y="192" width="120" height="20"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
@@ -2193,17 +2193,17 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="Z1u-0v-ken" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y3G-XR-KLh" secondAttribute="trailing" constant="103" id="2FT-aM-bZh"/>
+                                                            <constraint firstItem="Z1u-0v-ken" firstAttribute="leading" relation="lessThanOrEqual" secondItem="y3G-XR-KLh" secondAttribute="trailing" constant="103" id="2FT-aM-bZh"/>
                                                             <constraint firstItem="2R7-nX-CYx" firstAttribute="leading" secondItem="z9v-07-Ptr" secondAttribute="leading" constant="20" id="2hS-uL-aUL"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Z1u-0v-ken" secondAttribute="trailing" id="3R8-sf-uxC"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Z1u-0v-ken" secondAttribute="trailing" constant="8" id="3R8-sf-uxC"/>
                                                             <constraint firstItem="gXd-o0-BSx" firstAttribute="top" secondItem="sHs-EZ-WRb" secondAttribute="bottom" constant="19.5" id="3wg-0q-N2M"/>
                                                             <constraint firstItem="xzd-rB-rH5" firstAttribute="leading" secondItem="z9v-07-Ptr" secondAttribute="leading" constant="20" id="40c-ou-omB"/>
-                                                            <constraint firstItem="gXd-o0-BSx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2R7-nX-CYx" secondAttribute="trailing" constant="262.5" id="7yH-cA-EjQ"/>
+                                                            <constraint firstItem="gXd-o0-BSx" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2R7-nX-CYx" secondAttribute="trailing" constant="262.5" id="7yH-cA-EjQ"/>
                                                             <constraint firstItem="sHs-EZ-WRb" firstAttribute="top" secondItem="z9v-07-Ptr" secondAttribute="top" constant="30" id="8cp-1Y-Gwg"/>
-                                                            <constraint firstItem="DGc-ro-36L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JBG-KX-2do" secondAttribute="trailing" constant="215.5" id="91b-jV-NFy"/>
+                                                            <constraint firstItem="DGc-ro-36L" firstAttribute="leading" relation="lessThanOrEqual" secondItem="JBG-KX-2do" secondAttribute="trailing" constant="215.5" id="91b-jV-NFy"/>
                                                             <constraint firstItem="y3G-XR-KLh" firstAttribute="leading" secondItem="z9v-07-Ptr" secondAttribute="leading" constant="20" id="DKc-dx-Ede"/>
                                                             <constraint firstItem="Z1u-0v-ken" firstAttribute="top" secondItem="DGc-ro-36L" secondAttribute="bottom" constant="20.5" id="MO3-f9-mUe"/>
-                                                            <constraint firstItem="Pml-d5-R7m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hNx-2Q-L6r" secondAttribute="trailing" constant="221" id="MTD-HN-FjJ"/>
+                                                            <constraint firstItem="Pml-d5-R7m" firstAttribute="leading" relation="lessThanOrEqual" secondItem="hNx-2Q-L6r" secondAttribute="trailing" constant="221" id="MTD-HN-FjJ"/>
                                                             <constraint firstItem="hNx-2Q-L6r" firstAttribute="leading" secondItem="z9v-07-Ptr" secondAttribute="leading" constant="20" id="QkY-hw-mdR"/>
                                                             <constraint firstItem="y3G-XR-KLh" firstAttribute="top" secondItem="JBG-KX-2do" secondAttribute="bottom" constant="20" id="Qmk-PC-kTE"/>
                                                             <constraint firstItem="xzd-rB-rH5" firstAttribute="top" secondItem="z9v-07-Ptr" secondAttribute="top" constant="30" id="W9a-I0-8gr"/>
@@ -2236,7 +2236,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ô tô đồ chơi thế hệ mới" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-wv-ssk">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ô tô đồ chơi thế hệ mới" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBH-wv-ssk">
                                                                         <rect key="frame" x="0.0" y="28.5" width="206.5" height="18"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2265,11 +2265,11 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G39-7m-NCY" customClass="CosmosView" customModule="Cosmos">
-                                                                <rect key="frame" x="270" y="183" width="120" height="20"/>
+                                                                <rect key="frame" x="270" y="175.5" width="120" height="20"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đánh giá sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZs-et-6Ii">
-                                                                <rect key="frame" x="8" y="183" width="146.5" height="20.5"/>
+                                                                <rect key="frame" x="8" y="168.5" width="146.5" height="35"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -2278,21 +2278,20 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="Idb-ra-o90" secondAttribute="trailing" constant="8" id="0vW-9k-ddE"/>
-                                                            <constraint firstItem="G39-7m-NCY" firstAttribute="top" secondItem="Idb-ra-o90" secondAttribute="bottom" constant="24.5" id="6i3-J1-SsY"/>
                                                             <constraint firstAttribute="bottom" secondItem="zZs-et-6Ii" secondAttribute="bottom" constant="36.5" id="7Uq-7V-ZOm"/>
-                                                            <constraint firstItem="zZs-et-6Ii" firstAttribute="top" secondItem="zRF-x1-eJP" secondAttribute="bottom" constant="24.5" id="C5Y-8v-5Ie"/>
-                                                            <constraint firstAttribute="bottom" secondItem="G39-7m-NCY" secondAttribute="bottom" constant="37" id="CUZ-W0-M12"/>
+                                                            <constraint firstItem="zZs-et-6Ii" firstAttribute="top" secondItem="zRF-x1-eJP" secondAttribute="bottom" constant="10" id="C5Y-8v-5Ie"/>
                                                             <constraint firstItem="Idb-ra-o90" firstAttribute="baseline" secondItem="zRF-x1-eJP" secondAttribute="baseline" id="EeZ-uZ-Qlr"/>
                                                             <constraint firstItem="Idb-ra-o90" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zRF-x1-eJP" secondAttribute="trailing" constant="8" symbolic="YES" id="Jyw-dg-GeU"/>
-                                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="1MA-pb-yPE" secondAttribute="trailing" constant="75.329999999999998" id="MLw-tM-wxf"/>
+                                                            <constraint firstAttribute="trailing" secondItem="1MA-pb-yPE" secondAttribute="trailing" constant="75.329999999999998" id="MLw-tM-wxf"/>
+                                                            <constraint firstItem="Idb-ra-o90" firstAttribute="top" secondItem="Qfd-ps-OcQ" secondAttribute="top" constant="138" id="Sel-iF-SxH"/>
                                                             <constraint firstItem="Pnz-mS-bKe" firstAttribute="leading" secondItem="Qfd-ps-OcQ" secondAttribute="leading" constant="8" id="Sql-UL-jNS"/>
                                                             <constraint firstItem="zRF-x1-eJP" firstAttribute="top" secondItem="Pnz-mS-bKe" secondAttribute="bottom" constant="30" id="T2m-GA-jFU"/>
                                                             <constraint firstItem="Pnz-mS-bKe" firstAttribute="top" secondItem="Qfd-ps-OcQ" secondAttribute="top" constant="8" id="ewV-Ue-f6A"/>
                                                             <constraint firstItem="zRF-x1-eJP" firstAttribute="leading" secondItem="Qfd-ps-OcQ" secondAttribute="leading" constant="8" id="fM6-5n-KQJ"/>
                                                             <constraint firstItem="1MA-pb-yPE" firstAttribute="top" secondItem="Qfd-ps-OcQ" secondAttribute="top" constant="20" id="geX-XX-cOd"/>
+                                                            <constraint firstItem="G39-7m-NCY" firstAttribute="trailing" secondItem="Idb-ra-o90" secondAttribute="trailing" id="hfU-2L-yva"/>
                                                             <constraint firstItem="zZs-et-6Ii" firstAttribute="leading" secondItem="Qfd-ps-OcQ" secondAttribute="leading" constant="8" id="lIg-qy-GcN"/>
-                                                            <constraint firstItem="G39-7m-NCY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zZs-et-6Ii" secondAttribute="trailing" constant="8" symbolic="YES" id="sz8-3b-xQw"/>
-                                                            <constraint firstItem="Idb-ra-o90" firstAttribute="trailing" secondItem="G39-7m-NCY" secondAttribute="trailing" id="u5a-0m-5r3"/>
+                                                            <constraint firstItem="G39-7m-NCY" firstAttribute="top" secondItem="zZs-et-6Ii" secondAttribute="top" constant="7" id="vnk-PI-xv5"/>
                                                             <constraint firstItem="1MA-pb-yPE" firstAttribute="leading" secondItem="Pnz-mS-bKe" secondAttribute="trailing" constant="8" id="xVf-Fh-QUV"/>
                                                         </constraints>
                                                     </view>
@@ -2372,18 +2371,17 @@
                     </view>
                     <connections>
                         <outlet property="avatar" destination="QPI-6L-LXk" id="D8d-mP-Dw5"/>
-                        <outlet property="averageRating" destination="y3G-XR-KLh" id="A44-OL-wz3"/>
                         <outlet property="averageRatingStar" destination="Z1u-0v-ken" id="HKF-9P-Vv2"/>
-                        <outlet property="badRating" destination="JBG-KX-2do" id="OVv-RB-5Rr"/>
+                        <outlet property="badRating" destination="DGc-ro-36L" id="shU-QI-HjS"/>
                         <outlet property="containerView" destination="z9v-07-Ptr" id="o5d-U9-yS6"/>
                         <outlet property="follower" destination="1rx-Pj-4zO" id="FWK-ZZ-e95"/>
-                        <outlet property="goodRating" destination="hNx-2Q-L6r" id="OcK-FI-0dX"/>
+                        <outlet property="goodRating" destination="Pml-d5-R7m" id="4yh-PA-fFA"/>
                         <outlet property="productImage" destination="Pnz-mS-bKe" id="GVD-h1-S5i"/>
                         <outlet property="productName" destination="SBH-wv-ssk" id="pdl-Y4-uhv"/>
                         <outlet property="productSellPrice" destination="Idb-ra-o90" id="0Iw-IS-bIS"/>
                         <outlet property="rating" destination="G39-7m-NCY" id="0og-6h-2pT"/>
-                        <outlet property="rivalAddress" destination="2R7-nX-CYx" id="VWV-6u-m1f"/>
-                        <outlet property="rivalCode" destination="xzd-rB-rH5" id="K1y-3h-emp"/>
+                        <outlet property="rivalAddress" destination="gXd-o0-BSx" id="In5-1J-d4e"/>
+                        <outlet property="rivalCode" destination="sHs-EZ-WRb" id="KuT-7c-cfQ"/>
                         <outlet property="rivalShopAverageRating" destination="Z1u-0v-ken" id="UN9-yf-K0B"/>
                         <outlet property="rivalShopBadRating" destination="DGc-ro-36L" id="cW7-Pz-6jw"/>
                         <outlet property="rivalShopGoodRating" destination="Pml-d5-R7m" id="Tb1-hj-bFR"/>
