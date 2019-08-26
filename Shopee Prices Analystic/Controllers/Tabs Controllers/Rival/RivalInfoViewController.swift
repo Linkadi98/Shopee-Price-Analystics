@@ -21,7 +21,6 @@ class RivalInfoViewController: UIViewController {
     @IBOutlet weak var rivalAddress: UILabel!
     @IBOutlet weak var goodRating: UILabel!
     @IBOutlet weak var badRating: UILabel!
-    @IBOutlet weak var averageRating: UILabel!
     @IBOutlet weak var averageRatingStar: CosmosView!
     
     
@@ -76,17 +75,4 @@ class RivalInfoViewController: UIViewController {
         self.rating.rating = rating
         
     }
-    // MARK: - Private Modifications
-    
-    private func setImageForLabels() {
-        averageRating.addImage(#imageLiteral(resourceName: "average rating"), "Đánh giá trung bình")
-        rivalAddress.addImage(#imageLiteral(resourceName: "address"), "Địa chỉ")
-        goodRating.addImage(#imageLiteral(resourceName: "good rating"), "Đánh giá tốt")
-        badRating.addImage(#imageLiteral(resourceName: "bad rating"), "Đánh giá xấu")
-        rivalCode.addImage(#imageLiteral(resourceName: "code"), "Mã số")
-    }
-    
-    
-    
-
 }

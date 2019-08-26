@@ -865,7 +865,7 @@ extension UIViewController {
 
 // Price Observation
 extension UIViewController {
-    func priceObservation(shopId: String, completi)
+//    func priceObservation(shopId: String, completi)
 }
 
 
