@@ -143,164 +143,76 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-    func checkAccount(username: String, password: String, completion: @escaping (String) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
-        let parameters: Parameters = [
-            "username" : username,
-            "password" : password
-        ]
+//    func checkAccount(username: String, password: String, completion: @escaping (String) -> Void) {
+//        let sharedNetwork = Network.shared
+//        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
+//        let parameters: Parameters = [
+//            "username" : username,
+//            "password" : password
+//        ]
+//
+//        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+//                // Failed request
+//                guard response.result.isSuccess else {
+//                    print("Error when fetching data: \(response.result.error)")
+//                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+//                    completion("failed")
+//                    return
+//                }
+//
+//                //Successful request
+//                let responseValue = response.result.value! as! [String: Any]
+//                guard let _ = responseValue["token"] as? String else {
+//                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
+//                    completion("wrong")
+//                    return
+//                }
+//
+//                completion("success")
+//            }
+//        }
+//    }
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                // Failed request
-                guard response.result.isSuccess else {
-                    print("Error when fetching data: \(response.result.error)")
-                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                    completion("failed")
-                    return
-                }
-
-                //Successful request
-                let responseValue = response.result.value! as! [String: Any]
-                guard let _ = responseValue["token"] as? String else {
-                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
-                    completion("wrong")
-                    return
-                }
-                
-                completion("success")
-            }
-        }
-    }
-
-    // get list products from DB
-    func getListProducts(completion: @escaping ([Product]?) -> Void) {
-        let sharedNetwork = Network.shared
-        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-        var url = URL(string: "https://google.com")!
-        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-                url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
-                print("Đang lấy sản phẩm của shop: \(currentShop.shopName) \(currentShop.shopId)")
-            }
-        } else {
-            print("Chua co san pham vi chua ket noi cua hang")
-            completion([])
-            return
-        }
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion(nil)
-                return
-            }
-
-            //Successful request
-            var listProducts: [Product] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                let id = String(value["itemid"] as! Int)
-                let shopId = String(value["shopid"] as! Int)
-                let name = value["name"] as! String
-                let price = Int(value["price"] as! Double)
-                let image = (value["images"] as! [String])[0]
-                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
-            }
-            completion(listProducts)
-        }
-    }
-
-    func getListRivals(myShopId: String, myProductId: String, completion: @escaping ([Product]?) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion(nil)
-                return
-            }
-
-            //Successful request
-            var listRivals: [Product] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                let id = String(value["itemid"] as! Int)
-                let shopId = String(value["shopid"] as! Int)
-                let name = value["name"] as! String
-                let price = Int(value["price"] as! Double)
-                let image = (value["images"] as! [String])[0]
-                listRivals.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
-                print("So doi thu: \(listRivals.count)")
-            }
-            completion(listRivals)
-        }
-    }
-
-    func getListRivalsShops(myShopId: String, myProductId: String, completion: @escaping ([Shop]?) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShops_path + "/\(myShopId)/\(myProductId)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion(nil)
-                return
-            }
-
-            //Successful request
-            var listRivalsShops: [Shop] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                let shopId = String(value["shopid"] as! Int64)
-                let shopName = value["name"] as! String
-                let followersCount = value["follower_count"] as! Int64
-                let rating = value["rating_star"] as! Double
-                listRivalsShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: "ABC")) // need edited
-                print("So shop doi thu: \(listRivalsShops.count)")
-            }
-            completion(listRivalsShops)
-        }
-    }
-
-    // choose rival
-    func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, completion: @escaping (String) -> Void) {
-        let sharedNetwork = Network.shared
-        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-        let url = URL(string: Network.shared.base_url + Network.shared.rivalChoice_path)!
-        let parameters: Parameters = [
-            "itemid": myProductId,
-            "shopid": myShopId,
-            "rivalShopid": rivalShopId,
-            "rivalItemid": rivalProductId
-        ]
-
-        print(url)
-        print(parameters)
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
-                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-                completion("failed")
-                return
-            }
-
-            //Successful request
-            let responseValue = response.result.value! as! [String: Any]
-            print(responseValue)
-            completion("success")
-        }
-    }
+//    // get list products from DB
+//    func getListProducts(completion: @escaping ([Product]?) -> Void) {
+//        let sharedNetwork = Network.shared
+//        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
+//        var url = URL(string: "https://google.com")!
+//        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
+//            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
+//                url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
+//                print("Đang lấy sản phẩm của shop: \(currentShop.shopName) \(currentShop.shopId)")
+//            }
+//        } else {
+//            print("Chua co san pham vi chua ket noi cua hang")
+//            completion([])
+//            return
+//        }
+//
+//        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
+//            // Failed request
+//            guard response.result.isSuccess else {
+//                print("Error when fetching data: \(response.result.error)")
+//                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+//                completion(nil)
+//                return
+//            }
+//
+//            //Successful request
+//            var listProducts: [Product] = []
+//            let responseValue = response.result.value! as! [[String: Any]]
+//            for value in responseValue {
+//                let id = String(value["itemid"] as! Int)
+//                let shopId = String(value["shopid"] as! Int)
+//                let name = value["name"] as! String
+//                let price = Int(value["price"] as! Double)
+//                let image = (value["images"] as! [String])[0]
+//                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
+//            }
+//            completion(listProducts)
+//        }
+//    }
     
     // Load online image
     func loadOnlineImage(from url: URL, to uiImageView: UIImageView) {
@@ -699,7 +611,7 @@ extension UIViewController {
 
         url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
@@ -715,8 +627,21 @@ extension UIViewController {
                 let shopId = String(value["shopid"] as! Int)
                 let name = value["name"] as! String
                 let price = Int(value["price"] as! Double)
+                let rating = value["rating_star"] as! Double
                 let image = (value["images"] as! [String])[0]
-                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
+                let categoriesData = value["categories"] as! [[String: Any]]
+                var categories: [String] = []
+                for data in categoriesData {
+                    categories.append(data["display_name"] as! String)
+                }
+                let brand = value["brand"] as? String
+                let sold = value["historical_sold"] as! Int
+                let stock = value["stock"] as! Int
+                let discount = value["discount"] as? String
+                let maxPrice = Int(value["price_max"] as! Double)
+                let minPrice = Int(value["price_min"] as! Double)
+
+                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice))
             }
             completion(.success, listProducts)
         }
@@ -727,7 +652,7 @@ extension UIViewController {
         let sharedNetwork = Network.shared
         let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).validate().responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
@@ -742,6 +667,153 @@ extension UIViewController {
             } else {
                 completion(.error)
             }
+        }
+    }
+}
+
+// Rival API
+extension UIViewController {
+    func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [Product]?) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var listRivals: [Product] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
+                let name = value["name"] as! String
+                let price = Int(value["price"] as! Double)
+                let rating = value["rating_star"] as! Double
+                let image = (value["images"] as! [String])[0]
+                let categoriesData = value["categories"] as! [[String: Any]]
+                var categories: [String] = []
+                for data in categoriesData {
+                    categories.append(data["display_name"] as! String)
+                }
+                let brand = value["brand"] as? String
+                let sold = value["historical_sold"] as! Int
+                let stock = value["stock"] as! Int
+                let discount = value["discount"] as? String
+                let maxPrice = Int(value["price_max"] as! Double)
+                let minPrice = Int(value["price_min"] as! Double)
+
+
+                listRivals.append(Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice))
+                print("So doi thu: \(listRivals.count)")
+            }
+            completion(.success, listRivals)
+        }
+    }
+
+    func getListRivalsShops(myShopId: String, myProductId: String, completion: @escaping ([Shop]?) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShops_path + "/\(myShopId)/\(myProductId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                print("Error when fetching data: \(response.result.error)")
+                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+                completion(nil)
+                return
+            }
+
+            //Successful request
+            var listRivalsShops: [Shop] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let shopId = String(value["shopid"] as! Int64)
+                let shopName = value["name"] as! String
+                let followersCount = value["follower_count"] as! Int64
+                let rating = value["rating_star"] as! Double
+                listRivalsShops.append(Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: "ABC")) // need edited
+                print("So shop doi thu: \(listRivalsShops.count)")
+            }
+            completion(listRivalsShops)
+        }
+    }
+
+    // choose rival
+    func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, autoUpdate: Bool, priceDiff: Int, from min: Int, to max: Int, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: Network.shared.base_url + Network.shared.rivalChoice_path)!
+        let parameters: Parameters = [
+            "itemid": myProductId,
+            "shopid": myShopId,
+            "rivalShopid": rivalShopId,
+            "rivalItemid": rivalProductId,
+            "auto": autoUpdate,
+            "price": priceDiff,
+            "max": max,
+            "min": min
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed)
+                return
+            }
+
+            //Successful request
+            completion(.success)
+        }
+    }
+
+    // Get chosen products
+    func getChosenProducts(shopId: String, completion: @escaping (ConnectionResults, [(Product, Int, Bool)]?) -> Void) {
+        // result, product, numberOfChosenRivals, autoUpdate
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.chosenProducts_path + "/\(shopId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var chosenProducts: [(Product, Int, Bool)] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
+                let name = value["name"] as! String
+                let price = Int(value["price"] as! Double)
+                let rating = value["rating_star"] as! Double
+                let image = (value["images"] as! [String])[0]
+                let categoriesData = value["categories"] as! [[String: Any]]
+                var categories: [String] = []
+                for data in categoriesData {
+                    categories.append(data["display_name"] as! String)
+                }
+                let brand = value["brand"] as? String
+                let sold = value["historical_sold"] as! Int
+                let stock = value["stock"] as! Int
+                let discount = value["discount"] as? String
+                let maxPrice = Int(value["price_max"] as! Double)
+                let minPrice = Int(value["price_min"] as! Double)
+                let product = Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice)
+
+                let numberOfChosenRivals = value["chosen"] as! Int
+                let autoUpdate = value["auto"] as! Bool
+
+                chosenProducts.append((product, numberOfChosenRivals, autoUpdate))
+            }
+            completion(.success, chosenProducts)
         }
     }
 }

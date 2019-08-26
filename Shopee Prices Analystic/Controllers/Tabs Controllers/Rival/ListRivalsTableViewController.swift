@@ -73,9 +73,9 @@ class ListRivalsTableViewController: UITableViewController {
 
         let rival = listRivals![indexPath.row]
         let rivalShop = listRivalsShops![indexPath.row]
-        cell.productName.text = rival.name!
-        cell.productPrice.text = rival.convertPriceToVietnameseCurrency()
-        loadOnlineImage(from: URL(string: rival.image!)!, to: cell.productImage)
+        cell.productName.text = rival.name
+        cell.productPrice.text = rival.price.convertPriceToVietnameseCurrency()!
+        loadOnlineImage(from: URL(string: rival.image)!, to: cell.productImage)
         cell.rivalName.text = rivalShop.shopName
         cell.rivalRating.rating = rivalShop.rating
         cell.followersCount.text = "\(String(rivalShop.followersCount))"
@@ -91,20 +91,26 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! RivalTableCell
-        let rival = listRivals![indexPath.row]
-        chooseRival(myProductId: (product?.id)!, myShopId: (product?.shopId)!, rivalProductId: rival.id!, rivalShopId: rival.shopId!) { (result) in
-            if result == "success" {
-                print("Choose rival OK")
+        guard let product = product, let rival = listRivals?[indexPath.row] else {
+            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return
+        }
+
+        chooseRival(myProductId: product.id, myShopId: product.shopId, rivalProductId: rival.id, rivalShopId: rival.shopId, autoUpdate: false, priceDiff: 0, from: 0, to: 0) { (result) in
+            if result == .success {
+                cell.setFollowStatus()
+                //        tabBarController?.selectedIndex = 3
+                self.performSegue(withIdentifier: "listRivalSegue", sender: nil)
             }
         }
-        cell.setFollowStatus()
-//        tabBarController?.selectedIndex = 3
-        performSegue(withIdentifier: "listRivalSegue", sender: nil)
-        
     }
 
     private func fetchDataFromServer() {
         tableView.reloadData()
+
+//        for row in 0...self.tableView.numberOfRows(inSection: 0) {
+//            self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
+//        }
 
         view.hideSkeleton()
         view.showAnimatedSkeleton()
@@ -112,8 +118,8 @@ class ListRivalsTableViewController: UITableViewController {
         var doneloadingRivals = false
         var doneloadingRivalsShops = false
         tableView.allowsSelection = false
-        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (listRivals) in
-            guard let listRivals = listRivals else {
+        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (result, listRivals) in
+            guard result != .failed, let listRivals = listRivals else {
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
                 self.isFirstAppear = false
                 self.hasData = false

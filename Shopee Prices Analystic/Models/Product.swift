@@ -9,41 +9,47 @@
 import Foundation
 
 struct Product {
-    let id: String?
-    let shopId: String?
-    var name: String?
-    var price: Int?
-    var rating: Double?
-    var image: String?
-    var shopName: String?
-    
+    // 13
+    let id: String
+    let shopId: String
+    var name: String
+    var price: Int
+    var rating: Double
+    var image: String
+    var categories: [String]
     var brand: String?
-    var soldItem: Int?
+    var sold: Int // historical_sold
+    var stock: Int
+    var discount: String?
+    var maxPrice: Int
+    var minPrice: Int
+
     var inventory: Int?
     var ratingArray = [Int?]()
-    var category = [String?]()
-    
     var soldPrice: String?
-    var maxPrice: String?
-    var minPrice: String?
-    var discountPercent: String?
     
-    
-    func convertPriceToVietnameseCurrency() -> String? {
-        let formatter = NumberFormatter()
-        let priceInVietNam = price as NSNumber?
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: "vi_VN")
-        print(formatter.string(from: priceInVietNam!)!)
-        return formatter.string(from: priceInVietNam!)
-    }
-    
-    init(id: String, shopId: String, name: String, price: Int, rating: Double, image: String) {
+//    func convertPriceToVietnameseCurrency(price: Int) -> String? {
+//        let formatter = NumberFormatter()
+//        let priceInVietNam = price as NSNumber?
+//        formatter.numberStyle = .currency
+//        formatter.locale = Locale(identifier: "vi_VN")
+//        print(formatter.string(from: priceInVietNam!)!)
+//        return formatter.string(from: priceInVietNam!)
+//    }
+
+    init(id: String, shopId: String, name: String, price: Int, rating: Double, image: String, categories: [String], brand: String?, sold: Int, stock: Int, discount: String?, maxPrice: Int, minPrice: Int) {
         self.id = id
         self.name = name
         self.shopId = shopId
         self.rating = rating
         self.price = price
         self.image = image
+        self.categories = categories
+        self.brand = brand
+        self.sold = sold
+        self.stock = stock
+        self.discount = discount
+        self.maxPrice = maxPrice
+        self.minPrice = minPrice
     }
 }

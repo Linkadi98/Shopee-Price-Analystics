@@ -13,6 +13,7 @@ class ProductDetailTableViewController: UITableViewController {
 
     // MARK: - Properties
     var product: Product?
+    var currentShop: Shop?
 
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productCode: UILabel!
@@ -75,29 +76,51 @@ class ProductDetailTableViewController: UITableViewController {
         configCellContentView(for: brandCell, firstItem: "Thương hiệu", secondItem: brand)
         configCellContentView(for: soldItemCell, firstItem: "Đã bán", secondItem: numOfSoldItem)
         configCellContentView(for: inventoryCell, firstItem: "Tồn kho", secondItem: inventoryItem)
-        configRatingCell()
+
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            return
+        }
+
+        self.currentShop = currentShop
+//        configRatingCell(rating: 3.4)
     }
 
+
     override func viewDidAppear(_ animated: Bool) {
-        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-            if product?.shopId != currentShop.shopId {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
+        print("So VC: \(navigationController?.viewControllers.count)")
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return
         }
+
+        if product?.shopId != currentShop.shopId {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+
         update()
     }
 
-    func update() {
-        if let product = product {
-            productName.text = product.name!
-            productCode.text = String(product.id!)
-            soldPrice.text! = String(product.convertPriceToVietnameseCurrency()!)
-            if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-                if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-                    shopName.text = currentShop.shopId
-                }
-            }
-            loadOnlineImage(from: URL(string: product.image!)!, to: productImage)
+    private func update() {
+        guard let product = product else {
+            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return
+        }
+        productName.text = product.name
+        productCode.text = String(product.id)
+        soldPrice.text! = String(product.price.convertPriceToVietnameseCurrency()!)
+        shopName.text = product.shopId
+        configRatingCell(rating: product.rating)
+        loadOnlineImage(from: URL(string: product.image)!, to: productImage)
+        brand.text = product.brand
+        category.text = product.categories.last
+        numOfSoldItem.text = String(product.sold)
+        inventoryItem.text = String(product.stock)
+        maxPrice.text = String(product.maxPrice.convertPriceToVietnameseCurrency()!)
+        minPrice.text = String(product.minPrice.convertPriceToVietnameseCurrency()!)
+        if let discount = product.discount {
+            discountPercent.text = discount
+        } else {
+            discountPercent.text = "Không có"
         }
     }
 
@@ -137,7 +160,7 @@ class ProductDetailTableViewController: UITableViewController {
         inventoryItem.text = "Tồn kho"
     }
     
-    private func configRatingCell() {
+    private func configRatingCell(rating: Double) {
         let view = ratingCell.contentView
         
         let leftLabel = UILabel()
@@ -145,7 +168,7 @@ class ProductDetailTableViewController: UITableViewController {
         let stackViewRating = UIStackView()
         
         leftLabel.text = "Đánh giá"
-        ratingLabel.text = "3.4/5.0"
+        ratingLabel.text = "\(rating)/5.0"
         ratingLabel.font = UIFont.systemFont(ofSize: 25.0)
         
         stackViewRating.addArrangedSubview(fiveStar)
@@ -194,7 +217,7 @@ class ProductDetailTableViewController: UITableViewController {
         })
         
         
-        let cancel = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
+        let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
         
         
         option.addAction(priceOption)

@@ -41,16 +41,23 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
 
-        if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
-            self.currentShop = currentShop
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            return
         }
+
+        self.currentShop = currentShop
     }
 
 
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
 
-        guard listProducts != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, self.currentShop == currentShop else {
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return
+        }
+
+        guard listProducts != nil, self.currentShop == currentShop else {
             fetchDataFromServer()
             return
         }
@@ -84,11 +91,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             product = listProducts![indexPath.row]
         }
 
-        cell.productName.text = "\(product.name!)"
-        cell.cosmos.rating = product.rating!
-        cell.productPrice.text = product.convertPriceToVietnameseCurrency()
-        cell.productCode.text = product.id!
-        loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
+        cell.productName.text = "\(product.name)"
+        cell.cosmos.rating = product.rating
+        cell.productPrice.text = product.price.convertPriceToVietnameseCurrency()
+        cell.productCode.text = product.id
+        loadOnlineImage(from: URL(string: product.image)!, to: cell.productImage)
 
         cell.hideSkeletonAnimation()
 
@@ -165,7 +172,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
             filterProducts = listProducts?.filter({(product: Product) -> Bool in
-                return product.name!.lowercased().contains(searchText.lowercased()) || product.id!.lowercased().contains(searchText.lowercased())
+                return product.name.lowercased().contains(searchText.lowercased()) || product.id.lowercased().contains(searchText.lowercased())
             })
         }
     }
@@ -221,10 +228,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     private func presentChangePriceAlert(productIndex: Int) {
         let product = listProducts![productIndex]
-        let alert = UIAlertController(title: "Sản phẩm \(product.name!)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sản phẩm \(product.name)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textfield in
             textfield.borderStyle = .none
-            textfield.text = String(product.price!)
+            textfield.text = String(product.price)
         })
         
         let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
@@ -234,14 +241,14 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 return
             }
 
-            guard newPrice != product.price! else {
+            guard newPrice != product.price else {
                 self.presentAlert(message: "Giá không thay đổi")
                 return
             }
 
             let activityIndicator = self.startLoading()
 
-            self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { [unowned self] result in
+            self.updatePrice(shopId: product.shopId, productId: product.id, newPrice: newPrice) { [unowned self] result in
                 switch result {
                 case .error:
                     self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
@@ -260,7 +267,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         alert.addAction(cancel)
         alert.addAction(ok)
 
-        present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     private func changeTextOfEditingButton(text: String) {

@@ -26,6 +26,8 @@ class Network {
     let rivalChoice_path = "/rival" // choose rival
     let rivals_path = "/getRivals" // get rivals
     let rivalsShops_path = "/shopRival" // get rivals' shop
+    let chosenProducts_path = "/chosenItems" // get chosen products
+
     var headers: HTTPHeaders = [
         "Content-Type": "application/json"
     ]
@@ -47,6 +49,9 @@ class Network {
 
     // Default timeoutInterval is 15 seconds, except:
     // Forget account (120 seconds)
+    // Put list shops (30)
+    // Get rivals (30)
+    // Get rivals' shops (30)
 }
 
 enum ConnectionResults {
