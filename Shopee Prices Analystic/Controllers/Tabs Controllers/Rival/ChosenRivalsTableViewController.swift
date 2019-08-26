@@ -83,6 +83,7 @@ class ChosenRivalsTableViewController: UITableViewController {
             cell.setAutoStatusOff()
         }
 
+        cell.hideSkeletonAnimation()
         // Configure the cell...
 
         return cell
@@ -95,6 +96,10 @@ class ChosenRivalsTableViewController: UITableViewController {
         }
         print("xxx: \(chosenRivals)")
         performSegue(withIdentifier: "rivalInfoSegue", sender: chosenRivals[indexPath.row])
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 188.0
     }
  
 
