@@ -334,11 +334,17 @@ extension UIViewController {
     func decodeShopJson(value: [String: Any]) -> Shop {
         let shopId = String(value["shopid"] as! Int)
         let shopName = value["name"] as! String
-        let followersCount = value["follower_count"] as! Int64
+        let followersCount = value["follower_count"] as! Int
         let rating = value["rating_star"] as! Double
         let place = value["place"] as! String
+        let goodRating = value["rating_good"] as! Int
+        let badRating = value["rating_bad"] as! Int
+        var image: String?
+        if let images = value["images"] as? [String] {
+            image = images[0]
+        }
 
-        return Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place)
+        return Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place, goodRating: goodRating, badRating: badRating, image: image)
     }
 
     func decodeObservationJson(value: [String: Any]) -> Observation {

@@ -89,7 +89,12 @@ class ChosenRivalsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "rivalInfoSegue", sender: nil)
+        guard let chosenRivals = chosenRivals else {
+            presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return
+        }
+        print("xxx: \(chosenRivals)")
+        performSegue(withIdentifier: "rivalInfoSegue", sender: chosenRivals[indexPath.row])
     }
  
 
@@ -98,7 +103,13 @@ class ChosenRivalsTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rivalInfoSegue" {
-            
+            if let chosenRival = sender as? (Product, Shop, Observation) {
+                print("zzz: \(chosenRival)")
+                if let containerRivalInfoViewController = segue.destination as? ContainerRivalInfoViewController {
+                    containerRivalInfoViewController.chosenRival = chosenRival
+                }
+            }
+
         }
     }
     

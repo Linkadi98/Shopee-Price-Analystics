@@ -11,6 +11,8 @@ import Parchment
 
 class RivalPageViewController: UIViewController {
 
+    var chosenRival: (Product, Shop, Observation)?
+    
     weak var rivalInfoViewController: RivalInfoViewController?
     weak var rivalProductTableViewController: RivalProductTableViewController?
     weak var rivalProductLineChartViewController: RivalProductLineChartViewController?
@@ -34,6 +36,10 @@ class RivalPageViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
         
         
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        update()
     }
     
     func setUpViewController() {
@@ -63,7 +69,21 @@ class RivalPageViewController: UIViewController {
         pageViewController?.menuTransition = .scrollAlongside
     }
     
-    
+    func update() {
+        guard let chosenRival = chosenRival else {
+            presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return
+        }
+
+        let rival = chosenRival.0
+        let rivalShop = chosenRival.1
+        let observation = chosenRival.2
+
+        // Rival info
+        rivalInfoViewController?.fillOutInfo(avatar: rivalShop.image, follower: rivalShop.followersCount, id: rivalShop.shopId, location: rivalShop.place, goodRating: rivalShop.goodRating, badRating: rivalShop.badRating, averageRating: rivalShop.rating)
+
+        rivalInfoViewController?.fillOutProductInfo(image: rival.image, productName: rival.name, numberOfSoldItems: rival.sold, rating: rival.rating)
+    }
     
     // Tất cả các dữ liệu đến các view này đều phải được setup tại file này      
 }

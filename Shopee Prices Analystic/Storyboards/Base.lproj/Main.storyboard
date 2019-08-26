@@ -875,7 +875,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit pen" translatesAutoresizingMaskIntoConstraints="NO" id="2Ym-QZ-8AK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="38" height="27"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1291,7 +1291,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaF-Z0-URs">
-                                                    <rect key="frame" x="145" y="110" width="120" height="25"/>
+                                                    <rect key="frame" x="145" y="110" width="107" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.51764705882352935" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="QpI-Ms-LC9"/>
@@ -1307,7 +1307,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-rF-7xe" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="145" y="79" width="120" height="20.5"/>
+                                                    <rect key="frame" x="145" y="79" width="107" height="20.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -2678,7 +2678,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqb-z2-8cw">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <connections>
-                                    <segue destination="niu-Pk-ERA" kind="embed" id="fAi-c3-CwW"/>
+                                    <segue destination="niu-Pk-ERA" kind="embed" identifier="ContainerRivalInfoVCToRivalPageTVC" id="fAi-c3-CwW"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -3175,7 +3175,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDY-RL-r3R">
-                                                    <rect key="frame" x="145" y="110" width="120" height="25"/>
+                                                    <rect key="frame" x="145" y="110" width="107" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.51764705879999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Zhg-mv-eEP"/>
@@ -3191,7 +3191,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6a5-7J-iNs" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="145" y="79" width="120" height="20.5"/>
+                                                    <rect key="frame" x="145" y="79" width="107" height="20.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -4417,7 +4417,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nSc-HQ-CrF"/>
-        <segue reference="kGO-Bt-sPK"/>
+        <segue reference="nwJ-IV-GSf"/>
         <segue reference="oib-py-s1x"/>
         <segue reference="Rf2-hR-1tB"/>
     </inferredMetricsTieBreakers>
