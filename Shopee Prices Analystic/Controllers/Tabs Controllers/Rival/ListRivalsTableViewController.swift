@@ -13,7 +13,7 @@ import NotificationBannerSwift
 class ListRivalsTableViewController: UITableViewController {
 
     var product: Product?
-    var listRivals: [Product]?
+    var listSearchedRivals: [(Product, Bool)]?
     var listRivalsShops: [Shop]?
 
     var isFirstAppear = true
@@ -41,7 +41,7 @@ class ListRivalsTableViewController: UITableViewController {
             }
         }
         
-        if listRivals == nil && listRivalsShops == nil {
+        if listSearchedRivals == nil && listRivalsShops == nil {
             isFirstAppear = true
             hasData = false
         }
@@ -61,20 +61,28 @@ class ListRivalsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
-        return isFirstAppear ? listRivals?.count ?? 10 : 0
+        return isFirstAppear ? listSearchedRivals?.count ?? 10 : 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RivalCell", for: indexPath) as! RivalTableCell
-        guard listRivals != nil, listRivalsShops != nil else {
+        guard let listSearchedRivals = listSearchedRivals, let listRivalsShops =  listRivalsShops else {
             return cell
         }
 
-        let rival = listRivals![indexPath.row]
-        let rivalShop = listRivalsShops![indexPath.row]
+        let rival = listSearchedRivals[indexPath.row].0
+        let isChosen = listSearchedRivals[indexPath.row].1
+        let rivalShop = listRivalsShops[indexPath.row]
         cell.productName.text = rival.name
         cell.productPrice.text = rival.price.convertPriceToVietnameseCurrency()!
+        if isChosen {
+            cell.setFollowStatus()
+            print("true113")
+        } else {
+            cell.setUnfollowStatus()
+            print("false114")
+        }
         loadOnlineImage(from: URL(string: rival.image)!, to: cell.productImage)
         cell.rivalName.text = rivalShop.shopName
         cell.rivalRating.rating = rivalShop.rating
@@ -91,15 +99,20 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! RivalTableCell
-        guard let product = product, let rival = listRivals?[indexPath.row] else {
+        guard let product = product, let listSearchedRivals = listSearchedRivals else {
             self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
             return
         }
 
+        // is Chosen
+        if listSearchedRivals[indexPath.row].1 {
+            return
+        }
+
+        let rival = listSearchedRivals[indexPath.row].0
         chooseRival(myProductId: product.id, myShopId: product.shopId, rivalProductId: rival.id, rivalShopId: rival.shopId, autoUpdate: false, priceDiff: 0, from: 0, to: 0) { (result) in
             if result == .success {
                 cell.setFollowStatus()
-                //        tabBarController?.selectedIndex = 3
                 self.performSegue(withIdentifier: "listRivalSegue", sender: nil)
             }
         }
@@ -118,8 +131,8 @@ class ListRivalsTableViewController: UITableViewController {
         var doneloadingRivals = false
         var doneloadingRivalsShops = false
         tableView.allowsSelection = false
-        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (result, listRivals) in
-            guard result != .failed, let listRivals = listRivals else {
+        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (result, listSearchedRivals) in
+            guard result != .failed, let listSearchedRivals = listSearchedRivals else {
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
                 self.isFirstAppear = false
                 self.hasData = false
@@ -128,7 +141,7 @@ class ListRivalsTableViewController: UITableViewController {
                 return
             }
 
-            guard !listRivals.isEmpty else {
+            guard !listSearchedRivals.isEmpty else {
                 self.displayNoDataNotification(title: "Không tìm thấy đối thủ", message: "Sản phẩm của bạn không có đối thủ nào cùng bán")
                 self.isFirstAppear = false
                 self.hasData = false
@@ -137,7 +150,7 @@ class ListRivalsTableViewController: UITableViewController {
                 return
             }
 
-            self.listRivals = listRivals
+            self.listSearchedRivals = listSearchedRivals
             doneloadingRivals = true
             if doneloadingRivals, doneloadingRivalsShops {
                 doneloadingRivals = false

@@ -700,7 +700,8 @@ extension UIViewController {
 
 // Rival API
 extension UIViewController {
-    func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [Product]?) -> Void) {
+    func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [(Product, Bool)]?) -> Void) {
+        // rival, isChosen
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
 
@@ -713,13 +714,30 @@ extension UIViewController {
             }
 
             //Successful request
-            var listRivals: [Product] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                listRivals.append(self.decodeProductJson(value: value))
-                print("So doi thu: \(listRivals.count)")
+            self.getChosenRivals(shopId: myShopId, productId: myProductId) { (result, chosenRivals) in
+                guard result != .failed, let chosenRivals = chosenRivals else {
+                    completion(.failed, nil)
+                    return
+                }
+
+                var listSearchedRivals: [(Product, Bool)] = []
+                let responseValue = response.result.value! as! [[String: Any]]
+                for value in responseValue {
+                    let rival = self.decodeProductJson(value: value)
+                    var isChosen = false
+                    for chosenRival in chosenRivals {
+                        if chosenRival.0.id == rival.id {
+                            isChosen = true
+                            break
+                        }
+                    }
+                    listSearchedRivals.append((rival, isChosen))
+                }
+
+                print("So doi thu: \(listSearchedRivals.count)")
+                completion(.success, listSearchedRivals)
             }
-            completion(.success, listRivals)
+
         }
     }
 
@@ -865,7 +883,7 @@ extension UIViewController {
 
 // Price Observation
 extension UIViewController {
-    func priceObservation(productId: String, completion: @escaping (ConnectionResults, [(Int, String, String)]?) -> Void) {
+    func priceObservations(productId: String, completion: @escaping (ConnectionResults, [(Int, String, String)]?) -> Void) {
         // result, price, date, time
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.priceObservation_path + "/\(productId)")!
@@ -879,16 +897,16 @@ extension UIViewController {
             }
 
             //Successful request
-            var priceObservation: [(Int, String, String)] = []
+            var priceObservations: [(Int, String, String)] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
                 let timeValue = value["date"] as! String
                 let date = String(timeValue.prefix(10))
                 let time = String(String(timeValue.dropFirst(11)).prefix(8))
                 let price = Int(value["price"] as! Double)
-                priceObservation.append((price, date, time))
+                priceObservations.append((price, date, time))
             }
-            completion(.success, priceObservation)
+            completion(.success, priceObservations)
         }
 
     }
