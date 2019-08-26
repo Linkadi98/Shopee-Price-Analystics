@@ -17,8 +17,8 @@ class RivalPageViewController: UIViewController {
     weak var rivalInfoViewController: RivalInfoViewController?
     weak var rivalProductTableViewController: RivalProductTableViewController?
     weak var rivalProductLineChartViewController: RivalProductLineChartViewController?
-    
     weak var autoChangePriceTableViewController: AutoChangePriceTableViewController?
+    weak var autoUpdatePriceHistoryTableViewController: AutoUpdatePriceHistoryTableViewController?
     
     var pageViewController: FixedPagingViewController?
     
@@ -51,11 +51,15 @@ class RivalPageViewController: UIViewController {
         
         rivalProductTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalProductTableViewController.self)) as? RivalProductTableViewController
         
+        autoUpdatePriceHistoryTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: AutoUpdatePriceHistoryTableViewController.self)) as? AutoUpdatePriceHistoryTableViewController
+        
         rivalInfoViewController?.title = "Thông tin đối thủ"
         rivalProductTableViewController?.title = "Lịch sử thay đổi giá"
         rivalProductLineChartViewController?.title = "Biểu đồ thay đổi giá"
         autoChangePriceTableViewController?.title = "Chỉnh giá tự động"
-        pageViewController = FixedPagingViewController(viewControllers: [rivalInfoViewController!, rivalProductTableViewController!, rivalProductLineChartViewController!, autoChangePriceTableViewController!])
+        autoUpdatePriceHistoryTableViewController?.title = "Lịch sử chỉnh giá tự động"
+        
+        pageViewController = FixedPagingViewController(viewControllers: [rivalInfoViewController!, rivalProductTableViewController!, rivalProductLineChartViewController!, autoChangePriceTableViewController!, autoUpdatePriceHistoryTableViewController!])
         
         pageViewController?.indicatorOptions = .visible(height: 3, zIndex: 1, spacing: .zero, insets: .zero)
         
