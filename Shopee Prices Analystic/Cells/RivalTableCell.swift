@@ -40,12 +40,14 @@ class RivalTableCell: UITableViewCell {
     }
     
     func setUnfollowStatus() {
+        followStatus.backgroundColor = .clear
         followStatus.backgroundColor = UIColor(red: 255/255, green: 69/255, blue: 58/255, alpha: 1)
         followStatus.text = "Chưa theo dõi"
         followStatus.isSkeletonable = true
     }
     
     func setFollowStatus() {
+        followStatus.backgroundColor = .clear
         followStatus.backgroundColor = UIColor(red: 0/255, green: 132/255, blue: 255/255, alpha: 1)
         followStatus.text = "Đang theo dõi"
         followStatus.isSkeletonable = true
