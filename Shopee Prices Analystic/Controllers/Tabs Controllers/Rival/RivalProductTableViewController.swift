@@ -82,7 +82,7 @@ class RivalProductTableViewController: UITableViewController {
     }
 
     func update(productId: String) {
-        priceObservation(productId: productId) { (result, priceObservation) in
+        priceObservations(productId: productId) { (result, priceObservation) in
             self.priceObservation = priceObservation!
 //            print("13y12237 \(priceObservation)")
             self.tableView.reloadData()
