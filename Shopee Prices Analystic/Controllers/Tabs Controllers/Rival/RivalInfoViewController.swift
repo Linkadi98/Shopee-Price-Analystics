@@ -56,10 +56,12 @@ class RivalInfoViewController: UIViewController {
     
     // MARK: - Fill out information
 
-    func fillOutInfo(avatar: UIImage, follower: Int, id: Int, location: String?, goodRating: Int, badRating: Int, averageRating: Double) {
-        self.avatar.image = avatar
+    func fillOutInfo(avatar: String?, follower: Int, id: String, location: String?, goodRating: Int, badRating: Int, averageRating: Double) {
+        if let avatar = avatar {
+            loadOnlineImage(from: URL(string: avatar)!, to: self.avatar)
+        }
         self.follower.text = String(follower)
-        self.rivalShopID.text = String(id)
+        self.rivalShopID.text = id
         self.rivalShopLocation.text = location
         self.goodRating.text = String(goodRating)
         self.badRating.text = String(badRating)
@@ -67,8 +69,8 @@ class RivalInfoViewController: UIViewController {
         
     }
     
-    func fillOutProductInfo(image: UIImage, productName: String, numberOfSoldItems: Int, rating: Double) {
-        self.productImage.image = image
+    func fillOutProductInfo(image: String, productName: String, numberOfSoldItems: Int, rating: Double) {
+        loadOnlineImage(from: URL(string: image)!, to: self.productImage)
         self.productName.text = productName
         self.productSellPrice.text = String(numberOfSoldItems)
         self.rating.rating = rating

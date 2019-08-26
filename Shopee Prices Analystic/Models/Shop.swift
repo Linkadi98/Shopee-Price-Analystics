@@ -11,9 +11,12 @@ import Foundation
 struct Shop: Codable, Equatable {
     var shopId: String
     var shopName: String
-    var followersCount: Int64
+    var followersCount: Int
     var rating: Double
     var place: String
+    var goodRating: Int
+    var badRating: Int
+    var image: String?
 
 //    public static func == (shop1: Shop, shop2: Shop) -> Bool {
 //        return

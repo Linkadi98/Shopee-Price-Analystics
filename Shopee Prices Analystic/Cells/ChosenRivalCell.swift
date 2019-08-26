@@ -43,6 +43,7 @@ class ChosenRivalCell: UITableViewCell {
         setAutoStatusOff()
         selectionStyle = .none
         containerView.setShadow()
+        rivalShopRating.settings.updateOnTouch = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

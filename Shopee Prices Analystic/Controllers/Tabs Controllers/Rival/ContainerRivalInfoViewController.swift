@@ -10,12 +10,21 @@ import UIKit
 
 class ContainerRivalInfoViewController: UIViewController {
 
+    var chosenRival: (Product, Shop, Observation)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("View did load in rival tab")
         // Do any additional setup after loading the view.
     }
-    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ContainerRivalInfoVCToRivalPageTVC" {
+            if let rivalPageViewController = segue.destination as? RivalPageViewController {
+                rivalPageViewController.chosenRival = self.chosenRival
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
