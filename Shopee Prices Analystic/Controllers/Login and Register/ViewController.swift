@@ -32,8 +32,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // test
-        userNameText.text = "thanhduy"
-        passwordText.text = "123456"
+        userNameText.text = "TrongCanh"
+        passwordText.text = "123456789"
         hideKeyboardWhenTappedAround()
     }
     
