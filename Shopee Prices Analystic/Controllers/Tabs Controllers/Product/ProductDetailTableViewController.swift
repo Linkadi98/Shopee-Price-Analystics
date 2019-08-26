@@ -217,7 +217,7 @@ class ProductDetailTableViewController: UITableViewController {
         })
         
         
-        let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
+        let cancel = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
         
         
         option.addAction(priceOption)

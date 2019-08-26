@@ -85,6 +85,10 @@ class ChosenProductsTableViewController: UITableViewController {
         }
         performSegue(withIdentifier: "chosenRivalSegue", sender: chosenProducts[indexPath.row].0)
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 116.0
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chosenRivalSegue" {
