@@ -432,7 +432,12 @@ extension UIViewController {
             let responseValue = response.result.value! as! [String: Any]
             let phone = responseValue["phone"] as? String
             let email = responseValue["email"] as! String
-            let name = responseValue["name"] as! String
+            var name = ""
+            if let nameValue = responseValue["name"] as? String {
+                name = nameValue
+            } else {
+                name = "Unknown"
+            }
 
             let currentUser = User(userName: username, email: email, name: name, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", phone: phone)
             self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
@@ -814,6 +819,90 @@ extension UIViewController {
                 chosenProducts.append((product, numberOfChosenRivals, autoUpdate))
             }
             completion(.success, chosenProducts)
+        }
+    }
+
+    // Get chosen rivals
+    func getChosenRivals(shopId: String, productId: String, completion: @escaping (ConnectionResults, [(Product, Shop)]?) -> Void) {
+        // shop rivals, product, numberOfChosenRivals, autoUpdate
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.chosenRivals_path + "/\(shopId)/\(productId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var chosenRivals: [(Product, Shop)] = []
+            let responseValues = response.result.value! as! [[String: Any]]
+            let count = responseValues.count
+            var i = 0
+            for values in responseValues {
+                let value = values["itemRival"] as! [String: Any]
+                print(value)
+                let id = String(value["itemid"] as! Int)
+                let shopId = String(value["shopid"] as! Int)
+                let name = value["name"] as! String
+                let price = Int(value["price"] as! Double)
+                let rating = value["rating_star"] as! Double
+                let image = (value["images"] as! [String])[0]
+                let categoriesData = value["categories"] as! [[String: Any]]
+                var categories: [String] = []
+                for data in categoriesData {
+                    categories.append(data["display_name"] as! String)
+                }
+                let brand = value["brand"] as? String
+                let sold = value["historical_sold"] as! Int
+                let stock = value["stock"] as! Int
+                let discount = value["discount"] as? String
+                let maxPrice = Int(value["price_max"] as! Double)
+                let minPrice = Int(value["price_min"] as! Double)
+                let rival = Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice)
+
+                self.getRivalsShop(shopId: shopId) { (result, rivalsShop) in
+                    guard result != .failed, let rivalsShop = rivalsShop else {
+                        completion(.failed, nil)
+                        return
+                    }
+
+                    chosenRivals.append((rival, rivalsShop))
+                    i += 1
+                    if i == count {
+                        completion(.success, chosenRivals)
+                    }
+                }
+            }
+        }
+    }
+
+    // Get rivals' shops info
+    func getRivalsShop(shopId: String, completion: @escaping (ConnectionResults, Shop?) -> Void) {
+        // shop rivals, product, numberOfChosenRivals, autoUpdate
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShopInfo_path + "/\(shopId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            let responseValue = response.result.value! as! [String: Any]
+            let shopId = String(responseValue["shopid"] as! Int64)
+            let shopName = responseValue["name"] as! String
+            let followersCount = responseValue["follower_count"] as! Int64
+            let rating = responseValue["rating_star"] as! Double
+            let place = responseValue["place"] as! String
+
+            let rivalsShop = Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place)
+            completion(.success, rivalsShop)
         }
     }
 }

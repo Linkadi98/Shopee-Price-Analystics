@@ -11,9 +11,9 @@ import Alamofire
 
 class Network {
     static let shared = Network()
-    let base_url = "http://192.168.1.39:8081"
+//    let base_url = "http://192.168.1.39:8081"
 
-//    let base_url = "http://172.20.100.3:8081"
+    let base_url = "http://172.104.173.222:8081"
     let login_path = "/login"
     let register_path = "/register"
     let forget_path = "/forget"
@@ -24,8 +24,10 @@ class Network {
     let item_path = "/item" // get item from DB
     let price_path = "/updatePrice" // change price
     let rivalChoice_path = "/rival" // choose rival
+    let chosenRivals_path = "/rivals" // chosen rivals
+    let rivalsShopInfo_path = "/shopInfor" // get rivals shop info
     let rivals_path = "/getRivals" // get rivals
-    let rivalsShops_path = "/shopRival" // get rivals' shop
+    let rivalsShops_path = "/shopRival" // get rivals' shops
     let chosenProducts_path = "/chosenItems" // get chosen products
 
     var headers: HTTPHeaders = [

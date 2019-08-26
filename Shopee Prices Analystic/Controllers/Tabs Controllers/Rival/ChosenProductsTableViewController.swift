@@ -79,11 +79,22 @@ class ChosenProductsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // thay đổi đối tượng truyền sang view khác bằng sender khác
-        performSegue(withIdentifier: "chosenRivalSegue", sender: nil)
+        guard let chosenProducts = chosenProducts else {
+            presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return
+        }
+        performSegue(withIdentifier: "chosenRivalSegue", sender: chosenProducts[indexPath.row].0)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chosenRivalSegue" {
+            guard let chosenProduct = sender as? Product else {
+                presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+                return
+            }
+            if let chosenRivalsTableViewController = segue.destination as? ChosenRivalsTableViewController {
+                chosenRivalsTableViewController.product = chosenProduct
+            }
         }
     }
 
