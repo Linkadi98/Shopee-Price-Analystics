@@ -52,6 +52,7 @@
 		2484175322D85D810009DF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2484175122D85D810009DF10 /* LaunchScreen.storyboard */; };
 		2484175E22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */; };
 		24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */; };
+		24E4AAD72313D38700E3F92C /* StatisticPriceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E4AAD62313D38700E3F92C /* StatisticPriceTableViewController.swift */; };
 		24E56166230D2DB500914506 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E56165230D2DB500914506 /* Int+Extension.swift */; };
 		24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */; };
 		24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EDDD6022D960C400D62704 /* TransitionButton.framework */; };
@@ -138,6 +139,7 @@
 		2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopee_Prices_AnalysticTests.swift; sourceTree = "<group>"; };
 		2484175F22D85D810009DF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		24E4AAD62313D38700E3F92C /* StatisticPriceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticPriceTableViewController.swift; sourceTree = "<group>"; };
 		24E56165230D2DB500914506 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTabBar.swift; sourceTree = "<group>"; };
 		24EDDD6022D960C400D62704 /* TransitionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TransitionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,13 +183,6 @@
 				CBC57FE154A893EB41D1B67D /* Pods_Shopee_Prices_Analystic.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2402E24623110600002EC1C2 /* Price */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Price;
 			sourceTree = "<group>";
 		};
 		24120F3E22E07491000FA0B7 /* Extensions */ = {
@@ -363,6 +358,14 @@
 			path = "Shopee Prices AnalysticTests";
 			sourceTree = "<group>";
 		};
+		24E4AAD52313D36300E3F92C /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				24E4AAD62313D38700E3F92C /* StatisticPriceTableViewController.swift */,
+			);
+			path = Price;
+			sourceTree = "<group>";
+		};
 		24EAE55222DEF80700EB53F2 /* Custom Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,7 +397,7 @@
 		24F661D322DC26A600440A7A /* Tabs Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2402E24623110600002EC1C2 /* Price */,
+				24E4AAD52313D36300E3F92C /* Price */,
 				242361D722FAA66300EFC57A /* Rival */,
 				2459135522E2BFDA00D51A4B /* Tabs */,
 				2459135422E2BFAF00D51A4B /* Product */,
@@ -703,6 +706,7 @@
 				24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
 				242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */,
+				24E4AAD72313D38700E3F92C /* StatisticPriceTableViewController.swift in Sources */,
 				241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */,
 				2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */,
 				BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */,
