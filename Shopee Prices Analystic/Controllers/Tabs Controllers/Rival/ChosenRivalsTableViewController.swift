@@ -99,7 +99,7 @@ class ChosenRivalsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 116.0
+        return 188.0
     }
  
 
