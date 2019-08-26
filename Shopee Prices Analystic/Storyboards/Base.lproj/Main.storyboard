@@ -1972,7 +1972,7 @@
             </objects>
             <point key="canvasLocation" x="8135" y="2006"/>
         </scene>
-        <!--THEO DÕI ĐỐI THỦ-->
+        <!-- SẢN PHẨM ĐÃ CHỌN-->
         <scene sceneID="ou8-6I-nQN">
             <objects>
                 <tableViewController storyboardIdentifier="ChosenProductsTableViewController" id="NYJ-CL-ptl" customClass="ChosenProductsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
@@ -2094,7 +2094,7 @@
                             <outlet property="delegate" destination="NYJ-CL-ptl" id="5RV-UK-g7v"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="THEO DÕI ĐỐI THỦ" id="78g-RM-qAT">
+                    <navigationItem key="navigationItem" title=" SẢN PHẨM ĐÃ CHỌN" id="78g-RM-qAT">
                         <barButtonItem key="backBarButtonItem" title="Quay lại" id="Yek-97-Enz"/>
                     </navigationItem>
                     <connections>
@@ -2286,6 +2286,7 @@
                                                             <constraint firstItem="Idb-ra-o90" firstAttribute="top" secondItem="Qfd-ps-OcQ" secondAttribute="top" constant="138" id="Sel-iF-SxH"/>
                                                             <constraint firstItem="Pnz-mS-bKe" firstAttribute="leading" secondItem="Qfd-ps-OcQ" secondAttribute="leading" constant="8" id="Sql-UL-jNS"/>
                                                             <constraint firstItem="zRF-x1-eJP" firstAttribute="top" secondItem="Pnz-mS-bKe" secondAttribute="bottom" constant="30" id="T2m-GA-jFU"/>
+                                                            <constraint firstItem="G39-7m-NCY" firstAttribute="leading" relation="lessThanOrEqual" secondItem="zZs-et-6Ii" secondAttribute="trailing" constant="115.5" id="Uyw-3Z-C2P"/>
                                                             <constraint firstItem="Pnz-mS-bKe" firstAttribute="top" secondItem="Qfd-ps-OcQ" secondAttribute="top" constant="8" id="ewV-Ue-f6A"/>
                                                             <constraint firstItem="zRF-x1-eJP" firstAttribute="leading" secondItem="Qfd-ps-OcQ" secondAttribute="leading" constant="8" id="fM6-5n-KQJ"/>
                                                             <constraint firstItem="1MA-pb-yPE" firstAttribute="top" secondItem="Qfd-ps-OcQ" secondAttribute="top" constant="20" id="geX-XX-cOd"/>

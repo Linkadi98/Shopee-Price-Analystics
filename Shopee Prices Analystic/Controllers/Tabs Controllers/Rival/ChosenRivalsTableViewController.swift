@@ -83,6 +83,7 @@ class ChosenRivalsTableViewController: UITableViewController {
             cell.setAutoStatusOff()
         }
 
+        cell.hideSkeletonAnimation()
         // Configure the cell...
 
         return cell

@@ -44,6 +44,9 @@ class ChosenRivalCell: UITableViewCell {
         selectionStyle = .none
         containerView.setShadow()
         rivalShopRating.settings.updateOnTouch = false
+        
+        
+        showSkeletionAnimation()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,6 +54,8 @@ class ChosenRivalCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
     func fillCellContent(productImage: UIImage?, productName: String?, productPrice: String?, rivalName: String?, follower: String?, rivalShopRating: Double?, followStatus: String?) {
         self.productImage.image = productImage
         self.productName.text = productName
@@ -68,4 +73,24 @@ class ChosenRivalCell: UITableViewCell {
         autoStatus.image = on
     }
 
+    
+    func showSkeletionAnimation() {
+        containerView.showSkeleton()
+        productName.showSkeleton()
+        rivalName.showSkeleton()
+        rivalShopRating.showSkeleton()
+        followStatus.showSkeleton()
+        follower.showSkeleton()
+        productPrice.showSkeleton()
+    }
+    
+    func hideSkeletonAnimation() {
+        containerView.hideSkeleton()
+        productName.hideSkeleton()
+        rivalName.hideSkeleton()
+        rivalShopRating.hideSkeleton()
+        followStatus.hideSkeleton()
+        follower.hideSkeleton()
+        productPrice.hideSkeleton()
+    }
 }
