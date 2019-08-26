@@ -29,9 +29,6 @@ class RivalTableCell: UITableViewCell {
     override func awakeFromNib() {
         followStatus.layer.masksToBounds = true
         followStatus.layer.cornerRadius = 4
-        
-        setUnfollowStatus()
-        
         containerView.setShadow()
         
         selectionStyle = .none
