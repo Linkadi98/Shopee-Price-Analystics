@@ -86,6 +86,7 @@ class RivalPageViewController: UIViewController {
 
         // Rival product
         rival
+        
     }
     
     // Tất cả các dữ liệu đến các view này đều phải được setup tại file này      

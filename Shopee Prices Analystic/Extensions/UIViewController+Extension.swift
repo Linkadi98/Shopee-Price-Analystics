@@ -865,7 +865,33 @@ extension UIViewController {
 
 // Price Observation
 extension UIViewController {
-    func priceObservation(shopId: String, completi)
+    func priceObservation(productId: String, completion: @escaping (ConnectionResults, [(Int, String, String)]?) -> Void) {
+        // result, price, date, time
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.priceObservation_path + "/\(productId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var priceObservation: [(Int, String, String)] = []
+            let responseValue = response.result.value! as! [[String: Any]]
+            for value in responseValue {
+                let timeValue = value["date"] as! String
+                let date = String(timeValue.prefix(10))
+                let time = String(String(timeValue.dropFirst(11)).prefix(8))
+                let price = Int(value["price"] as! Double)
+                priceObservation.append((price, date, time))
+            }
+            completion(.success, priceObservation)
+        }
+
+    }
 }
 
 

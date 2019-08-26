@@ -25,6 +25,7 @@ class OverviewViewController: UIViewController {
     @IBOutlet weak var accountButton: UIButton!
     
     
+    @IBOutlet weak var shopImage: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var shopId: UILabel!
@@ -108,6 +109,11 @@ class OverviewViewController: UIViewController {
             // Update interface
             self.shopId.text = currentShop.shopId
             self.shopName.text = currentShop.shopName
+            if let image = currentShop.image {
+                self.loadOnlineImage(from: URL(string: image)!, to: self.shopImage)
+            }
+            // Default image
+
             self.status.text = "Lượt theo dõi: \(currentShop.followersCount)"
 
             self.view.hideSkeleton()

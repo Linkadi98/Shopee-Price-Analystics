@@ -29,6 +29,7 @@ class Network {
     let rivals_path = "/getRivals" // get rivals
     let rivalsShops_path = "/shopRival" // get rivals' shops
     let chosenProducts_path = "/chosenItems" // get chosen products
+    let priceObservation_path = "/itemPrice" // get price observation of a rival
 
     var headers: HTTPHeaders = [
         "Content-Type": "application/json"

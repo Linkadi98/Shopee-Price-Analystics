@@ -10,6 +10,8 @@ import UIKit
 
 class RivalProductTableViewController: UITableViewController {
 
+    var priceObservation: [(Int, String, String)]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,14 +28,21 @@ class RivalProductTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return priceObservation?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+        guard let priceObservation = priceObservation else {
+            presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            return cell
+        }
+
+        let history = priceObservation[indexPath.row]
+        
+//        cell.
 
         return cell
     }
@@ -59,5 +68,9 @@ class RivalProductTableViewController: UITableViewController {
         // Gọi api trả về kết quả trước reloadData()
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
+    }
+
+    func update() {
+
     }
 }
