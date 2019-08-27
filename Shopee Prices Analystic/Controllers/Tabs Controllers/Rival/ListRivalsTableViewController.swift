@@ -106,6 +106,20 @@ class ListRivalsTableViewController: UITableViewController {
 
         // is Chosen
         if listSearchedRivals[indexPath.row].1 {
+            presentAlert(title: "Thông báo", message: "Sản phẩm đã được theo dõi")
+            return
+        }
+
+        // > 5 rivals
+        var numberOfRivals = 0
+        for searchedRival in listSearchedRivals {
+            if searchedRival.1 {
+                numberOfRivals += 1
+            }
+        }
+
+        guard numberOfRivals < 5 else {
+            presentAlert(message: "Tối đa chỉ theo dõi 5 đối thủ")
             return
         }
 
@@ -156,7 +170,16 @@ class ListRivalsTableViewController: UITableViewController {
                 doneloadingRivals = false
                 doneloadingRivalsShops = false
 
+                // > 5 rivals
+                var numberOfRivals = 0
+                for searchedRival in listSearchedRivals {
+                    if searchedRival.1 {
+                        numberOfRivals += 1
+                    }
+                }
+
                 self.tableView.reloadData()
+                self.navigationItem.title = "Danh sách đối thủ (\(numberOfRivals))"
                 self.hasData = true
                 self.view.hideSkeleton()
                 self.view.stopSkeletonAnimation()

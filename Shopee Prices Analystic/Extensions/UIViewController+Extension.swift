@@ -824,7 +824,7 @@ extension UIViewController {
 
     // Get chosen rivals
     func getChosenRivals(shopId: String, productId: String, completion: @escaping (ConnectionResults, [(Product, Shop, Observation)]?) -> Void) {
-        // shop rivals, product, numberOfChosenRivals, autoUpdate
+        // product, shop rivals, numberOfChosenRivals, autoUpdate
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.chosenRivals_path + "/\(shopId)/\(productId)")!
 
@@ -842,15 +842,16 @@ extension UIViewController {
             let count = responseValue.count
             var i = 0
             for value in responseValue {
-                let itemRivalValue = value["itemRival"] as! [String: Any]
-                let observationValue = value["rival"] as! [String: Any]
-                self.getRivalsShop(shopId: shopId) { (result, rivalsShop) in
+                let rival = self.decodeProductJson(value: value["itemRival"] as! [String: Any])
+                let observation = self.decodeObservationJson(value: value["rival"] as! [String: Any])
+
+                self.getRivalsShop(shopId: observation.rivalShopId) { (result, rivalsShop) in
                     guard result != .failed, let rivalsShop = rivalsShop else {
                         completion(.failed, nil)
                         return
                     }
 
-                    chosenRivals.append((self.decodeProductJson(value: itemRivalValue), rivalsShop, self.decodeObservationJson(value: observationValue)))
+                    chosenRivals.append((rival, rivalsShop, observation))
                     i += 1
                     if i == count {
                         completion(.success, chosenRivals)

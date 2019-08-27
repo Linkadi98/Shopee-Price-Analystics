@@ -30,8 +30,8 @@ class RivalTableCell: UITableViewCell {
         followStatus.layer.masksToBounds = true
         followStatus.layer.cornerRadius = 4
         
-        setUnfollowStatus()
-        
+//        setUnfollowStatus()
+
         containerView.setShadow()
         
         selectionStyle = .none
