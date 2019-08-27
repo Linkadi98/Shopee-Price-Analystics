@@ -51,6 +51,10 @@ class ListRivalsTableViewController: UITableViewController {
             fetchDataFromServer()
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        tableView.layoutSkeletonIfNeeded()
+    }
 
     // MARK: - Table view data source
 

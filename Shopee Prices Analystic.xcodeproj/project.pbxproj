@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2402E24A2311280A002EC1C2 /* ContainerRivalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402E2492311280A002EC1C2 /* ContainerRivalInfoViewController.swift */; };
 		2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */; };
+		240F1D08231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F1D07231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift */; };
 		24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */; };
 		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
 		24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */; };
@@ -39,6 +40,7 @@
 		2459136022E2EF6600D51A4B /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459135F22E2EF6600D51A4B /* UIView+Extension.swift */; };
 		2459136222E2F01600D51A4B /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136122E2F01600D51A4B /* ViewController+Extension.swift */; };
 		2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */; };
+		24631A6F2314D04D00295264 /* AutoUpdateHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24631A6E2314D04D00295264 /* AutoUpdateHistoryCell.swift */; };
 		2469B6F32307CD1400C77F3A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F22307CD1400C77F3A /* OnboardingViewController.swift */; };
 		2469B6F72307E0B700C77F3A /* NavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */; };
 		2478557723086A2100EBA0E3 /* ProductNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */; };
@@ -92,6 +94,7 @@
 		1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_AnalysticTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2402E2492311280A002EC1C2 /* ContainerRivalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerRivalInfoViewController.swift; sourceTree = "<group>"; };
 		2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
+		240F1D07231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoUpdatePriceHistoryTableViewController.swift; sourceTree = "<group>"; };
 		24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopsTableViewController.swift; sourceTree = "<group>"; };
 		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		2459135F22E2EF6600D51A4B /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		2459136122E2F01600D51A4B /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		24631A6E2314D04D00295264 /* AutoUpdateHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoUpdateHistoryCell.swift; sourceTree = "<group>"; };
 		2469B6F22307CD1400C77F3A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Extension.swift"; sourceTree = "<group>"; };
 		2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNavigationViewController.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				241BC1482303F0100097AB59 /* AutoChangePriceTableViewController.swift */,
 				2422105A230E910800E8FBCC /* ChosenRivalsTableViewController.swift */,
 				2402E2492311280A002EC1C2 /* ContainerRivalInfoViewController.swift */,
+				240F1D07231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift */,
 			);
 			path = Rival;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				2421730A22FD602800541024 /* RivalTableCell.swift */,
 				241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */,
 				2422105C230E91DA00E8FBCC /* ChosenRivalCell.swift */,
+				24631A6E2314D04D00295264 /* AutoUpdateHistoryCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -691,6 +697,7 @@
 				241BC1492303F0100097AB59 /* AutoChangePriceTableViewController.swift in Sources */,
 				2469B6F32307CD1400C77F3A /* OnboardingViewController.swift in Sources */,
 				24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */,
+				240F1D08231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift in Sources */,
 				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
 				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
@@ -721,6 +728,7 @@
 				241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */,
 				2416494822E1770E00B80DBC /* Product.swift in Sources */,
 				BC15D3012313B1A6008D3456 /* Observation.swift in Sources */,
+				24631A6F2314D04D00295264 /* AutoUpdateHistoryCell.swift in Sources */,
 				2422105D230E91DA00E8FBCC /* ChosenRivalCell.swift in Sources */,
 				24F842EB230B95360050C2A0 /* OnboardingLoginViewController.swift in Sources */,
 				242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */,
