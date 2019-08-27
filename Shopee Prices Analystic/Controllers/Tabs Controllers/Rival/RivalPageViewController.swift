@@ -70,7 +70,7 @@ class RivalPageViewController: UIViewController {
         pageViewController?.menuBackgroundColor = .white
         pageViewController?.selectedFont = UIFont.boldSystemFont(ofSize: 16)
         pageViewController?.font = UIFont.systemFont(ofSize: 16)
-        pageViewController?.menuItemSize = .sizeToFit(minWidth: 180, height: 40)
+        pageViewController?.menuItemSize = .sizeToFit(minWidth: 200, height: 40)
         pageViewController?.menuTransition = .scrollAlongside
     }
     
