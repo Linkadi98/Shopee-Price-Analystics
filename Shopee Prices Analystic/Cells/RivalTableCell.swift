@@ -32,7 +32,7 @@ class RivalTableCell: UITableViewCell {
         containerView.setShadow()
         
         selectionStyle = .none
-        
+        layoutSkeletonIfNeeded()
         showSkeletionAnimation()
     }
     

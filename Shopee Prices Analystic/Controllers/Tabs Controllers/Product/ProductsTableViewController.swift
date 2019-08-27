@@ -25,6 +25,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     var filterProducts: [Product]?
     var searchController: UISearchController!
     
+    var hasData = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +49,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
 
         self.currentShop = currentShop
+    }
+    
+    override func viewWillLayoutSubviews() {
+        tableView.layoutSkeletonIfNeeded()
     }
 
 
@@ -171,10 +177,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     // MARK: - Search Actions
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
-            filterProducts = listProducts?.filter({(product: Product) -> Bool in
-                return product.name.lowercased().contains(searchText.lowercased()) || product.id.lowercased().contains(searchText.lowercased())
-            })
+            if hasData { filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
+                filterProducts = listProducts?.filter({(product: Product) -> Bool in
+                    return product.name.lowercased().contains(searchText.lowercased()) || product.id.lowercased().contains(searchText.lowercased())
+                })
+            }
         }
     }
     
@@ -293,6 +300,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             guard result != .failed else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
+                self.hasData = false
                 return
             }
 
@@ -308,19 +316,21 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                             bannerPosition: .top,
                             cornerRadius: 10)
                 self.displayNoDataNotification(title: "Chưa kết nối cửa hàng nào", message: "Hãy kết nối cửa hàng ở mục Tài khoản")
+                self.hasData = false
                 return
             }
 
             guard !listProducts.isEmpty else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm")
+                self.hasData = false
                 return
             }
 
             print("So san pham la: \(listProducts.count)")
             self.listProducts = listProducts
             self.tableView.reloadData()
-
+            self.hasData = true
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
