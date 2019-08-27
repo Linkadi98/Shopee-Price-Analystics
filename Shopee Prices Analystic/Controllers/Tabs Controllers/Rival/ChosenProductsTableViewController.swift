@@ -9,11 +9,14 @@
 import UIKit
 import SkeletonView
 
-class ChosenProductsTableViewController: UITableViewController {
+class ChosenProductsTableViewController: UITableViewController, ChosenProductRivalCellDelegate {
     
     // MARK: - Properties
     var chosenProducts: [(Product, Int, Bool)]?
     var currentShop: Shop?
+    
+    
+    var isPressButton = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +26,7 @@ class ChosenProductsTableViewController: UITableViewController {
         if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
             self.currentShop = currentShop
         }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +76,13 @@ class ChosenProductsTableViewController: UITableViewController {
             cell.autoChangePriceStatus.text = "Tắt"
         }
 
+        cell.delegate = self
+        cell.row = indexPath.row
+        cell.section = indexPath.section
+        
+        if isPressButton {
+            move(cell.contentView.subviews[1], to: .right)
+        }
         return cell
     }
     
@@ -89,6 +100,8 @@ class ChosenProductsTableViewController: UITableViewController {
         }
         performSegue(withIdentifier: "chosenRivalSegue", sender: chosenProducts[indexPath.row].0)
     }
+    
+    
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chosenRivalSegue" {
@@ -101,6 +114,85 @@ class ChosenProductsTableViewController: UITableViewController {
             }
         }
     }
+    
+    // MARK: - Delete followed Rival
+    
+    
+    @IBAction func deleteFollowedRival(_ sender: Any) {
+        if !isPressButton {
+            for cell in tableView.visibleCells {
+                move(cell.contentView.subviews[1], to: .right)
+                if let cell = cell as? ChosenProductTableViewCell {
+                    UIView.fadeIn(view: cell.deleteButton, duration: 0.4)
+                }
+            }
+            
+            isPressButton = true
+        }
+        else {
+            for cell in tableView.visibleCells {
+                move(cell.contentView.subviews[1], to: .left)
+                if let cell = cell as? ChosenProductTableViewCell {
+                    UIView.fadeOut(view: cell.deleteButton, duration: 0.4)
+                }
+            }
+            isPressButton = false
+        }
+    }
+    
+    
+    func move(_ view: UIView, to direction: Direction) {
+        switch direction {
+        case .left:
+            UIView.animate(withDuration: 0.3, animations: {
+                view.transform = .identity
+            })
+        default:
+            UIView.animate(withDuration: 0.3, animations: {
+                view.transform = CGAffineTransform(translationX: 40, y: 0)
+            })
+        }
+    }
+    
+    
+    func deleteRow(at row: Int, in section: Int) {
+        let indexPath = IndexPath(row: row, section: section)
+        chosenProducts?.remove(at: indexPath.row)
+        let cell = tableView.cellForRow(at: indexPath) as! ChosenProductTableViewCell
+        
+        
+        
+        tableView.performBatchUpdates({
+            tableView.deleteRows(at: [indexPath], with: .right)
+        }, completion: { _ in
+            self.updateIndexPath()
+        })
+        
+        deleteChosenProductFromServer()
+        // call api xoá tại đây
+    }
+    
+    
+    func updateIndexPath() {
+        var count = 0
+        for cell in tableView.visibleCells {
+            guard let cell = cell as? ChosenProductTableViewCell else {
+                return
+            }
+            cell.row = count
+            count += 1
+        }
+    }
+    
+    
+    
+    
+    
+    func deleteChosenProductFromServer() {
+        
+    }
+    
+    // MARK: - Fetching data from server
 
     private func fetchDataFromServer() {
         for row in 0...self.tableView.numberOfRows(inSection: 0) {

@@ -45,8 +45,16 @@ class ChosenRivalCell: UITableViewCell {
         containerView.setShadow()
         rivalShopRating.settings.updateOnTouch = false
         
+//        let name = NSNotification.Name(rawValue: "storeDidUpdateNotification")
+//        NotificationCenter.default.post(name: name, object: nil, userInfo: nil)
+//        
+//        NotificationCenter.default.addObserver(self, selector: #selector(storeDidUpdate(_:)), name: name, object: nil)
         
         showSkeletionAnimation()
+    }
+    
+    @objc private func storeDidUpdate(_ notification: Notification) {
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

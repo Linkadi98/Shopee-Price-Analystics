@@ -120,6 +120,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
+        tableView.scrollsToTop = true
     }
  
 
@@ -154,14 +155,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
-    
-//    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let searchForRivals = UITableViewRowAction(style: .normal, title: "Tìm đối thủ", handler: { (action, indexPath) in
-//            
-//        })
-//        
-//        searchForRivals.
-//    }
     
     
     // MARK: - Skeleton data source
