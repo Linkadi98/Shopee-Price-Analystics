@@ -19,7 +19,7 @@ class AccountDetailTableViewController: UITableViewController {
             avatar.layer.cornerRadius = avatar.frame.height / 2
         }
     }
-    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var password: UILabel!
@@ -27,6 +27,7 @@ class AccountDetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        password.font = UIFont.systemFont(ofSize: 14.0)
         password.text = "●●●●●●●●"
         
         getAccountInfo()
@@ -60,7 +61,7 @@ class AccountDetailTableViewController: UITableViewController {
     private func getAccountInfo() {
         let currentUser = getObjectInUserDefaults(forKey: "currentUser") as! User
 
-        name.text = currentUser.name
+        userName.text = currentUser.name
         email.text = currentUser.email
         if let phone = currentUser.phone {
             phoneNumber.text = phone
@@ -90,7 +91,7 @@ class AccountDetailTableViewController: UITableViewController {
                 self.presentAlert(message: "Không đúng mật khẩu")
                 return
             }
-            guard nameInput != self.name.text! else {
+            guard nameInput != self.userName.text! else {
                 self.presentAlert(title: "Thông báo", message: "Thông tin không thay đổi")
                 return
             }
@@ -112,7 +113,7 @@ class AccountDetailTableViewController: UITableViewController {
                     currentUser.phone = nameInput
                     self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
                     // Change in interface
-                    self.name.text = nameInput
+                    self.userName.text = nameInput
                     self.presentAlert(title: "Thông báo", message: "Thay đổi thành công")
                 default:
                     break
