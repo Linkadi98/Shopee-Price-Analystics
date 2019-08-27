@@ -897,7 +897,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit pen" translatesAutoresizingMaskIntoConstraints="NO" id="2Ym-QZ-8AK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="38" height="27"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1814,7 +1814,7 @@
         <!--Theo dõi đối thủ-->
         <scene sceneID="ht9-6c-cbU">
             <objects>
-                <navigationController id="0zQ-Ni-06U" customClass="RivalNavigationViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="0zQ-Ni-06U" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Theo dõi đối thủ" image="rivals" id="mXc-1c-FBd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="4BW-Z5-nFr">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
