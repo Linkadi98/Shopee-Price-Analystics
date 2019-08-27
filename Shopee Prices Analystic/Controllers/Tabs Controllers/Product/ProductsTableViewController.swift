@@ -32,7 +32,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         searchController.searchBar.backgroundImage = UIImage()
         self.navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-
+        
         setupSearchController(for: searchController, placeholder: "Nhập tên sản phẩm")
         
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -41,6 +41,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
 
+        
         guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
             return
         }

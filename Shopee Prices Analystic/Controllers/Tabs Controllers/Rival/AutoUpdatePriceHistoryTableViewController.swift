@@ -10,6 +10,10 @@ import UIKit
 
 class AutoUpdatePriceHistoryTableViewController: UITableViewController {
 
+    // MARK: - Properties
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
