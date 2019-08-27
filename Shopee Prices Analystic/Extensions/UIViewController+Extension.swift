@@ -700,8 +700,8 @@ extension UIViewController {
 
 // Rival API
 extension UIViewController {
-    func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [(Product, Bool)]?) -> Void) {
-        // rival, isChosen
+    func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [(Product, Bool)]?, Int?) -> Void) {
+        // rival, isChosen, numberOFRivals
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
 
@@ -709,14 +709,14 @@ extension UIViewController {
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil)
+                completion(.failed, nil, nil)
                 return
             }
 
             //Successful request
             self.getChosenRivals(shopId: myShopId, productId: myProductId) { (result, chosenRivals) in
                 guard result != .failed, let chosenRivals = chosenRivals else {
-                    completion(.failed, nil)
+                    completion(.failed, nil, nil)
                     return
                 }
 
@@ -734,8 +734,15 @@ extension UIViewController {
                     listSearchedRivals.append((rival, isChosen))
                 }
 
+                var numberOfRivals = 0
+                for searchedRival in listSearchedRivals {
+                    if searchedRival.1 {
+                        numberOfRivals += 1
+                    }
+                }
+
                 print("So doi thu: \(listSearchedRivals.count)")
-                completion(.success, listSearchedRivals)
+                completion(.success, listSearchedRivals, numberOfRivals)
             }
 
         }

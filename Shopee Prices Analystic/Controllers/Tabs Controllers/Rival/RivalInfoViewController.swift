@@ -55,7 +55,9 @@ class RivalInfoViewController: UIViewController {
     func fillOutInfo(avatar: String?, follower: Int, id: String, name: String, location: String?, goodRating: Int, badRating: Int, averageRating: Double) {
         if let avatar = avatar {
             loadOnlineImage(from: URL(string: avatar)!, to: self.avatar)
+            print("load \(avatar)")
         }
+        print("didn't load")
         self.follower.text = "Lượt theo dõi: " + String(follower)
         self.rivalShopID.text = id
         self.rivalShopName.text = name
@@ -71,6 +73,5 @@ class RivalInfoViewController: UIViewController {
         self.productName.text = productName
         self.productSellPrice.text = String(numberOfSoldItems)
         self.rating.rating = rating
-        
     }
 }
