@@ -127,10 +127,12 @@ class AccountDetailTableViewController: UITableViewController {
         // Configure alerts
         let alert = UIAlertController(title: "Đổi số điện thoại", message: "Xác nhận mật khẩu và nhập số điện thoại mới:", preferredStyle: .alert)
         alert.addTextField { (textField) in
+            textField.borderStyle = .none
             textField.isSecureTextEntry = true
             textField.placeholder = "Xác nhận mật khẩu"
         }
         alert.addTextField { (textField) in
+            textField.borderStyle = .none
             textField.keyboardType = .numberPad
             textField.placeholder = "Nhập số điện thoại mới"
         }
@@ -180,17 +182,22 @@ class AccountDetailTableViewController: UITableViewController {
         // Configure alert
         let alert = UIAlertController(title: "Đổi mật khẩu", message: "Hãy nhập mật khẩu", preferredStyle: .alert)
         alert.addTextField { (textfield) in
+            textfield.borderStyle = .none
             textfield.isSecureTextEntry = true
             textfield.placeholder = "Mật khẩu hiện tại"
         }
         alert.addTextField { (textfield) in
+            textfield.borderStyle = .none
             textfield.isSecureTextEntry = true
             textfield.placeholder = "Mật khẩu mới"
         }
         alert.addTextField { (textfield) in
+            textfield.borderStyle = .none
             textfield.isSecureTextEntry = true
             textfield.placeholder = "Xác nhận mật khẩu"
         }
+        
+       
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
             // Handle exceptions
