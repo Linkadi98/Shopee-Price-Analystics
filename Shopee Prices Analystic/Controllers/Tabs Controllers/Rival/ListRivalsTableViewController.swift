@@ -18,6 +18,7 @@ class ListRivalsTableViewController: UITableViewController {
 
     var isFirstAppear = true
     var hasData = false
+    var numberOfRivals: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,20 +105,35 @@ class ListRivalsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! RivalTableCell
         guard let product = product, let listSearchedRivals = listSearchedRivals else {
-            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            DispatchQueue.main.async {
+                self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+            }
             return
         }
 
         // is Chosen
         if listSearchedRivals[indexPath.row].1 {
+            DispatchQueue.main.async {
+                self.presentAlert(title: "Thông báo", message: "Sản phẩm đã được theo dõi")
+            }
             return
+        }
+
+        if let numberOfRivals = numberOfRivals {
+            guard numberOfRivals < 5 else {
+                DispatchQueue.main.async {
+                    self.presentAlert(message: "Tối đa chỉ theo dõi 5 đối thủ")
+                }
+                return
+            }
         }
 
         let rival = listSearchedRivals[indexPath.row].0
         chooseRival(myProductId: product.id, myShopId: product.shopId, rivalProductId: rival.id, rivalShopId: rival.shopId, autoUpdate: false, priceDiff: 0, from: 0, to: 0) { (result) in
             if result == .success {
                 cell.setFollowStatus()
-                self.performSegue(withIdentifier: "listRivalSegue", sender: nil)
+//                self.performSegue(withIdentifier: "listRivalSegue", sender: nil)
+                self.tabBarController?.selectedIndex = 3
             }
         }
     }
@@ -135,8 +151,8 @@ class ListRivalsTableViewController: UITableViewController {
         var doneloadingRivals = false
         var doneloadingRivalsShops = false
         tableView.allowsSelection = false
-        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (result, listSearchedRivals) in
-            guard result != .failed, let listSearchedRivals = listSearchedRivals else {
+        getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (result, listSearchedRivals, numberOfRivals) in
+            guard result != .failed, let listSearchedRivals = listSearchedRivals, let numberOfRivals = numberOfRivals else {
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm đối thủ sẽ hiện tại đây")
                 self.isFirstAppear = false
                 self.hasData = false
@@ -155,12 +171,14 @@ class ListRivalsTableViewController: UITableViewController {
             }
 
             self.listSearchedRivals = listSearchedRivals
+            self.numberOfRivals = numberOfRivals
             doneloadingRivals = true
             if doneloadingRivals, doneloadingRivalsShops {
                 doneloadingRivals = false
                 doneloadingRivalsShops = false
 
                 self.tableView.reloadData()
+                self.navigationItem.title = "Danh sách đối thủ (\(numberOfRivals)/\(listSearchedRivals.count))"
                 self.hasData = true
                 self.view.hideSkeleton()
                 self.view.stopSkeletonAnimation()
@@ -197,6 +215,9 @@ class ListRivalsTableViewController: UITableViewController {
                 doneloadingRivalsShops = false
 
                 self.tableView.reloadData()
+                if let numberOfRivals = self.numberOfRivals {
+                    self.navigationItem.title = "Danh sách đối thủ (\(numberOfRivals)/\(listRivalsShops.count))"
+                }
                 self.hasData = true
                 self.view.hideSkeleton()
                 self.view.stopSkeletonAnimation()
