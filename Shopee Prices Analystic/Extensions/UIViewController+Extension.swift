@@ -900,32 +900,35 @@ extension UIViewController {
 
 // Price Observation
 extension UIViewController {
-    func priceObservations(productId: String, completion: @escaping (ConnectionResults, [(Int, String, String)]?) -> Void) {
-        // result, price, date, time
+    func priceObservations(productId: String, completion: @escaping (ConnectionResults, [String]?, [Int]?) -> Void) {
+        // result, date, price
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.priceObservation_path + "/\(productId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil)
+                completion(.failed, nil, nil)
                 return
             }
 
             //Successful request
-            var priceObservations: [(Int, String, String)] = []
+            var dates: [String] = []
+            var prices: [Int] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
-                let timeValue = value["date"] as! String
-                let date = String(timeValue.prefix(10))
-                let time = String(String(timeValue.dropFirst(11)).prefix(8))
+                let dateValue = String((value["date"] as! String).prefix(13))
+                //                let dateFormatter = DateFormatter()
+                //                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                //                let date = dateFormatter.date(from: dateValue)
+                //                print(date!)
                 let price = Int(value["price"] as! Double)
-                priceObservations.append((price, date, time))
+                dates.append(dateValue)
+                prices.append(price)
             }
-            completion(.success, priceObservations)
+            completion(.success, dates, prices)
         }
-
     }
 }
 

@@ -35,8 +35,6 @@ class RivalPageViewController: UIViewController {
         })
         
         navigationController?.navigationBar.barTintColor = .white
-        
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
