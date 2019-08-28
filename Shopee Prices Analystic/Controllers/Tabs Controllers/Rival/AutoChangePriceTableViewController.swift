@@ -16,8 +16,12 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     @IBOutlet weak var autoChangePriceSwitch: UISwitch!
     @IBOutlet weak var minPriceRange: UITextField!
     @IBOutlet weak var maxPriceRange: UITextField!
+
+
+    var rivalProducts: [Product]?
     
     var pickerVisible = true
+    
     // Đưa tên các đối thủ được chọn vào trong pickerData
     var pickerData = [String]()
     override func viewDidLoad() {
@@ -36,6 +40,10 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         autoChangePriceSwitch.isOn = false
         
         pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+                NotificationCenter.default.addObserver(self, selector: #selector(didGetRivalInfo(_:)), name: Notification.Name("didGetRivalInfo"), object: nil)
     }
 
     @IBAction func switchAutoChangePrice(_ sender: Any) {
@@ -130,6 +138,13 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     // this will be placed in viewWillLoad every time view has appeared
     private func reloadRivalsInPickerAfterChoosingOthers() {
         
+    }
+
+    @objc func didGetRivalInfo(_ notification: Notification) {
+        if let rivalProducts = notification.userInfo?["rivalProducts]"] as? [Product] {
+            self.rivalProducts = rivalProducts
+
+        }
     }
     
     

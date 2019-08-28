@@ -9,6 +9,8 @@
 import UIKit
 
 class StatisticalPriceTableViewController: UITableViewController {
+
+    var product: Product?
     
     // MARK: - Properties
     @IBOutlet weak var amount1: UILabel!
@@ -80,5 +82,19 @@ class StatisticalPriceTableViewController: UITableViewController {
     func calculatePriceSpaceFrom(productPrice: Int, firstPulp: Int, secondPulp: Int) -> (String, String) {
         return (Int(productPrice*firstPulp/100).convertPriceToVietnameseCurrency()!, Int(productPrice*secondPulp/100).convertPriceToVietnameseCurrency()!)
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "StatisticPriceTVCToProductsTVC" {
+            if let productsTableViewController = segue.destination as? ProductsTableViewController {
+                productsTableViewController.isChosenToObservePrice = true
+            }
+        }
+    }
     
+    @IBAction func chooseProductsToObserve(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let productsTableViewController = sb.instantiateViewController(withIdentifier: "ProductsTVC") as! ProductsTableViewController
+        navigationController?.pushViewController(productsTableViewController, animated: true)
+        productsTableViewController.isChosenToObservePrice = true
+    }
 }

@@ -94,7 +94,14 @@ class ChosenRivalsTableViewController: UITableViewController {
             presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
             return
         }
-        print("xxx: \(chosenRivals)")
+
+        let notificationName = NSNotification.Name(rawValue: "didGetRivalInfo")
+        var rivalProducts: [Product] = []
+        for chosenRival in chosenRivals {
+            rivalProducts.append(chosenRival.0)
+        }
+        NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["rivalProducts": rivalProducts])
+
         performSegue(withIdentifier: "rivalInfoSegue", sender: chosenRivals[indexPath.row])
     }
     

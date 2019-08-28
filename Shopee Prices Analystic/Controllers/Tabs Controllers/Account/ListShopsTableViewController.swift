@@ -170,9 +170,12 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
             let currentShopIndex = listShops.firstIndex(of: currentShop)!
             listShops.swapAt(0, currentShopIndex)
-            self.listShops = listShops
             self.hasData = true
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.listShops = listShops
+                self.tableView.reloadData()
+            }
+
             if isChangingShop {
                 self.tabBarController?.selectedIndex = 0
             }

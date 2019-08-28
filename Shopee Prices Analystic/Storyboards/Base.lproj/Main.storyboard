@@ -777,7 +777,7 @@
         <!--DANH SÁCH SẢN PHẨM-->
         <scene sceneID="ez0-KY-TX2">
             <objects>
-                <tableViewController id="7hj-hS-QoR" customClass="ProductsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProductsTVC" id="7hj-hS-QoR" customClass="ProductsTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" separatorInsetReference="fromAutomaticInsets" allowsSelectionDuringEditing="YES" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" id="HmU-cw-zQe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2628,7 +2628,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="kFF-Bl-wRo">
                                                     <rect key="frame" x="297" y="15" width="97" height="30"/>
                                                     <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập %" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yzo-bz-cBC">
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nhập giá" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yzo-bz-cBC">
                                                             <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="97" id="bvn-Uo-ZS2"/>
@@ -2664,6 +2664,8 @@
                             <outlet property="delegate" destination="AbS-tF-jG6" id="EWD-h2-VHW"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="autoChangePriceSwitch" destination="oov-id-Evv" id="dYH-53-unV"/>
                         <outlet property="maxPriceRange" destination="bAs-5x-DRR" id="XSu-gW-8Pk"/>
@@ -3574,7 +3576,7 @@
         <!--Theo dõi giá-->
         <scene sceneID="BhI-Ld-iJP">
             <objects>
-                <tableViewController id="6k3-AA-xmm" customClass="StatisticalPriceTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="StatisticalPriceTVC" id="6k3-AA-xmm" customClass="StatisticalPriceTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="j5x-De-Yif">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4447,6 +4449,9 @@
                                 <rect key="frame" x="20" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sản phẩm"/>
+                                <connections>
+                                    <action selector="chooseProductsToObserve:" destination="6k3-AA-xmm" eventType="touchUpInside" id="789-J6-wGu"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="uxC-TR-MCu">
@@ -4454,10 +4459,10 @@
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Biểu đồ"/>
+                                <connections>
+                                    <segue destination="wUi-pc-KTw" kind="show" id="xbt-N1-keb"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <segue destination="wUi-pc-KTw" kind="show" id="u11-0I-BGz"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

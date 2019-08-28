@@ -10,8 +10,9 @@ import UIKit
 
 class RivalProductTableViewController: UITableViewController {
 
-    var product: Product?
-    var priceObservation: [(Int, String, String)]?
+    var rival: Product?
+    var dates: [String]?
+    var prices: [Int]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +22,7 @@ class RivalProductTableViewController: UITableViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        update(productId: product!.id)
+        update(productId: rival!.id)
     }
 
     // MARK: - Table view data source
@@ -33,24 +34,22 @@ class RivalProductTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return priceObservation?.count ?? 10
+        return dates?.count ?? 10
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rivalProductCell", for: indexPath)
 
-        guard let priceObservation = priceObservation else {
+        guard let dates = dates, let prices = prices else {
 //            presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau") Vẫn đuợc gọi 1 lần
             return cell
         }
 
-        let history = priceObservation[indexPath.row]
-        let price = history.0
-        let date = history.1
-        let time = history.2
+        let price = prices[indexPath.row]
+        let date = dates[indexPath.row]
 
-        cell.textLabel?.text = time + " " + date
+        cell.textLabel?.text = date
         cell.detailTextLabel?.text = price.convertPriceToVietnameseCurrency()!
         
 //        cell.
@@ -82,11 +81,12 @@ class RivalProductTableViewController: UITableViewController {
     }
 
     func update(productId: String) {
-//        priceObservations(productId: productId) { (result, priceObservation) in
-//            if result == .success {
-//                self.priceObservation = priceObservation!
-//                self.tableView.reloadData()
-//            }
-//        }
+        priceObservations(productId: productId) { (result, dates, prices) in
+            if result == .success {
+                self.dates = dates
+                self.prices = prices
+                self.tableView.reloadData()
+            }
+        }
     }
 }

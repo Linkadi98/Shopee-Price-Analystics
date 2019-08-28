@@ -11,8 +11,7 @@ import UIKit
 class AutoUpdatePriceHistoryTableViewController: UITableViewController {
 
     // MARK: - Properties
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +21,10 @@ class AutoUpdatePriceHistoryTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+
     }
 
     // MARK: - Table view data source
@@ -54,5 +57,7 @@ class AutoUpdatePriceHistoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
     }
+
+
 
 }

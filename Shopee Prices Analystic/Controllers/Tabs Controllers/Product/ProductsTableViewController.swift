@@ -26,9 +26,12 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     var searchController: UISearchController!
     
     var hasData = false
+    var isChosenToObservePrice = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        print("product did load 677")
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.backgroundImage = UIImage()
@@ -43,12 +46,17 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
 
-        
+        if isChosenToObservePrice {
+            editingButton.setTitle("Quay lại", for: .normal)
+        }
+
+
         guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
             return
         }
 
         self.currentShop = currentShop
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -98,10 +106,12 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             product = listProducts![indexPath.row]
         }
 
-        cell.productName.text = "\(product.name)"
-        cell.cosmos.rating = product.rating
-        cell.productPrice.text = product.price.convertPriceToVietnameseCurrency()
-        cell.productCode.text = product.id
+        DispatchQueue.main.async {
+            cell.productName.text = "\(product.name)"
+            cell.cosmos.rating = product.rating
+            cell.productPrice.text = product.price.convertPriceToVietnameseCurrency()
+            cell.productCode.text = product.id
+        }
         loadOnlineImage(from: URL(string: product.image)!, to: cell.productImage)
 
         cell.hideSkeletonAnimation()
@@ -133,6 +143,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
             else {
                 product = listProducts![indexPath.row]
+            }
+
+            if isChosenToObservePrice {
+                let statisticalPriceTableViewController = navigationController?.viewControllers[0] as! StatisticalPriceTableViewController
+                statisticalPriceTableViewController.product = product
+                navigationController?.popViewController(animated: true)
+                return
             }
             
             if tableView.isEditing {
@@ -181,6 +198,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Actions
     
     @IBAction func editingMode(_ sender: Any) {
+        if isChosenToObservePrice {
+            navigationController?.popViewController(animated: true)
+            return
+        }
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
             
@@ -238,7 +259,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
         let ok = UIAlertAction(title: "OK", style: .default) { _ in
-            guard let newPrice = Int(alert.textFields![0].text!) else {
+            guard let newPrice = Int(alert.textFields![0].text!), newPrice > 0 else {
                 self.presentAlert(message: "Xin mời nhập đúng giá")
                 return
             }
@@ -324,8 +345,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             print("So san pham la: \(listProducts.count)")
-            self.listProducts = listProducts
+
             DispatchQueue.main.async {
+                self.listProducts = listProducts
                 self.tableView.reloadData()
             }
             self.hasData = true

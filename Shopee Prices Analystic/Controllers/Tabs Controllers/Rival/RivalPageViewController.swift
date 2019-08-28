@@ -88,7 +88,11 @@ class RivalPageViewController: UIViewController {
         rivalInfoViewController?.fillOutProductInfo(image: rival.image, productName: rival.name, numberOfSoldItems: rival.sold, rating: rival.rating)
 
         // Rival product
-        rivalProductTableViewController?.product = product!
+        rivalProductTableViewController?.rival = chosenRival.0
+
+        // Rival line chart
+        rivalProductLineChartViewController?.product = product!
+        rivalProductLineChartViewController?.rival = chosenRival.0
     }
     
     // Tất cả các dữ liệu đến các view này đều phải được setup tại file này      
