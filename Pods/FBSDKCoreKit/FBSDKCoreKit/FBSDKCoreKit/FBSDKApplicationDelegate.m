@@ -105,9 +105,11 @@ static UIApplicationState _applicationState;
 
   [delegate application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:launchOptions];
 
-  if ([FBSDKFeatureManager isEnabled:FBSDKFeatureInstrument]) {
-    [FBSDKInstrumentManager enable];
-  }
+  [FBSDKFeatureManager checkFeature:FBSDKFeatureInstrument completionBlock:^(BOOL enabled) {
+    if (enabled) {
+      [FBSDKInstrumentManager enable];
+    }
+  }];
 
 #if !TARGET_OS_TV
   // Register Listener for App Link measurement events
@@ -346,6 +348,13 @@ static UIApplicationState _applicationState;
       bitmask |=  1 << bit;
     }
     bit++;
+  }
+
+  // Tracking if the consuming Application is using Swift
+  id delegate = [UIApplication sharedApplication].delegate;
+  NSString const *className = NSStringFromClass([delegate class]);
+  if ([className componentsSeparatedByString:@"."].count > 1) {
+    params[@"is_using_swift"] = @YES;
   }
 
   NSInteger existingBitmask = [[NSUserDefaults standardUserDefaults] integerForKey:FBSDKKitsBitmaskKey];

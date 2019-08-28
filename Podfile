@@ -17,7 +17,8 @@ pod 'Parchment'
 pod 'SVProgressHUD', '~> 2.2'
 pod "SkeletonView"
 pod 'BadgeSwift', '~> 8.0'
-  # Pods for Shopee Prices Analystic
+pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
+# Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do
     inherit! :search_paths

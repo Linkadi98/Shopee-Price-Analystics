@@ -50,6 +50,7 @@ Enjoy it! 🙂
   * [Custom colors](#-custom-colors)
   * [Appearance](#-appearance)
   * [Custom animations](#-custom-animations)
+  * [Transitions](#-transitions)
   * [Hierarchy](#-hierarchy)
   * [Debug](#-debug)
 * [Documentation](#-documentation)
@@ -99,7 +100,7 @@ Once you have your Swift package set up, adding `SkeletonView` as a dependency i
 
 ```swift
   dependencies: [
-    .package(url: "https://github.com/Juanpe/SkeletonView.git", from: "1.7")
+    .package(url: "https://github.com/Juanpe/SkeletonView.git", from: "1.7.0")
   ]
 ```
 
@@ -390,6 +391,42 @@ view.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation)
 Exist another way to create sliding animations, just using this shortcut:
 >>```let animation = GradientDirection.leftToRight.slidingAnimation()```
 
+
+
+### 🏄 Transitions
+
+```SkeletonView``` has build-in transitions to **show** or **hide** the skeletons in a *smoother* way 🤙
+
+To use the transition, simply add the ```transition``` parameter to your ```showSkeleton()``` or ```hideSkeleton()``` function with the transition time, like this:
+
+```swift
+view.showSkeleton(transition: .crossDissolve(0.25))     //Show skeleton cross dissolve transition with 0.25 seconds fade time
+view.hideSkeleton(transition: .crossDissolve(0.25))     //Hide skeleton cross dissolve transition with 0.25 seconds fade time
+
+```
+
+**Preview**
+
+<table>
+<tr>
+<td width="50%">
+<center>None</center>
+</td>
+<td width="50%">
+<center>Cross dissolve</center>
+</td>
+</tr>
+<tr>
+<td width="50%">
+<img src="Assets/skeleton_transition_nofade.gif"></img>
+</td>
+<td width="50%">
+<img src="Assets/skeleton_transition_fade.gif"></img>
+</td>
+</tr>
+</table>
+
+
 ### 👨‍👧‍👦 Hierarchy
 
 Since ```SkeletonView``` is recursive, and we want skeleton to be very efficient, we want to stop recursion as soon as possible. For this reason, you must set the container view as `Skeletonable`, because Skeleton will stop looking for `skeletonable` subviews as soon as a view is not Skeletonable, breaking then the recursion.
@@ -439,7 +476,7 @@ Coming soon...😅
 
 * iOS 9.0+
 * tvOS 9.0+
-* Swift 4.2
+* Swift 5
 
 ## 📬 Next steps
 
@@ -451,8 +488,8 @@ Coming soon...😅
 * [x] Add recovery state
 * [x] Custom default appearance
 * [x] Debug mode
+* [x] Add animations when it shows/hides the skeletons
 * [ ] Custom collections compatible
-* [ ] Add animations when it shows/hides the skeletons
 * [ ] MacOS and WatchOS compatible
 
 ## ❤️ Contributing
@@ -479,6 +516,7 @@ See [all contributors](https://github.com/Juanpe/SkeletonView/graphs/contributor
 - [CocoaControls](https://www.cocoacontrols.com/controls/skeletonview)
 - [Awesome iOS Newsletter #74](https://ios.libhunt.com/newsletter/74)
 - [Swift News #36](https://www.youtube.com/watch?v=mAGpsQiy6so)
+- [Best iOS articles, new tools & more](https://medium.com/flawless-app-stories/best-ios-articles-new-tools-more-fcbe673e10d)
 
 
 

@@ -65,7 +65,7 @@ class OverviewViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        view.startSkeletonAnimation()
+//        view.startSkeletonAnimation()
 
         // currentShop is nil
         guard self.currentShop != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, currentShop == self.currentShop else {
@@ -75,8 +75,9 @@ class OverviewViewController: UIViewController {
     }
     
     private func fetchDataFromServer() {
-        view.hideSkeleton()
-        view.showAnimatedSkeleton()
+        print("axy")
+//        view.hideSkeleton()
+//        view.showAnimatedSkeleton()
 
         getListShops { [unowned self] (result, listShops) in
             guard result != .failed, let listShops = listShops else {
@@ -103,6 +104,7 @@ class OverviewViewController: UIViewController {
 
             self.currentShop = currentShop
 
+            print("1zd\(currentShop)")
             // Update interface
             self.shopId.text = currentShop.shopId
             self.shopName.text = currentShop.shopName
@@ -110,11 +112,10 @@ class OverviewViewController: UIViewController {
                 self.loadOnlineImage(from: URL(string: image)!, to: self.shopImage)
             }
             // Default image
-
             self.status.text = "Lượt theo dõi: \(currentShop.followersCount)"
 
-            self.view.hideSkeleton()
-            self.view.stopSkeletonAnimation()
+//            self.view.hideSkeleton()
+//            self.view.stopSkeletonAnimation()
         }
     }
     

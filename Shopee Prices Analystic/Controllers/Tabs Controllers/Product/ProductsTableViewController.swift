@@ -227,6 +227,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         let product = listProducts![productIndex]
         let alert = UIAlertController(title: "Sản phẩm \(product.name)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textfield in
+            textfield.keyboardType = .numberPad
             textfield.borderStyle = .none
             textfield.text = String(product.price)
         })
@@ -244,17 +245,19 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             let activityIndicator = self.startLoading()
-
+            // 39692647/2716282215/595000
             self.updatePrice(shopId: product.shopId, productId: product.id, newPrice: newPrice) { [unowned self] result in
                 switch result {
+                case .failed:
+                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
                 case .error:
                     self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
                 case .success:
                     self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
                     self.listProducts![productIndex].price = newPrice
                     self.tableView.reloadRows(at: [IndexPath(row: productIndex, section: 0)], with: .automatic)
-                default:
-                    break
+//                default:
+//                    break
                 }
 
                 self.endLoading(activityIndicator)
@@ -318,7 +321,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
             print("So san pham la: \(listProducts.count)")
             self.listProducts = listProducts
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
             self.hasData = true
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()

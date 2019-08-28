@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4FC1FC57946341A594C22404017A82D0"
+               BlueprintIdentifier = "D00B000EBC0A2C7AD008EBC720714D48"
                BuildableName = "TransitionButton.framework"
                BlueprintName = "TransitionButton"
                ReferencedContainer = "container:Pods.xcodeproj">

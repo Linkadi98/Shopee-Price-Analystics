@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIView {
-    
     enum Constants {
         static let becomeActiveNotification = UIApplication.didBecomeActiveNotification
         static let enterForegroundNotification = UIApplication.didEnterBackgroundNotification
@@ -33,6 +32,6 @@ extension UIView {
     }
     
     @objc func appDidEnterBackground() {
-        UserDefaults.standard.set((isSkeletonActive && skeletonIsAnimated), forKey: Constants.needAnimatedSkeletonKey)
+        UserDefaults.standard.set((isSkeletonActive && isSkeletonAnimated), forKey: Constants.needAnimatedSkeletonKey)
     }
 }

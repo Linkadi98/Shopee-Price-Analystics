@@ -65,6 +65,7 @@
 		5E7DC6F104CE5C85E7254BCE /* Pods_Shopee_Prices_Analystic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBC57FE154A893EB41D1B67D /* Pods_Shopee_Prices_Analystic.framework */; };
 		BC0FB3A322F7C02C00968E68 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0FB3A222F7C02C00968E68 /* Network.swift */; };
 		BC15D3012313B1A6008D3456 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC15D3002313B1A6008D3456 /* Observation.swift */; };
+		BC336A4E2316405D0091F44F /* AACharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC336A4D2316405D0091F44F /* AACharts.swift */; };
 		BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */; };
 		BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */; };
 		E93805F1D912FEDBBDDFF1C7 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */; };
@@ -158,6 +159,7 @@
 		66A6383CEF3645457681379F /* Pods-Shopee Prices Analystic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices Analystic.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic.release.xcconfig"; sourceTree = "<group>"; };
 		BC0FB3A222F7C02C00968E68 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		BC15D3002313B1A6008D3456 /* Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
+		BC336A4D2316405D0091F44F /* AACharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AACharts.swift; sourceTree = "<group>"; };
 		BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopeeAuthViewController.swift; sourceTree = "<group>"; };
 		BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		CBC57FE154A893EB41D1B67D /* Pods_Shopee_Prices_Analystic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_Analystic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -356,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				245255C4231633C5003AFBBF /* Notìfications */,
+				BCD6A47B2316322B00F74CFA /* Charts */,
 				2469B6F12307B6D100C77F3A /* Onboarding Screen */,
 				BC0FB3A122F7BFF900968E68 /* Network */,
 				242C4FA622F5786C007D4903 /* Custom components */,
@@ -449,6 +452,14 @@
 				24631A6E2314D04D00295264 /* AutoUpdateHistoryCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		BCD6A47B2316322B00F74CFA /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				BC336A4D2316405D0091F44F /* AACharts.swift */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		F0231C0A030C3C9F8E4BE00A /* Pods */ = {
@@ -642,6 +653,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AAInfographics/AAInfographics.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BadgeSwift/BadgeSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
@@ -667,6 +679,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AAInfographics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BadgeSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
@@ -749,6 +762,7 @@
 				241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */,
 				2416494822E1770E00B80DBC /* Product.swift in Sources */,
 				BC15D3012313B1A6008D3456 /* Observation.swift in Sources */,
+				BC336A4E2316405D0091F44F /* AACharts.swift in Sources */,
 				24631A6F2314D04D00295264 /* AutoUpdateHistoryCell.swift in Sources */,
 				2422105D230E91DA00E8FBCC /* ChosenRivalCell.swift in Sources */,
 				24F842EB230B95360050C2A0 /* OnboardingLoginViewController.swift in Sources */,

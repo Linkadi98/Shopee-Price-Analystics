@@ -1807,7 +1807,7 @@
                         <outlet property="email" destination="0EX-lk-V5P" id="D5P-h9-jsP"/>
                         <outlet property="password" destination="SpM-DX-sEZ" id="QQI-b8-4za"/>
                         <outlet property="phoneNumber" destination="ab8-3b-chJ" id="alI-XD-FCV"/>
-                        <outlet property="userName" destination="Grw-nc-dDK" id="Rr2-x8-uPx"/>
+                        <outlet property="userName" destination="Grw-nc-dDK" id="6Bh-WK-Kmf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s4w-de-KG1" userLabel="First Responder" sceneMemberID="firstResponder"/>
