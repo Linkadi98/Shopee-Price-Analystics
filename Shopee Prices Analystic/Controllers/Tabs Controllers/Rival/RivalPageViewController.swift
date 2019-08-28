@@ -93,6 +93,9 @@ class RivalPageViewController: UIViewController {
         // Rival line chart
         rivalProductLineChartViewController?.product = product!
         rivalProductLineChartViewController?.rival = chosenRival.0
+
+        // Auto update history
+        autoUpdatePriceHistoryTableViewController?.product = product!
     }
     
     // Tất cả các dữ liệu đến các view này đều phải được setup tại file này      

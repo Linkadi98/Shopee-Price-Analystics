@@ -11,7 +11,8 @@ import UIKit
 class AutoUpdatePriceHistoryTableViewController: UITableViewController {
 
     // MARK: - Properties
-
+    var product: Product?
+    var autoUpdateHistory: [AutoUpdateHistory]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +25,14 @@ class AutoUpdatePriceHistoryTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-
+        update()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return autoUpdateHistory?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,16 +41,30 @@ class AutoUpdatePriceHistoryTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 {
-            return "Ngày 8 tháng 9 năm 2019"
-        }
-        return nil
+        return autoUpdateHistory?[section].date ?? nil
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "historyCell", for: indexPath) as! AutoUpdateHistoryCell
 
+        guard let autoUpdateHistory = autoUpdateHistory else {
+            return cell
+        }
+        let section = indexPath.section
+
+        DispatchQueue.main.async {
+            cell.rivalName.text = "Đ.thủ: " + autoUpdateHistory[section].rivalShopName
+            cell.newPrice.text = autoUpdateHistory[section].newPrice.convertPriceToVietnameseCurrency()
+            cell.oldPrice.text = autoUpdateHistory[section].oldPrice.convertPriceToVietnameseCurrency()
+            if autoUpdateHistory[section].newPrice > autoUpdateHistory[section].oldPrice {
+                cell.increasePriceImage()
+                cell.differentPrice.text = (autoUpdateHistory[section].newPrice - autoUpdateHistory[section].oldPrice).convertPriceToVietnameseCurrency()
+            } else {
+                cell.decreasePriceImage()
+                cell.differentPrice.text = (autoUpdateHistory[section].oldPrice - autoUpdateHistory[section].newPrice).convertPriceToVietnameseCurrency()
+            }
+        }
 
         return cell
     }
@@ -58,6 +73,14 @@ class AutoUpdatePriceHistoryTableViewController: UITableViewController {
         return 80.0
     }
 
-
-
+    private func update() {
+        getAutoUpdateHistory(product: product!) { (result, autoUpdateHistory) in
+            if result == .success {
+                DispatchQueue.main.async {
+                    self.autoUpdateHistory = autoUpdateHistory
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
 }

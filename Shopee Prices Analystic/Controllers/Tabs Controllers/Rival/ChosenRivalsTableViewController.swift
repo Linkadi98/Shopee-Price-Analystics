@@ -70,22 +70,24 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
             return cell
         }
 
-        let rival = chosenRivals[indexPath.row].0
-        let rivalShop = chosenRivals[indexPath.row].1
-        let observation = chosenRivals[indexPath.row].2
+        DispatchQueue.main.async {
+            let rival = chosenRivals[indexPath.row].0
+            let rivalShop = chosenRivals[indexPath.row].1
+            let observation = chosenRivals[indexPath.row].2
 
-        cell.productName.text = rival.name
-        cell.productPrice.text = "\(rival.price.convertPriceToVietnameseCurrency()!)"
-        cell.rivalShopRating.text = String("\(rivalShop.rating)".prefix(3))
-        cell.rivalShopRating.rating = rivalShop.rating
-        cell.follower.text = "\(rivalShop.followersCount)"
-        loadOnlineImage(from: URL(string: rival.image)!, to: cell.productImage)
-        cell.rivalName.text = rivalShop.shopName
-        switch observation.autoUpdate {
-        case true:
-            cell.setAutoStatusOn()
-        default:
-            cell.setAutoStatusOff()
+            cell.productName.text = rival.name
+            cell.productPrice.text = "\(rival.price.convertPriceToVietnameseCurrency()!)"
+            cell.rivalShopRating.text = String("\(rivalShop.rating)".prefix(3))
+            cell.rivalShopRating.rating = rivalShop.rating
+            cell.follower.text = "\(rivalShop.followersCount)"
+            self.loadOnlineImage(from: URL(string: rival.image)!, to: cell.productImage)
+            cell.rivalName.text = rivalShop.shopName
+            switch observation.autoUpdate {
+            case true:
+                cell.setAutoStatusOn()
+            default:
+                cell.setAutoStatusOff()
+            }
         }
         
         cell.delegate = self

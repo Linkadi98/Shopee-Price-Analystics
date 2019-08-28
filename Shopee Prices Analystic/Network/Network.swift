@@ -31,6 +31,7 @@ class Network {
     let chosenProducts_path = "/chosenItems" // get chosen products
     let priceObservation_path = "/itemPrice" // get price observation of a rival
     let statistics_path = "/statistical" // get price observation of a rival
+    let autoUpdate_path = "/autoUpdate" // get auto update history of a products
 
     var headers: HTTPHeaders = [
         "Content-Type": "application/json"

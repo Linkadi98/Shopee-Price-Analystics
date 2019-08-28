@@ -22,7 +22,7 @@ class RivalProductTableViewController: UITableViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        update(productId: rival!.id)
+        update()
     }
 
     // MARK: - Table view data source
@@ -80,12 +80,14 @@ class RivalProductTableViewController: UITableViewController {
         tableView.refreshControl?.endRefreshing()
     }
 
-    func update(productId: String) {
-        priceObservations(productId: productId) { (result, dates, prices) in
+    func update() {
+        priceObservations(productId: rival!.id) { (result, dates, prices) in
             if result == .success {
-                self.dates = dates
-                self.prices = prices
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.dates = dates
+                    self.prices = prices
+                    self.tableView.reloadData()
+                }
             }
         }
     }
