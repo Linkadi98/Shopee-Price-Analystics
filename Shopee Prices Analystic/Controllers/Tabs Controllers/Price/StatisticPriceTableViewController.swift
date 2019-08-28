@@ -62,11 +62,7 @@ class StatisticalPriceTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(didChosenProductToObserve(_:)), name: NSNotification.Name(rawValue: "didChosenProductToObserve"), object: nil)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-
+        NotificationCenter.default.addObserver(self, selector: #selector(didChooseProductToObserve(_:)), name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,7 +137,7 @@ class StatisticalPriceTableViewController: UITableViewController {
         performSegue(withIdentifier: "StatisticPriceTVCToChartsVC", sender: nil)
     }
 
-    @objc func didChosenProductToObserve(_ notification: Notification) {
+    @objc func didChooseProductToObserve(_ notification: Notification) {
         if let product = notification.userInfo?["product"] as? Product {
             getStatistics(product: product) { (result, counts) in
                 if result == .success, let counts = counts {

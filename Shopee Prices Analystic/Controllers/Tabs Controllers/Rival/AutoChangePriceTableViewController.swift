@@ -16,14 +16,15 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     @IBOutlet weak var autoChangePriceSwitch: UISwitch!
     @IBOutlet weak var minPriceRange: UITextField!
     @IBOutlet weak var maxPriceRange: UITextField!
-
-
-    var rivalProducts: [Product]?
+    @IBOutlet weak var priceDiff: UITextField!
     
+
+//    var rivalProducts: [Product]?
+
     var pickerVisible = true
     
     var delegate: PickerNameDelegate?
-    
+
     // Đưa tên các đối thủ được chọn vào trong pickerData
     var pickerData = [String]()
     override func viewDidLoad() {
@@ -123,16 +124,52 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     // MARK: - Textfield delegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if minPriceRange.isFirstResponder {
-            maxPriceRange.becomeFirstResponder()
-            return false
-        }
-        else {
-            maxPriceRange.resignFirstResponder()
+//        switch textField.tag {
+//        case 0:
+//            print("min")
+//        case 1:
+//            print("max")
+//        case 2:
+//            print("diff")
+//        default:
+//            break
+//        }
+//        if minPriceRange.isFirstResponder {
+//            maxPriceRange.becomeFirstResponder()
+//            return false
+//        }
+//        else {
+//            maxPriceRange.resignFirstResponder()
+//            return true
+//        }
+        let (result, message) = checkTextFields()
+        guard result else {
+            self.presentAlert(message: message)
             return true
         }
+
+        let activityIndicator = self.startLoading()
+        chooseRival(myProductId: <#T##String#>, myShopId: <#T##String#>, rivalProductId: <#T##String#>, rivalShopId: <#T##String#>, autoUpdate: <#T##Bool#>, priceDiff: <#T##Int#>, from: <#T##Int#>, to: <#T##Int#>, completion: <#T##(ConnectionResults) -> Void#>)
+
+        shopChangePicker.
+        print(result)
+        print(message)
+        
+        return true
     }
-    
+
+    private func checkTextFields() -> (Bool, String) {
+        guard let maxPrice = UInt(maxPriceRange.text!), let minPrice = UInt(minPriceRange.text!), let _ = UInt(priceDiff.text!) else {
+            return (false, "Xin mời nhập đúng giá")
+        }
+
+        guard maxPrice > minPrice else {
+            return (false, "Khoảng giá không hợp lệ")
+        }
+
+        return (true, "OK")
+    }
+
     // MARK: - Helper for picker view
     
     @objc func onAppearChosenProduct(_ notification: Notification) {
