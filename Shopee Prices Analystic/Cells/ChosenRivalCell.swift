@@ -9,9 +9,13 @@
 import UIKit
 import Cosmos
 
-class ChosenRivalCell: UITableViewCell {
+class ChosenRivalCell: UITableViewCell{
 
     // MARK: - Properties
+    
+    var delegate: ChosenRivalDelegate?
+    var row = 0
+    var section = 0
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var productImage: UIImageView! {
@@ -32,6 +36,9 @@ class ChosenRivalCell: UITableViewCell {
             autoStatus.layer.maskedCorners = [.layerMaxXMinYCorner]
         }
     }
+    
+    @IBOutlet weak var deleteButton: UIButton!
+    
     
     var off = #imageLiteral(resourceName: "auto off")
     var on = #imageLiteral(resourceName: "auto")
@@ -82,6 +89,7 @@ class ChosenRivalCell: UITableViewCell {
     }
 
     
+    
     func showSkeletionAnimation() {
         containerView.showSkeleton()
         productName.showSkeleton()
@@ -100,5 +108,10 @@ class ChosenRivalCell: UITableViewCell {
         followStatus.hideSkeleton()
         follower.hideSkeleton()
         productPrice.hideSkeleton()
+    }
+    
+    
+    @IBAction func deleteCell(_ sender: Any) {
+        delegate?.deleteRow(at: row, in: section)
     }
 }

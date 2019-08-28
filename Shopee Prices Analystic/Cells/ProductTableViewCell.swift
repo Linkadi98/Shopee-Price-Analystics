@@ -24,6 +24,7 @@ class ProductTableViewCell: UITableViewCell {
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var cosmos: CosmosView!
     @IBOutlet weak var editingPen: UIImageView!
+    @IBOutlet weak var idLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +34,7 @@ class ProductTableViewCell: UITableViewCell {
         productImage.showAnimatedSkeleton()
         productCode.showAnimatedSkeleton()
         cosmos.showAnimatedSkeleton()
+        idLabel.showAnimatedSkeleton()
         
         cosmos.layer.cornerRadius = 4
         containerView.setShadow()
@@ -55,6 +57,7 @@ class ProductTableViewCell: UITableViewCell {
         productImage.hideSkeleton()
         productCode.hideSkeleton()
         cosmos.hideSkeleton()
+        idLabel.hideSkeleton()
     }
 
 }

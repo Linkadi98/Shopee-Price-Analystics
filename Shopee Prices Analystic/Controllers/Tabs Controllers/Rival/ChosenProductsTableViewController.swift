@@ -27,26 +27,29 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
             self.currentShop = currentShop
         }
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
 
-        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-            return
-        }
+        // Đăng ký nhận thông báo chuyển sang shop mới
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData(_:)), name: .didChangeCurrentShop, object: nil)
+        
+//        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+//            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+//            return
+//        }
 
         guard chosenProducts != nil else {
             fetchDataFromServer()
             return
         }
 
-        if self.currentShop == currentShop {
-            //
-        }
+        
     }
+    
+
 
     // MARK: - Table view data source
 
@@ -195,6 +198,9 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     // MARK: - Fetching data from server
 
     private func fetchDataFromServer() {
+        if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
+            self.currentShop = currentShop
+        }
         for row in 0...self.tableView.numberOfRows(inSection: 0) {
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
         }
@@ -205,6 +211,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         tableView.allowsSelection = false
         
         getChosenProducts(shopId: self.currentShop!.shopId) { [unowned self] (result, chosenProducts) in
+            print("15647 \(self.currentShop!.shopId)")
             guard result != .failed, let chosenProducts = chosenProducts else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
@@ -226,5 +233,13 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
         }
+    }
+    
+    // MARK: - Notification
+    
+    @objc func reloadData(_ notification: Notification) {
+        fetchDataFromServer()
+        tableView.reloadData()
+        print("did receive data")
     }
 }

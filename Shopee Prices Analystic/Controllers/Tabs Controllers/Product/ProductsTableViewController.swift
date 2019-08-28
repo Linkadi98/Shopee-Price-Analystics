@@ -56,7 +56,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
 
         self.currentShop = currentShop
-
+        
+        // Notification
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -65,14 +67,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
 
     override func viewWillAppear(_ animated: Bool) {
+        
         view.startSkeletonAnimation()
 
-        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-            return
-        }
-
-        guard listProducts != nil, self.currentShop == currentShop else {
+        guard listProducts != nil else {
             fetchDataFromServer()
             return
         }
@@ -357,6 +355,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
         }
+    }
+    
+    // MARK: - Reload Product after changing current Shop
+    @objc func reloadProduct(_ notification: Notification) {
+        fetchDataFromServer()
     }
 
     // MARK: - Refesh data
