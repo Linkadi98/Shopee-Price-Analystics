@@ -36,10 +36,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData(_:)), name: .didChangeCurrentShop, object: nil)
         
-//        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-//            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-//            return
-//        }
+        NotificationCenter.default.addObserver(self, selector: #selector(onChooseRival(_:)), name: .didChooseRival, object: nil)
 
         guard chosenProducts != nil else {
             fetchDataFromServer()
@@ -241,5 +238,11 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         fetchDataFromServer()
         tableView.reloadData()
         print("did receive data")
+    }
+    
+    @objc func onChooseRival(_ notification: Notification) {
+        fetchDataFromServer()
+        
+        print("load lai tab san pham da chon")
     }
 }

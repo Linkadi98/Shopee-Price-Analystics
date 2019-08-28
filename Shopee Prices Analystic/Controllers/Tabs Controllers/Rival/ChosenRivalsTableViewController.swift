@@ -32,6 +32,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
 
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -251,26 +252,6 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         }
     }
     
-    // Name of current shops
-    
-    private func getShopsName() -> [Shop]? {
-        guard let chosenRivals = chosenRivals else {
-            return nil
-        }
-        
-        var array = [Shop]()
-        for rival in chosenRivals {
-            array.append(rival.1)
-            print(rival.1.shopName)
-        }
-        
-        return array
-    }
-    
-//    func addNameToPicker() -> [String] {
-//
-//        return
-//    }
-    
+    // MARK: - Notifications
     
 }

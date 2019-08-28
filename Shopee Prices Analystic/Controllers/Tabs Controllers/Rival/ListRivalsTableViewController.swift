@@ -33,6 +33,8 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
+        
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -132,18 +134,15 @@ class ListRivalsTableViewController: UITableViewController {
         chooseRival(myProductId: product.id, myShopId: product.shopId, rivalProductId: rival.id, rivalShopId: rival.shopId, autoUpdate: false, priceDiff: 0, from: 0, to: 0) { (result) in
             if result == .success {
                 cell.setFollowStatus()
-//                self.performSegue(withIdentifier: "listRivalSegue", sender: nil)
+                NotificationCenter.default.post(name: .didChooseRival, object: nil)
                 self.tabBarController?.selectedIndex = 3
+                
             }
         }
     }
 
     private func fetchDataFromServer() {
         tableView.reloadData()
-
-//        for row in 0...self.tableView.numberOfRows(inSection: 0) {
-//            self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
-//        }
 
         view.hideSkeleton()
         view.showAnimatedSkeleton()
@@ -233,6 +232,8 @@ class ListRivalsTableViewController: UITableViewController {
             }
         }
     }
+    
+    
 
     @objc func refresh() {
         fetchDataFromServer()

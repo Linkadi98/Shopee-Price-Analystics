@@ -448,7 +448,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Quay lại"/>
                                                 <connections>
-                                                    <segue destination="vuP-2t-24k" kind="unwind" unwindAction="unwindToViewControllerWithSegue:" id="sLL-Xl-XmH"/>
+                                                    <segue destination="F0e-4b-AO9" kind="show" id="cy7-Su-waW"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
@@ -748,7 +748,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20P-iP-2dE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="vuP-2t-24k" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2801" y="-1929"/>
         </scene>
@@ -2234,7 +2233,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1u-0v-ken" customClass="CosmosView" customModule="Cosmos">
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1u-0v-ken" customClass="CosmosView" customModule="Cosmos">
                                                                 <rect key="frame" x="270" y="192" width="120" height="20"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -2333,7 +2332,7 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G39-7m-NCY" customClass="CosmosView" customModule="Cosmos">
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G39-7m-NCY" customClass="CosmosView" customModule="Cosmos">
                                                                 <rect key="frame" x="270" y="175.5" width="120" height="20"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -2862,7 +2861,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqb-z2-8cw">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <connections>
                                     <segue destination="niu-Pk-ERA" kind="embed" identifier="ContainerRivalInfoVCToRivalPageTVC" id="fAi-c3-CwW"/>
                                 </connections>
@@ -2887,7 +2886,7 @@
             <objects>
                 <viewController id="niu-Pk-ERA" customClass="RivalPageViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4ea-BE-cgz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="SXk-nL-uaX"/>
@@ -4604,9 +4603,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="RtS-Aj-Aye"/>
-        <segue reference="sQp-Ek-zTI"/>
+        <segue reference="KP5-qa-amV"/>
         <segue reference="oib-py-s1x"/>
-        <segue reference="Rf2-hR-1tB"/>
+        <segue reference="cy7-Su-waW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
