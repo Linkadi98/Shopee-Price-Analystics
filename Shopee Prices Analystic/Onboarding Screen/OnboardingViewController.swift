@@ -56,6 +56,14 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeDown.direction = UISwipeGestureRecognizer.Direction.left
+        self.view.addGestureRecognizer(swipeDown)
+        
         configPositionAtBegining()
         
         UIView.zoomOutImage(with: imageView, nextAnimation: {
@@ -79,10 +87,35 @@ class OnboardingViewController: UIViewController {
         }
     }
     
+    
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizer.Direction.right:
+                onboardToLeft()
+            
+            case UISwipeGestureRecognizer.Direction.left:
+                onboardToRight()
+            
+            default:
+                break
+            }
+        }
+    }
     // MARK: - Actions
     
     @IBAction func goToNextView(_ sender: Any) {
+        onboardToRight()
+    }
     
+    @IBAction func goBackPreviousView(_ sender: Any) {
+        onboardToLeft()
+    }
+    
+    
+    // MARK: - show onboarding image to left and right
+    
+    private func onboardToRight() {
         if pageIndex < 5 {
             pageIndex += 1
             pageControl.currentPage = pageIndex
@@ -118,34 +151,34 @@ class OnboardingViewController: UIViewController {
         }
     }
     
-    @IBAction func goBackPreviousView(_ sender: Any) {
+    private func onboardToLeft() {
         pageIndex -= 1
         pageControl.currentPage = pageIndex
         
         switch pageIndex {
         case 3:
-            UIView.translateAndChangeLabelText(with: titleOnboarding, text: "QUẢN LÝ SẢN PHẨM", direction: .right)
-            
-            UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["QUẢN LÝ SẢN PHẨM"]!, direction: .right)
-            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "product image"), direction: .right)
-            showRightArrow()
+        UIView.translateAndChangeLabelText(with: titleOnboarding, text: "QUẢN LÝ SẢN PHẨM", direction: .right)
+        
+        UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["QUẢN LÝ SẢN PHẨM"]!, direction: .right)
+        UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "product image"), direction: .right)
+        showRightArrow()
         case 2:
-            UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THỐNG KÊ TRỰC QUAN", direction: .right)
-            
-            UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THỐNG KÊ TRỰC QUAN"]!, direction: .right)
-            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "chart"), direction: .right)
+        UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THỐNG KÊ TRỰC QUAN", direction: .right)
+        
+        UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THỐNG KÊ TRỰC QUAN"]!, direction: .right)
+        UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "chart"), direction: .right)
         case 1:
-            UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THEO DÕI ĐỐI THỦ", direction: .right)
-            
-            UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THEO DÕI ĐỐI THỦ"]!, direction: .right)
-            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "rival"), direction: .right)
-            
+        UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THEO DÕI ĐỐI THỦ", direction: .right)
+        
+        UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THEO DÕI ĐỐI THỦ"]!, direction: .right)
+        UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "rival"), direction: .right)
+        
         default:
-            UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THEO DÕI GIÁ", direction: .right)
-            
-            UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THEO DÕI GIÁ"]!, direction: .right)
-            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "price follow"), direction: .right)
-            hideLeftArrow()
+        UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THEO DÕI GIÁ", direction: .right)
+        
+        UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THEO DÕI GIÁ"]!, direction: .right)
+        UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "price follow"), direction: .right)
+        hideLeftArrow()
         }
     }
     
