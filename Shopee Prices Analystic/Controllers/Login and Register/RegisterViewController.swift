@@ -170,7 +170,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: - Keyboard issues
-    func registerKeyboardForNotification() {
+    private func registerKeyboardForNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillbeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -178,7 +178,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    @objc func keyboardWasShown(notification: Notification) {
+    @objc private func keyboardWasShown(notification: Notification) {
         guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
             else {
                 return
@@ -192,7 +192,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         scrollView.scrollIndicatorInsets = contentInsets
     }
     
-    @objc func keyboardWillbeHidden(notification: Notification) {
+    @objc private func keyboardWillbeHidden(notification: Notification) {
         let contentInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets

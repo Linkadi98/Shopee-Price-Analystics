@@ -24,6 +24,8 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         super.viewDidLoad()
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
+        
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
         if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
             self.currentShop = currentShop
@@ -254,6 +256,11 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         }
     }
     
-    // MARK: - Notifications
+    // MARK: - Refresh
+    
+    @objc func refresh() {
+        fetchDataFromServer()
+        tableView.refreshControl?.endRefreshing()
+    }
     
 }

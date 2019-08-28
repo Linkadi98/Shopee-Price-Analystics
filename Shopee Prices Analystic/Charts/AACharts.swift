@@ -66,6 +66,7 @@ class AACharts {
 
         return AAChartModel()
             .chartType(.line)
+            .title("")
             .subtitle("Sản phẩm \(productName) và \(rivalProductName)")
             .categories(subDates)
             .yAxisTitle("Giá")
@@ -100,12 +101,12 @@ class AACharts {
             .backgroundColor("#ffffff")
             .title("THEO DÕI GIÁ TRÊN SÀN")
             .subtitle("Sản phẩm : \(productName)")
-            .dataLabelsEnabled(true)//是否直接显示扇形图数据
+            .dataLabelsEnabled(true)
             .yAxisTitle("℃")
             .series([
                 AASeriesElement()
                     .name("Số lượng trên sàn")
-                    .innerSize("20%")//内部圆环半径大小占比(内部圆环半径/扇形图半径),
+                    .innerSize("20%")
                     .allowPointSelect(true)
                     .data(data)
                 ,

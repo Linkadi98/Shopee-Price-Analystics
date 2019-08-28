@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "icons8-price_tag_usd-2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-price_tag_usd_filled.png",
+      "filename" : "icons8-price_tag_usd-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-price_tag_usd_filled-1.png",
+      "filename" : "icons8-price_tag_usd.png",
       "scale" : "3x"
     }
   ],
