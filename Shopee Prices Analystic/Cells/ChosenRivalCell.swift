@@ -114,8 +114,4 @@ class ChosenRivalCell: UITableViewCell{
     @IBAction func deleteCell(_ sender: Any) {
         delegate?.deleteRow(at: row, in: section)
     }
-    
-    
-    
-    
 }

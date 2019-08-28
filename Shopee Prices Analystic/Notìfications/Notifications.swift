@@ -10,4 +10,8 @@ import Foundation
 
 extension Notification.Name {
     static let didChangeCurrentShop = Notification.Name(rawValue: "didChangeCurrentShop")
+    
+    static let didSignedInApp = Notification.Name(rawValue: "didSignedInApp")
+    
+    static let didAppearChosenProduct = Notification.Name(rawValue: "didAppearChosenProduct")
 }

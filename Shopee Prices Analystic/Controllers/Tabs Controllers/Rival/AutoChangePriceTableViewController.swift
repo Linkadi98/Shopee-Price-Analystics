@@ -35,7 +35,19 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         // test only, autoChangePriceSwitch is always false for the first time
         autoChangePriceSwitch.isOn = false
         
-        pickerData = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6"]
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onAppearChosenProduct(_:)), name: .didAppearChosenProduct, object: nil)
+        print("view did load")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
     }
 
     @IBAction func switchAutoChangePrice(_ sender: Any) {
@@ -122,16 +134,17 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     
     // MARK: - Helper for picker view
     
-    // this will be call for the first time, can be place in viewDidLoad for 1 time loading
-    private func addNewRivalToPickerView() {
-        
+    @objc func onAppearChosenProduct(_ notification: Notification) {
+        print("on appear")
+        if let data = notification.userInfo as? [String: [Shop]] {
+            
+            let shops = data["Shop"]!
+            for shop in shops {
+                pickerData.append(shop.shopName)
+            }
+        }
+        print("picker")
     }
-    
-    // this will be placed in viewWillLoad every time view has appeared
-    private func reloadRivalsInPickerAfterChoosingOthers() {
-        
-    }
-    
     
 }
 

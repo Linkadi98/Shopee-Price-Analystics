@@ -162,7 +162,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="iAY-bM-X7b">
-                                <rect key="frame" x="70" y="194" width="274" height="16"/>
+                                <rect key="frame" x="70" y="194" width="274" height="53.500000000000014"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="hN2-99-xXl">
                                 <rect key="frame" x="107" y="402" width="200" height="92"/>
@@ -389,7 +389,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="Fbj-yb-epQ">
-                                <rect key="frame" x="75" y="74" width="264" height="80"/>
+                                <rect key="frame" x="75" y="74" width="264" height="80.000000000000014"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="3kz-Up-PUP"/>
                                 </constraints>
@@ -452,7 +452,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newlogo" translatesAutoresizingMaskIntoConstraints="NO" id="eCC-eP-uKi">
-                                                <rect key="frame" x="112" y="35" width="190" height="80"/>
+                                                <rect key="frame" x="112" y="34.999999999999993" width="190" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="190" id="8jb-9d-wyC"/>
                                                     <constraint firstAttribute="height" constant="80" id="tGW-H3-9Uh"/>
@@ -837,6 +837,14 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="tBC-qO-C85" firstAttribute="top" secondItem="mAE-Dj-bvy" secondAttribute="bottom" constant="20" id="62q-gI-kjt"/>
+                                                        <constraint firstItem="mAE-Dj-bvy" firstAttribute="top" secondItem="GGl-QT-33u" secondAttribute="top" id="BcN-V9-tH5"/>
+                                                        <constraint firstItem="tBC-qO-C85" firstAttribute="top" secondItem="mAE-Dj-bvy" secondAttribute="bottom" constant="20" id="FQl-jF-5Rg"/>
+                                                        <constraint firstAttribute="trailing" secondItem="mAE-Dj-bvy" secondAttribute="trailing" id="JLK-yw-QmM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="tBC-qO-C85" secondAttribute="trailing" id="a2A-oJ-6Sy"/>
+                                                        <constraint firstAttribute="bottom" secondItem="tBC-qO-C85" secondAttribute="bottom" id="fA5-am-msl"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
@@ -935,6 +943,7 @@
                                     <outlet property="containerView" destination="lUq-9T-gFQ" id="f5I-df-HpO"/>
                                     <outlet property="cosmos" destination="tBC-qO-C85" id="rvk-5B-De0"/>
                                     <outlet property="editingPen" destination="2Ym-QZ-8AK" id="Mn2-52-0Jt"/>
+                                    <outlet property="idLabel" destination="WRl-I8-n2r" id="IlS-Zp-btG"/>
                                     <outlet property="productCode" destination="IBv-Zg-da0" id="HTc-1I-ZcD"/>
                                     <outlet property="productImage" destination="nvi-wa-s3C" id="onx-qL-l4c"/>
                                     <outlet property="productName" destination="Q6t-i3-J2Y" id="DKa-jX-Zw7"/>
@@ -1313,7 +1322,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaF-Z0-URs">
-                                                    <rect key="frame" x="145" y="110" width="120" height="25"/>
+                                                    <rect key="frame" x="145" y="110" width="107" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="QpI-Ms-LC9"/>
@@ -1329,7 +1338,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-rF-7xe" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="145" y="79" width="120" height="20.5"/>
+                                                    <rect key="frame" x="145" y="79" width="107" height="20.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -1914,7 +1923,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Os4-sZ-X04">
-                                            <rect key="frame" x="15" y="8" width="243" height="58.5"/>
+                                            <rect key="frame" x="15" y="8" width="325.5" height="58.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tên shop" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4j-pu-PFL">
                                                     <rect key="frame" x="0.0" y="0.0" width="70.5" height="33"/>
@@ -1942,8 +1951,8 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </stackView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đang hoạt động" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2f-QC-yy2">
-                                            <rect key="frame" x="266" y="30" width="97" height="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2f-QC-yy2">
+                                            <rect key="frame" x="348.5" y="30" width="14.5" height="16"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -1953,8 +1962,8 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="w2f-QC-yy2" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Os4-sZ-X04" secondAttribute="trailing" constant="8" symbolic="YES" id="17r-3m-DYy"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="w2f-QC-yy2" secondAttribute="bottom" constant="18" id="4nH-SN-fk4"/>
+                                        <constraint firstItem="w2f-QC-yy2" firstAttribute="leading" secondItem="Os4-sZ-X04" secondAttribute="trailing" constant="8" id="9mo-dn-Map"/>
                                         <constraint firstItem="Os4-sZ-X04" firstAttribute="top" secondItem="qyl-Te-rb9" secondAttribute="top" constant="8" id="cwm-jH-UBd"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="w2f-QC-yy2" secondAttribute="trailing" constant="5" id="dzz-Ik-X5E"/>
                                         <constraint firstItem="Os4-sZ-X04" firstAttribute="leading" secondItem="qyl-Te-rb9" secondAttribute="leading" constant="15" id="rrR-sg-z6w"/>
@@ -2025,7 +2034,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edI-zY-ND4">
-                                            <rect key="frame" x="20" y="45.5" width="25" height="25"/>
+                                            <rect key="frame" x="20" y="47" width="16" height="22"/>
                                             <state key="normal" image="delete">
                                                 <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
@@ -2180,7 +2189,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="904"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.56000000000000005" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="fkg-Cc-wBE">
-                                                <rect key="frame" x="0.0" y="44" width="414" height="148"/>
+                                                <rect key="frame" x="0.0" y="44" width="414" height="148.00000000000006"/>
                                                 <viewLayoutGuide key="safeArea" id="cC1-Cy-l0H"/>
                                             </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hWT-BK-TVQ">
@@ -3322,7 +3331,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17u-5k-83L">
-                                            <rect key="frame" x="20" y="81.5" width="25" height="25"/>
+                                            <rect key="frame" x="20" y="83" width="16" height="22"/>
                                             <state key="normal" image="delete"/>
                                             <connections>
                                                 <action selector="deleteCell:" destination="49C-D2-h3T" eventType="touchUpInside" id="0Cy-jP-GvL"/>
@@ -3332,7 +3341,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDY-RL-r3R">
-                                                    <rect key="frame" x="145" y="110" width="120" height="25"/>
+                                                    <rect key="frame" x="145" y="110" width="107" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.51764705879999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Zhg-mv-eEP"/>
@@ -3348,7 +3357,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6a5-7J-iNs" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="145" y="79" width="120" height="20.5"/>
+                                                    <rect key="frame" x="145" y="79" width="107" height="20.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>

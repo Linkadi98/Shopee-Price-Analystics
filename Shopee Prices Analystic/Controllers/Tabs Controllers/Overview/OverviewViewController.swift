@@ -39,11 +39,7 @@ class OverviewViewController: UIViewController {
     var tabsVC: UITabBarController?
     let refresher = UIRefreshControl()
     
-    @IBOutlet weak var codeLb: UILabel! {
-        didSet {
-            codeLb.addImage(#imageLiteral(resourceName: "connector-0"), "Mã số cửa hàng:", offsetY: -15, x: -3)
-        }
-    }
+    @IBOutlet weak var codeLb: UILabel!
 
     var currentShop: Shop?
     
@@ -62,10 +58,10 @@ class OverviewViewController: UIViewController {
         configButton(buttons: productTabButton, priceButton, rivalButton, accountButton)
         
         // Register to receive notification change currnent shop
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData(_:)), name: .didChangeCurrentShop, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        view.startSkeletonAnimation()
 
         // currentShop is nil
         guard self.currentShop != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, currentShop == self.currentShop else {
@@ -75,9 +71,6 @@ class OverviewViewController: UIViewController {
     }
     
     private func fetchDataFromServer() {
-        print("axy")
-//        view.hideSkeleton()
-//        view.showAnimatedSkeleton()
 
         getListShops { [unowned self] (result, listShops) in
             guard result != .failed, let listShops = listShops else {
@@ -146,6 +139,12 @@ class OverviewViewController: UIViewController {
             button.layer.cornerRadius = 8
             button.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         }
+    }
+    
+    // MARK: - Notification
+    
+    @objc func reloadData(_ notification: Notification) {
+        fetchDataFromServer()
     }
 
     @objc func refresh() {

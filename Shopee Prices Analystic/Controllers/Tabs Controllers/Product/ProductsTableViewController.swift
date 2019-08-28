@@ -49,6 +49,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
 
         self.currentShop = currentShop
+        
+        // Notification
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -57,7 +60,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
 
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
+        
         view.startSkeletonAnimation()
 
         guard listProducts != nil else {

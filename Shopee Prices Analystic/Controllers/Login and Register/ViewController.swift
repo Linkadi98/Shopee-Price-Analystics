@@ -76,10 +76,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
             case .success:
                 // Screen movement
+                
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as! TabsViewController
                 
                 tabVC.modalTransitionStyle = .crossDissolve
                 self.present(tabVC, animated: true, completion: nil)
+                NotificationCenter.default.post(name: .didSignedInApp, object: nil)
             default:
                 break
             }

@@ -14,6 +14,8 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     var product: Product?
     var chosenRivals: [(Product, Shop, Observation)]?
     var currentShop: Shop?
+    
+    var data: [String: Any]?
 
     @IBOutlet weak var deleteButton: UIButton!
     var isPressButton = false
@@ -235,11 +237,31 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
 
             self.chosenRivals = chosenRivals
             self.tableView.reloadData()
-
+            
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
+            
+            NotificationCenter.default.post(name: .didAppearChosenProduct, object: nil, userInfo: ["Shop": self.getShopsName()])
+            print("AACVAFGARGGR")
         }
     }
+    
+    // Name of current shops
+    
+    private func getShopsName() -> [Shop]? {
+        guard let chosenRivals = chosenRivals else {
+            return nil
+        }
+        
+        var array = [Shop]()
+        for rival in chosenRivals {
+            array.append(rival.1)
+        }
+        
+        return array
+    }
+    
+    
 }
