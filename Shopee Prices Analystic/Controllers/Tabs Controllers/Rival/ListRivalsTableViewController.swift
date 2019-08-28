@@ -92,7 +92,7 @@ class ListRivalsTableViewController: UITableViewController {
         cell.rivalName.text = rivalShop.shopName
         cell.rivalRating.rating = rivalShop.rating
         cell.followersCount.text = "\(String(rivalShop.followersCount))"
-
+        
         cell.hideSkeletonAnimation()
         
         return cell
@@ -177,7 +177,10 @@ class ListRivalsTableViewController: UITableViewController {
                 doneloadingRivals = false
                 doneloadingRivalsShops = false
 
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
                 self.navigationItem.title = "Danh sách đối thủ (\(numberOfRivals)/\(listSearchedRivals.count))"
                 self.hasData = true
                 self.view.hideSkeleton()
@@ -214,7 +217,10 @@ class ListRivalsTableViewController: UITableViewController {
                 doneloadingRivals = false
                 doneloadingRivalsShops = false
 
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
                 if let numberOfRivals = self.numberOfRivals {
                     self.navigationItem.title = "Danh sách đối thủ (\(numberOfRivals)/\(listRivalsShops.count))"
                 }

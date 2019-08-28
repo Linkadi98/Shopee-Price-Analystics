@@ -679,10 +679,11 @@ extension UIViewController {
         let sharedNetwork = Network.shared
         let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
 
+        print("Sua gia \(url)")
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
+//                self.notifyFailedConnection(error: response.result.error)
                 completion(.failed)
                 return
             }
@@ -705,7 +706,7 @@ extension UIViewController {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 60).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
@@ -722,6 +723,11 @@ extension UIViewController {
 
                 var listSearchedRivals: [(Product, Bool)] = []
                 let responseValue = response.result.value! as! [[String: Any]]
+                if responseValue.isEmpty {
+                    print("So doi thu: \(listSearchedRivals.count)")
+                    completion(.success, [], 0)
+                    return
+                }
                 for value in responseValue {
                     let rival = self.decodeProductJson(value: value)
                     var isChosen = false
@@ -766,8 +772,8 @@ extension UIViewController {
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
                 listRivalsShops.append(self.decodeShopJson(value: value)) // need edited
-                print("So shop doi thu: \(listRivalsShops.count)")
             }
+            print("So shop doi thu: \(listRivalsShops.count)")
             completion(listRivalsShops)
         }
     }
@@ -848,6 +854,9 @@ extension UIViewController {
             let responseValue = response.result.value! as! [[String: Any]]
             let count = responseValue.count
             var i = 0
+            if responseValue.isEmpty {
+                completion(.success, chosenRivals)
+            }
             for value in responseValue {
                 let rival = self.decodeProductJson(value: value["itemRival"] as! [String: Any])
                 let observation = self.decodeObservationJson(value: value["rival"] as! [String: Any])
@@ -874,7 +883,7 @@ extension UIViewController {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShopInfo_path + "/\(shopId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 60).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
