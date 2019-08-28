@@ -23,7 +23,7 @@ class Network {
     let items_path = "/getItems" // update items from shopee + get items from DB
     let item_path = "/item" // get item from DB
     let price_path = "/updatePrice" // change price
-    let rivalChoice_path = "/rival" // choose rival
+    let rival_path = "/rival" // choose rival, delete rival(s)
     let chosenRivals_path = "/rivals" // chosen rivals
     let rivalsShopInfo_path = "/shopInfor" // get rivals shop info
     let rivals_path = "/getRivals" // get rivals

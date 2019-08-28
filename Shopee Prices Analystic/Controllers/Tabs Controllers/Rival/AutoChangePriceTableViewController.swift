@@ -44,12 +44,6 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         print("view did load")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        
-        
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         
     }

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class ChartsViewController: UINavigationController {
+class ChartsViewController: UIViewController {
 
+    var product: Product?
     var counts: [Int]?
 
     override func viewDidLoad() {
@@ -18,9 +19,15 @@ class ChartsViewController: UINavigationController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowChart1" {
-
+            if let columnChartViewController = segue.destination as? ColumnChartViewController {
+                columnChartViewController.counts = counts!
+                columnChartViewController.product = product!
+            }
         } else if segue.identifier == "ShowChart2" {
-
+            if let pieChartViewController = segue.destination as? PieChartViewController {
+                pieChartViewController.counts = counts!
+                pieChartViewController.product = product!
+            }
         }
     }
 

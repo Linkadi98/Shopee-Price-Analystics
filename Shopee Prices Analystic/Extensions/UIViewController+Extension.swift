@@ -781,7 +781,7 @@ extension UIViewController {
     // choose rival
     func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, autoUpdate: Bool, priceDiff: Int, from min: Int, to max: Int, completion: @escaping (ConnectionResults) -> Void) {
         let sharedNetwork = Network.shared
-        let url = URL(string: Network.shared.base_url + Network.shared.rivalChoice_path)!
+        let url = URL(string: Network.shared.base_url + Network.shared.rival_path)!
         let parameters: Parameters = [
             "itemid": myProductId,
             "shopid": myShopId,
@@ -955,6 +955,36 @@ extension UIViewController {
             }
 
             completion(.success, counts)
+        }
+    }
+
+    // delete 1 rival
+    func deleteRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: Network.shared.base_url + Network.shared.rival_path)!
+        let parameters: Parameters = [
+            "itemid": myProductId,
+            "shopid": myShopId,
+            "rivalShopid": rivalShopId,
+            "rivalItemid": rivalProductId
+        ]
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .delete, parameters: parameters).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed)
+                return
+            }
+
+
+            //Successful request
+            guard let responseValue = response.result.value as? [String: Any], let _ = responseValue["itemid"] else {
+                completion(.error)
+                return
+            }
+
+            completion(.success)
         }
     }
 }

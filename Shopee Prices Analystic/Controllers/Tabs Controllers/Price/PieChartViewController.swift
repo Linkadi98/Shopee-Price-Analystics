@@ -7,16 +7,57 @@
 //
 
 import UIKit
+import AAInfographics
 
-class PieChartViewController: UINavigationController {
+class PieChartViewController: UIViewController {
+
+    var product: Product?
+    var counts: [Int]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
 
+    override func viewWillAppear(_ animated: Bool) {
+        let chartViewWidth = self.view.frame.size.width
+        let chartViewHeight =  self.view.frame.size.height
+        let aaChartView = AAChartView()
+
+        aaChartView.frame = CGRect(x:0,y:0,width:chartViewWidth,height:chartViewHeight)
+
+        // set the content height of aachartView
+        // aaChartView?.contentHeight = self.view.frame.size.height
+        self.view.addSubview(aaChartView)
+
+        aaChartView.aa_drawChartWithChartModel(self.configurePieChart(product: product!, counts: counts!))
+    }
+    
+    private func configurePieChart(product: Product, counts: [Int]) -> AAChartModel {
+        var data: [[Any]] = []
+        var index = 50
+        for count in counts {
+            data.append(["\(index)%-\(index+10)%", count])
+            index += 10
+        }
+        return AAChartModel()
+            .chartType(.pie)
+            .backgroundColor("#ffffff")
+            .title("THEO DÕI GIÁ TRÊN SÀN")
+            .subtitle("Sản phẩm \(product.name)")
+            .dataLabelsEnabled(true)//是否直接显示扇形图数据
+            .yAxisTitle("℃")
+            .series([
+                AASeriesElement()
+                    .name("Số lượng trên sàn")
+                    .innerSize("20%")//内部圆环半径大小占比(内部圆环半径/扇形图半径),
+                    .allowPointSelect(true)
+                    .data(data)
+                ,
+                ]
+        )
+    }
     /*
     // MARK: - Navigation
 

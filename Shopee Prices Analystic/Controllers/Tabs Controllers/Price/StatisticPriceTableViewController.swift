@@ -81,9 +81,7 @@ class StatisticalPriceTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    
-    
-    
+
     // MARK: - Calculate Price
     
     func calculatePriceSpaceFrom(productPrice: Int, firstPulp: Int, secondPulp: Int) -> (String, String) {
@@ -93,7 +91,7 @@ class StatisticalPriceTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "StatisticPriceTVCToChartsVC" {
             if let chartsViewController = segue.destination as? ChartsViewController {
-
+                chartsViewController.product = product!
                 chartsViewController.counts = counts!
             }
         }
@@ -108,9 +106,11 @@ class StatisticalPriceTableViewController: UITableViewController {
 
     @IBAction func showCharts(_ sender: Any) {
         guard let _ = counts else {
+            presentAlert(message: "Chưa chọn sản phẩm")
             return
         }
 
+//        NotificationCenter.default.post(name: Notification.Name.didReceivedStatistics, object: nil, userInfo: ["counts": [counts]])
         performSegue(withIdentifier: "StatisticPriceTVCToChartsVC", sender: nil)
     }
 
@@ -118,6 +118,7 @@ class StatisticalPriceTableViewController: UITableViewController {
         if let product = notification.userInfo?["product"] as? Product {
             getStatistics(product: product) { (result, counts) in
                 if result == .success, let counts = counts {
+                    self.product = product
                     self.counts = counts
                     self.amount1.text = "\(counts[0])"
                 }

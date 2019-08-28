@@ -19,7 +19,7 @@ class ShopeeAuthViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
 
         webView.navigationDelegate = self
-        let url = URL(string: "https://partner.shopeemobile.com/api/v1/shop/auth_partner?id=842940&token=787e862a10ffbc7f6c24bd35e1f02dcb1049c53d69f2e32a17c3c329ff24888c&redirect=http%3A%2F%2F172.104.173.222%3A8081")!
+        let url = URL(string: "https://partner.shopeemobile.com/api/v1/shop/auth_partner?id=842939&token=15b7bde67729a19508afc09d8bdf6b1eb499c8607f53aaf41ebf1f0b5dc55ff8&redirect=http%3A%2F%2F172.104.173.222")!
         let urlRequest = URLRequest(url: url)
 
         webView.load(urlRequest)
