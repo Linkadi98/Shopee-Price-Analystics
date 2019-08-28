@@ -22,6 +22,8 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     
     var pickerVisible = true
     
+    var delegate: PickerNameDelegate?
+    
     // Đưa tên các đối thủ được chọn vào trong pickerData
     var pickerData = [String]()
     override func viewDidLoad() {
@@ -33,23 +35,20 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         maxPriceRange.delegate = self
         minPriceRange.delegate = self
 
-        // Cần có trạng thái tự động sửa giá isAutoUpdate trong cơ sở dữ liệu để biết được sản phẩm nào
-        // sẽ tự động sửa giá hoặc k tự động sửa giá
-        
-        // test only, autoChangePriceSwitch is always false for the first time
         autoChangePriceSwitch.isOn = false
         
+        pickerData.append(contentsOf: (delegate?.addNameToPicker())!)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(onAppearChosenProduct(_:)), name: .didAppearChosenProduct, object: nil)
-        print("view did load")
+        print(pickerData)
     }
     
+    
     override func viewDidAppear(_ animated: Bool) {
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(onAppearChosenProduct(_:)), name: .didAppearChosenProduct, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
-                NotificationCenter.default.addObserver(self, selector: #selector(didGetRivalInfo(_:)), name: Notification.Name("didGetRivalInfo"), object: nil)
+        
     }
 
     @IBAction func switchAutoChangePrice(_ sender: Any) {
@@ -137,7 +136,6 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     // MARK: - Helper for picker view
     
     @objc func onAppearChosenProduct(_ notification: Notification) {
-        print("on appear")
         if let data = notification.userInfo as? [String: [Shop]] {
             
             let shops = data["Shop"]!
@@ -148,13 +146,6 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         print("picker")
     }
 
-    @objc func didGetRivalInfo(_ notification: Notification) {
-        if let rivalProducts = notification.userInfo?["rivalProducts]"] as? [Product] {
-            self.rivalProducts = rivalProducts
-
-        }
-    }
-    
 }
 
 
