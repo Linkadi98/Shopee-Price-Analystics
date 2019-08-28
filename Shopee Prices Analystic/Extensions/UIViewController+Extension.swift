@@ -932,6 +932,31 @@ extension UIViewController {
             completion(.success, dates, prices)
         }
     }
+
+    func getStatistics(product: Product, completion: @escaping (ConnectionResults, [Int]?) -> Void) {
+        // counts
+        let sharedNetwork = Network.shared
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.statistics_path + "/\(product.shopId)/\(product.id)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
+            // Failed request
+            guard response.result.isSuccess else {
+                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+
+            //Successful request
+            var counts: [Int] = []
+            let responseValue = response.result.value! as! [String: Any]
+            let statistics = responseValue["ranks"] as! [[String: Any]]
+            for statistic in statistics {
+                counts.append(statistic["count"] as! Int)
+            }
+
+            completion(.success, counts)
+        }
+    }
 }
 
 

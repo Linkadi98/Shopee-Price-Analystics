@@ -66,6 +66,9 @@
 		BC336A4E2316405D0091F44F /* AACharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC336A4D2316405D0091F44F /* AACharts.swift */; };
 		BC5E9B8F22F8311B00F729E6 /* ShopeeAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */; };
 		BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */; };
+		BCD4456A23168636003D93A4 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4456923168636003D93A4 /* ChartViewController.swift */; };
+		BCD4456C23168B83003D93A4 /* ColumnChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4456B23168B83003D93A4 /* ColumnChartViewController.swift */; };
+		BCD4456E23168B90003D93A4 /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD4456D23168B90003D93A4 /* PieChartViewController.swift */; };
 		E93805F1D912FEDBBDDFF1C7 /* Pods_Shopee_Prices_AnalysticTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +161,9 @@
 		BC336A4D2316405D0091F44F /* AACharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AACharts.swift; sourceTree = "<group>"; };
 		BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopeeAuthViewController.swift; sourceTree = "<group>"; };
 		BC8D7D0322E6FBA800D224EC /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		BCD4456923168636003D93A4 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		BCD4456B23168B83003D93A4 /* ColumnChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnChartViewController.swift; sourceTree = "<group>"; };
+		BCD4456D23168B90003D93A4 /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
 		CBC57FE154A893EB41D1B67D /* Pods_Shopee_Prices_Analystic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_Analystic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9AEDCCD4F6597E107217347 /* Pods-Shopee Prices AnalysticTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.debug.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE1BE34F51B52E35B3555748 /* Pods-Shopee Prices AnalysticTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopee Prices AnalysticTests.release.xcconfig"; path = "Target Support Files/Pods-Shopee Prices AnalysticTests/Pods-Shopee Prices AnalysticTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -373,6 +379,9 @@
 			isa = PBXGroup;
 			children = (
 				24DF4B532313E16400B4688E /* StatisticPriceTableViewController.swift */,
+				BCD4456923168636003D93A4 /* ChartViewController.swift */,
+				BCD4456B23168B83003D93A4 /* ColumnChartViewController.swift */,
+				BCD4456D23168B90003D93A4 /* PieChartViewController.swift */,
 			);
 			path = Price;
 			sourceTree = "<group>";
@@ -718,8 +727,10 @@
 				2414701422DAF58C000FB6D5 /* RegisterViewController.swift in Sources */,
 				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
+				BCD4456A23168636003D93A4 /* ChartViewController.swift in Sources */,
 				2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */,
 				2459135E22E2EF5B00D51A4B /* UITableView+Extension.swift in Sources */,
+				BCD4456C23168B83003D93A4 /* ColumnChartViewController.swift in Sources */,
 				2469B6F72307E0B700C77F3A /* NavigationBar+Extension.swift in Sources */,
 				2421730B22FD602800541024 /* RivalTableCell.swift in Sources */,
 				2422105B230E910800E8FBCC /* ChosenRivalsTableViewController.swift in Sources */,
@@ -749,6 +760,7 @@
 				24631A6F2314D04D00295264 /* AutoUpdateHistoryCell.swift in Sources */,
 				2422105D230E91DA00E8FBCC /* ChosenRivalCell.swift in Sources */,
 				24F842EB230B95360050C2A0 /* OnboardingLoginViewController.swift in Sources */,
+				BCD4456E23168B90003D93A4 /* PieChartViewController.swift in Sources */,
 				242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

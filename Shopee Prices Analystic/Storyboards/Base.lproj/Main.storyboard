@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZy-Ck-5ci">
-                                <rect key="frame" x="329" y="655" width="25" height="25"/>
+                                <rect key="frame" x="329" y="658" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="lSU-2X-wvw"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAp-cs-qQZ">
-                                <rect key="frame" x="369" y="655" width="25" height="25"/>
+                                <rect key="frame" x="369" y="658" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="Q37-3f-ZTH"/>
                                 </constraints>
@@ -1522,7 +1522,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcX-fL-6uj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248" y="1944"/>
+            <point key="canvasLocation" x="248" y="2006"/>
         </scene>
         <!--Tài khoản-->
         <scene sceneID="Rvg-cO-BAS">
@@ -2854,7 +2854,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dqb-z2-8cw">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <connections>
                                     <segue destination="niu-Pk-ERA" kind="embed" identifier="ContainerRivalInfoVCToRivalPageTVC" id="fAi-c3-CwW"/>
                                 </connections>
@@ -2879,7 +2879,7 @@
             <objects>
                 <viewController id="niu-Pk-ERA" customClass="RivalPageViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4ea-BE-cgz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="SXk-nL-uaX"/>
@@ -2921,7 +2921,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background overview" translatesAutoresizingMaskIntoConstraints="NO" id="zE1-rn-n2U">
-                                <rect key="frame" x="0.0" y="0.0" width="1200" height="276.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1200" height="16"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PB-sJ-OwO">
                                 <rect key="frame" x="10" y="254" width="1180" height="41"/>
@@ -4450,7 +4450,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sản phẩm"/>
                                 <connections>
-                                    <action selector="chooseProductsToObserve:" destination="6k3-AA-xmm" eventType="touchUpInside" id="789-J6-wGu"/>
+                                    <action selector="chooseProductsToObserve:" destination="6k3-AA-xmm" eventType="touchUpInside" id="WZg-B7-by9"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -4460,7 +4460,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Biểu đồ"/>
                                 <connections>
-                                    <segue destination="wUi-pc-KTw" kind="show" id="xbt-N1-keb"/>
+                                    <action selector="showCharts:" destination="6k3-AA-xmm" eventType="touchUpInside" id="meo-Vh-1w3"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -4491,7 +4491,9 @@
                         <outlet property="percent7" destination="T5A-cC-dAU" id="NFs-Wu-mIi"/>
                         <outlet property="percent8" destination="sRD-bX-ULv" id="C6F-yI-Fcr"/>
                         <outlet property="percent9" destination="wLB-QK-Tuo" id="nrE-Pc-Yab"/>
+                        <outlet property="showChartsButton" destination="gI3-8Z-NLj" id="v0w-bV-V3j"/>
                         <outlet property="totalRivals" destination="Ny1-Vo-7QN" id="Iv1-sh-cPG"/>
+                        <segue destination="wUi-pc-KTw" kind="show" identifier="StatisticPriceTVCToChartsVC" id="W5y-oV-IZ3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axY-IR-IK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -4501,19 +4503,11 @@
         <!--Biểu đồ theo dõi-->
         <scene sceneID="3Hv-Qq-cSm">
             <objects>
-                <viewController id="wUi-pc-KTw" sceneMemberID="viewController">
+                <viewController id="wUi-pc-KTw" customClass="ChartsViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hv7-5k-J1a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1d-32-bBg">
-                                <rect key="frame" x="20" y="147" width="374" height="290"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xxn-ik-6jv">
-                                <rect key="frame" x="20" y="483" width="374" height="309"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Biểu đồ thống kê số lượng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6b-CH-458">
                                 <rect key="frame" x="20" y="118" width="200" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -4526,24 +4520,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bU8-Lt-1SW">
+                                <rect key="frame" x="10" y="149" width="394" height="295"/>
+                                <connections>
+                                    <segue destination="bnM-vo-FBR" kind="embed" identifier="ShowChart1" id="XnN-0K-bWU"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbw-kl-bMm">
+                                <rect key="frame" x="10" y="485" width="394" height="318"/>
+                                <connections>
+                                    <segue destination="Lie-mq-o8z" kind="embed" identifier="ShowChart2" id="ymm-JX-tZp"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="g1d-32-bBg" firstAttribute="leading" secondItem="Xxn-ik-6jv" secondAttribute="leading" id="3P0-j7-EJB"/>
-                            <constraint firstItem="Akb-fU-sMe" firstAttribute="bottom" secondItem="Xxn-ik-6jv" secondAttribute="bottom" constant="21" id="C82-yc-UcK"/>
-                            <constraint firstItem="g1d-32-bBg" firstAttribute="top" secondItem="n6b-CH-458" secondAttribute="bottom" constant="8" id="ESX-ar-Ca1"/>
-                            <constraint firstItem="Xxn-ik-6jv" firstAttribute="top" secondItem="Hv7-5k-J1a" secondAttribute="top" constant="483" id="Ec7-hy-S9i"/>
-                            <constraint firstItem="g1d-32-bBg" firstAttribute="leading" secondItem="Akb-fU-sMe" secondAttribute="leading" constant="20" id="G25-Hd-1QV"/>
-                            <constraint firstItem="Akb-fU-sMe" firstAttribute="trailing" secondItem="g1d-32-bBg" secondAttribute="trailing" constant="20" id="Gpv-Lc-tIS"/>
-                            <constraint firstItem="08c-Wz-s6F" firstAttribute="top" secondItem="g1d-32-bBg" secondAttribute="bottom" constant="17" id="Ik3-o5-MVH"/>
+                            <constraint firstItem="bU8-Lt-1SW" firstAttribute="top" secondItem="n6b-CH-458" secondAttribute="bottom" constant="10" id="6Wx-0r-Lks"/>
+                            <constraint firstItem="xbw-kl-bMm" firstAttribute="leading" secondItem="Akb-fU-sMe" secondAttribute="leading" constant="10" id="DPo-OM-eJc"/>
+                            <constraint firstAttribute="bottom" secondItem="08c-Wz-s6F" secondAttribute="bottom" constant="421" id="MZ5-Zw-h3u"/>
                             <constraint firstItem="08c-Wz-s6F" firstAttribute="leading" secondItem="Akb-fU-sMe" secondAttribute="leading" constant="20" id="NVn-Xy-hMf"/>
                             <constraint firstItem="n6b-CH-458" firstAttribute="leading" secondItem="Akb-fU-sMe" secondAttribute="leading" constant="20" id="Pgr-vI-1q8"/>
-                            <constraint firstItem="Xxn-ik-6jv" firstAttribute="top" secondItem="08c-Wz-s6F" secondAttribute="bottom" constant="8" id="QhO-Xv-J7Y"/>
+                            <constraint firstItem="bU8-Lt-1SW" firstAttribute="centerX" secondItem="Hv7-5k-J1a" secondAttribute="centerX" id="WcF-oQ-tPX"/>
+                            <constraint firstItem="xbw-kl-bMm" firstAttribute="top" secondItem="08c-Wz-s6F" secondAttribute="bottom" constant="10" id="YJR-Le-onV"/>
+                            <constraint firstItem="Akb-fU-sMe" firstAttribute="trailing" secondItem="xbw-kl-bMm" secondAttribute="trailing" constant="10" id="Z8b-43-nf3"/>
+                            <constraint firstItem="bU8-Lt-1SW" firstAttribute="leading" secondItem="Akb-fU-sMe" secondAttribute="leading" constant="10" id="agR-EA-UIJ"/>
+                            <constraint firstItem="Akb-fU-sMe" firstAttribute="bottom" secondItem="xbw-kl-bMm" secondAttribute="bottom" constant="10" id="fZj-Zr-Mfs"/>
+                            <constraint firstItem="Akb-fU-sMe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="n6b-CH-458" secondAttribute="trailing" symbolic="YES" id="jJ0-OE-flz"/>
+                            <constraint firstItem="Akb-fU-sMe" firstAttribute="trailing" secondItem="bU8-Lt-1SW" secondAttribute="trailing" constant="10" id="jQc-8d-pSX"/>
+                            <constraint firstItem="08c-Wz-s6F" firstAttribute="top" secondItem="bU8-Lt-1SW" secondAttribute="bottom" constant="10" id="jXT-Mu-rvK"/>
+                            <constraint firstItem="Akb-fU-sMe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="08c-Wz-s6F" secondAttribute="trailing" symbolic="YES" id="jrs-26-VEP"/>
                             <constraint firstItem="n6b-CH-458" firstAttribute="top" secondItem="Akb-fU-sMe" secondAttribute="top" constant="30" id="qZn-EM-5GQ"/>
-                            <constraint firstItem="08c-Wz-s6F" firstAttribute="top" secondItem="g1d-32-bBg" secondAttribute="bottom" constant="17" id="tXw-2V-Gd0"/>
-                            <constraint firstItem="g1d-32-bBg" firstAttribute="leading" secondItem="08c-Wz-s6F" secondAttribute="leading" id="uFK-4i-Mv1"/>
-                            <constraint firstItem="g1d-32-bBg" firstAttribute="top" secondItem="n6b-CH-458" secondAttribute="bottom" constant="8" id="vd6-zU-fDP"/>
-                            <constraint firstItem="g1d-32-bBg" firstAttribute="trailing" secondItem="Xxn-ik-6jv" secondAttribute="trailing" id="zzg-SZ-ffj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Akb-fU-sMe"/>
                     </view>
@@ -4551,7 +4557,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pED-e8-OAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2428.985507246377" y="2083.9285714285716"/>
+            <point key="canvasLocation" x="2207" y="2673"/>
+        </scene>
+        <!--Column Chart View Controller-->
+        <scene sceneID="We4-Nh-Lc3">
+            <objects>
+                <viewController id="bnM-vo-FBR" customClass="ColumnChartViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dZG-EG-Dg6">
+                        <rect key="frame" x="0.0" y="0.0" width="394" height="295"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0gl-rC-3gf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1206" y="2388"/>
+        </scene>
+        <!--Pie Chart View Controller-->
+        <scene sceneID="7iT-4w-sIM">
+            <objects>
+                <viewController id="Lie-mq-o8z" customClass="PieChartViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2CT-ER-ahD">
+                        <rect key="frame" x="0.0" y="0.0" width="394" height="318"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ijg-d5-0mL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1206" y="2973"/>
         </scene>
     </scenes>
     <resources>
@@ -4582,7 +4616,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nSc-HQ-CrF"/>
-        <segue reference="sQp-Ek-zTI"/>
+        <segue reference="KP5-qa-amV"/>
         <segue reference="oib-py-s1x"/>
         <segue reference="Rf2-hR-1tB"/>
     </inferredMetricsTieBreakers>

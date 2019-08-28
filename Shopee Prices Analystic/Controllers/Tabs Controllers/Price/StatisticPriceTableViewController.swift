@@ -11,6 +11,7 @@ import UIKit
 class StatisticalPriceTableViewController: UITableViewController {
 
     var product: Product?
+    var counts: [Int]?
     
     // MARK: - Properties
     @IBOutlet weak var amount1: UILabel!
@@ -51,10 +52,16 @@ class StatisticalPriceTableViewController: UITableViewController {
     @IBOutlet weak var averagePrice: UILabel!
     @IBOutlet weak var modPrice: UILabel!
     
-    
+    @IBOutlet weak var showChartsButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        NotificationCenter.default.addObserver(self, selector: #selector(didChosenProductToObserve(_:)), name: NSNotification.Name(rawValue: "didChosenProductToObserve"), object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -84,17 +91,38 @@ class StatisticalPriceTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "StatisticPriceTVCToProductsTVC" {
-            if let productsTableViewController = segue.destination as? ProductsTableViewController {
-                productsTableViewController.isChosenToObservePrice = true
+        if segue.identifier == "StatisticPriceTVCToChartsVC" {
+            if let chartsViewController = segue.destination as? ChartsViewController {
+
+                chartsViewController.counts = counts!
             }
         }
     }
-    
+
     @IBAction func chooseProductsToObserve(_ sender: Any) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let productsTableViewController = sb.instantiateViewController(withIdentifier: "ProductsTVC") as! ProductsTableViewController
         navigationController?.pushViewController(productsTableViewController, animated: true)
         productsTableViewController.isChosenToObservePrice = true
     }
+
+    @IBAction func showCharts(_ sender: Any) {
+        guard let _ = counts else {
+            return
+        }
+
+        performSegue(withIdentifier: "StatisticPriceTVCToChartsVC", sender: nil)
+    }
+
+    @objc func didChosenProductToObserve(_ notification: Notification) {
+        if let product = notification.userInfo?["product"] as? Product {
+            getStatistics(product: product) { (result, counts) in
+                if result == .success, let counts = counts {
+                    self.counts = counts
+                    self.amount1.text = "\(counts[0])"
+                }
+            }
+        }
+    }
+    
 }

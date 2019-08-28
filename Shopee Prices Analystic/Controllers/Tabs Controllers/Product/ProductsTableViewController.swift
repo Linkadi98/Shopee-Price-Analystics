@@ -146,8 +146,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             if isChosenToObservePrice {
-                let statisticalPriceTableViewController = navigationController?.viewControllers[0] as! StatisticalPriceTableViewController
-                statisticalPriceTableViewController.product = product
+//                let statisticalPriceTableViewController = navigationController?.viewControllers[0] as! StatisticalPriceTableViewController
+//                statisticalPriceTableViewController.product = product
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChosenProductToObserve"), object: nil, userInfo: ["product": product])
                 navigationController?.popViewController(animated: true)
                 return
             }
