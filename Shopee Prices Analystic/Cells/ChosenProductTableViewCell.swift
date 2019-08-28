@@ -11,6 +11,16 @@ import UIKit
 class ChosenProductTableViewCell: UITableViewCell {
 
     // MARK: - Properties
+    var delegate: ChosenProductRivalCellDelegate?
+    var row: Int = 0
+    final var section = 0
+    
+    
+    @IBOutlet weak var deleteButton: UIButton! {
+        didSet {
+            deleteButton.alpha = 0
+        }
+    }
     @IBOutlet weak var productImage: UIImageView! {
         didSet {
             productImage.layer.cornerRadius = 8
@@ -39,5 +49,10 @@ class ChosenProductTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func deleteCell(_ sender: Any) {
+        delegate?.deleteRow(at: self.row, in: self.section)
+    }
+    
 
 }

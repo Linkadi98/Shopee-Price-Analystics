@@ -19,6 +19,9 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     var listShops: [Shop]?
     var filterShop: [Shop]?
     
+    var isFirstAppear = true
+    var hasData = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,9 +51,9 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering(searchController) {
-            return filterShop?.count ?? 10
+            return isFirstAppear ? filterShop?.count ?? 10 : 0
         }
-        return listShops?.count ?? 10
+        return isFirstAppear ? listShops?.count ?? 10 : 0
     }
 
     
@@ -120,18 +123,17 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     // MARK: - Search Actions
     
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!) {(searchText) in
-            filterShop = listShops?.filter({(shop: Shop) -> Bool in
-                return shop.shopName.lowercased().contains(searchText.lowercased())
-            })
+        if hasData {
+            filterContentForSearchText(searchController.searchBar.text!) {(searchText) in
+                filterShop = listShops?.filter({(shop: Shop) -> Bool in
+                    return shop.shopName.lowercased().contains(searchText.lowercased())
+                })
+            }
         }
     }
 
     // MARK: - Fetching data from server
     private func fetchDataFromServer(isChangingShop: Bool = false) {
-        for row in 0...self.tableView.numberOfRows(inSection: 0) {
-            self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
-        }
         
         view.hideSkeleton()
         view.showAnimatedSkeleton()
@@ -140,19 +142,28 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
 
         getListShops { [unowned self] (result, listShops) in
             guard result != .failed, var listShops = listShops else {
+                self.hasData = false
+                self.isFirstAppear = true
                 self.tableView.reloadData()
+                self.isFirstAppear = false
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
                 return
             }
 
             guard !listShops.isEmpty else {
+                self.hasData = false
+                self.isFirstAppear = true
                 self.tableView.reloadData()
+                self.isFirstAppear = false
                 self.displayNoDataNotification(title: "Tài khoản chưa có cửa hàng nào", message: "Nhấn vào biểu tượng để kết nối")
                 return
             }
 
             guard let currentShop = self.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+                self.hasData = false
+                self.isFirstAppear = true
                 self.tableView.reloadData()
+                self.isFirstAppear = false
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
                 return
             }
@@ -160,11 +171,12 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
             let currentShopIndex = listShops.firstIndex(of: currentShop)!
             listShops.swapAt(0, currentShopIndex)
             self.listShops = listShops
+            self.hasData = true
             self.tableView.reloadData()
             if isChangingShop {
                 self.tabBarController?.selectedIndex = 0
             }
-
+            
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil

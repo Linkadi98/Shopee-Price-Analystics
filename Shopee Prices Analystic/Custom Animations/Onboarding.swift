@@ -10,6 +10,18 @@ import UIKit
 
 extension UIView {
     
+    static func fadeIn(view: UIView, duration: TimeInterval) {
+        UIView.animate(withDuration: duration , animations: {
+            view.alpha = 1
+        })
+    }
+    
+    static func fadeOut(view: UIView, duration: TimeInterval) {
+        UIView.animate(withDuration: duration , animations: {
+            view.alpha = 0
+        })
+    }
+    
     static func changeImage(with imageView: UIImageView, to img: UIImage) {
         UIView.transition(with: imageView, duration: 1, options: .transitionFlipFromBottom, animations: {
             imageView.image = img
