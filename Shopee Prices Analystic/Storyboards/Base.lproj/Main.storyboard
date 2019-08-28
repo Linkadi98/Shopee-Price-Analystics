@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZy-Ck-5ci">
-                                <rect key="frame" x="329" y="655" width="25" height="25"/>
+                                <rect key="frame" x="329" y="658" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="lSU-2X-wvw"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAp-cs-qQZ">
-                                <rect key="frame" x="369" y="655" width="25" height="25"/>
+                                <rect key="frame" x="369" y="658" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="Q37-3f-ZTH"/>
                                 </constraints>
@@ -1993,6 +1993,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="z8I-K4-9zE">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <attributedString key="attributedTitle">
                             <fragment content="Tải lại">
@@ -2157,6 +2158,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="unFollowProduct" destination="tMy-DM-3pv" id="dQi-VP-pNW"/>
                         <segue destination="Hox-X3-Ilj" kind="show" identifier="chosenRivalSegue" id="ZHW-gR-yIz"/>
                     </connections>
                 </tableViewController>
@@ -2917,7 +2919,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background overview" translatesAutoresizingMaskIntoConstraints="NO" id="zE1-rn-n2U">
-                                <rect key="frame" x="0.0" y="0.0" width="1200" height="276.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1200" height="16"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7PB-sJ-OwO">
                                 <rect key="frame" x="10" y="254" width="1180" height="41"/>
@@ -3523,6 +3525,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="ĐỐI THỦ ĐÃ CHỌN" largeTitleDisplayMode="never" id="SAT-qC-2Qk">
                         <barButtonItem key="backBarButtonItem" title="Quay lại" id="xwg-ju-SNB"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="IFd-4k-Srn">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eCK-KD-ZbR">
+                                <rect key="frame" x="-23" y="-15" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Huỷ chọn"/>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="mAb-Rg-7Dm">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

@@ -12,12 +12,13 @@ import SkeletonView
 class ChosenProductsTableViewController: UITableViewController, ChosenProductRivalCellDelegate {
     
     // MARK: - Properties
+    
+    @IBOutlet weak var unFollowProduct: UIButton!
+    var isPressButton = false
+    
     var chosenProducts: [(Product, Int, Bool)]?
     var currentShop: Shop?
     
-    
-    var isPressButton = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorColor = .none
@@ -82,6 +83,11 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         
         if isPressButton {
             move(cell.contentView.subviews[1], to: .right)
+            UIView.fadeIn(view: cell.deleteButton, duration: 0.45)
+        }
+        else {
+            move(cell.contentView.subviews[1], to: .left)
+            UIView.fadeOut(view: cell.deleteButton, duration: 0.45)
         }
         return cell
     }
@@ -123,10 +129,10 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
             for cell in tableView.visibleCells {
                 move(cell.contentView.subviews[1], to: .right)
                 if let cell = cell as? ChosenProductTableViewCell {
-                    UIView.fadeIn(view: cell.deleteButton, duration: 0.4)
+                    UIView.fadeIn(view: cell.deleteButton, duration: 0.45)
                 }
             }
-            
+            unFollowProduct.setTitle("Xong", for: .normal)
             isPressButton = true
         }
         else {
@@ -136,6 +142,8 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
                     UIView.fadeOut(view: cell.deleteButton, duration: 0.4)
                 }
             }
+            
+            unFollowProduct.setTitle("Huỷ theo dõi", for: .normal)
             isPressButton = false
         }
     }
@@ -158,9 +166,6 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     func deleteRow(at row: Int, in section: Int) {
         let indexPath = IndexPath(row: row, section: section)
         chosenProducts?.remove(at: indexPath.row)
-        let cell = tableView.cellForRow(at: indexPath) as! ChosenProductTableViewCell
-        
-        
         
         tableView.performBatchUpdates({
             tableView.deleteRows(at: [indexPath], with: .right)
@@ -172,7 +177,6 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         // call api xoá tại đây
     }
     
-    
     func updateIndexPath() {
         var count = 0
         for cell in tableView.visibleCells {
@@ -183,10 +187,6 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
             count += 1
         }
     }
-    
-    
-    
-    
     
     func deleteChosenProductFromServer() {
         
