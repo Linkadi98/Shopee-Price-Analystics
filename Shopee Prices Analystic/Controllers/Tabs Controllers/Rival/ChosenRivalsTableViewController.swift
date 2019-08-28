@@ -8,13 +8,16 @@
 
 import UIKit
 
-class ChosenRivalsTableViewController: UITableViewController {
+class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegate {
     
     // MARK: - Properties
     var product: Product?
     var chosenRivals: [(Product, Shop, Observation)]?
     var currentShop: Shop?
 
+    @IBOutlet weak var deleteButton: UIButton!
+    var isPressButton = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorColor = .none
@@ -82,6 +85,19 @@ class ChosenRivalsTableViewController: UITableViewController {
         default:
             cell.setAutoStatusOff()
         }
+        
+        cell.delegate = self
+        cell.row = indexPath.row
+        cell.section = indexPath.section
+        
+        if isPressButton {
+            move(cell.contentView.subviews[1], to: .right)
+            UIView.fadeIn(view: cell.deleteButton, duration: 0.45)
+        }
+        else {
+            move(cell.contentView.subviews[1], to: .left)
+            UIView.fadeOut(view: cell.deleteButton, duration: 0.45)
+        }
 
         cell.hideSkeletonAnimation()
         // Configure the cell...
@@ -118,6 +134,81 @@ class ChosenRivalsTableViewController: UITableViewController {
 
         }
     }
+    
+    // MARK: - Delete cell
+    
+    @IBAction func deleteCell(_ sender: Any) {
+        if !isPressButton {
+            for cell in tableView.visibleCells {
+                move(cell.contentView.subviews[1], to: .right)
+                if let cell = cell as? ChosenRivalCell {
+                    UIView.fadeIn(view: cell.deleteButton, duration: 0.45)
+                }
+            }
+            deleteButton.setTitle("Xong", for: .normal)
+            isPressButton = true
+        }
+        else {
+            for cell in tableView.visibleCells {
+                move(cell.contentView.subviews[1], to: .left)
+                if let cell = cell as? ChosenRivalCell {
+                    UIView.fadeOut(view: cell.deleteButton, duration: 0.4)
+                }
+            }
+            
+            deleteButton.setTitle("Huỷ chọn", for: .normal)
+            isPressButton = false
+        }
+    }
+    
+    
+    func deleteRow(at row: Int, in section: Int) {
+        let indexPath = IndexPath(row: row, section: section)
+        chosenRivals?.remove(at: indexPath.row)
+        
+        tableView.performBatchUpdates({
+            tableView.deleteRows(at: [indexPath], with: .right)
+        }, completion: { _ in
+            self.updateIndexPath()
+        })
+        
+        deleteChosenProductFromServer()
+    }
+    
+    func move(_ view: UIView, to direction: Direction) {
+        switch direction {
+        case .left:
+            UIView.animate(withDuration: 0.3, animations: {
+                view.transform = .identity
+            })
+        default:
+            UIView.animate(withDuration: 0.3, animations: {
+                view.transform = CGAffineTransform(translationX: 40, y: 0)
+            })
+        }
+    }
+    
+    func updateIndexPath() {
+        var count = 0
+        for cell in tableView.visibleCells {
+            guard let cell = cell as? ChosenProductTableViewCell else {
+                return
+            }
+            cell.row = count
+            count += 1
+        }
+    }
+    
+    func deleteChosenProductFromServer() {
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     
     private func fetchDataFromServer() {
         for row in 0...self.tableView.numberOfRows(inSection: 0) {

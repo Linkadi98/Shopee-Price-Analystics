@@ -49,10 +49,7 @@ class OverviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        subView.setShadow()
-//        numOfFollowedProductAndRivalContainer.setShadow()
-        
+
         tabsVC = storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as? TabsViewController
 
         refresher.attributedTitle = NSAttributedString(string: "Tải lại dữ liệu")
@@ -64,7 +61,7 @@ class OverviewViewController: UIViewController {
         configSubView(views: containerView1, containerView2, containerView3, containerView4)
         configButton(buttons: productTabButton, priceButton, rivalButton, accountButton)
         
-        // perform tutorial view if user has not connected to any shop, redirect them to account tab
+        // Register to receive notification change currnent shop
     }
     
     override func viewWillAppear(_ animated: Bool) {
