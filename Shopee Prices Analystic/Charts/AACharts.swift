@@ -51,7 +51,7 @@ class AACharts {
         var subRivalDates: [String] = []
         var subRivalPrices: [Int] = []
 
-        var numberOfNodes = dates.count
+        var numberOfNodes = rivalDates.count
         if numberOfNodes > 8 {
             numberOfNodes = 8
         }
@@ -66,8 +66,7 @@ class AACharts {
 
         return AAChartModel()
             .chartType(.line)
-            .title("Biểu đồ so sánh giá")
-            .subtitle("Sản phẩm \(productName) - \(rivalProductName)")
+            .subtitle("Sản phẩm \(productName) và \(rivalProductName)")
             .categories(subDates)
             .yAxisTitle("Giá")
             .dataLabelsEnabled(true)

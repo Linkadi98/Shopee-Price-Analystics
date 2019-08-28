@@ -918,13 +918,15 @@ extension UIViewController {
             var prices: [Int] = []
             let responseValue = response.result.value! as! [[String: Any]]
             for value in responseValue {
-                let dateValue = String((value["date"] as! String).prefix(13))
-                //                let dateFormatter = DateFormatter()
-                //                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                //                let date = dateFormatter.date(from: dateValue)
-                //                print(date!)
+                var dateString = String((value["date"] as! String).prefix(13))
                 let price = Int(value["price"] as! Double)
-                dates.append(dateValue)
+
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH"
+                let date = dateFormatter.date(from: dateString)
+                dateFormatter.dateFormat = "dd-MM HH'h'mm"
+                dateString = dateFormatter.string(from: date!)
+                dates.append(dateString)
                 prices.append(price)
             }
             completion(.success, dates, prices)

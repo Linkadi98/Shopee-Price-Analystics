@@ -47,7 +47,4 @@ class AutoUpdateHistoryCell: UITableViewCell {
         priceChangeStatus.image = #imageLiteral(resourceName: "arrow down")
         differentPrice.textColor = UIColor(red: 255/255, green: 69/255, blue: 58/255, alpha: 1)
     }
-    
-    
-
 }
