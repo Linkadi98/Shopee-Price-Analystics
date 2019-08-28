@@ -54,6 +54,11 @@ class StatisticalPriceTableViewController: UITableViewController {
     
     @IBOutlet weak var showChartsButton: UIButton!
 
+    
+    var hasData = false
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,6 +67,16 @@ class StatisticalPriceTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if hasData {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+        else {
+            presentAlert(title: "Không có dữ liệu", message: "Bạn chưa chọn sản phẩm nào để theo dõi")
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -79,9 +94,21 @@ class StatisticalPriceTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if !hasData {
+            return 0
+        }
         return 50
     }
 
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if hasData {
+            return 60
+        }
+        return 0
+    }
+    
+    
     // MARK: - Calculate Price
     
     func calculatePriceSpaceFrom(productPrice: Int, firstPulp: Int, secondPulp: Int) -> (String, String) {

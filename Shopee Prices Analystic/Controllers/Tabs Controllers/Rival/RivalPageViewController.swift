@@ -9,10 +9,12 @@
 import UIKit
 import Parchment
 
-class RivalPageViewController: UIViewController {
+class RivalPageViewController: UIViewController, PickerNameDelegate {
 
     var product: Product?
     var chosenRival: (Product, Shop, Observation)?
+    
+    var chosenRivals: [(Product, Shop, Observation)]?
     
     weak var rivalInfoViewController: RivalInfoViewController?
     weak var rivalProductTableViewController: RivalProductTableViewController?
@@ -21,6 +23,7 @@ class RivalPageViewController: UIViewController {
     weak var autoUpdatePriceHistoryTableViewController: AutoUpdatePriceHistoryTableViewController?
     
     var pageViewController: FixedPagingViewController?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +38,11 @@ class RivalPageViewController: UIViewController {
         })
         
         navigationController?.navigationBar.barTintColor = .white
+        
+        autoChangePriceTableViewController?.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -95,6 +103,19 @@ class RivalPageViewController: UIViewController {
         rivalProductLineChartViewController?.rival = chosenRival.0
     }
     
-    // Tất cả các dữ liệu đến các view này đều phải được setup tại file này      
+    private func getShopName() -> [String] {
+        var shopNames = [String]()
+        
+        for rival in chosenRivals! {
+            shopNames.append(rival.1.shopName)
+        }
+        
+        return shopNames
+    }
+    
+    // Tất cả các dữ liệu đến các view này đều phải được setup tại file này
+    func addNameToPicker() -> [String] {
+        return getShopName()
+    }
 }
 

@@ -32,6 +32,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
 
     override func viewWillAppear(_ animated: Bool) {
         view.startSkeletonAnimation()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -138,6 +139,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
                 if let containerRivalInfoViewController = segue.destination as? ContainerRivalInfoViewController {
                     containerRivalInfoViewController.chosenRival = chosenRival
                     containerRivalInfoViewController.product = product!
+                    containerRivalInfoViewController.chosenRivals = chosenRivals
                 }
             }
 
@@ -213,12 +215,6 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     }
     
     
-    
-    
-    
-    
-    
-    
     private func fetchDataFromServer() {
         for row in 0...self.tableView.numberOfRows(inSection: 0) {
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
@@ -242,33 +238,20 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
                 return
             }
 
-            self.chosenRivals = chosenRivals
-            self.tableView.reloadData()
+            
+            DispatchQueue.main.async {
+                self.chosenRivals = chosenRivals
+                self.tableView.reloadData()
+            }
             
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
             
-            NotificationCenter.default.post(name: .didAppearChosenProduct, object: nil, userInfo: ["Shop": self.getShopsName()])
-            print("AACVAFGARGGR")
         }
     }
     
-    // Name of current shops
-    
-    private func getShopsName() -> [Shop]? {
-        guard let chosenRivals = chosenRivals else {
-            return nil
-        }
-        
-        var array = [Shop]()
-        for rival in chosenRivals {
-            array.append(rival.1)
-        }
-        
-        return array
-    }
-    
+    // MARK: - Notifications
     
 }
