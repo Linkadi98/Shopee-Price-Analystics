@@ -62,7 +62,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     }
     
     override func viewWillLayoutSubviews() {
-        tableView.layoutSkeletonIfNeeded()
     }
 
 

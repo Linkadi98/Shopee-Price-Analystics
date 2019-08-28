@@ -8,10 +8,13 @@
 
 import UIKit
 
-class ContainerRivalInfoViewController: UIViewController {
+class ContainerRivalInfoViewController: UIViewController, RivalPageDelegate {
+    
 
     var product: Product?
     var chosenRival: (Product, Shop, Observation)?
+    
+    var chosenRivals: [(Product, Shop, Observation)]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +27,17 @@ class ContainerRivalInfoViewController: UIViewController {
             if let rivalPageViewController = segue.destination as? RivalPageViewController {
                 rivalPageViewController.chosenRival = self.chosenRival
                 rivalPageViewController.product = self.product!
+                rivalPageViewController.chosenRivals = chosenRivals
             }
         }
     }
+    
+    
+    func getShopName() -> [String] {
+        let data = [String]()
+        return data
+    }
+    
 
     /*
     // MARK: - Navigation
