@@ -31,7 +31,6 @@ extension CAGradientLayer {
 
 // MARK: Skeleton sublayers
 extension CALayer {
-    
     static let skeletonSubLayersName = "SkeletonSubLayersName"
 
     var skeletonSublayers: [CALayer] {
@@ -93,7 +92,6 @@ extension CALayer {
 
 // MARK: Animations
 public extension CALayer {
-
     var pulse: CAAnimation {
         let pulseAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.backgroundColor))
         pulseAnimation.fromValue = backgroundColor
@@ -119,15 +117,18 @@ public extension CALayer {
         animGroup.duration = 1.5
         animGroup.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         animGroup.repeatCount = .infinity
-        
+    
         return animGroup
     }
     
-    func playAnimation(_ anim: SkeletonLayerAnimation, key: String) {
+    func playAnimation(_ anim: SkeletonLayerAnimation, key: String, completion: (() -> Void)? = nil) {
         skeletonSublayers.recursiveSearch(leafBlock: {
+            DispatchQueue.main.async { CATransaction.begin() }
+            DispatchQueue.main.async { CATransaction.setCompletionBlock(completion) }
             add(anim(self), forKey: key)
+            DispatchQueue.main.async { CATransaction.commit() }
         }) {
-            $0.playAnimation(anim, key: key)
+            $0.playAnimation(anim, key: key, completion: completion)
         }
     }
     
@@ -138,4 +139,18 @@ public extension CALayer {
             $0.stopAnimation(forKey: key)
         }
     }
+}
+
+extension CALayer {
+	func setOpacity(from: Int, to: Int, duration: TimeInterval, completion: (() -> Void)?) {
+        DispatchQueue.main.async { CATransaction.begin() }
+		let animation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+		animation.fromValue = from
+		animation.toValue = to
+		animation.duration = duration
+		animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        DispatchQueue.main.async { CATransaction.setCompletionBlock(completion) }
+		add(animation, forKey: "setOpacityAnimation")
+        DispatchQueue.main.async { CATransaction.commit() }
+	}
 }

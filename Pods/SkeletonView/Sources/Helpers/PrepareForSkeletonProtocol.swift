@@ -8,26 +8,39 @@
 
 import UIKit
 
-protocol PrepareForSkeleton {
-    func prepareViewForSkeleton() 
-}
-
-extension UILabel: PrepareForSkeleton {
-    func prepareViewForSkeleton() {
-        text = " "
-        resignFirstResponder()
+extension UIView {
+    @objc func prepareViewForSkeleton() {
+        startTransition { [weak self] in
+            self?.backgroundColor = .clear
+        }
     }
 }
 
-extension UITextView: PrepareForSkeleton {
-    func prepareViewForSkeleton() {
-        text = " "
+extension UILabel {
+    override func prepareViewForSkeleton() {
+        backgroundColor = .clear
         resignFirstResponder()
+        startTransition { [weak self] in
+            self?.textColor = .clear
+        }
     }
 }
 
-extension UIImageView: PrepareForSkeleton {
-    func prepareViewForSkeleton() {
-        image = nil
+extension UITextView {
+    override func prepareViewForSkeleton() {
+        backgroundColor = .clear
+        resignFirstResponder()
+        startTransition { [weak self] in
+            self?.textColor = .clear
+        }
+    }
+}
+
+extension UIImageView {
+    override func prepareViewForSkeleton() {
+        backgroundColor = .clear
+        startTransition { [weak self] in
+            self?.image = nil
+        }
     }
 }

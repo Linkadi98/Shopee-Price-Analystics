@@ -12,15 +12,15 @@ PODS:
     - FacebookCore (~> 0.8.0)
     - FBSDKCoreKit (~> 5.0)
     - FBSDKShareKit (~> 5.0)
-  - FBSDKCoreKit (5.4.0):
-    - FBSDKCoreKit/Basics (= 5.4.0)
-    - FBSDKCoreKit/Core (= 5.4.0)
-  - FBSDKCoreKit/Basics (5.4.0)
-  - FBSDKCoreKit/Core (5.4.0):
+  - FBSDKCoreKit (5.4.1):
+    - FBSDKCoreKit/Basics (= 5.4.1)
+    - FBSDKCoreKit/Core (= 5.4.1)
+  - FBSDKCoreKit/Basics (5.4.1)
+  - FBSDKCoreKit/Core (5.4.1):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.4.0):
+  - FBSDKLoginKit (5.4.1):
     - FBSDKCoreKit (~> 5.0)
-  - FBSDKShareKit (5.4.0):
+  - FBSDKShareKit (5.4.1):
     - FBSDKCoreKit (~> 5.0)
   - GoogleSignIn (4.4.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
@@ -40,9 +40,10 @@ PODS:
     - MarqueeLabel (~> 4.0.0)
     - SnapKit (~> 5.0.0)
   - Parchment (1.6.0)
-  - SkeletonView (1.7)
+  - SkeletonView (1.8.1)
   - SnapKit (5.0.1)
   - SVProgressHUD (2.2.5)
+  - SwiftCharts (0.6.5)
   - SwipeableTabBarController (2.1.1)
   - TransitionButton (0.5.2)
 
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - Parchment
   - SkeletonView
   - SVProgressHUD (~> 2.2)
+  - SwiftCharts (~> 0.6.5)
   - SwipeableTabBarController
   - TransitionButton
 
@@ -81,6 +83,7 @@ SPEC REPOS:
     - SkeletonView
     - SnapKit
     - SVProgressHUD
+    - SwiftCharts
     - SwipeableTabBarController
     - TransitionButton
 
@@ -91,21 +94,22 @@ SPEC CHECKSUMS:
   FacebookCore: 563bb4cbcd7dd86cf89f3729252140bf256aacaa
   FacebookLogin: 8b966ae661e95e7dba837d7cc49cc464ce003dba
   FacebookShare: e75d5e81ef7bd7aab2f865446c4c27015b43bae6
-  FBSDKCoreKit: 026e56cf2c2cebc656cf2aec5c6898b8c4f33930
-  FBSDKLoginKit: f5064bb8f20c065ee1ea5987cbe0475b713edf9b
-  FBSDKShareKit: 49e5cd98c7dfe09f8c536a773574e370bd523fbc
+  FBSDKCoreKit: 5144671077d67f07d7d243dbc7fd57a171f73954
+  FBSDKLoginKit: ff38b353b6843353f090028eb1b895c78aa82796
+  FBSDKShareKit: dfea6d7a3683672fd8e50f453eaa754f922bf2b8
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
   MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
   NotificationBannerSwift: e55dd801b0d78f1a7bacb10d722a935ec95f94a3
   Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
-  SkeletonView: 7d7378731b708f8a6e6b1ffefb68cc3903f10a03
+  SkeletonView: 9e4db6c1478bce9da695109dd0972bff7b6efe65
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftCharts: 2e755ea292f0b87d3e4b2c1eb5afc080a20cdc15
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 8d963b4c3ffdea80dd188f22b0de3f39f104c7b0
+PODFILE CHECKSUM: 4de4d42e8ac80e9a0bec29c8d594a7af645cc49a
 
 COCOAPODS: 1.6.1

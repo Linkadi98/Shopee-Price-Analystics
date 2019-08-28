@@ -17,7 +17,8 @@ pod 'Parchment'
 pod 'SVProgressHUD', '~> 2.2'
 pod "SkeletonView"
 pod 'BadgeSwift', '~> 8.0'
-  # Pods for Shopee Prices Analystic
+pod 'SwiftCharts', '~> 0.6.5'
+# Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do
     inherit! :search_paths

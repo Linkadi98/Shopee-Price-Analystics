@@ -5,7 +5,6 @@ import UIKit
 /// Object that facilitates the creation of skeleton layers,
 /// based on the builder pattern
 class SkeletonLayerBuilder {
-
     var skeletonType: SkeletonType?
     var colors: [UIColor] = []
     var holder: UIView?
@@ -27,15 +26,15 @@ class SkeletonLayerBuilder {
     func setHolder(_ holder: UIView) -> SkeletonLayerBuilder {
         self.holder = holder
         return self
-    }
-
-    func build() -> SkeletonLayer? {
-        guard let type = skeletonType,
-              let holder = holder
-            else { return nil }
-
-        return SkeletonLayer(withType: type,
-                             usingColors: colors,
-                             andSkeletonHolder: holder)
-    }
+	}
+	
+	func build() -> SkeletonLayer? {
+		guard let type = skeletonType,
+			let holder = holder
+			else { return nil }
+		
+		return SkeletonLayer(type: type,
+							 colors: colors,
+							 skeletonHolder: holder)
+	}
 }
