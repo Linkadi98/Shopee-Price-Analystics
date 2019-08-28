@@ -66,10 +66,6 @@ class StatisticalPriceTableViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         if hasData {
             tableView.beginUpdates()
             tableView.endUpdates()
