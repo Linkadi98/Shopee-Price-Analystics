@@ -37,18 +37,16 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
 
         autoChangePriceSwitch.isOn = false
         
-        pickerData.append(contentsOf: (delegate?.addNameToPicker())!)
-        
-        print(pickerData)
+        hideKeyboardWhenTappedAround()
+        registerKeyboardForNotification()
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(onAppearChosenProduct(_:)), name: .didAppearChosenProduct, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
+        pickerData.append(contentsOf: (delegate?.addNameToPicker())!)
     }
 
     @IBAction func switchAutoChangePrice(_ sender: Any) {
@@ -133,17 +131,34 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         }
     }
     
-    // MARK: - Helper for picker view
     
-    @objc func onAppearChosenProduct(_ notification: Notification) {
-        if let data = notification.userInfo as? [String: [Shop]] {
-            
-            let shops = data["Shop"]!
-            for shop in shops {
-                pickerData.append(shop.shopName)
-            }
+    // MARK: - Keyboard issues
+    private func registerKeyboardForNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardDidShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillbeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+    }
+    
+    
+    @objc private func keyboardWasShown(notification: Notification) {
+        guard let info = notification.userInfo, let keyboardFrameValue = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+            else {
+                return
         }
-        print("picker")
+        let keyboardFrame = keyboardFrameValue.cgRectValue
+        let keyboardSize = keyboardFrame.size
+        
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+        
+        tableView.contentInset = contentInsets
+        tableView.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc private func keyboardWillbeHidden(notification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        tableView.contentInset = contentInsets
+        tableView.scrollIndicatorInsets = contentInsets
     }
 
 }
