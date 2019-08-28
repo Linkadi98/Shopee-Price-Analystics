@@ -72,6 +72,10 @@ class AutoUpdatePriceHistoryTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
     }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
 
     private func update() {
         getAutoUpdateHistory(product: product!) { (result, autoUpdateHistory) in
