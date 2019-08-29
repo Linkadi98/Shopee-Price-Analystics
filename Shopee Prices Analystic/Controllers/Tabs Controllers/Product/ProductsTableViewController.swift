@@ -358,6 +358,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     // MARK: - Reload Product after changing current Shop
     @objc func reloadProduct(_ notification: Notification) {
+        navigationController?.popToRootViewController(animated: false)
         fetchDataFromServer()
     }
 
