@@ -186,7 +186,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         tableView.performBatchUpdates({
             tableView.deleteRows(at: [indexPath], with: .right)
         }, completion: { _ in
-            self.updateIndexPath()
+            self.updateIndexPath(from: indexPath)
         })
         
         deleteChosenProductFromServer()
@@ -205,14 +205,18 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         }
     }
     
-    func updateIndexPath() {
-        var count = 0
+    func updateIndexPath(from indexPath: IndexPath) {
+        var row = indexPath.row
         for cell in tableView.visibleCells {
             guard let cell = cell as? ChosenProductTableViewCell else {
                 return
             }
-            cell.row = count
-            count += 1
+            
+            if cell.row < row + 1 {
+                continue
+            }
+            cell.row = row
+            row += 1
         }
     }
     
