@@ -165,8 +165,8 @@ class StatisticalPriceTableViewController: UITableViewController {
         print("123 \(product)")
         self.product = product
         DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
+        }
         print("did Choose To observe")
         let alert = UIAlertController(title: "Đang tải dữ liệu...", message: nil, preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
@@ -226,8 +226,6 @@ class StatisticalPriceTableViewController: UITableViewController {
         var lowerSum = 0
         var equalSum = 0
         var higherSum = 0
-
-        let price = product.price
 
         for index in 0...9 {
             if index < 4 {

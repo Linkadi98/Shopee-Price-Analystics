@@ -34,8 +34,8 @@ class OverviewViewController: UIViewController {
     
     @IBOutlet weak var numOfFollowedProductAndRivalContainer: UIView!
     
-    @IBOutlet weak var numberOfFollowedProducts: UILabel!
-    @IBOutlet weak var numberOfFollowedRivals: UILabel!
+    @IBOutlet weak var followerCounts: UILabel!
+    @IBOutlet weak var rating: UILabel!
     var tabsVC: UITabBarController?
     let refresher = UIRefreshControl()
     
@@ -101,9 +101,12 @@ class OverviewViewController: UIViewController {
             // Update interface
             self.shopId.text = currentShop.shopId
             self.shopName.text = currentShop.shopName
+            self.followerCounts.text = "\(currentShop.followersCount)"
+            self.rating.text = "\(currentShop.rating)/5.0"
             if let image = currentShop.image {
                 self.loadOnlineImage(from: URL(string: image)!, to: self.shopImage)
             }
+
             // Default image
             self.status.text = "Lượt theo dõi: \(currentShop.followersCount)"
 

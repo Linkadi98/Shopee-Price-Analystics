@@ -77,22 +77,23 @@ class AccountDetailTableViewController: UITableViewController {
     private func changeName() {
         // Configure alerts
         let alert = UIAlertController(title: "Đổi tên", message: "Xác nhận mật khẩu và nhập tên mới:", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.isSecureTextEntry = true
-            textField.placeholder = "Xác nhận mật khẩu"
-        }
+//        alert.addTextField { (textField) in
+//            textField.isSecureTextEntry = true
+//            textField.placeholder = "Xác nhận mật khẩu"
+//        }
         alert.addTextField { (textField) in
             textField.placeholder = "Nhập tên mới"
         }
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
             // Handle exceptions
-            let passwordInput = alert.textFields![0].text!
-            let nameInput = alert.textFields![1].text!
-            guard passwordInput.count > 5 else {
-                self.presentAlert(message: "Không đúng mật khẩu")
-                return
-            }
+//            let passwordInput = alert.textFields![0].text!
+//            let nameInput = alert.textFields![1].text!
+            let nameInput = alert.textFields![0].text!
+//            guard passwordInput.count > 5 else {
+//                self.presentAlert(message: "Không đúng mật khẩu")
+//                return
+//            }
             guard nameInput != self.userName.text! else {
                 self.presentAlert(title: "Thông báo", message: "Thông tin không thay đổi")
                 return
@@ -106,13 +107,13 @@ class AccountDetailTableViewController: UITableViewController {
             // Call API
             let activityIndicator = self.startLoading()
 
-            self.updateInfo(currentPassword: passwordInput, newPassword: nil, name: nameInput, phone: nil, completion: { (result) in
+            self.updateInfo(currentPassword: nil, newPassword: nil, name: nameInput, phone: nil, completion: { (result) in
                 switch result {
                 case .error:
                     self.presentAlert(message: "Mật khẩu không chính xác")
                 case .success:
                     var currentUser = self.getObjectInUserDefaults(forKey: "currentUser") as! User
-                    currentUser.phone = nameInput
+                    currentUser.name = nameInput
                     self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
                     // Change in interface
                     self.userName.text = nameInput
@@ -129,11 +130,11 @@ class AccountDetailTableViewController: UITableViewController {
     private func changePhoneNumber() {
         // Configure alerts
         let alert = UIAlertController(title: "Đổi số điện thoại", message: "Xác nhận mật khẩu và nhập số điện thoại mới:", preferredStyle: .alert)
-        alert.addTextField { (textField) in
-            textField.borderStyle = .none
-            textField.isSecureTextEntry = true
-            textField.placeholder = "Xác nhận mật khẩu"
-        }
+//        alert.addTextField { (textField) in
+//            textField.borderStyle = .none
+//            textField.isSecureTextEntry = true
+//            textField.placeholder = "Xác nhận mật khẩu"
+//        }
         alert.addTextField { (textField) in
             textField.borderStyle = .none
             textField.keyboardType = .numberPad
@@ -142,12 +143,13 @@ class AccountDetailTableViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
             // Handle exceptions
-            let passwordInput = alert.textFields![0].text!
-            let phoneNumberInput = alert.textFields![1].text!
-            guard passwordInput.count > 5 else {
-                self.presentAlert(message: "Không đúng mật khẩu")
-                return
-            }
+//            let passwordInput = alert.textFields![0].text!
+//            let phoneNumberInput = alert.textFields![1].text!
+            let phoneNumberInput = alert.textFields![0].text!
+//            guard passwordInput.count > 5 else {
+//                self.presentAlert(message: "Không đúng mật khẩu")
+//                return
+//            }
             guard phoneNumberInput != self.phoneNumber.text! else {
                 self.presentAlert(title: "Thông báo", message: "Thông tin không thay đổi")
                 return
@@ -161,7 +163,7 @@ class AccountDetailTableViewController: UITableViewController {
             // Call API
             let activityIndicator = self.startLoading()
 
-            self.updateInfo(currentPassword: passwordInput, newPassword: nil, name: nil, phone: phoneNumberInput, completion: { (result) in
+            self.updateInfo(currentPassword: nil, newPassword: nil, name: nil, phone: phoneNumberInput, completion: { (result) in
                 switch result {
                 case .error:
                     self.presentAlert(message: "Mật khẩu không chính xác")

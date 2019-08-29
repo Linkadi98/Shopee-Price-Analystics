@@ -904,7 +904,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="edit pen" translatesAutoresizingMaskIntoConstraints="NO" id="2Ym-QZ-8AK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="38" height="27"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1321,7 +1321,7 @@
                                             <rect key="frame" x="15" y="8" width="384" height="171.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Đang theo dõi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaF-Z0-URs">
-                                                    <rect key="frame" x="145" y="110" width="107" height="25"/>
+                                                    <rect key="frame" x="145" y="110" width="120" height="25"/>
                                                     <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="QpI-Ms-LC9"/>
@@ -1337,7 +1337,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4A-rF-7xe" customClass="CosmosView" customModule="Cosmos">
-                                                    <rect key="frame" x="145" y="79" width="107" height="20.5"/>
+                                                    <rect key="frame" x="145" y="79" width="120" height="20.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -2033,7 +2033,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edI-zY-ND4">
-                                            <rect key="frame" x="20" y="47" width="16" height="22"/>
+                                            <rect key="frame" x="20" y="45.5" width="25" height="25"/>
                                             <state key="normal" image="delete">
                                                 <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
@@ -3031,14 +3031,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wss-gT-Zog">
                                 <rect key="frame" x="10" y="305" width="1180" height="84"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số sản phẩm đang theo dõi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPB-9a-zRg">
-                                        <rect key="frame" x="8" y="15" width="209" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Số lượt theo dõi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPB-9a-zRg">
+                                        <rect key="frame" x="8" y="15" width="121.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Số đối thủ đang theo dõi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFT-AU-S1w">
-                                        <rect key="frame" x="8" y="50.5" width="187.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Đánh giá" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFT-AU-S1w">
+                                        <rect key="frame" x="8" y="50.5" width="67.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -3316,11 +3316,11 @@
                         <outlet property="containerView2" destination="Ahn-hA-6UP" id="xHU-9b-I8M"/>
                         <outlet property="containerView3" destination="CpK-V7-buh" id="fLk-Jj-64u"/>
                         <outlet property="containerView4" destination="iIt-zz-UoT" id="G9V-aC-6YU"/>
+                        <outlet property="followerCounts" destination="fTe-12-5Vf" id="B4g-uh-3TR"/>
                         <outlet property="numOfFollowedProductAndRivalContainer" destination="Wss-gT-Zog" id="yTC-eQ-Urj"/>
-                        <outlet property="numberOfFollowedProducts" destination="fTe-12-5Vf" id="ILA-qh-8s9"/>
-                        <outlet property="numberOfFollowedRivals" destination="hFK-nL-wzd" id="bwT-4H-xVi"/>
                         <outlet property="priceButton" destination="ez8-Lw-KgZ" id="4f7-QE-6vW"/>
                         <outlet property="productTabButton" destination="fMq-2s-6Ih" id="dBV-tv-88a"/>
+                        <outlet property="rating" destination="hFK-nL-wzd" id="Wai-qa-yaF"/>
                         <outlet property="rivalButton" destination="DAT-lH-Gto" id="f4n-cS-ccs"/>
                         <outlet property="shopId" destination="R16-1V-F2S" id="smY-NW-daW"/>
                         <outlet property="shopImage" destination="zVw-FL-lOT" id="FcX-j4-szW"/>
@@ -3350,7 +3350,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17u-5k-83L">
-                                            <rect key="frame" x="20" y="83" width="16" height="22"/>
+                                            <rect key="frame" x="20" y="81.5" width="25" height="25"/>
                                             <state key="normal" image="delete"/>
                                             <connections>
                                                 <action selector="deleteCell:" destination="49C-D2-h3T" eventType="touchUpInside" id="0Cy-jP-GvL"/>
