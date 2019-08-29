@@ -951,8 +951,8 @@ extension UIViewController {
         }
     }
 
-    func getStatistics(product: Product, completion: @escaping (ConnectionResults, [Int]?) -> Void) {
-        // counts
+    func getStatistics(product: Product, completion: @escaping (ConnectionResults, [Int]?, Int?) -> Void) {
+        // counts, average
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.statistics_path + "/\(product.shopId)/\(product.id)")!
 
@@ -960,7 +960,7 @@ extension UIViewController {
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil)
+                completion(.failed, nil, nil)
                 return
             }
 
@@ -968,11 +968,12 @@ extension UIViewController {
             var counts: [Int] = []
             let responseValue = response.result.value! as! [String: Any]
             let statistics = responseValue["ranks"] as! [[String: Any]]
+            let averagePrice = Int(responseValue["medium"] as! Double)
             for statistic in statistics {
                 counts.append(statistic["count"] as! Int)
             }
 
-            completion(.success, counts)
+            completion(.success, counts, averagePrice)
         }
     }
 

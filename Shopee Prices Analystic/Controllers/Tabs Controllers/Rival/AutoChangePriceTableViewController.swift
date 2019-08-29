@@ -199,10 +199,7 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         alert.addAction(okButton)
         present(alert, animated: true, completion: nil)
 
-
-
-        print(result)
-        print(message)
+        textField.resignFirstResponder()
         
         return true
     }

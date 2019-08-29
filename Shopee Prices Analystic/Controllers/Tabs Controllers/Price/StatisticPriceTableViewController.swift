@@ -153,11 +153,14 @@ class StatisticalPriceTableViewController: UITableViewController {
         if let product = notification.userInfo?["product"] as? Product {
             print("123 \(product)")
             self.product = product
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
             print("did Choose To observe")
             let alert = UIAlertController(title: "Đang tải dữ liệu...", message: nil, preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
-            getStatistics(product: product) { [unowned self] (result, counts) in
-                if result == .success, let counts = counts {
+            getStatistics(product: product) { [unowned self] (result, counts, averagePrice) in
+                if result == .success, let counts = counts, let averagePrice = averagePrice {
                     self.counts = counts
 
                     var percents: [Int] = []
@@ -168,11 +171,13 @@ class StatisticalPriceTableViewController: UITableViewController {
                     self.percents = percents
                     self.counts = counts
 
-                    self.updateAmountLabels(counts: counts)
-                    self.updatePercentLabels(percents: percents)
+                    DispatchQueue.main.async {
+                        self.updateAmountLabels(counts: counts)
+                        self.updatePercentLabels(percents: percents)
+                        self.updateSummary(product: self.product!, counts: counts, averagePrice: averagePrice)
 
+                    }
                 }
-
                 alert.dismiss(animated: true, completion: nil)
             }
         }
@@ -203,7 +208,35 @@ class StatisticalPriceTableViewController: UITableViewController {
         percent9.text = "\(percents[8])%"
         percent10.text = "\(percents[9])%"
     }
-    
+
+    private func updateSummary(product: Product, counts: [Int], averagePrice: Int) {
+        let sum = counts.reduce(0, +)
+        var lowerSum = 0
+        var equalSum = 0
+        var higherSum = 0
+
+        let price = product.price
+
+        for index in 0...9 {
+            if index < 4 {
+                lowerSum += counts[index]
+            } else if index < 6 {
+                equalSum += counts[index]
+            } else {
+                higherSum += counts[index]
+            }
+        }
+
+
+        totalRivals.text = "\(counts.count)"
+        numberOfLowerPrice.text = "\(Int(lowerSum * 100 / sum))%"
+        numberOfEqualPrice.text = "\(Int(equalSum * 100 / sum))%"
+        numberOfHigherPrice.text = "\(Int(higherSum * 100 / sum))%"
+
+        self.averagePrice.text = "\(averagePrice.convertPriceToVietnameseCurrency()!)"
+        modPrice.text = "\(counts.firstIndex(of: counts.max()!)! * 10 + 50)%-\(counts.firstIndex(of: counts.max()!)! * 10 + 60)%"
+    }
+
     @objc func onDidChangeShop(_ notification: Notification) {
         navigationController?.popToRootViewController(animated: false)
         hasData = false
