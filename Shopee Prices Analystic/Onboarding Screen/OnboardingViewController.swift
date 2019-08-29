@@ -17,7 +17,9 @@ class OnboardingViewController: UIViewController {
         "THEO DÕI GIÁ": "Hỗ trợ theo dõi giá của sản phẩm trên sàn Thương mại điện tử Shopee",
         "THEO DÕI ĐỐI THỦ": "Giúp người bán hàng theo dõi và điều chỉnh giá của sản phẩm chủ động theo đối thủ",
         "THỐNG KÊ TRỰC QUAN": "Biểu đồ thống kê thay đổi giá trực quan",
-        "QUẢN LÝ SẢN PHẨM": "Quản lý sản phẩm trong cửa hàng của bạn một cách dễ dàng và tập trung",
+        "CHỈNH GIÁ TỰ ĐỘNG": "Tiết kiệm quỹ thời gian của bạn",
+        "QUẢN LÝ SHOP": "Quản lý và chuyển giữa các shop một cách nhanh chóng và dễ dàng",
+        
         "BẮT KỊP ĐỐI THỦ CỦA BẠN": "Đăng ký hoặc đăng nhập ngay"
     ]
     
@@ -116,7 +118,7 @@ class OnboardingViewController: UIViewController {
     // MARK: - show onboarding image to left and right
     
     private func onboardToRight() {
-        if pageIndex < 5 {
+        if pageIndex < 6 {
             pageIndex += 1
             pageControl.currentPage = pageIndex
         }
@@ -137,10 +139,15 @@ class OnboardingViewController: UIViewController {
             UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["THỐNG KÊ TRỰC QUAN"]!, direction: .left)
             UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "chart"), direction: .left)
         case 3:
-            UIView.translateAndChangeLabelText(with: titleOnboarding, text: "QUẢN LÝ SẢN PHẨM", direction: .left)
+            UIView.translateAndChangeLabelText(with: titleOnboarding, text: "CHỈNH GIÁ TỰ ĐỘNG", direction: .left)
             
-            UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["QUẢN LÝ SẢN PHẨM"]!, direction: .left)
-            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "product image"), direction: .left)
+            UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["CHỈNH GIÁ TỰ ĐỘNG"]!, direction: .left)
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "auto price"), direction: .left)
+        case 4:
+            UIView.translateAndChangeLabelText(with: titleOnboarding, text: "QUẢN LÝ SHOP", direction: .left)
+            
+            UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["QUẢN LÝ SHOP"]!, direction: .left)
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "shop connect"), direction: .left)
         default:
             UIView.translateAndChangeLabelText(with: titleOnboarding, text: "BẮT KỊP ĐỐI THỦ CỦA BẠN", direction: .left)
             
@@ -156,12 +163,18 @@ class OnboardingViewController: UIViewController {
         pageControl.currentPage = pageIndex
         
         switch pageIndex {
+        case 4:
+            UIView.translateAndChangeLabelText(with: titleOnboarding, text: "QUẢN LÝ SHOP", direction: .right)
+            
+            UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["QUẢN LÝ SHOP"]!, direction: .right)
+            UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "shop connect"), direction: .right)
+            showRightArrow()
         case 3:
-        UIView.translateAndChangeLabelText(with: titleOnboarding, text: "QUẢN LÝ SẢN PHẨM", direction: .right)
+        UIView.translateAndChangeLabelText(with: titleOnboarding, text: "CHỈNH GIÁ TỰ ĐỘNG", direction: .right)
         
-        UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["QUẢN LÝ SẢN PHẨM"]!, direction: .right)
-        UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "product image"), direction: .right)
-        showRightArrow()
+        UIView.translateAndChangeLabelText(with: descriptionOnboarding, text: text["CHỈNH GIÁ TỰ ĐỘNG"]!, direction: .right)
+        UIView.translateImage(with: imageView, to: UIImage(imageLiteralResourceName: "auto price"), direction: .right)
+        
         case 2:
         UIView.translateAndChangeLabelText(with: titleOnboarding, text: "THỐNG KÊ TRỰC QUAN", direction: .right)
         
