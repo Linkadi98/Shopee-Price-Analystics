@@ -14,9 +14,9 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8F544986D3AC4718BF4B7D4CDCFBE11F"
-               BuildableName = "BadgeSwift.framework"
-               BlueprintName = "BadgeSwift"
+               BlueprintIdentifier = "AF0370AAF034BBD44060B90AAA8FD1CE"
+               BuildableName = "AlamofireImage.framework"
+               BlueprintName = "AlamofireImage"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

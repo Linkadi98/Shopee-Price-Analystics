@@ -250,7 +250,7 @@
 			path = "Custom components";
 			sourceTree = "<group>";
 		};
-		245255C4231633C5003AFBBF /* Notìfications */ = {
+		245255C4231633C5003AFBBF /* Notìfications */ = {
 			isa = PBXGroup;
 			children = (
 				245255C5231633DC003AFBBF /* Notifications.swift */,
@@ -372,7 +372,7 @@
 		2484174722D85D800009DF10 /* Shopee Prices Analystic */ = {
 			isa = PBXGroup;
 			children = (
-				245255C4231633C5003AFBBF /* Notìfications */,
+				245255C4231633C5003AFBBF /* Notìfications */,
 				BCD6A47B2316322B00F74CFA /* Charts */,
 				2469B6F12307B6D100C77F3A /* Onboarding Screen */,
 				BC0FB3A122F7BFF900968E68 /* Network */,
@@ -673,7 +673,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Prices Analystic-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AAInfographics/AAInfographics.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BadgeSwift/BadgeSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -699,7 +699,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AAInfographics.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BadgeSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",

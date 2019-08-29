@@ -12,6 +12,7 @@ class StatisticalPriceTableViewController: UITableViewController {
 
     var product: Product?
     var counts: [Int]?
+    var percents: [Int]?
     
     // MARK: - Properties
     @IBOutlet weak var amount1: UILabel!
@@ -62,10 +63,12 @@ class StatisticalPriceTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(didChooseProductToObserve(_:)), name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(didChooseProductToObserve(_:)), name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil)
+
+        print("Chosen Product will appear")
         if let _ = product {
             hasData = true
         }
@@ -82,15 +85,19 @@ class StatisticalPriceTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         var title: String = "Khoảng giá từ "
-        var tuple: (String, String)
-        switch section {
-        case 0:
-            tuple = calculatePriceSpaceFrom(productPrice: 100000, firstPulp: 50, secondPulp: 60)
+        if let product  = product {
+            guard section < 10 else {
+                return "Thống kê sản phẩm"
+            }
+
+            let price = product.price
+            var tuple: (String, String)
+
+            tuple = calculatePriceSpaceFrom(productPrice: price, firstPulp: section * 10 + 50, secondPulp: section * 10 + 60)
             title = title + tuple.0 + " đến " + tuple.1
-            return title
-        default:
-            return "Thống kê giá sản phẩm"
         }
+
+        return title
     }
     
     
@@ -144,21 +151,56 @@ class StatisticalPriceTableViewController: UITableViewController {
 
     @objc func didChooseProductToObserve(_ notification: Notification) {
         if let product = notification.userInfo?["product"] as? Product {
-            let activityIndicator = startLoading()
-            getStatistics(product: product) { (result, counts) in
+            self.product = product
+            print("did Choose To observe")
+            let alert = UIAlertController(title: "Đang tải dữ liệu...", message: nil, preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            getStatistics(product: product) { [unowned self] (result, counts) in
                 if result == .success, let counts = counts {
-                    self.product = product
                     self.counts = counts
-                    self.amount1.text = "\(counts[0])"
+
+                    var percents: [Int] = []
+                    let sum = counts.reduce(0, +)
+                    for count in counts {
+                        percents.append(count * 100 / sum)
+                    }
+                    self.percents = percents
+                    self.counts = counts
+
+                    self.updateAmountLabels(counts: counts)
+                    self.updatePercentLabels(percents: percents)
+
                 }
 
-                self.endLoading(activityIndicator)
+                alert.dismiss(animated: true, completion: nil)
             }
         }
     }
 
-    private func updateUI(counts: [Int]) {
-        // need edited
+    private func updateAmountLabels(counts: [Int]) {
+        amount1.text = "\(counts[0])"
+        amount2.text = "\(counts[1])"
+        amount3.text = "\(counts[2])"
+        amount4.text = "\(counts[3])"
+        amount5.text = "\(counts[4])"
+        amount6.text = "\(counts[5])"
+        amount7.text = "\(counts[6])"
+        amount8.text = "\(counts[7])"
+        amount9.text = "\(counts[8])"
+        amount10.text = "\(counts[9])"
+    }
+
+    private func updatePercentLabels(percents: [Int]) {
+        percent1.text = "\(percents[0])%"
+        percent2.text = "\(percents[1])%"
+        percent3.text = "\(percents[2])%"
+        percent4.text = "\(percents[3])%"
+        percent5.text = "\(percents[4])%"
+        percent6.text = "\(percents[5])%"
+        percent7.text = "\(percents[6])%"
+        percent8.text = "\(percents[7])%"
+        percent9.text = "\(percents[8])%"
+        percent10.text = "\(percents[9])%"
     }
     
     @objc func onDidChangeShop(_ notification: Notification) {

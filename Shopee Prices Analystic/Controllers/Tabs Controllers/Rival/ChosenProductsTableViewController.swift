@@ -183,13 +183,13 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     
     func updateIndexPath() {
         var count = 0
-        for cell in tableView. {
-            guard let cell = cell as? ChosenProductTableViewCell else {
-                return
-            }
-            cell.row = count
-            count += 1
-        }
+//        for cell in tableView. {
+//            guard let cell = cell as? ChosenProductTableViewCell else {
+//                return
+//            }
+//            cell.row = count
+//            count += 1
+//        }
     }
     
     func deleteChosenProductFromServer(row: Int) {

@@ -13,6 +13,7 @@ import FacebookLogin
 import GoogleSignIn
 import FacebookLogin
 import Alamofire
+import AlamofireImage
 
 extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
     
@@ -411,7 +412,7 @@ extension UIViewController {
 
                 // Save token
                 print(token)
-                let currentUser = User(userName: username, email: email, name: name, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", phone: phone)
+                let currentUser = User(userName: username, email: email, name: name, image: "https://ui-avatars.com/api/?name=\(name)", phone: phone)
                 self.saveToken(token: token)
                 self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
                 
@@ -484,7 +485,7 @@ extension UIViewController {
                 name = "Unknown"
             }
 
-            let currentUser = User(userName: username, email: email, name: name, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQereh1OeQmTjzhj_oUwdr0gPkv5vcBk1lSv8xGx4e00Eg1ob42", phone: phone)
+            let currentUser = User(userName: username, email: email, name: name, image: "https://ui-avatars.com/api/?name=\(name)", phone: phone)
             self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
 
             completion(.success)
@@ -550,6 +551,10 @@ extension UIViewController {
                 break
             }
         }
+    }
+
+    func getImageFromUIAvatar(name: String) {
+        Alamofire.request(url: "https://ui-avatars.com/api/?name=")
     }
 }
 
