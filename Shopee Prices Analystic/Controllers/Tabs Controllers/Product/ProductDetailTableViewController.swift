@@ -9,7 +9,7 @@
 import UIKit
 import Cosmos
 
-class ProductDetailTableViewController: UITableViewController {
+class ProductDetailTableViewController: UITableViewController, PriceObserveDelegate {
 
     // MARK: - Properties
     var product: Product?
@@ -65,6 +65,8 @@ class ProductDetailTableViewController: UITableViewController {
     @IBOutlet weak var soldItemCell: UITableViewCell!
     @IBOutlet weak var inventoryCell: UITableViewCell!
     @IBOutlet weak var ratingCell: UITableViewCell!
+    
+    var stVC: StatisticalPriceTableViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -205,11 +207,14 @@ class ProductDetailTableViewController: UITableViewController {
 
     
     @IBAction func observeOption(_ sender: Any) {
+        
         let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let priceOption = UIAlertAction(title: "Thống kê giá sản phẩm này", style: .default, handler: { (action) in
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil, userInfo: ["product": self.product!])
             self.tabBarController?.selectedIndex = 2
-
+            let navigationVC = self.tabBarController?.selectedViewController as! UINavigationController
+            self.stVC = navigationVC.viewControllers.first as! StatisticalPriceTableViewController
+            self.stVC?.delegate = self
         })
         
         let rivalOption = UIAlertAction(title: "Xem đối thủ sản phẩm này", style: .default, handler: { [unowned self] (action) in
@@ -229,7 +234,10 @@ class ProductDetailTableViewController: UITableViewController {
         present(option, animated: true, completion: nil)
     }
     
-    
+    // MARK: - Pass data
+    func getProduct() -> Product {
+        return product!
+    }
     
     
     

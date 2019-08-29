@@ -57,12 +57,19 @@ class StatisticalPriceTableViewController: UITableViewController {
 
     
     var hasData = false
-    
+    var delegate: PriceObserveDelegate?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        product = delegate?.getProduct()
+        if product == nil {
+            return
+        }
+        else {
+            reloadDataWith(product: self.product!)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,10 +140,9 @@ class StatisticalPriceTableViewController: UITableViewController {
     }
 
     @IBAction func chooseProductsToObserve(_ sender: Any) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let productsTableViewController = sb.instantiateViewController(withIdentifier: "ProductsTVC") as! ProductsTableViewController
-        navigationController?.pushViewController(productsTableViewController, animated: true)
-        productsTableViewController.isChosenToObservePrice = true
+        tabBarController?.selectedIndex = 1
+        let navigationVC = tabBarController?.selectedViewController as! UINavigationController
+        navigationVC.popToRootViewController(animated: false)
     }
 
     @IBAction func showCharts(_ sender: Any) {
@@ -151,39 +157,42 @@ class StatisticalPriceTableViewController: UITableViewController {
 
     @objc func didChooseProductToObserve(_ notification: Notification) {
         if let product = notification.userInfo?["product"] as? Product {
-            print("123 \(product)")
-            self.product = product
-            DispatchQueue.main.async {
+            reloadDataWith(product: product)
+        }
+    }
+    
+    private func reloadDataWith(product: Product) {
+        print("123 \(product)")
+        self.product = product
+        DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-            print("did Choose To observe")
-            let alert = UIAlertController(title: "Đang tải dữ liệu...", message: nil, preferredStyle: .alert)
-            self.present(alert, animated: true, completion: nil)
-            getStatistics(product: product) { [unowned self] (result, counts, averagePrice) in
+        print("did Choose To observe")
+        let alert = UIAlertController(title: "Đang tải dữ liệu...", message: nil, preferredStyle: .alert)
+        self.present(alert, animated: true, completion: nil)
+        getStatistics(product: product) { [unowned self] (result, counts, averagePrice) in
                 if result == .success, let counts = counts, let averagePrice = averagePrice {
-                    self.counts = counts
-
-                    var percents: [Int] = []
-                    let sum = counts.reduce(0, +)
-                    for count in counts {
-                        percents.append(count * 100 / sum)
-                    }
-                    self.percents = percents
-                    self.counts = counts
-
-                    DispatchQueue.main.async {
-                        self.updateAmountLabels(counts: counts)
-                        self.updatePercentLabels(percents: percents)
-                        self.updateSummary(product: self.product!, counts: counts, averagePrice: averagePrice)
-
-                    }
+                self.counts = counts
+                
+                var percents: [Int] = []
+                let sum = counts.reduce(0, +)
+                for count in counts {
+                    percents.append(count * 100 / sum)
                 }
-                alert.dismiss(animated: true, completion: nil)
+                self.percents = percents
+                self.counts = counts
+                
+                self.updateAmountLabels(counts: counts)
+                self.updatePercentLabels(percents: percents)
+                self.updateSummary(product: self.product!, counts: counts, averagePrice: averagePrice)
             }
+            
+            alert.dismiss(animated: true, completion: nil)
         }
     }
 
     private func updateAmountLabels(counts: [Int]) {
+        tableView.beginUpdates()
         amount1.text = "\(counts[0])"
         amount2.text = "\(counts[1])"
         amount3.text = "\(counts[2])"
@@ -194,9 +203,11 @@ class StatisticalPriceTableViewController: UITableViewController {
         amount8.text = "\(counts[7])"
         amount9.text = "\(counts[8])"
         amount10.text = "\(counts[9])"
+        tableView.endUpdates()
     }
 
     private func updatePercentLabels(percents: [Int]) {
+        tableView.beginUpdates()
         percent1.text = "\(percents[0])%"
         percent2.text = "\(percents[1])%"
         percent3.text = "\(percents[2])%"
@@ -207,6 +218,7 @@ class StatisticalPriceTableViewController: UITableViewController {
         percent8.text = "\(percents[7])%"
         percent9.text = "\(percents[8])%"
         percent10.text = "\(percents[9])%"
+        tableView.endUpdates()
     }
 
     private func updateSummary(product: Product, counts: [Int], averagePrice: Int) {
