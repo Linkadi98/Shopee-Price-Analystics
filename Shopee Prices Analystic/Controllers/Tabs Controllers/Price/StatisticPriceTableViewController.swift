@@ -70,6 +70,7 @@ class StatisticalPriceTableViewController: UITableViewController {
             hasData = true
         }
 
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidChangeShop(_:)), name: .didChangeCurrentShop, object: nil)
         if hasData {
             tableView.beginUpdates()
             tableView.endUpdates()
@@ -160,4 +161,13 @@ class StatisticalPriceTableViewController: UITableViewController {
         // need edited
     }
     
+    @objc func onDidChangeShop(_ notification: Notification) {
+        navigationController?.popToRootViewController(animated: false)
+        hasData = false
+        DispatchQueue.main.async {
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
+            print("Changed shop")
+        }
+    }
 }

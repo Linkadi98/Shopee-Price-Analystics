@@ -167,6 +167,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     func deleteRow(at row: Int, in section: Int) {
         let deletedRow = chosenProducts![row].0.id
         let indexPath = IndexPath(row: row, section: section)
+        print("indexPath: \(row)")
         chosenProducts?.remove(at: indexPath.row)
         
         tableView.performBatchUpdates({
@@ -182,7 +183,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     
     func updateIndexPath() {
         var count = 0
-        for cell in tableView.visibleCells {
+        for cell in tableView. {
             guard let cell = cell as? ChosenProductTableViewCell else {
                 return
             }
@@ -246,6 +247,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     
     @objc func reloadData(_ notification: Notification) {
         fetchDataFromServer()
+        navigationController?.popToRootViewController(animated: false)
         tableView.reloadData()
         print("did receive data")
     }
