@@ -31,10 +31,10 @@ class PieChartViewController: UIViewController {
         // aaChartView?.contentHeight = self.view.frame.size.height
         self.view.addSubview(aaChartView)
         aaChartView.snp.makeConstraints { (make) in
-            make.leading.equalToSuperview().inset(10)
-            make.trailing.equalToSuperview().inset(10)
-            make.top.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().inset(10)
+            make.leading.equalToSuperview().inset(3)
+            make.trailing.equalToSuperview().inset(3)
+            make.top.equalToSuperview().inset(3)
+            make.bottom.equalToSuperview().inset(3)
         }
 
         aaChartView.aa_drawChartWithChartModel(self.configurePieChart(product: product!, counts: counts!))

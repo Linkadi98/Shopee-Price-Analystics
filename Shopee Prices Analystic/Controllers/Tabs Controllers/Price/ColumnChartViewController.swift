@@ -20,16 +20,22 @@ class ColumnChartViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        let chartViewWidth = self.view.frame.size.width * 0.85
+        let chartViewWidth = self.view.frame.size.width
         let chartViewHeight =  self.view.frame.size.height
-        let xAxisValue = self.view.frame.size.width * 0.06
+        let xAxisValue = self.view.frame.size.width
         let aaChartView = AAChartView()
 
-        aaChartView.frame = CGRect(x:xAxisValue,y:0,width:chartViewWidth,height:chartViewHeight)
+        aaChartView.frame = CGRect(x:0,y:0,width:chartViewWidth,height:chartViewHeight)
 
         // set the content height of aachartView
         // aaChartView?.contentHeight = self.view.frame.size.height
         self.view.addSubview(aaChartView)
+        aaChartView.snp.makeConstraints { (make) in
+            make.leading.equalToSuperview().inset(3)
+            make.trailing.equalToSuperview().inset(3)
+            make.top.equalToSuperview().inset(3)
+            make.bottom.equalToSuperview().inset(3)
+        }
 
         aaChartView.aa_drawChartWithChartModel(self.configureColorfulColumnChart(product: product!, counts: counts!))
     }
