@@ -81,6 +81,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         cell.row = indexPath.row
         cell.section = indexPath.section
         
+        print(cell.row)
         if isPressButton {
             move(cell.contentView.subviews[1], to: .right)
             UIView.fadeIn(view: cell.deleteButton, duration: 0.45)
@@ -165,27 +166,30 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     
     func deleteRow(at row: Int, in section: Int) {
         let indexPath = IndexPath(row: row, section: section)
-        print("indexPath: \(row)")
         chosenProducts?.remove(at: indexPath.row)
         
         tableView.performBatchUpdates({
             tableView.deleteRows(at: [indexPath], with: .right)
         }, completion: { _ in
-            self.updateIndexPath()
+            self.updateIndexPath(from: indexPath)
         })
         
         deleteChosenProductFromServer()
         // call api xoá tại đây
     }
     
-    func updateIndexPath() {
-        var count = 0
-        for cell in tableView. {
+    func updateIndexPath(from indexPath: IndexPath) {
+        var row = indexPath.row
+        for cell in tableView.visibleCells {
             guard let cell = cell as? ChosenProductTableViewCell else {
                 return
             }
-            cell.row = count
-            count += 1
+            
+            if cell.row < row + 1 {
+                continue
+            }
+            cell.row = row
+            row += 1
         }
     }
     
