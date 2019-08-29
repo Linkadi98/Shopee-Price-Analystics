@@ -33,6 +33,8 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(didSwitchAutoUpdate), name: .didSwitchAutoUpdate, object: nil)
+
         view.startSkeletonAnimation()
         
     }
@@ -261,6 +263,10 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     @objc func refresh() {
         fetchDataFromServer()
         tableView.refreshControl?.endRefreshing()
+    }
+
+    @objc func didSwitchAutoUpdate() {
+        fetchDataFromServer()
     }
     
 }

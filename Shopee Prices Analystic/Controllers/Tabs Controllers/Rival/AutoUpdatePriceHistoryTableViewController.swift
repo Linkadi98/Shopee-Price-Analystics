@@ -82,6 +82,9 @@ class AutoUpdatePriceHistoryTableViewController: UITableViewController {
             if result == .success {
                 DispatchQueue.main.async {
                     self.autoUpdateHistory = autoUpdateHistory
+                    if autoUpdateHistory!.isEmpty {
+                        self.presentAlert(title: "Thông báo", message: "Chưa ghi nhận lịch sử")
+                    }
                     self.tableView.reloadData()
                 }
             }

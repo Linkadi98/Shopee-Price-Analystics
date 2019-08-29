@@ -29,12 +29,12 @@ class RivalProductTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return dates?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return dates?.count ?? 10
+        return dates?.count ?? 0
     }
 
     
@@ -82,7 +82,16 @@ class RivalProductTableViewController: UITableViewController {
 
     func update() {
         priceObservations(productId: rival!.id) { (result, dates, prices) in
-            if result == .success {
+            print("669")
+            if result == .failed {
+                if dates!.isEmpty {
+                    self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                    return
+                }
+            } else if result == .success {
                 DispatchQueue.main.async {
                     self.dates = dates
                     self.prices = prices

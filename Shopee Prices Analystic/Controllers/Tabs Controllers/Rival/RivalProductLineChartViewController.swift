@@ -31,19 +31,29 @@ class RivalProductLineChartViewController: UIViewController {
             make.top.equalToSuperview()
         }
 
-        let activityIndicator = startLoading()
+//        let activityIndicator = startLoading()
         fetchData { (dates, prices, rivalDates, rivalPrices) in
-            aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name, rivalProductName: self.rival!.name, dates: dates, prices: prices, rivalDates: rivalDates, rivalPrices: rivalPrices))
-            self.endLoading(activityIndicator)
+            if dates != nil {
+                aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name, rivalProductName: self.rival!.name, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
+            }
+//            self.endLoading(activityIndicator)
             print("Done drawing")
         }
     }
 
-    private func fetchData(completion: @escaping ([String], [Int], [String], [Int]) -> Void) {
+    private func fetchData(completion: @escaping ([String]?, [Int]?, [String]?, [Int]?) -> Void) {
         priceObservations(productId: product!.id) { (result, dates, prices) in
-            if result == .success {
+            print("670")
+            if result == .failed {
+                self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
+                completion(nil, nil, nil, nil)
+            } else if result == .success {
                 self.priceObservations(productId: self.rival!.id, completion: { (result2, rivalDates, rivalPrices) in
-                    if result2 == .success {
+                    print("671")
+                    if result == .failed {
+                        self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
+                        completion(nil, nil, nil, nil)
+                    } else if result2 == .success {
                         completion(dates!, prices!, rivalDates!, rivalPrices!)
                     }
                 })

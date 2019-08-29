@@ -104,6 +104,12 @@ class RivalPageViewController: UIViewController, PickerNameDelegate {
 
         // Auto update history
         autoUpdatePriceHistoryTableViewController?.product = product!
+
+        // Turn on and off auto updating
+//        autoChangePriceTableViewController?.product = product!
+//        autoChangePriceTableViewController?.rivalProduct = chosenRival.0
+        autoChangePriceTableViewController?.observation = observation
+        autoChangePriceTableViewController?.chosenRivals = chosenRivals!
     }
     
     private func getShopName() -> [String] {

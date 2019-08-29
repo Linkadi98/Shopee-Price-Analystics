@@ -905,18 +905,23 @@ extension UIViewController {
         let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.priceObservation_path + "/\(productId)")!
 
+        print(url)
+
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil, nil)
+//                self.notifyFailedConnection(error: response.result.error)
+                completion(.failed, [], [])
                 return
             }
 
             //Successful request
             var dates: [String] = []
             var prices: [Int] = []
-            let responseValue = response.result.value! as! [[String: Any]]
+            guard let responseValue = response.result.value as? [[String: Any]] else {
+                completion(.success, [], [])
+                return
+            }
             for value in responseValue {
                 var dateString = String((value["date"] as! String).prefix(13))
                 let price = Int(value["price"] as! Double)
@@ -971,19 +976,29 @@ extension UIViewController {
 
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .delete, parameters: parameters).responseJSON { (response) in
             // Failed request
-            guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed)
-                return
-            }
+//            guard response.result.isSuccess else {
+//                self.notifyFailedConnection(error: response.result.error)
+//                completion(.failed)
+//                return
+//            }
 
 
             //Successful request
-            guard let responseValue = response.result.value as? [String: Any], let _ = responseValue["itemid"] else {
-                completion(.error)
-                return
-            }
+//            guard let responseValue = response.result.value as? [String: Any], let _ = responseValue["itemid"] else {
+//                completion(.error)
+//                return
+//            }
 
+            completion(.success)
+        }
+    }
+
+    // delete 1 rival
+    func deleteRivals(productId: String, completion: @escaping (ConnectionResults) -> Void) {
+        let sharedNetwork = Network.shared
+        let url = URL(string: Network.shared.base_url + Network.shared.rival_path + "/\(productId)")!
+
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .delete, parameters: nil).responseJSON { (response) in
             completion(.success)
         }
     }

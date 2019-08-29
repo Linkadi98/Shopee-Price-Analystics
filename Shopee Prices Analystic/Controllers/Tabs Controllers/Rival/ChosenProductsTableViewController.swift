@@ -33,6 +33,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         view.startSkeletonAnimation()
 
         // Đăng ký nhận thông báo chuyển sang shop mới
+        NotificationCenter.default.addObserver(self, selector: #selector(didSwitchAutoUpdate), name: .didSwitchAutoUpdate, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData(_:)), name: .didChangeCurrentShop, object: nil)
         
@@ -164,6 +165,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     
     
     func deleteRow(at row: Int, in section: Int) {
+        let deletedRow = chosenProducts![row].0.id
         let indexPath = IndexPath(row: row, section: section)
         chosenProducts?.remove(at: indexPath.row)
         
@@ -172,8 +174,9 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         }, completion: { _ in
             self.updateIndexPath()
         })
-        
-        deleteChosenProductFromServer()
+
+        presentAlert(title: "Xoá tại \(deletedRow)", message: "")
+//        deleteChosenProductFromServer(row: row)
         // call api xoá tại đây
     }
     
@@ -188,8 +191,13 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         }
     }
     
-    func deleteChosenProductFromServer() {
-        
+    func deleteChosenProductFromServer(row: Int) {
+        deleteRivals(productId: self.chosenProducts![row].0.id) { (result) in
+            if result == .success {
+                self.presentAlert(title: "Thông báo", message: "Xoá thành công")
+                self.fetchDataFromServer()
+            }
+        }
     }
     
     // MARK: - Fetching data from server
@@ -208,7 +216,6 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         tableView.allowsSelection = false
         
         getChosenProducts(shopId: self.currentShop!.shopId) { [unowned self] (result, chosenProducts) in
-            print("15647 \(self.currentShop!.shopId)")
             guard result != .failed, let chosenProducts = chosenProducts else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
@@ -223,7 +230,10 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
 
             print("So san pham da chon la: \(chosenProducts.count)")
             self.chosenProducts = chosenProducts
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+
+                self.tableView.reloadData()
+            }
 
             self.view.hideSkeleton()
             self.view.stopSkeletonAnimation()
@@ -244,5 +254,12 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         fetchDataFromServer()
         
         print("load lai tab san pham da chon")
+    }
+
+    @objc func didSwitchAutoUpdate() {
+        fetchDataFromServer()
+        tableView.reloadData()
+
+        print("fetchDataFromServer()")
     }
 }

@@ -66,6 +66,10 @@ class StatisticalPriceTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if let _ = product {
+            hasData = true
+        }
+
         if hasData {
             tableView.beginUpdates()
             tableView.endUpdates()
@@ -139,14 +143,21 @@ class StatisticalPriceTableViewController: UITableViewController {
 
     @objc func didChooseProductToObserve(_ notification: Notification) {
         if let product = notification.userInfo?["product"] as? Product {
+            let activityIndicator = startLoading()
             getStatistics(product: product) { (result, counts) in
                 if result == .success, let counts = counts {
                     self.product = product
                     self.counts = counts
                     self.amount1.text = "\(counts[0])"
                 }
+
+                self.endLoading(activityIndicator)
             }
         }
+    }
+
+    private func updateUI(counts: [Int]) {
+        // need edited
     }
     
 }
