@@ -36,6 +36,7 @@
 		2431282A230995EC00A02BED /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24312829230995EC00A02BED /* Onboarding.swift */; };
 		2433DB6B22F6C48A00AB0498 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */; };
 		2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */; };
+		2449716C2317A6980072AC8D /* PriceObserveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2449716B2317A6980072AC8D /* PriceObserveDelegate.swift */; };
 		245255C323162F53003AFBBF /* ChosenRivalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245255C223162F53003AFBBF /* ChosenRivalDelegate.swift */; };
 		245255C6231633DC003AFBBF /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245255C5231633DC003AFBBF /* Notifications.swift */; };
 		2456D61C231691AA000109E8 /* PickerNameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456D61B231691AA000109E8 /* PickerNameDelegate.swift */; };
@@ -131,6 +132,7 @@
 		24312829230995EC00A02BED /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
+		2449716B2317A6980072AC8D /* PriceObserveDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceObserveDelegate.swift; sourceTree = "<group>"; };
 		245255C223162F53003AFBBF /* ChosenRivalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenRivalDelegate.swift; sourceTree = "<group>"; };
 		245255C5231633DC003AFBBF /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		2456D61B231691AA000109E8 /* PickerNameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerNameDelegate.swift; sourceTree = "<group>"; };
@@ -250,7 +252,7 @@
 			path = "Custom components";
 			sourceTree = "<group>";
 		};
-		245255C4231633C5003AFBBF /* Notìfications */ = {
+		245255C4231633C5003AFBBF /* Notìfications */ = {
 			isa = PBXGroup;
 			children = (
 				245255C5231633DC003AFBBF /* Notifications.swift */,
@@ -314,6 +316,7 @@
 				245255C223162F53003AFBBF /* ChosenRivalDelegate.swift */,
 				2456D61B231691AA000109E8 /* PickerNameDelegate.swift */,
 				242C68562316A0BE0069D43C /* RivalPageDelegate.swift */,
+				2449716B2317A6980072AC8D /* PriceObserveDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -372,7 +375,7 @@
 		2484174722D85D800009DF10 /* Shopee Prices Analystic */ = {
 			isa = PBXGroup;
 			children = (
-				245255C4231633C5003AFBBF /* Notìfications */,
+				245255C4231633C5003AFBBF /* Notìfications */,
 				BCD6A47B2316322B00F74CFA /* Charts */,
 				2469B6F12307B6D100C77F3A /* Onboarding Screen */,
 				BC0FB3A122F7BFF900968E68 /* Network */,
@@ -767,6 +770,7 @@
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
 				242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */,
 				241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */,
+				2449716C2317A6980072AC8D /* PriceObserveDelegate.swift in Sources */,
 				24DF4B542313E16400B4688E /* StatisticPriceTableViewController.swift in Sources */,
 				2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */,
 				2456D61C231691AA000109E8 /* PickerNameDelegate.swift in Sources */,
