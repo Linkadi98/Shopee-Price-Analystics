@@ -24,6 +24,9 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
 
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl?.tintColor = .orange
+
         if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
             self.currentShop = currentShop
         }
@@ -69,13 +72,17 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         }
 
         let product = chosenProducts[indexPath.row]
-
-        cell.productId.text! = "Mã: \(product.0.id)"
-        loadOnlineImage(from: URL(string: product.0.image)!, to: cell.productImage)
-        cell.numberOfRival.text = "\(product.1)"
-        if product.2 == false {
-            cell.autoChangePriceStatus.backgroundColor = .red
-            cell.autoChangePriceStatus.text = "Tắt"
+        DispatchQueue.main.async {
+            cell.productId.text! = "Mã: \(product.0.id)"
+            self.loadOnlineImage(from: URL(string: product.0.image)!, to: cell.productImage)
+            cell.numberOfRival.text = "\(product.1)"
+            if product.2 == false {
+                cell.autoChangePriceStatus.backgroundColor = .red
+                cell.autoChangePriceStatus.text = "Tắt"
+            } else {
+                cell.autoChangePriceStatus.backgroundColor = UIColor(red: 48 / 255, green: 209 / 255, blue: 88 / 255, alpha: 1)
+                cell.autoChangePriceStatus.text = "Bật"
+            }
         }
 
         cell.delegate = self
@@ -166,19 +173,26 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     
     
     func deleteRow(at row: Int, in section: Int) {
-        let deletedRow = chosenProducts![row].0.id
-        let indexPath = IndexPath(row: row, section: section)
-        chosenProducts?.remove(at: indexPath.row)
-        
-        tableView.performBatchUpdates({
-            tableView.deleteRows(at: [indexPath], with: .right)
-        }, completion: { _ in
-            self.updateIndexPath(from: indexPath)
+        let deletedId = chosenProducts![row].0.id
+        let alert = UIAlertController(title: "Xoá sản phẩm \(deletedId)?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            self.deleteRivals(productId: deletedId) { [unowned self](result) in
+                if result == .success {
+                    self.presentAlert(title: "Thông báo", message: "Xoá thành công")
+                    let indexPath = IndexPath(row: row, section: section)
+                    self.chosenProducts?.remove(at: indexPath.row)
+
+                    self.tableView.performBatchUpdates({
+                        self.tableView.deleteRows(at: [indexPath], with: .right)
+                    }, completion: { _ in
+                        self.updateIndexPath(from: indexPath)
+                    })
+                }
+            }
         })
 
-        presentAlert(title: "Xoá tại \(deletedRow)", message: "")
-//        deleteChosenProductFromServer(row: row)
-        // call api xoá tại đây
+        present(alert, animated: true, completion: nil)
     }
     
     func updateIndexPath(from indexPath: IndexPath) {
@@ -196,15 +210,6 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         }
     }
     
-    func deleteChosenProductFromServer(row: Int) {
-        deleteRivals(productId: self.chosenProducts![row].0.id) { (result) in
-            if result == .success {
-                self.presentAlert(title: "Thông báo", message: "Xoá thành công")
-                self.fetchDataFromServer()
-            }
-        }
-    }
-    
     // MARK: - Fetching data from server
 
     private func fetchDataFromServer() {
@@ -219,24 +224,29 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         view.showAnimatedSkeleton()
 
         tableView.allowsSelection = false
-        
+
+        let alert = UIAlertController(title: "Đang tải...", message: nil, preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
         getChosenProducts(shopId: self.currentShop!.shopId) { [unowned self] (result, chosenProducts) in
             guard result != .failed, let chosenProducts = chosenProducts else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
+                alert.dismiss(animated: true, completion: nil)
                 return
             }
 
             guard !chosenProducts.isEmpty else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Chưa chọn sản phẩm nào", message: "Xin mời quay lại để chọn sản phẩm")
+                alert.dismiss(animated: true, completion: nil)
                 return
             }
 
             print("So san pham da chon la: \(chosenProducts.count)")
             self.chosenProducts = chosenProducts
+            print(chosenProducts[7])
             DispatchQueue.main.async {
-
+                alert.dismiss(animated: true, completion: nil)
                 self.tableView.reloadData()
             }
 
@@ -264,8 +274,13 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
 
     @objc func didSwitchAutoUpdate() {
         fetchDataFromServer()
-        tableView.reloadData()
+//        tableView.reloadData()
 
         print("fetchDataFromServer()")
+    }
+
+    @objc func refresh() {
+        fetchDataFromServer()
+        refreshControl?.endRefreshing()
     }
 }

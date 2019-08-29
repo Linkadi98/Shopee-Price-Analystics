@@ -151,6 +151,7 @@ class StatisticalPriceTableViewController: UITableViewController {
 
     @objc func didChooseProductToObserve(_ notification: Notification) {
         if let product = notification.userInfo?["product"] as? Product {
+            print("123 \(product)")
             self.product = product
             print("did Choose To observe")
             let alert = UIAlertController(title: "Đang tải dữ liệu...", message: nil, preferredStyle: .alert)

@@ -553,9 +553,9 @@ extension UIViewController {
         }
     }
 
-    func getImageFromUIAvatar(name: String) {
-        Alamofire.request(url: "https://ui-avatars.com/api/?name=")
-    }
+//    func getImageFromUIAvatar(name: String) {
+//        Alamofire.request(url: "https://ui-avatars.com/api/?name=")
+//    }
 }
 
 // Shop APIs

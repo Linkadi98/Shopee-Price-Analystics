@@ -207,7 +207,9 @@ class ProductDetailTableViewController: UITableViewController {
     @IBAction func observeOption(_ sender: Any) {
         let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let priceOption = UIAlertAction(title: "Thống kê giá sản phẩm này", style: .default, handler: { (action) in
-            // thống kê giá ở chỗ này, chuyển sang tab theo dõi giá khi có kết quả
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil, userInfo: ["product": self.product!])
+            self.tabBarController?.selectedIndex = 2
+
         })
         
         let rivalOption = UIAlertAction(title: "Xem đối thủ sản phẩm này", style: .default, handler: { [unowned self] (action) in

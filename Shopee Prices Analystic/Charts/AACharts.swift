@@ -76,14 +76,14 @@ class AACharts {
                     .name("Sản phẩm của bạn")
                     .data(subPrices)
                     //    .zoneAxis("x")
-                    .color(AAGradientColor.freshPapaya!)
+                    .color(AAGradientColor.freshPapaya)
                     .lineWidth(5)
                     .zones([["value": 8],
                             ["dashStyle": AALineDashStyleType.dot.rawValue]
                         ]),
                 AASeriesElement()
                     .name("Sản phẩm đối thủ")
-                    .color(AAGradientColor.pixieDust!)
+                    .color(AAGradientColor.pixieDust)
                     .lineWidth(5)
                     .data(subRivalPrices)
                 ])

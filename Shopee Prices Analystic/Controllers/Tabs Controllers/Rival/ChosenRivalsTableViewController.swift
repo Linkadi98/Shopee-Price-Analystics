@@ -25,7 +25,8 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
         
-        self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        refreshControl?.tintColor = .orange
 
         if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
             self.currentShop = currentShop
