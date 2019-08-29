@@ -30,6 +30,12 @@ class PieChartViewController: UIViewController {
         // set the content height of aachartView
         // aaChartView?.contentHeight = self.view.frame.size.height
         self.view.addSubview(aaChartView)
+        aaChartView.snp.makeConstraints { (make) in
+            make.leading.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(10)
+            make.top.equalToSuperview().inset(10)
+            make.bottom.equalToSuperview().inset(10)
+        }
 
         aaChartView.aa_drawChartWithChartModel(self.configurePieChart(product: product!, counts: counts!))
     }
@@ -46,12 +52,12 @@ class PieChartViewController: UIViewController {
             .backgroundColor("#ffffff")
             .title("THEO DÕI GIÁ TRÊN SÀN")
             .subtitle("Sản phẩm \(product.name)")
-            .dataLabelsEnabled(true)//是否直接显示扇形图数据
+            .dataLabelsEnabled(false)
             .yAxisTitle("℃")
             .series([
                 AASeriesElement()
                     .name("Số lượng trên sàn")
-                    .innerSize("20%")//内部圆环半径大小占比(内部圆环半径/扇形图半径),
+                    .innerSize("20%")
                     .allowPointSelect(true)
                     .data(data)
                 ,
