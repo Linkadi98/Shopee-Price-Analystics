@@ -42,6 +42,8 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         
         NotificationCenter.default.addObserver(self, selector: #selector(onChooseRival(_:)), name: .didChooseRival, object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(onChooseRival(_:)), name: .didDeleteARival, object: nil)
+
         guard chosenProducts != nil else {
             fetchDataFromServer()
             return
@@ -277,6 +279,10 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
 //        tableView.reloadData()
 
         print("fetchDataFromServer()")
+    }
+
+    @objc func didDeleteARival() {
+        fetchDataFromServer()
     }
 
     @objc func refresh() {

@@ -69,7 +69,9 @@ class AccountDetailTableViewController: UITableViewController {
             phoneNumber.text = "Chưa có"
         }
 
-        loadOnlineImage(from: URL(string: currentUser.image)!, to: self.avatar)
+        loadOnlineImageByAlamofire(withName: currentUser.name, to: self.avatar)
+
+//        loadOnlineImage(from: URL(string: currentUser.image)!, to: self.avatar)
     }
 
     private func changeName() {

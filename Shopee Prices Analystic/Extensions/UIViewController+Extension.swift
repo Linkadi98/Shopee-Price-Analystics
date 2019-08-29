@@ -553,9 +553,17 @@ extension UIViewController {
         }
     }
 
-//    func getImageFromUIAvatar(name: String) {
-//        Alamofire.request(url: "https://ui-avatars.com/api/?name=")
-//    }
+    func loadOnlineImageByAlamofire(withName name: String, to imageView: UIImageView) {
+        guard let url = URL(string: "https://ui-avatars.com/api/?size=100&background=ffae00&color=ffffff&name=\(name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!)") else {
+            return
+        }
+
+        Alamofire.request(url).responseImage { (response) in
+            if let image = response.result.value {
+                imageView.image = image
+            }
+        }
+    }
 }
 
 // Shop APIs
@@ -661,7 +669,7 @@ extension UIViewController {
 
         url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil, timeoutInterval: 60).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)

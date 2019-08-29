@@ -35,6 +35,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
 
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(didSwitchAutoUpdate), name: .didSwitchAutoUpdate, object: nil)
+        
 
         view.startSkeletonAnimation()
         
@@ -181,16 +182,29 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     
     
     func deleteRow(at row: Int, in section: Int) {
-        let indexPath = IndexPath(row: row, section: section)
-        chosenRivals?.remove(at: indexPath.row)
-        
-        tableView.performBatchUpdates({
-            tableView.deleteRows(at: [indexPath], with: .right)
-        }, completion: { _ in
-            self.updateIndexPath(from: indexPath)
+        let deletedId = (chosenRivals![row].0.id, chosenRivals![row].0.shopId)
+        let alert = UIAlertController(title: "Xoá sản phẩm của \(chosenRivals![row].1.shopName)?", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+
+            self.deleteRival(myProductId: self.product!.id, myShopId: self.product!.shopId, rivalProductId: deletedId.0, rivalShopId: deletedId.1, completion: { (result) in
+                if result == .success {
+                    self.presentAlert(title: "Thông báo", message: "Xoá thành công")
+                    let indexPath = IndexPath(row: row, section: section)
+                    self.chosenRivals?.remove(at: indexPath.row)
+
+                    self.tableView.performBatchUpdates({
+                        self.tableView.deleteRows(at: [indexPath], with: .right)
+                    }, completion: { _ in
+                        self.updateIndexPath(from: indexPath)
+                    })
+
+                    NotificationCenter.default.post(name: .didDeleteARival, object: nil, userInfo: nil)
+                }
+            })
         })
-        
-        deleteChosenProductFromServer()
+
+        present(alert, animated: true, completion: nil)
     }
     
     func move(_ view: UIView, to direction: Direction) {

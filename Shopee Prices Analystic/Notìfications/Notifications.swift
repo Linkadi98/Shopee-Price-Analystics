@@ -20,4 +20,6 @@ extension Notification.Name {
     static let didReceivedStatistics = Notification.Name(rawValue: "didReceivedStatistics")
     
     static let didChooseRival = Notification.Name(rawValue: "didChooseRival")
+
+    static let didDeleteARival = Notification.Name(rawValue: "didDeleteARival")
 }

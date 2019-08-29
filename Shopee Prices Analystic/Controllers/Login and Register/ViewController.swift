@@ -60,6 +60,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Actions
     
     @IBAction func loginSPA(_ sender: Any) {
+        guard let username = userNameText.text, username.count > 5, let password = passwordText.text, password.count > 5 else {
+            self.presentAlert(message: "Tên tài khoản hoặc mật khẩu ít hơn 6 ký tự")
+            return
+        }
         UIApplication.shared.beginIgnoringInteractionEvents()
 
         loginButton.startAnimation()
