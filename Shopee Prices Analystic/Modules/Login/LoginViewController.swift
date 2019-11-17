@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#ffc400"), colorTwo: hexStringToUIColor(hex: "#FF5700"))
+//        loginButton.setGrandientColor(colorOne: hexStringToUIColor(hex: "#ffc400"), colorTwo: hexStringToUIColor(hex: "#FF5700"))
         loginButton.spinnerColor = .white
         loginButton.layer.cornerRadius = loginButton.frame.size.height / 2
         
@@ -69,7 +69,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         loginButton.startAnimation()
         self.login(username: userNameText.text!, password: passwordText.text!) { result in
             self.loginButton.stopAnimation(animationStyle: .normal, revertAfterDelay: 0) {
-                self.loginButton.setGrandientColor(colorOne: self.hexStringToUIColor(hex: "#ffc400"), colorTwo: self.hexStringToUIColor(hex: "#FF5700"))
+//                self.loginButton.setGrandientColor(colorOne: self.hexStringToUIColor(hex: "#ffc400"), colorTwo: self.hexStringToUIColor(hex: "#FF5700"))
                 self.loginButton.spinnerColor = .white
                 self.loginButton.layer.cornerRadius = self.loginButton.frame.size.height / 2
                 UIApplication.shared.endIgnoringInteractionEvents()

@@ -53,11 +53,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
             }
         }
         
-        // replace by onboarding screen which is above
 
-//        self.window?.rootViewController = initialViewController
+        self.window?.rootViewController = initialViewController
         
-        self.window?.rootViewController = onboardingViewController
+//        self.window?.rootViewController = onboardingViewController
 
         self.window?.makeKeyAndVisible()
         

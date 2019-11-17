@@ -499,7 +499,7 @@ extension UIViewController {
             "email" : email
         ]
 
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters, timeoutInterval: 120).responseString { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: parameters, timeoutInterval: 10).responseString { (response) in
             // Failed request
             guard response.result.isSuccess else {
                 self.notifyFailedConnection(error: response.result.error)
