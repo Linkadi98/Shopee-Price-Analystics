@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SkeletonView
 import NotificationBannerSwift
 
 class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SkeletonTableViewDataSource {

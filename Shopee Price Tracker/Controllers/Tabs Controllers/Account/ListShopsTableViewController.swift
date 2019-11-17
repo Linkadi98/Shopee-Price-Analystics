@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SkeletonView
 import Alamofire
 import NotificationBannerSwift
 
