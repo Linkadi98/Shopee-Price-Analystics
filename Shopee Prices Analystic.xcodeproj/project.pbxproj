@@ -135,7 +135,7 @@
 		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
 		2449716B2317A6980072AC8D /* PriceObserveDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceObserveDelegate.swift; sourceTree = "<group>"; };
 		245255C223162F53003AFBBF /* ChosenRivalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenRivalDelegate.swift; sourceTree = "<group>"; };
-		245255C5231633DC003AFBBF /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		245255C5231633DC003AFBBF /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = "../../Notìfications/Notifications.swift"; sourceTree = "<group>"; };
 		2456D61B231691AA000109E8 /* PickerNameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerNameDelegate.swift; sourceTree = "<group>"; };
 		2459135B22E2EF4D00D51A4B /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		2459135D22E2EF5B00D51A4B /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
@@ -215,26 +215,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		24120F3E22E07491000FA0B7 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */,
-				2459135B22E2EF4D00D51A4B /* UIButton+Extension.swift */,
-				2459135D22E2EF5B00D51A4B /* UITableView+Extension.swift */,
-				2459135F22E2EF6600D51A4B /* UIView+Extension.swift */,
-				2459136122E2F01600D51A4B /* ViewController+Extension.swift */,
-				2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */,
-				242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */,
-				2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */,
-				2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */,
-				24E56165230D2DB500914506 /* Int+Extension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		242361D722FAA66300EFC57A /* Rival */ = {
 			isa = PBXGroup;
 			children = (
+				24F2EF2723818C28000CFE40 /* Model */,
 				242361D822FAA6A300EFC57A /* RivalPageViewController.swift */,
 				242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */,
 				242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */,
@@ -249,18 +233,16 @@
 			path = Rival;
 			sourceTree = "<group>";
 		};
-		242C4FA622F5786C007D4903 /* Custom components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Custom components";
-			sourceTree = "<group>";
-		};
 		2443E3D32381063200919ABA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2459135322E2BF9C00D51A4B /* Account */,
 				2443E3D42381064900919ABA /* Login */,
 				2443E3D52381065100919ABA /* Register */,
+				242361D722FAA66300EFC57A /* Rival */,
+				24DF4B522313E14E00B4688E /* Price */,
+				2459135522E2BFDA00D51A4B /* Tabs */,
+				2459135222E2BF8600D51A4B /* Overview */,
 				24FEBA6B23817B3D00654D5D /* Product */,
 			);
 			path = Modules;
@@ -282,18 +264,10 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		245255C4231633C5003AFBBF /* Notìfications */ = {
-			isa = PBXGroup;
-			children = (
-				245255C5231633DC003AFBBF /* Notifications.swift */,
-			);
-			name = "Notìfications";
-			path = "Notìfications";
-			sourceTree = "<group>";
-		};
 		2459135222E2BF8600D51A4B /* Overview */ = {
 			isa = PBXGroup;
 			children = (
+				24F2EF2823818C38000CFE40 /* Model */,
 				2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */,
 				242F519022FE811D00A0E980 /* ContainerViewController.swift */,
 			);
@@ -303,21 +277,13 @@
 		2459135322E2BF9C00D51A4B /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				24F2EF2923818C3E000CFE40 /* Model */,
 				24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */,
 				2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */,
 				24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */,
 				BC5E9B8E22F8311B00F729E6 /* ShopeeAuthViewController.swift */,
 			);
 			path = Account;
-			sourceTree = "<group>";
-		};
-		2459135422E2BFAF00D51A4B /* Product */ = {
-			isa = PBXGroup;
-			children = (
-				241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */,
-				2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */,
-			);
-			path = Product;
 			sourceTree = "<group>";
 		};
 		2459135522E2BFDA00D51A4B /* Tabs */ = {
@@ -395,20 +361,10 @@
 			isa = PBXGroup;
 			children = (
 				24FEBA6D23817C6000654D5D /* SPTEssensial */,
-				245255C4231633C5003AFBBF /* Notìfications */,
-				BCD6A47B2316322B00F74CFA /* Charts */,
 				2469B6F12307B6D100C77F3A /* Onboarding Screen */,
-				BC0FB3A122F7BFF900968E68 /* Network */,
-				242C4FA622F5786C007D4903 /* Custom components */,
-				BC8D7D0222E6FAA800D224EC /* Cells */,
 				2484175422D85D810009DF10 /* Info.plist */,
-				24EAE55222DEF80700EB53F2 /* Custom Animations */,
 				2459135822E2C03600D51A4B /* Assets */,
-				2459135722E2C01800D51A4B /* Delegates */,
-				24120F3E22E07491000FA0B7 /* Extensions */,
 				2478C65522DDD4C900DA6D8E /* Models */,
-				24ECAF4722D98900004F2D37 /* Controllers */,
-				24ECAF4622D988E3004F2D37 /* Storyboards */,
 			);
 			path = "Shopee Price Tracker";
 			sourceTree = "<group>";
@@ -422,9 +378,28 @@
 			path = "Shopee Prices AnalysticTests";
 			sourceTree = "<group>";
 		};
+		24BED25E2381900400B3FC2E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BCD6A47B2316322B00F74CFA /* Charts */,
+				BC8D7D0222E6FAA800D224EC /* Cells */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		24BED25F2381907600B3FC2E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2484174C22D85D800009DF10 /* Main.storyboard */,
+				2484175122D85D810009DF10 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		24DF4B522313E14E00B4688E /* Price */ = {
 			isa = PBXGroup;
 			children = (
+				24F2EF2A23818C49000CFE40 /* Model */,
 				24DF4B532313E16400B4688E /* StatisticPriceTableViewController.swift */,
 				BCD4456923168636003D93A4 /* ChartViewController.swift */,
 				BCD4456B23168B83003D93A4 /* ColumnChartViewController.swift */,
@@ -443,23 +418,6 @@
 			path = "Custom Animations";
 			sourceTree = "<group>";
 		};
-		24ECAF4622D988E3004F2D37 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				2484174C22D85D800009DF10 /* Main.storyboard */,
-				2484175122D85D810009DF10 /* LaunchScreen.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
-		24ECAF4722D98900004F2D37 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				24F661D322DC26A600440A7A /* Tabs Controllers */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		24F2EF192381833A000CFE40 /* Product */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,7 +429,6 @@
 		24F2EF1C23818A24000CFE40 /* Price */ = {
 			isa = PBXGroup;
 			children = (
-				24F2EF2A23818C49000CFE40 /* Model */,
 			);
 			path = Price;
 			sourceTree = "<group>";
@@ -479,7 +436,6 @@
 		24F2EF1D23818A4F000CFE40 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				24F2EF2923818C3E000CFE40 /* Model */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -487,7 +443,6 @@
 		24F2EF1E23818A67000CFE40 /* Overview */ = {
 			isa = PBXGroup;
 			children = (
-				24F2EF2823818C38000CFE40 /* Model */,
 			);
 			path = Overview;
 			sourceTree = "<group>";
@@ -495,7 +450,6 @@
 		24F2EF1F23818A6D000CFE40 /* Rival */ = {
 			isa = PBXGroup;
 			children = (
-				24F2EF2723818C28000CFE40 /* Model */,
 			);
 			path = Rival;
 			sourceTree = "<group>";
@@ -511,7 +465,19 @@
 		24F2EF2423818B50000CFE40 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				24EAE55222DEF80700EB53F2 /* Custom Animations */,
+				24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */,
+				2459135B22E2EF4D00D51A4B /* UIButton+Extension.swift */,
+				2459135D22E2EF5B00D51A4B /* UITableView+Extension.swift */,
+				2459135F22E2EF6600D51A4B /* UIView+Extension.swift */,
+				2459136122E2F01600D51A4B /* ViewController+Extension.swift */,
+				2459136322E2F0FF00D51A4B /* UIViewController+Extension.swift */,
+				242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */,
+				2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */,
+				2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */,
+				24E56165230D2DB500914506 /* Int+Extension.swift */,
 				24F2EF2523818B93000CFE40 /* JSONCodable+Extension.swift */,
+				245255C5231633DC003AFBBF /* Notifications.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -544,24 +510,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		24F661D322DC26A600440A7A /* Tabs Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				24DF4B522313E14E00B4688E /* Price */,
-				242361D722FAA66300EFC57A /* Rival */,
-				2459135522E2BFDA00D51A4B /* Tabs */,
-				2459135422E2BFAF00D51A4B /* Product */,
-				2459135322E2BF9C00D51A4B /* Account */,
-				2459135222E2BF8600D51A4B /* Overview */,
-			);
-			path = "Tabs Controllers";
-			sourceTree = "<group>";
-		};
 		24FEBA6B23817B3D00654D5D /* Product */ = {
 			isa = PBXGroup;
 			children = (
 				24F2EF2123818ADE000CFE40 /* Model */,
 				2416494522E1768900B80DBC /* ProductsTableViewController.swift */,
+				241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */,
+				2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -569,6 +524,9 @@
 		24FEBA6D23817C6000654D5D /* SPTEssensial */ = {
 			isa = PBXGroup;
 			children = (
+				24BED25F2381907600B3FC2E /* View */,
+				2459135722E2C01800D51A4B /* Delegates */,
+				24BED25E2381900400B3FC2E /* Components */,
 				24F2EF2423818B50000CFE40 /* Helper */,
 				24FEBA6F23817CD600654D5D /* APIs */,
 				2443E3D32381063200919ABA /* Modules */,
@@ -579,6 +537,7 @@
 		24FEBA6F23817CD600654D5D /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				BC0FB3A222F7C02C00968E68 /* Network.swift */,
 				24F2EF1F23818A6D000CFE40 /* Rival */,
 				24F2EF1E23818A67000CFE40 /* Overview */,
 				24F2EF1D23818A4F000CFE40 /* Account */,
@@ -586,14 +545,6 @@
 				24F2EF192381833A000CFE40 /* Product */,
 			);
 			path = APIs;
-			sourceTree = "<group>";
-		};
-		BC0FB3A122F7BFF900968E68 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				BC0FB3A222F7C02C00968E68 /* Network.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		BC8D7D0222E6FAA800D224EC /* Cells */ = {
