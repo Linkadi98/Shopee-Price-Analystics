@@ -278,7 +278,7 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
-		245255C4231633C5003AFBBF /* Notìfications */ = {
+		245255C4231633C5003AFBBF /* Notìfications */ = {
 			isa = PBXGroup;
 			children = (
 				245255C5231633DC003AFBBF /* Notifications.swift */,
@@ -371,7 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				24EDDD6022D960C400D62704 /* TransitionButton.framework */,
-				2484174722D85D800009DF10 /* Shopee Price Tracking */,
+				2484174722D85D800009DF10 /* Shopee Price Tracker */,
 				2484175C22D85D810009DF10 /* Shopee Prices AnalysticTests */,
 				2484174622D85D800009DF10 /* Products */,
 				F0231C0A030C3C9F8E4BE00A /* Pods */,
@@ -388,12 +388,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2484174722D85D800009DF10 /* Shopee Price Tracking */ = {
+		2484174722D85D800009DF10 /* Shopee Price Tracker */ = {
 			isa = PBXGroup;
 			children = (
 				24FEBA6E23817C9B00654D5D /* New Group1 */,
 				24FEBA6D23817C6000654D5D /* SPTEssensial */,
-				245255C4231633C5003AFBBF /* Notìfications */,
+				245255C4231633C5003AFBBF /* Notìfications */,
 				BCD6A47B2316322B00F74CFA /* Charts */,
 				2469B6F12307B6D100C77F3A /* Onboarding Screen */,
 				BC0FB3A122F7BFF900968E68 /* Network */,
@@ -408,7 +408,7 @@
 				24ECAF4722D98900004F2D37 /* Controllers */,
 				24ECAF4622D988E3004F2D37 /* Storyboards */,
 			);
-			path = "Shopee Price Tracking";
+			path = "Shopee Price Tracker";
 			sourceTree = "<group>";
 		};
 		2484175C22D85D810009DF10 /* Shopee Prices AnalysticTests */ = {
