@@ -13,12 +13,12 @@ import NotificationBannerSwift
 class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SkeletonTableViewDataSource {
     
     // MARK: - Properties
-    @IBOutlet weak var editingButton: UIButton! {
-        didSet {
-            editingButton.layer.cornerRadius = 8
-            editingButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
-        }
-    }
+//    @IBOutlet weak var editingButton: UIButton! {
+//        didSet {
+//            editingButton.layer.cornerRadius = 8
+//            editingButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
+//        }
+//    }
 
     var currentShop: Shop?
     var listProducts: [Product]?
@@ -46,9 +46,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
 
-        if isChosenToObservePrice {
-            editingButton.setTitle("Quay lại", for: .normal)
-        }
+//        if isChosenToObservePrice {
+//            editingButton.setTitle("Quay lại", for: .normal)
+//        }
 
 
         guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
@@ -60,10 +60,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         // Notification
         NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
     }
-    
-    override func viewWillLayoutSubviews() {
-    }
-
 
     override func viewWillAppear(_ animated: Bool) {
         
@@ -195,31 +191,31 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     // MARK: - Actions
     
-    @IBAction func editingMode(_ sender: Any) {
-        if isChosenToObservePrice {
-            navigationController?.popViewController(animated: true)
-            return
-        }
-        if tableView.isEditing {
-            tableView.setEditing(false, animated: true)
-            
-            changeTextOfEditingButton(text: "Sửa giá")
-            
-            for cell in tableView.visibleCells {
-                let indexPath = tableView.indexPath(for: cell)!
-                hideEditingPen(at: tableView.cellForRow(at: indexPath)!)
-            }
-        }
-        else {
-            tableView.setEditing(true, animated: true)
-            changeTextOfEditingButton(text: "Xong")
-            tableView.allowsSelection = true
-            for cell in tableView.visibleCells {
-                let indexPath: IndexPath = tableView.indexPath(for: cell)!
-                showEditingPen(at: tableView.cellForRow(at: indexPath)!)
-            }
-        }
-    }
+//    @IBAction func editingMode(_ sender: Any) {
+//        if isChosenToObservePrice {
+//            navigationController?.popViewController(animated: true)
+//            return
+//        }
+//        if tableView.isEditing {
+//            tableView.setEditing(false, animated: true)
+//
+//            changeTextOfEditingButton(text: "Sửa giá")
+//
+//            for cell in tableView.visibleCells {
+//                let indexPath = tableView.indexPath(for: cell)!
+//                hideEditingPen(at: tableView.cellForRow(at: indexPath)!)
+//            }
+//        }
+//        else {
+//            tableView.setEditing(true, animated: true)
+//            changeTextOfEditingButton(text: "Xong")
+//            tableView.allowsSelection = true
+//            for cell in tableView.visibleCells {
+//                let indexPath: IndexPath = tableView.indexPath(for: cell)!
+//                showEditingPen(at: tableView.cellForRow(at: indexPath)!)
+//            }
+//        }
+//    }
     
     // MARK: - Segue
     
@@ -232,19 +228,19 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     // MARK: - Editing mode
     
-    private func showEditingPen(at cell: UITableViewCell) {
-        UIView.animate(withDuration: 0.3, animations: {
-            let editingCell = cell as! ProductTableViewCell
-            editingCell.editingPen.alpha = 1
-        })
-    }
-    
-    private func hideEditingPen(at cell: UITableViewCell) {
-        UIView.animate(withDuration: 0.3, animations: {
-            let editingCell = cell as! ProductTableViewCell
-            editingCell.editingPen.alpha = 0
-        })
-    }
+//    private func showEditingPen(at cell: UITableViewCell) {
+//        UIView.animate(withDuration: 0.3, animations: {
+//            let editingCell = cell as! ProductTableViewCell
+//            editingCell.editingPen.alpha = 1
+//        })
+//    }
+//
+//    private func hideEditingPen(at cell: UITableViewCell) {
+//        UIView.animate(withDuration: 0.3, animations: {
+//            let editingCell = cell as! ProductTableViewCell
+//            editingCell.editingPen.alpha = 0
+//        })
+//    }
     
     private func presentChangePriceAlert(productIndex: Int) {
         let product = listProducts![productIndex]
@@ -295,9 +291,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
     }
     
-    private func changeTextOfEditingButton(text: String) {
-        editingButton.setTitle(text, for: .normal)
-    }
+//    private func changeTextOfEditingButton(text: String) {
+//        editingButton.setTitle(text, for: .normal)
+//    }
     
     // MARK: - Private loading data for this class
     

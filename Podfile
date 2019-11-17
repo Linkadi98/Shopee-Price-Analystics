@@ -15,7 +15,6 @@ pod 'SwipeableTabBarController'
 pod 'Cosmos', '~> 19.0'
 pod 'Parchment'
 pod 'SVProgressHUD', '~> 2.2'
-pod "SkeletonView"
 pod 'AlamofireImage', '~> 3.5'
 pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
 # Pods for Shopee Prices Analystic
