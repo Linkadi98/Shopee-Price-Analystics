@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SkeletonView
 import NotificationBannerSwift
 
 class ListRivalsTableViewController: UITableViewController {
@@ -32,7 +31,7 @@ class ListRivalsTableViewController: UITableViewController {
 
 
     override func viewWillAppear(_ animated: Bool) {
-        view.startSkeletonAnimation()
+//        view.startSkeletonAnimation()
         
         
     }
@@ -55,7 +54,7 @@ class ListRivalsTableViewController: UITableViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        tableView.layoutSkeletonIfNeeded()
+//        tableView.layoutSkeletonIfNeeded()
     }
 
     // MARK: - Table view data source
@@ -95,7 +94,7 @@ class ListRivalsTableViewController: UITableViewController {
         cell.rivalRating.rating = rivalShop.rating
         cell.followersCount.text = "\(String(rivalShop.followersCount))"
         
-        cell.hideSkeletonAnimation()
+//        cell.hideSkeletonAnimation()
         
         return cell
     }
@@ -144,9 +143,9 @@ class ListRivalsTableViewController: UITableViewController {
     private func fetchDataFromServer() {
         tableView.reloadData()
 
-        view.hideSkeleton()
-        view.showAnimatedSkeleton()
-        
+//        view.hideSkeleton()
+//        view.showAnimatedSkeleton()
+
         var doneloadingRivals = false
         var doneloadingRivalsShops = false
         tableView.allowsSelection = false
@@ -182,8 +181,8 @@ class ListRivalsTableViewController: UITableViewController {
                 }
                 self.navigationItem.title = "Danh sách đối thủ (\(numberOfRivals)/\(listSearchedRivals.count))"
                 self.hasData = true
-                self.view.hideSkeleton()
-                self.view.stopSkeletonAnimation()
+//                self.view.hideSkeleton()
+//                self.view.stopSkeletonAnimation()
 
                 self.tableView.backgroundView = nil
                 self.tableView.allowsSelection = true
@@ -224,8 +223,8 @@ class ListRivalsTableViewController: UITableViewController {
                     self.navigationItem.title = "Danh sách đối thủ (\(numberOfRivals)/\(listRivalsShops.count))"
                 }
                 self.hasData = true
-                self.view.hideSkeleton()
-                self.view.stopSkeletonAnimation()
+//                self.view.hideSkeleton()
+//                self.view.stopSkeletonAnimation()
 
                 self.tableView.backgroundView = nil
                 self.tableView.allowsSelection = true

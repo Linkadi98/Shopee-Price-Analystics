@@ -8,7 +8,6 @@
 
 import UIKit
 import Cosmos
-import SkeletonView
 
 class ProductTableViewCell: UITableViewCell {
 
@@ -29,13 +28,13 @@ class ProductTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        productPrice.showAnimatedSkeleton()
-        productName.showAnimatedSkeleton()
-        productImage.showAnimatedSkeleton()
-        productCode.showAnimatedSkeleton()
-        cosmos.showAnimatedSkeleton()
-        idLabel.showAnimatedSkeleton()
-        
+//        productPrice.showAnimatedSkeleton()
+//        productName.showAnimatedSkeleton()
+//        productImage.showAnimatedSkeleton()
+//        productCode.showAnimatedSkeleton()
+//        cosmos.showAnimatedSkeleton()
+//        idLabel.showAnimatedSkeleton()
+//
         cosmos.layer.cornerRadius = 4
         containerView.setShadow()
         
@@ -51,13 +50,13 @@ class ProductTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func hideSkeletonAnimation() {
-        productPrice.hideSkeleton()
-        productName.hideSkeleton()
-        productImage.hideSkeleton()
-        productCode.hideSkeleton()
-        cosmos.hideSkeleton()
-        idLabel.hideSkeleton()
-    }
+//    func hideSkeletonAnimation() {
+//        productPrice.hideSkeleton()
+//        productName.hideSkeleton()
+//        productImage.hideSkeleton()
+//        productCode.hideSkeleton()
+//        cosmos.hideSkeleton()
+//        idLabel.hideSkeleton()
+//    }
 
 }

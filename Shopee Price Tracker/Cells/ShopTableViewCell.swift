@@ -16,9 +16,9 @@ class ShopTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        shopName.showAnimatedSkeleton()
-        shopId.showAnimatedSkeleton()
-        status.showAnimatedSkeleton()
+//        shopName.showAnimatedSkeleton()
+//        shopId.showAnimatedSkeleton()
+//        status.showAnimatedSkeleton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,11 +27,11 @@ class ShopTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func hideSkeletonAnimation() {
-        shopName.hideSkeleton()
-        shopId.hideSkeleton()
-        status.hideSkeleton()
-    }
+//    func hideSkeletonAnimation() {
+//        shopName.hideSkeleton()
+//        shopId.hideSkeleton()
+//        status.hideSkeleton()
+//    }
     
 
 }

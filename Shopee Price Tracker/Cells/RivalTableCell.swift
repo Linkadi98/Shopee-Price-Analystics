@@ -32,8 +32,8 @@ class RivalTableCell: UITableViewCell {
         containerView.setShadow()
         
         selectionStyle = .none
-        layoutSkeletonIfNeeded()
-        showSkeletionAnimation()
+//        layoutSkeletonIfNeeded()
+//        showSkeletionAnimation()
     }
     
     func setUnfollowStatus() {
@@ -46,23 +46,23 @@ class RivalTableCell: UITableViewCell {
         followStatus.text = "Đang theo dõi"
     }
     
-    func showSkeletionAnimation() {
-        containerView.showSkeleton()
-        productName.showSkeleton()
-        rivalName.showSkeleton()
-        rivalRating.showSkeleton()
-        followStatus.showSkeleton()
-        followersCount.showSkeleton()
-        productPrice.showSkeleton()
-    }
-    
-    func hideSkeletonAnimation() {
-        containerView.hideSkeleton()
-        productName.hideSkeleton()
-        rivalName.hideSkeleton()
-        rivalRating.hideSkeleton()
-        followStatus.hideSkeleton()
-        followersCount.hideSkeleton()
-        productPrice.hideSkeleton()
-    }
+//    func showSkeletionAnimation() {
+//        containerView.showSkeleton()
+//        productName.showSkeleton()
+//        rivalName.showSkeleton()
+//        rivalRating.showSkeleton()
+//        followStatus.showSkeleton()
+//        followersCount.showSkeleton()
+//        productPrice.showSkeleton()
+//    }
+//    
+//    func hideSkeletonAnimation() {
+//        containerView.hideSkeleton()
+//        productName.hideSkeleton()
+//        rivalName.hideSkeleton()
+//        rivalRating.hideSkeleton()
+//        followStatus.hideSkeleton()
+//        followersCount.hideSkeleton()
+//        productPrice.hideSkeleton()
+//    }
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SkeletonView
 
 class ChosenProductsTableViewController: UITableViewController, ChosenProductRivalCellDelegate {
     
@@ -33,7 +32,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        view.startSkeletonAnimation()
+//        view.startSkeletonAnimation()
 
         // Đăng ký nhận thông báo chuyển sang shop mới
         NotificationCenter.default.addObserver(self, selector: #selector(didSwitchAutoUpdate), name: .didSwitchAutoUpdate, object: nil)
@@ -222,8 +221,8 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
         }
 
-        view.hideSkeleton()
-        view.showAnimatedSkeleton()
+//        view.hideSkeleton()
+//        view.showAnimatedSkeleton()
 
         tableView.allowsSelection = false
 
@@ -252,8 +251,8 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
                 self.tableView.reloadData()
             }
 
-            self.view.hideSkeleton()
-            self.view.stopSkeletonAnimation()
+//            self.view.hideSkeleton()
+//            self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
         }

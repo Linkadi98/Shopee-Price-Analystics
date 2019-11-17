@@ -9,7 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 
-class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, SkeletonTableViewDataSource {
+class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
     // MARK: - Properties
 //    @IBOutlet weak var editingButton: UIButton! {
@@ -62,8 +62,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     override func viewWillAppear(_ animated: Bool) {
         
-        view.startSkeletonAnimation()
-
         guard listProducts != nil else {
             fetchDataFromServer()
             return
@@ -106,14 +104,14 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
         loadOnlineImage(from: URL(string: product.image)!, to: cell.productImage)
 
-        cell.hideSkeletonAnimation()
+//        cell.hideSkeletonAnimation()
 
-        if tableView.isEditing {
-            showEditingPen(at: cell)
-        }
-        else {
-            hideEditingPen(at: cell)
-        }
+//        if tableView.isEditing {
+//            showEditingPen(at: cell)
+//        }
+//        else {
+//            hideEditingPen(at: cell)
+//        }
 
         return cell
     }
@@ -167,15 +165,15 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     }
     
     
-    // MARK: - Skeleton data source
-    
-    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return "productTableCell"
-    }
-    
-    func numSections(in collectionSkeletonView: UITableView) -> Int {
-        return 1
-    }
+//    // MARK: - Skeleton data source
+//
+//    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+//        return "productTableCell"
+//    }
+//
+//    func numSections(in collectionSkeletonView: UITableView) -> Int {
+//        return 1
+//    }
 
 
     // MARK: - Search Actions
@@ -301,8 +299,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
         }
 
-        view.hideSkeleton()
-        view.showAnimatedSkeleton()
+//        view.hideSkeleton()
+//        view.showAnimatedSkeleton()
         
         tableView.allowsSelection = false
         
@@ -344,8 +342,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 self.tableView.reloadData()
             }
             self.hasData = true
-            self.view.hideSkeleton()
-            self.view.stopSkeletonAnimation()
+//            self.view.hideSkeleton()
+//            self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
         }

@@ -13,7 +13,6 @@
 		24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */; };
 		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
 		24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */; };
-		2416494822E1770E00B80DBC /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494722E1770E00B80DBC /* Product.swift */; };
 		2416494A22E19F5600B80DBC /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494922E19F5600B80DBC /* Animator.swift */; };
 		241BC1452303B0140097AB59 /* ChosenProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */; };
 		241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */; };
@@ -61,6 +60,9 @@
 		24E56166230D2DB500914506 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E56165230D2DB500914506 /* Int+Extension.swift */; };
 		24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */; };
 		24EDDD6122D960C400D62704 /* TransitionButton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24EDDD6022D960C400D62704 /* TransitionButton.framework */; };
+		24F2EF1B2381844E000CFE40 /* ProductApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2EF1A2381844E000CFE40 /* ProductApiService.swift */; };
+		24F2EF2323818AEF000CFE40 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2EF2223818AEF000CFE40 /* Product.swift */; };
+		24F2EF2623818B93000CFE40 /* JSONCodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F2EF2523818B93000CFE40 /* JSONCodable+Extension.swift */; };
 		24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F661D422DC26C100440A7A /* TabsViewController.swift */; };
 		24F842EB230B95360050C2A0 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F842EA230B95360050C2A0 /* OnboardingLoginViewController.swift */; };
 		24FEBA7023817CFB00654D5D /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2416494522E1768900B80DBC /* ProductsTableViewController.swift */; };
@@ -111,7 +113,6 @@
 		24120F3F22E074B6000FA0B7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		2414701322DAF58C000FB6D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2416494522E1768900B80DBC /* ProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
-		2416494722E1770E00B80DBC /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		2416494922E19F5600B80DBC /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductsTableViewController.swift; sourceTree = "<group>"; };
 		241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,6 +163,9 @@
 		24E56165230D2DB500914506 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTabBar.swift; sourceTree = "<group>"; };
 		24EDDD6022D960C400D62704 /* TransitionButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TransitionButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24F2EF1A2381844E000CFE40 /* ProductApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductApiService.swift; sourceTree = "<group>"; };
+		24F2EF2223818AEF000CFE40 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		24F2EF2523818B93000CFE40 /* JSONCodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONCodable+Extension.swift"; sourceTree = "<group>"; };
 		24F661D422DC26C100440A7A /* TabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		24F842EA230B95360050C2A0 /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		24FFE31423153AE500643FD3 /* ChosenProductRivalCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductRivalCellDelegate.swift; sourceTree = "<group>"; };
@@ -359,7 +363,6 @@
 			children = (
 				2478C65622DDD50D00DA6D8E /* User.swift */,
 				24120F3C22E05F41000FA0B7 /* Shop.swift */,
-				2416494722E1770E00B80DBC /* Product.swift */,
 				241D5A7222E57A8C00CBA60C /* Account.swift */,
 				BC15D3002313B1A6008D3456 /* Observation.swift */,
 				BC64962A2316D86300060657 /* AutoUpdateHistory.swift */,
@@ -391,7 +394,6 @@
 		2484174722D85D800009DF10 /* Shopee Price Tracker */ = {
 			isa = PBXGroup;
 			children = (
-				24FEBA6E23817C9B00654D5D /* New Group1 */,
 				24FEBA6D23817C6000654D5D /* SPTEssensial */,
 				245255C4231633C5003AFBBF /* Notìfications */,
 				BCD6A47B2316322B00F74CFA /* Charts */,
@@ -458,6 +460,90 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		24F2EF192381833A000CFE40 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				24F2EF1A2381844E000CFE40 /* ProductApiService.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		24F2EF1C23818A24000CFE40 /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				24F2EF2A23818C49000CFE40 /* Model */,
+			);
+			path = Price;
+			sourceTree = "<group>";
+		};
+		24F2EF1D23818A4F000CFE40 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				24F2EF2923818C3E000CFE40 /* Model */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		24F2EF1E23818A67000CFE40 /* Overview */ = {
+			isa = PBXGroup;
+			children = (
+				24F2EF2823818C38000CFE40 /* Model */,
+			);
+			path = Overview;
+			sourceTree = "<group>";
+		};
+		24F2EF1F23818A6D000CFE40 /* Rival */ = {
+			isa = PBXGroup;
+			children = (
+				24F2EF2723818C28000CFE40 /* Model */,
+			);
+			path = Rival;
+			sourceTree = "<group>";
+		};
+		24F2EF2123818ADE000CFE40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24F2EF2223818AEF000CFE40 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24F2EF2423818B50000CFE40 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				24F2EF2523818B93000CFE40 /* JSONCodable+Extension.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		24F2EF2723818C28000CFE40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24F2EF2823818C38000CFE40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24F2EF2923818C3E000CFE40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24F2EF2A23818C49000CFE40 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		24F661D322DC26A600440A7A /* Tabs Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -474,6 +560,7 @@
 		24FEBA6B23817B3D00654D5D /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				24F2EF2123818ADE000CFE40 /* Model */,
 				2416494522E1768900B80DBC /* ProductsTableViewController.swift */,
 			);
 			path = Product;
@@ -482,22 +569,21 @@
 		24FEBA6D23817C6000654D5D /* SPTEssensial */ = {
 			isa = PBXGroup;
 			children = (
+				24F2EF2423818B50000CFE40 /* Helper */,
 				24FEBA6F23817CD600654D5D /* APIs */,
 				2443E3D32381063200919ABA /* Modules */,
 			);
 			path = SPTEssensial;
 			sourceTree = "<group>";
 		};
-		24FEBA6E23817C9B00654D5D /* New Group1 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group1";
-			sourceTree = "<group>";
-		};
 		24FEBA6F23817CD600654D5D /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				24F2EF1F23818A6D000CFE40 /* Rival */,
+				24F2EF1E23818A67000CFE40 /* Overview */,
+				24F2EF1D23818A4F000CFE40 /* Account */,
+				24F2EF1C23818A24000CFE40 /* Price */,
+				24F2EF192381833A000CFE40 /* Product */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -738,6 +824,7 @@
 				BC0FB3A322F7C02C00968E68 /* Network.swift in Sources */,
 				2459136222E2F01600D51A4B /* ViewController+Extension.swift in Sources */,
 				2433DB6B22F6C48A00AB0498 /* UILabel+Extension.swift in Sources */,
+				24F2EF2323818AEF000CFE40 /* Product.swift in Sources */,
 				245255C323162F53003AFBBF /* ChosenRivalDelegate.swift in Sources */,
 				2484174922D85D800009DF10 /* AppDelegate.swift in Sources */,
 				242F519122FE811D00A0E980 /* ContainerViewController.swift in Sources */,
@@ -749,6 +836,7 @@
 				241BC1492303F0100097AB59 /* AutoChangePriceTableViewController.swift in Sources */,
 				2469B6F32307CD1400C77F3A /* OnboardingViewController.swift in Sources */,
 				24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */,
+				24F2EF2623818B93000CFE40 /* JSONCodable+Extension.swift in Sources */,
 				240F1D08231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift in Sources */,
 				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
@@ -765,6 +853,7 @@
 				245255C6231633DC003AFBBF /* Notifications.swift in Sources */,
 				24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */,
 				2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */,
+				24F2EF1B2381844E000CFE40 /* ProductApiService.swift in Sources */,
 				242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */,
 				241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */,
 				2449716C2317A6980072AC8D /* PriceObserveDelegate.swift in Sources */,
@@ -783,7 +872,6 @@
 				2431282A230995EC00A02BED /* Onboarding.swift in Sources */,
 				242C68572316A0BE0069D43C /* RivalPageDelegate.swift in Sources */,
 				241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */,
-				2416494822E1770E00B80DBC /* Product.swift in Sources */,
 				BC15D3012313B1A6008D3456 /* Observation.swift in Sources */,
 				BC336A4E2316405D0091F44F /* AACharts.swift in Sources */,
 				24631A6F2314D04D00295264 /* AutoUpdateHistoryCell.swift in Sources */,
@@ -835,7 +923,7 @@
 		2484176022D85D810009DF10 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -896,7 +984,7 @@
 		2484176122D85D810009DF10 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -959,7 +1047,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "Shopee Prices Analystic/Info.plist";
+				INFOPLIST_FILE = "Shopee Price Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -982,7 +1070,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "Shopee Prices Analystic/Info.plist";
+				INFOPLIST_FILE = "Shopee Price Tracker/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

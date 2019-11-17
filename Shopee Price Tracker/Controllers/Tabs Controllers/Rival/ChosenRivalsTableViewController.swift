@@ -37,7 +37,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         NotificationCenter.default.addObserver(self, selector: #selector(didSwitchAutoUpdate), name: .didSwitchAutoUpdate, object: nil)
         
 
-        view.startSkeletonAnimation()
+//        view.startSkeletonAnimation()
         
     }
 
@@ -110,7 +110,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
             UIView.fadeOut(view: cell.deleteButton, duration: 0.45)
         }
 
-        cell.hideSkeletonAnimation()
+//        cell.hideSkeletonAnimation()
         // Configure the cell...
 
         return cell
@@ -245,8 +245,8 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
         }
 
-        view.hideSkeleton()
-        view.showAnimatedSkeleton()
+//        view.hideSkeleton()
+//        view.showAnimatedSkeleton()
 
         tableView.allowsSelection = false
 
@@ -269,8 +269,8 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
                 self.tableView.reloadData()
             }
             
-            self.view.hideSkeleton()
-            self.view.stopSkeletonAnimation()
+//            self.view.hideSkeleton()
+//            self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
             

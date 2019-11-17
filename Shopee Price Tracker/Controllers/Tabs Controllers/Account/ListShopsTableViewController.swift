@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import NotificationBannerSwift
 
-class ListShopsTableViewController: UITableViewController, SkeletonTableViewDataSource, UISearchResultsUpdating {
+class ListShopsTableViewController: UITableViewController, UISearchResultsUpdating {
 
     // MARK: - Properties
     var searchController: UISearchController!
@@ -35,7 +35,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        view.startSkeletonAnimation()
+//        view.startSkeletonAnimation()
 
         guard listShops != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, listShops![0] == currentShop else {
             fetchDataFromServer()
@@ -80,7 +80,7 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         } else {
             cell.status.isHidden = true
         }
-        cell.hideSkeletonAnimation()
+//        cell.hideSkeletonAnimation()
         return cell
     }
     
@@ -111,13 +111,13 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
         }
     }
     
-    func numSections(in collectionSkeletonView: UITableView) -> Int {
-        return 1
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return "shopCell"
-    }
+//    func numSections(in collectionSkeletonView: UITableView) -> Int {
+//        return 1
+//    }
+//
+//    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+//        return "shopCell"
+//    }
     
     // MARK: - Search Actions
     
@@ -134,8 +134,8 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
     // MARK: - Fetching data from server
     private func fetchDataFromServer(isChangingShop: Bool = false) {
         
-        view.hideSkeleton()
-        view.showAnimatedSkeleton()
+//        view.hideSkeleton()
+//        view.showAnimatedSkeleton()
         
         tableView.allowsSelection = false
 
@@ -180,8 +180,8 @@ class ListShopsTableViewController: UITableViewController, SkeletonTableViewData
                 
             }
             NotificationCenter.default.post(name: .didChangeCurrentShop, object: nil)
-            self.view.hideSkeleton()
-            self.view.stopSkeletonAnimation()
+//            self.view.hideSkeleton()
+//            self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
 
             self.tableView.allowsSelection = true

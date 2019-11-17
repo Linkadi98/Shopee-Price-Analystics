@@ -34,8 +34,8 @@ extension UITableViewController {
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = true
         }
 
-        self.view.hideSkeleton()
-        self.view.stopSkeletonAnimation()
+//        self.view.hideSkeleton()
+//        self.view.stopSkeletonAnimation()
         let noData = UILabel()
         let description = UILabel()
         let view = UIView()

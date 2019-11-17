@@ -57,7 +57,7 @@ class ChosenRivalCell: UITableViewCell{
 //        
 //        NotificationCenter.default.addObserver(self, selector: #selector(storeDidUpdate(_:)), name: name, object: nil)
         
-        showSkeletionAnimation()
+//        showSkeletionAnimation()
     }
     
     @objc private func storeDidUpdate(_ notification: Notification) {
@@ -90,25 +90,25 @@ class ChosenRivalCell: UITableViewCell{
 
     
     
-    func showSkeletionAnimation() {
-        containerView.showSkeleton()
-        productName.showSkeleton()
-        rivalName.showSkeleton()
-        rivalShopRating.showSkeleton()
-        followStatus.showSkeleton()
-        follower.showSkeleton()
-        productPrice.showSkeleton()
-    }
-    
-    func hideSkeletonAnimation() {
-        containerView.hideSkeleton()
-        productName.hideSkeleton()
-        rivalName.hideSkeleton()
-        rivalShopRating.hideSkeleton()
-        followStatus.hideSkeleton()
-        follower.hideSkeleton()
-        productPrice.hideSkeleton()
-    }
+//    func showSkeletionAnimation() {
+//        containerView.showSkeleton()
+//        productName.showSkeleton()
+//        rivalName.showSkeleton()
+//        rivalShopRating.showSkeleton()
+//        followStatus.showSkeleton()
+//        follower.showSkeleton()
+//        productPrice.showSkeleton()
+//    }
+//    
+//    func hideSkeletonAnimation() {
+//        containerView.hideSkeleton()
+//        productName.hideSkeleton()
+//        rivalName.hideSkeleton()
+//        rivalShopRating.hideSkeleton()
+//        followStatus.hideSkeleton()
+//        follower.hideSkeleton()
+//        productPrice.hideSkeleton()
+//    }
     
     
     @IBAction func deleteCell(_ sender: Any) {
