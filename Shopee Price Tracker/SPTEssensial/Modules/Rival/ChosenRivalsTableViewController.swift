@@ -83,11 +83,11 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
             let observation = chosenRivals[indexPath.row].2
 
             cell.productName.text = rival.name
-            cell.productPrice.text = "\(rival.price.convertPriceToVietnameseCurrency()!)"
+            cell.productPrice.text = "\(rival.price!.convertPriceToVietnameseCurrency()!)"
             cell.rivalShopRating.text = String("\(rivalShop.rating)".prefix(3))
             cell.rivalShopRating.rating = rivalShop.rating
             cell.follower.text = "\(rivalShop.followersCount)"
-            self.loadOnlineImage(from: URL(string: rival.image)!, to: cell.productImage)
+            self.loadOnlineImage(from: URL(string: rival.image!)!, to: cell.productImage)
             cell.rivalName.text = rivalShop.shopName
             switch observation.autoUpdate {
             case true:
@@ -187,7 +187,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
 
-            self.deleteRival(myProductId: self.product!.id, myShopId: self.product!.shopId, rivalProductId: deletedId.0, rivalShopId: deletedId.1, completion: { (result) in
+            self.deleteRival(myProductId: self.product!.id!, myShopId: self.product!.shopId!, rivalProductId: deletedId.0!, rivalShopId: deletedId.1!, completion: { (result) in
                 if result == .success {
                     self.presentAlert(title: "Thông báo", message: "Xoá thành công")
                     let indexPath = IndexPath(row: row, section: section)
@@ -250,7 +250,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
 
         tableView.allowsSelection = false
 
-        getChosenRivals(shopId: product!.shopId, productId: product!.id) { (result, chosenRivals) in
+        getChosenRivals(shopId: product!.shopId!, productId: product!.id!) { (result, chosenRivals) in
             guard result != .failed, let chosenRivals = chosenRivals else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Đối thủ của bạn sẽ hiện tại đây")

@@ -184,7 +184,7 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
             let selectedRowOfPicker = self.shopChangePicker.selectedRow(inComponent: 0)
             let rivalProductId = self.chosenRivals![selectedRowOfPicker].0.id
             let rivalShopId = self.chosenRivals![selectedRowOfPicker].0.shopId
-            self.chooseRival(myProductId: self.observation!.productId, myShopId: self.observation!.shopId, rivalProductId: rivalProductId, rivalShopId: rivalShopId, autoUpdate: true, priceDiff: Int(self.priceDiff.text!)!, from: Int(self.minPriceRange.text!)!, to: Int(self.maxPriceRange.text!)!) { (result) in
+            self.chooseRival(myProductId: self.observation!.productId, myShopId: self.observation!.shopId, rivalProductId: rivalProductId!, rivalShopId: rivalShopId!, autoUpdate: true, priceDiff: Int(self.priceDiff.text!)!, from: Int(self.minPriceRange.text!)!, to: Int(self.maxPriceRange.text!)!) { (result) in
                 if result == .success {
                     self.presentAlert(title: "Thông báo", message: "Bật thành công")
 

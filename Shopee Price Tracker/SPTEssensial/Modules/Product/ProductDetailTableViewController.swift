@@ -108,17 +108,17 @@ class ProductDetailTableViewController: UITableViewController, PriceObserveDeleg
             return
         }
         productName.text = product.name
-        productCode.text = String(product.id)
-        soldPrice.text! = String(product.price.convertPriceToVietnameseCurrency()!)
+        productCode.text = String(product.id!)
+        soldPrice.text! = String(product.price!.convertPriceToVietnameseCurrency()!)
         shopName.text = product.shopId
-        configRatingCell(rating: product.rating)
-        loadOnlineImage(from: URL(string: product.image)!, to: productImage)
+        configRatingCell(rating: product.rating!)
+        loadOnlineImage(from: URL(string: product.image!)!, to: productImage)
         brand.text = product.brand
-        category.text = product.categories.last
-        numOfSoldItem.text = String(product.sold)
-        inventoryItem.text = String(product.stock)
-        maxPrice.text = String(product.maxPrice.convertPriceToVietnameseCurrency()!)
-        minPrice.text = String(product.minPrice.convertPriceToVietnameseCurrency()!)
+        category.text = product.categories?.last
+        numOfSoldItem.text = String(product.sold!)
+        inventoryItem.text = String(product.stock!)
+        maxPrice.text = String(product.maxPrice!.convertPriceToVietnameseCurrency()!)
+        minPrice.text = String(product.minPrice!.convertPriceToVietnameseCurrency()!)
         if let discount = product.discount {
             discountPercent.text = discount
         } else {
@@ -126,6 +126,9 @@ class ProductDetailTableViewController: UITableViewController, PriceObserveDeleg
         }
     }
 
+    @IBAction func updateSellingPrice(_ sender: Any) {
+        
+    }
     // MARK: - Config cell content view
     
     private func configCellContentView(for cell: UITableViewCell, firstItem text: String, secondItem rightLabel: UILabel) {

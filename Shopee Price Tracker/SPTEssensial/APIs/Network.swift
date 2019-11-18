@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import NotificationBannerSwift
 
 class Network {
     static let shared = Network()
@@ -57,6 +58,20 @@ class Network {
     // Put list shops (30)
     // Get rivals (30)
     // Get rivals' shops (30)
+}
+
+extension Network {
+    func notifyFailedConnection(error: Error?) {
+        // Show errors
+        if let error = error {
+            print("Error when fetching data: \(error).")
+        } else {
+            print("Unknown error when fetching data.")
+        }
+        
+        // Notify users
+        StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+    }
 }
 
 enum ConnectionResults {

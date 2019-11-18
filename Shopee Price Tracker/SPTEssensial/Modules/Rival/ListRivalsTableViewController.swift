@@ -81,7 +81,7 @@ class ListRivalsTableViewController: UITableViewController {
         let isChosen = listSearchedRivals[indexPath.row].1
         let rivalShop = listRivalsShops[indexPath.row]
         cell.productName.text = rival.name
-        cell.productPrice.text = rival.price.convertPriceToVietnameseCurrency()!
+        cell.productPrice.text = rival.price!.convertPriceToVietnameseCurrency()!
         if isChosen {
             cell.setFollowStatus()
             print("true113")
@@ -89,7 +89,7 @@ class ListRivalsTableViewController: UITableViewController {
             cell.setUnfollowStatus()
             print("false114")
         }
-        loadOnlineImage(from: URL(string: rival.image)!, to: cell.productImage)
+        loadOnlineImage(from: URL(string: rival.image!)!, to: cell.productImage)
         cell.rivalName.text = rivalShop.shopName
         cell.rivalRating.rating = rivalShop.rating
         cell.followersCount.text = "\(String(rivalShop.followersCount))"
@@ -130,7 +130,7 @@ class ListRivalsTableViewController: UITableViewController {
         }
 
         let rival = listSearchedRivals[indexPath.row].0
-        chooseRival(myProductId: product.id, myShopId: product.shopId, rivalProductId: rival.id, rivalShopId: rival.shopId, autoUpdate: false, priceDiff: 0, from: 0, to: 0) { (result) in
+        chooseRival(myProductId: product.id!, myShopId: product.shopId!, rivalProductId: rival.id!, rivalShopId: rival.shopId!, autoUpdate: false, priceDiff: 0, from: 0, to: 0) { (result) in
             if result == .success {
                 cell.setFollowStatus()
                 NotificationCenter.default.post(name: .didChooseRival, object: nil)

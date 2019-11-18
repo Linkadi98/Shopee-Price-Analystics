@@ -10,6 +10,8 @@ import UIKit
 import FBSDKCoreKit
 import GoogleSignIn
 
+import SwipeableTabBarController
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
 
@@ -30,8 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         
         // begin now when user opens app for the first time, after Launch Screen disapearing, Onboarding Screen will be shown instead of login screen like before
         // we provide 2 options for user: 1. skip onboarding and go ahead to login screen 2. user can have a walkthough our app depend on Onboarding Screen
-        let onboardingViewController = mainStoryboard.instantiateViewController(withIdentifier: String(describing: OnboardingViewController.self)) as! OnboardingViewController
+//        let onboardingViewController = mainStoryboard.instantiateViewController(withIdentifier: String(describing: OnboardingViewController.self)) as! OnboardingViewController
         
+        let tabViewController: SwipeableTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
         
         var initialViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController // start in login VC
 
@@ -54,10 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         }
         
 
-        self.window?.rootViewController = initialViewController
+//        self.window?.rootViewController = initialViewController
         
 //        self.window?.rootViewController = onboardingViewController
 
+        // for development purpose
+        self.window?.rootViewController = tabViewController
         self.window?.makeKeyAndVisible()
         
         return true

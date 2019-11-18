@@ -34,7 +34,7 @@ class RivalProductLineChartViewController: UIViewController {
 //        let activityIndicator = startLoading()
         fetchData { (dates, prices, rivalDates, rivalPrices) in
             if dates != nil {
-                aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name, rivalProductName: self.rival!.name, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
+                aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name!, rivalProductName: (self.rival?.name)!, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
             }
 //            self.endLoading(activityIndicator)
             print("Done drawing")
@@ -42,13 +42,13 @@ class RivalProductLineChartViewController: UIViewController {
     }
 
     private func fetchData(completion: @escaping ([String]?, [Int]?, [String]?, [Int]?) -> Void) {
-        priceObservations(productId: product!.id) { (result, dates, prices) in
+        priceObservations(productId: (product?.id)!) { (result, dates, prices) in
             print("670")
             if result == .failed {
                 self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
                 completion(nil, nil, nil, nil)
             } else if result == .success {
-                self.priceObservations(productId: self.rival!.id, completion: { (result2, rivalDates, rivalPrices) in
+                self.priceObservations(productId: (self.rival?.id)!, completion: { (result2, rivalDates, rivalPrices) in
                     print("671")
                     if result == .failed {
                         self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")

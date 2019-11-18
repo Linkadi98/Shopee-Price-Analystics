@@ -81,7 +81,7 @@ class RivalProductTableViewController: UITableViewController {
     }
 
     func update() {
-        priceObservations(productId: rival!.id) { (result, dates, prices) in
+        priceObservations(productId: (rival?.id)!) { (result, dates, prices) in
             print("669")
             if result == .failed {
                 if dates!.isEmpty {

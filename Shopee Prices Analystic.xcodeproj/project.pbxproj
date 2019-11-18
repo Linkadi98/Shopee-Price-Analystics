@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2402E24A2311280A002EC1C2 /* ContainerRivalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402E2492311280A002EC1C2 /* ContainerRivalInfoViewController.swift */; };
 		2403DEE322F4332D00EA0604 /* ShopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */; };
+		2407487523822F0200607903 /* ProductTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407487423822F0200607903 /* ProductTableViewModel.swift */; };
+		240748792382315D00607903 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24074877238230A700607903 /* UserDefaults+Extension.swift */; };
 		240F1D08231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240F1D07231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift */; };
 		24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */; };
 		24120F3D22E05F41000FA0B7 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24120F3C22E05F41000FA0B7 /* Shop.swift */; };
@@ -107,6 +109,8 @@
 		1E4D3A5C32063A608589D690 /* Pods_Shopee_Prices_AnalysticTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopee_Prices_AnalysticTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2402E2492311280A002EC1C2 /* ContainerRivalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerRivalInfoViewController.swift; sourceTree = "<group>"; };
 		2403DEE222F4332D00EA0604 /* ShopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopTableViewCell.swift; sourceTree = "<group>"; };
+		2407487423822F0200607903 /* ProductTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewModel.swift; sourceTree = "<group>"; };
+		24074877238230A700607903 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		240F1D07231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoUpdatePriceHistoryTableViewController.swift; sourceTree = "<group>"; };
 		24120F3A22E04D99000FA0B7 /* ListShopsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListShopsTableViewController.swift; sourceTree = "<group>"; };
 		24120F3C22E05F41000FA0B7 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -478,6 +482,7 @@
 				24E56165230D2DB500914506 /* Int+Extension.swift */,
 				24F2EF2523818B93000CFE40 /* JSONCodable+Extension.swift */,
 				245255C5231633DC003AFBBF /* Notifications.swift */,
+				24074877238230A700607903 /* UserDefaults+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -517,6 +522,7 @@
 				2416494522E1768900B80DBC /* ProductsTableViewController.swift */,
 				241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */,
 				2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */,
+				2407487423822F0200607903 /* ProductTableViewModel.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -766,6 +772,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240748792382315D00607903 /* UserDefaults+Extension.swift in Sources */,
 				24FEBA7023817CFB00654D5D /* ProductsTableViewController.swift in Sources */,
 				2443E3D72381075600919ABA /* RegisterViewController.swift in Sources */,
 				2443E3D62381071D00919ABA /* LoginViewController.swift in Sources */,
@@ -798,6 +805,7 @@
 				2469B6F72307E0B700C77F3A /* NavigationBar+Extension.swift in Sources */,
 				2421730B22FD602800541024 /* RivalTableCell.swift in Sources */,
 				2422105B230E910800E8FBCC /* ChosenRivalsTableViewController.swift in Sources */,
+				2407487523822F0200607903 /* ProductTableViewModel.swift in Sources */,
 				241BC1452303B0140097AB59 /* ChosenProductsTableViewController.swift in Sources */,
 				242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */,
 				242C4FA522F577EE007D4903 /* UIAlertController+Extension.swift in Sources */,

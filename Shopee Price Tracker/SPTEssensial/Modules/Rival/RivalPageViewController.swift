@@ -93,7 +93,7 @@ class RivalPageViewController: UIViewController, PickerNameDelegate {
         // Rival info
         rivalInfoViewController?.fillOutInfo(avatar: rivalShop.image, follower: rivalShop.followersCount, id: rivalShop.shopId, name: rivalShop.shopName, location: rivalShop.place, goodRating: rivalShop.goodRating, badRating: rivalShop.badRating, averageRating: rivalShop.rating)
 
-        rivalInfoViewController?.fillOutProductInfo(image: rival.image, productName: rival.name, numberOfSoldItems: rival.sold, rating: rival.rating)
+        rivalInfoViewController?.fillOutProductInfo(image: rival.image!, productName: rival.name!, numberOfSoldItems: rival.sold!, rating: rival.rating!)
 
         // Rival product
         rivalProductTableViewController?.rival = chosenRival.0

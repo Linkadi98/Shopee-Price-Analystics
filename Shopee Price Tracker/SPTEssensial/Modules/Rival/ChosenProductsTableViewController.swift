@@ -75,7 +75,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         let product = chosenProducts[indexPath.row]
         DispatchQueue.main.async {
             cell.productId.text! = "Mã: \(product.0.id)"
-            self.loadOnlineImage(from: URL(string: product.0.image)!, to: cell.productImage)
+            self.loadOnlineImage(from: URL(string: product.0.image!)!, to: cell.productImage)
             cell.numberOfRival.text = "\(product.1)"
             if product.2 == false {
                 cell.autoChangePriceStatus.backgroundColor = .red
@@ -178,7 +178,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         let alert = UIAlertController(title: "Xoá sản phẩm \(deletedId)?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-            self.deleteRivals(productId: deletedId) { [unowned self](result) in
+            self.deleteRivals(productId: deletedId!) { [unowned self](result) in
                 if result == .success {
                     self.presentAlert(title: "Thông báo", message: "Xoá thành công")
                     let indexPath = IndexPath(row: row, section: section)
@@ -227,35 +227,35 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         tableView.allowsSelection = false
 
         let alert = UIAlertController(title: "Đang tải...", message: nil, preferredStyle: .alert)
-        present(alert, animated: true, completion: nil)
-        getChosenProducts(shopId: self.currentShop!.shopId) { [unowned self] (result, chosenProducts) in
-            guard result != .failed, let chosenProducts = chosenProducts else {
-                self.tableView.reloadData()
-                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
-                alert.dismiss(animated: true, completion: nil)
-                return
-            }
-
-            guard !chosenProducts.isEmpty else {
-                self.tableView.reloadData()
-                self.displayNoDataNotification(title: "Chưa chọn sản phẩm nào", message: "Xin mời quay lại để chọn sản phẩm")
-                alert.dismiss(animated: true, completion: nil)
-                return
-            }
-
-            print("So san pham da chon la: \(chosenProducts.count)")
-            self.chosenProducts = chosenProducts
-            print(chosenProducts[7])
-            DispatchQueue.main.async {
-                alert.dismiss(animated: true, completion: nil)
-                self.tableView.reloadData()
-            }
-
-//            self.view.hideSkeleton()
-//            self.view.stopSkeletonAnimation()
-            self.tableView.backgroundView = nil
-            self.tableView.allowsSelection = true
-        }
+//        present(alert, animated: true, completion: nil)
+//        getChosenProducts(shopId: self.currentShop!.shopId) { [unowned self] (result, chosenProducts) in
+//            guard result != .failed, let chosenProducts = chosenProducts else {
+//                self.tableView.reloadData()
+//                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
+//                alert.dismiss(animated: true, completion: nil)
+//                return
+//            }
+//
+//            guard !chosenProducts.isEmpty else {
+//                self.tableView.reloadData()
+//                self.displayNoDataNotification(title: "Chưa chọn sản phẩm nào", message: "Xin mời quay lại để chọn sản phẩm")
+//                alert.dismiss(animated: true, completion: nil)
+//                return
+//            }
+//
+//            print("So san pham da chon la: \(chosenProducts.count)")
+//            self.chosenProducts = chosenProducts
+//            print(chosenProducts[7])
+//            DispatchQueue.main.async {
+//                alert.dismiss(animated: true, completion: nil)
+//                self.tableView.reloadData()
+//            }
+//
+////            self.view.hideSkeleton()
+////            self.view.stopSkeletonAnimation()
+//            self.tableView.backgroundView = nil
+//            self.tableView.allowsSelection = true
+//        }
     }
     
     // MARK: - Notification
