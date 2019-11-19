@@ -8,21 +8,16 @@
 
 import UIKit
 import NotificationBannerSwift
+import NVActivityIndicatorView
 
 class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
     // MARK: - Properties
-//    @IBOutlet weak var editingButton: UIButton! {
-//        didSet {
-//            editingButton.layer.cornerRadius = 8
-//            editingButton.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
-//        }
-//    }
 
     var vm: ProductTableViewModel!
     var searchController: UISearchController!
     
-    var hasData = false
+    var result: ConnectionResults?
     var isChosenToObservePrice = false
     
     override func viewDidLoad() {
@@ -41,25 +36,19 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         tableView.separatorColor = .none
         tableView.separatorStyle = .none
 
-        configVm(vm: ProductTableViewModel())
-//        if isChosenToObservePrice {
-//            editingButton.setTitle("Quay lại", for: .normal)
-//        }
+        configVm(vm: ProductTableViewModel(productList: Observable(nil), filterProducts: Observable(nil)))
 
-
-        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+        guard var currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
             return
         }
-
-        vm!.currentShop = currentShop
         
         // Notification
         NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        
-        guard vm.productsList != nil else {
+        guard vm.productsList.value != nil else {
             fetchDataFromServer()
             return
         }
@@ -72,25 +61,26 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering(searchController) {
-            return vm.filterProducts?.count ?? 10
+            return vm.filterProducts.value?.count ?? 0
         }
-        return vm.productsList?.count ?? 10
+        return vm.productsList.value?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "productCell", for: indexPath) as! ProductTableViewCell
 
-        guard vm.productsList != nil else {
+        guard vm.productsList.value != nil else {
             return cell
         }
         
         let product: Product
 
         if isFiltering(searchController) {
-            product = vm.filterProducts![indexPath.row]
+            product = vm.filterProducts.value![indexPath.row]
         }
         else {
-            product = vm.productsList![indexPath.row]
+            product = vm.productsList.value![indexPath.row]
         }
 
         DispatchQueue.main.async {
@@ -100,15 +90,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             cell.productCode.text = product.id
         }
         loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
-
-//        cell.hideSkeletonAnimation()
-
-//        if tableView.isEditing {
-//            showEditingPen(at: cell)
-//        }
-//        else {
-//            hideEditingPen(at: cell)
-//        }
 
         return cell
     }
@@ -124,12 +105,12 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let product: Product
         
-        if vm.productsList != nil {
+        if vm.productsList.value != nil {
             if isFiltering(searchController) {
-                product = vm.filterProducts![indexPath.row]
+                product = vm.filterProducts.value![indexPath.row]
             }
             else {
-                product = vm.productsList![indexPath.row]
+                product = vm.productsList.value![indexPath.row]
             }
 
             if isChosenToObservePrice {
@@ -140,80 +121,18 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 return
             }
             
-//            if tableView.isEditing {
-//                presentChangePriceAlert(productIndex: indexPath.row)
-//                print("Cell is selected")
-//            }
-//            else {
-//                performSegue(withIdentifier: "ProductDetail", sender: product)
-//                tableView.deselectRow(at: indexPath, animated: true)
-//            }
-            
         }
     }
     
-//    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-//        return false
-//    }
-//
-//
-//    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-//        return .none
-//    }
-    
-    
-//    // MARK: - Skeleton data source
-//
-//    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-//        return "productTableCell"
-//    }
-//
-//    func numSections(in collectionSkeletonView: UITableView) -> Int {
-//        return 1
-//    }
-
-    // MARK: - Config vm
-    func configVm(vm: ProductTableViewModel) {
-        self.vm = vm
-    }
-
     // MARK: - Search Actions
     func updateSearchResults(for searchController: UISearchController) {
-            if hasData { filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
-                vm.filterProducts = vm.productsList?.filter({(product: Product) -> Bool in
-                    return (product.name?.lowercased().contains(searchText.lowercased()))! || product.id!.lowercased().contains(searchText.lowercased())
-                })
+        if (vm.productsList.value != nil) { filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
+                vm.filterProducts.value = (vm.productsList.value?.filter({(product: Product) -> Bool in
+                    return (product.name!.lowercased().contains(searchText.lowercased())) || product.id!.lowercased().contains(searchText.lowercased())
+                }))!
             }
         }
     }
-    
-    // MARK: - Actions
-    
-//    @IBAction func editingMode(_ sender: Any) {
-//        if isChosenToObservePrice {
-//            navigationController?.popViewController(animated: true)
-//            return
-//        }
-//        if tableView.isEditing {
-//            tableView.setEditing(false, animated: true)
-//
-//            changeTextOfEditingButton(text: "Sửa giá")
-//
-//            for cell in tableView.visibleCells {
-//                let indexPath = tableView.indexPath(for: cell)!
-//                hideEditingPen(at: tableView.cellForRow(at: indexPath)!)
-//            }
-//        }
-//        else {
-//            tableView.setEditing(true, animated: true)
-//            changeTextOfEditingButton(text: "Xong")
-//            tableView.allowsSelection = true
-//            for cell in tableView.visibleCells {
-//                let indexPath: IndexPath = tableView.indexPath(for: cell)!
-//                showEditingPen(at: tableView.cellForRow(at: indexPath)!)
-//            }
-//        }
-//    }
     
     // MARK: - Segue
     
@@ -224,96 +143,25 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
     }
     
-    // MARK: - Editing mode
-    
-//    private func showEditingPen(at cell: UITableViewCell) {
-//        UIView.animate(withDuration: 0.3, animations: {
-//            let editingCell = cell as! ProductTableViewCell
-//            editingCell.editingPen.alpha = 1
-//        })
-//    }
-//
-//    private func hideEditingPen(at cell: UITableViewCell) {
-//        UIView.animate(withDuration: 0.3, animations: {
-//            let editingCell = cell as! ProductTableViewCell
-//            editingCell.editingPen.alpha = 0
-//        })
-//    }
-    
-//    private func presentChangePriceAlert(productIndex: Int) {
-//        let product = listProducts![productIndex]
-//        let alert = UIAlertController(title: "Sản phẩm \(product.name)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
-//        alert.addTextField(configurationHandler: { textfield in
-//            textfield.keyboardType = .numberPad
-//            textfield.borderStyle = .none
-//            textfield.text = String(product.price!)
-//        })
-//
-//        let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
-//        let ok = UIAlertAction(title: "OK", style: .default) { _ in
-//            guard let newPrice = Int(alert.textFields![0].text!), newPrice > 0 else {
-//                self.presentAlert(message: "Xin mời nhập đúng giá")
-//                return
-//            }
-//
-//            guard newPrice != product.price else {
-//                self.presentAlert(message: "Giá không thay đổi")
-//                return
-//            }
-//
-//            let activityIndicator = self.startLoading()
-//            // 39692647/2716282215/595000
-//            self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { [unowned self] result in
-//                switch result {
-//                case .failed:
-//                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-//                case .error:
-//                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-//                case .success:
-//                    self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
-//                    self.listProducts![productIndex].price = newPrice
-//                    self.tableView.reloadRows(at: [IndexPath(row: productIndex, section: 0)], with: .automatic)
-////                default:
-////                    break
-//                }
-//
-//                self.endLoading(activityIndicator)
-//            }
-//        }
-//
-//        alert.addAction(cancel)
-//        alert.addAction(ok)
-//
-//        DispatchQueue.main.async {
-//            self.present(alert, animated: true, completion: nil)
-//        }
-//    }
-    
-//    private func changeTextOfEditingButton(text: String) {
-//        editingButton.setTitle(text, for: .normal)
-//    }
-    
-    // MARK: - Private loading data for this class
-    
-    private func fetchDataFromServer() {
-        for row in 0...self.tableView.numberOfRows(inSection: 0) {
-            self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
-        }
-
-//        view.hideSkeleton()
-//        view.showAnimatedSkeleton()
-        
-        tableView.allowsSelection = false
-        
-        vm.fetchProductFromServer { [unowned self] (result, listProducts) in
-            guard result != .failed else {
+    // MARK: - Config View Model
+    func configVm(vm: ProductTableViewModel) {
+        self.vm = vm
+        vm.productsList.bind { products in
+            guard products?.count != 0 else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
-                self.hasData = false
+                print("bind0")
                 return
             }
-
-            guard result != .error, let listProducts = listProducts else {
+            
+            guard self.result != .error,  let _ = products else {
+                self.tableView.reloadData()
+                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm")
+                print("bind1")
+                return
+            }
+            
+            guard products != nil else {
                 self.tableView.reloadData()
                 let banner = FloatingNotificationBanner(title: "Chưa kết nối đến cửa hàng nào",
                                                         subtitle: "Bấm vào đây để kết nối",
@@ -325,28 +173,47 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                             bannerPosition: .top,
                             cornerRadius: 10)
                 self.displayNoDataNotification(title: "Chưa kết nối cửa hàng nào", message: "Hãy kết nối cửa hàng ở mục Tài khoản")
-                self.hasData = false
+                print("bind2")
+                return
+            }
+            self.tableView.reloadData()
+            self.tableView.backgroundView = nil
+            self.tableView.allowsSelection = true
+        }
+        
+        print("View Model")
+        
+    }
+    
+    // MARK: - Private loading data for this class
+    
+    private func fetchDataFromServer() {
+        print("fetch data")
+        for row in 0...self.tableView.numberOfRows(inSection: 0) {
+            self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
+        }
+        
+        tableView.allowsSelection = false
+        
+        vm.fetchProductFromServer { [unowned self] (result, listProducts) in
+            guard result != .failed else {
+                self.vm.productsList.value = []
+                return
+            }
+
+            guard result != .error, let listProducts = listProducts else {
+                self.vm!.productsList.value = nil
                 return
             }
 
             guard !listProducts.isEmpty else {
-                self.tableView.reloadData()
-                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm")
-                self.hasData = false
+                self.vm!.productsList.value = []
                 return
             }
 
-            print("So san pham la: \(listProducts.count)")
-
             DispatchQueue.main.async {
-                self.vm.productsList = listProducts
-                self.tableView.reloadData()
+                self.vm.productsList.value = listProducts
             }
-            self.hasData = true
-//            self.view.hideSkeleton()
-//            self.view.stopSkeletonAnimation()
-            self.tableView.backgroundView = nil
-            self.tableView.allowsSelection = true
         }
     }
     

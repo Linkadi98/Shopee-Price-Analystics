@@ -237,6 +237,55 @@ class ProductDetailTableViewController: UITableViewController, PriceObserveDeleg
         present(option, animated: true, completion: nil)
     }
     
+//    private func presentChangePriceAlert(productIndex: Int) {
+        //        let product = listProducts![productIndex]
+        //        let alert = UIAlertController(title: "Sản phẩm \(product.name)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
+        //        alert.addTextField(configurationHandler: { textfield in
+        //            textfield.keyboardType = .numberPad
+        //            textfield.borderStyle = .none
+        //            textfield.text = String(product.price!)
+        //        })
+        //
+        //        let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
+        //        let ok = UIAlertAction(title: "OK", style: .default) { _ in
+        //            guard let newPrice = Int(alert.textFields![0].text!), newPrice > 0 else {
+        //                self.presentAlert(message: "Xin mời nhập đúng giá")
+        //                return
+        //            }
+        //
+        //            guard newPrice != product.price else {
+        //                self.presentAlert(message: "Giá không thay đổi")
+        //                return
+        //            }
+        //
+        //            let activityIndicator = self.startLoading()
+        //            // 39692647/2716282215/595000
+        //            self.updatePrice(shopId: product.shopId!, productId: product.id!, newPrice: newPrice) { [unowned self] result in
+        //                switch result {
+        //                case .failed:
+        //                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+        //                case .error:
+        //                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+        //                case .success:
+        //                    self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
+        //                    self.listProducts![productIndex].price = newPrice
+        //                    self.tableView.reloadRows(at: [IndexPath(row: productIndex, section: 0)], with: .automatic)
+        ////                default:
+        ////                    break
+        //                }
+        //
+        //                self.endLoading(activityIndicator)
+        //            }
+        //        }
+        //
+        //        alert.addAction(cancel)
+        //        alert.addAction(ok)
+        //
+        //        DispatchQueue.main.async {
+        //            self.present(alert, animated: true, completion: nil)
+        //        }
+        //    }
+    
     // MARK: - Pass data
     func getProduct() -> Product {
         return product!

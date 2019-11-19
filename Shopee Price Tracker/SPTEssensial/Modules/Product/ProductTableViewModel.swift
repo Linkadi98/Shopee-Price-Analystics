@@ -10,9 +10,9 @@ import Foundation
 
 class ProductTableViewModel {
     
-    var currentShop: Shop?
-    var productsList: [Product]?
-    var filterProducts: [Product]?
+//    var currentShop: Observable<Shop>
+    var productsList: Observable<[Product]?>
+    var filterProducts: Observable<[Product]?>
         
     func fetchProductFromServer(completion: @escaping (ConnectionResults, [Product]?) -> Void) {
         ProductApiService.getListProducts(completion: completion)
@@ -20,5 +20,10 @@ class ProductTableViewModel {
     
     func updateProductPrice(shopId: String, productId: String, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
         ProductApiService.updatePrice(shopId: shopId, productId: productId, newPrice: newPrice, completion: completion)
+    }
+    
+    init(productList: Observable<[Product]?>, filterProducts: Observable<[Product]?>) {
+        self.productsList = productList
+        self.filterProducts = filterProducts
     }
 }

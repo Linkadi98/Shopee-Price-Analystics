@@ -57,6 +57,7 @@
 		2484175022D85D810009DF10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2484174F22D85D810009DF10 /* Assets.xcassets */; };
 		2484175322D85D810009DF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2484175122D85D810009DF10 /* LaunchScreen.storyboard */; };
 		2484175E22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */; };
+		249868212383BAA60083B7BA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249868202383BAA60083B7BA /* Observable.swift */; };
 		24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */; };
 		24DF4B542313E16400B4688E /* StatisticPriceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF4B532313E16400B4688E /* StatisticPriceTableViewController.swift */; };
 		24E56166230D2DB500914506 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E56165230D2DB500914506 /* Int+Extension.swift */; };
@@ -162,6 +163,7 @@
 		2484175922D85D810009DF10 /* Shopee Prices AnalysticTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Shopee Prices AnalysticTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopee_Prices_AnalysticTests.swift; sourceTree = "<group>"; };
 		2484175F22D85D810009DF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		249868202383BAA60083B7BA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		24DF4B532313E16400B4688E /* StatisticPriceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticPriceTableViewController.swift; sourceTree = "<group>"; };
 		24E56165230D2DB500914506 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -382,6 +384,14 @@
 			path = "Shopee Prices AnalysticTests";
 			sourceTree = "<group>";
 		};
+		2498681F2383BA860083B7BA /* Observable */ = {
+			isa = PBXGroup;
+			children = (
+				249868202383BAA60083B7BA /* Observable.swift */,
+			);
+			path = Observable;
+			sourceTree = "<group>";
+		};
 		24BED25E2381900400B3FC2E /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,6 +540,7 @@
 		24FEBA6D23817C6000654D5D /* SPTEssensial */ = {
 			isa = PBXGroup;
 			children = (
+				2498681F2383BA860083B7BA /* Observable */,
 				24BED25F2381907600B3FC2E /* View */,
 				2459135722E2C01800D51A4B /* Delegates */,
 				24BED25E2381900400B3FC2E /* Components */,
@@ -819,6 +830,7 @@
 				24DF4B542313E16400B4688E /* StatisticPriceTableViewController.swift in Sources */,
 				2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */,
 				2456D61C231691AA000109E8 /* PickerNameDelegate.swift in Sources */,
+				249868212383BAA60083B7BA /* Observable.swift in Sources */,
 				BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
 				2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */,
