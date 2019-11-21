@@ -655,62 +655,6 @@ extension UIViewController {
     }
 }
 
-// Product APIs
-extension UIViewController {
-    // put list products from DB
-    func putListProducts(completion: @escaping (ConnectionResults, [Product]?) -> Void) {
-        let sharedNetwork = Network.shared
-        var url = URL(string: "https://google.com")!
-        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-            // No products because account doesn't have any shop
-            completion(.error, nil)
-            return
-        }
-
-        url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil, timeoutInterval: 60).responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil)
-                return
-            }
-
-            //Successful request
-            var listProducts: [Product] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                listProducts.append(self.decodeProductJson(value: value))
-            }
-            completion(.success, listProducts)
-        }
-    }
-
-    // update price
-    func updatePrice(shopId: String, productId: String, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
-
-        print("Sua gia \(url)")
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-//                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed)
-                return
-            }
-
-            //Successful request
-            let responseValue = response.result.value! as! [String: Any]
-            if let _ = responseValue["price"] as? Int {
-                completion(.success)
-            } else {
-                completion(.error)
-            }
-        }
-    }
-}
 
 // Rival API
 extension UIViewController {

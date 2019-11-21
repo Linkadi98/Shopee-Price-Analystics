@@ -18,9 +18,6 @@ class ProductTableViewModel {
         ProductApiService.getListProducts(completion: completion)
     }
     
-    func updateProductPrice(shopId: String, productId: String, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
-        ProductApiService.updatePrice(shopId: shopId, productId: productId, newPrice: newPrice, completion: completion)
-    }
     
     init(productList: Observable<[Product]?>, filterProducts: Observable<[Product]?>) {
         self.productsList = productList

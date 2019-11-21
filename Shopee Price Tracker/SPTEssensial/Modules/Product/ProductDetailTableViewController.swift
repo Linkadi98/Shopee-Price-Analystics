@@ -9,11 +9,10 @@
 import UIKit
 import Cosmos
 
-class ProductDetailTableViewController: UITableViewController, PriceObserveDelegate {
+class ProductDetailTableViewController: UITableViewController {
 
     // MARK: - Properties
-    var product: Product?
-    var currentShop: Shop?
+    var vm: ProductTableViewDetailViewModel?
 
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productCode: UILabel!
@@ -82,27 +81,31 @@ class ProductDetailTableViewController: UITableViewController, PriceObserveDeleg
         guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
             return
         }
+        
+        configViewModel()
 
-        self.currentShop = currentShop
-//        configRatingCell(rating: 3.4)
     }
 
 
     override func viewDidAppear(_ animated: Bool) {
-        print("So VC: \(navigationController?.viewControllers.count)")
-        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-            return
+//        print("So VC: \(navigationController?.viewControllers.count)")
+//        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+//            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+//            return
+//        }
+//
+//        if product?.shopId != currentShop.shopId {
+//            self.navigationController?.popToRootViewController(animated: true)
+//        }
+    }
+    
+    func configViewModel() {
+        self.vm?.product.bindAndFire { product in
+            self.update(product)
         }
-
-        if product?.shopId != currentShop.shopId {
-            self.navigationController?.popToRootViewController(animated: true)
-        }
-
-        update()
     }
 
-    private func update() {
+    private func update(_ product: Product?) {
         guard let product = product else {
             self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
             return
@@ -209,33 +212,33 @@ class ProductDetailTableViewController: UITableViewController, PriceObserveDeleg
     }
 
     
-    @IBAction func observeOption(_ sender: Any) {
-        
-        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let priceOption = UIAlertAction(title: "Thống kê giá sản phẩm này", style: .default, handler: { (action) in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil, userInfo: ["product": self.product!])
-            self.tabBarController?.selectedIndex = 2
-            let navigationVC = self.tabBarController?.selectedViewController as! UINavigationController
-            self.stVC = navigationVC.viewControllers.first as! StatisticalPriceTableViewController
-            self.stVC?.delegate = self
-        })
-        
-        let rivalOption = UIAlertAction(title: "Xem đối thủ sản phẩm này", style: .default, handler: { [unowned self] (action) in
-            let listRivalVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: ListRivalsTableViewController.self)) as! ListRivalsTableViewController
-            listRivalVC.product = self.product
-            self.navigationController?.pushViewController(listRivalVC, animated: true)
-        })
-        
-        
-        let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
-        
-        
-        option.addAction(priceOption)
-        option.addAction(rivalOption)
-        option.addAction(cancel)
-        
-        present(option, animated: true, completion: nil)
-    }
+//    @IBAction func observeOption(_ sender: Any) {
+//
+//        let option = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//        let priceOption = UIAlertAction(title: "Thống kê giá sản phẩm này", style: .default, handler: { (action) in
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil, userInfo: ["product": self.product!])
+//            self.tabBarController?.selectedIndex = 2
+//            let navigationVC = self.tabBarController?.selectedViewController as! UINavigationController
+//            self.stVC = navigationVC.viewControllers.first as! StatisticalPriceTableViewController
+//            self.stVC?.delegate = self
+//        })
+//
+//        let rivalOption = UIAlertAction(title: "Xem đối thủ sản phẩm này", style: .default, handler: { [unowned self] (action) in
+//            let listRivalVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: ListRivalsTableViewController.self)) as! ListRivalsTableViewController
+//            listRivalVC.product = self.product
+//            self.navigationController?.pushViewController(listRivalVC, animated: true)
+//        })
+//
+//
+//        let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
+//
+//
+//        option.addAction(priceOption)
+//        option.addAction(rivalOption)
+//        option.addAction(cancel)
+//
+//        present(option, animated: true, completion: nil)
+//    }
     
 //    private func presentChangePriceAlert(productIndex: Int) {
         //        let product = listProducts![productIndex]
@@ -287,9 +290,9 @@ class ProductDetailTableViewController: UITableViewController, PriceObserveDeleg
         //    }
     
     // MARK: - Pass data
-    func getProduct() -> Product {
-        return product!
-    }
+//    func getProduct() -> Product {
+//        return product!
+//    }
     
     
     
@@ -298,3 +301,4 @@ class ProductDetailTableViewController: UITableViewController, PriceObserveDeleg
 enum NumberStar: Int {
     case one = 1, two, three, four, five
 }
+

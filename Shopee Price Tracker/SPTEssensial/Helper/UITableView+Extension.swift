@@ -29,7 +29,7 @@ extension UITableViewController {
         return searchController.isActive && !isEmptySearchBar(searchController)
     }
     
-    public func displayNoDataNotification(title: String, message: String) {
+    public func displayNoDataNotification(title: String, message: String, action: UIButton? = nil) {
         for row in 0...self.tableView.numberOfRows(inSection: 0) {
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = true
         }
@@ -60,6 +60,14 @@ extension UITableViewController {
             make.trailing.equalToSuperview().inset(10)
             make.center.equalToSuperview()
         })
+        
+        if let action = action {
+            view.addSubview(action)
+            action.snp.makeConstraints { make in
+                make.bottom.equalTo(stackView).inset(-50)
+                make.centerX.equalToSuperview()
+            }
+        }
         
         self.tableView.separatorStyle = .none
         self.tableView.backgroundView = view

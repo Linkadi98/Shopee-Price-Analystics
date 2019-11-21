@@ -137,9 +137,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            return
+        }
+        
         if segue.identifier == "ProductDetail" {
             let vc = segue.destination as! ProductDetailTableViewController
-            vc.product = (sender as! Product)
+            vc.vm?.product.value = sender as! Product
         }
     }
     
@@ -156,7 +160,12 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             
             guard self.result != .error,  let _ = products else {
                 self.tableView.reloadData()
-                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm")
+                let action = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+                action.setTitle("Kết nối cửa hàng", for: .normal)
+                action.backgroundColor = .orange
+                action.layer.cornerRadius = 5
+                
+                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm", action: action)
                 print("bind1")
                 return
             }
@@ -172,7 +181,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 banner.show(queuePosition: .back,
                             bannerPosition: .top,
                             cornerRadius: 10)
-                self.displayNoDataNotification(title: "Chưa kết nối cửa hàng nào", message: "Hãy kết nối cửa hàng ở mục Tài khoản")
+                let action = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+                action.setTitle("Kết nối cửa hàng", for: .normal)
+                action.backgroundColor = .blue
+
+                self.displayNoDataNotification(title: "Chưa kết nối cửa hàng nào", message: "Hãy kết nối cửa hàng ở mục Tài khoản", action: action)
                 print("bind2")
                 return
             }

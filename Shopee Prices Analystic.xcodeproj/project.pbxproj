@@ -49,7 +49,6 @@
 		24631A6F2314D04D00295264 /* AutoUpdateHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24631A6E2314D04D00295264 /* AutoUpdateHistoryCell.swift */; };
 		2469B6F32307CD1400C77F3A /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F22307CD1400C77F3A /* OnboardingViewController.swift */; };
 		2469B6F72307E0B700C77F3A /* NavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */; };
-		2478557723086A2100EBA0E3 /* ProductNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */; };
 		2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */; };
 		2478C65722DDD50D00DA6D8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65622DDD50D00DA6D8E /* User.swift */; };
 		2484174922D85D800009DF10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484174822D85D800009DF10 /* AppDelegate.swift */; };
@@ -58,6 +57,7 @@
 		2484175322D85D810009DF10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2484175122D85D810009DF10 /* LaunchScreen.storyboard */; };
 		2484175E22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */; };
 		249868212383BAA60083B7BA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249868202383BAA60083B7BA /* Observable.swift */; };
+		249868242383F21A0083B7BA /* ProductTableViewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249868222383F1700083B7BA /* ProductTableViewDetailViewModel.swift */; };
 		24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */; };
 		24DF4B542313E16400B4688E /* StatisticPriceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF4B532313E16400B4688E /* StatisticPriceTableViewController.swift */; };
 		24E56166230D2DB500914506 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E56165230D2DB500914506 /* Int+Extension.swift */; };
@@ -150,7 +150,6 @@
 		24631A6E2314D04D00295264 /* AutoUpdateHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoUpdateHistoryCell.swift; sourceTree = "<group>"; };
 		2469B6F22307CD1400C77F3A /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		2469B6F62307E0B700C77F3A /* NavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar+Extension.swift"; sourceTree = "<group>"; };
-		2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductNavigationViewController.swift; sourceTree = "<group>"; };
 		2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		2478C65622DDD50D00DA6D8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2484174522D85D800009DF10 /* Shopee Prices Analystic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopee Prices Analystic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +163,7 @@
 		2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopee_Prices_AnalysticTests.swift; sourceTree = "<group>"; };
 		2484175F22D85D810009DF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		249868202383BAA60083B7BA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		249868222383F1700083B7BA /* ProductTableViewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewDetailViewModel.swift; sourceTree = "<group>"; };
 		24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
 		24DF4B532313E16400B4688E /* StatisticPriceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticPriceTableViewController.swift; sourceTree = "<group>"; };
 		24E56165230D2DB500914506 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -528,11 +528,11 @@
 		24FEBA6B23817B3D00654D5D /* Product */ = {
 			isa = PBXGroup;
 			children = (
-				24F2EF2123818ADE000CFE40 /* Model */,
-				2416494522E1768900B80DBC /* ProductsTableViewController.swift */,
-				241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */,
-				2478557623086A2100EBA0E3 /* ProductNavigationViewController.swift */,
 				2407487423822F0200607903 /* ProductTableViewModel.swift */,
+				2416494522E1768900B80DBC /* ProductsTableViewController.swift */,
+				249868222383F1700083B7BA /* ProductTableViewDetailViewModel.swift */,
+				241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */,
+				24F2EF2123818ADE000CFE40 /* Model */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -783,11 +783,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				249868242383F21A0083B7BA /* ProductTableViewDetailViewModel.swift in Sources */,
 				240748792382315D00607903 /* UserDefaults+Extension.swift in Sources */,
 				24FEBA7023817CFB00654D5D /* ProductsTableViewController.swift in Sources */,
 				2443E3D72381075600919ABA /* RegisterViewController.swift in Sources */,
 				2443E3D62381071D00919ABA /* LoginViewController.swift in Sources */,
-				2478557723086A2100EBA0E3 /* ProductNavigationViewController.swift in Sources */,
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
 				2436165922EA0565006C7C66 /* AccoutDetailTableViewController.swift in Sources */,
 				BC0FB3A322F7C02C00968E68 /* Network.swift in Sources */,
