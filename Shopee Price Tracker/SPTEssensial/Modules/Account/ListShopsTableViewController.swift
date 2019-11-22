@@ -179,7 +179,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
                 self.tabBarController?.selectedIndex = 0
                 
             }
-            NotificationCenter.default.post(name: .didChangeCurrentShop, object: nil)
+            
 //            self.view.hideSkeleton()
 //            self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil

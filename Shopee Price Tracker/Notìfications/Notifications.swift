@@ -9,6 +9,7 @@
 import Foundation
 
 extension Notification.Name {
+    
     static let didChangeCurrentShop = Notification.Name(rawValue: "didChangeCurrentShop")
     
     static let didSignedInApp = Notification.Name(rawValue: "didSignedInApp")
@@ -22,4 +23,6 @@ extension Notification.Name {
     static let didChooseRival = Notification.Name(rawValue: "didChooseRival")
 
     static let didDeleteARival = Notification.Name(rawValue: "didDeleteARival")
+    
+    static let didUpdateProductPrice = Notification.Name(rawValue: "didUpdateProductPrice")
 }

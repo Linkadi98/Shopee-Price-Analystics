@@ -44,6 +44,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         // Notification
         NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onUpdatePrice()), name: .didUpdateProductPrice, object: nil)
         
     }
 
@@ -202,6 +203,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     private func fetchDataFromServer() {
         print("fetch data")
+        
         for row in 0...self.tableView.numberOfRows(inSection: 0) {
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
         }
@@ -241,6 +243,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         fetchDataFromServer()
         tableView.refreshControl?.endRefreshing()
     }
+    
+    @objc func onUpdatePrice() {
+        fetchDataFromServer()
+    }
+    
 }
 
 extension UIView {

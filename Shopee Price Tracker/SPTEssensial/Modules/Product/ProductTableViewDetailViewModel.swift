@@ -20,4 +20,8 @@ class ProductTableViewDetailViewModel {
         self.product = product
         self.currentShop = currentShop
     }
+    
+    func updatePrice(newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
+        ProductApiService.updatePrice(shopId: currentShop.value.shopId, productId: product.value.id!, newPrice: newPrice, completion: completion)
+    }
 }
