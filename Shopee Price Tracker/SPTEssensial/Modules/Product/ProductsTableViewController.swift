@@ -44,7 +44,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         
         // Notification
         NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onUpdatePrice()), name: .didUpdateProductPrice, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onUpdatePrice(_ :)), name: .didUpdateProductPrice, object: nil)
         
     }
 
@@ -85,7 +85,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
 
         DispatchQueue.main.async {
-            cell.productName.text = "\(String(describing: product.name))"
+            cell.productName.text = "\(String(describing: product.name!))"
             cell.cosmos.rating = product.rating!
             cell.productPrice.text = product.price!.convertPriceToVietnameseCurrency()
             cell.productCode.text = product.id
@@ -122,6 +122,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 return
             }
             
+            performSegue(withIdentifier: "ProductDetail", sender: product)
         }
     }
     
@@ -138,20 +139,18 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     // MARK: - Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-            return
-        }
-        
         if segue.identifier == "ProductDetail" {
-            let vc = segue.destination as! ProductDetailTableViewController
-            vc.vm?.product.value = sender as! Product
+            let vc = segue.destination as! ProductTableContainerViewController
+            vc.vm = ProductTableContainerViewModel()
+            vc.vm!.product = Observable(sender as! Product)
+            print(vc.vm?.product?.value)
         }
     }
     
     // MARK: - Config View Model
     func configVm(vm: ProductTableViewModel) {
         self.vm = vm
-        vm.productsList.bind { products in
+        self.vm.productsList.bind { products in
             guard products?.count != 0 else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
@@ -217,7 +216,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             guard result != .error, let listProducts = listProducts else {
-                self.vm!.productsList.value = nil
+                self.vm!.productsList.value = [Product(id: "001", shopId: "001", name: "san pham", price: 100, rating: 5, image: "abc", categories: [], brand: "brand", sold: 100, stock: 100, discount: "100", maxPrice: 100, minPrice: 100, inventory: 100, ratingArray: [0,1,1,1,1], soldPrice: "1000")]
                 return
             }
 
@@ -244,7 +243,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         tableView.refreshControl?.endRefreshing()
     }
     
-    @objc func onUpdatePrice() {
+    @objc func onUpdatePrice(_ notification: Notification) {
         fetchDataFromServer()
     }
     

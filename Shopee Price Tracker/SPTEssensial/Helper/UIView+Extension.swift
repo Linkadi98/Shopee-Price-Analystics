@@ -10,12 +10,13 @@ import UIKit
 
 extension UIView {
     
-    func setShadow() {
-        layer.cornerRadius = 8
+    func setShadow(cornerRadius: CGFloat = 8, shadowRadius: CGFloat = 5, shadowOffset: CGSize = CGSize(width: 0, height: 0.5)) {
+        layer.cornerRadius = cornerRadius
         layer.shadowOpacity = 0.2
-        layer.shadowRadius = 5
-        layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        layer.shadowRadius = shadowRadius
+        layer.shadowOffset = shadowOffset
     }
+    
     
     func setShadowForButtonOnboarding() {
         layer.cornerRadius = frame.height / 2

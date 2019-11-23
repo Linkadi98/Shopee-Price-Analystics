@@ -10,18 +10,16 @@ import Foundation
 
 class ProductTableViewDetailViewModel {
     var product: Observable<Product>
-    var currentShop: Observable<Shop>
     
     func updateProductPrice(shopId: String, productId: String, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
         ProductApiService.updatePrice(shopId: shopId, productId: productId, newPrice: newPrice, completion: completion)
     }
     
-    init(product: Observable<Product>, currentShop: Observable<Shop>) {
+    init(product: Observable<Product>) {
         self.product = product
-        self.currentShop = currentShop
     }
     
     func updatePrice(newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
-        ProductApiService.updatePrice(shopId: currentShop.value.shopId, productId: product.value.id!, newPrice: newPrice, completion: completion)
+//        ProductApiService.updatePrice(shopId: currentShop.value.shopId, productId: product.value.id!, newPrice: newPrice, completion: completion)
     }
 }

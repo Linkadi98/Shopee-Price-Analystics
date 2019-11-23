@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SPTPopupView" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="gKn-Hs-HAZ" id="ASN-Dw-xpg"/>
+                <outlet property="listCompetitors" destination="25u-kd-1Sg" id="YUF-Zs-e9y"/>
+                <outlet property="observeProductPrice" destination="ezk-Ls-owC" id="wlC-Bw-yz2"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="gKn-Hs-HAZ">
+            <rect key="frame" x="0.0" y="0.0" width="481" height="253"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="sMq-ob-TLc">
+                    <rect key="frame" x="0.0" y="0.0" width="481" height="253"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezk-Ls-owC">
+                            <rect key="frame" x="0.0" y="0.0" width="481" height="125.5"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="Theo dõi giá sản phẩm này">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="observeProductPrice:" destination="-1" eventType="touchUpInside" id="IKC-gM-iIX"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25u-kd-1Sg">
+                            <rect key="frame" x="0.0" y="127.5" width="481" height="125.5"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="84" id="MZ1-Ir-Rfp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="Cửa hàng có cùng loại sản phẩm">
+                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="getListCompetitors:" destination="-1" eventType="touchUpInside" id="lvV-66-HLb"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="gO9-CF-cuv" firstAttribute="trailing" secondItem="sMq-ob-TLc" secondAttribute="trailing" id="Ihn-XO-EbG"/>
+                <constraint firstItem="sMq-ob-TLc" firstAttribute="leading" secondItem="gO9-CF-cuv" secondAttribute="leading" id="VFY-Kq-a8f"/>
+                <constraint firstItem="sMq-ob-TLc" firstAttribute="top" secondItem="gKn-Hs-HAZ" secondAttribute="top" id="ZU9-Hd-0f3"/>
+                <constraint firstAttribute="bottom" secondItem="sMq-ob-TLc" secondAttribute="bottom" id="gWB-oV-JC4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="gO9-CF-cuv"/>
+            <point key="canvasLocation" x="1041" y="276"/>
+        </view>
+    </objects>
+</document>

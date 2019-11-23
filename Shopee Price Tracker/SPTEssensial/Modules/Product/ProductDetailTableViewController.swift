@@ -17,7 +17,6 @@ class ProductDetailTableViewController: UITableViewController {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productName: UILabel!
-    @IBOutlet weak var shopName: UILabel!
     var category: UILabel!
     var brand: UILabel!
     var numOfSoldItem: UILabel!
@@ -78,33 +77,22 @@ class ProductDetailTableViewController: UITableViewController {
         configCellContentView(for: soldItemCell, firstItem: "Đã bán", secondItem: numOfSoldItem)
         configCellContentView(for: inventoryCell, firstItem: "Tồn kho", secondItem: inventoryItem)
 
-        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-            return
-        }
+//        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+//            return
+//        }
         
         configViewModel()
 
     }
 
 
-    override func viewDidAppear(_ animated: Bool) {
-//        print("So VC: \(navigationController?.viewControllers.count)")
-//        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-//            self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-//            return
-//        }
-//
-//        if product?.shopId != currentShop.shopId {
-//            self.navigationController?.popToRootViewController(animated: true)
-//        }
-    }
-    
     func configViewModel() {
         self.vm?.product.bindAndFire { product in
+            print(product)
             self.update(product)
         }
     }
-
+    
     private func update(_ product: Product?) {
         guard let product = product else {
             self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
@@ -113,7 +101,6 @@ class ProductDetailTableViewController: UITableViewController {
         productName.text = product.name
         productCode.text = String(product.id!)
         soldPrice.text! = String(product.price!.convertPriceToVietnameseCurrency()!)
-        shopName.text = product.shopId
         configRatingCell(rating: product.rating!)
         loadOnlineImage(from: URL(string: product.image!)!, to: productImage)
         brand.text = product.brand
@@ -130,10 +117,11 @@ class ProductDetailTableViewController: UITableViewController {
     }
 
     @IBAction func updateSellingPrice(_ sender: Any) {
-        
+        changePrice(of: (vm?.product.value)!)
     }
-    // MARK: - Config cell content view
     
+    
+    // MARK: - Config cell content view
     private func configCellContentView(for cell: UITableViewCell, firstItem text: String, secondItem rightLabel: UILabel) {
         let view = cell.contentView
         let leftLabel = UILabel()
