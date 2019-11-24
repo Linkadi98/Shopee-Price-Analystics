@@ -20,6 +20,7 @@ class SPTPopupView: UIView, SPTPopupViewProtocol {
 
     let XIB_NAME = "SPTPopupView"
     var buttonTitle: Observable<String>!
+    var delegate: SPTPopupViewButtonProtocol?
     
     @IBOutlet var contentView: UIView!
     
@@ -44,8 +45,10 @@ class SPTPopupView: UIView, SPTPopupViewProtocol {
             contentView.frame = self.bounds
             contentView.autoresizingMask = [.flexibleHeight,
                                             .flexibleWidth]
-            contentView.setShadow(cornerRadius: 8, shadowRadius: 1, shadowOffset: CGSize(width: 0, height: -3))
-            
+            contentView.layer.cornerRadius = 10
+            contentView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+            observeProductPrice.layer.cornerRadius = 10
+            observeProductPrice.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         }
     }
     
@@ -55,7 +58,7 @@ class SPTPopupView: UIView, SPTPopupViewProtocol {
     }
     
     @IBAction func observeProductPrice(_ sender: Any) {
-        buttonTitle.value = "Theo dõi giá của sản phẩm này"
+        buttonTitle.value = "Theo dõi giá sản phẩm này"
         hidePopup()
     }
     
@@ -63,12 +66,21 @@ class SPTPopupView: UIView, SPTPopupViewProtocol {
         return buttonTitle.value
     }
     
-    private func hidePopup() {
+    func hidePopup() {
         UIView.animate(withDuration: 0.25, animations: {
             self.transform = CGAffineTransform(translationX: 0, y: 100)
-        }, completion: { _ in
-            self.isHidden = true
         })
+    }
+    
+    func selectedButton() {
+        let title = delegate?.getSelectButton()
+        
+        switch title {
+        case "Theo dõi giá sản phẩm này":
+            observeProductPrice.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+        default:
+            listCompetitors.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+        }
     }
 }
 

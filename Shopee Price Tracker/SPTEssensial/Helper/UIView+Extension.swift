@@ -65,7 +65,33 @@ extension UIView {
         
     }
     
+//    func setCorners(cornerRadius: CGFloat = 10, _ corners: [Corners]) {
+//        
+//        layer.cornerRadius = cornerRadius
+//        
+//        var maskedCorners = [CACornerMask]()
+//        
+//        for corner in corners {
+//            switch corner {
+//            case .topLeft:
+//                maskedCorners.append(.layerMinXMinYCorner)
+//            case .topRight:
+//                maskedCorners.append(.layerMaxXMinYCorner)
+//            case .bottomLeft:
+//                maskedCorners.append(.layerMaxXMinYCorner)
+//            case .bottomRight:
+//                maskedCorners.append(.layerMaxXMaxYCorner)
+//            }
+//        }
+//        
+//        layer.maskedCorners = 
+//    }
     
     
     
+    
+}
+
+enum Corners {
+    case topLeft, topRight, bottomLeft, bottomRight
 }

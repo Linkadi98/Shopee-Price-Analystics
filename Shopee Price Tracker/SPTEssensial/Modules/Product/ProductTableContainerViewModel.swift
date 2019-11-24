@@ -8,18 +8,15 @@
 
 import Foundation
 
-protocol ProductTableContainerProtocol {
-    func getProduct() -> Product
-}
 
 class ProductTableContainerViewModel {
     var product: Observable<Product>?
     
-    var delegate: ProductTableContainerProtocol?
+    func observeProductPrice() {
+        // TODO:
+    }
     
-    func setProduct() {
-        if let product = delegate?.getProduct() {
-            self.product?.value = product
-        }
+    func getCompetitorsHasSameProduct() {
+        // TODO:
     }
 }
