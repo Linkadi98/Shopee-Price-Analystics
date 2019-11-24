@@ -11,13 +11,13 @@ import NotificationBannerSwift
 
 class ListRivalsTableViewController: UITableViewController {
 
-    var product: Product?
-    var listSearchedRivals: [(Product, Bool)]?
-    var listRivalsShops: [Shop]?
-
+    var vm: ListRivalsViewModel?
+    
     var isFirstAppear = true
     var hasData = false
     var numberOfRivals: Int?
+    
+    let CELL_XIB_NAME = "SPTCompetitorProductCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +27,7 @@ class ListRivalsTableViewController: UITableViewController {
         
         tableView.separatorStyle = .none
         
-    }
-
-
-    override func viewWillAppear(_ animated: Bool) {
-//        view.startSkeletonAnimation()
-        
+        tableView.register(UINib(nibName: CELL_XIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_XIB_NAME)
         
     }
 
@@ -52,10 +47,6 @@ class ListRivalsTableViewController: UITableViewController {
             fetchDataFromServer()
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-//        tableView.layoutSkeletonIfNeeded()
-    }
 
     // MARK: - Table view data source
 
@@ -72,35 +63,24 @@ class ListRivalsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RivalCell", for: indexPath) as! RivalTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_XIB_NAME, for: indexPath) as! SPTCompetitorProductCell
         guard let listSearchedRivals = listSearchedRivals, let listRivalsShops =  listRivalsShops else {
             return cell
         }
 
-        let rival = listSearchedRivals[indexPath.row].0
+        let rivalProduct = listSearchedRivals[indexPath.row].0
         let isChosen = listSearchedRivals[indexPath.row].1
         let rivalShop = listRivalsShops[indexPath.row]
-        cell.productName.text = rival.name
-        cell.productPrice.text = rival.price!.convertPriceToVietnameseCurrency()!
-        if isChosen {
-            cell.setFollowStatus()
-            print("true113")
-        } else {
-            cell.setUnfollowStatus()
-            print("false114")
-        }
-        loadOnlineImage(from: URL(string: rival.image!)!, to: cell.productImage)
-        cell.rivalName.text = rivalShop.shopName
-        cell.rivalRating.rating = rivalShop.rating
-        cell.followersCount.text = "\(String(rivalShop.followersCount))"
         
-//        cell.hideSkeletonAnimation()
-        
+        cell.competitorProductName.text = rivalProduct.name
+        cell.competitorProductPrice.text = String(describing: rivalProduct.price)
+        cell.competitorAddress.text = rivalShop.shopName
+        cell.changeFollowingStatus(isSelectedToObserve: isChosen)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 188.0
+        return 135.0
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -143,11 +123,8 @@ class ListRivalsTableViewController: UITableViewController {
     private func fetchDataFromServer() {
         tableView.reloadData()
 
-//        view.hideSkeleton()
-//        view.showAnimatedSkeleton()
-
-        var doneloadingRivals = false
-        var doneloadingRivalsShops = false
+        var didLoadingRivals = false
+        var didLoadingRivalsShops = false
         tableView.allowsSelection = false
         getListRivals(myShopId: (product?.shopId)!, myProductId: (product?.id)!) { [unowned self] (result, listSearchedRivals, numberOfRivals) in
             guard result != .failed, let listSearchedRivals = listSearchedRivals, let numberOfRivals = numberOfRivals else {

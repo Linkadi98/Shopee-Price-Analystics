@@ -65,15 +65,7 @@ class RivalProductTableViewController: UITableViewController {
         return false
     }
     
-    /*
-     Thực hiện làm mới dữ liệu tại đây
-     Gọi api để trả về dữ liệu cho model sản phẩm đối thủ
-     Sau khi đã có dữ liệu thay đổi cho mảng sản phẩm đối
-     thủ, reloadData() sẽ được gọi và các cell sẽ được tự
-     động rebuild, chú ý chỉ có các cell visible trên bảng
-     sẽ được vẽ lại trước, các cell bị ẩn sẽ được vẽ lại
-     như bình thường nhưng với dữ liệu mới
-    */
+ 
     @objc func refresh() {
         // Gọi api trả về kết quả trước reloadData()
         tableView.reloadData()
