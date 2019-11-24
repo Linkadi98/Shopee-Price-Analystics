@@ -77,9 +77,9 @@ class SPTPopupView: UIView, SPTPopupViewProtocol {
         
         switch title {
         case "Theo dõi giá sản phẩm này":
-            observeProductPrice.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+            observeProductPrice.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .bold)
         default:
-            listCompetitors.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .bold)
+            listCompetitors.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .bold)
         }
     }
 }
