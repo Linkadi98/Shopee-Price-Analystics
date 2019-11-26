@@ -7,90 +7,86 @@
 //
 
 import Foundation
+import Alamofire
+import NotificationBannerSwift
 
 struct RivalApiService {
     
-    func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [(Product, Bool)]?, Int?) -> Void) {
-        // rival, isChosen, numberOFRivals
-        let sharedNetwork = Network.shared
+    private static let sharedNetwork = Network.shared
+    
+    static func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [(Product, Bool)]?) -> Void) {
+        // rival, isChosen, numberOfRivals
+        
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 60).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
-                sharedNetwork.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil, nil)
+                self.sharedNetwork.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
                 return
             }
             
             //Successful request
             self.getChosenRivals(shopId: myShopId, productId: myProductId) { (result, chosenRivals) in
                 guard result != .failed, let chosenRivals = chosenRivals else {
-                    completion(.failed, nil, nil)
+                    completion(.failed, nil)
                     return
                 }
                 
-                var listSearchedRivals: [(Product, Bool)] = []
-                let responseValue = response.result.value! as! [[String: Any]]
-                if responseValue.isEmpty {
-                    print("So doi thu: \(listSearchedRivals.count)")
-                    completion(.success, [], 0)
+                let responseData = response.data
+                guard let data = responseData else {
+                    completion(.success, [])
                     return
                 }
-                for value in responseValue {
-                    let rival = self.decodeProductJson(value: value)
-                    var isChosen = false
-                    for chosenRival in chosenRivals {
-                        if chosenRival.0.id == rival.id {
-                            isChosen = true
-                            break
-                        }
-                    }
-                    listSearchedRivals.append((rival, isChosen))
-                }
                 
-                var numberOfRivals = 0
-                for searchedRival in listSearchedRivals {
-                    if searchedRival.1 {
-                        numberOfRivals += 1
-                    }
-                }
+                let rivalProducts = try? JSONDecoder.shared.decode([Product].self, from: data)
                 
-                print("So doi thu: \(listSearchedRivals.count)")
-                completion(.success, listSearchedRivals, numberOfRivals)
+                // convert to tuple (rivalProduct, bool)
+                let result = Array(zip(rivalProducts!, chosenRivals).map { rivalProduct, chosenRival in
+                    (rivalProduct, chosenRival.0.itemRival?.itemid == rivalProduct.itemid)
+                    
+                })
+                
+                completion(.success, result)
             }
-            
         }
     }
     
-    func getListRivalsShops(myShopId: String, myProductId: String, completion: @escaping ([Shop]?) -> Void) {
-        let sharedNetwork = Network.shared
+    static func getListRivalsShops(myShopId: String, myProductId: String, completion: @escaping ([Shop]?) -> Void) {
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShops_path + "/\(myShopId)/\(myProductId)")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
-                print("Error when fetching data: \(response.result.error)")
+                print("Error when fetching data: \(response.result.error!)")
                 StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
                 completion(nil)
                 return
             }
             
+            let data = response.data!
+            
             //Successful request
-            var listRivalsShops: [Shop] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                listRivalsShops.append(self.decodeShopJson(value: value)) // need edited
-            }
-            print("So shop doi thu: \(listRivalsShops.count)")
+            let listRivalsShops = try? JSONDecoder.shared.decode([Shop].self, from: data)
+            
             completion(listRivalsShops)
         }
     }
     
-    // choose rival
-    func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, autoUpdate: Bool, priceDiff: Int, from min: Int, to max: Int, completion: @escaping (ConnectionResults) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: Network.shared.base_url + Network.shared.rival_path)!
+    
+    /// Chọn đối thủ để theo dõi
+    /// - Parameter myProductId: id sản phẩm của shop
+    /// - Parameter myShopId: id của shop
+    /// - Parameter rivalProductId: id sản phẩm của shop đối thủ
+    /// - Parameter rivalShopId: id shop của đối thủ
+    /// - Parameter autoUpdate: trạng thái theo dõi giá
+    /// - Parameter priceDiff: chênh lệch giá
+    /// - Parameter min: giá min
+    /// - Parameter max: giá max
+    /// - Parameter completion: trạng thái kết nối
+    static func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, autoUpdate: Bool, priceDiff: Int, from min: Int, to max: Int, completion: @escaping (ConnectionResults) -> Void) {
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.rival_path)!
         let parameters: Parameters = [
             "itemid": myProductId,
             "shopid": myShopId,
@@ -105,7 +101,7 @@ struct RivalApiService {
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
+                self.sharedNetwork.notifyFailedConnection(error: response.result.error)
                 completion(.failed)
                 return
             }
@@ -115,94 +111,98 @@ struct RivalApiService {
         }
     }
     
-    // Get chosen products
-    func getChosenProducts(shopId: String, completion: @escaping (ConnectionResults, [(Product, Int, Bool)]?) -> Void) {
+    /// Lấy danh sách sản phẩm đã được chọn để theo dõi giá
+    /// - Parameter shopId: id của shop
+    /// - Parameter completion: Mảng [kết quả trả về, sản phẩm]
+    static func getChosenProducts(shopId: String, completion: @escaping (ConnectionResults, [Product]?) -> Void) {
         // result, product, numberOfChosenRivals, autoUpdate
-        let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.chosenProducts_path + "/\(shopId)")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
+                self.sharedNetwork.notifyFailedConnection(error: response.result.error)
                 completion(.failed, nil)
                 return
             }
             
             //Successful request
-            var chosenProducts: [(Product, Int, Bool)] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                let product = self.decodeProductJson(value: value)
-                
-                let numberOfChosenRivals = value["chosen"] as! Int
-                let autoUpdate = value["auto"] as! Bool
-                
-                chosenProducts.append((product, numberOfChosenRivals, autoUpdate))
-            }
-            completion(.success, chosenProducts)
+            let responseData = response.data!
+            
+            let selectedProducts = try? JSONDecoder.shared.decode([Product].self, from: responseData)
+            completion(.success, selectedProducts)
         }
     }
     
-    // Get chosen rivals
-    func getChosenRivals(shopId: String, productId: String, completion: @escaping (ConnectionResults, [(Product, Shop, Observation)]?) -> Void) {
+    
+    /// Lấy danh sách các đối thủ đã chọn
+    /// - Parameter shopId: mã cửa hàng
+    /// - Parameter productId: mã sản phẩm - sản phẩm này là sản phẩm mà các đối thủ khác cũng có (ở mức tương tự)
+    /// - Parameter completion: Kết quả trả về là một danh sách, một phần tử của danh sách bao gồm (Sản phẩm, cửa hàng, cửa hàng được theo dõi)
+    static func getChosenRivals(shopId: String, productId: String, completion: @escaping (ConnectionResults, [(RivalsResponse, Shop)]?) -> Void) {
         // product, shop rivals, numberOfChosenRivals, autoUpdate
-        let sharedNetwork = Network.shared
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.chosenRivals_path + "/\(shopId)/\(productId)")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
+                self.sharedNetwork.notifyFailedConnection(error: response.result.error)
                 completion(.failed, nil)
                 return
             }
             
             //Successful request
-            var chosenRivals: [(Product, Shop, Observation)] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            let count = responseValue.count
-            var i = 0
-            if responseValue.isEmpty {
-                completion(.success, chosenRivals)
+            let responseData = response.data
+            
+            guard let data = responseData else {
+                completion(.success, [])
+                return
             }
-            for value in responseValue {
-                let rival = self.decodeProductJson(value: value["itemRival"] as! [String: Any])
-                let observation = self.decodeObservationJson(value: value["rival"] as! [String: Any])
-                
-                self.getRivalsShop(shopId: observation.rivalShopId) { (result, rivalsShop) in
-                    guard result != .failed, let rivalsShop = rivalsShop else {
+            
+            let response = try? JSONDecoder.shared.decode([RivalsResponse].self, from: data)
+            
+            var rivalShops: [Shop] = []
+            
+            response?.forEach { response in
+                self.getRivalShop(shopId: response.rival?.rivalShopid, completion: {  (result, rivalShop) in
+                    guard result != .failed, let rivalShop = rivalShop else {
                         completion(.failed, nil)
                         return
                     }
                     
-                    chosenRivals.append((rival, rivalsShop, observation))
-                    i += 1
-                    if i == count {
-                        completion(.success, chosenRivals)
-                    }
-                }
+                    rivalShops.append(rivalShop)
+                })
             }
+            
+            guard let _response = response else {return}
+            let result = Array(zip(_response, rivalShops))
+            completion(.success, result)
         }
+        
     }
     
-    // Get rivals' shops info
-    func getRivalsShop(shopId: String, completion: @escaping (ConnectionResults, Shop?) -> Void) {
-        // shop rivals, product, numberOfChosenRivals, autoUpdate
-        let sharedNetwork = Network.shared
+    
+    /// Lấy danh sách shop đối thủ
+    /// - Parameter shopId: id shop
+    /// - Parameter completion: kết quả trả về bao gồm trạng thái kết nối + shop đối thủ
+    static func getRivalShop(shopId: Int?, completion: @escaping (ConnectionResults, Shop?) -> Void) {
+        
+        guard let shopId = shopId else {return}
+        
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShopInfo_path + "/\(shopId)")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 60).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
+                self.sharedNetwork.notifyFailedConnection(error: response.result.error)
                 completion(.failed, nil)
                 return
             }
             
             //Successful request
-            let responseValue = response.result.value! as! [String: Any]
-            completion(.success, self.decodeShopJson(value: responseValue))
+            let shop = try? JSONDecoder.shared.decode(Shop.self, from: response.data!)
+            
+            completion(.success, shop)
         }
     }
 }

@@ -310,73 +310,73 @@ extension UIViewController {
         }
     }
 
-    func decodeProductJson(value: [String: Any]) -> Product {
-        let id = String(value["itemid"] as! Int)
-        let shopId = String(value["shopid"] as! Int)
-        let name = value["name"] as! String
-        let price = Int(value["price"] as! Double)
-        let rating = value["rating_star"] as! Double
-        let image = (value["images"] as! [String])[0]
-        let categoriesData = value["categories"] as! [[String: Any]]
-        var categories: [String] = []
-        for data in categoriesData {
-            categories.append(data["display_name"] as! String)
-        }
-        let brand = value["brand"] as? String
-        let sold = value["historical_sold"] as! Int
-        let stock = value["stock"] as! Int
-        let discount = value["discount"] as? String
-        let maxPrice = Int(value["price_max"] as! Double)
-        let minPrice = Int(value["price_min"] as! Double)
+//    func decodeProductJson(value: [String: Any]) -> Product {
+//        let id = String(value["itemid"] as! Int)
+//        let shopId = String(value["shopid"] as! Int)
+//        let name = value["name"] as! String
+//        let price = Int(value["price"] as! Double)
+//        let rating = value["rating_star"] as! Double
+//        let image = (value["images"] as! [String])[0]
+//        let categoriesData = value["categories"] as! [[String: Any]]
+//        var categories: [String] = []
+//        for data in categoriesData {
+//            categories.append(data["display_name"] as! String)
+//        }
+//        let brand = value["brand"] as? String
+//        let sold = value["historical_sold"] as! Int
+//        let stock = value["stock"] as! Int
+//        let discount = value["discount"] as? String
+//        let maxPrice = Int(value["price_max"] as! Double)
+//        let minPrice = Int(value["price_min"] as! Double)
+//
+//        return Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice)
+//    }
+//
+//    func decodeShopJson(value: [String: Any]) -> Shop {
+//        let shopId = String(value["shopid"] as! Int)
+//        let shopName = value["name"] as! String
+//        let followersCount = value["follower_count"] as! Int
+//        let rating = value["rating_star"] as! Double
+//        let place = value["place"] as! String
+//        let goodRating = value["rating_good"] as! Int
+//        let badRating = value["rating_bad"] as! Int
+//        var image: String?
+//        if let images = value["images"] as? [String] {
+//            image = images[0]
+//        }
+//
+//        return Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place, goodRating: goodRating, badRating: badRating, image: image)
+//    }
+//
+//    func decodeObservationJson(value: [String: Any]) -> Observation {
+//        let productId = String(value["itemid"] as! Int)
+//        let shopId = String(value["shopid"] as! Int)
+//        let rivalShopId = String(value["rivalShopid"] as! Int)
+//        let rivalProductId = String(value["rivalItemid"] as! Int)
+//        let autoUpdate = value["auto"] as! Bool
+//        let priceDiff = value["price"] as! Int
+//        let minPrice = value["min"] as! Int
+//        let maxPrice = value["max"] as! Int
+//
+//        return Observation(productId: productId, shopId: shopId, rivalShopId: rivalShopId, rivalProductId: rivalProductId, autoUpdate: autoUpdate, priceDiff: priceDiff, maxPrice: maxPrice, minPrice: minPrice)
+//    }
 
-        return Product(id: id, shopId: shopId, name: name, price: price, rating: rating, image: image, categories: categories, brand: brand, sold: sold, stock: stock, discount: discount, maxPrice: maxPrice, minPrice: minPrice)
-    }
-
-    func decodeShopJson(value: [String: Any]) -> Shop {
-        let shopId = String(value["shopid"] as! Int)
-        let shopName = value["name"] as! String
-        let followersCount = value["follower_count"] as! Int
-        let rating = value["rating_star"] as! Double
-        let place = value["place"] as! String
-        let goodRating = value["rating_good"] as! Int
-        let badRating = value["rating_bad"] as! Int
-        var image: String?
-        if let images = value["images"] as? [String] {
-            image = images[0]
-        }
-
-        return Shop(shopId: shopId, shopName: shopName, followersCount: followersCount, rating: rating, place: place, goodRating: goodRating, badRating: badRating, image: image)
-    }
-
-    func decodeObservationJson(value: [String: Any]) -> Observation {
-        let productId = String(value["itemid"] as! Int)
-        let shopId = String(value["shopid"] as! Int)
-        let rivalShopId = String(value["rivalShopid"] as! Int)
-        let rivalProductId = String(value["rivalItemid"] as! Int)
-        let autoUpdate = value["auto"] as! Bool
-        let priceDiff = value["price"] as! Int
-        let minPrice = value["min"] as! Int
-        let maxPrice = value["max"] as! Int
-
-        return Observation(productId: productId, shopId: shopId, rivalShopId: rivalShopId, rivalProductId: rivalProductId, autoUpdate: autoUpdate, priceDiff: priceDiff, maxPrice: maxPrice, minPrice: minPrice)
-    }
-
-    func getObjectInUserDefaults(forKey key: String) -> AnyObject? {
-        if let data = UserDefaults.standard.data(forKey: key) {
-            switch key {
-            case "currentUser":
-                if let currentUser = try? JSONDecoder().decode(User.self, from: data) {
-                    return currentUser as AnyObject
-                }
-            case "currentShop":
-                if let currentShop = try? JSONDecoder().decode(Shop.self, from: data) {
-                    return currentShop as AnyObject
-                }
-            default: break
-            }
-        }
-        return nil
-    }
+//    func getObjectInUserDefaults(forKey key: String) -> AnyObject? {
+//        if let data = UserDefaults.standard.data(forKey: key) {
+//            switch key {
+//            case "currentUser":
+//                if let currentUser = try? JSONDecoder().decode(User.self, from: data) {
+//                    return currentUser as AnyObject
+//                }
+//            case "currentShop":
+//                if let currentShop = try? JSONDecoder().decode(Shop.self, from: data) {
+//                    return currentShop as AnyObject
+//                }
+//            default: break
+//            }
+//        }
+//        return nil
+//    }
 }
 
 // User APIs
@@ -568,91 +568,7 @@ extension UIViewController {
 
 // Shop APIs
 extension UIViewController {
-    // Add shop
-    func addShop(shopId: String, completion: @escaping (ConnectionResults, String?) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path + "/\(shopId)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: nil).responseString { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil)
-                return
-            }
-
-            //Successful request
-            let responseValue = response.result.value!
-            switch responseValue {
-            case "Shop đã được thêm":
-                completion(.error, "Cửa hàng đã được thêm trước đó")
-            case "Shop đã được thêm cho tài khoản khác":
-                completion(.error, "Cửa hàng đã được thêm cho tài khoản khác")
-            case "Thêm thành công":
-                completion(.success, "Thêm cửa hàng thành công")
-            default:
-                completion(.failed, nil)
-                break
-            }
-        }
-    }
-
-    // Get list shop
-    func getListShops(completion: @escaping (ConnectionResults, [Shop]?) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.shop_path)!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil)
-                return
-            }
-
-            //Successful request
-            var listShops: [Shop] = []
-            let responseValue = response.result.value! as! [[String: Any]]
-            for value in responseValue {
-                listShops.append(self.decodeShopJson(value: value))
-            }
-            self.chooseCurrentShop(listShops: listShops)
-            completion(.success, listShops)
-        }
-    }
-
-    // Choose currentShop
-    func chooseCurrentShop(listShops: [Shop]) {
-        if listShops.isEmpty {
-            UserDefaults.standard.removeObject(forKey: "currentShop")
-        } else {
-            // Case: didn't save currentShop before, save first shop in list shops
-            guard var currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-                saveObjectInUserDefaults(object: listShops[0] as AnyObject, forKey: "currentShop")
-                return
-            }
-
-            // Case: save currentShop before
-            // Check if listShop contains savedCurrentShop
-            // if listShop contains savedCurrentShop, currentShop isn't changed
-            if listShops.contains(currentShop) {
-                return
-            }
-
-            // listShop doesn't contain savedCurrentShop
-            for shop in listShops {
-                // but maybe shop was changed its properties (not deleted)
-                if currentShop.shopId == shop.shopId {
-                    currentShop = shop
-                    saveObjectInUserDefaults(object: currentShop as AnyObject, forKey: "currentShop")
-                    return
-                }
-            }
-            // savedCurrentShop has been deleted, save first shop in list shops
-            saveObjectInUserDefaults(object: listShops[0] as AnyObject, forKey: "currentShop")
-            return
-        }
-    }
+    
 }
 
 
@@ -663,145 +579,7 @@ extension UIViewController {
 
 // Price Observation
 extension UIViewController {
-    func priceObservations(productId: String, completion: @escaping (ConnectionResults, [String]?, [Int]?) -> Void) {
-        // result, date, price
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.priceObservation_path + "/\(productId)")!
-
-        print(url)
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-//                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, [], [])
-                return
-            }
-
-            //Successful request
-            var dates: [String] = []
-            var prices: [Int] = []
-            guard let responseValue = response.result.value as? [[String: Any]] else {
-                completion(.success, [], [])
-                return
-            }
-            for value in responseValue {
-                var dateString = String((value["date"] as! String).prefix(13))
-                let price = Int(value["price"] as! Double)
-
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH"
-                let date = dateFormatter.date(from: dateString)
-                dateFormatter.dateFormat = "dd-MM HH'h'mm"
-                dateString = dateFormatter.string(from: date!)
-                dates.append(dateString)
-                prices.append(price)
-            }
-            completion(.success, dates, prices)
-        }
-    }
-
-    func getStatistics(product: Product, completion: @escaping (ConnectionResults, [Int]?, Int?) -> Void) {
-        // counts, average
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.statistics_path + "/\(product.shopId)/\(product.id)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil, nil)
-                return
-            }
-
-            //Successful request
-            var counts: [Int] = []
-            let responseValue = response.result.value! as! [String: Any]
-            let statistics = responseValue["ranks"] as! [[String: Any]]
-            let averagePrice = Int(responseValue["medium"] as! Double)
-            for statistic in statistics {
-                counts.append(statistic["count"] as! Int)
-            }
-
-            completion(.success, counts, averagePrice)
-        }
-    }
-
-    // delete 1 rival
-    func deleteRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, completion: @escaping (ConnectionResults) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: Network.shared.base_url + Network.shared.rival_path)!
-        let parameters: Parameters = [
-            "itemid": myProductId,
-            "shopid": myShopId,
-            "rivalShopid": rivalShopId,
-            "rivalItemid": rivalProductId
-        ]
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .delete, parameters: parameters).responseJSON { (response) in
-            // Failed request
-//            guard response.result.isSuccess else {
-//                self.notifyFailedConnection(error: response.result.error)
-//                completion(.failed)
-//                return
-//            }
-
-
-            //Successful request
-//            guard let responseValue = response.result.value as? [String: Any], let _ = responseValue["itemid"] else {
-//                completion(.error)
-//                return
-//            }
-
-            completion(.success)
-        }
-    }
-
-    // delete 1 rival
-    func deleteRivals(productId: String, completion: @escaping (ConnectionResults) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: Network.shared.base_url + Network.shared.rival_path + "/\(productId)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .delete, parameters: nil).responseJSON { (response) in
-            completion(.success)
-        }
-    }
-
-    func getAutoUpdateHistory(product: Product, completion: @escaping (ConnectionResults, [AutoUpdateHistory]?) -> Void) {
-        // counts
-        let sharedNetwork = Network.shared
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.autoUpdate_path + "/\(product.id)")!
-
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
-            // Failed request
-            guard response.result.isSuccess else {
-                self.notifyFailedConnection(error: response.result.error)
-                completion(.failed, nil)
-                return
-            }
-
-            //Successful request
-            var autoUpdateHistory: [AutoUpdateHistory] = []
-            let responseValue = response.result.value as! [[String: Any]]
-            for value in responseValue {
-                var dateString = String((value["date"] as! String).prefix(13))
-                let newPrice = Int(value["price"] as! Double)
-                let oldPrice = Int(value["oldPrice"] as! Double)
-                let rivalShopName = value["shopRival"] as! String
-
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH"
-                let date = dateFormatter.date(from: dateString)
-                dateFormatter.dateFormat = "dd-MM HH'h'mm"
-                dateString = dateFormatter.string(from: date!)
-
-                autoUpdateHistory.append(AutoUpdateHistory(date: dateString, rivalShopName: rivalShopName, oldPrice: oldPrice, newPrice: newPrice))
-            }
-
-
-            completion(.success, autoUpdateHistory)
-        }
-    }
+    
 }
 
 

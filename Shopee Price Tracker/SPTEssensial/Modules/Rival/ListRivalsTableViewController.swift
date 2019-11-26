@@ -33,12 +33,12 @@ class ListRivalsTableViewController: UITableViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-            if product?.shopId != currentShop.shopId {
+            if vm?.product?.shopId != currentShop.shopId {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
         
-        if listSearchedRivals == nil && listRivalsShops == nil {
+        if vm?.listSearchedRivals == nil && vm?.listRivalsShops == nil {
             isFirstAppear = true
             hasData = false
         }

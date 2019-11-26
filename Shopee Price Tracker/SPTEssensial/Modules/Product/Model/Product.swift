@@ -9,23 +9,37 @@
 import Foundation
 
 struct Product: Codable {
-    
-    let id: String?
-    let shopId: String?
-    var name: String?
-    var price: Int?
-    var rating: Double?
-    var image: String?
-    var categories: [String]?
-    var brand: String?
-    var sold: Int? // historical_sold
-    var stock: Int?
-    var discount: String?
-    var maxPrice: Int?
-    var minPrice: Int?
-    
-    var inventory: Int?
-    var ratingArray: [Int]?
-    var soldPrice: String?
-
+    let itemid: Int?
+    let images: [String]?
+    let name: String?
+    let shopid: Int?
+    let brand: String?
+    let price, ratingStar: Int?
+    let ratingCount: [Int]?
+    let historicalSold, sold, priceMax, priceMin: Int?
+    let discount: Int?
+    let stock: Int?
+    let categories: [Category]?
+    let itemPrice: ItemPrice?
+    let chosen: Int?
+    let auto: Bool?
 }
+
+// MARK: - Category
+struct Category: Codable {
+    let id: Int?
+    let displayName: String?
+    let catid: Int?
+}
+
+// MARK: - Item price
+
+struct ItemPrice: Codable {
+    let id: Int?
+    let date: String?
+    let time: String?
+    let price: Double?
+}
+
+
+

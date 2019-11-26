@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+/// Closure of Observing
 struct Observation {
     let productId: String
     let shopId: String

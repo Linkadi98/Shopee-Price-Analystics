@@ -14,5 +14,7 @@ class ListRivalsViewModel {
     var listSearchedRivals: [(Product, Bool)]?
     var listRivalsShops: [Shop]?
 
-    
+    func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [(Product, Bool)]?) -> Void) {
+        RivalApiService.getListRivals(myShopId: myShopId, myProductId: myProductId, completion: completion)
+    }
 }
