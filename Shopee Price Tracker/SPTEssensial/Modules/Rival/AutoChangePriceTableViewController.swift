@@ -70,7 +70,7 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
                 let okButton = UIAlertAction(title: "OK", style: .default) { (_) in
                     let activityIndicator = self.startLoading()
 
-                    RivalApiService.chooseRival(myProductId: self.observation!.productId, myShopId: self.observation!.shopId, rivalProductId: self.observation!.rivalProductId, rivalShopId: self.observation!.rivalShopId, autoUpdate: false, priceDiff: 0, from: 0, to: 0, completion: { (result) in
+                    RivalApiService.chooseRival(myProductId: Int(self.observation!.productId)!, myShopId: Int(self.observation!.shopId)!, rivalProductId: Int(self.observation!.rivalProductId)!, rivalShopId: Int(self.observation!.rivalShopId)!, autoUpdate: false, priceDiff: 0, from: 0, to: 0, completion: { (result) in
                         if result == .success {
                             self.presentAlert(title: "Thông báo", message: "Tắt thành công")
 
@@ -184,7 +184,7 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
             let selectedRowOfPicker = self.shopChangePicker.selectedRow(inComponent: 0)
             let rivalProductId = self.chosenRivals![selectedRowOfPicker].0.itemid
             let rivalShopId = self.chosenRivals![selectedRowOfPicker].0.shopid
-            RivalApiService.chooseRival(myProductId: self.observation!.productId, myShopId: self.observation!.shopId, rivalProductId: rivalProductId!, rivalShopId: rivalShopId!, autoUpdate: true, priceDiff: Int(self.priceDiff.text!)!, from: Int(self.minPriceRange.text!)!, to: Int(self.maxPriceRange.text!)!) { (result) in
+            RivalApiService.chooseRival(myProductId: Int(self.observation!.productId)!, myShopId: Int(self.observation!.shopId)!, rivalProductId: rivalProductId!, rivalShopId: rivalShopId!, autoUpdate: true, priceDiff: Int(self.priceDiff.text!)!, from: Int(self.minPriceRange.text!)!, to: Int(self.maxPriceRange.text!)!) { (result) in
                 if result == .success {
                     self.presentAlert(title: "Thông báo", message: "Bật thành công")
 

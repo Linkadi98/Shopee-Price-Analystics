@@ -66,7 +66,7 @@ class ListRivalsTableViewController: UITableViewController {
         
         cell.competitorProductName.text = rivalProduct.name
         cell.competitorProductPrice.text = String(describing: rivalProduct.price)
-        cell.competitorAddress.text = rivalShop.shopName
+        cell.competitorName.text = rivalShop.shopName
         cell.changeFollowingStatus(isSelectedToObserve: isChosen)
         
         return cell

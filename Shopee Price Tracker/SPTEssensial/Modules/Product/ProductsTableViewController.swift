@@ -38,7 +38,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
         configVm(vm: ProductTableViewModel(productList: Observable(nil), filterProducts: Observable(nil)))
 
-        guard var currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+        guard var currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
             return
         }
         
@@ -86,11 +86,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
         DispatchQueue.main.async {
             cell.productName.text = "\(String(describing: product.name!))"
-            cell.cosmos.rating = product.rating!
+            cell.cosmos.rating = Double(product.ratingStar!)
             cell.productPrice.text = product.price!.convertPriceToVietnameseCurrency()
-            cell.productCode.text = product.id
+            cell.productCode.text = String(describing: product.itemid)
         }
-        loadOnlineImage(from: URL(string: product.image!)!, to: cell.productImage)
+        loadOnlineImage(from: URL(string: product.images![0])!, to: cell.productImage)
 
         return cell
     }
@@ -130,7 +130,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     func updateSearchResults(for searchController: UISearchController) {
         if (vm.productsList.value != nil) { filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
                 vm.filterProducts.value = (vm.productsList.value?.filter({(product: Product) -> Bool in
-                    return (product.name!.lowercased().contains(searchText.lowercased())) || product.id!.lowercased().contains(searchText.lowercased())
+                    return (product.name!.lowercased().contains(searchText.lowercased())) || String(describing: product.itemid!).lowercased().contains(searchText.lowercased())
                 }))!
             }
         }
@@ -143,7 +143,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             let vc = segue.destination as! ProductTableContainerViewController
             vc.vm = ProductTableContainerViewModel()
             vc.vm!.product = Observable(sender as! Product)
-            print(vc.vm?.product?.value)
         }
     }
     
@@ -216,7 +215,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
 
             guard result != .error, let listProducts = listProducts else {
-                self.vm!.productsList.value = [Product(id: "001", shopId: "001", name: "san pham", price: 100, rating: 5, image: "abc", categories: [], brand: "brand", sold: 100, stock: 100, discount: "100", maxPrice: 100, minPrice: 100, inventory: 100, ratingArray: [0,1,1,1,1], soldPrice: "1000")]
+                self.vm!.productsList.value = []
                 return
             }
 

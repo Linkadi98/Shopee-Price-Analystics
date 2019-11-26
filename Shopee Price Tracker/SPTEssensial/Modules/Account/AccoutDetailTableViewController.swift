@@ -24,6 +24,8 @@ class AccountDetailTableViewController: UITableViewController {
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var password: UILabel!
     
+    let userDefaults = UserDefaults.standard
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +61,7 @@ class AccountDetailTableViewController: UITableViewController {
     
     // MARK: - Private modifications
     private func getAccountInfo() {
-        let currentUser = getObjectInUserDefaults(forKey: "currentUser") as! User
+        let currentUser = userDefaults.getObjectInUserDefaults(forKey: "currentUser") as! User
 
         userName.text = currentUser.name
         email.text = currentUser.email
@@ -112,7 +114,7 @@ class AccountDetailTableViewController: UITableViewController {
                 case .error:
                     self.presentAlert(message: "Mật khẩu không chính xác")
                 case .success:
-                    var currentUser = self.getObjectInUserDefaults(forKey: "currentUser") as! User
+                    var currentUser = self.userDefaults.getObjectInUserDefaults(forKey: "currentUser") as! User
                     currentUser.name = nameInput
                     self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
                     // Change in interface
@@ -168,7 +170,7 @@ class AccountDetailTableViewController: UITableViewController {
                 case .error:
                     self.presentAlert(message: "Mật khẩu không chính xác")
                 case .success:
-                    var currentUser = self.getObjectInUserDefaults(forKey: "currentUser") as! User
+                    var currentUser = self.userDefaults.getObjectInUserDefaults(forKey: "currentUser") as! User
                     currentUser.phone = phoneNumberInput
                     self.saveObjectInUserDefaults(object: currentUser as AnyObject, forKey: "currentUser")
                     // Change in interface

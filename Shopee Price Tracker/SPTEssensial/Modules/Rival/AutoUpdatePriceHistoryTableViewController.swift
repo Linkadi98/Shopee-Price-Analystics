@@ -78,7 +78,7 @@ class AutoUpdatePriceHistoryTableViewController: UITableViewController {
     }
 
     private func update() {
-        getAutoUpdateHistory(product: product!) { (result, autoUpdateHistory) in
+        PriceApiService.getAutoUpdateHistory(product: product!) { (result, autoUpdateHistory) in
             if result == .success {
                 DispatchQueue.main.async {
                     self.autoUpdateHistory = autoUpdateHistory

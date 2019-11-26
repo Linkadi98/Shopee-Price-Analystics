@@ -12,8 +12,10 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     
     // MARK: - Properties
     var product: Product?
-    var chosenRivals: [(Product, Shop, Observation)]?
+    var chosenRivals: [(RivalsResponse, Shop)]?
     var currentShop: Shop?
+    
+    let CELL_XIB_NAME = "SPTCompetitorProductCell"
     
     var data: [String: Any]?
 
@@ -27,8 +29,10 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         refreshControl?.tintColor = .orange
+        
+        tableView.register(UINib(nibName: CELL_XIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_XIB_NAME)
 
-        if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
+        if let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop {
             self.currentShop = currentShop
         }
     }
@@ -42,7 +46,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        guard let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, let _ = product else {
+        guard let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop, let _ = product else {
             self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
             return
         }
@@ -71,48 +75,19 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ChosenRivalCell", for: indexPath) as! ChosenRivalCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CELL_XIB_NAME, for: indexPath) as! SPTCompetitorProductCell
 
         guard let chosenRivals = chosenRivals else {
             return cell
         }
-
-        DispatchQueue.main.async {
-            let rival = chosenRivals[indexPath.row].0
-            let rivalShop = chosenRivals[indexPath.row].1
-            let observation = chosenRivals[indexPath.row].2
-
-            cell.productName.text = rival.name
-            cell.productPrice.text = "\(rival.price!.convertPriceToVietnameseCurrency()!)"
-            cell.rivalShopRating.text = String("\(rivalShop.rating)".prefix(3))
-            cell.rivalShopRating.rating = rivalShop.rating
-            cell.follower.text = "\(rivalShop.followersCount)"
-            self.loadOnlineImage(from: URL(string: rival.image!)!, to: cell.productImage)
-            cell.rivalName.text = rivalShop.shopName
-            switch observation.autoUpdate {
-            case true:
-                cell.setAutoStatusOn()
-            default:
-                cell.setAutoStatusOff()
-            }
-        }
         
-        cell.delegate = self
-        cell.row = indexPath.row
-        cell.section = indexPath.section
+        // Config cell
+
+        cell.competitorProductName.text = chosenRivals[indexPath.row].0.itemRival?.name
+        cell.competitorProductPrice.text = String(describing:  chosenRivals[indexPath.row].0.itemRival?.price)
+        cell.competitorName.text = String(describing:  chosenRivals[indexPath.row].1.shopName)
+        cell.changeFollowingStatus(isSelectedToObserve: (chosenRivals[indexPath.row].0.rival?.auto)!)
         
-        if isPressButton {
-            move(cell.contentView.subviews[1], to: .right)
-            UIView.fadeIn(view: cell.deleteButton, duration: 0.45)
-        }
-        else {
-            move(cell.contentView.subviews[1], to: .left)
-            UIView.fadeOut(view: cell.deleteButton, duration: 0.45)
-        }
-
-//        cell.hideSkeletonAnimation()
-        // Configure the cell...
-
         return cell
     }
     
@@ -125,7 +100,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         let notificationName = NSNotification.Name(rawValue: "didGetRivalInfo")
         var rivalProducts: [Product] = []
         for chosenRival in chosenRivals {
-            rivalProducts.append(chosenRival.0)
+            rivalProducts.append(chosenRival.0.itemRival!)
         }
         NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["rivalProducts": rivalProducts])
 
@@ -133,7 +108,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 188.0
+        return 135.0
     }
  
 
@@ -142,8 +117,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rivalInfoSegue" {
-            if let chosenRival = sender as? (Product, Shop, Observation) {
-                print("zzz: \(chosenRival)")
+            if let chosenRival = sender as? (RivalsResponse, Shop) {
                 if let containerRivalInfoViewController = segue.destination as? ContainerRivalInfoViewController {
                     containerRivalInfoViewController.chosenRival = chosenRival
                     containerRivalInfoViewController.product = product!
@@ -182,12 +156,12 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     
     
     func deleteRow(at row: Int, in section: Int) {
-        let deletedId = (chosenRivals![row].0.id, chosenRivals![row].0.shopId)
+        let deletedId = (chosenRivals![row].0.itemRival?.itemid, chosenRivals![row].1.shopId)
         let alert = UIAlertController(title: "Xoá sản phẩm của \(chosenRivals![row].1.shopName)?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
 
-            self.deleteRival(myProductId: self.product!.id!, myShopId: self.product!.shopId!, rivalProductId: deletedId.0!, rivalShopId: deletedId.1!, completion: { (result) in
+            PriceApiService.deleteRival(myProductId: String(describing: self.product!.itemid!), myShopId: String(describing: self.product!.shopid!), rivalProductId: String(describing: deletedId.0!), rivalShopId: String(describing: deletedId.1), completion: { (result) in
                 if result == .success {
                     self.presentAlert(title: "Thông báo", message: "Xoá thành công")
                     let indexPath = IndexPath(row: row, section: section)
@@ -250,7 +224,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
 
         tableView.allowsSelection = false
 
-        getChosenRivals(shopId: product!.shopId!, productId: product!.id!) { (result, chosenRivals) in
+        RivalApiService.getChosenRivals(shopId: product!.shopid!, productId: product!.itemid!) { (result, chosenRivals) in
             guard result != .failed, let chosenRivals = chosenRivals else {
                 self.tableView.reloadData()
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Đối thủ của bạn sẽ hiện tại đây")

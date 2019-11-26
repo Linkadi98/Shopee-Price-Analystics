@@ -170,7 +170,7 @@ class StatisticalPriceTableViewController: UITableViewController {
         print("did Choose To observe")
         let alert = UIAlertController(title: "Đang tải dữ liệu...", message: nil, preferredStyle: .alert)
         self.present(alert, animated: true, completion: nil)
-        getStatistics(product: product) { [unowned self] (result, counts, averagePrice) in
+        PriceApiService.getStatistics(product: product) { [unowned self] (result, counts, averagePrice) in
                 if result == .success, let counts = counts, let averagePrice = averagePrice {
                 self.counts = counts
                 

@@ -12,9 +12,9 @@ import Parchment
 class RivalPageViewController: UIViewController, PickerNameDelegate {
 
     var product: Product?
-    var chosenRival: (Product, Shop, Observation)?
+    var chosenRival: (RivalsResponse, Shop)?
     
-    var chosenRivals: [(Product, Shop, Observation)]?
+    var chosenRivals: [(RivalsResponse, Shop)]?
     
     weak var rivalInfoViewController: RivalInfoViewController?
     weak var rivalProductTableViewController: RivalProductTableViewController?

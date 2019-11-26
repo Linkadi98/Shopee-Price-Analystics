@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SPTCompetitorProductCell" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
             <connections>
-                <outlet property="competitorAddress" destination="JcV-2Y-Rzi" id="uJD-pa-hxJ"/>
+                <outlet property="competitorName" destination="JcV-2Y-Rzi" id="emD-4t-i9A"/>
                 <outlet property="competitorProductImage" destination="GNM-t8-iwP" id="kmB-69-mWb"/>
                 <outlet property="competitorProductName" destination="YuA-44-dVo" id="gCY-aC-yjE"/>
                 <outlet property="competitorProductPrice" destination="EX3-uZ-U1I" id="xTA-MI-cEg"/>

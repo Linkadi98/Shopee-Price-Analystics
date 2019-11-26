@@ -37,7 +37,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     override func viewWillAppear(_ animated: Bool) {
 //        view.startSkeletonAnimation()
 
-        guard listShops != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, listShops![0] == currentShop else {
+        guard listShops != nil, let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop, listShops![0] == currentShop else {
             fetchDataFromServer()
             return
         }
@@ -139,7 +139,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         
         tableView.allowsSelection = false
 
-        getListShops { [unowned self] (result, listShops) in
+        ShopApiService.getListShops { [unowned self] (result, listShops) in
             guard result != .failed, var listShops = listShops else {
                 self.hasData = false
                 self.isFirstAppear = true
@@ -158,7 +158,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
                 return
             }
 
-            guard let currentShop = self.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            guard let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
                 self.hasData = false
                 self.isFirstAppear = true
                 self.tableView.reloadData()
@@ -216,7 +216,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
 
                 let activityIndicator = startLoading()
 
-                addShop(shopId: shopId) { [unowned self] (result, message) in
+                ShopApiService.addShop(shopId: shopId) { [unowned self] (result, message) in
                     switch result {
                     case .error:
                         self.presentAlert(message: message!)

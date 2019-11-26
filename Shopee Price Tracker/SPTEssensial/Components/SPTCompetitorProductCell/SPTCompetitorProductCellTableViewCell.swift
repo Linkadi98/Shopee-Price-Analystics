@@ -13,7 +13,7 @@ class SPTCompetitorProductCell: UITableViewCell {
 
     @IBOutlet weak var competitorProductName: UILabel!
     @IBOutlet weak var competitorProductPrice: UILabel!
-    @IBOutlet weak var competitorAddress: UILabel!
+    @IBOutlet weak var competitorName: UILabel!
     @IBOutlet weak var followingStatus: UILabel! {
         didSet {
             followingStatus.textColor = .red

@@ -74,8 +74,8 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
 
         let product = chosenProducts[indexPath.row]
         DispatchQueue.main.async {
-            cell.productId.text! = "Mã: \(product.0.id)"
-            self.loadOnlineImage(from: URL(string: product.0.image!)!, to: cell.productImage)
+            cell.productId.text! = "Mã: \(product.0.itemid)"
+            self.loadOnlineImage(from: URL(string: product.0.images![0])!, to: cell.productImage)
             cell.numberOfRival.text = "\(product.1)"
             if product.2 == false {
                 cell.autoChangePriceStatus.backgroundColor = .red

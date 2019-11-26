@@ -12,9 +12,9 @@ import Alamofire
 
 struct PriceApiService {
     
-    let sharedNetwork = Network.shared
+    private static let sharedNetwork = Network.shared
     
-    func priceObservations(productId: String, completion: @escaping (ConnectionResults, [String]?, [Int]?) -> Void) {
+    static func priceObservations(productId: String, completion: @escaping (ConnectionResults, [String]?, [Int]?) -> Void) {
         // result, date, price
         
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.priceObservation_path + "/\(productId)")!
@@ -52,10 +52,10 @@ struct PriceApiService {
         }
     }
     
-    func getStatistics(product: Product, completion: @escaping (ConnectionResults, [Int]?, Int?) -> Void) {
+    static func getStatistics(product: Product, completion: @escaping (ConnectionResults, [Int]?, Int?) -> Void) {
         // counts, average
         
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.statistics_path + "/\(product.shopid)/\(product.itemid)")!
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.statistics_path + "/\(String(describing: product.shopid))/\(String(describing: product.itemid))")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
             // Failed request
@@ -79,7 +79,7 @@ struct PriceApiService {
     }
     
     // delete 1 rival
-    func deleteRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, completion: @escaping (ConnectionResults) -> Void) {
+    static func deleteRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, completion: @escaping (ConnectionResults) -> Void) {
         
         let url = URL(string: Network.shared.base_url + Network.shared.rival_path)!
         let parameters: Parameters = [
@@ -109,7 +109,7 @@ struct PriceApiService {
     }
     
     // delete 1 rival
-    func deleteRivals(productId: String, completion: @escaping (ConnectionResults) -> Void) {
+    static func deleteRivals(productId: String, completion: @escaping (ConnectionResults) -> Void) {
         
         let url = URL(string: Network.shared.base_url + Network.shared.rival_path + "/\(productId)")!
         
@@ -118,10 +118,10 @@ struct PriceApiService {
         }
     }
     
-    func getAutoUpdateHistory(product: Product, completion: @escaping (ConnectionResults, [AutoUpdateHistory]?) -> Void) {
+    static func getAutoUpdateHistory(product: Product, completion: @escaping (ConnectionResults, [AutoUpdateHistory]?) -> Void) {
         // counts
         
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.autoUpdate_path + "/\(product.itemid)")!
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.autoUpdate_path + "/\(String(describing: product.itemid))")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
             // Failed request

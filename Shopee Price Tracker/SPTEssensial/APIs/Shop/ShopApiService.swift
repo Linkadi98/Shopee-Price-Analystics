@@ -10,7 +10,7 @@ import Foundation
 
 struct ShopApiService {
     
-    let sharedNetwork = Network.shared
+    private static let sharedNetwork = Network.shared
     
     // Add shop
     static func addShop(shopId: String, completion: @escaping (ConnectionResults, String?) -> Void) {
