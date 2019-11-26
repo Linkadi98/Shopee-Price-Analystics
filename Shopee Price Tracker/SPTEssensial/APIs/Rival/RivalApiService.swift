@@ -14,7 +14,7 @@ struct RivalApiService {
     
     private static let sharedNetwork = Network.shared
     
-    static func getListRivals(myShopId: String, myProductId: String, completion: @escaping (ConnectionResults, [(Product, Bool)]?) -> Void) {
+    static func getListRivals(myShopId: Int, myProductId: Int, completion: @escaping (ConnectionResults, [(Product, Bool)]?) -> Void) {
         // rival, isChosen, numberOfRivals
         
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivals_path + "/\(myShopId)/\(myProductId)")!
@@ -53,7 +53,7 @@ struct RivalApiService {
         }
     }
     
-    static func getListRivalsShops(myShopId: String, myProductId: String, completion: @escaping ([Shop]?) -> Void) {
+    static func getListRivalsShops(myShopId: Int, myProductId: Int, completion: @escaping ([Shop]?) -> Void) {
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rivalsShops_path + "/\(myShopId)/\(myProductId)")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
@@ -85,7 +85,7 @@ struct RivalApiService {
     /// - Parameter min: giá min
     /// - Parameter max: giá max
     /// - Parameter completion: trạng thái kết nối
-    static func chooseRival(myProductId: String, myShopId: String, rivalProductId: String, rivalShopId: String, autoUpdate: Bool, priceDiff: Int, from min: Int, to max: Int, completion: @escaping (ConnectionResults) -> Void) {
+    static func chooseRival(myProductId: Int, myShopId: Int, rivalProductId: Int, rivalShopId: Int, autoUpdate: Bool, priceDiff: Int, from min: Int, to max: Int, completion: @escaping (ConnectionResults) -> Void) {
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.rival_path)!
         let parameters: Parameters = [
             "itemid": myProductId,
@@ -139,7 +139,7 @@ struct RivalApiService {
     /// - Parameter shopId: mã cửa hàng
     /// - Parameter productId: mã sản phẩm - sản phẩm này là sản phẩm mà các đối thủ khác cũng có (ở mức tương tự)
     /// - Parameter completion: Kết quả trả về là một danh sách, một phần tử của danh sách bao gồm (Sản phẩm, cửa hàng, cửa hàng được theo dõi)
-    static func getChosenRivals(shopId: String, productId: String, completion: @escaping (ConnectionResults, [(RivalsResponse, Shop)]?) -> Void) {
+    static func getChosenRivals(shopId: Int, productId: Int, completion: @escaping (ConnectionResults, [(RivalsResponse, Shop)]?) -> Void) {
         // product, shop rivals, numberOfChosenRivals, autoUpdate
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.chosenRivals_path + "/\(shopId)/\(productId)")!
         

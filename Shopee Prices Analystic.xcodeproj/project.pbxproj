@@ -62,6 +62,7 @@
 		247651DD238CF8FC0009A40B /* RivalsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247651DC238CF8FC0009A40B /* RivalsResponse.swift */; };
 		247651DF238D15A20009A40B /* PriceApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247651DE238D15A20009A40B /* PriceApiService.swift */; };
 		247651E2238D16ED0009A40B /* ShopApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247651E1238D16ED0009A40B /* ShopApiService.swift */; };
+		247651E4238D1F260009A40B /* CustomerShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247651E3238D1F260009A40B /* CustomerShop.swift */; };
 		2478C65222DD8DAC00DA6D8E /* OverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */; };
 		2478C65722DDD50D00DA6D8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2478C65622DDD50D00DA6D8E /* User.swift */; };
 		2484174922D85D800009DF10 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484174822D85D800009DF10 /* AppDelegate.swift */; };
@@ -176,6 +177,7 @@
 		247651DC238CF8FC0009A40B /* RivalsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalsResponse.swift; sourceTree = "<group>"; };
 		247651DE238D15A20009A40B /* PriceApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceApiService.swift; sourceTree = "<group>"; };
 		247651E1238D16ED0009A40B /* ShopApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopApiService.swift; sourceTree = "<group>"; };
+		247651E3238D1F260009A40B /* CustomerShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerShop.swift; sourceTree = "<group>"; };
 		2478C65122DD8DAC00DA6D8E /* OverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewViewController.swift; sourceTree = "<group>"; };
 		2478C65622DDD50D00DA6D8E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2484174522D85D800009DF10 /* Shopee Prices Analystic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopee Prices Analystic.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -567,6 +569,7 @@
 			children = (
 				247651DA238CF3C80009A40B /* RivalShopInfo.swift */,
 				247651DC238CF8FC0009A40B /* RivalsResponse.swift */,
+				247651E3238D1F260009A40B /* CustomerShop.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -928,6 +931,7 @@
 				247651DF238D15A20009A40B /* PriceApiService.swift in Sources */,
 				BC15D3012313B1A6008D3456 /* Observation.swift in Sources */,
 				BC336A4E2316405D0091F44F /* AACharts.swift in Sources */,
+				247651E4238D1F260009A40B /* CustomerShop.swift in Sources */,
 				24631A6F2314D04D00295264 /* AutoUpdateHistoryCell.swift in Sources */,
 				2422105D230E91DA00E8FBCC /* ChosenRivalCell.swift in Sources */,
 				24F842EB230B95360050C2A0 /* OnboardingLoginViewController.swift in Sources */,

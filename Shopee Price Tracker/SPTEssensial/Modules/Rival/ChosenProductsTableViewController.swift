@@ -26,7 +26,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         refreshControl?.tintColor = .orange
 
-        if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
+        if let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop {
             self.currentShop = currentShop
         }
     }
