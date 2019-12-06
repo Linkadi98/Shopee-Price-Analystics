@@ -9,7 +9,7 @@
 import Foundation
 
 struct RivalsResponse: Codable {
-    let item: String?
+    let item: Product?
     let rival: Rival?
     let itemRival: Product?
 }
@@ -18,5 +18,5 @@ struct RivalsResponse: Codable {
 struct Rival: Codable {
     let itemid, shopid, rivalShopid, rivalItemid: Int?
     let auto: Bool?
-    let price, max, min: Int?
+    let price, max, min: Double?
 }

@@ -12,9 +12,14 @@ import NotificationBannerSwift
 
 class Network {
     static let shared = Network()
-//    let base_url = "http://192.168.1.39:8081"
+    let base_url = "http://202.191.56.159:2501"
 
-    let base_url = "http://172.104.173.222:8081"
+//    let base_url = { () -> String in
+//        guard let ip = IPAddressDetector.getIPAddress() else {
+//            return ""
+//        }
+//        return "http://" + ip + ":8081"
+//    }()
     let login_path = "/login"
     let register_path = "/register"
     let forget_path = "/forget"
@@ -71,6 +76,19 @@ extension Network {
         
         // Notify users
         StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
+    }
+    
+    func loadOnlineImage(from url: URL, to uiImageView: UIImageView) {
+        DispatchQueue(label: "loadImage").async {
+            do {
+                let data = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    uiImageView.image = UIImage(data: data)
+                }
+            } catch {
+                print("Can't load Image!")
+            }
+        }
     }
 }
 

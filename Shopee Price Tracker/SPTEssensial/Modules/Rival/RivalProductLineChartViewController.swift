@@ -42,13 +42,12 @@ class RivalProductLineChartViewController: UIViewController {
     }
 
     private func fetchData(completion: @escaping ([String]?, [Int]?, [String]?, [Int]?) -> Void) {
-        PriceApiService.priceObservations(productId: String(describing: product?.itemid)) { (result, dates, prices) in
-            print("670")
+        PriceApiService.priceObservations(productId: (product?.itemid)!) { (result, dates, prices) in
             if result == .failed {
                 self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
                 completion(nil, nil, nil, nil)
             } else if result == .success {
-                PriceApiService.priceObservations(productId: String(describing: self.rival?.itemid), completion: { (result2, rivalDates, rivalPrices) in
+                PriceApiService.priceObservations(productId: (self.rival?.itemid)!, completion: { (result2, rivalDates, rivalPrices) in
                     if result == .failed {
                         self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
                         completion(nil, nil, nil, nil)

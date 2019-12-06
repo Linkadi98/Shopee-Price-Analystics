@@ -7,35 +7,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "86E77A0E-D6F4-4DCA-8925-A6EBBF5F32B7"
+            uuid = "6E784C95-E194-4D3F-8645-86425CA0CCA0"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopee Prices Analystic/Controllers/ViewController.swift"
-            timestampString = "585245404.856645"
+            filePath = "Shopee Price Tracker/SPTEssensial/APIs/Rival/RivalApiService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2"
-            endingLineNumber = "2"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "getListRivals(myShopId:myProductId:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C910D820-C349-440D-83D6-30F85335E447"
-            shouldBeEnabled = "No"
+            uuid = "42896FEF-EA0B-4789-8716-896FB7E6C6AF"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shopee Prices Analystic/Controllers/ViewController.swift"
-            timestampString = "585245404.85676"
+            filePath = "Shopee Price Tracker/SPTEssensial/APIs/Rival/RivalApiService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3"
-            endingLineNumber = "3"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "getListRivals(myShopId:myProductId:completion:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

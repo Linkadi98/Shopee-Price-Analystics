@@ -12,7 +12,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     
     // MARK: - Properties
     var product: Product?
-    var chosenRivals: [(RivalsResponse, Shop)]?
+    var chosenRivals: [RivalsResponse]?
     var currentShop: Shop?
     
     let CELL_XIB_NAME = "SPTCompetitorProductCell"
@@ -83,10 +83,10 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         
         // Config cell
 
-        cell.competitorProductName.text = chosenRivals[indexPath.row].0.itemRival?.name
-        cell.competitorProductPrice.text = String(describing:  chosenRivals[indexPath.row].0.itemRival?.price)
-        cell.competitorName.text = String(describing:  chosenRivals[indexPath.row].1.shopName)
-        cell.changeFollowingStatus(isSelectedToObserve: (chosenRivals[indexPath.row].0.rival?.auto)!)
+        cell.competitorProductName.text = chosenRivals[indexPath.row].itemRival?.name
+        cell.competitorProductPrice.text = String(describing:  chosenRivals[indexPath.row].itemRival?.price)
+        cell.competitorName.text = String(describing:  chosenRivals[indexPath.row].itemRival?.name)
+        cell.changeFollowingStatus(isSelectedToObserve: (chosenRivals[indexPath.row].rival?.auto)!)
         
         return cell
     }
@@ -100,7 +100,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         let notificationName = NSNotification.Name(rawValue: "didGetRivalInfo")
         var rivalProducts: [Product] = []
         for chosenRival in chosenRivals {
-            rivalProducts.append(chosenRival.0.itemRival!)
+            rivalProducts.append(chosenRival.itemRival!)
         }
         NotificationCenter.default.post(name: notificationName, object: nil, userInfo: ["rivalProducts": rivalProducts])
 
@@ -117,7 +117,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "rivalInfoSegue" {
-            if let chosenRival = sender as? (RivalsResponse, Shop) {
+            if let chosenRival = sender as? RivalsResponse {
                 if let containerRivalInfoViewController = segue.destination as? ContainerRivalInfoViewController {
                     containerRivalInfoViewController.chosenRival = chosenRival
                     containerRivalInfoViewController.product = product!
@@ -156,8 +156,8 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
     
     
     func deleteRow(at row: Int, in section: Int) {
-        let deletedId = (chosenRivals![row].0.itemRival?.itemid, chosenRivals![row].1.shopId)
-        let alert = UIAlertController(title: "Xoá sản phẩm của \(chosenRivals![row].1.shopName)?", message: nil, preferredStyle: .alert)
+        let deletedId = (chosenRivals![row].itemRival?.itemid, chosenRivals![row].itemRival?.shopid)
+        let alert = UIAlertController(title: "Xoá sản phẩm của \(chosenRivals![row].itemRival?.name)?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
 

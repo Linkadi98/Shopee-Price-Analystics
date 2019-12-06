@@ -8,6 +8,7 @@
 
 import UIKit
 import Cosmos
+import JGProgressHUD
 
 class ProductDetailTableViewController: UITableViewController {
 
@@ -17,10 +18,13 @@ class ProductDetailTableViewController: UITableViewController {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productName: UILabel!
+    
     var category: UILabel!
     var brand: UILabel!
     var numOfSoldItem: UILabel!
     var inventoryItem: UILabel!
+    
+    var hud: SPTProgressHUD!
     
     var fiveStar: CosmosView! {
         let star = CosmosView()
@@ -99,20 +103,21 @@ class ProductDetailTableViewController: UITableViewController {
             return
         }
         productName.text = product.name
-        productCode.text = String(product.id!)
-        soldPrice.text! = String(product.price!.convertPriceToVietnameseCurrency()!)
-        configRatingCell(rating: product.rating!)
-        loadOnlineImage(from: URL(string: product.image!)!, to: productImage)
+        productCode.text = String(product.itemid!)
+        soldPrice.text! = String(Int(product.price!).convertPriceToVietnameseCurrency()!)
+        configRatingCell(rating: Double(product.ratingStar!))
+        Network.shared.loadOnlineImage(from: URL(string: product.images![0])!, to: productImage)
         brand.text = product.brand
-        category.text = product.categories?.last
+        category.text = product.categories?.last?.displayName
         numOfSoldItem.text = String(product.sold!)
         inventoryItem.text = String(product.stock!)
-        maxPrice.text = String(product.maxPrice!.convertPriceToVietnameseCurrency()!)
-        minPrice.text = String(product.minPrice!.convertPriceToVietnameseCurrency()!)
+        maxPrice.text = String(Int(product.priceMax!).convertPriceToVietnameseCurrency()!)
+        minPrice.text = String(Int(product.priceMin!).convertPriceToVietnameseCurrency()!)
         if let discount = product.discount {
-            discountPercent.text = discount
+            discountPercent.text = String(describing: discount)
         } else {
             discountPercent.text = "Không có"
+            
         }
     }
 
@@ -201,7 +206,7 @@ class ProductDetailTableViewController: UITableViewController {
 
     private func changePrice(of product: Product) {
         
-        let alert = UIAlertController(title: "Sản phẩm \(product.name)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sản phẩm \(product.name!)", message: "Nhập giá bạn muốn thay đổi", preferredStyle: .alert)
         alert.addTextField(configurationHandler: { textfield in
             textfield.keyboardType = .numberPad
             textfield.borderStyle = .none
@@ -211,29 +216,39 @@ class ProductDetailTableViewController: UITableViewController {
         let cancel = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
         let ok = UIAlertAction(title: "OK", style: .default) { _ in
             guard let newPrice = Int(alert.textFields![0].text!), newPrice > 0 else {
-                self.presentAlert(message: "Xin mời nhập đúng giá")
+                self.presentAlert(message: "Giá sản phẩm không được nhỏ hơn 0")
                 return
             }
             
-            guard newPrice != product.price else {
-                self.presentAlert(message: "Giá không thay đổi")
+            guard newPrice != Int(product.price!) else {
+                self.presentAlert(message: "Giá sản phẩm không thay đổi")
                 return
             }
             
-            let activityIndicator = self.startLoading()
+            self.hud = SPTProgressHUD(style: .dark)
+            self.hud.show(in: self.view, content: "Xin vui lòng chờ")
             // 39692647/2716282215/595000
             self.vm?.updatePrice(newPrice: newPrice) { [unowned self] result in
                 switch result {
                 case .failed:
-                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+//                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+                    self.hud.dismiss()
+                    self.hud.indicatorView = JGProgressHUDErrorIndicatorView()
+                    self.hud.showStatusHUD(in: self.tableView, result: .error, content: "Không thành công")
                 case .error:
-                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+//                    self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
+                    
+                    self.hud.dismiss()
+                    self.hud.indicatorView = JGProgressHUDErrorIndicatorView()
+                    self.hud.showStatusHUD(in: self.tableView, result: .error, content: "Không thành công")
                 case .success:
-                    self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
+//                    self.presentAlert(title: "Thông báo", message: "Sửa giá thành công")
                     NotificationCenter.default.post(name: .didUpdateProductPrice, object: nil)
+                    
+                    self.hud.dismiss()
+                    self.hud.indicatorView = JGProgressHUDErrorIndicatorView()
+                    self.hud.showStatusHUD(in: self.tableView, result: .success, content: "Thành công")
                 }
-                
-                self.endLoading(activityIndicator)
             }
         }
         

@@ -11,12 +11,23 @@ import UIKit
 
 class SPTCompetitorProductCell: UITableViewCell {
 
-    @IBOutlet weak var competitorProductName: UILabel!
-    @IBOutlet weak var competitorProductPrice: UILabel!
-    @IBOutlet weak var competitorName: UILabel!
+    @IBOutlet weak var competitorProductName: UILabel! {
+        didSet {
+            competitorProductName.text = "---"
+        }
+    }
+    @IBOutlet weak var competitorProductPrice: UILabel! {
+        didSet {
+            competitorProductPrice.text = "---"
+        }
+    }
+    @IBOutlet weak var competitorName: UILabel! {
+        didSet {
+            competitorName.text = "---"
+        }
+    }
     @IBOutlet weak var followingStatus: UILabel! {
         didSet {
-            followingStatus.textColor = .red
             followingStatus.text = "---"
         }
     }
@@ -43,5 +54,13 @@ class SPTCompetitorProductCell: UITableViewCell {
             followingStatus.text = "Chưa theo dõi"
             followingStatus.textColor = .systemRed
         }
+    }
+    
+    func setContent(with product: Product, shop: Shop?, isSelectedToObserve: Bool) {
+        competitorProductName.text = product.name
+        competitorProductPrice.text = String(describing: Int(product.price!).convertPriceToVietnameseCurrency()!)
+        competitorName.text = "Shop: " + (shop?.name ?? "---")
+        changeFollowingStatus(isSelectedToObserve: isSelectedToObserve)
+        Network.shared.loadOnlineImage(from: URL(string: product.images![0])!, to: competitorProductImage)
     }
 }

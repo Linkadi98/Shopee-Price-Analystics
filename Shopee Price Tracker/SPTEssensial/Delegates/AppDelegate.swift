@@ -57,12 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         }
         
 
-//        self.window?.rootViewController = initialViewController
+        self.window?.rootViewController = initialViewController
         
 //        self.window?.rootViewController = onboardingViewController
 
         // for development purpose
-        self.window?.rootViewController = tabViewController
+//        self.window?.rootViewController = tabViewController
         self.window?.makeKeyAndVisible()
         
         return true

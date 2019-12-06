@@ -20,6 +20,7 @@
 		241BC1452303B0140097AB59 /* ChosenProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */; };
 		241BC1472303E3A00097AB59 /* ChosenProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */; };
 		241BC1492303F0100097AB59 /* AutoChangePriceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241BC1482303F0100097AB59 /* AutoChangePriceTableViewController.swift */; };
+		241C1DE823902C0C0057DDA7 /* SPTProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C1DE723902C0C0057DDA7 /* SPTProgressHUD.swift */; };
 		241C1E0622F8830600D30457 /* ProductDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */; };
 		241D5A7322E57A8C00CBA60C /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D5A7222E57A8C00CBA60C /* Account.swift */; };
 		2421730922FD5EFE00541024 /* ListRivalsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */; };
@@ -30,9 +31,9 @@
 		24232470238ABB0A00600B3C /* ListRivalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2423246F238ABB0A00600B3C /* ListRivalsViewModel.swift */; };
 		24232472238ABB3900600B3C /* RivalApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24232471238ABB3900600B3C /* RivalApiService.swift */; };
 		242361D922FAA6A300EFC57A /* RivalPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361D822FAA6A300EFC57A /* RivalPageViewController.swift */; };
-		242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */; };
 		242361DE22FAB43000EFC57A /* RivalProductTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */; };
 		242361E022FAB44E00EFC57A /* RivalProductLineChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */; };
+		24292C4E239A06560050A4A1 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24292C4D239A06560050A4A1 /* Collection+Extension.swift */; };
 		242C4FA522F577EE007D4903 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */; };
 		242C68572316A0BE0069D43C /* RivalPageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242C68562316A0BE0069D43C /* RivalPageDelegate.swift */; };
 		242F519122FE811D00A0E980 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242F519022FE811D00A0E980 /* ContainerViewController.swift */; };
@@ -46,6 +47,8 @@
 		2443E3D62381071D00919ABA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484174A22D85D800009DF10 /* LoginViewController.swift */; };
 		2443E3D72381075600919ABA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2414701322DAF58C000FB6D5 /* RegisterViewController.swift */; };
 		2449716C2317A6980072AC8D /* PriceObserveDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2449716B2317A6980072AC8D /* PriceObserveDelegate.swift */; };
+		24510C1C2398C2060032800B /* ListRivalProductContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24510C1B2398C2060032800B /* ListRivalProductContainerViewController.swift */; };
+		24510C1F2398C4D80032800B /* ListRivalProductsContainerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24510C1E2398C4D70032800B /* ListRivalProductsContainerViewModel.swift */; };
 		245255C323162F53003AFBBF /* ChosenRivalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245255C223162F53003AFBBF /* ChosenRivalDelegate.swift */; };
 		245255C6231633DC003AFBBF /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245255C5231633DC003AFBBF /* Notifications.swift */; };
 		2456D61C231691AA000109E8 /* PickerNameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456D61B231691AA000109E8 /* PickerNameDelegate.swift */; };
@@ -72,7 +75,9 @@
 		2484175E22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2484175D22D85D810009DF10 /* Shopee_Prices_AnalysticTests.swift */; };
 		249868212383BAA60083B7BA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249868202383BAA60083B7BA /* Observable.swift */; };
 		249868242383F21A0083B7BA /* ProductTableViewDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249868222383F1700083B7BA /* ProductTableViewDetailViewModel.swift */; };
+		2498A314238F79EA00018B77 /* Equatable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2498A313238F79EA00018B77 /* Equatable+Extension.swift */; };
 		24C48E1822E5F88300244EF4 /* AccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */; };
+		24CDDD2F238FDB9200B7B14D /* IPAddressDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CDDD2E238FDB9200B7B14D /* IPAddressDetector.swift */; };
 		24DF4B542313E16400B4688E /* StatisticPriceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DF4B532313E16400B4688E /* StatisticPriceTableViewController.swift */; };
 		24E56166230D2DB500914506 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E56165230D2DB500914506 /* Int+Extension.swift */; };
 		24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */; };
@@ -137,6 +142,7 @@
 		241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductsTableViewController.swift; sourceTree = "<group>"; };
 		241BC1462303E3A00097AB59 /* ChosenProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenProductTableViewCell.swift; sourceTree = "<group>"; };
 		241BC1482303F0100097AB59 /* AutoChangePriceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoChangePriceTableViewController.swift; sourceTree = "<group>"; };
+		241C1DE723902C0C0057DDA7 /* SPTProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPTProgressHUD.swift; sourceTree = "<group>"; };
 		241C1E0522F8830600D30457 /* ProductDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailTableViewController.swift; sourceTree = "<group>"; };
 		241D5A7222E57A8C00CBA60C /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRivalsTableViewController.swift; sourceTree = "<group>"; };
@@ -147,9 +153,9 @@
 		2423246F238ABB0A00600B3C /* ListRivalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRivalsViewModel.swift; sourceTree = "<group>"; };
 		24232471238ABB3900600B3C /* RivalApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalApiService.swift; sourceTree = "<group>"; };
 		242361D822FAA6A300EFC57A /* RivalPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalPageViewController.swift; sourceTree = "<group>"; };
-		242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalInfoViewController.swift; sourceTree = "<group>"; };
 		242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductTableViewController.swift; sourceTree = "<group>"; };
 		242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalProductLineChartViewController.swift; sourceTree = "<group>"; };
+		24292C4D239A06560050A4A1 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		242C4FA422F577EE007D4903 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		242C68562316A0BE0069D43C /* RivalPageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalPageDelegate.swift; sourceTree = "<group>"; };
 		242F519022FE811D00A0E980 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +167,8 @@
 		2433DB6A22F6C48A00AB0498 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		2436165822EA0565006C7C66 /* AccoutDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccoutDetailTableViewController.swift; sourceTree = "<group>"; };
 		2449716B2317A6980072AC8D /* PriceObserveDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceObserveDelegate.swift; sourceTree = "<group>"; };
+		24510C1B2398C2060032800B /* ListRivalProductContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRivalProductContainerViewController.swift; sourceTree = "<group>"; };
+		24510C1E2398C4D70032800B /* ListRivalProductsContainerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRivalProductsContainerViewModel.swift; sourceTree = "<group>"; };
 		245255C223162F53003AFBBF /* ChosenRivalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenRivalDelegate.swift; sourceTree = "<group>"; };
 		245255C5231633DC003AFBBF /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = "../../Notìfications/Notifications.swift"; sourceTree = "<group>"; };
 		2456D61B231691AA000109E8 /* PickerNameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerNameDelegate.swift; sourceTree = "<group>"; };
@@ -192,7 +200,9 @@
 		2484175F22D85D810009DF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		249868202383BAA60083B7BA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		249868222383F1700083B7BA /* ProductTableViewDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewDetailViewModel.swift; sourceTree = "<group>"; };
+		2498A313238F79EA00018B77 /* Equatable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Equatable+Extension.swift"; sourceTree = "<group>"; };
 		24C48E1722E5F88300244EF4 /* AccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewController.swift; sourceTree = "<group>"; };
+		24CDDD2E238FDB9200B7B14D /* IPAddressDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddressDetector.swift; sourceTree = "<group>"; };
 		24DF4B532313E16400B4688E /* StatisticPriceTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticPriceTableViewController.swift; sourceTree = "<group>"; };
 		24E56165230D2DB500914506 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		24EAE55322DEF83900EB53F2 /* TransparentTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTabBar.swift; sourceTree = "<group>"; };
@@ -258,16 +268,22 @@
 			path = SPTCompetitorProductCell;
 			sourceTree = "<group>";
 		};
+		241C1DE623902BF20057DDA7 /* SPTProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				241C1DE723902C0C0057DDA7 /* SPTProgressHUD.swift */,
+			);
+			path = SPTProgressHUD;
+			sourceTree = "<group>";
+		};
 		242361D722FAA66300EFC57A /* Rival */ = {
 			isa = PBXGroup;
 			children = (
+				24510C1D2398C21D0032800B /* ListRivalProduct */,
 				24F2EF2723818C28000CFE40 /* Model */,
 				242361D822FAA6A300EFC57A /* RivalPageViewController.swift */,
-				242361DB22FAB3F100EFC57A /* RivalInfoViewController.swift */,
 				242361DD22FAB43000EFC57A /* RivalProductTableViewController.swift */,
 				242361DF22FAB44E00EFC57A /* RivalProductLineChartViewController.swift */,
-				2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */,
-				2423246F238ABB0A00600B3C /* ListRivalsViewModel.swift */,
 				241BC1442303B0140097AB59 /* ChosenProductsTableViewController.swift */,
 				241BC1482303F0100097AB59 /* AutoChangePriceTableViewController.swift */,
 				2422105A230E910800E8FBCC /* ChosenRivalsTableViewController.swift */,
@@ -316,6 +332,17 @@
 				2414701322DAF58C000FB6D5 /* RegisterViewController.swift */,
 			);
 			path = Register;
+			sourceTree = "<group>";
+		};
+		24510C1D2398C21D0032800B /* ListRivalProduct */ = {
+			isa = PBXGroup;
+			children = (
+				24510C1B2398C2060032800B /* ListRivalProductContainerViewController.swift */,
+				24510C1E2398C4D70032800B /* ListRivalProductsContainerViewModel.swift */,
+				2421730822FD5EFE00541024 /* ListRivalsTableViewController.swift */,
+				2423246F238ABB0A00600B3C /* ListRivalsViewModel.swift */,
+			);
+			path = ListRivalProduct;
 			sourceTree = "<group>";
 		};
 		2459135222E2BF8600D51A4B /* Overview */ = {
@@ -458,6 +485,7 @@
 		24BED25E2381900400B3FC2E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				241C1DE623902BF20057DDA7 /* SPTProgressHUD */,
 				240F2743238A64650088F6A8 /* SPTCompetitorProductCell */,
 				243392E02387C7C200447B32 /* SPTPopupView */,
 				BCD6A47B2316322B00F74CFA /* Charts */,
@@ -560,6 +588,9 @@
 				24F2EF2523818B93000CFE40 /* JSONCodable+Extension.swift */,
 				245255C5231633DC003AFBBF /* Notifications.swift */,
 				24074877238230A700607903 /* UserDefaults+Extension.swift */,
+				2498A313238F79EA00018B77 /* Equatable+Extension.swift */,
+				24CDDD2E238FDB9200B7B14D /* IPAddressDetector.swift */,
+				24292C4D239A06560050A4A1 /* Collection+Extension.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -627,8 +658,8 @@
 		24FEBA6F23817CD600654D5D /* APIs */ = {
 			isa = PBXGroup;
 			children = (
-				247651E0238D16E10009A40B /* Shop */,
 				BC0FB3A222F7C02C00968E68 /* Network.swift */,
+				247651E0238D16E10009A40B /* Shop */,
 				24F2EF1F23818A6D000CFE40 /* Rival */,
 				24F2EF1E23818A67000CFE40 /* Overview */,
 				24F2EF1D23818A4F000CFE40 /* Account */,
@@ -860,9 +891,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				247651E2238D16ED0009A40B /* ShopApiService.swift in Sources */,
+				24292C4E239A06560050A4A1 /* Collection+Extension.swift in Sources */,
 				249868242383F21A0083B7BA /* ProductTableViewDetailViewModel.swift in Sources */,
 				240748792382315D00607903 /* UserDefaults+Extension.swift in Sources */,
 				24FEBA7023817CFB00654D5D /* ProductsTableViewController.swift in Sources */,
+				2498A314238F79EA00018B77 /* Equatable+Extension.swift in Sources */,
 				2443E3D72381075600919ABA /* RegisterViewController.swift in Sources */,
 				2443E3D62381071D00919ABA /* LoginViewController.swift in Sources */,
 				24EAE55422DEF83900EB53F2 /* TransparentTabBar.swift in Sources */,
@@ -885,10 +918,12 @@
 				241BC1492303F0100097AB59 /* AutoChangePriceTableViewController.swift in Sources */,
 				2469B6F32307CD1400C77F3A /* OnboardingViewController.swift in Sources */,
 				24120F4022E074B6000FA0B7 /* UITextField+Extension.swift in Sources */,
+				24510C1F2398C4D80032800B /* ListRivalProductsContainerViewModel.swift in Sources */,
 				24F2EF2623818B93000CFE40 /* JSONCodable+Extension.swift in Sources */,
 				240F1D08231424D400494CCB /* AutoUpdatePriceHistoryTableViewController.swift in Sources */,
 				24120F3B22E04D99000FA0B7 /* ListShopsTableViewController.swift in Sources */,
 				243392E82387C9FB00447B32 /* SPTPopupViewController.swift in Sources */,
+				24510C1C2398C2060032800B /* ListRivalProductContainerViewController.swift in Sources */,
 				24232470238ABB0A00600B3C /* ListRivalsViewModel.swift in Sources */,
 				24F661D522DC26C100440A7A /* TabsViewController.swift in Sources */,
 				BCD4456A23168636003D93A4 /* ChartViewController.swift in Sources */,
@@ -917,6 +952,7 @@
 				2456D61C231691AA000109E8 /* PickerNameDelegate.swift in Sources */,
 				249868212383BAA60083B7BA /* Observable.swift in Sources */,
 				BC8D7D0422E6FBA800D224EC /* ProductTableViewCell.swift in Sources */,
+				24CDDD2F238FDB9200B7B14D /* IPAddressDetector.swift in Sources */,
 				2478C65722DDD50D00DA6D8E /* User.swift in Sources */,
 				2459136422E2F0FF00D51A4B /* UIViewController+Extension.swift in Sources */,
 				BC64962B2316D86300060657 /* AutoUpdateHistory.swift in Sources */,
@@ -932,11 +968,11 @@
 				BC15D3012313B1A6008D3456 /* Observation.swift in Sources */,
 				BC336A4E2316405D0091F44F /* AACharts.swift in Sources */,
 				247651E4238D1F260009A40B /* CustomerShop.swift in Sources */,
+				241C1DE823902C0C0057DDA7 /* SPTProgressHUD.swift in Sources */,
 				24631A6F2314D04D00295264 /* AutoUpdateHistoryCell.swift in Sources */,
 				2422105D230E91DA00E8FBCC /* ChosenRivalCell.swift in Sources */,
 				24F842EB230B95360050C2A0 /* OnboardingLoginViewController.swift in Sources */,
 				BCD4456E23168B90003D93A4 /* PieChartViewController.swift in Sources */,
-				242361DC22FAB3F100EFC57A /* RivalInfoViewController.swift in Sources */,
 				247651DD238CF8FC0009A40B /* RivalsResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

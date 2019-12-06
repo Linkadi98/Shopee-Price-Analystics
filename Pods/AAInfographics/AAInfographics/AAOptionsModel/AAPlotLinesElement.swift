@@ -32,13 +32,13 @@
 
 import UIKit
 
-public class AAPlotLinesElement: AASerializable {
-    private var color: Any?
-    private var dashStyle: String?
-    private var width: Float?
-    private var value: Float?
-    private var zIndex: Int?
-    private var label: [String: AnyObject]?
+public class AAPlotLinesElement: AAObject {
+    public var color: Any?
+    public var dashStyle: String?
+    public var width: Float?
+    public var value: Float?
+    public var zIndex: Int?
+    public var label: AALabel?
     
     @discardableResult
     public func color(_ prop: Any) -> AAPlotLinesElement {
@@ -47,7 +47,7 @@ public class AAPlotLinesElement: AASerializable {
     }
     
     @discardableResult
-    public func dashStyle(_ prop: AALineDashStyleType) -> AAPlotLinesElement {
+    public func dashStyle(_ prop: AAChartLineDashStyleType) -> AAPlotLinesElement {
         dashStyle = prop.rawValue
         return self
     }
@@ -72,11 +72,11 @@ public class AAPlotLinesElement: AASerializable {
     
     @discardableResult
     public func label(_ prop: AALabel) -> AAPlotLinesElement {
-        label = prop.toDic()!
+        label = prop
         return self
     }
     
-    public  init() {
+    public override init() {
     }
 
 }

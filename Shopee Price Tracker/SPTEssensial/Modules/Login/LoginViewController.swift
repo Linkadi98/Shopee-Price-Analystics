@@ -32,8 +32,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // test
-        userNameText.text = "TrongCanh"
-        passwordText.text = "123456789"
+        userNameText.text = "minhpn"
+        passwordText.text = "123456"
         hideKeyboardWhenTappedAround()
     }
     
@@ -83,7 +83,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as! TabsViewController
                 
-                tabVC.modalTransitionStyle = .crossDissolve
+                tabVC.modalTransitionStyle = .coverVertical
                 self.present(tabVC, animated: true, completion: nil)
                 NotificationCenter.default.post(name: .didSignedInApp, object: nil)
             default:

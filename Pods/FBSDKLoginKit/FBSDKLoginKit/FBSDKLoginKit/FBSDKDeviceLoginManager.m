@@ -19,7 +19,11 @@
 #import "FBSDKDeviceLoginManager.h"
 #import "FBSDKDeviceLoginManagerResult+Internal.h"
 
-#import <FBSDKCoreKit/FBSDKConstants.h>
+#ifdef SWIFT_PACKAGE
+#import "FBSDKConstants.h"
+#else
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#endif
 
 #import "FBSDKCoreKit+Internal.h"
 #import "FBSDKDeviceLoginCodeInfo+Internal.h"

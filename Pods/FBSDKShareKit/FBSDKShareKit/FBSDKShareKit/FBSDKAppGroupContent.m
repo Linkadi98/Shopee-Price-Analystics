@@ -18,7 +18,11 @@
 
 #import "FBSDKAppGroupContent.h"
 
+#ifdef FBSDKCOCOAPODS
+#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
 #import "FBSDKCoreKit+Internal.h"
+#endif
 #import "FBSDKShareUtility.h"
 
 #define FBSDK_APP_GROUP_CONTENT_GROUP_DESCRIPTION_KEY @"groupDescription"

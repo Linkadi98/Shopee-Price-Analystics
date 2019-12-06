@@ -100,7 +100,7 @@ class StatisticalPriceTableViewController: UITableViewController {
             let price = product.price
             var tuple: (String, String)
 
-            tuple = calculatePriceSpaceFrom(productPrice: price!, firstPulp: section * 10 + 50, secondPulp: section * 10 + 60)
+            tuple = calculatePriceSpaceFrom(productPrice: Int(price!), firstPulp: section * 10 + 50, secondPulp: section * 10 + 60)
             title = title + tuple.0 + " đến " + tuple.1
         }
 

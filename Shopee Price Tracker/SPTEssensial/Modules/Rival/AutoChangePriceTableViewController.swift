@@ -13,8 +13,8 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     // MARK: - Properties
 //    var product: Product?
 //    var rivalProduct: Product?
-    var observation: Observation? // current
-    var chosenRivals: [(Product, Shop, Observation)]?
+    var rivalResponse: RivalsResponse? // current
+    var chosenRivals: [RivalsResponse]?
 
     @IBOutlet weak var shopChangePicker: UIPickerView!
     @IBOutlet weak var autoChangePriceSwitch: UISwitch!
@@ -61,7 +61,7 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         tableView.endUpdates()
 
         // Turn off auto updating
-        if observation?.autoUpdate == true {
+        if rivalResponse?.rival?.auto == true {
             if !autoChangePriceSwitch.isOn {
                 let alert = UIAlertController(title: "Bạn muốn tắt chỉnh giá tự động?", message: nil, preferredStyle: .alert)
                 let cancelButton = UIAlertAction(title: "Huỷ", style: .destructive) { _ in
@@ -70,7 +70,7 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
                 let okButton = UIAlertAction(title: "OK", style: .default) { (_) in
                     let activityIndicator = self.startLoading()
 
-                    RivalApiService.chooseRival(myProductId: Int(self.observation!.productId)!, myShopId: Int(self.observation!.shopId)!, rivalProductId: Int(self.observation!.rivalProductId)!, rivalShopId: Int(self.observation!.rivalShopId)!, autoUpdate: false, priceDiff: 0, from: 0, to: 0, completion: { (result) in
+                    RivalApiService.chooseRival(myProductId: (self.rivalResponse?.itemRival?.itemid)!, myShopId: (self.rivalResponse?.rival?.shopid)!, rivalProductId: (self.rivalResponse?.itemRival?.itemid)!, rivalShopId: (self.rivalResponse?.itemRival?.shopid)!, autoUpdate: false, priceDiff: 0, from: 0, to: 0, completion: { (result) in
                         if result == .success {
                             self.presentAlert(title: "Thông báo", message: "Tắt thành công")
 
@@ -182,9 +182,9 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
             let activityIndicator = self.startLoading()
 
             let selectedRowOfPicker = self.shopChangePicker.selectedRow(inComponent: 0)
-            let rivalProductId = self.chosenRivals![selectedRowOfPicker].0.itemid
-            let rivalShopId = self.chosenRivals![selectedRowOfPicker].0.shopid
-            RivalApiService.chooseRival(myProductId: Int(self.observation!.productId)!, myShopId: Int(self.observation!.shopId)!, rivalProductId: rivalProductId!, rivalShopId: rivalShopId!, autoUpdate: true, priceDiff: Int(self.priceDiff.text!)!, from: Int(self.minPriceRange.text!)!, to: Int(self.maxPriceRange.text!)!) { (result) in
+            let rivalProductId = self.chosenRivals![selectedRowOfPicker].itemRival?.itemid
+            let rivalShopId = self.chosenRivals![selectedRowOfPicker].itemRival?.shopid
+            RivalApiService.chooseRival(myProductId: (self.rivalResponse?.itemRival?.itemid)!, myShopId: (self.rivalResponse?.rival?.shopid)!, rivalProductId: rivalProductId!, rivalShopId: rivalShopId!, autoUpdate: true, priceDiff: Int(self.priceDiff.text!)!, from: Int(self.minPriceRange.text!)!, to: Int(self.maxPriceRange.text!)!) { (result) in
                 if result == .success {
                     self.presentAlert(title: "Thông báo", message: "Bật thành công")
 
@@ -247,8 +247,8 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     }
 
     private func updateUI() {
-        if let observation = observation {
-            guard observation.autoUpdate else {
+        if let observation = rivalResponse?.rival {
+            guard observation.auto != nil else {
                 autoChangePriceSwitch.isOn = false
                 maxPriceRange.text = ""
                 minPriceRange.text = ""
@@ -258,9 +258,9 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
             }
 
             autoChangePriceSwitch.isOn = true
-            maxPriceRange.text = "\(observation.maxPrice)"
-            minPriceRange.text = "\(observation.minPrice)"
-            priceDiff.text = "\(observation.priceDiff)"
+            maxPriceRange.text = String(describing: rivalResponse?.rival?.max)
+            minPriceRange.text = String(describing: rivalResponse?.rival?.min)
+            priceDiff.text = String(describing: rivalResponse?.rival?.price)
         }
     }
 }

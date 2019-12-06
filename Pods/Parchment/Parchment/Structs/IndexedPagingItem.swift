@@ -12,10 +12,6 @@ public struct PagingIndexItem: PagingTitleItem, Equatable, Hashable, Comparable 
   /// The title used in the menu cells.
   public let title: String
   
-  public var hashValue: Int {
-    return index
-  }
-  
   /// Creates an instance of `PagingIndexItem`
   ///
   /// Parameter index: The index of the `PagingItem`.
@@ -23,6 +19,11 @@ public struct PagingIndexItem: PagingTitleItem, Equatable, Hashable, Comparable 
   public init(index: Int, title: String) {
     self.title = title
     self.index = index
+  }
+  
+  public func hash(into hasher: inout Hasher) {
+    hasher.combine(index)
+    hasher.combine(title)
   }
   
   public static func ==(lhs: PagingIndexItem, rhs: PagingIndexItem) -> Bool {

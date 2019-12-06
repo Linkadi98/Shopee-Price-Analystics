@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 public enum PagingMenuItemSize {
   case fixed(width: CGFloat, height: CGFloat)
@@ -11,14 +12,14 @@ public enum PagingMenuItemSize {
 
 public extension PagingMenuItemSize {
   
-  public var width: CGFloat {
+  var width: CGFloat {
     switch self {
     case let .fixed(width, _): return width
     case let .sizeToFit(minWidth, _): return minWidth
     }
   }
   
-  public var height: CGFloat {
+  var height: CGFloat {
     switch self {
     case let .fixed(_, height): return height
     case let .sizeToFit(_, height): return height

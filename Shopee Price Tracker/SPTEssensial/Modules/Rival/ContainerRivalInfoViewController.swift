@@ -12,9 +12,9 @@ class ContainerRivalInfoViewController: UIViewController, RivalPageDelegate {
     
 
     var product: Product?
-    var chosenRival: (RivalsResponse, Shop)?
+    var chosenRival: RivalsResponse?
     
-    var chosenRivals: [(RivalsResponse, Shop)]?
+    var chosenRivals: [RivalsResponse]?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,16 +8,17 @@
 
 import Foundation
 
-struct Product: Codable {
+struct Product: Codable, Equatable {
     let itemid: Int?
     let images: [String]?
     let name: String?
     let shopid: Int?
     let brand: String?
-    let price, ratingStar: Int?
+    let price, ratingStar: Double?
     let ratingCount: [Int]?
-    let historicalSold, sold, priceMax, priceMin: Int?
-    let discount: Int?
+    let historicalSold, sold: Int?
+    let priceMax, priceMin: Double?
+    let discount: String?
     let stock: Int?
     let categories: [Category]?
     let itemPrice: ItemPrice?
@@ -26,7 +27,7 @@ struct Product: Codable {
 }
 
 // MARK: - Category
-struct Category: Codable {
+struct Category: Codable, Equatable {
     let id: Int?
     let displayName: String?
     let catid: Int?
@@ -34,7 +35,7 @@ struct Category: Codable {
 
 // MARK: - Item price
 
-struct ItemPrice: Codable {
+struct ItemPrice: Codable, Equatable {
     let id: Int?
     let date: String?
     let time: String?

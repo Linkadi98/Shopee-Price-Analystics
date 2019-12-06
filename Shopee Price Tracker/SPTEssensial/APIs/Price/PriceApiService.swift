@@ -14,7 +14,7 @@ struct PriceApiService {
     
     private static let sharedNetwork = Network.shared
     
-    static func priceObservations(productId: String, completion: @escaping (ConnectionResults, [String]?, [Int]?) -> Void) {
+    static func priceObservations(productId: Int, completion: @escaping (ConnectionResults, [String]?, [Int]?) -> Void) {
         // result, date, price
         
         let url = URL(string: sharedNetwork.base_url + sharedNetwork.priceObservation_path + "/\(productId)")!
@@ -109,7 +109,7 @@ struct PriceApiService {
     }
     
     // delete 1 rival
-    static func deleteRivals(productId: String, completion: @escaping (ConnectionResults) -> Void) {
+    static func deleteRivals(productId: Int, completion: @escaping (ConnectionResults) -> Void) {
         
         let url = URL(string: Network.shared.base_url + Network.shared.rival_path + "/\(productId)")!
         

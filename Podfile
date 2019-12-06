@@ -18,6 +18,7 @@ pod 'SVProgressHUD', '~> 2.2'
 pod 'AlamofireImage', '~> 3.5'
 pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.git'
 pod 'NVActivityIndicatorView'
+pod 'JGProgressHUD'
 # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do

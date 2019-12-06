@@ -216,18 +216,7 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 //    }
     
     // Load online image
-    func loadOnlineImage(from url: URL, to uiImageView: UIImageView) {
-        DispatchQueue(label: "loadImage").async {
-            do {
-                let data = try Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    uiImageView.image = UIImage(data: data)
-                }
-            } catch {
-                print("Can't load Image!")
-            }
-        }
-    }
+    
 
 
     // Present a alert

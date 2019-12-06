@@ -72,8 +72,8 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
             model = listShops![indexPath.row]
         }
 
-        cell.shopName.text = model.shopName
-        cell.shopId.text = model.shopId
+        cell.shopName.text = model.name
+        cell.shopId.text = String(describing: model.shopid)
         if (indexPath.row == 0) {
             cell.status.addImage(#imageLiteral(resourceName: "active"), "", x: -1)
             cell.selectionStyle = .none
@@ -125,7 +125,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         if hasData {
             filterContentForSearchText(searchController.searchBar.text!) {(searchText) in
                 filterShop = listShops?.filter({(shop: Shop) -> Bool in
-                    return shop.shopName.lowercased().contains(searchText.lowercased())
+                    return shop.name!.lowercased().contains(searchText.lowercased())
                 })
             }
         }
@@ -190,7 +190,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     }
 
     private func changeCurrentShop(shop: Shop, indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Chuyển sang \(shop.shopName)", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Chuyển sang \(String(describing: shop.name))", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: { _ in
             print("Đã huỷ")
         }))

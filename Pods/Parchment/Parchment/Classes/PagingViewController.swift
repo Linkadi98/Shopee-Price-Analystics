@@ -1110,7 +1110,7 @@ open class PagingViewController<T: PagingItem>:
       // paging item, causing it to jump to that item even if it's
       // scrolled out of view. We still need to fire an event that
       // will reset the state to .selected.
-      if state.upcomingPagingItem == nil {
+      if case .scrolling(_, nil, _, _, _)  = state {
         stateMachine.fire(.cancelScrolling)
       } else {
         stateMachine.fire(.finishScrolling)

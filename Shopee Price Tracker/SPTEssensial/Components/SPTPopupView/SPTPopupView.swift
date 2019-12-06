@@ -53,12 +53,12 @@ class SPTPopupView: UIView, SPTPopupViewProtocol {
     }
     
     @IBAction func getListCompetitors(_ sender: Any) {
-        buttonTitle.value = "Cửa hàng có cùng loại sản phẩm"
+        buttonTitle.value = "Tìm cửa hàng có sản phẩm tương tự"
         hidePopup()
     }
     
     @IBAction func observeProductPrice(_ sender: Any) {
-        buttonTitle.value = "Theo dõi giá sản phẩm này"
+        buttonTitle.value = "Thống kê giá của sản phẩm trên sàn"
         hidePopup()
     }
     

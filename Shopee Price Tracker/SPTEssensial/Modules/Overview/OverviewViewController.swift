@@ -64,7 +64,7 @@ class OverviewViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
 
         // currentShop is nil
-        guard self.currentShop != nil, let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop, currentShop == self.currentShop else {
+        guard self.currentShop != nil, let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop, currentShop == self.currentShop else {
             fetchDataFromServer()
             return
         }
@@ -72,7 +72,7 @@ class OverviewViewController: UIViewController {
     
     private func fetchDataFromServer() {
 
-        getListShops { [unowned self] (result, listShops) in
+        ShopApiService.getListShops { [unowned self] (result, listShops) in
             guard result != .failed, let listShops = listShops else {
                 return
             }
@@ -90,7 +90,7 @@ class OverviewViewController: UIViewController {
                 return
             }
 
-            guard let currentShop = self.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            guard let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
                 self.currentShop = nil
                 return
             }
@@ -99,16 +99,16 @@ class OverviewViewController: UIViewController {
 
             print("1zd\(currentShop)")
             // Update interface
-            self.shopId.text = currentShop.shopId
-            self.shopName.text = currentShop.shopName
-            self.followerCounts.text = "\(currentShop.followersCount)"
-            self.rating.text = "\(currentShop.rating)/5.0"
-            if let image = currentShop.image {
-                self.loadOnlineImage(from: URL(string: image)!, to: self.shopImage)
+            self.shopId.text = String(describing: currentShop.shopid)
+            self.shopName.text = currentShop.name
+            self.followerCounts.text = "\(String(describing: currentShop.followerCount))"
+            self.rating.text = "\(String(describing: currentShop.ratingStar))/5.0"
+            if let image = currentShop.images {
+                Network.shared.loadOnlineImage(from: URL(string: image[0])!, to: self.shopImage)
             }
 
             // Default image
-            self.status.text = "Lượt theo dõi: \(currentShop.followersCount)"
+            self.status.text = "Lượt theo dõi: \(String(describing: currentShop.followerCount))"
 
 //            self.view.hideSkeleton()
 //            self.view.stopSkeletonAnimation()

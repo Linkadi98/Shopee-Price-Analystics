@@ -19,11 +19,16 @@
 #import "FBSDKLoginManager+Internal.h"
 #import "FBSDKLoginManagerLoginResult+Internal.h"
 
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#import <FBSDKCoreKit/FBSDKSettings.h>
+#ifdef SWIFT_PACKAGE
+#import "FBSDKAccessToken.h"
+#import "FBSDKSettings.h"
+#else
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#endif
+
+#import "FBSDKCoreKit+Internal.h"
 
 #import "_FBSDKLoginRecoveryAttempter.h"
-#import "FBSDKCoreKit+Internal.h"
 #import "FBSDKLoginCompletion.h"
 #import "FBSDKLoginConstants.h"
 #import "FBSDKLoginError.h"
@@ -346,7 +351,7 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
 
   [_logger startSessionForLoginManager:self];
 
-  [self logInWithBehavior:self.loginBehavior];
+  [self logIn];
 }
 
 - (void)reauthorizeDataAccess:(FBSDKLoginManagerLoginResultBlock)handler
@@ -358,10 +363,10 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   _requestedPermissions = [NSSet set];
   self.authType = FBSDKLoginAuthTypeReauthorize;
   [_logger startSessionForLoginManager:self];
-  [self logInWithBehavior:self.loginBehavior];
+  [self logIn];
 }
 
-- (void)logInWithBehavior:(FBSDKLoginBehavior)loginBehavior
+- (void)logIn
 {
   FBSDKServerConfiguration *serverConfiguration = [FBSDKServerConfigurationManager cachedServerConfiguration];
   NSDictionary *loginParams = [self logInParametersWithPermissions:_requestedPermissions serverConfiguration:serverConfiguration];

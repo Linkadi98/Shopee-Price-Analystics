@@ -75,7 +75,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
         let product = chosenProducts[indexPath.row]
         DispatchQueue.main.async {
             cell.productId.text! = "Mã: \(product.0.itemid)"
-            self.loadOnlineImage(from: URL(string: product.0.images![0])!, to: cell.productImage)
+            Network.shared.loadOnlineImage(from: URL(string: product.0.images![0])!, to: cell.productImage)
             cell.numberOfRival.text = "\(product.1)"
             if product.2 == false {
                 cell.autoChangePriceStatus.backgroundColor = .red
@@ -174,11 +174,11 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     
     
     func deleteRow(at row: Int, in section: Int) {
-        let deletedId = chosenProducts![row].0.id
-        let alert = UIAlertController(title: "Xoá sản phẩm \(deletedId)?", message: nil, preferredStyle: .alert)
+        let deletedId = chosenProducts![row].0.itemid
+        let alert = UIAlertController(title: "Xoá sản phẩm \(String(describing: deletedId))?", message: nil, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-            self.deleteRivals(productId: deletedId!) { [unowned self](result) in
+            PriceApiService.deleteRivals(productId: deletedId!) { [unowned self](result) in
                 if result == .success {
                     self.presentAlert(title: "Thông báo", message: "Xoá thành công")
                     let indexPath = IndexPath(row: row, section: section)
@@ -214,7 +214,7 @@ class ChosenProductsTableViewController: UITableViewController, ChosenProductRiv
     // MARK: - Fetching data from server
 
     private func fetchDataFromServer() {
-        if let currentShop = getObjectInUserDefaults(forKey: "currentShop") as? Shop {
+        if let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop {
             self.currentShop = currentShop
         }
         for row in 0...self.tableView.numberOfRows(inSection: 0) {

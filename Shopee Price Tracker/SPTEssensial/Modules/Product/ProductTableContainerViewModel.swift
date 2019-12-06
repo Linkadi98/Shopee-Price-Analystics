@@ -12,8 +12,9 @@ import Foundation
 class ProductTableContainerViewModel {
     var product: Observable<Product>?
     
-    func observeProductPrice() {
+    func observeProductPrice(completion: @escaping (ConnectionResults) -> Void) {
         // TODO:
+//        PriceApiService.priceObservations(productId: <#T##Int#>, completion: <#T##(ConnectionResults, [String]?, [Int]?) -> Void#>)
     }
     
     func getCompetitorsHasSameProduct() {

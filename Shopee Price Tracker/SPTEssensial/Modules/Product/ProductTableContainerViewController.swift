@@ -15,8 +15,6 @@ protocol SPTPopupViewButtonProtocol {
 
 class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonProtocol {
     
-    
-    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var tableViewContainer: UIView!
     @IBOutlet weak var productTitle: UILabel!
@@ -29,7 +27,7 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     
     var popup: SPTPopupView!
     var delegate: SPTPopupViewProtocol?
-    
+        
     var opagueView: UIView!
     
     override func viewDidLoad() {
@@ -47,9 +45,10 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     @IBAction func actionOnProduct(_ sender: Any) {
         switch actionButton.titleLabel?.text {
         case "Theo dõi giá sản phẩm này":
-            vm!.observeProductPrice()
+//            vm!.observeProductPrice()
+            break
         default:
-            vm!.getCompetitorsHasSameProduct()
+            performSegue(withIdentifier: "ListRivalProductsContainer", sender: nil)
         }
     }
     
@@ -69,13 +68,14 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     func configPopup() {
         popup = SPTPopupView()
         view.addSubview(popup)
+        
         popup.snp.makeConstraints { make in
             make.bottom.equalTo(actionContainerView)
             make.trailing.equalTo(actionContainerView)
             make.leading.equalTo(actionContainerView)
             make.height.equalTo(100)
-            
         }
+        
         popup.transform = CGAffineTransform(translationX: 0, y: 100)
         
         delegate = popup
@@ -102,7 +102,6 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(hidePopup(_:)))
         opagueView.addGestureRecognizer(gesture)
-        
     }
     
     // MARK: Handle Popup
@@ -119,8 +118,8 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
         }
         
         configPopup()
-        let selected = getSelectButton()
-        print(selected)
+        let _ = getSelectButton()
+        
         UIView.animate(withDuration: 0.25, animations: {
             self.opagueView.backgroundColor = UIColor(white: 0.25, alpha: 0.5)
             self.popup.transform = CGAffineTransform(translationX: 0, y: 0)
@@ -147,9 +146,15 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segueId = "EmbededController"
+        let listRivalProductsSegue = "ListRivalProductsContainer"
         if segueId == segue.identifier {
             let vc = segue.destination as! ProductDetailTableViewController
             vc.vm = ProductTableViewDetailViewModel(product: vm!.product!)
+        }
+        
+        if listRivalProductsSegue == segue.identifier {
+            let vc = segue.destination as! ListRivalProductsContainerViewController
+            vc.vm = ListRivalProductsContainerViewModel(product: vm!.product)
         }
     }
 }

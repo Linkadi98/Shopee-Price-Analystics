@@ -9,6 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 import NVActivityIndicatorView
+import JGProgressHUD
 
 class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
@@ -19,6 +20,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     var result: ConnectionResults?
     var isChosenToObservePrice = false
+    
+    var hud: SPTProgressHUD!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,10 +90,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         DispatchQueue.main.async {
             cell.productName.text = "\(String(describing: product.name!))"
             cell.cosmos.rating = Double(product.ratingStar!)
-            cell.productPrice.text = product.price!.convertPriceToVietnameseCurrency()
-            cell.productCode.text = String(describing: product.itemid)
+            cell.productPrice.text = Int(product.price!).convertPriceToVietnameseCurrency()
+            cell.productCode.text = String(describing: product.itemid!)
         }
-        loadOnlineImage(from: URL(string: product.images![0])!, to: cell.productImage)
+        Network.shared.loadOnlineImage(from: URL(string: product.images![0])!, to: cell.productImage)
 
         return cell
     }
@@ -150,10 +153,10 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     func configVm(vm: ProductTableViewModel) {
         self.vm = vm
         self.vm.productsList.bind { products in
+            
             guard products?.count != 0 else {
                 self.tableView.reloadData()
-                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
-                print("bind0")
+                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây", hudError: "Lỗi kết nối")
                 return
             }
             
@@ -165,7 +168,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 action.layer.cornerRadius = 5
                 
                 self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm", action: action)
-                print("bind1")
                 return
             }
             
@@ -185,23 +187,25 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 action.backgroundColor = .blue
 
                 self.displayNoDataNotification(title: "Chưa kết nối cửa hàng nào", message: "Hãy kết nối cửa hàng ở mục Tài khoản", action: action)
-                print("bind2")
                 return
             }
             self.tableView.reloadData()
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
         }
-        
-        print("View Model")
-        
     }
     
     // MARK: - Private loading data for this class
     
+    fileprivate func showProgressHUD() {
+        hud = SPTProgressHUD(style: .dark)
+        hud.show(in: tableView, content: "Đang tải")
+    }
+    
     private func fetchDataFromServer() {
-        print("fetch data")
-        
+
+        showProgressHUD()
+
         for row in 0...self.tableView.numberOfRows(inSection: 0) {
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
         }
@@ -228,6 +232,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 self.vm.productsList.value = listProducts
             }
         }
+        
     }
     
     // MARK: - Reload Product after changing current Shop
@@ -238,6 +243,8 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     // MARK: - Refesh data
     @objc func refresh() {
+        vm.productsList.value = []
+        tableView.backgroundView = nil
         fetchDataFromServer()
         tableView.refreshControl?.endRefreshing()
     }

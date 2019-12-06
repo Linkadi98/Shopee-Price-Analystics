@@ -28,28 +28,21 @@
 
 #define MAX_VIEW_HIERARCHY_LEVEL 35
 
-typedef NS_ENUM(NSUInteger, FBCodelessClassBitmask) {
-  /*! Indicates that the class is subclass of UIControl */
-  FBCodelessClassBitmaskUIControl     = 1 << 3,
-  /*! Indicates that the class is subclass of UIControl */
-  FBCodelessClassBitmaskUIButton      = 1 << 4,
-  /*! Indicates that the class is ReactNative Button */
-  FBCodelessClassBitmaskReactNativeButton = 1 << 6,
-  /*! Indicates that the class is UITableViewCell */
-  FBCodelessClassBitmaskUITableViewCell = 1 << 7,
-  /*! Indicates that the class is UICollectionViewCell */
-  FBCodelessClassBitmaskUICollectionViewCell = 1 << 8,
-  /*! Indicates that the class is UILabel */
-  FBCodelessClassBitmaskLabel = 1 << 10,
-  /*! Indicates that the class is UITextView or UITextField*/
-  FBCodelessClassBitmaskInput = 1 << 11,
-  /*! Indicates that the class is UIPicker*/
-  FBCodelessClassBitmaskPicker = 1 << 12,
-  /*! Indicates that the class is UISwitch*/
-  FBCodelessClassBitmaskSwitch = 1 << 13,
-  /*! Indicates that the class is UIViewController*/
-  FBCodelessClassBitmaskUIViewController = 1 << 17,
-};
+void fb_dispatch_on_main_thread(dispatch_block_t block) {
+  if (block != nil) {
+    if ([NSThread isMainThread]) {
+      block();
+    } else {
+      dispatch_async(dispatch_get_main_queue(), block);
+    }
+  }
+}
+
+void fb_dispatch_on_default_thread(dispatch_block_t block) {
+  if (block != nil) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block);
+  }
+}
 
 @implementation FBSDKViewHierarchy
 
@@ -269,6 +262,11 @@ typedef NS_ENUM(NSUInteger, FBCodelessClassBitmask) {
 
 + (NSMutableDictionary<NSString *, id> *)getDetailAttributesOf:(NSObject *)obj
 {
+  return [self getDetailAttributesOf:obj withHash:YES];
+}
+
++ (NSMutableDictionary<NSString *, id> *)getDetailAttributesOf:(NSObject *)obj withHash:(BOOL)hash
+{
   if (!obj) {
     return nil;
   }
@@ -280,10 +278,10 @@ typedef NS_ENUM(NSUInteger, FBCodelessClassBitmask) {
   NSMutableDictionary *result = [NSMutableDictionary dictionaryWithDictionary:simpleAttributes];
 
   NSString *className = NSStringFromClass([obj class]);
-  result[CODELESS_VIEW_TREE_CLASS_NAME_KEY] = className;
+  result[VIEW_HIERARCHY_CLASS_NAME_KEY] = className;
 
   NSUInteger classBitmask = [FBSDKViewHierarchy getClassBitmask:obj];
-  result[CODELESS_VIEW_TREE_CLASS_TYPE_BIT_MASK_KEY] = [NSString stringWithFormat:@"%lu", (unsigned long)classBitmask];
+  result[VIEW_HIERARCHY_CLASS_TYPE_BITMASK_KEY] = [NSString stringWithFormat:@"%lu", (unsigned long)classBitmask];
 
   if ([obj isKindOfClass:[UIControl class]]) {
     // Get actions of UIControl
@@ -308,9 +306,11 @@ typedef NS_ENUM(NSUInteger, FBCodelessClassBitmask) {
     result[CODELESS_VIEW_TREE_TEXT_STYLE_KEY] = textStyle;
   }
 
-  // hash text and hint
-  result[CODELESS_VIEW_TREE_TEXT_KEY] = [FBSDKUtility SHA256Hash:result[CODELESS_VIEW_TREE_TEXT_KEY]];
-  result[CODELESS_VIEW_TREE_HINT_KEY] = [FBSDKUtility SHA256Hash:result[CODELESS_VIEW_TREE_HINT_KEY]];
+  if (hash) {
+    // hash text and hint
+    result[VIEW_HIERARCHY_TEXT_KEY] = [FBSDKUtility SHA256Hash:result[VIEW_HIERARCHY_TEXT_KEY]];
+    result[VIEW_HIERARCHY_HINT_KEY] = [FBSDKUtility SHA256Hash:result[VIEW_HIERARCHY_HINT_KEY]];
+  }
 
   return result;
 }
@@ -490,6 +490,30 @@ typedef NS_ENUM(NSUInteger, FBCodelessClassBitmask) {
 
   NSString *text = [FBSDKViewHierarchy getText:obj];
   return text && [FBSDKAppEventsUtility isSensitiveUserData:text];
+}
+
++ (NSDictionary<NSString *, id> *)recursiveCaptureTree:(NSObject *)obj withObject:(NSObject *)interact
+{
+  if (!obj) {
+    return nil;
+  }
+
+  NSMutableDictionary<NSString *, id> *result = [FBSDKViewHierarchy getDetailAttributesOf:obj withHash:NO];
+
+  NSArray<NSObject *> *children = [FBSDKViewHierarchy getChildren:obj];
+  NSMutableArray<NSDictionary<NSString *, id> *> *childrenTrees = [NSMutableArray array];
+  for (NSObject *child in children) {
+    NSDictionary<NSString *, id> *objTree = [self recursiveCaptureTree:child withObject:interact];
+    [childrenTrees addObject:objTree];
+  }
+
+  if (childrenTrees.count > 0) {
+    [result setObject:[childrenTrees copy] forKey:VIEW_HIERARCHY_CHILD_VIEWS_KEY];
+  }
+  if (obj == interact) {
+    [result setObject:[NSNumber numberWithBool:YES] forKey:VIEW_HIERARCHY_IS_INTERACTED_KEY];
+  }
+  return [result copy];
 }
 
 #pragma clang diagnostic push
