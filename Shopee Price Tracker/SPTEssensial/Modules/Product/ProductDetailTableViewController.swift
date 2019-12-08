@@ -67,9 +67,7 @@ class ProductDetailTableViewController: UITableViewController {
     @IBOutlet weak var soldItemCell: UITableViewCell!
     @IBOutlet weak var inventoryCell: UITableViewCell!
     @IBOutlet weak var ratingCell: UITableViewCell!
-    
-    var stVC: StatisticalPriceTableViewController?
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsMultipleSelection = false
@@ -92,7 +90,6 @@ class ProductDetailTableViewController: UITableViewController {
 
     func configViewModel() {
         self.vm?.product.bindAndFire { product in
-            print(product)
             self.update(product)
         }
     }

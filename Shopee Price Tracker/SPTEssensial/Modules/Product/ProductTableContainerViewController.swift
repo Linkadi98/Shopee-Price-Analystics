@@ -46,6 +46,7 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
         switch actionButton.titleLabel?.text {
         case "Theo dõi giá sản phẩm này":
 //            vm!.observeProductPrice()
+            performSegue(withIdentifier: "StatTableViewContainer", sender: nil)
             break
         default:
             performSegue(withIdentifier: "ListRivalProductsContainer", sender: nil)
@@ -147,6 +148,7 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segueId = "EmbededController"
         let listRivalProductsSegue = "ListRivalProductsContainer"
+        let priceObserving = "StatTableViewContainer"
         if segueId == segue.identifier {
             let vc = segue.destination as! ProductDetailTableViewController
             vc.vm = ProductTableViewDetailViewModel(product: vm!.product!)
@@ -155,6 +157,11 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
         if listRivalProductsSegue == segue.identifier {
             let vc = segue.destination as! ListRivalProductsContainerViewController
             vc.vm = ListRivalProductsContainerViewModel(product: vm!.product)
+        }
+        
+        if priceObserving == segue.identifier {
+            let vc = segue.destination as! StatContainerViewController
+            vc.product = vm?.product?.value
         }
     }
 }

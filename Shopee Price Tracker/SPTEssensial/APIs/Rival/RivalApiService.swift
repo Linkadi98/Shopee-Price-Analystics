@@ -24,7 +24,7 @@ struct RivalApiService {
         print(url)
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 60).responseData { (response) in
             // Failed request
-//            print(response.data)
+            //            print(response.data)
             guard response.result.isSuccess else {
                 self.sharedNetwork.notifyFailedConnection(error: response.result.error)
                 completion(.failed, nil)
@@ -38,6 +38,7 @@ struct RivalApiService {
                 return
             }
             
+            rivalProducts = try? JSONDecoder.shared.decode([Product].self, from: data)
             
             getChosenRivals(shopId: myShopId, productId: myProductId) { (result, chosenRivals) in
                 print("2")
@@ -46,37 +47,30 @@ struct RivalApiService {
                     return
                 }
                 
-                DispatchQueue.main.async {
-                    rivalProducts = try? JSONDecoder.shared.decode([Product].self, from: data)
-                    print(1)
-                    selectedRivalProducts = chosenRivals.map {
-                        $0.itemRival!
-                    }
-                    print(2)
-                    var _result: [(Product, Bool)] = []
-                    
-                    
-                    rivalProducts?.forEach { rivalProduct in
-                        
-                        if selectedRivalProducts.count == 0 {
-                            _result.append((rivalProduct, false))
-                        }
-                        else {
-                            selectedRivalProducts.forEach { selectedRivalProduct in
-                                if selectedRivalProduct.itemid == rivalProduct.itemid {
-                                    _result.append((rivalProduct, true))
-                                }
-                                else {
-                                    _result.append((rivalProduct, false))
-                                }
-                            }
-                        }
-                        
-                    }
-                    print(_result)
-                    print("Get rival")
-                    completion(.success, _result)
+                
+                
+                print(1)
+                selectedRivalProducts = chosenRivals.map {
+                    $0.itemRival!
                 }
+                print(2)
+                var _result: [(Product, Bool)] = []
+                
+                rivalProducts?.forEach { rivalProduct in
+                    
+                    if selectedRivalProducts.count == 0 {
+                        _result.append((rivalProduct, false))
+                    }
+                    else if selectedRivalProducts.contains(rivalProduct) {
+                        _result.append((rivalProduct, true))
+                    }
+                    else {
+                        _result.append((rivalProduct, false))
+                    }
+                }
+                
+                print("Get rival")
+                completion(.success, _result)
             }
         }
     }
@@ -188,18 +182,18 @@ struct RivalApiService {
             
             let response = try? JSONDecoder.shared.decode([RivalsResponse].self, from: data)
             
-//            var rivalShops: [Shop] = []
-//
-//            response?.forEach { response in
-//                self.getRivalShop(shopId: response.rival?.rivalShopid, completion: {  (result, rivalShop) in
-//                    guard result != .failed, let rivalShop = rivalShop else {
-//                        completion(.failed, nil)
-//                        return
-//                    }
-//
-//                    rivalShops.append(rivalShop)
-//                })
-//            }
+            //            var rivalShops: [Shop] = []
+            //
+            //            response?.forEach { response in
+            //                self.getRivalShop(shopId: response.rival?.rivalShopid, completion: {  (result, rivalShop) in
+            //                    guard result != .failed, let rivalShop = rivalShop else {
+            //                        completion(.failed, nil)
+            //                        return
+            //                    }
+            //
+            //                    rivalShops.append(rivalShop)
+            //                })
+            //            }
             
             completion(.success, response)
         }

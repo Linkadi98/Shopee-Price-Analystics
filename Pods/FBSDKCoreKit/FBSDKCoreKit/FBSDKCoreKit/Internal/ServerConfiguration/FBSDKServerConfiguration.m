@@ -33,8 +33,6 @@
 #define FBSDK_SERVER_CONFIGURATION_CODELESS_EVENTS_ENABLED_KEY @"codelessEventsEnabled"
 #define FBSDK_SERVER_CONFIGURATION_LOGIN_TOOLTIP_ENABLED_KEY @"loginTooltipEnabled"
 #define FBSDK_SERVER_CONFIGURATION_LOGIN_TOOLTIP_TEXT_KEY @"loginTooltipText"
-#define FBSDK_SERVER_CONFIGURATION_SYSTEM_AUTHENTICATION_ENABLED_KEY @"systemAuthenticationEnabled"
-#define FBSDK_SERVER_CONFIGURATION_NATIVE_AUTH_FLOW_ENABLED_KEY @"nativeAuthFlowEnabled"
 #define FBSDK_SERVER_CONFIGURATION_TIMESTAMP_KEY @"timestamp"
 #define FBSDK_SERVER_CONFIGURATION_SESSION_TIMEOUT_INTERVAL @"sessionTimeoutInterval"
 #define FBSDK_SERVER_CONFIGURATION_LOGGING_TOKEN @"loggingToken"
@@ -89,8 +87,6 @@ const NSInteger FBSDKServerConfigurationVersion = 2;
        implicitLoggingEnabled:(BOOL)implicitLoggingEnabled
 implicitPurchaseLoggingEnabled:(BOOL)implicitPurchaseLoggingEnabled
         codelessEventsEnabled:(BOOL)codelessEventsEnabled
-  systemAuthenticationEnabled:(BOOL)systemAuthenticationEnabled
-        nativeAuthFlowEnabled:(BOOL)nativeAuthFlowEnabled
      uninstallTrackingEnabled:(BOOL)uninstallTrackingEnabled
          dialogConfigurations:(NSDictionary *)dialogConfigurations
                   dialogFlows:(NSDictionary *)dialogFlows
@@ -118,9 +114,7 @@ implicitPurchaseLoggingEnabled:(BOOL)implicitPurchaseLoggingEnabled
     _implicitLoggingEnabled = implicitLoggingEnabled;
     _implicitPurchaseLoggingEnabled = implicitPurchaseLoggingEnabled;
     _codelessEventsEnabled = codelessEventsEnabled;
-    _systemAuthenticationEnabled = systemAuthenticationEnabled;
     _uninstallTrackingEnabled = uninstallTrackingEnabled;
-    _nativeAuthFlowEnabled = nativeAuthFlowEnabled;
     _dialogConfigurations = [dialogConfigurations copy];
     _dialogFlows = [dialogFlows copy];
     _timestamp = [timestamp copy];
@@ -194,12 +188,9 @@ implicitPurchaseLoggingEnabled:(BOOL)implicitPurchaseLoggingEnabled
   [decoder decodeBoolForKey:FBSDK_SERVER_CONFIGURATION_IMPLICIT_PURCHASE_LOGGING_ENABLED_KEY];
   BOOL codelessEventsEnabled =
   [decoder decodeBoolForKey:FBSDK_SERVER_CONFIGURATION_CODELESS_EVENTS_ENABLED_KEY];
-  BOOL systemAuthenticationEnabled =
-  [decoder decodeBoolForKey:FBSDK_SERVER_CONFIGURATION_SYSTEM_AUTHENTICATION_ENABLED_KEY];
   BOOL uninstallTrackingEnabled =
   [decoder decodeBoolForKey:FBSDK_SERVER_CONFIGURATION_TRACK_UNINSTALL_ENABLED_KEY];
   FBSDKServerConfigurationSmartLoginOptions smartLoginOptions = [decoder decodeIntegerForKey:FBSDK_SERVER_CONFIGURATION_SMART_LOGIN_OPTIONS_KEY];
-  BOOL nativeAuthFlowEnabled = [decoder decodeBoolForKey:FBSDK_SERVER_CONFIGURATION_NATIVE_AUTH_FLOW_ENABLED_KEY];
   NSDate *timestamp = [decoder decodeObjectOfClass:[NSDate class] forKey:FBSDK_SERVER_CONFIGURATION_TIMESTAMP_KEY];
   NSSet *dialogConfigurationsClasses = [[NSSet alloc] initWithObjects:
                                         [NSDictionary class],
@@ -234,8 +225,6 @@ implicitPurchaseLoggingEnabled:(BOOL)implicitPurchaseLoggingEnabled
                                          implicitLoggingEnabled:implicitLoggingEnabled
                                  implicitPurchaseLoggingEnabled:implicitPurchaseLoggingEnabled
                                           codelessEventsEnabled:codelessEventsEnabled
-                                    systemAuthenticationEnabled:systemAuthenticationEnabled
-                                          nativeAuthFlowEnabled:nativeAuthFlowEnabled
                                        uninstallTrackingEnabled:uninstallTrackingEnabled
                                            dialogConfigurations:dialogConfigurations
                                                     dialogFlows:dialogFlows
@@ -275,8 +264,6 @@ implicitPurchaseLoggingEnabled:(BOOL)implicitPurchaseLoggingEnabled
   [encoder encodeBool:_uninstallTrackingEnabled
                forKey:FBSDK_SERVER_CONFIGURATION_TRACK_UNINSTALL_ENABLED_KEY];
   [encoder encodeObject:_loginTooltipText forKey:FBSDK_SERVER_CONFIGURATION_LOGIN_TOOLTIP_TEXT_KEY];
-  [encoder encodeBool:_nativeAuthFlowEnabled forKey:FBSDK_SERVER_CONFIGURATION_NATIVE_AUTH_FLOW_ENABLED_KEY];
-  [encoder encodeBool:_systemAuthenticationEnabled forKey:FBSDK_SERVER_CONFIGURATION_SYSTEM_AUTHENTICATION_ENABLED_KEY];
   [encoder encodeObject:_timestamp forKey:FBSDK_SERVER_CONFIGURATION_TIMESTAMP_KEY];
   [encoder encodeDouble:_sessionTimoutInterval forKey:FBSDK_SERVER_CONFIGURATION_SESSION_TIMEOUT_INTERVAL];
   [encoder encodeObject:_loggingToken forKey:FBSDK_SERVER_CONFIGURATION_LOGGING_TOKEN];

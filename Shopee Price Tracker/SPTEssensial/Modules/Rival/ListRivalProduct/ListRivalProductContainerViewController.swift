@@ -10,12 +10,13 @@ import UIKit
 
 class ListRivalProductsContainerViewController: UIViewController {
 
+    @IBOutlet weak var headerView: UIView!
     var vm: ListRivalProductsContainerViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        headerView.setShadow(cornerRadius: 0, shadowRadius: 5, shadowOffset: CGSize(width: 0, height: -2))
     }
     
     @IBAction func close(_ sender: Any) {

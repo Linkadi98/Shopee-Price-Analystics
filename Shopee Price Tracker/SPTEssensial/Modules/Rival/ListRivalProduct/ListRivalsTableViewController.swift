@@ -92,12 +92,13 @@ class ListRivalsTableViewController: UITableViewController {
         }
         
         // is Chosen
-        if listSearchedRivals[indexPath.row].1 {
+        if listSearchedRivals[indexPath.row].1 || cell.followingStatus.text == "Đang theo dõi" {
             DispatchQueue.main.async {
                 self.presentAlert(title: "Thông báo", message: "Sản phẩm đã được theo dõi")
             }
             return
         }
+        
         
         //        if let numberOfRivals = numberOfRivals {
         //            guard numberOfRivals < 5 else {

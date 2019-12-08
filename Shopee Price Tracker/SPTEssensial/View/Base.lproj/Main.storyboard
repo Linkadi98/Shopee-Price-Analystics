@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DZy-Ck-5ci">
-                                <rect key="frame" x="329" y="655" width="25" height="25"/>
+                                <rect key="frame" x="329" y="630" width="25" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="lSU-2X-wvw"/>
                                 </constraints>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAp-cs-qQZ">
-                                <rect key="frame" x="369" y="655" width="25" height="25"/>
+                                <rect key="frame" x="369" y="630" width="25" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="Q37-3f-ZTH"/>
                                 </constraints>
@@ -742,7 +742,7 @@
                     <tabBarItem key="tabBarItem" title="Sản phẩm" image="product1" id="eIF-LX-BCu"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="sSz-Lv-xl3">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="103.5"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="largeTitleTextAttributes">
@@ -1036,10 +1036,57 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1dq-ui-5ri"/>
                     </view>
+                    <connections>
+                        <outlet property="headerView" destination="bv0-VA-LyJ" id="fVU-FO-VFK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iJy-pp-RAu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-665" y="2006"/>
+        </scene>
+        <!--Stat Table View Controller-->
+        <scene sceneID="6p8-dr-U1y">
+            <objects>
+                <tableViewController id="BDf-PB-j4b" customClass="StatTableViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="GTW-NN-sQZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="760.5"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="pHK-c6-gkE" customClass="SPTStatCell" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pHK-c6-gkE" id="Gbf-8D-aUr">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="350" id="EvW-ck-aKf" customClass="SPTChartCell" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="350"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EvW-ck-aKf" id="BzT-ug-KF1">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="350" id="1EU-VD-bXb" customClass="SPTChartCell" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="438" width="414" height="350"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1EU-VD-bXb" id="YJu-Ix-YCI">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="350"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BDf-PB-j4b" id="FAI-Vb-RGA"/>
+                            <outlet property="delegate" destination="BDf-PB-j4b" id="X6L-3u-3D3"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yDD-Lo-8AR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1119" y="2006"/>
         </scene>
         <!--Product Table Container View Controller-->
         <scene sceneID="Nzq-5g-4zR">
@@ -1109,7 +1156,6 @@
                                         </state>
                                         <connections>
                                             <action selector="actionOnProduct:" destination="va8-Nh-O45" eventType="touchUpInside" id="WOh-td-Qk8"/>
-                                            <segue destination="LYD-xc-sSD" kind="presentation" identifier="ListRivalProductsContainer" modalPresentationStyle="fullScreen" id="XgH-UU-TOC"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1148,6 +1194,8 @@
                         <outlet property="headerView" destination="wsX-M7-VL4" id="IMa-Yw-3Q9"/>
                         <outlet property="productTitle" destination="gwc-bx-eYA" id="Och-Os-fH2"/>
                         <outlet property="tableViewContainer" destination="nAg-Re-fb2" id="4PZ-kK-7XH"/>
+                        <segue destination="LYD-xc-sSD" kind="presentation" identifier="ListRivalProductsContainer" modalPresentationStyle="fullScreen" id="rqO-Ur-5Oa"/>
+                        <segue destination="gbN-aN-5Pv" kind="presentation" identifier="StatTableViewContainer" modalPresentationStyle="fullScreen" id="wI1-wz-UD5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xOC-kt-m9d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3079,75 +3127,74 @@
             </objects>
             <point key="canvasLocation" x="2429" y="497"/>
         </scene>
-        <!--Biểu đồ theo dõi-->
-        <scene sceneID="3Hv-Qq-cSm">
+        <!--Stat Container View Controller-->
+        <scene sceneID="Sps-bS-joy">
             <objects>
-                <viewController id="wUi-pc-KTw" customClass="ChartsViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Hv7-5k-J1a">
+                <viewController id="gbN-aN-5Pv" customClass="StatContainerViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2fc-8G-PbO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bU8-Lt-1SW">
-                                <rect key="frame" x="10" y="44" width="394" height="399"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrk-ev-fyq">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="93.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQm-Zf-emG">
+                                        <rect key="frame" x="8" y="48" width="38" height="37.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="38" id="Az4-Q4-qFo"/>
+                                            <constraint firstAttribute="height" constant="37.5" id="sRg-TL-eEK"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="ic-close"/>
+                                        <connections>
+                                            <action selector="close:" destination="va8-Nh-O45" eventType="touchUpInside" id="LTd-Ix-gNn"/>
+                                            <action selector="close:" destination="gbN-aN-5Pv" eventType="touchUpInside" id="b0v-2o-2hl"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thống kê giá sản phẩm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qD-Ca-s0W">
+                                        <rect key="frame" x="54" y="54" width="306" height="26"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="8qD-Ca-s0W" firstAttribute="top" secondItem="mrk-ev-fyq" secondAttribute="top" constant="54" id="4Zb-13-sSz"/>
+                                    <constraint firstAttribute="trailing" secondItem="8qD-Ca-s0W" secondAttribute="trailing" constant="54" id="Fuo-z4-nsN"/>
+                                    <constraint firstAttribute="bottom" secondItem="8qD-Ca-s0W" secondAttribute="bottom" constant="13.5" id="XjJ-jf-oUz"/>
+                                    <constraint firstItem="wQm-Zf-emG" firstAttribute="leading" secondItem="mrk-ev-fyq" secondAttribute="leadingMargin" id="nzb-eh-vXG"/>
+                                    <constraint firstItem="wQm-Zf-emG" firstAttribute="top" secondItem="mrk-ev-fyq" secondAttribute="top" constant="48" id="pAo-pq-rcT"/>
+                                    <constraint firstItem="8qD-Ca-s0W" firstAttribute="leading" secondItem="wQm-Zf-emG" secondAttribute="trailing" constant="8" id="vs2-kc-9I9"/>
+                                    <constraint firstItem="8qD-Ca-s0W" firstAttribute="centerX" secondItem="mrk-ev-fyq" secondAttribute="centerX" id="xSl-RJ-Rdq"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="THZ-wL-sj1">
+                                <rect key="frame" x="0.0" y="101.5" width="414" height="760.5"/>
                                 <connections>
-                                    <segue destination="bnM-vo-FBR" kind="embed" identifier="ShowChart1" id="XnN-0K-bWU"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbw-kl-bMm">
-                                <rect key="frame" x="10" y="453" width="394" height="399"/>
-                                <connections>
-                                    <segue destination="Lie-mq-o8z" kind="embed" identifier="ShowChart2" id="ymm-JX-tZp"/>
+                                    <segue destination="BDf-PB-j4b" kind="embed" identifier="embedSegue" id="Bv9-NM-tHa"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="bU8-Lt-1SW" firstAttribute="top" secondItem="Akb-fU-sMe" secondAttribute="top" id="1MU-1F-zwz"/>
-                            <constraint firstItem="bU8-Lt-1SW" firstAttribute="height" secondItem="xbw-kl-bMm" secondAttribute="height" id="2Vi-dH-cn2"/>
-                            <constraint firstItem="Akb-fU-sMe" firstAttribute="trailing" secondItem="bU8-Lt-1SW" secondAttribute="trailing" constant="10" id="VZa-sd-EMX"/>
-                            <constraint firstItem="Akb-fU-sMe" firstAttribute="bottom" secondItem="xbw-kl-bMm" secondAttribute="bottom" constant="10" id="bjy-tl-xoc"/>
-                            <constraint firstItem="Akb-fU-sMe" firstAttribute="trailing" secondItem="xbw-kl-bMm" secondAttribute="trailing" constant="10" id="cuc-Np-rFu"/>
-                            <constraint firstItem="bU8-Lt-1SW" firstAttribute="leading" secondItem="Akb-fU-sMe" secondAttribute="leading" constant="10" id="dF8-vp-0Kx"/>
-                            <constraint firstItem="xbw-kl-bMm" firstAttribute="top" secondItem="bU8-Lt-1SW" secondAttribute="bottom" constant="10" id="lI2-Cn-yLH"/>
-                            <constraint firstItem="xbw-kl-bMm" firstAttribute="leading" secondItem="Akb-fU-sMe" secondAttribute="leading" constant="10" id="qkD-xN-40B"/>
+                            <constraint firstItem="mrk-ev-fyq" firstAttribute="top" secondItem="2fc-8G-PbO" secondAttribute="topMargin" constant="-44" id="FMJ-JL-j9T"/>
+                            <constraint firstItem="THZ-wL-sj1" firstAttribute="top" secondItem="mrk-ev-fyq" secondAttribute="bottom" constant="8" id="T0r-RE-LGu"/>
+                            <constraint firstItem="mrk-ev-fyq" firstAttribute="centerX" secondItem="THZ-wL-sj1" secondAttribute="centerX" id="bQc-ah-W19"/>
+                            <constraint firstItem="mrk-ev-fyq" firstAttribute="leading" secondItem="QtQ-nP-0ZS" secondAttribute="leading" id="eH4-Qq-DaJ"/>
+                            <constraint firstItem="THZ-wL-sj1" firstAttribute="bottom" secondItem="QtQ-nP-0ZS" secondAttribute="bottom" id="lp1-vM-4WM"/>
+                            <constraint firstItem="THZ-wL-sj1" firstAttribute="leading" secondItem="mrk-ev-fyq" secondAttribute="leading" id="ria-kL-F8I"/>
+                            <constraint firstItem="mrk-ev-fyq" firstAttribute="centerX" secondItem="2fc-8G-PbO" secondAttribute="centerX" id="uY9-qV-P1O"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Akb-fU-sMe"/>
+                        <viewLayoutGuide key="safeArea" id="QtQ-nP-0ZS"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Biểu đồ theo dõi" largeTitleDisplayMode="never" id="tJm-bJ-Sy2"/>
+                    <connections>
+                        <outlet property="headerView" destination="mrk-ev-fyq" id="9U3-nd-Fqz"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pED-e8-OAS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dOF-Ri-3b2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2332" y="1655"/>
-        </scene>
-        <!--Column Chart View Controller-->
-        <scene sceneID="We4-Nh-Lc3">
-            <objects>
-                <viewController id="bnM-vo-FBR" customClass="ColumnChartViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dZG-EG-Dg6">
-                        <rect key="frame" x="0.0" y="0.0" width="394" height="399"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="DN2-pc-r47"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0gl-rC-3gf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1488" y="2328"/>
-        </scene>
-        <!--Pie Chart View Controller-->
-        <scene sceneID="7iT-4w-sIM">
-            <objects>
-                <viewController id="Lie-mq-o8z" customClass="PieChartViewController" customModule="Shopee_Prices_Analystic" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2CT-ER-ahD">
-                        <rect key="frame" x="0.0" y="0.0" width="394" height="399"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="3P6-b9-guD"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ijg-d5-0mL" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2667" y="2328"/>
+            <point key="canvasLocation" x="248" y="2006"/>
         </scene>
     </scenes>
     <resources>

@@ -55,7 +55,7 @@ struct PriceApiService {
     static func getStatistics(product: Product, completion: @escaping (ConnectionResults, [Int]?, Int?) -> Void) {
         // counts, average
         
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.statistics_path + "/\(String(describing: product.shopid))/\(String(describing: product.itemid))")!
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.statistics_path + "/\(String(describing: product.shopid!))/\(String(describing: product.itemid!))")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
             // Failed request
@@ -64,6 +64,8 @@ struct PriceApiService {
                 completion(.failed, nil, nil)
                 return
             }
+            
+            print(String(data: response.data!, encoding: .utf8))
             
             //Successful request
             var counts: [Int] = []
