@@ -18,6 +18,8 @@
 
 #import "FBSDKModelManager.h"
 
+#import "FBSDKAddressFilterManager.h"
+#import "FBSDKAddressInferencer.h"
 #import "FBSDKEventInferencer.h"
 #import "FBSDKFeatureExtractor.h"
 #import "FBSDKFeatureManager.h"
@@ -37,6 +39,7 @@ static NSString *const THRESHOLDS_KEY = @"thresholds";
 static NSString *const USE_CASE_KEY = @"use_case";
 static NSString *const VERSION_ID_KEY = @"version_id";
 static NSString *const MODEL_DATA_KEY = @"data";
+static NSString *const ADDRESS_FILTERING_KEY = @"DATA_DETECTION_ADDRESS";
 
 static NSString *_directoryPath;
 static NSMutableDictionary<NSString *, id> *_modelInfo;
@@ -86,6 +89,17 @@ static NSMutableDictionary<NSString *, id> *_modelInfo;
           }];
         }
       }];
+      [FBSDKFeatureManager checkFeature:FBSDKFeaturePIIFiltering completionBlock:^(BOOL enabled) {
+        if (enabled) {
+          [self getModelAndRules:ADDRESS_FILTERING_KEY handler:^(BOOL success){
+            if (success) {
+              [FBSDKAddressInferencer loadWeights];
+              [FBSDKAddressInferencer initializeDenseFeature];
+              [FBSDKAddressFilterManager enable];
+            }
+          }];
+        }
+      }];
     }];
   });
 }
@@ -103,12 +117,24 @@ static NSMutableDictionary<NSString *, id> *_modelInfo;
     }
   }
   NSDictionary<NSString *, id> *model = [_modelInfo objectForKey:useCaseKey];
+
   if (!model) {
     if (handler) {
       handler(NO);
       return;
     }
   }
+
+  // clear old model files
+  NSArray<NSString *> *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:_directoryPath error:nil];
+  NSString *prefixWithVersion = [NSString stringWithFormat:@"%@_%@", useCaseKey, model[VERSION_ID_KEY]];
+
+  for (NSString *file in files) {
+    if ([file hasPrefix:useCaseKey] && ![file hasPrefix:prefixWithVersion]) {
+      [[NSFileManager defaultManager] removeItemAtPath:[_directoryPath stringByAppendingPathComponent:file] error:nil];
+    }
+  }
+
   // download model asset
   NSString *assetUrlString = [model objectForKey:ASSET_URI_KEY];
   NSString *assetFilePath;

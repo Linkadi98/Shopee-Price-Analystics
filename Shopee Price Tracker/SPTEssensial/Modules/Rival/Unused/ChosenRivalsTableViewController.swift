@@ -86,7 +86,7 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         cell.competitorProductName.text = chosenRivals[indexPath.row].itemRival?.name
         cell.competitorProductPrice.text = String(describing:  chosenRivals[indexPath.row].itemRival?.price)
         cell.competitorName.text = String(describing:  chosenRivals[indexPath.row].itemRival?.name)
-        cell.changeFollowingStatus(isSelectedToObserve: (chosenRivals[indexPath.row].rival?.auto)!)
+        cell.changeFollowingStatus(isSelectedToObserve: (chosenRivals[indexPath.row].relation?.auto)!)
         
         return cell
     }
@@ -119,9 +119,9 @@ class ChosenRivalsTableViewController: UITableViewController, ChosenRivalDelegat
         if segue.identifier == "rivalInfoSegue" {
             if let chosenRival = sender as? RivalsResponse {
                 if let containerRivalInfoViewController = segue.destination as? ContainerRivalInfoViewController {
-                    containerRivalInfoViewController.chosenRival = chosenRival
+                    containerRivalInfoViewController.rivalResponse = chosenRival
                     containerRivalInfoViewController.product = product!
-                    containerRivalInfoViewController.chosenRivals = chosenRivals
+                    
                 }
             }
 

@@ -123,7 +123,7 @@ struct PriceApiService {
     static func getAutoUpdateHistory(product: Product, completion: @escaping (ConnectionResults, [AutoUpdateHistory]?) -> Void) {
         // counts
         
-        let url = URL(string: sharedNetwork.base_url + sharedNetwork.autoUpdate_path + "/\(String(describing: product.itemid))")!
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.autoUpdate_path + "/\(String(describing: product.itemid!))")!
         
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil, timeoutInterval: 30).responseJSON { (response) in
             // Failed request
@@ -134,23 +134,49 @@ struct PriceApiService {
             }
             
             //Successful request
-            var autoUpdateHistory: [AutoUpdateHistory] = []
-            let responseValue = response.result.value as! [[String: Any]]
-            for value in responseValue {
-                var dateString = String((value["date"] as! String).prefix(13))
-                let newPrice = Int(value["price"] as! Double)
-                let oldPrice = Int(value["oldPrice"] as! Double)
-                let rivalShopName = value["shopRival"] as! String
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH"
-                let date = dateFormatter.date(from: dateString)
-                dateFormatter.dateFormat = "dd-MM HH'h'mm"
-                dateString = dateFormatter.string(from: date!)
-                
-                autoUpdateHistory.append(AutoUpdateHistory(date: dateString, rivalShopName: rivalShopName, oldPrice: oldPrice, newPrice: newPrice))
-            }
+//            var autoUpdateHistory: [AutoUpdateHistory] = []
+            print(response)
+            let autoUpdateHistory = try? JSONDecoder.shared.decode([AutoUpdateHistory].self, from: response.data!)
+//            let responseValue = response.result.value as! [[String: Any]]
+//            for value in responseValue {
+//                var dateString = String((value["date"] as! String).prefix(13))
+//                let newPrice = Int(value["price"] as! Double)
+//                let oldPrice = Int(value["oldPrice"] as! Double)
+//                let rivalShopName = value["shopRival"] as! String
+//
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH"
+//                let date = dateFormatter.date(from: dateString)
+//                dateFormatter.dateFormat = "dd-MM HH'h'mm"
+//                dateString = dateFormatter.string(from: date!)
+//
+//                autoUpdateHistory.append(AutoUpdateHistory(date: dateString, rivalShopName: rivalShopName, oldPrice: oldPrice, newPrice: newPrice))
+//            }
             completion(.success, autoUpdateHistory)
+        }
+    }
+    
+    /// Lấy danh sách sản phẩm đã được chọn để theo dõi giá
+    /// - Parameter shopId: id của shop
+    /// - Parameter completion: Mảng [kết quả trả về, sản phẩm]
+    static func getChosenProducts(shopId: Int, completion: @escaping (ConnectionResults, [Product]?) -> Void) {
+        // result, product, numberOfChosenRivals, autoUpdate
+        let url = URL(string: sharedNetwork.base_url + sharedNetwork.chosenProducts_path + "/\(shopId)")!
+        
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).responseJSON { (response) in
+            // Failed request
+            print(response)
+            guard response.result.isSuccess else {
+                self.sharedNetwork.notifyFailedConnection(error: response.result.error)
+                completion(.failed, nil)
+                return
+            }
+            
+            //Successful request
+            let responseData = response.data!
+            
+            let selectedProducts = try? JSONDecoder.shared.decode([Product].self, from: responseData)
+            completion(.success, selectedProducts)
         }
     }
 }

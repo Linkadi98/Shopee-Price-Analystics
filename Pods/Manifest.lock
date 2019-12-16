@@ -3,6 +3,7 @@ PODS:
   - Alamofire (4.9.1)
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
+  - Connectivity (3.3.3)
   - Cosmos (19.0.3)
   - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
@@ -14,19 +15,19 @@ PODS:
     - FacebookCore (~> 0.9.0)
     - FBSDKCoreKit (~> 5.0)
     - FBSDKShareKit (~> 5.0)
-  - FBSDKCoreKit (5.12.0):
-    - FBSDKCoreKit/Basics (= 5.12.0)
-    - FBSDKCoreKit/Core (= 5.12.0)
-  - FBSDKCoreKit/Basics (5.12.0)
-  - FBSDKCoreKit/Core (5.12.0):
+  - FBSDKCoreKit (5.13.0):
+    - FBSDKCoreKit/Basics (= 5.13.0)
+    - FBSDKCoreKit/Core (= 5.13.0)
+  - FBSDKCoreKit/Basics (5.13.0)
+  - FBSDKCoreKit/Core (5.13.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.11.1):
-    - FBSDKLoginKit/Login (= 5.11.1)
-  - FBSDKLoginKit/Login (5.11.1):
+  - FBSDKLoginKit (5.13.0):
+    - FBSDKLoginKit/Login (= 5.13.0)
+  - FBSDKLoginKit/Login (5.13.0):
     - FBSDKCoreKit (~> 5.0)
-  - FBSDKShareKit (5.11.1):
-    - FBSDKShareKit/Share (= 5.11.1)
-  - FBSDKShareKit/Share (5.11.1):
+  - FBSDKShareKit (5.13.0):
+    - FBSDKShareKit/Share (= 5.13.0)
+  - FBSDKShareKit/Share (5.13.0):
     - FBSDKCoreKit (~> 5.0)
   - GoogleSignIn (4.4.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
@@ -59,6 +60,7 @@ DEPENDENCIES:
   - AAInfographics (from `https://github.com/AAChartModel/AAChartKit-Swift.git`)
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.5)
+  - Connectivity
   - Cosmos (~> 19.0)
   - FacebookCore (~> 0.8)
   - FacebookLogin (~> 0.8)
@@ -76,6 +78,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireImage
+    - Connectivity
     - Cosmos
     - FacebookCore
     - FacebookLogin
@@ -102,20 +105,21 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AAInfographics:
-    :commit: 5f290e1261240c98039cd790739be0d247fae854
+    :commit: 1bf8e290fb595fb9fbecdd0c5ea93b38b5912aa5
     :git: https://github.com/AAChartModel/AAChartKit-Swift.git
 
 SPEC CHECKSUMS:
   AAInfographics: bbeed03caece4ee3b5e557d734967394e9bcdb11
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  Connectivity: 4ffcb7456939268de2431c230a3ff015d4cbcfa9
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
   FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
-  FBSDKCoreKit: fa3ac4dc9b1afc9ae70b3de4dd704d1b6aeeed0d
-  FBSDKLoginKit: 0e4572e0279e477103b57978e3ea05fac1dd673d
-  FBSDKShareKit: 2b4435ecb134e2af8a636524e43b7813e3d60a0b
+  FBSDKCoreKit: b1645dba3dfdba6102f2d4026fdbfca8114dc229
+  FBSDKLoginKit: 4aca55e93a63b1ff0cb9446208d49e32c13ab24a
+  FBSDKShareKit: 3e5d1a92009ad4ccb1ca824cc329794cafccb41d
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
   GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
@@ -129,6 +133,6 @@ SPEC CHECKSUMS:
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 94f9437d6cc54846aa655cae8d3e8633540c57c5
+PODFILE CHECKSUM: acd348e33f245f4b0837e76846ed3f0bc0f4473e
 
 COCOAPODS: 1.8.4

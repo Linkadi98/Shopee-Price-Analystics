@@ -24,7 +24,7 @@
 
 #import <Accelerate/Accelerate.h>
 
-#include "FBSDKStandaloneModel.h"
+#include "FBSDKStandaloneModel.hpp"
 
 #define SEQ_LEN 128
 #define ALPHABET_SIZE 256
@@ -51,7 +51,6 @@ namespace mat1 {
         float sum = 0;
 
         for (i = 0; i < n; i++) {
-
             if (data[i] > max) {
                 max = data[i];
             }
@@ -163,7 +162,7 @@ namespace mat1 {
         int *res = (int *)malloc(sizeof(int) * max_len);
         for (int i = 0; i < max_len; i++) {
             if (i < str_len){
-                res[i] = (int)texts[i];
+                res[i] = static_cast<unsigned char>(texts[i]);
             } else {
                 res[i] = 0;
             }
@@ -210,7 +209,7 @@ namespace mat1 {
         return a;
     }
 
-    static float* predictOnText(const char *texts, std::unordered_map<std::string, mat::MTensor>& weights, float *df) {
+    static inline float* predictOnText(const char *texts, std::unordered_map<std::string, mat::MTensor>& weights, float *df) {
         int *x;
         float *embed_x;
         float *dense1_x;

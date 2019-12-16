@@ -9,17 +9,13 @@
 import UIKit
 import Parchment
 
-class RivalPageViewController: UIViewController, PickerNameDelegate {
+class RivalPageViewController: UIViewController {
 
     var product: Product?
-    var chosenRival: RivalsResponse?
-    
-    var chosenRivals: [RivalsResponse]?
-    
-    weak var rivalProductTableViewController: RivalProductTableViewController?
+    var rivalResponse: RivalsResponse?
+        
     weak var rivalProductLineChartViewController: RivalProductLineChartViewController?
     weak var autoChangePriceTableViewController: AutoChangePriceTableViewController?
-    weak var autoUpdatePriceHistoryTableViewController: AutoUpdatePriceHistoryTableViewController?
     
     var pageViewController: FixedPagingViewController?
     
@@ -37,13 +33,8 @@ class RivalPageViewController: UIViewController, PickerNameDelegate {
         })
         
         navigationController?.navigationBar.barTintColor = .white
-        
-        autoChangePriceTableViewController?.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         update()
     }
@@ -54,16 +45,10 @@ class RivalPageViewController: UIViewController, PickerNameDelegate {
         
         rivalProductLineChartViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalProductLineChartViewController.self)) as? RivalProductLineChartViewController
         
-        rivalProductTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: RivalProductTableViewController.self)) as? RivalProductTableViewController
-        
-        autoUpdatePriceHistoryTableViewController = storyboard?.instantiateViewController(withIdentifier: String(describing: AutoUpdatePriceHistoryTableViewController.self)) as? AutoUpdatePriceHistoryTableViewController
-        
-        rivalProductTableViewController?.title = "Lịch sử thay đổi giá"
         rivalProductLineChartViewController?.title = "Biểu đồ thay đổi giá"
         autoChangePriceTableViewController?.title = "Chỉnh giá tự động"
-        autoUpdatePriceHistoryTableViewController?.title = "Lịch sử chỉnh giá tự động"
         
-        pageViewController = FixedPagingViewController(viewControllers: [ rivalProductTableViewController!, rivalProductLineChartViewController!, autoChangePriceTableViewController!, autoUpdatePriceHistoryTableViewController!])
+        pageViewController = FixedPagingViewController(viewControllers: [ rivalProductLineChartViewController!, autoChangePriceTableViewController!])
         
         pageViewController?.indicatorOptions = .visible(height: 3, zIndex: 1, spacing: .zero, insets: .zero)
         
@@ -79,45 +64,25 @@ class RivalPageViewController: UIViewController, PickerNameDelegate {
     }
     
     func update() {
-        guard let chosenRival = chosenRival else {
+        guard let rivalResponse = rivalResponse else {
             presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
             return
         }
 
-        let rival = chosenRival.itemRival
+        let rival = rivalResponse.itemRival
 //        let rivalShop = chosenRival.itemRival.
-
-
-        // Rival product
-        rivalProductTableViewController?.rival = chosenRival.itemRival
 
         // Rival line chart
         rivalProductLineChartViewController?.product = product!
-        rivalProductLineChartViewController?.rival = chosenRival.itemRival
+        rivalProductLineChartViewController?.rivalProduct = rivalResponse.itemRival
 
-        // Auto update history
-        autoUpdatePriceHistoryTableViewController?.product = product!
 
         // Turn on and off auto updating
 //        autoChangePriceTableViewController?.product = product!
 //        autoChangePriceTableViewController?.rivalProduct = chosenRival.0
-        autoChangePriceTableViewController?.rivalResponse = chosenRival
-        autoChangePriceTableViewController?.chosenRivals = chosenRivals!
-    }
-    
-    private func getShopName() -> [String] {
-        var shopNames = [String]()
-        
-        for rival in chosenRivals! {
-            shopNames.append((rival.itemRival?.name)!)
-        }
-        
-        return shopNames
+        autoChangePriceTableViewController?.rivalResponse = rivalResponse
     }
     
     // Tất cả các dữ liệu đến các view này đều phải được setup tại file này
-    func addNameToPicker() -> [String] {
-        return getShopName()
-    }
 }
 

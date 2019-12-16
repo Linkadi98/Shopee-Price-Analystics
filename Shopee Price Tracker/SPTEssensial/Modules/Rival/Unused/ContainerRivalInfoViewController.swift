@@ -12,9 +12,7 @@ class ContainerRivalInfoViewController: UIViewController, RivalPageDelegate {
     
 
     var product: Product?
-    var chosenRival: RivalsResponse?
-    
-    var chosenRivals: [RivalsResponse]?
+    var rivalResponse: RivalsResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +21,10 @@ class ContainerRivalInfoViewController: UIViewController, RivalPageDelegate {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ContainerRivalInfoVCToRivalPageTVC" {
+        if segue.identifier == "rivalPageSegue" {
             if let rivalPageViewController = segue.destination as? RivalPageViewController {
-                rivalPageViewController.chosenRival = self.chosenRival
+                rivalPageViewController.rivalResponse = self.rivalResponse
                 rivalPageViewController.product = self.product!
-                rivalPageViewController.chosenRivals = chosenRivals
             }
         }
     }

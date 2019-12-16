@@ -30,6 +30,7 @@
 #import "FBSDKConstants.h"
 #import "FBSDKDynamicFrameworkLoader.h"
 #import "FBSDKError.h"
+#import "FBSDKEventDeactivationManager.h"
 #import "FBSDKFeatureManager.h"
 #import "FBSDKGraphRequest+Internal.h"
 #import "FBSDKInternalUtility.h"
@@ -44,6 +45,7 @@
 #import "FBSDKUserDataStore.h"
 
 #if !TARGET_OS_TV
+#import "FBSDKAddressFilterManager.h"
 #import "FBSDKEventBindingManager.h"
 #import "FBSDKHybridAppEventsScriptMessageHandler.h"
 #import "FBSDKModelManager.h"
@@ -1150,7 +1152,14 @@ static dispatch_once_t *onceTokenPointer;
   if (failed) {
     return;
   }
+  // Filter out deactivated params
+  parameters = [FBSDKEventDeactivationManager processParameters:parameters eventName:eventName];
 
+#if !defined BUCK && !TARGET_OS_TV
+  // Filter out address data
+  parameters = [FBSDKAddressFilterManager processParameters:parameters];
+#endif
+  // Filter out restrictive keys
   parameters = [FBSDKRestrictiveDataFilterManager processParameters:parameters
                                                           eventName:eventName];
 

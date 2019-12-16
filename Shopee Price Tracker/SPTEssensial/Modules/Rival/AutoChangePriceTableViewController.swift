@@ -8,15 +8,13 @@
 
 import UIKit
 
-class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class AutoChangePriceTableViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: - Properties
 //    var product: Product?
 //    var rivalProduct: Product?
     var rivalResponse: RivalsResponse? // current
-    var chosenRivals: [RivalsResponse]?
-
-    @IBOutlet weak var shopChangePicker: UIPickerView!
+        
     @IBOutlet weak var autoChangePriceSwitch: UISwitch!
     @IBOutlet weak var minPriceRange: UITextField!
     @IBOutlet weak var maxPriceRange: UITextField!
@@ -25,21 +23,33 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
 
 //    var rivalProducts: [Product]?
 
-    var pickerVisible = true
     
-    var delegate: PickerNameDelegate?
-
-    // Đưa tên các đối thủ được chọn vào trong pickerData
-    var pickerData = [String]()
+    override func awakeFromNib() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(onInternetAccess(_:)), name: .internetAccess, object: nil)
+        
+        center.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+    }
+    
+    @objc func onInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+    }
+    
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        shopChangePicker.delegate = self
-        shopChangePicker.dataSource = self
         
-        maxPriceRange.delegate = self
-        minPriceRange.delegate = self
-        priceDiff.delegate = self
+        minPriceRange.keyboardType = .numberPad
+        maxPriceRange.keyboardType = .numberPad
+        priceDiff.keyboardType = .numberPad
 
         autoChangePriceSwitch.isOn = false
         
@@ -52,7 +62,6 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        pickerData.append(contentsOf: (delegate?.addNameToPicker())!)
         updateUI()
     }
 
@@ -61,7 +70,7 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
         tableView.endUpdates()
 
         // Turn off auto updating
-        if rivalResponse?.rival?.auto == true {
+        if rivalResponse?.relation?.auto == true {
             if !autoChangePriceSwitch.isOn {
                 let alert = UIAlertController(title: "Bạn muốn tắt chỉnh giá tự động?", message: nil, preferredStyle: .alert)
                 let cancelButton = UIAlertAction(title: "Huỷ", style: .destructive) { _ in
@@ -70,7 +79,7 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
                 let okButton = UIAlertAction(title: "OK", style: .default) { (_) in
                     let activityIndicator = self.startLoading()
 
-                    RivalApiService.chooseRival(myProductId: (self.rivalResponse?.itemRival?.itemid)!, myShopId: (self.rivalResponse?.rival?.shopid)!, rivalProductId: (self.rivalResponse?.itemRival?.itemid)!, rivalShopId: (self.rivalResponse?.itemRival?.shopid)!, autoUpdate: false, priceDiff: 0, from: 0, to: 0, completion: { (result) in
+                    RivalApiService.chooseRival(myProductId: (self.rivalResponse?.itemRival?.itemid)!, myShopId: (self.rivalResponse?.relation?.shopid)!, rivalProductId: (self.rivalResponse?.itemRival?.itemid)!, rivalShopId: (self.rivalResponse?.itemRival?.shopid)!, autoUpdate: false, priceDiff: 0, from: 0, to: 0, completion: { (result) in
                         if result == .success {
                             self.presentAlert(title: "Thông báo", message: "Tắt thành công")
 
@@ -95,7 +104,6 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 1 {
-            pickerVisible = !pickerVisible
             tableView.beginUpdates()
             tableView.endUpdates()
         }
@@ -115,94 +123,42 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         if indexPath.row != 0 && !autoChangePriceSwitch.isOn {
-            pickerVisible = false
             return 0.0
-        }
-        
-        if indexPath.row == 2 {
-            if !pickerVisible {
-                return 0.0
-            }
-            return 120.0
         }
         return 60.0
     }
     
-    // MARK: - PickerView data source and delegate
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // chọn tên shop tại đây
-        
-        // picker only chooses item when user hasn't scrolled picker anymore, try to run an see results
-        print("\(pickerData[row])")
-    }
-    
     // MARK: - Textfield delegate
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        switch textField.tag {
-//        case 0:
-//            print("min")
-//        case 1:
-//            print("max")
-//        case 2:
-//            print("diff")
-//        default:
-//            break
-//        }
-//        if minPriceRange.isFirstResponder {
-//            maxPriceRange.becomeFirstResponder()
-//            return false
-//        }
-//        else {
-//            maxPriceRange.resignFirstResponder()
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+////        switch textField.tag {
+////        case 0:
+////            print("min")
+////        case 1:
+////            print("max")
+////        case 2:
+////            print("diff")
+////        default:
+////            break
+////        }
+////        if minPriceRange.isFirstResponder {
+////            maxPriceRange.becomeFirstResponder()
+////            return false
+////        }
+////        else {
+////            maxPriceRange.resignFirstResponder()
+////            return true
+////        }
+//        let (result, message) = checkTextFields()
+//        guard result else {
+//            self.presentAlert(message: message)
 //            return true
 //        }
-        let (result, message) = checkTextFields()
-        guard result else {
-            self.presentAlert(message: message)
-            return true
-        }
-
-        let alert = UIAlertController(title: "Bạn muốn bật chỉnh giá tự động?", message: nil, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: "Huỷ", style: .destructive, handler: nil)
-        let okButton = UIAlertAction(title: "OK", style: .default) { (_) in
-            let activityIndicator = self.startLoading()
-
-            let selectedRowOfPicker = self.shopChangePicker.selectedRow(inComponent: 0)
-            let rivalProductId = self.chosenRivals![selectedRowOfPicker].itemRival?.itemid
-            let rivalShopId = self.chosenRivals![selectedRowOfPicker].itemRival?.shopid
-            RivalApiService.chooseRival(myProductId: (self.rivalResponse?.itemRival?.itemid)!, myShopId: (self.rivalResponse?.rival?.shopid)!, rivalProductId: rivalProductId!, rivalShopId: rivalShopId!, autoUpdate: true, priceDiff: Int(self.priceDiff.text!)!, from: Int(self.minPriceRange.text!)!, to: Int(self.maxPriceRange.text!)!) { (result) in
-                if result == .success {
-                    self.presentAlert(title: "Thông báo", message: "Bật thành công")
-
-                    NotificationCenter.default.post(name: .didSwitchAutoUpdate, object: nil, userInfo: nil)
-                }
-
-                self.endLoading(activityIndicator)
-            }
-        }
-
-        alert.addAction(cancelButton)
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
-
-        textField.resignFirstResponder()
-        
-        return true
-    }
+//
+//        textField.resignFirstResponder()
+//
+//        return true
+//    }
 
     private func checkTextFields() -> (Bool, String) {
         guard let maxPrice = UInt(maxPriceRange.text!), let minPrice = UInt(minPriceRange.text!), let _ = UInt(priceDiff.text!) else {
@@ -247,8 +203,8 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
     }
 
     private func updateUI() {
-        if let observation = rivalResponse?.rival {
-            guard observation.auto != nil else {
+        if let relation = rivalResponse?.relation {
+            guard let autoChangePrice =  relation.auto else {
                 autoChangePriceSwitch.isOn = false
                 maxPriceRange.text = ""
                 minPriceRange.text = ""
@@ -256,11 +212,48 @@ class AutoChangePriceTableViewController: UITableViewController, UIPickerViewDel
                 
                 return
             }
+            
+            if autoChangePrice {
+               autoChangePriceSwitch.isOn = true
+                guard let min = rivalResponse?.relation?.min, let max = rivalResponse?.relation?.max, let _priceDiff = rivalResponse?.relation?.price else {
+                    return
+                }
+                
+                maxPriceRange.text = String(describing: max)
+                minPriceRange.text = String(describing: min)
+                priceDiff.text = String(describing: _priceDiff)
+            }
+            else {
+               autoChangePriceSwitch.isOn = false
+            }
 
-            autoChangePriceSwitch.isOn = true
-            maxPriceRange.text = String(describing: rivalResponse?.rival?.max)
-            minPriceRange.text = String(describing: rivalResponse?.rival?.min)
-            priceDiff.text = String(describing: rivalResponse?.rival?.price)
+        }
+    }
+    @IBAction func save(_ sender: Any) {
+        let rivalProductId = self.rivalResponse?.itemRival?.itemid
+        let rivalShopId = self.rivalResponse?.itemRival?.shopid
+        
+        guard let min = minPriceRange.text, let max = maxPriceRange.text, let priceDiff = priceDiff.text else {
+            print("this go to nil")
+            return
+        }
+        
+        print(max)
+        print(min)
+        RivalApiService.chooseRival(myProductId: (self.rivalResponse?.relation?.itemid)!,
+                                    myShopId: (self.rivalResponse?.relation?.shopid)!,
+                                    rivalProductId: rivalProductId!,
+                                    rivalShopId: rivalShopId!,
+                                    autoUpdate: true,
+                                    priceDiff: Double(priceDiff),
+                                    from: Double(min),
+                                    to: Double(max)) { (result) in
+            if result == .success {
+                self.presentAlert(title: "Thông báo", message: "Bật thành công")
+                
+                NotificationCenter.default.post(name: .didSwitchAutoUpdate, object: nil, userInfo: nil)
+            }
+            
         }
     }
 }

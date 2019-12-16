@@ -8,6 +8,11 @@
 
 import Foundation
 
+struct RivalProductResponse: Decodable {
+    let item: Product?
+    let shop: Shop?
+}
+
 struct Product: Codable, Equatable {
     let itemid: Int?
     let images: [String]?

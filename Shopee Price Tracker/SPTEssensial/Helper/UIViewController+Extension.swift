@@ -221,9 +221,9 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
 
     // Present a alert
 
-    func presentAlert(title: String = "Lỗi", message: String) {
+    func presentAlert(title: String = "Lỗi", message: String, handler: ((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let okButton = UIAlertAction(title: "OK", style: .cancel, handler: handler)
         alert.addAction(okButton)
 
         self.present(alert, animated: true, completion: nil)
@@ -555,21 +555,6 @@ extension UIViewController {
     }
 }
 
-// Shop APIs
-extension UIViewController {
-    
-}
-
-
-// Rival API
-extension UIViewController {
-    
-}
-
-// Price Observation
-extension UIViewController {
-    
-}
 
 
 

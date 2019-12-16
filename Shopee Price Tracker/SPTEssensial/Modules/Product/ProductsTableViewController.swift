@@ -19,13 +19,26 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     var searchController: UISearchController!
     
     var result: ConnectionResults?
-    var isChosenToObservePrice = false
     
     var hud: SPTProgressHUD!
     
+    override func awakeFromNib() {
+        // Notification
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onUpdatePrice(_ :)), name: .didUpdateProductPrice, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .internetAccess, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .didChangeCurrentShop, object: nil)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("view did load")
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.backgroundImage = UIImage()
         self.navigationItem.searchController = searchController
@@ -44,10 +57,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         guard var currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
             return
         }
-        
-        // Notification
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onUpdatePrice(_ :)), name: .didUpdateProductPrice, object: nil)
         
     }
 
@@ -115,14 +124,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             }
             else {
                 product = vm.productsList.value![indexPath.row]
-            }
-
-            if isChosenToObservePrice {
-//                let statisticalPriceTableViewController = navigationController?.viewControllers[0] as! StatisticalPriceTableViewController
-//                statisticalPriceTableViewController.product = product
-                navigationController?.popViewController(animated: true)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil, userInfo: ["product": product])
-                return
             }
             
             performSegue(withIdentifier: "ProductDetail", sender: product)
@@ -243,6 +244,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     // MARK: - Refesh data
     @objc func refresh() {
+        guard vm != nil else {
+            return
+        }
         vm.productsList.value = []
         tableView.backgroundView = nil
         fetchDataFromServer()
@@ -253,15 +257,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         fetchDataFromServer()
     }
     
-}
-
-extension UIView {
-
-    func centerInContainingWindow() {
-        guard let window = self.window else { return }
-
-        let windowCenter = CGPoint(x: window.frame.midX, y: window.frame.midY)
-        self.center = self.superview!.convert(windowCenter, from: nil)
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+        vm.productsList.value = []
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
     }
-
+    
 }
+

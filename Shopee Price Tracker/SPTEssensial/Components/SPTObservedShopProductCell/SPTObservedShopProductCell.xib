@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="82" id="KGk-i7-Jjw" customClass="SPTObservedShopProductCell" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="468" height="81"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="437" height="81"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y7o-Vj-wR2">
+                        <rect key="frame" x="264" y="15" width="165" height="51"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999.999.999đ" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzK-TV-ZuO">
+                                <rect key="frame" x="0.0" y="0.0" width="165" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="nqa-kj-XVb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Không tự động chỉnh giá" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqs-sg-wNT">
+                                <rect key="frame" x="0.0" y="33" width="165" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="T3D-Cp-hgB">
+                        <rect key="frame" x="20" y="14.5" width="160" height="52"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đồng hồ thuỵ sĩ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbC-JG-mbb">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theo dõi: 5 sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qic-Bo-DT5">
+                                <rect key="frame" x="0.0" y="32" width="160" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="29Q-nh-gq9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="NU6-eX-NOw"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="y7o-Vj-wR2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="1oO-f7-ZZC"/>
+                    <constraint firstItem="T3D-Cp-hgB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6ag-M3-3NZ"/>
+                    <constraint firstItem="T3D-Cp-hgB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14.5" id="QT3-1R-jGp"/>
+                    <constraint firstItem="y7o-Vj-wR2" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XBd-Lc-fSb"/>
+                    <constraint firstItem="T3D-Cp-hgB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="XfJ-Hk-V1l"/>
+                    <constraint firstAttribute="trailing" secondItem="y7o-Vj-wR2" secondAttribute="trailing" constant="8" id="aEg-SR-8TG"/>
+                    <constraint firstAttribute="bottom" secondItem="T3D-Cp-hgB" secondAttribute="bottom" constant="14.5" id="ppl-EB-37y"/>
+                    <constraint firstAttribute="bottom" secondItem="y7o-Vj-wR2" secondAttribute="bottom" constant="15" id="s9a-ps-UqN"/>
+                    <constraint firstItem="y7o-Vj-wR2" firstAttribute="leading" relation="lessThanOrEqual" secondItem="T3D-Cp-hgB" secondAttribute="trailing" constant="118.5" id="vO2-VJ-UfT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="autoPriceAdjustment" destination="Uqs-sg-wNT" id="TGd-EK-IK2"/>
+                <outlet property="productName" destination="kbC-JG-mbb" id="2ki-NO-hy0"/>
+                <outlet property="productPrice" destination="dzK-TV-ZuO" id="hfQ-90-f5Z"/>
+                <outlet property="trackingRivalProducts" destination="Qic-Bo-DT5" id="gO6-kh-iuT"/>
+            </connections>
+            <point key="canvasLocation" x="46.376811594202906" y="102.79017857142857"/>
+        </tableViewCell>
+    </objects>
+</document>

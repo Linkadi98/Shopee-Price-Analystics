@@ -26,6 +26,25 @@ class AccountDetailTableViewController: UITableViewController {
     
     let userDefaults = UserDefaults.standard
     
+    override func awakeFromNib() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(onInternetAccess(_:)), name: .internetAccess, object: nil)
+        
+        center.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+    }
+    
+    @objc func onInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+    }
+    
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

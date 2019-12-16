@@ -15,6 +15,18 @@ class BasePageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    func addPageViewController() {
+        addChild(pageViewController!)
+        view.addSubview((pageViewController?.view)!)
+        pageViewController?.didMove(toParent: self)
+        
+        
+        pageViewController?.view.snp.makeConstraints({(make) in
+            make.edges.equalToSuperview()
+        })
     }
     
     func setUpControllers(with viewControllers: [UIViewController]) {
@@ -24,7 +36,7 @@ class BasePageViewController: UIViewController {
     func decoratePageViewController() {
         pageViewController?.indicatorOptions = .visible(height: 3, zIndex: 1, spacing: .zero, insets: .zero)
         
-        pageViewController?.indicatorColor = .orange
+        pageViewController?.indicatorColor = .blue
         
         pageViewController?.textColor = .gray
         pageViewController?.selectedTextColor = .black

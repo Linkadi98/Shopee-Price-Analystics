@@ -27,7 +27,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    var connectivity: SPTConnectivityHelper?
 
+    override func awakeFromNib() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(onInternetAccess(_:)), name: .internetAccess, object: nil)
+        
+        center.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+    }
+    
+    @objc func onInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+    }
+    
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,6 +55,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         userNameText.text = "minhpn"
         passwordText.text = "123456"
         hideKeyboardWhenTappedAround()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +106,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as! TabsViewController
                 
                 tabVC.modalTransitionStyle = .coverVertical
+                tabVC.modalPresentationStyle = .fullScreen
                 self.present(tabVC, animated: true, completion: nil)
                 NotificationCenter.default.post(name: .didSignedInApp, object: nil)
             default:

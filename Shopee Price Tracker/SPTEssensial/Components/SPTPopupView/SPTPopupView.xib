@@ -20,14 +20,14 @@
             <rect key="frame" x="0.0" y="0.0" width="481" height="253"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="sMq-ob-TLc">
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="sMq-ob-TLc">
                     <rect key="frame" x="0.0" y="0.0" width="481" height="253"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezk-Ls-owC">
-                            <rect key="frame" x="0.0" y="0.0" width="481" height="125.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="481" height="126"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                            <state key="normal" title="Theo dõi giá sản phẩm này">
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                            <state key="normal" title="Thống kê giá sản phẩm">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -35,10 +35,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25u-kd-1Sg">
-                            <rect key="frame" x="0.0" y="127.5" width="481" height="125.5"/>
+                            <rect key="frame" x="0.0" y="127" width="481" height="126"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                            <state key="normal" title="Cửa hàng có cùng loại sản phẩm">
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                            <state key="normal" title="Tìm sản phẩm cạnh tranh">
                                 <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -57,7 +57,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="gO9-CF-cuv"/>
-            <point key="canvasLocation" x="1041" y="276"/>
+            <point key="canvasLocation" x="1039.8550724637682" y="275.55803571428572"/>
         </view>
     </objects>
 </document>

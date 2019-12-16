@@ -16,6 +16,7 @@ import SwipeableTabBarController
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    var connectivity: SPTConnectivityHelper?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -30,13 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        // begin now when user opens app for the first time, after Launch Screen disapearing, Onboarding Screen will be shown instead of login screen like before
-        // we provide 2 options for user: 1. skip onboarding and go ahead to login screen 2. user can have a walkthough our app depend on Onboarding Screen
-//        let onboardingViewController = mainStoryboard.instantiateViewController(withIdentifier: String(describing: OnboardingViewController.self)) as! OnboardingViewController
-        
-        let tabViewController: SwipeableTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-        
-        var initialViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController // start in login VC
 
         if UserDefaults.standard.object(forKey: "currentUser") != nil {
             // already logged in
@@ -45,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
                     if Date() <= expiredTimeOfToken {
                         // token's not expired -> no need to login
                         Network.shared.headers["Authorization"] = token
-                        initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
+                        self.window?.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
                         print("App starts in TabsViewController")
                     } else {
                         UserDefaults.standard.removeObject(forKey: "currentUser")
@@ -55,16 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
                 }
             }
         }
+        else {
+            self.window?.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
+        }
         
-
-        self.window?.rootViewController = initialViewController
-        
-//        self.window?.rootViewController = onboardingViewController
-
-        // for development purpose
-//        self.window?.rootViewController = tabViewController
         self.window?.makeKeyAndVisible()
         
+        connectivity = SPTConnectivityHelper()
+        connectivity?.invoke()
         return true
     }
 

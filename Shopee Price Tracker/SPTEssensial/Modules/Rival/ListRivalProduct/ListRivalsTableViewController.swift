@@ -25,20 +25,16 @@ class ListRivalsTableViewController: UITableViewController {
         tableView.register(UINib(nibName: CELL_XIB_NAME, bundle: nil), forCellReuseIdentifier: CELL_XIB_NAME)
         
         configVM()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .didObserveRivalProduct, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .didCancelObserveRivalProduct, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop"), let currentShop = try? JSONDecoder().decode(CustomerShop.self, from: currentShopData) {
-        //            if vm?.product?.value.shopid != currentShop.shopid {
-        //                self.navigationController?.popToRootViewController(animated: true)
-        //            }
-        //        }
-        
-        if vm?.listSearchedRivals?.value == nil {
+        if vm?.listSearchedRivals?.value.isEmpty ?? true {
             fetchDataFromServer()
         }
-        
-        
     }
     
     // MARK: - Table view data source
@@ -49,19 +45,22 @@ class ListRivalsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return vm?.listSearchedRivals?.value?.count ?? 0
+        return vm?.listSearchedRivals?.value.count ?? 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_XIB_NAME, for: indexPath) as! SPTCompetitorProductCell
-        guard let listSearchedRivals = vm?.listSearchedRivals?.value, let listRivalShops =  vm?.listRivalShops?.value else {
+        
+        guard let values = vm?.listSearchedRivals?.value else {
             return cell
         }
         
-        let rivalProduct = listSearchedRivals[indexPath.row].0
-        let isSelected = listSearchedRivals[indexPath.row].1
-        let rivalShop = listRivalShops[indexPath.row]
+        let rivalProduct = values[indexPath.row].0
+        let rivalShop = values[indexPath.row].1
+        let isSelected = values[indexPath.row].2
+        
+        
         
         cell.setContent(with: rivalProduct, shop: rivalShop, isSelectedToObserve: isSelected)
         
@@ -72,87 +71,31 @@ class ListRivalsTableViewController: UITableViewController {
         return 70.0
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-                let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
-                let animator = Animator(animation: animation)
-                animator.animate(cell: cell, at: indexPath, in: tableView)
-                tableView.scrollsToTop = true
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! SPTCompetitorProductCell
         
-        guard let product = vm?.product?.value, let listSearchedRivals = vm?.listSearchedRivals?.value else {
-            
-            DispatchQueue.main.async {
-                self.presentAlert(title: "Lỗi không xác định", message: "Vui lòng thử lại sau")
-            }
-            
+        guard let values = vm?.listSearchedRivals?.value else {
             return
         }
         
-        // is Chosen
-        if listSearchedRivals[indexPath.row].1 || cell.followingStatus.text == "Đang theo dõi" {
-            DispatchQueue.main.async {
-                self.presentAlert(title: "Thông báo", message: "Sản phẩm đã được theo dõi")
-            }
-            return
-        }
+        let value = values[indexPath.row]
         
-        
-        //        if let numberOfRivals = numberOfRivals {
-        //            guard numberOfRivals < 5 else {
-        //                DispatchQueue.main.async {
-        //                    self.presentAlert(message: "Tối đa chỉ theo dõi 5 đối thủ")
-        //                }
-        //                return
-        //            }
-        //        }
-        
-        let rival = listSearchedRivals[indexPath.row].0
-        vm?.chooseRival(myProductId: product.itemid!, myShopId: product.shopid!, rivalProductId: rival.itemid!, rivalShopId: rival.shopid!, autoUpdate: false, priceDiff: 0, from: 0, to: 0) { (result) in
-            if result == .success {
-                cell.changeFollowingStatus(isSelectedToObserve: true)
-                NotificationCenter.default.post(name: .didChooseRival, object: nil)
-                self.tabBarController?.selectedIndex = 3
-            }
-        }
+        performSegue(withIdentifier: "rivalProductDetailSegue", sender: (value, vm?.product?.value))
+       
     }
     
     func configVM() {
-        
         self.vm?.listSearchedRivals?.bind { listRivals in
-            
-            if self.result == .failed {
-                self.displayNoDataNotification(title: "Có lỗi xảy ra", message: "Bạn hãy chắc chắn rằng thiết bị kết nối mạng", hudError: "Kết nối thất bại")
-                print("list rival")
-                self.tableView.reloadData()
-                return
-            }
-            
-            if listRivals!.isEmpty {
-                self.displayNoDataNotification(title: "Không có sản phẩm tương tự", message: "Sản phẩm của bạn không có shop nào cùng bán", hudError: "Không tìm thấy")
-                print("list rival 1")
-                self.tableView.reloadData()
-                return
-            }
-            
-//            self.tableView.reloadData()
-        }
-        
-        self.vm?.listRivalShops?.bind { listRivalShops in
             self.vm?.hud?.dismiss()
             if self.result == .failed {
-                self.displayNoDataNotification(title: "Kết nối thất bại", message: "Bạn hãy chắc chắn rằng thiết bị kết nối mạng", hudError: "Kết nối thất bại")
-                print("list rival shop")
+                self.displayNoDataNotification(title: "Có lỗi xảy ra", message: "", hudError: "Kết nối thất bại")
+                
                 self.tableView.reloadData()
                 return
             }
             
-            if listRivalShops!.isEmpty {
-                self.displayNoDataNotification(title: "Không tìm thấy sản phẩm nào tương tự", message: "", hudError: "Không tìm thấy")
+            if listRivals.isEmpty {
+                self.displayNoDataNotification(title: "Không tìm thấy sản phẩm cạnh tranh", message: "Sản phẩm của bạn không có shop nào cùng bán", hudError: "Không tìm thấy")
                 self.tableView.reloadData()
-                print("list rival shop")
                 return
             }
             
@@ -182,22 +125,17 @@ class ListRivalsTableViewController: UITableViewController {
             self.vm?.listSearchedRivals?.value = _listSearchedRivals
         }
         
-        vm?.getListRivalShops(myShopId: vm?.product?.value.shopid ?? 0, myProductId: vm?.product?.value.itemid ?? 0) { [unowned self] (listRivalsShops) in
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let tuple = sender as! ((Product, Shop, Bool), Product)
+        let value = tuple.0
+        if segue.identifier == "rivalProductDetailSegue" {
+            let vc = segue.destination as! RivalProductDetailViewController
+            vc.vm = RivalProductDetailViewModel(rivalProduct: Observable(value.0),
+                                                rivalShop: Observable(value.1), currentShopProduct: tuple.1, status: value.2)
             
-            guard let _listRivalsShops = listRivalsShops else {
-                self.result = .failed
-                self.vm?.listRivalShops?.value = []
-                return
-            }
-            
-            guard !_listRivalsShops.isEmpty else {
-                self.vm?.listRivalShops?.value = []
-                return
-            }
-            
-            self.vm?.listRivalShops?.value = _listRivalsShops
         }
-        
     }
     
     @objc func refresh() {

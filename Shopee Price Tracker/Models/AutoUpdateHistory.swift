@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct AutoUpdateHistory {
-    let date: String
-    let rivalShopName: String
-    let oldPrice: Int
-    let newPrice: Int
+struct AutoUpdateHistory: Codable {
+    let date: String?
+    let shopRival: String?
+    let oldPrice: Int?
+    let price: Int?
 }

@@ -61,10 +61,10 @@ class SPTChartCell: UITableViewCell {
         
         
         if type == .column {
-            self.aaChartView.aa_drawChartWithChartModel(self.chart(type: type, with: data, and: product).colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c"]).categories(categories))
+            self.aaChartView.aa_drawChartWithChartModel(self.chart(type: type, with: data, and: product).colorsTheme(["#1e90ff","#ef476f","#ffd066","#04d69f","#25547c"]).categories(categories).title("Thống kê số lượng sản phẩm theo khoảng giá"))
         }
         else {
-            self.aaChartView.aa_drawChartWithChartModel(self.chart(type: type, with: data, and: product).colorsTheme(configureTheRandomColorArray(colorsNumber: 10)))
+            self.aaChartView.aa_drawChartWithChartModel(self.chart(type: type, with: data, and: product).colorsTheme(configureTheRandomColorArray(colorsNumber: 10)).title("Thống kê tỉ lệ sản phẩm theo khoảng giá"))
         }
         
         
@@ -74,7 +74,7 @@ class SPTChartCell: UITableViewCell {
         return AAChartModel().chartType(type)//图形类型
             //主题颜色数组
             .axesTextColor(AAColor.black)
-            .title("Thống kê số lượng sản phẩm theo khoảng giá")//图形标题
+            //图形标题
             .subtitle("")//图形副标题
             .dataLabelsEnabled(true)//是否显示数字
             .tooltipValueSuffix(" sản phẩm")//浮动提示框单位后缀

@@ -23,7 +23,8 @@
 
 #import "FBSDKFeatureExtractor.h"
 #import "FBSDKModelManager.h"
-#import "FBSDKModelRuntime.h"
+#import "FBSDKModelRuntime.hpp"
+#import "FBSDKModelUtility.h"
 #import "FBSDKViewHierarchyMacros.h"
 
 #include<stdexcept>
@@ -163,24 +164,14 @@ static std::unordered_map<std::string, mat::MTensor> _weights;
   }
   try {
     // Get bytes tensor
-    NSString *textFeature = [self normalize:[FBSDKFeatureExtractor getTextFeature:buttonText withScreenName:viewTree[@"screenname"]]];
+    NSString *textFeature = [FBSDKModelUtility normalizeText:[FBSDKFeatureExtractor getTextFeature:buttonText withScreenName:viewTree[@"screenname"]]];
     if (textFeature.length == 0) {
       return DEFAULT_PREDICTION;
     }
     const char *bytes = [textFeature UTF8String];
-    int *bytes_data = (int *)malloc(sizeof(int) * textFeature.length);
-    memset(bytes_data, 0, sizeof(int) * textFeature.length);
-    for (int i = 0; i < textFeature.length; i++) {
-      bytes_data[i] = bytes[i];
+    if ((int)strlen(bytes) == 0) {
+      return DEFAULT_PREDICTION;
     }
-
-    std::vector<int64_t> bytes_tensor_shape;
-    bytes_tensor_shape.push_back(1);
-    bytes_tensor_shape.push_back((int64_t)textFeature.length);
-    mat::MTensor bytes_tensor = mat::mempty(bytes_tensor_shape);
-    int *bytes_tensor_data = bytes_tensor.data<int>();
-    memcpy(bytes_tensor_data, bytes_data, sizeof(int) * textFeature.length);
-    free(bytes_data);
 
     // Get dense tensor
     std::vector<int64_t> dense_tensor_shape;
@@ -226,13 +217,6 @@ static std::unordered_map<std::string, mat::MTensor> _weights;
     }
   } catch (const std::exception &e) {}
   return DEFAULT_PREDICTION;
-}
-
-+ (NSString *)normalize:(NSString *)str
-{
-  NSMutableArray *tokens = [[str componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] mutableCopy];
-  [tokens removeObject:@""];
-  return [tokens componentsJoinedByString: @" "];
 }
 
 @end

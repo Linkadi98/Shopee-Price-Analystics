@@ -28,7 +28,8 @@ class ListRivalProductsContainerViewController: UIViewController {
         
         if embedSegue == segue.identifier {
             let vc = segue.destination as! ListRivalsTableViewController
-            vc.vm = ListRivalsViewModel(product: vm!.product, foundRivalProducts: Observable(nil), rivalShops: Observable(nil))
+            vc.vm = ListRivalsViewModel(product: vm!.product,
+                                        foundRivalProducts: Observable([]))
         }
     }
 }

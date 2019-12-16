@@ -20,6 +20,7 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var actionContainerView: UIView!
     @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
     
     
     var vm: ProductTableContainerViewModel?
@@ -30,12 +31,34 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
         
     var opagueView: UIView!
     
+    override func awakeFromNib() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(onInternetAccess(_:)), name: .internetAccess, object: nil)
+        
+        center.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+    }
+    
+    @objc func onInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+    }
+    
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configVM()
         actionContainerView.setShadow(cornerRadius: 0, shadowRadius: 1, shadowOffset: CGSize(width: 0, height: -2))
+        
         headerView.setShadow(cornerRadius: 0, shadowRadius: 10, shadowOffset: CGSize(width: 0, height: -2))
         actionButton.layer.cornerRadius = 5
+        moreButton.layer.cornerRadius = 5
     }
     
     @IBAction func close(_ sender: Any) {
@@ -44,8 +67,7 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     
     @IBAction func actionOnProduct(_ sender: Any) {
         switch actionButton.titleLabel?.text {
-        case "Theo dõi giá sản phẩm này":
-//            vm!.observeProductPrice()
+        case "Thống kê giá sản phẩm":
             performSegue(withIdentifier: "StatTableViewContainer", sender: nil)
             break
         default:

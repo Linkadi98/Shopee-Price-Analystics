@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-Shopee Prices Analystic/Pods-Shopee Price
 ${BUILT_PRODUCTS_DIR}/AAInfographics/AAInfographics.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework
+${BUILT_PRODUCTS_DIR}/Connectivity/Connectivity.framework
 ${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework

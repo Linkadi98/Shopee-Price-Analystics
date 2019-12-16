@@ -36,12 +36,13 @@ class OverviewViewController: UIViewController {
     
     @IBOutlet weak var followerCounts: UILabel!
     @IBOutlet weak var rating: UILabel!
-    var tabsVC: UITabBarController?
-    let refresher = UIRefreshControl()
-    
     @IBOutlet weak var codeLb: UILabel!
 
     var currentShop: Shop?
+    var tabsVC: UITabBarController?
+    let refresher = UIRefreshControl()
+    
+    var connectivity: SPTConnectivityHelper?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,9 @@ class OverviewViewController: UIViewController {
         
         // Register to receive notification change currnent shop
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData(_:)), name: .didChangeCurrentShop, object: nil)
+        
+        connectivity = SPTConnectivityHelper()
+        connectivity?.invoke()
     }
     
     override func viewWillAppear(_ animated: Bool) {

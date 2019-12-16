@@ -12,7 +12,7 @@ import AAInfographics
 class RivalProductLineChartViewController: UIViewController {
 
     var product: Product?
-    var rival: Product?
+    var rivalProduct: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ class RivalProductLineChartViewController: UIViewController {
 //        let activityIndicator = startLoading()
         fetchData { (dates, prices, rivalDates, rivalPrices) in
             if dates != nil {
-                aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name!, rivalProductName: (self.rival?.name)!, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
+                aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name!, rivalProductName: (self.rivalProduct?.name)!, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
             }
 //            self.endLoading(activityIndicator)
             print("Done drawing")
@@ -42,12 +42,12 @@ class RivalProductLineChartViewController: UIViewController {
     }
 
     private func fetchData(completion: @escaping ([String]?, [Int]?, [String]?, [Int]?) -> Void) {
-        PriceApiService.priceObservations(productId: (product?.itemid)!) { (result, dates, prices) in
+        PriceApiService.priceObservations(productId: product?.itemid ?? 0) { (result, dates, prices) in
             if result == .failed {
                 self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
                 completion(nil, nil, nil, nil)
             } else if result == .success {
-                PriceApiService.priceObservations(productId: (self.rival?.itemid)!, completion: { (result2, rivalDates, rivalPrices) in
+                PriceApiService.priceObservations(productId: (self.rivalProduct?.itemid)!, completion: { (result2, rivalDates, rivalPrices) in
                     if result == .failed {
                         self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
                         completion(nil, nil, nil, nil)

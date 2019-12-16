@@ -11,12 +11,12 @@ import Foundation
 class ListRivalsViewModel {
     
     var product: Observable<Product>?
-    var listSearchedRivals: Observable<[(Product, Bool)]?>?
-    var listRivalShops: Observable<[Shop]?>?
+    var listSearchedRivals: Observable<[(Product, Shop, Bool)]>?
+    
     
     var hud: SPTProgressHUD?
 
-    func getListRivals(myProductId: Int, completion: @escaping (ConnectionResults, [(Product, Bool)]?) -> Void) {
+    func getListRivals(myProductId: Int, completion: @escaping (ConnectionResults, [(Product, Shop, Bool)]?) -> Void) {
         RivalApiService.getListRivals(myShopId: product?.value.shopid ?? 0, myProductId: myProductId, completion: completion)
     }
     
@@ -24,13 +24,12 @@ class ListRivalsViewModel {
         RivalApiService.getListRivalsShops(myShopId: myShopId, myProductId: myProductId, completion: completion)
     }
     
-    func chooseRival(myProductId: Int, myShopId: Int, rivalProductId: Int, rivalShopId: Int, autoUpdate: Bool, priceDiff: Int, from: Int, to: Int, completion: @escaping (ConnectionResults) -> Void) {
+    func chooseRival(myProductId: Int, myShopId: Int, rivalProductId: Int, rivalShopId: Int, autoUpdate: Bool, priceDiff: Double, from: Double, to: Double, completion: @escaping (ConnectionResults) -> Void) {
         RivalApiService.chooseRival(myProductId: myProductId, myShopId: myShopId, rivalProductId: rivalProductId, rivalShopId: rivalShopId, autoUpdate: autoUpdate, priceDiff: priceDiff, from: from, to: to, completion: completion)
     }
     
-    init(product: Observable<Product>?, foundRivalProducts: Observable<[(Product, Bool)]?>, rivalShops: Observable<[Shop]?>) {
+    init(product: Observable<Product>?, foundRivalProducts: Observable<[(Product, Shop, Bool)]>) {
         self.product = product
         self.listSearchedRivals = foundRivalProducts
-        self.listRivalShops = rivalShops
     }
 }
