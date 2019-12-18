@@ -144,81 +144,6 @@ extension UIViewController: GIDSignInUIDelegate, GIDSignInDelegate {
         }
     }
 
-//    func checkAccount(username: String, password: String, completion: @escaping (String) -> Void) {
-//        let sharedNetwork = Network.shared
-//        let url = URL(string: sharedNetwork.base_url + sharedNetwork.login_path)!
-//        let parameters: Parameters = [
-//            "username" : username,
-//            "password" : password
-//        ]
-//
-//        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .post, parameters: parameters).validate().responseJSON { (response) in
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-//                // Failed request
-//                guard response.result.isSuccess else {
-//                    print("Error when fetching data: \(response.result.error)")
-//                    StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-//                    completion("failed")
-//                    return
-//                }
-//
-//                //Successful request
-//                let responseValue = response.result.value! as! [String: Any]
-//                guard let _ = responseValue["token"] as? String else {
-//                    self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
-//                    completion("wrong")
-//                    return
-//                }
-//
-//                completion("success")
-//            }
-//        }
-//    }
-
-//    // get list products from DB
-//    func getListProducts(completion: @escaping ([Product]?) -> Void) {
-//        let sharedNetwork = Network.shared
-//        //        let url = URL(string: "http://192.168.10.8:3000" + sharedNetwork.shop_path)!
-//        var url = URL(string: "https://google.com")!
-//        if let currentShopData = UserDefaults.standard.data(forKey: "currentShop") {
-//            if let currentShop = try? JSONDecoder().decode(Shop.self, from: currentShopData) {
-//                url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
-//                print("Đang lấy sản phẩm của shop: \(currentShop.shopName) \(currentShop.shopId)")
-//            }
-//        } else {
-//            print("Chua co san pham vi chua ket noi cua hang")
-//            completion([])
-//            return
-//        }
-//
-//        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .get, parameters: nil).validate().responseJSON { (response) in
-//            // Failed request
-//            guard response.result.isSuccess else {
-//                print("Error when fetching data: \(response.result.error)")
-//                StatusBarNotificationBanner(title: "Lỗi kết nối, vui lòng thử lại sau", style: .danger).show()
-//                completion(nil)
-//                return
-//            }
-//
-//            //Successful request
-//            var listProducts: [Product] = []
-//            let responseValue = response.result.value! as! [[String: Any]]
-//            for value in responseValue {
-//                let id = String(value["itemid"] as! Int)
-//                let shopId = String(value["shopid"] as! Int)
-//                let name = value["name"] as! String
-//                let price = Int(value["price"] as! Double)
-//                let image = (value["images"] as! [String])[0]
-//                listProducts.append(Product(id: id, shopId: shopId, name: name, price: price, rating: 3.0, image: image))
-//            }
-//            completion(listProducts)
-//        }
-//    }
-    
-    // Load online image
-    
-
-
     // Present a alert
 
     func presentAlert(title: String = "Lỗi", message: String, handler: ((UIAlertAction) -> Void)? = nil) {
@@ -555,7 +480,15 @@ extension UIViewController {
     }
 }
 
-
+extension UIViewController {
+    
+    func setShadowForNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setShadow(cornerRadius: 0, shadowRadius: 10, shadowOffset: CGSize(width: 0, height: -2))
+    }
+    
+}
 
 
 

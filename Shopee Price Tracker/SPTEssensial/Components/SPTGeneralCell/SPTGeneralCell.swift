@@ -25,9 +25,9 @@ class SPTGeneralCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configCell(label: String, value: Int) {
+    func configCell(label: String, value: Int, image: UIImage) {
         self.label.text = label
-        
         self.value.text = value != 0 ? "\(value)" : "---"
+        imageCell.image = image
     }
 }

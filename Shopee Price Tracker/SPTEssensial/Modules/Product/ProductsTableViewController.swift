@@ -38,33 +38,32 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view did load")
         searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.backgroundImage = UIImage()
-        self.navigationItem.searchController = searchController
+        self.navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        setupSearchController(for: searchController, placeholder: "Nhập tên sản phẩm")
+        setupSearchController(for: searchController, placeholder: "Tên, mã, hoặc giá sản phẩm")
         
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.refreshControl?.tintColor = UIColor.orange
-        
-        tableView.separatorColor = .none
-        tableView.separatorStyle = .none
+        self.refreshControl?.tintColor = UIColor.blue
 
         configVm(vm: ProductTableViewModel(productList: Observable(nil), filterProducts: Observable(nil)))
-
-        guard var currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-            return
-        }
         
+        setShadowForNavigationBar()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         guard vm.productsList.value != nil else {
             fetchDataFromServer()
             return
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        navigationController?.view.setNeedsLayout() // force update layout
+        navigationController?.view.layoutIfNeeded()
     }
     
     // MARK: - Table view data source
@@ -97,21 +96,25 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
 
         DispatchQueue.main.async {
-            cell.productName.text = "\(String(describing: product.name!))"
-            cell.cosmos.rating = Double(product.ratingStar!)
+            cell.productName.text = String(describing: product.name ?? "")
+            cell.cosmos.rating = Double(product.ratingStar ?? 0)
             cell.productPrice.text = Int(product.price!).convertPriceToVietnameseCurrency()
-            cell.productCode.text = String(describing: product.itemid!)
+            cell.productCode.text = String(describing: product.itemid ?? 0)
+            Network.shared.loadOnlineImage(from:
+                URL(string: product.images![0])!,
+                                           to: cell.productImage)
         }
-        Network.shared.loadOnlineImage(from: URL(string: product.images![0])!, to: cell.productImage)
+        print(URL(string: product.images![0])!)
+        
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
-        let animator = Animator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
-        tableView.scrollsToTop = true
+//        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
+//        let animator = Animator(animation: animation)
+//        animator.animate(cell: cell, at: indexPath, in: tableView)
+//        tableView.scrollsToTop = true
     }
  
 
@@ -157,18 +160,18 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             
             guard products?.count != 0 else {
                 self.tableView.reloadData()
-                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây", hudError: "Lỗi kết nối")
+                self.displayNoDataNotification(title: "Có lỗi xảy ra", message: "Kiểm tra lại kết nối", hudError: "Lỗi kết nối")
                 return
             }
             
             guard self.result != .error,  let _ = products else {
                 self.tableView.reloadData()
-                let action = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+                let action = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 50))
                 action.setTitle("Kết nối cửa hàng", for: .normal)
                 action.backgroundColor = .orange
                 action.layer.cornerRadius = 5
                 
-                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm", action: action)
+                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Bạn hãy quay lại Shopee để thêm sản phẩm", action: action)
                 return
             }
             

@@ -37,15 +37,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func onInternetAccess(_ notification: Notification) {
-        guard vm != nil else {
-            return
-        }
+        
     }
     
     @objc func onNoInternetAccess(_ notification: Notification) {
-        guard vm != nil else {
-            return
-        }
+        
         presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
     }
     override func viewDidLoad() {
@@ -97,6 +93,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.endIgnoringInteractionEvents()
             }
 
+            print(result)
             switch result {
             case .error:
                 self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
@@ -110,7 +107,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.present(tabVC, animated: true, completion: nil)
                 NotificationCenter.default.post(name: .didSignedInApp, object: nil)
             default:
-                break
+                self.presentAlert(title: "Mất kết nối", message: "Kiểm tra lại kết nối", handler: nil)
             }
         }
     }

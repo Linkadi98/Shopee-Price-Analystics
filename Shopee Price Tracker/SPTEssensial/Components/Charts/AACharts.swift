@@ -66,8 +66,8 @@ class AACharts {
 
         return AAChartModel()
             .chartType(.line)
-            .title("")
-            .subtitle("Sản phẩm \(productName) và \(rivalProductName)")
+            .title("Sản phẩm \(productName) và \(rivalProductName)")
+            .titleFontSize(18)
             .categories(subDates)
             .yAxisTitle("Giá")
             .dataLabelsEnabled(true)
@@ -76,16 +76,19 @@ class AACharts {
                     .name("Sản phẩm của bạn")
                     .data(subPrices)
                     //    .zoneAxis("x")
-                    .color(AAGradientColor.freshPapaya)
-                    .lineWidth(5)
-                    .zones([["value": 8],
-                            ["dashStyle": AAChartLineDashStyleType.dot.rawValue]
+                    .color(AAColor.blue)
+                    .lineWidth(1)
+                    .zones([["value": 0],
+                            ["dashStyle": AAChartLineDashStyleType.solid.rawValue]
                         ]),
                 AASeriesElement()
                     .name("Sản phẩm đối thủ")
-                    .color(AAGradientColor.pixieDust)
-                    .lineWidth(5)
+                    .color(AAColor.red)
+                    .lineWidth(1)
                     .data(subRivalPrices)
+                    .zones([["value": 0],
+                            ["dashStyle": AAChartLineDashStyleType.solid.rawValue]
+                    ])
                 ])
     }
 

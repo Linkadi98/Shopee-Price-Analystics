@@ -14,12 +14,13 @@ class RivalProductLineChartViewController: UIViewController {
     var product: Product?
     var rivalProduct: Product?
     
+    var aaChartView: AAChartView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let chartViewWidth  = self.view.frame.size.width
         let chartViewHeight = self.view.frame.size.height
-        let aaChartView = AAChartView()
+        aaChartView = AAChartView()
         aaChartView.frame = CGRect(x:0,y:0,width:chartViewWidth * 0.75,height:chartViewHeight * 0.75)
         // set the content height of aachartView
         // aaChartView?.contentHeight = self.view.frame.size.height
@@ -32,11 +33,15 @@ class RivalProductLineChartViewController: UIViewController {
         }
 
 //        let activityIndicator = startLoading()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchData { (dates, prices, rivalDates, rivalPrices) in
             if dates != nil {
-                aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name!, rivalProductName: (self.rivalProduct?.name)!, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
+                self.aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name!, rivalProductName: (self.rivalProduct?.name)!, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
             }
-//            self.endLoading(activityIndicator)
+            //            self.endLoading(activityIndicator)
             print("Done drawing")
         }
     }

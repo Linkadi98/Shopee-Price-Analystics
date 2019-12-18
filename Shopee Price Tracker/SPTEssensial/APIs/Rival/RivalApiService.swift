@@ -40,7 +40,6 @@ struct RivalApiService {
             rivalProductResponse = try? JSONDecoder.shared.decode([RivalProductResponse].self, from: data)
             
             getChosenRivals(shopId: myShopId, productId: myProductId) { (result, chosenRivals) in
-                print("2")
                 guard result != .failed, let chosenRivals = chosenRivals else {
                     completion(.failed, nil)
                     return
@@ -50,6 +49,10 @@ struct RivalApiService {
                 
                 let chosenRivalProductIds = chosenRivals.map {
                     $0.itemRival?.itemid
+                }
+                
+                chosenRivals.forEach { chosenRival in
+                    _result.append((chosenRival.itemRival!, chosenRival.shopRival!, true))
                 }
                 
                 rivalProductResponse?.forEach { element in
@@ -63,11 +66,6 @@ struct RivalApiService {
                     }
                 }
                 
-                chosenRivals.forEach { chosenRival in
-                    _result.append((chosenRival.itemRival!, chosenRival.shopRival!, true))
-                }
-                
-                _result = _result.sorted { $0.2 && !$1.2 }
                 completion(.success, _result)
             }
         }

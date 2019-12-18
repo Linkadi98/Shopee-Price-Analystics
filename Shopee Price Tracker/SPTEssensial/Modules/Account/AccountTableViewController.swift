@@ -25,15 +25,11 @@ class AccountTableViewController: UITableViewController {
     }
     
     @objc func onInternetAccess(_ notification: Notification) {
-        guard vm != nil else {
-            return
-        }
+        
     }
     
     @objc func onNoInternetAccess(_ notification: Notification) {
-        guard vm != nil else {
-            return
-        }
+        
         presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
     }
     

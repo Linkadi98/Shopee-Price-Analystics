@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import BadgeSwift
 
 class OverviewController: UIViewController {
     
     @IBOutlet weak var productStatTableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var notificationBell: UIButton!
     
     var listShopsTableView: SPTListShops!
     var opagueView: UIView!
+    var badge: SPTBadge!
     
     let GENERAL_CELL = "SPTGeneralCell"
     
@@ -37,6 +40,16 @@ class OverviewController: UIViewController {
         scrollView.refreshControl = UIRefreshControl()
         scrollView.refreshControl?.addTarget(self, action:
             #selector(refresh),for: .valueChanged)
+        
+        badge = SPTBadge(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        badge.attachTo(notificationBell)
+        
+        setShadowForNavigationBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hidesBottomBarWhenPushed = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +66,8 @@ class OverviewController: UIViewController {
         productStatTableView.dataSource = self
         productStatTableView.register(UINib(nibName: GENERAL_CELL, bundle: nil), forCellReuseIdentifier: GENERAL_CELL)
         productStatTableView.layer.cornerRadius = 5
+        productStatTableView.layer.masksToBounds = false
+        productStatTableView.setShadow()
     }
     
     func configListShopsTableView() {
@@ -69,7 +84,15 @@ class OverviewController: UIViewController {
         listShopsTableView.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
     }
     
+    // MARK: Handle notification bell
     
+    @IBAction func openNotificationsCenter(_ sender: Any) {
+        badge.badgeValue?.value += 1
+    }
+    
+    // MARK: Config notification bell
+    
+
     
     // MARK: Handle Popup
     
@@ -166,11 +189,11 @@ extension OverviewController: UITableViewDelegate, UITableViewDataSource {
         let row = indexPath.row
         switch row {
         case 0:
-            cell.configCell(label: "Tổng sản phẩm cửa hàng", value: response.0)
+            cell.configCell(label: "Tổng sản phẩm cửa hàng", value: response.0, image: #imageLiteral(resourceName: "ic-product-blue"))
         case 1:
-            cell.configCell(label: "Tự động chỉnh giá", value: response.1)
+            cell.configCell(label: "Tự động chỉnh giá", value: response.1, image: #imageLiteral(resourceName: "ic-auto-adjustment-price"))
         case 2:
-            cell.configCell(label: "Đang theo dõi giá", value: response.2)
+            cell.configCell(label: "Đang theo dõi giá", value: response.2, image: #imageLiteral(resourceName: "ic-adjustment-price-product"))
         default:
             break
         }
@@ -180,4 +203,27 @@ extension OverviewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        
+        switch row {
+        case 0:
+            let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: ProductsTableViewController.self)) as! ProductsTableViewController
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+            
+        case 1, 2:
+            let vc = storyboard?.instantiateViewController(withIdentifier: String(describing: PriceTrackingShopProductTableViewController.self)) as! PriceTrackingShopProductTableViewController
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+            
+        default:
+            break
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
 }

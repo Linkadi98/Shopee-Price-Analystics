@@ -20,6 +20,7 @@ pod 'AAInfographics', :git => 'https://github.com/AAChartModel/AAChartKit-Swift.
 pod 'NVActivityIndicatorView'
 pod 'JGProgressHUD'
 pod "Connectivity"
+pod 'BadgeSwift', '~> 8.0'
 # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do

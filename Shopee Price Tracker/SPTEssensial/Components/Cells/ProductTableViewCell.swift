@@ -36,9 +36,9 @@ class ProductTableViewCell: UITableViewCell {
 //        idLabel.showAnimatedSkeleton()
 //
         cosmos.layer.cornerRadius = 4
-        containerView.setShadow()
+//        containerView.setShadow()
         
-        selectionStyle = .none
+        selectionStyle = .default
         
         backgroundColor = .white
         editingPen.alpha = 0

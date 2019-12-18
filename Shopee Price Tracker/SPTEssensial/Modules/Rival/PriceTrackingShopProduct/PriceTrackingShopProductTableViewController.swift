@@ -37,6 +37,7 @@ class PriceTrackingShopProductTableViewController: UITableViewController {
         configViewModel(PriceTrackingShopProductViewModel(observedShopProduct: Observable([])))
         
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        setShadowForNavigationBar()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -83,17 +84,19 @@ class PriceTrackingShopProductTableViewController: UITableViewController {
         self.vm = vm
         self.vm?.observedShopProduct?.bind { products in
             self.vm?.hud?.dismiss()
+            guard self.connection else {
+                self.displayNoDataNotification(title: "Có lỗi xảy ra", message: "Kiểm tra lại kết nối", action: nil, hudError: "Lỗi kết nối")
+                self.tableView.reloadData()
+                return
+            }
+            
             guard !products.isEmpty else {
                 self.displayNoDataNotification(title: "Bạn chưa có sản phẩm nào theo dõi giá", message: "Hãy chọn một sản phẩm trong cửa hàng để theo dõi giá", action: nil, hudError: "Chưa theo dõi giá sản phẩm nào")
                 self.tableView.reloadData()
                 return
             }
             
-            guard self.connection else {
-                self.displayNoDataNotification(title: "Có lỗi xảy ra", message: "Kiểm tra lại kết nối", action: nil, hudError: "Lỗi kết nối")
-                self.tableView.reloadData()
-                return
-            }
+            
             
             self.tableView.reloadData()
             self.tableView.backgroundView = nil
