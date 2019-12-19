@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" indentationWidth="10" rowHeight="70" id="G7K-6a-MWc" customClass="SPTCompetitorProductCell" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="515" height="82"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G7K-6a-MWc" id="VfI-le-NwD">
+                <rect key="frame" x="0.0" y="0.0" width="515" height="82"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic-default-image" translatesAutoresizingMaskIntoConstraints="NO" id="GNM-t8-iwP">
+                        <rect key="frame" x="4" y="4" width="100" height="74"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="yv1-AZ-CLK"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sEG-UY-8XD">
+                        <rect key="frame" x="112" y="8" width="150" height="49"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đồng hồ thuỵ sĩ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K1y-gX-1FX">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shop: Đồng hồ TS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hj1-Jk-15b">
+                                <rect key="frame" x="0.0" y="31" width="150" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="lxd-5F-Ade"/>
+                        </constraints>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="JJ8-Or-8RL">
+                        <rect key="frame" x="386" y="8" width="121" height="48"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999.999.999đ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJY-Mh-OBR">
+                                <rect key="frame" x="0.0" y="0.0" width="121" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đang theo dõi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jn7-pe-Ixm">
+                                <rect key="frame" x="26.5" y="30" width="94.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="sEG-UY-8XD" firstAttribute="top" secondItem="VfI-le-NwD" secondAttribute="top" constant="8" id="182-P8-ejZ"/>
+                    <constraint firstItem="JJ8-Or-8RL" firstAttribute="leading" relation="lessThanOrEqual" secondItem="sEG-UY-8XD" secondAttribute="trailing" constant="157.5" id="1El-Mj-KdU"/>
+                    <constraint firstAttribute="bottom" secondItem="GNM-t8-iwP" secondAttribute="bottom" constant="4" id="4R5-rT-gFs"/>
+                    <constraint firstItem="GNM-t8-iwP" firstAttribute="top" secondItem="VfI-le-NwD" secondAttribute="top" constant="4" id="K1h-a7-VeR"/>
+                    <constraint firstItem="JJ8-Or-8RL" firstAttribute="top" secondItem="VfI-le-NwD" secondAttribute="top" constant="8" id="R9U-Oc-rMH"/>
+                    <constraint firstAttribute="trailing" secondItem="JJ8-Or-8RL" secondAttribute="trailing" constant="8" id="Z4G-Mu-XTu"/>
+                    <constraint firstItem="GNM-t8-iwP" firstAttribute="leading" secondItem="VfI-le-NwD" secondAttribute="leading" constant="4" id="dXH-QH-TZR"/>
+                    <constraint firstItem="sEG-UY-8XD" firstAttribute="leading" secondItem="GNM-t8-iwP" secondAttribute="trailing" constant="8" id="tTr-pt-3iA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="competitorName" destination="hj1-Jk-15b" id="Gov-Kq-1I9"/>
+                <outlet property="competitorProductImage" destination="GNM-t8-iwP" id="132-60-A2o"/>
+                <outlet property="competitorProductName" destination="K1y-gX-1FX" id="e4n-0D-rTd"/>
+                <outlet property="competitorProductPrice" destination="IJY-Mh-OBR" id="wef-fn-gWr"/>
+                <outlet property="followingStatus" destination="jn7-pe-Ixm" id="j4z-Ah-qz6"/>
+            </connections>
+            <point key="canvasLocation" x="131.15942028985509" y="-49.553571428571423"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic-default-image" width="36" height="36"/>
+    </resources>
+</document>
