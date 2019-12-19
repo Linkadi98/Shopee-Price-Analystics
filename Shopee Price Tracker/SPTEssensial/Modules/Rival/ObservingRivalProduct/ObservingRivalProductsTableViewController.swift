@@ -98,18 +98,17 @@ class ObservingRivalProductsTableViewController: UITableViewController {
     func configViewModel() {
         self.vm?.rivalResponse?.bind { rivalProduct in
             self.vm?.hud?.dismiss()
-            guard !rivalProduct.isEmpty else {
-                self.displayNoDataNotification(title: "Bạn chưa chọn sản phẩm tương tự để theo dõi giá", message: "Hãy chọn một sản phẩm tương tự để theo dõi giá", action: nil, hudError: "Không có sản phẩm tương tự được theo dõi giá")
-                self.tableView.reloadData()
-                return
-            }
-            
             guard self.hasRivalProducts else {
                 self.displayNoDataNotification(title: "Có lỗi xảy ra", message: "Kiểm tra lại kết nối", action: nil, hudError: "Lỗi kết nối")
                 self.tableView.reloadData()
                 return
             }
-            
+            guard !rivalProduct.isEmpty else {
+                self.displayNoDataNotification(title: "Chưa theo dõi giá sản phẩm nào", message: "Chọn một sản phẩm cạnh tranh để theo dõi giá", action: nil, hudError: "Không tìm thấy")
+                self.tableView.reloadData()
+                return
+            }
+    
             self.tableView.reloadData()
             self.tableView.backgroundView = nil
         }

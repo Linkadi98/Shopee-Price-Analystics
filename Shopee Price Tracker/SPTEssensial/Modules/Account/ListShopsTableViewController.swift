@@ -204,7 +204,8 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: { _ in
         }))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.saveObjectInUserDefaults(object: shop as AnyObject, forKey: "currentShop")
+            UserDefaults.standard.saveObjectInUserDefaults(object: shop as AnyObject, forKey: "currentShop")
+            NotificationCenter.default.post(name: .didChangeCurrentShop, object: nil, userInfo: ["ShopName": shop.name ?? ""])
             self.fetchDataFromServer(isChangingShop: true)
         }))
 
