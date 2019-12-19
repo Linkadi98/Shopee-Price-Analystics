@@ -71,7 +71,7 @@ class AccountDetailTableViewController: UITableViewController {
         self.logout()
 
         // Back to login screen
-        self.moveVC(viewController: self, toViewControllerHasId: "LoginViewController")
+        
     }
     
     // MARK: - Private modifications

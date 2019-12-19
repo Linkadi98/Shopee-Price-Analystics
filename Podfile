@@ -21,6 +21,7 @@ pod 'NVActivityIndicatorView'
 pod 'JGProgressHUD'
 pod "Connectivity"
 pod 'BadgeSwift', '~> 8.0'
+pod 'AMPopTip'
 # Pods for Shopee Prices Analystic
 
   target 'Shopee Prices AnalysticTests' do

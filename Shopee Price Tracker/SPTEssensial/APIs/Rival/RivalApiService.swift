@@ -61,7 +61,7 @@ struct RivalApiService {
                         return
                     }
                     
-                    if chosenRivalProductIds.isEmpty || !chosenRivalProductIds.contains(element.item?.itemid) {
+                    if !chosenRivalProductIds.contains(element.item?.itemid) {
                         _result.append((rivalProduct, rivalShop, false))
                     }
                 }

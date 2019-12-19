@@ -51,6 +51,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         configVm(vm: ProductTableViewModel(productList: Observable(nil), filterProducts: Observable(nil)))
         
         setShadowForNavigationBar()
+        self.extendedLayoutIncludesOpaqueBars = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -62,7 +63,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        navigationController?.view.setNeedsLayout() // force update layout
+        navigationController?.view.setNeedsLayout() // force update layout
         navigationController?.view.layoutIfNeeded()
     }
     
@@ -137,7 +138,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     func updateSearchResults(for searchController: UISearchController) {
         if (vm.productsList.value != nil) { filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
                 vm.filterProducts.value = (vm.productsList.value?.filter({(product: Product) -> Bool in
-                    return (product.name!.lowercased().contains(searchText.lowercased())) || String(describing: product.itemid!).lowercased().contains(searchText.lowercased())
+                    return (product.name!.lowercased().contains(searchText.lowercased())) ||
+                        String(describing: product.itemid!).lowercased().contains(searchText.lowercased()) ||
+                        product.name!.folding(options: .diacriticInsensitive, locale: .current).lowercased().contains(searchText.lowercased())
                 }))!
             }
         }
@@ -150,6 +153,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             let vc = segue.destination as! ProductTableContainerViewController
             vc.vm = ProductTableContainerViewModel()
             vc.vm!.product = Observable(sender as! Product)
+            vc.hidesBottomBarWhenPushed = true
         }
     }
     

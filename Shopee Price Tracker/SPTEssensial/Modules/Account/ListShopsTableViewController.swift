@@ -29,7 +29,10 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     }
     
     @objc func onInternetAccess(_ notification: Notification) {
-        
+        guard listShops != nil else {
+            return
+        }
+        fetchDataFromServer()
     }
     
     @objc func onNoInternetAccess(_ notification: Notification) {
@@ -49,6 +52,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         self.refreshControl?.tintColor = UIColor.blue
         
         tableView.register(UINib(nibName: "SPTShopCell", bundle: nil), forCellReuseIdentifier: "SPTShopCell")
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -239,6 +243,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
 
     // MARK: - Refesh data
     @objc func refresh() {
+        
         fetchDataFromServer()
         tableView.refreshControl?.endRefreshing()
     }

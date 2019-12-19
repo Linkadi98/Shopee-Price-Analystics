@@ -3,6 +3,7 @@ PODS:
   - Alamofire (4.9.1)
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
+  - AMPopTip (4.4.0)
   - BadgeSwift (8.0.0)
   - Connectivity (3.3.3)
   - Cosmos (19.0.3)
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - AAInfographics (from `https://github.com/AAChartModel/AAChartKit-Swift.git`)
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.5)
+  - AMPopTip
   - BadgeSwift (~> 8.0)
   - Connectivity
   - Cosmos (~> 19.0)
@@ -80,6 +82,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireImage
+    - AMPopTip
     - BadgeSwift
     - Connectivity
     - Cosmos
@@ -115,6 +118,7 @@ SPEC CHECKSUMS:
   AAInfographics: bbeed03caece4ee3b5e557d734967394e9bcdb11
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  AMPopTip: 093366c8dab16a2d0bf46c73d5837b6a2a603774
   BadgeSwift: a81547ffde1f462bb5fc02e3fa3fdcbc1b888354
   Connectivity: 4ffcb7456939268de2431c230a3ff015d4cbcfa9
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
@@ -137,6 +141,6 @@ SPEC CHECKSUMS:
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 0a8f4e4fa0234fbc3cc173377d353ad0f621c2db
+PODFILE CHECKSUM: be38216fcd2259be980f92f7b5830b4a83cf363a
 
 COCOAPODS: 1.8.4

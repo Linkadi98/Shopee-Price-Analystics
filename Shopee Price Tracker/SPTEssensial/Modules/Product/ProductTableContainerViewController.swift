@@ -15,9 +15,7 @@ protocol SPTPopupViewButtonProtocol {
 
 class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonProtocol {
     
-    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var tableViewContainer: UIView!
-    @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var actionContainerView: UIView!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
@@ -56,7 +54,7 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
         configVM()
         actionContainerView.setShadow(cornerRadius: 0, shadowRadius: 1, shadowOffset: CGSize(width: 0, height: -2))
         
-        headerView.setShadow(cornerRadius: 0, shadowRadius: 10, shadowOffset: CGSize(width: 0, height: -2))
+        
         actionButton.layer.cornerRadius = 5
         moreButton.layer.cornerRadius = 5
     }
@@ -84,7 +82,6 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     func configVM() {
         vm?.product?.bindAndFire { product in
             self.vm2?.product.value = product
-            self.productTitle.text = product.name
         }
     }
     

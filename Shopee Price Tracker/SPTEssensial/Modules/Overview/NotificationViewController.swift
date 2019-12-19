@@ -11,7 +11,6 @@ import UIKit
 class NotificationViewController: UIViewController {
 
     @IBOutlet weak var notificationTableView: UITableView!
-    @IBOutlet weak var headerView: UIView!
     
     let NOTIFICATION_CELL = "SPTNotificationCell"
     
@@ -23,7 +22,7 @@ class NotificationViewController: UIViewController {
         notificationTableView.rowHeight = UITableView.automaticDimension
         notificationTableView.estimatedRowHeight = 120
         
-        headerView.setShadow(cornerRadius: 0, shadowRadius: 10, shadowOffset: CGSize(width: 0, height: -2))
+//        headerView.setShadow(cornerRadius: 0, shadowRadius: 10, shadowOffset: CGSize(width: 0, height: -2))
         // Do any additional setup after loading the view.
     }
     

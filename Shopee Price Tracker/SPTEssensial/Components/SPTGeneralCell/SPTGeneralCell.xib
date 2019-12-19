@@ -17,16 +17,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="424" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đang theo dõi giá" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9C-1q-0v5">
-                        <rect key="frame" x="53" y="14.5" width="137.5" height="21"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9C-1q-0v5">
+                        <rect key="frame" x="53" y="16" width="115" height="18"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Đang theo dõi giá">
+                                <attributes>
+                                    <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="15" name="HelveticaNeue-Light"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="308-He-Mtl">
-                        <rect key="frame" x="386" y="14.5" width="30" height="21"/>
-                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="308-He-Mtl">
+                        <rect key="frame" x="387" y="15" width="29" height="20"/>
+                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                        <color key="textColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product1" translatesAutoresizingMaskIntoConstraints="NO" id="B8K-pK-Ry1">
@@ -39,7 +45,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="B8K-pK-Ry1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="5ax-Xw-znd"/>
-                    <constraint firstItem="308-He-Mtl" firstAttribute="leading" relation="lessThanOrEqual" secondItem="L9C-1q-0v5" secondAttribute="trailing" constant="195.5" id="AfL-Wm-A0Q"/>
+                    <constraint firstItem="308-He-Mtl" firstAttribute="leading" relation="lessThanOrEqual" secondItem="L9C-1q-0v5" secondAttribute="trailing" constant="221.5" id="JlT-Pw-2fz"/>
                     <constraint firstItem="L9C-1q-0v5" firstAttribute="leading" secondItem="B8K-pK-Ry1" secondAttribute="trailing" constant="8" id="ZSO-nm-o3c"/>
                     <constraint firstItem="B8K-pK-Ry1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hsa-d4-RqZ"/>
                     <constraint firstItem="L9C-1q-0v5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pUU-7P-sp2"/>

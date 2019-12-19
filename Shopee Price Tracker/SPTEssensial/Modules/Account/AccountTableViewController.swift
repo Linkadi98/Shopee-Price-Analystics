@@ -35,7 +35,7 @@ class AccountTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setShadowForNavigationBar()
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -48,6 +48,11 @@ class AccountTableViewController: UITableViewController {
         return CGFloat(0)
     }
     // MARK: - Actions
+    
+    
+    @IBAction func logOut(_ sender: Any) {
+        self.moveVC(viewController: self, toViewControllerHasId: "LoginViewController")
+    }
 }
 
 

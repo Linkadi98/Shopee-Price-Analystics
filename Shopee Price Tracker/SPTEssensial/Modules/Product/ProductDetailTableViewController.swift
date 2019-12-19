@@ -9,6 +9,7 @@
 import UIKit
 import Cosmos
 import JGProgressHUD
+import AMPopTip
 
 class ProductDetailTableViewController: UITableViewController {
 
@@ -18,6 +19,8 @@ class ProductDetailTableViewController: UITableViewController {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productCode: UILabel!
     @IBOutlet weak var productName: UILabel!
+    
+    @IBOutlet weak var informationButton: UIButton!
     
     var category: UILabel!
     var brand: UILabel!
@@ -107,7 +110,20 @@ class ProductDetailTableViewController: UITableViewController {
 
     }
 
-
+    @IBAction func showInfo(_ sender: Any) {
+        let popTip = PopTip()
+        
+        popTip.arrowRadius = 2
+        popTip.bubbleColor = UIColor(red: 0.31, green: 0.57, blue: 0.87, alpha: 1)
+        popTip.edgeMargin = 5
+        popTip.offset = 2
+        popTip.bubbleOffset = 10
+        popTip.edgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        popTip.actionAnimation = .bounce(16)
+        popTip.show(text: "Animated popover, great for subtle UI tips and onboarding", direction: .up, maxWidth: 200, in: view, from: informationButton.frame, duration: 3)
+        
+    }
+    
     func configViewModel() {
         self.vm?.product.bindAndFire { product in
             self.update(product)

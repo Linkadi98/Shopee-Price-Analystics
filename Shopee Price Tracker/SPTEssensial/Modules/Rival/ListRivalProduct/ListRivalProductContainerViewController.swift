@@ -10,18 +10,14 @@ import UIKit
 
 class ListRivalProductsContainerViewController: UIViewController {
 
-    @IBOutlet weak var headerView: UIView!
     var vm: ListRivalProductsContainerViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        headerView.setShadow(cornerRadius: 0, shadowRadius: 5, shadowOffset: CGSize(width: 0, height: -2))
+//        headerView.setShadow(cornerRadius: 0, shadowRadius: 5, shadowOffset: CGSize(width: 0, height: -2))
     }
     
-    @IBAction func close(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let embedSegue = "EmbedListRivalProductTableview"

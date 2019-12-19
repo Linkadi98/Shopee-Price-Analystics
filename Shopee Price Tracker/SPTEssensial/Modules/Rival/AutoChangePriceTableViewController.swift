@@ -45,8 +45,6 @@ class AutoChangePriceTableViewController: UITableViewController, UITextFieldDele
         minPriceRange.keyboardType = .numberPad
         maxPriceRange.keyboardType = .numberPad
         priceDiff.keyboardType = .numberPad
-
-        autoChangePriceSwitch.isOn = false
         
         hideKeyboardWhenTappedAround()
         registerKeyboardForNotification()
@@ -214,14 +212,13 @@ class AutoChangePriceTableViewController: UITableViewController, UITextFieldDele
                     return
                 }
                 
-                maxPriceRange.text = String(describing: max)
-                minPriceRange.text = String(describing: min)
-                priceDiff.text = String(describing: _priceDiff)
+                maxPriceRange.text = String(describing: Int(max))
+                minPriceRange.text = String(describing: Int(min))
+                priceDiff.text = String(describing: Int(_priceDiff))
             }
             else {
                autoChangePriceSwitch.isOn = false
             }
-
         }
     }
     @IBAction func save(_ sender: Any) {
@@ -244,7 +241,7 @@ class AutoChangePriceTableViewController: UITableViewController, UITextFieldDele
                                     from: Double(min),
                                     to: Double(max)) { (result) in
             if result == .success {
-                self.presentAlert(title: "Thông báo", message: "Bật thành công")
+                self.presentAlert(title: "Thay đổi giá tự động", message: "Thành công")
                 
                 NotificationCenter.default.post(name: .didSwitchAutoUpdate, object: nil, userInfo: nil)
             }

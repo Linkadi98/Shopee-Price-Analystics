@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
                         UserDefaults.standard.removeObject(forKey: "currentUser")
                         UserDefaults.standard.removeObject(forKey: "token")
                         UserDefaults.standard.removeObject(forKey: "expiredTimeOfToken")
+                        self.window?.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
                     }
                 }
             }
@@ -52,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         else {
             self.window?.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
         }
+        
+        
         
         self.window?.makeKeyAndVisible()
         

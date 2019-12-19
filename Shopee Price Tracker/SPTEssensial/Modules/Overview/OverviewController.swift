@@ -14,6 +14,7 @@ class OverviewController: UIViewController {
     @IBOutlet weak var productStatTableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var notificationBell: UIButton!
+    @IBOutlet weak var listShopButton: UIButton!
     
     var listShopsTableView: SPTListShops!
     var opagueView: UIView!
@@ -28,7 +29,7 @@ class OverviewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .didChangeCurrentShop, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onChangeCurrentShop(_:)), name: .didChangeCurrentShop, object: nil)
     }
     
     override func viewDidLoad() {
@@ -160,6 +161,13 @@ class OverviewController: UIViewController {
         vm?.response?.value = (0,0,0)
         fetchData()
         scrollView.refreshControl?.endRefreshing()
+    }
+    
+    @objc func onChangeCurrentShop(_ notification: Notification) {
+        let userInfo = notification.userInfo as! [String: String]
+        let shopName = userInfo["ShopName"]
+        
+        listShopButton.setTitle(shopName, for: .normal)
     }
     
     

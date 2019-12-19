@@ -42,12 +42,10 @@ class RivalProductDetailViewController: UIViewController {
         
         collectionImages.delegate = self
         collectionImages.dataSource = self
-        // Do any additional setup after loading the view.
-        //        screenWidth = UIScreen.main.bounds.width
+        
         width = collectionImages.frame.width
-        //        let screenHeight = UIScreen.main.bounds.height
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        //        layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+       
         layout.itemSize = CGSize(width: width / 3, height: width / 3)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
@@ -58,15 +56,18 @@ class RivalProductDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let status = vm?.status ?? false
+        print(status)
         setStatus(status)
-        changeRoleButton(status)
+        changeRoleButton(!status)
     }
     
     @IBAction func handleRivalProduct(_ sender: Any) {
-        
+        vm?.hud = SPTProgressHUD(style: .dark)
+        vm?.hud?.show(in: self.view, content: "Vui lòng chờ")
         if !(vm?.status ?? true) {
             vm?.addRivalPrductToListObservedProduct { result in
                 guard result != .failed else {
+                    self.vm?.hud?.dismiss()
                     self.setStatus(false)
                     self.changeRoleButton(true)
                     return
@@ -75,11 +76,13 @@ class RivalProductDetailViewController: UIViewController {
                 NotificationCenter.default.post(name: .didObserveRivalProduct, object: nil)
                 self.setStatus(true)
                 self.changeRoleButton(false)
+                self.vm?.hud?.dismiss()
             }
         }
         else {
             vm?.deleteChosenRival { result in
                 guard result != .failed else {
+                    self.vm?.hud?.dismiss()
                     self.setStatus(true)
                     self.changeRoleButton(false)
                     return
@@ -88,6 +91,7 @@ class RivalProductDetailViewController: UIViewController {
                 NotificationCenter.default.post(name: .didCancelObserveRivalProduct, object: nil)
                 self.setStatus(false)
                 self.changeRoleButton(true)
+                self.vm?.hud?.dismiss()
             }
         }
     }
@@ -127,7 +131,7 @@ class RivalProductDetailViewController: UIViewController {
     }
     
     func changeRoleButton(_ condition: Bool) {
-        if condition {
+        if !condition {
             handleRivalProductButton.setTitle("Huỷ theo dõi giá sản phẩm", for: .normal)
             handleRivalProductButton.backgroundColor = .systemRed
         }

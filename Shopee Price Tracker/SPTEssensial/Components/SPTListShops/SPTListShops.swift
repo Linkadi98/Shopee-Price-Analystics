@@ -87,6 +87,9 @@ extension SPTListShops: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        let cell = tableView.cellForRow(at: indexPath) as! SPTShopCell
+        let shopName = cell.shopName.text as Any
+        NotificationCenter.default.post(name: .didChangeCurrentShop, object: nil, userInfo: ["ShopName": shopName])
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

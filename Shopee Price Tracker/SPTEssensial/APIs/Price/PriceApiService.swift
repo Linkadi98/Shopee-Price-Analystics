@@ -114,8 +114,11 @@ struct PriceApiService {
     static func deleteRivals(productId: Int, completion: @escaping (ConnectionResults) -> Void) {
         
         let url = URL(string: Network.shared.base_url + Network.shared.rival_path + "/\(productId)")!
-        
         sharedNetwork.alamofireDataRequest(url: url, httpMethod: .delete, parameters: nil).responseJSON { (response) in
+            guard response.result.isSuccess else {
+                completion(.failed)
+                return
+            }
             completion(.success)
         }
     }

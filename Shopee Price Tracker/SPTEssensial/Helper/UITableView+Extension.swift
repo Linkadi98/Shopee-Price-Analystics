@@ -15,7 +15,9 @@ extension UITableViewController {
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = placeholder
-        
+        searchController.searchBar.snp.makeConstraints { make in
+            make.height.equalTo(44)
+        }
     }
     
     public func isEmptySearchBar(_ searchController: UISearchController) -> Bool {
