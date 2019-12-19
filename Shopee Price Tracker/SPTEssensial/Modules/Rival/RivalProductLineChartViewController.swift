@@ -12,14 +12,15 @@ import AAInfographics
 class RivalProductLineChartViewController: UIViewController {
 
     var product: Product?
-    var rival: Product?
+    var rivalProduct: Product?
     
+    var aaChartView: AAChartView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let chartViewWidth  = self.view.frame.size.width
         let chartViewHeight = self.view.frame.size.height
-        let aaChartView = AAChartView()
+        aaChartView = AAChartView()
         aaChartView.frame = CGRect(x:0,y:0,width:chartViewWidth * 0.75,height:chartViewHeight * 0.75)
         // set the content height of aachartView
         // aaChartView?.contentHeight = self.view.frame.size.height
@@ -32,23 +33,26 @@ class RivalProductLineChartViewController: UIViewController {
         }
 
 //        let activityIndicator = startLoading()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchData { (dates, prices, rivalDates, rivalPrices) in
             if dates != nil {
-                aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name!, rivalProductName: (self.rival?.name)!, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
+                self.aaChartView.aa_drawChartWithChartModel(AACharts().configureMixedLineChart(productName: self.product!.name!, rivalProductName: (self.rivalProduct?.name)!, dates: dates!, prices: prices!, rivalDates: rivalDates!, rivalPrices: rivalPrices!))
             }
-//            self.endLoading(activityIndicator)
+            //            self.endLoading(activityIndicator)
             print("Done drawing")
         }
     }
 
     private func fetchData(completion: @escaping ([String]?, [Int]?, [String]?, [Int]?) -> Void) {
-        PriceApiService.priceObservations(productId: String(describing: product?.itemid)) { (result, dates, prices) in
-            print("670")
+        PriceApiService.priceObservations(productId: product?.itemid ?? 0) { (result, dates, prices) in
             if result == .failed {
                 self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
                 completion(nil, nil, nil, nil)
             } else if result == .success {
-                PriceApiService.priceObservations(productId: String(describing: self.rival?.itemid), completion: { (result2, rivalDates, rivalPrices) in
+                PriceApiService.priceObservations(productId: (self.rivalProduct?.itemid)!, completion: { (result2, rivalDates, rivalPrices) in
                     if result == .failed {
                         self.presentAlert(title: "Thông báo", message: "Sản phẩm chưa được ghi nhận lịch sử")
                         completion(nil, nil, nil, nil)

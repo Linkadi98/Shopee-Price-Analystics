@@ -24,7 +24,6 @@
 #import "FBSDKAppEvents.h"
 #import "FBSDKApplicationDelegate+Internal.h"
 #import "FBSDKLogo.h"
-#import "FBSDKMath.h"
 #import "FBSDKUIUtility.h"
 #import "FBSDKViewImpressionTracker.h"
 
@@ -252,7 +251,7 @@
 
 - (UIColor *)defaultSelectedColor
 {
-  return [UIColor colorWithRed:124.0/255.0 green:143.0/255.0 blue:200.0/255.0 alpha:1.0];
+  return [self defaultBackgroundColor];
 }
 
 - (UIColor *)highlightedContentColor

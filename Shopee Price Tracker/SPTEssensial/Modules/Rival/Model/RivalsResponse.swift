@@ -9,14 +9,15 @@
 import Foundation
 
 struct RivalsResponse: Codable {
-    let item: String?
-    let rival: Rival?
+    let shopRival: Shop?
+    let item: Product?
+    let relation: Relation?
     let itemRival: Product?
 }
 
 // MARK: - Rival
-struct Rival: Codable {
+struct Relation: Codable {
     let itemid, shopid, rivalShopid, rivalItemid: Int?
     let auto: Bool?
-    let price, max, min: Int?
+    let price, max, min: Double?
 }

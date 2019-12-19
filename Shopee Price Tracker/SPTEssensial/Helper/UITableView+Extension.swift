@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
 extension UITableViewController {
     
@@ -14,6 +15,9 @@ extension UITableViewController {
         searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = placeholder
+        searchController.searchBar.snp.makeConstraints { make in
+            make.height.equalTo(44)
+        }
     }
     
     public func isEmptySearchBar(_ searchController: UISearchController) -> Bool {
@@ -29,7 +33,7 @@ extension UITableViewController {
         return searchController.isActive && !isEmptySearchBar(searchController)
     }
     
-    public func displayNoDataNotification(title: String, message: String, action: UIButton? = nil) {
+    public func displayNoDataNotification(title: String, message: String, action: UIButton? = nil, hudError: String? = nil) {
         for row in 0...self.tableView.numberOfRows(inSection: 0) {
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = true
         }
@@ -69,8 +73,15 @@ extension UITableViewController {
             }
         }
         
-        self.tableView.separatorStyle = .none
-        self.tableView.backgroundView = view
+        tableView.separatorStyle = .none
+        tableView.backgroundView = view
+        
+        guard hudError != nil else { return }
+        let hud = SPTProgressHUD(style: .dark)
+        hud.indicatorView = JGProgressHUDErrorIndicatorView()
+        hud.textLabel.text = hudError
+        hud.show(in: tableView.backgroundView!)
+        hud.dismiss(afterDelay: 1.5)
     }
     
     

@@ -25,41 +25,50 @@ NS_ASSUME_NONNULL_BEGIN
  Defines features in SDK
 
  Sample:
- FBSDKFeatureAppEvents = 0x000100,
-                            ^ ^ ^
-                            | | |
-                          kit | |
-                        feature |
-                      sub-feature
+ FBSDKFeatureAppEvents = 0x00010000,
+                            ^ ^ ^ ^
+                            | | | |
+                          kit | | |
+                        feature | |
+                      sub-feature |
+                    sub-sub-feature
  1st byte: kit
  2nd byte: feature
  3rd byte: sub-feature
+ 4th byte: sub-sub-feature
  */
 typedef NS_ENUM(NSUInteger, FBSDKFeature)
 {
   // Features in CoreKit
   /** Essential of CoreKit */
-  FBSDKFeatureCore = 0x000000,
-
-  FBSDKFeatureAppEvents = 0x000100,
-  FBSDKFeatureCodelessEvents,
-  FBSDKFeatureRestrictiveDataFiltering,
-  FBSDKFeatureInstrument = 0x000200,
-  FBSDKFeatureCrashReport,
-  FBSDKFeatureErrorReport,
+  FBSDKFeatureCore = 0x00000000,
+  /** App Events */
+  FBSDKFeatureAppEvents = 0x00010000,
+  FBSDKFeatureCodelessEvents = 0x00010100,
+  FBSDKFeatureRestrictiveDataFiltering = 0x00010200,
+  FBSDKFeatureAAM = 0x00010300,
+  FBSDKFeaturePrivacyProtection = 0x00010400,
+  FBSDKFeatureSuggestedEvents = 0x00010401,
+  FBSDKFeaturePIIFiltering = 0x00010402,
+  FBSDKFeatureEventDeactivation = 0x00010500,
+  /** Instrument */
+  FBSDKFeatureInstrument = 0x00020000,
+  FBSDKFeatureCrashReport = 0x00020100,
+  FBSDKFeatureCrashShield = 0x00020101,
+  FBSDKFeatureErrorReport = 0x00020200,
 
 
   // Features in LoginKit
   /** Essential of LoginKit */
-  FBSDKFeatureLogin = 0x010000,
+  FBSDKFeatureLogin = 0x01000000,
 
   // Features in ShareKit
   /** Essential of ShareKit */
-  FBDSDKFeatureShare = 0x020000,
+  FBDSDKFeatureShare = 0x02000000,
 
   // Features in PlacesKit
   /** Essential of PlacesKit */
-  FBSDKFeaturePlaces = 0x030000,
+  FBSDKFeaturePlaces = 0x03000000,
 
 } NS_SWIFT_NAME(SDKFeature);
 
@@ -69,6 +78,7 @@ typedef void (^FBSDKFeatureManagerBlock)(BOOL enabled);
 
 + (void)checkFeature:(FBSDKFeature)feature
      completionBlock:(FBSDKFeatureManagerBlock)completionBlock;
++ (void)disableFeature:(NSString *)featureName;
 
 @end
 

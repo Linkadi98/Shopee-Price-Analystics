@@ -19,11 +19,20 @@
 #import "FBSDKLoginManager+Internal.h"
 #import "FBSDKLoginManagerLoginResult+Internal.h"
 
-#import <FBSDKCoreKit/FBSDKAccessToken.h>
-#import <FBSDKCoreKit/FBSDKSettings.h>
+#ifdef SWIFT_PACKAGE
+#import "FBSDKAccessToken.h"
+#import "FBSDKSettings.h"
+#else
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#endif
+
+#ifdef FBSDKCOCOAPODS
+#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
+#import "FBSDKCoreKit+Internal.h"
+#endif
 
 #import "_FBSDKLoginRecoveryAttempter.h"
-#import "FBSDKCoreKit+Internal.h"
 #import "FBSDKLoginCompletion.h"
 #import "FBSDKLoginConstants.h"
 #import "FBSDKLoginError.h"
@@ -322,6 +331,8 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   loginParams[@"fbapp_pres"] = @([FBSDKInternalUtility isFacebookAppInstalled]);
   loginParams[@"auth_type"] = self.authType;
   loginParams[@"logging_token"] = serverConfiguration.loggingToken;
+  long long cbtInMilliseconds = round(1000 * [NSDate date].timeIntervalSince1970);
+  loginParams[@"cbt"] = @(cbtInMilliseconds);
 
   [FBSDKBasicUtility dictionary:loginParams setObject:[FBSDKSettings appURLSchemeSuffix] forKey:@"local_client_id"];
   [FBSDKBasicUtility dictionary:loginParams setObject:[FBSDKLoginUtility stringForAudience:self.defaultAudience] forKey:@"default_audience"];
@@ -346,7 +357,7 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
 
   [_logger startSessionForLoginManager:self];
 
-  [self logInWithBehavior:self.loginBehavior];
+  [self logIn];
 }
 
 - (void)reauthorizeDataAccess:(FBSDKLoginManagerLoginResultBlock)handler
@@ -358,10 +369,10 @@ typedef NS_ENUM(NSInteger, FBSDKLoginManagerState) {
   _requestedPermissions = [NSSet set];
   self.authType = FBSDKLoginAuthTypeReauthorize;
   [_logger startSessionForLoginManager:self];
-  [self logInWithBehavior:self.loginBehavior];
+  [self logIn];
 }
 
-- (void)logInWithBehavior:(FBSDKLoginBehavior)loginBehavior
+- (void)logIn
 {
   FBSDKServerConfiguration *serverConfiguration = [FBSDKServerConfigurationManager cachedServerConfiguration];
   NSDictionary *loginParams = [self logInParametersWithPermissions:_requestedPermissions serverConfiguration:serverConfiguration];

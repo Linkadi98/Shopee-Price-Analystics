@@ -53,12 +53,12 @@ class SPTPopupView: UIView, SPTPopupViewProtocol {
     }
     
     @IBAction func getListCompetitors(_ sender: Any) {
-        buttonTitle.value = "Cửa hàng có cùng loại sản phẩm"
+        buttonTitle.value = "Tìm sản phẩm cạnh tranh"
         hidePopup()
     }
     
     @IBAction func observeProductPrice(_ sender: Any) {
-        buttonTitle.value = "Theo dõi giá sản phẩm này"
+        buttonTitle.value = "Thống kê giá sản phẩm"
         hidePopup()
     }
     
@@ -76,10 +76,10 @@ class SPTPopupView: UIView, SPTPopupViewProtocol {
         let title = delegate?.getSelectButton()
         
         switch title {
-        case "Theo dõi giá sản phẩm này":
-            observeProductPrice.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .bold)
+        case "Thống kê giá sản phẩm":
+            observeProductPrice.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         default:
-            listCompetitors.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .bold)
+            listCompetitors.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         }
     }
 }

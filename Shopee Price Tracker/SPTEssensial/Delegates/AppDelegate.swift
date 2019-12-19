@@ -16,6 +16,7 @@ import SwipeableTabBarController
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDSignInDelegate {
 
     var window: UIWindow?
+    var connectivity: SPTConnectivityHelper?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -30,13 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         
-        // begin now when user opens app for the first time, after Launch Screen disapearing, Onboarding Screen will be shown instead of login screen like before
-        // we provide 2 options for user: 1. skip onboarding and go ahead to login screen 2. user can have a walkthough our app depend on Onboarding Screen
-//        let onboardingViewController = mainStoryboard.instantiateViewController(withIdentifier: String(describing: OnboardingViewController.self)) as! OnboardingViewController
-        
-        let tabViewController: SwipeableTabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-        
-        var initialViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController // start in login VC
 
         if UserDefaults.standard.object(forKey: "currentUser") != nil {
             // already logged in
@@ -45,26 +39,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
                     if Date() <= expiredTimeOfToken {
                         // token's not expired -> no need to login
                         Network.shared.headers["Authorization"] = token
-                        initialViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
+                        self.window?.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
                         print("App starts in TabsViewController")
                     } else {
                         UserDefaults.standard.removeObject(forKey: "currentUser")
                         UserDefaults.standard.removeObject(forKey: "token")
                         UserDefaults.standard.removeObject(forKey: "expiredTimeOfToken")
+                        self.window?.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
                     }
                 }
             }
         }
+        else {
+            self.window?.rootViewController = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! ViewController
+        }
         
-
-//        self.window?.rootViewController = initialViewController
         
-//        self.window?.rootViewController = onboardingViewController
-
-        // for development purpose
-        self.window?.rootViewController = tabViewController
+        
         self.window?.makeKeyAndVisible()
         
+        connectivity = SPTConnectivityHelper()
+        connectivity?.invoke()
         return true
     }
 
@@ -75,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        connectivity?.destroy()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -84,14 +80,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInUIDelegate, GIDS
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        connectivity?.invoke()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        connectivity?.destroy()
     }
 }
 

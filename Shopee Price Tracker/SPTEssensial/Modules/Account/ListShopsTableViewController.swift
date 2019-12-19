@@ -18,9 +18,27 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     var listShops: [Shop]?
     var filterShop: [Shop]?
     
-    var isFirstAppear = true
+//    var isFirstAppear = true
     var hasData = false
+
+    override func awakeFromNib() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(onInternetAccess(_:)), name: .internetAccess, object: nil)
+        
+        center.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+    }
     
+    @objc func onInternetAccess(_ notification: Notification) {
+        guard listShops != nil else {
+            return
+        }
+        fetchDataFromServer()
+    }
+    
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,7 +49,10 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         setupSearchController(for: searchController, placeholder: "Nhập tên shop")
 
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.refreshControl?.tintColor = UIColor.orange
+        self.refreshControl?.tintColor = UIColor.blue
+        
+        tableView.register(UINib(nibName: "SPTShopCell", bundle: nil), forCellReuseIdentifier: "SPTShopCell")
+        extendedLayoutIncludesOpaqueBars = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,16 +71,17 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering(searchController) {
-            return isFirstAppear ? filterShop?.count ?? 10 : 0
+            return filterShop?.count ?? 0
         }
-        return isFirstAppear ? listShops?.count ?? 10 : 0
+        return listShops?.count ?? 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "shopCell", for: indexPath) as! ShopTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SPTShopCell", for: indexPath) as! SPTShopCell
 
-        guard listShops != nil else {
+        
+        guard listShops != nil, let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
             return cell
         }
 
@@ -72,15 +94,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
             model = listShops![indexPath.row]
         }
 
-        cell.shopName.text = model.shopName
-        cell.shopId.text = model.shopId
-        if (indexPath.row == 0) {
-            cell.status.addImage(#imageLiteral(resourceName: "active"), "", x: -1)
-            cell.selectionStyle = .none
-        } else {
-            cell.status.isHidden = true
-        }
-//        cell.hideSkeletonAnimation()
+        cell.configCell(shopName: model.name ?? "---", isCurrentShop: model.shopid == currentShop.shopid)
         return cell
     }
     
@@ -91,12 +105,17 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
-        let animator = Animator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
+//        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
+//        let animator = Animator(animation: animation)
+//        animator.animate(cell: cell, at: indexPath, in: tableView)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard listShops != nil, let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
+            return
+        }
+        
         var model: Shop
         
         if isFiltering(searchController) {
@@ -106,26 +125,26 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
             model = listShops![indexPath.row]
         }
         
-        if indexPath.row != 0 {
+        if model.shopid != currentShop.shopid {
             changeCurrentShop(shop: model, indexPath: indexPath)
         }
+        else {
+            presentAlert(title: "Shop đã chọn", message: "Bạn có thể chọn shop khác") { _ in
+                self.tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
+        
+        
     }
     
-//    func numSections(in collectionSkeletonView: UITableView) -> Int {
-//        return 1
-//    }
-//
-//    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-//        return "shopCell"
-//    }
-    
+
     // MARK: - Search Actions
     
     func updateSearchResults(for searchController: UISearchController) {
         if hasData {
             filterContentForSearchText(searchController.searchBar.text!) {(searchText) in
                 filterShop = listShops?.filter({(shop: Shop) -> Bool in
-                    return shop.shopName.lowercased().contains(searchText.lowercased())
+                    return shop.name!.lowercased().contains(searchText.lowercased())
                 })
             }
         }
@@ -134,35 +153,28 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     // MARK: - Fetching data from server
     private func fetchDataFromServer(isChangingShop: Bool = false) {
         
-//        view.hideSkeleton()
-//        view.showAnimatedSkeleton()
-        
         tableView.allowsSelection = false
 
         ShopApiService.getListShops { [unowned self] (result, listShops) in
             guard result != .failed, var listShops = listShops else {
                 self.hasData = false
-                self.isFirstAppear = true
                 self.tableView.reloadData()
-                self.isFirstAppear = false
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
                 return
             }
 
             guard !listShops.isEmpty else {
                 self.hasData = false
-                self.isFirstAppear = true
                 self.tableView.reloadData()
-                self.isFirstAppear = false
                 self.displayNoDataNotification(title: "Tài khoản chưa có cửa hàng nào", message: "Nhấn vào biểu tượng để kết nối")
                 return
             }
 
             guard let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
                 self.hasData = false
-                self.isFirstAppear = true
+                
                 self.tableView.reloadData()
-                self.isFirstAppear = false
+                
                 self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Shop của bạn sẽ hiện tại đây")
                 return
             }
@@ -177,11 +189,9 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
 
             if isChangingShop {
                 self.tabBarController?.selectedIndex = 0
-                
+                NotificationCenter.default.post(name: .didChangeCurrentShop, object: nil)
             }
             
-//            self.view.hideSkeleton()
-//            self.view.stopSkeletonAnimation()
             self.tableView.backgroundView = nil
 
             self.tableView.allowsSelection = true
@@ -190,9 +200,8 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
     }
 
     private func changeCurrentShop(shop: Shop, indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Chuyển sang \(shop.shopName)", message: nil, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Huỷ", style: .cancel, handler: { _ in
-            print("Đã huỷ")
+        let alert = UIAlertController(title: "Chuyển sang \(String(describing: shop.name!))", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Huỷ", style: .destructive, handler: { _ in
         }))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             self.saveObjectInUserDefaults(object: shop as AnyObject, forKey: "currentShop")
@@ -200,7 +209,6 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
         }))
 
         present(alert, animated: true, completion: {
-            // Chuyển về tab đầu tiên và hiện các thông tin của shop tại đây
             self.tableView.deselectRow(at: indexPath, animated: true)
         })
 
@@ -235,6 +243,7 @@ class ListShopsTableViewController: UITableViewController, UISearchResultsUpdati
 
     // MARK: - Refesh data
     @objc func refresh() {
+        
         fetchDataFromServer()
         tableView.refreshControl?.endRefreshing()
     }

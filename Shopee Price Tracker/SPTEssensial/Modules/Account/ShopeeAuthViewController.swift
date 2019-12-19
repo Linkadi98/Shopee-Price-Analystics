@@ -19,14 +19,14 @@ class ShopeeAuthViewController: UIViewController, WKNavigationDelegate {
         super.viewDidLoad()
 
         webView.navigationDelegate = self
-        let url = URL(string: "https://partner.shopeemobile.com/api/v1/shop/auth_partner?id=842939&token=15b7bde67729a19508afc09d8bdf6b1eb499c8607f53aaf41ebf1f0b5dc55ff8&redirect=http%3A%2F%2F172.104.173.222")!
+        let url = URL(string: "https://partner.shopeemobile.com/api/v1/shop/auth_partner?id=842939&token=6ce4acffd3f62e69c4be921cdb84bf1bef9e0878cece7e1310dc9fc76ff8ac00&redirect=http://202.191.56.159:2501")!
         let urlRequest = URLRequest(url: url)
 
         webView.load(urlRequest)
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        let prefix = "http://172.104.173.222:8081/?shop_id="
+        let prefix = "http://202.191.56.159:2501" + "/?shop_id="
         if webView.url!.absoluteString.hasPrefix(prefix) {
             shopId = String(webView.url!.absoluteString.dropFirst(prefix.count))
 

@@ -9,13 +9,15 @@
 import Foundation
 
 struct Shop: Codable, Equatable {
-    var shopId: String
-    var shopName: String
-    var followersCount: Int
-    var rating: Double
-    var place: String
-    var goodRating: Int
-    var badRating: Int
-    var image: String?
+    let shopid: Int?
+    let name: String?
+    let images: [String]?
+    let place: String?
+    let ratingGood, ratingBad, ratingNormal, followerCount: Int?
+    let ratingStar: Double?
+    let ratingCount: [Int]?
+    let itemid: Int?
+    let portrait: String?
 }
+
 

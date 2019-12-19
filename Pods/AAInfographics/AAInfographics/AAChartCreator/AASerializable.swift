@@ -40,17 +40,48 @@ public protocol AAJSONRepresentable {
 public protocol AASerializable: AAJSONRepresentable {
 }
 
+public class AAObject: AASerializable  {
+}
+
+public extension AAObject {
+    var classNameString: String {
+        let nameClass: AnyClass! = object_getClass(self)
+        return NSStringFromClass(nameClass)
+    }
+}
+
 public extension AASerializable {
     var JSONRepresentation: AnyObject {
         var representation = [String: AnyObject]()
         
-        for case let (label?, value) in Mirror(reflecting: self).children {
+        let mirrorChildren = Mirror(reflecting: self).children
+        
+        for case let (label?, value) in mirrorChildren {
             switch value {
-            case let value as AAJSONRepresentable:
+            case let value as AAObject: do {
+//                print("🦁propery name：\(label)     property value：\(value)")
+//                print("To be saved value：\(value.JSONRepresentation)")
                 representation[label] = value.JSONRepresentation
+                }
                 
-            case let value as NSObject:
+            case let value as [AAObject]: do {
+//                print("l🐯propery name：\(label)     property value：\(value)")
+                var aaObjectArr = [AnyObject]()
+                
+                let valueCount = value.count
+                for i in 0 ..< valueCount {
+                    let aaObject = value[i]
+                    let aaObjectDic = aaObject.toDic()
+                    aaObjectArr.append(aaObjectDic as AnyObject)
+                }
+                
+                representation[label] = aaObjectArr as AnyObject
+                }
+                
+            case let value as NSObject: do {
+//                  print("🐱propery name：\(label)     property value：\(value)")
                 representation[label] = value
+                }
                 
             default:
                 // Ignore any unserializable properties
@@ -64,13 +95,15 @@ public extension AASerializable {
 
 public extension AASerializable {
     func toDic() -> [String: AnyObject]? {
-        return JSONRepresentation as? [String: AnyObject]
+        let dic = JSONRepresentation as? [String: AnyObject]
+        return dic
     }
     
     func toJSON() -> String? {
         do {
             let data = try JSONSerialization.data(withJSONObject: JSONRepresentation, options: [])
-            return String(data: data, encoding: String.Encoding.utf8)
+            let jsonStr = String(data: data, encoding: String.Encoding.utf8)
+            return jsonStr
         } catch {
             return nil
         }

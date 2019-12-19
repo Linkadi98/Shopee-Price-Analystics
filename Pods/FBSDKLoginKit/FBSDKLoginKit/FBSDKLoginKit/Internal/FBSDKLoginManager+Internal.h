@@ -18,9 +18,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FBSDKLoginKit/FBSDKLoginManager.h>
-
+#ifdef FBSDKCOCOAPODS
+#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
 #import "FBSDKCoreKit+Internal.h"
+#endif
+
+#import "FBSDKLoginManager.h"
 
 @class FBSDKAccessToken;
 @class FBSDKLoginCompletionParameters;
@@ -42,7 +46,7 @@ NS_SWIFT_NAME(BrowserLoginSuccessBlock);
 
 // available to internal types to trigger login without checking read/publish mixtures.
 - (void)logInWithPermissions:(NSSet *)permissions handler:(FBSDKLoginManagerLoginResultBlock)handler;
-- (void)logInWithBehavior:(FBSDKLoginBehavior)loginBehavior;
+- (void)logIn;
 
 // made available for testing only
 - (NSDictionary *)logInParametersWithPermissions:(NSSet *)permissions serverConfiguration:(FBSDKServerConfiguration *)serverConfiguration;

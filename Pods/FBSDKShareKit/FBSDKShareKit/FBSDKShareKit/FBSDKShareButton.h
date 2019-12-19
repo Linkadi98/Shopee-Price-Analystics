@@ -18,9 +18,13 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FBSDKCoreKit/FBSDKButton.h>
+#if defined BUCK || defined FBSDKCOCOAPODS || defined __cplusplus
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#else
+@import FBSDKCoreKit;
+#endif
 
-#import <FBSDKShareKit/FBSDKSharingButton.h>
+#import "FBSDKSharingButton.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -18,9 +18,12 @@
 
 #import "FBSDKLoginCompletion+Internal.h"
 
-#import <FBSDKCoreKit/FBSDKConstants.h>
+#if SWIFT_PACKAGE
+@import FBSDKCoreKit;
+#else
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#endif
 
-#import "FBSDKCoreKit+Internal.h"
 #import "FBSDKLoginConstants.h"
 #import "FBSDKLoginError.h"
 #import "FBSDKLoginManager+Internal.h"
@@ -214,7 +217,7 @@ static void FBSDKLoginRequestMeAndPermissions(FBSDKLoginCompletionParameters *pa
   }
 
   if ([FBSDKBridgeAPI sharedInstance].isActive) {
-    [loginManager logInWithBehavior:FBSDKLoginBehaviorBrowser];
+    [loginManager logIn];
   } else {
     // The application is active but due to notification ordering the FBSDKApplicationDelegate
     // doesn't know it yet. Wait one more turn of the run loop.

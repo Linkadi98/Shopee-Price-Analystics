@@ -84,7 +84,7 @@ struct ShopApiService {
             // listShop doesn't contain savedCurrentShop
             for shop in listShops {
                 // but maybe shop was changed its properties (not deleted)
-                if currentShop.shopId == shop.shopId {
+                if currentShop.shopid == shop.shopid {
                     currentShop = shop
                     ud.saveObjectInUserDefaults(object: currentShop as AnyObject, forKey: "currentShop")
                     return

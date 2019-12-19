@@ -494,6 +494,32 @@ static NSMapTable *_transientObjects;
       }
     }
   }
+
+  // Find active key window from UIScene
+  if (@available(iOS 13.0, tvOS 13, *)) {
+    NSSet *scenes = [[UIApplication sharedApplication] valueForKey:@"connectedScenes"];
+    for (id scene in scenes) {
+      if (window) {
+        break;
+      }
+
+      id activationState = [scene valueForKeyPath:@"activationState"];
+      BOOL isActive = activationState != nil && [activationState integerValue] == 0;
+      if (isActive) {
+        Class WindowScene = NSClassFromString(@"UIWindowScene");
+        if ([scene isKindOfClass:WindowScene]) {
+          NSArray<UIWindow *> *windows = [scene valueForKeyPath:@"windows"];
+          for (UIWindow *w in windows) {
+            if (w.isKeyWindow) {
+              window = w;
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+
   if (window == nil) {
     [FBSDKLogger singleShotLogEntry:FBSDKLoggingBehaviorDeveloperErrors
                        formatString:@"Unable to find a valid UIWindow", nil];
@@ -505,7 +531,7 @@ static NSMapTable *_transientObjects;
 {
   UIWindow *keyWindow = [self findWindow];
   // SDK expects a key window at this point, if it is not, make it one
-  if (keyWindow !=  nil && !keyWindow.isKeyWindow) {
+  if (keyWindow != nil && !keyWindow.isKeyWindow) {
     [FBSDKLogger singleShotLogEntry:FBSDKLoggingBehaviorDeveloperErrors
                        formatString:@"Unable to obtain a key window, marking %@ as keyWindow", keyWindow.description];
     [keyWindow makeKeyWindow];

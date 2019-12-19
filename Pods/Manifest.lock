@@ -1,50 +1,58 @@
 PODS:
-  - AAInfographics (2.0.4)
-  - Alamofire (4.8.2)
-  - AlamofireImage (3.5.2):
-    - Alamofire (~> 4.8)
+  - AAInfographics (4.0.0)
+  - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
+  - AMPopTip (4.4.0)
+  - BadgeSwift (8.0.0)
+  - Connectivity (3.3.3)
   - Cosmos (19.0.3)
-  - FacebookCore (0.8.0):
+  - FacebookCore (0.9.0):
     - FBSDKCoreKit (~> 5.0)
-  - FacebookLogin (0.8.0):
-    - FacebookCore (~> 0.8.0)
+  - FacebookLogin (0.9.0):
+    - FacebookCore (~> 0.9.0)
     - FBSDKCoreKit (~> 5.0)
     - FBSDKLoginKit (~> 5.0)
-  - FacebookShare (0.8.0):
-    - FacebookCore (~> 0.8.0)
+  - FacebookShare (0.9.0):
+    - FacebookCore (~> 0.9.0)
     - FBSDKCoreKit (~> 5.0)
     - FBSDKShareKit (~> 5.0)
-  - FBSDKCoreKit (5.4.1):
-    - FBSDKCoreKit/Basics (= 5.4.1)
-    - FBSDKCoreKit/Core (= 5.4.1)
-  - FBSDKCoreKit/Basics (5.4.1)
-  - FBSDKCoreKit/Core (5.4.1):
+  - FBSDKCoreKit (5.13.1):
+    - FBSDKCoreKit/Basics (= 5.13.1)
+    - FBSDKCoreKit/Core (= 5.13.1)
+  - FBSDKCoreKit/Basics (5.13.1)
+  - FBSDKCoreKit/Core (5.13.1):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.4.1):
+  - FBSDKLoginKit (5.13.1):
+    - FBSDKLoginKit/Login (= 5.13.1)
+  - FBSDKLoginKit/Login (5.13.1):
     - FBSDKCoreKit (~> 5.0)
-  - FBSDKShareKit (5.4.1):
+  - FBSDKShareKit (5.13.1):
+    - FBSDKShareKit/Share (= 5.13.1)
+  - FBSDKShareKit/Share (5.13.1):
     - FBSDKCoreKit (~> 5.0)
   - GoogleSignIn (4.4.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.2.1):
-    - GoogleToolboxForMac/Defines (= 2.2.1)
-  - GoogleToolboxForMac/Defines (2.2.1)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
-    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
-    - GoogleToolboxForMac/Defines (= 2.2.1)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
-  - GTMSessionFetcher/Core (1.2.2)
+  - GoogleToolboxForMac/DebugUtils (2.2.2):
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+  - GoogleToolboxForMac/Defines (2.2.2)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.2)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.2)
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.2)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.2)"
+  - GTMSessionFetcher/Core (1.3.0)
+  - JGProgressHUD (2.1)
   - MarqueeLabel (4.0.0)
-  - NotificationBannerSwift (2.5.1):
+  - NotificationBannerSwift (3.0.2):
     - MarqueeLabel (~> 4.0.0)
     - SnapKit (~> 5.0.0)
   - NVActivityIndicatorView (4.8.0):
     - NVActivityIndicatorView/Presenter (= 4.8.0)
   - NVActivityIndicatorView/Presenter (4.8.0)
-  - Parchment (1.6.0)
+  - Parchment (1.7.0)
   - SnapKit (5.0.1)
   - SVProgressHUD (2.2.5)
   - SwipeableTabBarController (2.1.1)
@@ -54,11 +62,15 @@ DEPENDENCIES:
   - AAInfographics (from `https://github.com/AAChartModel/AAChartKit-Swift.git`)
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.5)
+  - AMPopTip
+  - BadgeSwift (~> 8.0)
+  - Connectivity
   - Cosmos (~> 19.0)
   - FacebookCore (~> 0.8)
   - FacebookLogin (~> 0.8)
   - FacebookShare (~> 0.8)
   - GoogleSignIn (~> 4.4)
+  - JGProgressHUD
   - NotificationBannerSwift
   - NVActivityIndicatorView
   - Parchment
@@ -67,9 +79,12 @@ DEPENDENCIES:
   - TransitionButton
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - AlamofireImage
+    - AMPopTip
+    - BadgeSwift
+    - Connectivity
     - Cosmos
     - FacebookCore
     - FacebookLogin
@@ -80,15 +95,15 @@ SPEC REPOS:
     - GoogleSignIn
     - GoogleToolboxForMac
     - GTMSessionFetcher
+    - JGProgressHUD
     - MarqueeLabel
     - NotificationBannerSwift
+    - NVActivityIndicatorView
     - Parchment
     - SnapKit
     - SVProgressHUD
     - SwipeableTabBarController
     - TransitionButton
-  trunk:
-    - NVActivityIndicatorView
 
 EXTERNAL SOURCES:
   AAInfographics:
@@ -96,32 +111,36 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   AAInfographics:
-    :commit: 5b0199e7be0e7a622b159d8a8e80d430b4999825
+    :commit: c7e7e2d99f2e363ac191f199e081182eccad9563
     :git: https://github.com/AAChartModel/AAChartKit-Swift.git
 
 SPEC CHECKSUMS:
-  AAInfographics: 10f87e06fc007a0adbb05de020e4a2fe3119f8de
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
+  AAInfographics: bbeed03caece4ee3b5e557d734967394e9bcdb11
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  AMPopTip: 093366c8dab16a2d0bf46c73d5837b6a2a603774
+  BadgeSwift: a81547ffde1f462bb5fc02e3fa3fdcbc1b888354
+  Connectivity: 4ffcb7456939268de2431c230a3ff015d4cbcfa9
   Cosmos: a6fb17284281fa12cf4c85c2efecd440a215ec44
-  FacebookCore: 563bb4cbcd7dd86cf89f3729252140bf256aacaa
-  FacebookLogin: 8b966ae661e95e7dba837d7cc49cc464ce003dba
-  FacebookShare: e75d5e81ef7bd7aab2f865446c4c27015b43bae6
-  FBSDKCoreKit: 5144671077d67f07d7d243dbc7fd57a171f73954
-  FBSDKLoginKit: ff38b353b6843353f090028eb1b895c78aa82796
-  FBSDKShareKit: dfea6d7a3683672fd8e50f453eaa754f922bf2b8
+  FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
+  FacebookLogin: 6cee9fd6e1fe976fe8f7eec199e27b28b14f5d63
+  FacebookShare: 85968ad1b1606c4944fb154924e425fd29184ea5
+  FBSDKCoreKit: 8fb98209109fb684937f05d534305edb18c20207
+  FBSDKLoginKit: c7c6ffd9ca9ea45aee32361840af040ad8f6706a
+  FBSDKShareKit: 8a0e4d7172c7b706991c834cff2bf74e7b4726e3
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
-  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
-  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
+  GTMSessionFetcher: 43b8b64263023d4f32caa0b40f4c8bfa3c5f36d8
+  JGProgressHUD: aa403e9a5b45cae98903c4600cccdd98c0c3ec90
   MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
-  NotificationBannerSwift: e55dd801b0d78f1a7bacb10d722a935ec95f94a3
+  NotificationBannerSwift: 713e20f21b6105f4a36a00e5d9fa414a930d3d8e
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
-  Parchment: d3a7b367c529fa6ef51aa43f5717a7ff36d4b1f5
+  Parchment: cae686f73685d16742cec9c19239b7578a15f0f5
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwipeableTabBarController: 8f7f04275f510c5babb630f7be1161b5f28567e0
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 40d7f0b76a9c03a7f19e1f7edd7f547a063f5856
+PODFILE CHECKSUM: be38216fcd2259be980f92f7b5830b4a83cf363a
 
 COCOAPODS: 1.8.4

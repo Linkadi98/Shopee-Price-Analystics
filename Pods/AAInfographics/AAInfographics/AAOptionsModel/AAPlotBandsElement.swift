@@ -32,15 +32,18 @@
 
 import UIKit
 
-public class AAPlotBandsElement: AASerializable {
-    private var from: Float?
-    private var to: Float?
-    private var color: Any?
-    private var borderColor: String?
-    private var borderWidth: Float?
-    private var className: String?
-    private var label: AALabel?
-    private var zIndex: Int?
+public class AAPlotBandsElement: AAObject {
+    public var from: Float?
+    public var to: Float?
+    public var color: Any?
+    public var borderColor: String?
+    public var borderWidth: Float?
+    public var className: String?
+    public var label: AALabel?
+    public var zIndex: Int?
+    public var outerRadius: String?
+    public var thickness: String?
+    
     
     @discardableResult
     public func from(_ prop: Float) -> AAPlotBandsElement {
@@ -90,7 +93,19 @@ public class AAPlotBandsElement: AASerializable {
         return self
     }
     
-    public  init() {
+    @discardableResult
+    public func outerRadius(_ prop: String) -> AAPlotBandsElement {
+        outerRadius = prop
+        return self
+    }
+    
+    @discardableResult
+    public func thickness(_ prop: String) -> AAPlotBandsElement {
+        thickness = prop
+        return self
+    }
+    
+    public override init() {
     }   
 
 }

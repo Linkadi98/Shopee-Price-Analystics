@@ -15,13 +15,10 @@ protocol SPTPopupViewButtonProtocol {
 
 class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonProtocol {
     
-    
-    
-    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var tableViewContainer: UIView!
-    @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var actionContainerView: UIView!
     @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
     
     
     var vm: ProductTableContainerViewModel?
@@ -29,15 +26,37 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     
     var popup: SPTPopupView!
     var delegate: SPTPopupViewProtocol?
-    
+        
     var opagueView: UIView!
+    
+    override func awakeFromNib() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(onInternetAccess(_:)), name: .internetAccess, object: nil)
+        
+        center.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+    }
+    
+    @objc func onInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+    }
+    
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configVM()
         actionContainerView.setShadow(cornerRadius: 0, shadowRadius: 1, shadowOffset: CGSize(width: 0, height: -2))
-        headerView.setShadow(cornerRadius: 0, shadowRadius: 10, shadowOffset: CGSize(width: 0, height: -2))
+        
+        
         actionButton.layer.cornerRadius = 5
+        moreButton.layer.cornerRadius = 5
     }
     
     @IBAction func close(_ sender: Any) {
@@ -46,10 +65,11 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     
     @IBAction func actionOnProduct(_ sender: Any) {
         switch actionButton.titleLabel?.text {
-        case "Theo dõi giá sản phẩm này":
-            vm!.observeProductPrice()
+        case "Thống kê giá sản phẩm":
+            performSegue(withIdentifier: "StatTableViewContainer", sender: nil)
+            break
         default:
-            vm!.getCompetitorsHasSameProduct()
+            performSegue(withIdentifier: "ListRivalProductsContainer", sender: nil)
         }
     }
     
@@ -62,20 +82,20 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     func configVM() {
         vm?.product?.bindAndFire { product in
             self.vm2?.product.value = product
-            self.productTitle.text = product.name
         }
     }
     
     func configPopup() {
         popup = SPTPopupView()
         view.addSubview(popup)
+        
         popup.snp.makeConstraints { make in
             make.bottom.equalTo(actionContainerView)
             make.trailing.equalTo(actionContainerView)
             make.leading.equalTo(actionContainerView)
             make.height.equalTo(100)
-            
         }
+        
         popup.transform = CGAffineTransform(translationX: 0, y: 100)
         
         delegate = popup
@@ -102,7 +122,6 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(hidePopup(_:)))
         opagueView.addGestureRecognizer(gesture)
-        
     }
     
     // MARK: Handle Popup
@@ -119,8 +138,8 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
         }
         
         configPopup()
-        let selected = getSelectButton()
-        print(selected)
+        let _ = getSelectButton()
+        
         UIView.animate(withDuration: 0.25, animations: {
             self.opagueView.backgroundColor = UIColor(white: 0.25, alpha: 0.5)
             self.popup.transform = CGAffineTransform(translationX: 0, y: 0)
@@ -147,9 +166,21 @@ class ProductTableContainerViewController: UIViewController, SPTPopupViewButtonP
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segueId = "EmbededController"
+        let listRivalProductsSegue = "ListRivalProductsContainer"
+        let priceObserving = "StatTableViewContainer"
         if segueId == segue.identifier {
             let vc = segue.destination as! ProductDetailTableViewController
             vc.vm = ProductTableViewDetailViewModel(product: vm!.product!)
+        }
+        
+        if listRivalProductsSegue == segue.identifier {
+            let vc = segue.destination as! ListRivalProductsContainerViewController
+            vc.vm = ListRivalProductsContainerViewModel(product: vm!.product)
+        }
+        
+        if priceObserving == segue.identifier {
+            let vc = segue.destination as! StatContainerViewController
+            vc.product = vm?.product?.value
         }
     }
 }

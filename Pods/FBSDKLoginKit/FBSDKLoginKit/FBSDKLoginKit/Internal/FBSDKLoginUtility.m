@@ -18,10 +18,17 @@
 
 #import "FBSDKLoginUtility.h"
 
-#import <FBSDKCoreKit/FBSDKConstants.h>
-#import <FBSDKCoreKit/FBSDKSettings.h>
+#if SWIFT_PACKAGE
+@import FBSDKCoreKit;
+#else
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#endif
 
+#ifdef FBSDKCOCOAPODS
+#import <FBSDKCoreKit/FBSDKCoreKit+Internal.h>
+#else
 #import "FBSDKCoreKit+Internal.h"
+#endif
 #import "FBSDKLoginConstants.h"
 
 @implementation FBSDKLoginUtility

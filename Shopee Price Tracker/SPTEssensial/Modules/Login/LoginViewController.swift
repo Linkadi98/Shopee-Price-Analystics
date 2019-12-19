@@ -27,14 +27,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    var connectivity: SPTConnectivityHelper?
 
+    override func awakeFromNib() {
+        let center = NotificationCenter.default
+        center.addObserver(self, selector: #selector(onInternetAccess(_:)), name: .internetAccess, object: nil)
+        
+        center.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+    }
+    
+    @objc func onInternetAccess(_ notification: Notification) {
+        
+    }
+    
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // test
-        userNameText.text = "TrongCanh"
-        passwordText.text = "123456789"
+        userNameText.text = "minhpn"
+        passwordText.text = "123456"
         hideKeyboardWhenTappedAround()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +93,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 UIApplication.shared.endIgnoringInteractionEvents()
             }
 
+            print(result)
             switch result {
             case .error:
                 self.presentAlert(message: "Sai tài khoản hoặc mật khẩu")
@@ -83,11 +102,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: String(describing: TabsViewController.self)) as! TabsViewController
                 
-                tabVC.modalTransitionStyle = .crossDissolve
+                tabVC.modalTransitionStyle = .coverVertical
+                tabVC.modalPresentationStyle = .fullScreen
                 self.present(tabVC, animated: true, completion: nil)
                 NotificationCenter.default.post(name: .didSignedInApp, object: nil)
             default:
-                break
+                self.presentAlert(title: "Mất kết nối", message: "Kiểm tra lại kết nối", handler: nil)
             }
         }
     }

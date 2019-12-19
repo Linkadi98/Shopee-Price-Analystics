@@ -25,6 +25,7 @@
 #import "FBSDKConstants.h"
 #import "FBSDKDynamicFrameworkLoader.h"
 #import "FBSDKError.h"
+#import "FBSDKEventDeactivationManager.h"
 #import "FBSDKFeatureManager.h"
 #import "FBSDKGateKeeperManager.h"
 #import "FBSDKInstrumentManager.h"
@@ -108,6 +109,18 @@ static UIApplicationState _applicationState;
   [FBSDKFeatureManager checkFeature:FBSDKFeatureInstrument completionBlock:^(BOOL enabled) {
     if (enabled) {
       [FBSDKInstrumentManager enable];
+    }
+  }];
+
+  [FBSDKFeatureManager checkFeature:FBSDKFeatureRestrictiveDataFiltering completionBlock:^(BOOL enabled) {
+    if (enabled) {
+      [FBSDKRestrictiveDataFilterManager enable];
+    }
+  }];
+
+  [FBSDKFeatureManager checkFeature:FBSDKFeatureEventDeactivation completionBlock:^(BOOL enabled) {
+    if (enabled) {
+      [FBSDKEventDeactivationManager enable];
     }
   }];
 
@@ -355,6 +368,25 @@ static UIApplicationState _applicationState;
   NSString const *className = NSStringFromClass([delegate class]);
   if ([className componentsSeparatedByString:@"."].count > 1) {
     params[@"is_using_swift"] = @YES;
+  }
+
+  void (^checkViewForSwift)(void) = ^void ()
+  {
+    // Additional check to see if the consuming application perhaps was
+    // originally an objc project but is now using Swift
+    UIViewController *topMostViewController = [FBSDKInternalUtility topMostViewController];
+    NSString const *vcClassName = NSStringFromClass([topMostViewController class]);
+    if ([vcClassName componentsSeparatedByString:@"."].count > 1) {
+      params[@"is_using_swift"] = @YES;
+    }
+  };
+
+  if ([NSThread isMainThread]) {
+    checkViewForSwift();
+  } else {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+      checkViewForSwift();
+    });
   }
 
   NSInteger existingBitmask = [[NSUserDefaults standardUserDefaults] integerForKey:FBSDKKitsBitmaskKey];

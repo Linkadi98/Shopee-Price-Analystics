@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SPTListShops" customModule="Shopee_Prices_Analystic" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="HTt-eM-zWD"/>
+                <outlet property="listShopTableView" destination="H8Y-Xc-Ghp" id="h7Q-vr-wiC"/>
+                <outlet property="titleTableView" destination="xtb-Ix-JPS" id="drm-Jp-Sd7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="242"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="H8Y-Xc-Ghp">
+                    <rect key="frame" x="0.0" y="43" width="414" height="199"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="199" id="0uQ-Mj-0yV"/>
+                    </constraints>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DANH SÁCH SHOP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtb-Ix-JPS">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="42.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="737-0d-61Q">
+                    <rect key="frame" x="0.0" y="242" width="414" height="71"/>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="H8Y-Xc-Ghp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="3n6-xN-zJ9"/>
+                <constraint firstItem="H8Y-Xc-Ghp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="43" id="5Gm-zQ-kaJ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="737-0d-61Q" secondAttribute="trailing" id="HXM-WW-c3p"/>
+                <constraint firstItem="H8Y-Xc-Ghp" firstAttribute="top" secondItem="xtb-Ix-JPS" secondAttribute="bottom" constant="0.5" id="LvD-x1-IF5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="737-0d-61Q" secondAttribute="bottom" id="RRm-RX-3A0"/>
+                <constraint firstItem="H8Y-Xc-Ghp" firstAttribute="leading" secondItem="737-0d-61Q" secondAttribute="leading" id="UDC-4M-Hwg"/>
+                <constraint firstItem="xtb-Ix-JPS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bzM-Lz-ENP"/>
+                <constraint firstItem="H8Y-Xc-Ghp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="jcg-fp-fSj"/>
+                <constraint firstItem="xtb-Ix-JPS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="k48-Ra-ZN6"/>
+                <constraint firstAttribute="trailing" secondItem="xtb-Ix-JPS" secondAttribute="trailing" id="rNg-xZ-XLq"/>
+                <constraint firstItem="H8Y-Xc-Ghp" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="xDm-Le-ofD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="88.405797101449281" y="26.785714285714285"/>
+        </view>
+    </objects>
+</document>

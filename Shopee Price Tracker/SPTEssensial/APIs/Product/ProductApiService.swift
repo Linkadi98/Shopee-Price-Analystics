@@ -26,9 +26,9 @@ extension ProductApiService {
             return
         }
         
-        url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopId)")!
+        url = URL(string: sharedNetwork.base_url + sharedNetwork.items_path + "/\(currentShop.shopid!)")!
         
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil, timeoutInterval: 60).responseJSON { (response) in
+        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil, timeoutInterval: 10).responseJSON { (response) in
             // Failed request
             guard response.result.isSuccess, (response.data != nil) else {
                 sharedNetwork.notifyFailedConnection(error: response.result.error)
@@ -50,7 +50,7 @@ extension ProductApiService {
     }
     
     // update price
-    static func updatePrice(shopId: String, productId: String, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
+    static func updatePrice(shopId: Int, productId: Int, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
         let sharedNetwork = Network.shared
         let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
         

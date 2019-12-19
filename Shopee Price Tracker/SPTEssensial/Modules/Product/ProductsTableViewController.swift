@@ -9,6 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 import NVActivityIndicatorView
+import JGProgressHUD
 
 class ProductsTableViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
@@ -18,41 +19,52 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     var searchController: UISearchController!
     
     var result: ConnectionResults?
-    var isChosenToObservePrice = false
+    
+    var hud: SPTProgressHUD!
+    
+    override func awakeFromNib() {
+        // Notification
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onUpdatePrice(_ :)), name: .didUpdateProductPrice, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .internetAccess, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onNoInternetAccess(_:)), name: .noInternetAccess, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .didChangeCurrentShop, object: nil)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchController = UISearchController(searchResultsController: nil)
-        searchController.searchBar.backgroundImage = UIImage()
-        self.navigationItem.searchController = searchController
+        self.navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        setupSearchController(for: searchController, placeholder: "Nhập tên sản phẩm")
+        setupSearchController(for: searchController, placeholder: "Tên, mã, hoặc giá sản phẩm")
         
         self.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.refreshControl?.tintColor = UIColor.orange
-        
-        tableView.separatorColor = .none
-        tableView.separatorStyle = .none
+        self.refreshControl?.tintColor = UIColor.blue
 
         configVm(vm: ProductTableViewModel(productList: Observable(nil), filterProducts: Observable(nil)))
-
-        guard var currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop else {
-            return
-        }
         
-        // Notification
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadProduct(_:)), name: .didChangeCurrentShop, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onUpdatePrice(_ :)), name: .didUpdateProductPrice, object: nil)
-        
+        setShadowForNavigationBar()
+        self.extendedLayoutIncludesOpaqueBars = true
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         guard vm.productsList.value != nil else {
             fetchDataFromServer()
             return
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.view.setNeedsLayout() // force update layout
+        navigationController?.view.layoutIfNeeded()
     }
     
     // MARK: - Table view data source
@@ -85,21 +97,25 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         }
 
         DispatchQueue.main.async {
-            cell.productName.text = "\(String(describing: product.name!))"
-            cell.cosmos.rating = Double(product.ratingStar!)
-            cell.productPrice.text = product.price!.convertPriceToVietnameseCurrency()
-            cell.productCode.text = String(describing: product.itemid)
+            cell.productName.text = String(describing: product.name ?? "")
+            cell.cosmos.rating = Double(product.ratingStar ?? 0)
+            cell.productPrice.text = Int(product.price!).convertPriceToVietnameseCurrency()
+            cell.productCode.text = String(describing: product.itemid ?? 0)
+            Network.shared.loadOnlineImage(from:
+                URL(string: product.images![0])!,
+                                           to: cell.productImage)
         }
-        loadOnlineImage(from: URL(string: product.images![0])!, to: cell.productImage)
+        print(URL(string: product.images![0])!)
+        
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
-        let animator = Animator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
-        tableView.scrollsToTop = true
+//        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: tableView.rowHeight, duration: 0.3, delayFactor: 0.03)
+//        let animator = Animator(animation: animation)
+//        animator.animate(cell: cell, at: indexPath, in: tableView)
+//        tableView.scrollsToTop = true
     }
  
 
@@ -113,14 +129,6 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             else {
                 product = vm.productsList.value![indexPath.row]
             }
-
-            if isChosenToObservePrice {
-//                let statisticalPriceTableViewController = navigationController?.viewControllers[0] as! StatisticalPriceTableViewController
-//                statisticalPriceTableViewController.product = product
-                navigationController?.popViewController(animated: true)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didChooseProductToObserve"), object: nil, userInfo: ["product": product])
-                return
-            }
             
             performSegue(withIdentifier: "ProductDetail", sender: product)
         }
@@ -130,7 +138,9 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     func updateSearchResults(for searchController: UISearchController) {
         if (vm.productsList.value != nil) { filterContentForSearchText(searchController.searchBar.text!) { (searchText) in
                 vm.filterProducts.value = (vm.productsList.value?.filter({(product: Product) -> Bool in
-                    return (product.name!.lowercased().contains(searchText.lowercased())) || String(describing: product.itemid!).lowercased().contains(searchText.lowercased())
+                    return (product.name!.lowercased().contains(searchText.lowercased())) ||
+                        String(describing: product.itemid!).lowercased().contains(searchText.lowercased()) ||
+                        product.name!.folding(options: .diacriticInsensitive, locale: .current).lowercased().contains(searchText.lowercased())
                 }))!
             }
         }
@@ -143,6 +153,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
             let vc = segue.destination as! ProductTableContainerViewController
             vc.vm = ProductTableContainerViewModel()
             vc.vm!.product = Observable(sender as! Product)
+            vc.hidesBottomBarWhenPushed = true
         }
     }
     
@@ -150,22 +161,21 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
     func configVm(vm: ProductTableViewModel) {
         self.vm = vm
         self.vm.productsList.bind { products in
+            
             guard products?.count != 0 else {
                 self.tableView.reloadData()
-                self.displayNoDataNotification(title: "Không có dữ liệu, kiểm tra lại kết nối", message: "Sản phẩm của bạn sẽ hiện tại đây")
-                print("bind0")
+                self.displayNoDataNotification(title: "Có lỗi xảy ra", message: "Kiểm tra lại kết nối", hudError: "Lỗi kết nối")
                 return
             }
             
             guard self.result != .error,  let _ = products else {
                 self.tableView.reloadData()
-                let action = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+                let action = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 50))
                 action.setTitle("Kết nối cửa hàng", for: .normal)
                 action.backgroundColor = .orange
                 action.layer.cornerRadius = 5
                 
-                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Xin mời quay lại Shopee để thêm sản phẩm", action: action)
-                print("bind1")
+                self.displayNoDataNotification(title: "Cửa hàng chưa có sản phẩm nào", message: "Bạn hãy quay lại Shopee để thêm sản phẩm", action: action)
                 return
             }
             
@@ -185,23 +195,25 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 action.backgroundColor = .blue
 
                 self.displayNoDataNotification(title: "Chưa kết nối cửa hàng nào", message: "Hãy kết nối cửa hàng ở mục Tài khoản", action: action)
-                print("bind2")
                 return
             }
             self.tableView.reloadData()
             self.tableView.backgroundView = nil
             self.tableView.allowsSelection = true
         }
-        
-        print("View Model")
-        
     }
     
     // MARK: - Private loading data for this class
     
+    fileprivate func showProgressHUD() {
+        hud = SPTProgressHUD(style: .dark)
+        hud.show(in: tableView, content: "Đang tải")
+    }
+    
     private func fetchDataFromServer() {
-        print("fetch data")
-        
+
+        showProgressHUD()
+
         for row in 0...self.tableView.numberOfRows(inSection: 0) {
             self.tableView.cellForRow(at: IndexPath(row: row, section: 0))?.isHidden = false
         }
@@ -228,6 +240,7 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
                 self.vm.productsList.value = listProducts
             }
         }
+        
     }
     
     // MARK: - Reload Product after changing current Shop
@@ -238,6 +251,11 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
 
     // MARK: - Refesh data
     @objc func refresh() {
+        guard vm != nil else {
+            return
+        }
+        vm.productsList.value = []
+        tableView.backgroundView = nil
         fetchDataFromServer()
         tableView.refreshControl?.endRefreshing()
     }
@@ -246,15 +264,13 @@ class ProductsTableViewController: UITableViewController, UISearchBarDelegate, U
         fetchDataFromServer()
     }
     
-}
-
-extension UIView {
-
-    func centerInContainingWindow() {
-        guard let window = self.window else { return }
-
-        let windowCenter = CGPoint(x: window.frame.midX, y: window.frame.midY)
-        self.center = self.superview!.convert(windowCenter, from: nil)
+    @objc func onNoInternetAccess(_ notification: Notification) {
+        guard vm != nil else {
+            return
+        }
+        vm.productsList.value = []
+        presentAlert(title: "Mất kết nối mạng", message: "Vui lòng kiểm tra kết nối mạng")
     }
-
+    
 }
+
