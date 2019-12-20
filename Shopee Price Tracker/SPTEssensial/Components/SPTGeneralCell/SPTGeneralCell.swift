@@ -10,8 +10,16 @@ import UIKit
 
 class SPTGeneralCell: UITableViewCell {
 
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var value: UILabel!
+    @IBOutlet weak var label: UILabel! {
+        didSet {
+            label.text = "---"
+        }
+    }
+    @IBOutlet weak var value: UILabel!  {
+        didSet {
+            value.text = "---"
+        }
+    }
     @IBOutlet weak var imageCell: UIImageView!
     
     override func awakeFromNib() {
@@ -27,7 +35,7 @@ class SPTGeneralCell: UITableViewCell {
     
     func configCell(label: String, value: Int, image: UIImage) {
         self.label.text = label
-        self.value.text = value != 0 ? "\(value)" : "---"
+        self.value.text = value != -1 ? "\(value)" : "---"
         imageCell.image = image
     }
 }
