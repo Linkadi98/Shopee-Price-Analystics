@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SPTListShopsDelegate {
+    func hideOpaqueView()
+}
+
 class SPTListShops: BaseView {
 
     @IBOutlet var contentView: UIView!
@@ -16,6 +20,7 @@ class SPTListShops: BaseView {
     @IBOutlet weak var titleTableView: UILabel!
     
     var vm: SPTListShopsViewModel?
+    var delegate: SPTListShopsDelegate?
     
     let SHOP_CELL = "SPTShopCell"
     let XIB_NAME = "SPTListShops"
@@ -88,8 +93,18 @@ extension SPTListShops: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         let cell = tableView.cellForRow(at: indexPath) as! SPTShopCell
-        let shopName = cell.shopName.text as Any
-        NotificationCenter.default.post(name: .didChangeCurrentShop, object: nil, userInfo: ["ShopName": shopName])
+        UserDefaults.standard.saveObjectInUserDefaults(object: vm?.shops?.value[indexPath.row] as AnyObject, forKey: "currentShop")
+        NotificationCenter.default.post(name: .didChangeCurrentShop, object: nil, userInfo: ["ShopName": cell.shopName.text ?? ""])
+        let numRows = tableView.numberOfRows(inSection: 0)
+        for row in 0..<numRows {
+            if indexPath.row == row {
+                continue
+            }
+            let indexPath = IndexPath(row: row, section: 0)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        hideListShopsTableView()
+        delegate?.hideOpaqueView()
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

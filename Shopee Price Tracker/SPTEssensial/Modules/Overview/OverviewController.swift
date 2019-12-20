@@ -9,7 +9,7 @@
 import UIKit
 import BadgeSwift
 
-class OverviewController: UIViewController {
+class OverviewController: UIViewController, SPTListShopsDelegate {
     
     @IBOutlet weak var productStatTableView: UITableView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -36,7 +36,7 @@ class OverviewController: UIViewController {
         super.viewDidLoad()
         configStatTableView()
         configListShopsTableView()
-        configViewModel(OverviewViewModel(response: Observable((0, 0, 0))))
+        configViewModel(OverviewViewModel(response: Observable((-1,-1,-1))))
         
         scrollView.refreshControl = UIRefreshControl()
         scrollView.refreshControl?.addTarget(self, action:
@@ -46,6 +46,12 @@ class OverviewController: UIViewController {
         badge.attachTo(notificationBell)
         
         setShadowForNavigationBar()
+        
+        if let currentShop = UserDefaults.standard.getObjectInUserDefaults(forKey: "currentShop") as? Shop {
+            let mutableAttributedString = NSAttributedString(string: currentShop.name ?? "")
+            listShopButton.setAttributedTitle(mutableAttributedString, for: .normal)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +60,7 @@ class OverviewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if let response = vm?.response?.value, response == (0,0,0) {
+        if let response = vm?.response?.value, response == (-1,-1,-1) {
             fetchData()
         }
     }
@@ -107,6 +113,8 @@ class OverviewController: UIViewController {
             make.width.equalTo(view.frame.width)
         }
         
+        listShopsTableView.delegate = self
+        
         let gesture = UITapGestureRecognizer(target: self, action: #selector(hidePopup(_:)))
         opagueView.addGestureRecognizer(gesture)
         
@@ -139,6 +147,10 @@ class OverviewController: UIViewController {
             self.opagueView = nil
         })
     }
+    
+    func hideOpaqueView() {
+        removeOpagueView()
+    }
 
     func configViewModel(_ vm: OverviewViewModel) {
         self.vm = vm
@@ -158,16 +170,18 @@ class OverviewController: UIViewController {
         guard vm?.response != nil else {
             return
         }
-        vm?.response?.value = (0,0,0)
+        vm?.response?.value = (-1,-1,-1)
         fetchData()
         scrollView.refreshControl?.endRefreshing()
     }
     
     @objc func onChangeCurrentShop(_ notification: Notification) {
-        let userInfo = notification.userInfo as! [String: String]
-        let shopName = userInfo["ShopName"]
-        
-        listShopButton.setTitle(shopName, for: .normal)
+        if let userInfo = notification.userInfo as? [String: String] {
+            let mutableAttributedString = NSAttributedString(string: userInfo["ShopName"]!)
+            listShopButton.setAttributedTitle(mutableAttributedString, for: .normal)
+        }
+        vm?.response?.value = (-1,-1,-1)
+        fetchData()
     }
     
     
