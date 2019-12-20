@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7ED63E89A8D565860265D348A6AFF2DA"
+               BlueprintIdentifier = "063386C78BA04CFC605AF41C9F9AAE03"
                BuildableName = "FacebookLogin.framework"
                BlueprintName = "FacebookLogin"
                ReferencedContainer = "container:Pods.xcodeproj">

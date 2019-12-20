@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import CryptoSwift
+import Alamofire
 
 enum ProductApiService {
     case putListProduct
@@ -50,21 +52,46 @@ extension ProductApiService {
     }
     
     // update price
+//    static func updatePrice(shopId: Int, productId: Int, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
+//        let sharedNetwork = Network.shared
+//        let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
+//
+//        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
+//            // Failed request
+//            guard response.result.isSuccess else {
+//                //                self.notifyFailedConnection(error: response.result.error)
+//                completion(.failed)
+//                return
+//            }
+//
+//            //Successful request
+//            let responseValue = response.result.value! as! [String: Any]
+//            if let _ = responseValue["price"] as? Int {
+//                completion(.success)
+//            } else {
+//                completion(.error)
+//            }
+//        }
+//    }
+
     static func updatePrice(shopId: Int, productId: Int, newPrice: Int, completion: @escaping (ConnectionResults) -> Void) {
-        let sharedNetwork = Network.shared
-        let url = URL(string: Network.shared.base_url + Network.shared.price_path + "/\(shopId)/\(productId)/\(newPrice)")!
-        
-        sharedNetwork.alamofireDataRequest(url: url, httpMethod: .put, parameters: nil).responseJSON { (response) in
-            // Failed request
+        let url = URL(string: "http://202.191.56.159:2671/update?shopId=\(shopId)&id=\(productId)&price=\(newPrice)")!
+
+        let headers = [
+            "Content-Type": "application/json"
+        ]
+
+        Alamofire.request(url, method: .post, parameters: nil, encoding: URLEncoding.default, headers: headers).responseJSON { (response) in
             guard response.result.isSuccess else {
                 //                self.notifyFailedConnection(error: response.result.error)
                 completion(.failed)
                 return
             }
-            
+
             //Successful request
-            let responseValue = response.result.value! as! [String: Any]
-            if let _ = responseValue["price"] as? Int {
+            let responseValue = response.result.value as! [String: String]
+            print(responseValue)
+            if responseValue["ok"] == "OK" {
                 completion(.success)
             } else {
                 completion(.error)

@@ -959,6 +959,8 @@
 			dependencies = (
 			);
 			name = "Shopee Prices Analystic";
+			packageProductDependencies = (
+			);
 			productName = "Shopee Prices Analystic";
 			productReference = 2484174522D85D800009DF10 /* Shopee Prices Analystic.app */;
 			productType = "com.apple.product-type.application";
@@ -1010,6 +1012,8 @@
 				Base,
 			);
 			mainGroup = 2484173C22D85D800009DF10;
+			packageReferences = (
+			);
 			productRefGroup = 2484174622D85D800009DF10 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
